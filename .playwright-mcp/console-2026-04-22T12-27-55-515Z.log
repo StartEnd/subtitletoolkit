@@ -1,0 +1,10 @@
+[    5782ms] [LOG] 初始化用户状态检查: {hasSavedUser: false, hasAccessToken: false, domain: https://ai2you.org} @ https://ai2you.org/static/js/main.cc141699.js:1
+[    5782ms] [LOG] ❌ 未找到有效的用户登录状态 @ https://ai2you.org/static/js/main.cc141699.js:1
+[    5839ms] [LOG] %c[Google Auth 2026-04-22T12:28:01.354Z] background: #4285F4; color: white; padding: 2px 4px; border-radius: 2px; 浏览器检测 {isChrome: true, isFirefox: false, isSafari: false} @ https://ai2you.org/static/js/main.cc141699.js:1
+[    5839ms] [LOG] %c[Google Auth 2026-04-22T12:28:01.354Z] background: #4285F4; color: white; padding: 2px 4px; border-radius: 2px; 开始加载 Google API @ https://ai2you.org/static/js/main.cc141699.js:1
+[    7087ms] [LOG] %c[Google Auth 2026-04-22T12:28:02.601Z] background: #4285F4; color: white; padding: 2px 4px; border-radius: 2px; Google API 加载成功 @ https://ai2you.org/static/js/main.cc141699.js:1
+[    7359ms] [LOG] 初始化用户状态检查: {hasSavedUser: false, hasAccessToken: false, domain: https://ai2you.org} @ https://ai2you.org/static/js/main.cc141699.js:1
+[    7359ms] [LOG] ❌ 未找到有效的用户登录状态 @ https://ai2you.org/static/js/main.cc141699.js:1
+[    7404ms] [LOG] %c[Google Auth 2026-04-22T12:28:02.919Z] background: #4285F4; color: white; padding: 2px 4px; border-radius: 2px; 浏览器检测 {isChrome: true, isFirefox: false, isSafari: false} @ https://ai2you.org/static/js/main.cc141699.js:1
+[    7404ms] [LOG] %c[Google Auth 2026-04-22T12:28:02.919Z] background: #4285F4; color: white; padding: 2px 4px; border-radius: 2px; 开始加载 Google API @ https://ai2you.org/static/js/main.cc141699.js:1
+[    7409ms] [LOG] %c[Google Auth 2026-04-22T12:28:02.923Z] background: #4285F4; color: white; padding: 2px 4px; border-radius: 2px; Google API 加载成功 @ https://ai2you.org/static/js/main.cc141699.js:1

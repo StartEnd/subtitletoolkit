@@ -1,0 +1,37 @@
+---
+title: Best subtitle format for HTML5 video
+description: Learn why WebVTT is usually the safest subtitle format for HTML5 video players and when to convert from SRT or ASS.
+pubDate: 2026-04-21
+author_name: Admin
+author_image: /logo.png
+image: /imgs/features/admin.png
+---
+
+For HTML5 video, `VTT` is usually the safest default.
+
+## Why VTT works best
+
+- It is designed for web playback.
+- Browser players understand it directly.
+- It supports the `WEBVTT` structure expected by HTML5 environments.
+
+## Why SRT still shows up
+
+SRT is still common because many subtitle tools export it first. That means web workflows often need a conversion step before final playback.
+
+## Where ASS fits
+
+ASS is useful while editing, but it is usually not the final browser delivery format. If your source subtitles are ASS, converting to VTT is often the cleanest web step.
+
+## Practical workflow
+
+1. Keep editing subtitles in the format your workflow prefers.
+2. Convert the final browser version to `VTT`.
+3. Test the VTT output in the target player.
+
+## Related tools
+
+- [SRT to VTT](/tools/srt-to-vtt)
+- [ASS to VTT](/tools/ass-to-vtt)
+- [VTT to SRT](/tools/vtt-to-srt)
+

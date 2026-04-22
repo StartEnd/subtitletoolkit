@@ -1,0 +1,41 @@
+---
+title: How to convert subtitle files for web players
+description: A practical guide to preparing subtitle files for browser playback and HTML5-based video components.
+pubDate: 2026-04-21
+author_name: Admin
+author_image: /logo.png
+image: /imgs/features/admin.png
+---
+
+Most web players prefer `VTT`, even if your subtitles started as SRT or ASS.
+
+## Typical starting points
+
+- You downloaded subtitles as `SRT`
+- Your editing workflow produced `ASS`
+- Your archive or old project still uses `SRT`
+
+## Typical destination
+
+The destination is usually `VTT`, because that is the most browser-friendly format for HTML5 video workflows.
+
+## Conversion rules
+
+- `SRT -> VTT` when you just need browser playback
+- `ASS -> VTT` when you are leaving a styled editing workflow
+- `VTT -> SRT` when a collaborator or tool still needs the simpler format
+
+## Before you ship the file
+
+Check these points:
+
+- Timing still looks correct
+- Multi-line captions still break where expected
+- Browser playback accepts the file without errors
+
+## Related tools
+
+- [SRT to VTT](/tools/srt-to-vtt)
+- [ASS to VTT](/tools/ass-to-vtt)
+- [VTT to SRT](/tools/vtt-to-srt)
+

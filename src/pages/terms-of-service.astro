@@ -1,0 +1,67 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { SITE_TITLE, SUPPORT_EMAIL } from '../consts';
+---
+
+<PageLayout
+	title={`Terms of Service | ${SITE_TITLE}`}
+	description="Terms of service for Subtitle Toolkit."
+>
+	<span class="eyebrow">Legal</span>
+	<h1>Terms of Service</h1>
+	<p class="lede">
+		Subtitle Toolkit provides browser-based subtitle utilities and related guides. By accessing or using the
+		service, you agree to these terms.
+	</p>
+
+	<h2>Use of the service</h2>
+	<p>
+		You may use Subtitle Toolkit only in compliance with applicable laws and these terms. You are responsible for
+		the subtitle files and other content you choose to process with the tools.
+	</p>
+
+	<h2>Content and intellectual property</h2>
+	<ul>
+		<li>The website, branding, guides, and software are protected by applicable intellectual property laws.</li>
+		<li>You retain rights to subtitle files and output you lawfully process using the tools.</li>
+		<li>You must have the rights necessary to use any content you upload or process.</li>
+	</ul>
+
+	<h2>Prohibited activities</h2>
+	<ul>
+		<li>Using the service for unlawful, infringing, harmful, or abusive purposes.</li>
+		<li>Interfering with the site’s security, availability, or performance.</li>
+		<li>Scraping the site at unreasonable volumes or automating abusive traffic against the service.</li>
+		<li>Misrepresenting the site as your own product or redistributing protected site content without permission.</li>
+	</ul>
+
+	<h2>Availability and changes</h2>
+	<p>
+		We may change, suspend, or remove any part of the service at any time. We are not obligated to maintain any
+		specific tool, feature, output format, or level of uptime.
+	</p>
+
+	<h2>Disclaimer of warranties</h2>
+	<p>
+		The service is provided on an “as is” and “as available” basis. We do not guarantee that the tools will
+		always be available, error-free, accurate for every file, or suitable for every use case.
+	</p>
+
+	<h2>Limitation of liability</h2>
+	<p>
+		To the fullest extent permitted by law, Subtitle Toolkit and its operators are not liable for indirect,
+		incidental, special, consequential, exemplary, or punitive damages arising from or related to your use of the
+		service.
+	</p>
+
+	<h2>Privacy</h2>
+	<p>
+		Use of the service is also subject to our <a href="/privacy-policy">Privacy Policy</a>.
+	</p>
+
+	<h2>Changes to these terms</h2>
+	<p>We may update these terms from time to time by publishing a revised version on this page.</p>
+
+	<h2>Contact</h2>
+	<p>If you have questions about these terms, contact us at <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.</p>
+</PageLayout>

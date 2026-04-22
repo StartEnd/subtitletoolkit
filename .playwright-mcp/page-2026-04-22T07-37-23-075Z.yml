@@ -1,0 +1,285 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - 'link "{ SITE_NAME } Logo SubtitleToolbox" [ref=e4] [cursor=pointer]':
+        - /url: /
+        - 'img "{ SITE_NAME } Logo" [ref=e5]'
+        - generic [ref=e6]: SubtitleToolbox
+      - button "Tools" [ref=e9]:
+        - generic [ref=e10]: Tools
+        - img [ref=e11]
+  - main [ref=e14]:
+    - main [ref=e16]:
+      - generic [ref=e17]:
+        - heading "Subtitle converter" [level=1] [ref=e18]
+        - generic [ref=e19]:
+          - generic [ref=e21]:
+            - paragraph [ref=e22]: Drag & drop your subtitle files here
+            - generic [ref=e23] [cursor=pointer]: Browse files
+          - generic [ref=e24]:
+            - generic [ref=e25]:
+              - generic [ref=e26]: Export format
+              - generic [ref=e27]:
+                - generic [ref=e28] [cursor=pointer]:
+                  - radio ".srt SubRip" [checked] [ref=e29]
+                  - generic [ref=e30]:
+                    - generic [ref=e31]: .srt
+                    - generic [ref=e32]: SubRip
+                - generic [ref=e33] [cursor=pointer]:
+                  - radio ".vtt WebVTT" [ref=e34]
+                  - generic [ref=e35]:
+                    - generic [ref=e36]: .vtt
+                    - generic [ref=e37]: WebVTT
+                - generic [ref=e38] [cursor=pointer]:
+                  - radio ".sbv SubViewer" [ref=e39]
+                  - generic [ref=e40]:
+                    - generic [ref=e41]: .sbv
+                    - generic [ref=e42]: SubViewer
+                - generic [ref=e43] [cursor=pointer]:
+                  - radio ".ass SubStation Alpha" [ref=e44]
+                  - generic [ref=e45]:
+                    - generic [ref=e46]: .ass
+                    - generic [ref=e47]: SubStation Alpha
+            - generic [ref=e48]:
+              - generic [ref=e49]: FPS adjustment
+              - generic [ref=e50]:
+                - generic [ref=e51] [cursor=pointer]:
+                  - radio "No change" [checked] [ref=e52]
+                  - generic [ref=e54]: No change
+                - generic [ref=e55] [cursor=pointer]:
+                  - radio "PAL → NTSC" [ref=e56]
+                  - generic [ref=e58]: PAL → NTSC
+                - generic [ref=e59] [cursor=pointer]:
+                  - radio "NTSC → PAL" [ref=e60]
+                  - generic [ref=e62]: NTSC → PAL
+            - generic [ref=e64]:
+              - generic [ref=e65]: Time shift
+              - generic [ref=e66]:
+                - combobox [ref=e67]:
+                  - option "+" [selected]
+                  - option "-"
+                - generic [ref=e68]:
+                  - generic [ref=e69]: Hours
+                  - spinbutton "Hours" [ref=e70]: "0"
+                - generic [ref=e71]:
+                  - generic [ref=e72]: Minutes
+                  - spinbutton "Minutes" [ref=e73]: "0"
+                - generic [ref=e74]:
+                  - generic [ref=e75]: Seconds
+                  - spinbutton "Seconds" [ref=e76]: "0"
+                - generic [ref=e77]:
+                  - generic [ref=e78]: Milliseconds
+                  - spinbutton "Milliseconds" [ref=e79]: "0"
+            - generic [ref=e82] [cursor=pointer]:
+              - checkbox "Join subtitles into a single file (one after another)" [ref=e83]
+              - generic [ref=e84]: Join subtitles into a single file (one after another)
+            - button "Download .srt" [disabled] [ref=e85] [cursor=pointer]
+      - generic [ref=e86]:
+        - generic [ref=e87]:
+          - heading "SubtitleToolbox The ultimate subtitle tool" [level=1] [ref=e88]
+          - paragraph [ref=e89]: Stop struggling with mismatched formats. This tool is free, fast, and secure—it will convert SRT, VTT, and other subtitles with unmatched precision.
+        - generic [ref=e90]:
+          - heading "Why choose this subtitle tool?" [level=2] [ref=e91]
+          - generic [ref=e92]:
+            - generic [ref=e93]:
+              - generic [ref=e94]:
+                - img [ref=e96]
+                - heading "Universal format compatibility" [level=3] [ref=e98]
+              - paragraph [ref=e99]: Seamlessly convert SRT, VTT, and other files so your subtitles work perfectly on every platform. Compatibility is guaranteed.
+            - generic [ref=e100]:
+              - generic [ref=e101]:
+                - img [ref=e103]
+                - heading "Effortless time syncing" [level=3] [ref=e105]
+              - paragraph [ref=e106]: Fix out-of-sync audio and subtitles in seconds. The time-shifting feature allows you to adjust the start times of the subtitles for a perfect match with the video.
+            - generic [ref=e107]:
+              - generic [ref=e108]:
+                - img [ref=e110]
+                - heading "User-friendly & secure processing" [level=3] [ref=e112]
+              - paragraph [ref=e113]: A simple, intuitive interface makes subtitle editing a breeze. Plus, privacy is a top priority. All processing is done securely in the browser—files are never uploaded.
+        - generic [ref=e114]:
+          - heading "Key subtitle formats supported" [level=2] [ref=e115]
+          - generic [ref=e116]:
+            - generic [ref=e117]:
+              - heading "SubRip (.SRT)" [level=3] [ref=e119]
+              - paragraph [ref=e120]: "The most widely supported format for subtitles. SRT files are simple plain text, making them easy to create and edit. They are perfect for basic subtitles with no special styling or positioning. The structure is simple: a sequence number, timecodes (with milliseconds), and the subtitle text itself."
+            - generic [ref=e121]:
+              - heading "WebVTT (.VTT)" [level=3] [ref=e123]
+              - paragraph [ref=e124]: Designed for the web, WebVTT files support basic formatting like font style and color, and can include metadata. They are ideal for online video players and are widely supported by modern web browsers. This format is great for enhancing the user experience on websites like YouTube.
+            - generic [ref=e125]:
+              - heading "SubViewer (.SBV)" [level=3] [ref=e127]
+              - paragraph [ref=e128]: Developed by Google, the SBV format is a simple text-based format often used with YouTube. It is very similar to SRT but uses a different timecode separator and a simpler structure. This format is great for quick uploads to the platform.
+          - generic [ref=e129]:
+            - heading "SRT subtitle file example" [level=3] [ref=e130]
+            - generic [ref=e131]:
+              - generic [ref=e132]:
+                - generic [ref=e133]: "1"
+                - generic [ref=e134]: 00:00:02,100 --> 00:00:04,500
+                - generic [ref=e135]: Hello, and welcome to our video.
+              - generic [ref=e136]:
+                - generic [ref=e137]: "2"
+                - generic [ref=e138]: 00:00:05,250 --> 00:00:08,700
+                - generic [ref=e139]: Today, we're going to discuss the importance of quality subtitles.
+              - generic [ref=e140]:
+                - generic [ref=e141]: "3"
+                - generic [ref=e142]: 00:00:09,000 --> 00:00:11,500
+                - generic [ref=e143]: "[♪ upbeat music plays ♪]"
+        - region "The importance of quality subtitles" [ref=e144]:
+          - generic [ref=e145]:
+            - heading "The importance of quality subtitles" [level=2] [ref=e147]
+            - generic [ref=e148]:
+              - article [ref=e149]:
+                - heading "Understanding subtitles" [level=3] [ref=e150]
+                - paragraph [ref=e151]: Subtitles do more than just translate dialogue—they make content accessible, searchable, and global. Subtitles display spoken dialogue and other important audio cues as on-screen text. They enhance accessibility for people who are deaf or hard of hearing, support comprehension for non-native speakers, and make videos easier to watch in both quiet and noisy environments. Whether you're creating educational content, marketing videos, or entertainment, high-quality subtitles are essential for broader reach and deeper engagement.
+              - article [ref=e152]:
+                - heading "Simplify your subtitle workflow" [level=3] [ref=e153]
+                - paragraph [ref=e154]: Time should not be spent on the tedious task of converting formats for every platform. This web app eliminates this frustration by simplifying subtitle format conversion with just a few clicks. Simply upload the existing file (SRT, VTT, or another format) and choose the desired output format—the tool handles the rest, all securely on the device. Using this tool, users get fast, accurate conversions that are perfectly timed and compatible with their chosen platform, ensuring a seamless viewing experience.
+  - contentinfo [ref=e155]:
+    - generic [ref=e156]:
+      - generic [ref=e157]:
+        - heading "SubtitleToolbox" [level=3] [ref=e158]
+        - paragraph [ref=e159]: The one-stop solution for perfect subtitles. Files can be converted, shifted, and merged with ease and speed.
+        - heading "Contact us" [level=4] [ref=e160]
+        - link "contact@subtitletoolbox.com" [ref=e162] [cursor=pointer]:
+          - /url: mailto:contact@subtitletoolbox.com
+      - generic [ref=e163]:
+        - heading "Quick links" [level=4] [ref=e164]
+        - navigation [ref=e165]:
+          - link "Subtitle converter" [ref=e166] [cursor=pointer]:
+            - /url: /
+          - link "Dual-language subtitle creator" [ref=e167] [cursor=pointer]:
+            - /url: /dual-subtitles
+          - link "Pinyin subtitle generator" [ref=e168] [cursor=pointer]:
+            - /url: /pinyin-subtitles
+      - generic [ref=e169]:
+        - heading "Languages" [level=4] [ref=e170]
+        - generic [ref=e171]:
+          - link "Afrikaans" [ref=e172] [cursor=pointer]:
+            - /url: /af
+          - link "العربية" [ref=e173] [cursor=pointer]:
+            - /url: /ar
+          - link "Azərbaycan dili" [ref=e174] [cursor=pointer]:
+            - /url: /az
+          - link "Bahasa Indonesia" [ref=e175] [cursor=pointer]:
+            - /url: /id
+          - link "Basa Jawa" [ref=e176] [cursor=pointer]:
+            - /url: /jv
+          - link "Basa Sunda" [ref=e177] [cursor=pointer]:
+            - /url: /su
+          - link "বাংলা" [ref=e178] [cursor=pointer]:
+            - /url: /bn
+          - link "Binisaya" [ref=e179] [cursor=pointer]:
+            - /url: /ceb
+          - link "Čeština" [ref=e180] [cursor=pointer]:
+            - /url: /cs
+          - link "Dansk" [ref=e181] [cursor=pointer]:
+            - /url: /da
+          - link "Deutsch" [ref=e182] [cursor=pointer]:
+            - /url: /de
+          - link "Ελληνικά" [ref=e183] [cursor=pointer]:
+            - /url: /el
+          - link "English" [ref=e184] [cursor=pointer]:
+            - /url: /
+          - link "Español" [ref=e185] [cursor=pointer]:
+            - /url: /es
+          - link "Eesti" [ref=e186] [cursor=pointer]:
+            - /url: /et
+          - link "فارسی" [ref=e187] [cursor=pointer]:
+            - /url: /fa
+          - link "Suomi" [ref=e188] [cursor=pointer]:
+            - /url: /fi
+          - link "Français" [ref=e189] [cursor=pointer]:
+            - /url: /fr
+          - link "ગુજરાતી" [ref=e190] [cursor=pointer]:
+            - /url: /gu
+          - link "हिन्दी" [ref=e191] [cursor=pointer]:
+            - /url: /hi
+          - link "Hrvatski" [ref=e192] [cursor=pointer]:
+            - /url: /hr
+          - link "Magyar" [ref=e193] [cursor=pointer]:
+            - /url: /hu
+          - link "Հայերեն" [ref=e194] [cursor=pointer]:
+            - /url: /hy
+          - link "עברית" [ref=e195] [cursor=pointer]:
+            - /url: /he
+          - link "Italiano" [ref=e196] [cursor=pointer]:
+            - /url: /it
+          - link "日本語" [ref=e197] [cursor=pointer]:
+            - /url: /ja
+          - link "ქართული" [ref=e198] [cursor=pointer]:
+            - /url: /ka
+          - link "Қазақша" [ref=e199] [cursor=pointer]:
+            - /url: /kk
+          - link "한국어" [ref=e200] [cursor=pointer]:
+            - /url: /ko
+          - link "Kiswahili" [ref=e201] [cursor=pointer]:
+            - /url: /sw
+          - link "Lietuvių" [ref=e202] [cursor=pointer]:
+            - /url: /lt
+          - link "Latviešu" [ref=e203] [cursor=pointer]:
+            - /url: /lv
+          - link "മലയാളം" [ref=e204] [cursor=pointer]:
+            - /url: /ml
+          - link "मराठी" [ref=e205] [cursor=pointer]:
+            - /url: /mr
+          - link "Монгол" [ref=e206] [cursor=pointer]:
+            - /url: /mn
+          - link "မြန်မာ" [ref=e207] [cursor=pointer]:
+            - /url: /my
+          - link "Nederlands" [ref=e208] [cursor=pointer]:
+            - /url: /nl
+          - link "Norsk" [ref=e209] [cursor=pointer]:
+            - /url: /no
+          - link "ਪੰਜਾਬੀ" [ref=e210] [cursor=pointer]:
+            - /url: /pa
+          - link "Polski" [ref=e211] [cursor=pointer]:
+            - /url: /pl
+          - link "Português" [ref=e212] [cursor=pointer]:
+            - /url: /pt
+          - link "Română" [ref=e213] [cursor=pointer]:
+            - /url: /ro
+          - link "Русский" [ref=e214] [cursor=pointer]:
+            - /url: /ru
+          - link "Српски" [ref=e215] [cursor=pointer]:
+            - /url: /sr
+          - link "Slovenčina" [ref=e216] [cursor=pointer]:
+            - /url: /sk
+          - link "Slovenščina" [ref=e217] [cursor=pointer]:
+            - /url: /sl
+          - link "Svenska" [ref=e218] [cursor=pointer]:
+            - /url: /sv
+          - link "தமிழ்" [ref=e219] [cursor=pointer]:
+            - /url: /ta
+          - link "తెలుగు" [ref=e220] [cursor=pointer]:
+            - /url: /te
+          - link "ไทย" [ref=e221] [cursor=pointer]:
+            - /url: /th
+          - link "廣東話" [ref=e222] [cursor=pointer]:
+            - /url: /zh-HK
+          - link "中文" [ref=e223] [cursor=pointer]:
+            - /url: /zh
+          - link "Türkçe" [ref=e224] [cursor=pointer]:
+            - /url: /tr
+          - link "Українська" [ref=e225] [cursor=pointer]:
+            - /url: /uk
+          - link "اردو" [ref=e226] [cursor=pointer]:
+            - /url: /ur
+          - link "Oʻzbekcha" [ref=e227] [cursor=pointer]:
+            - /url: /uz
+          - link "Tiếng Việt" [ref=e228] [cursor=pointer]:
+            - /url: /vi
+          - link "Yorùbá" [ref=e229] [cursor=pointer]:
+            - /url: /yo
+          - link "isiZulu" [ref=e230] [cursor=pointer]:
+            - /url: /zu
+    - generic [ref=e231]:
+      - paragraph [ref=e232]:
+        - text: © 2026
+        - link "subtitletoolbox.com" [ref=e233] [cursor=pointer]:
+          - /url: https://subtitletoolbox.com
+        - text: All rights reserved.
+      - generic [ref=e234]:
+        - link "Privacy policy" [ref=e235] [cursor=pointer]:
+          - /url: /privacy
+        - text: "|"
+        - link "Terms of service" [ref=e236] [cursor=pointer]:
+          - /url: /terms

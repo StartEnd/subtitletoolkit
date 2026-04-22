@@ -1,0 +1,61 @@
+---
+title: How to fix out-of-sync subtitles
+description: A practical guide to repairing subtitle files that start too early or too late.
+pubDate: 2026-04-21
+author_name: Admin
+author_image: /logo.png
+image: /imgs/features/admin.png
+---
+
+Out-of-sync subtitles usually fall into two buckets:
+
+- the whole file is early or late by a fixed amount
+- the subtitle drift changes over time
+
+This first version of the site is built for the first case.
+
+## Step 1: confirm the problem type
+
+If every subtitle line is late by about the same amount, a time shifter is enough.
+
+If the sync gets worse over time, the file probably needs deeper retiming or re-export from your editor.
+
+## Step 2: measure the offset
+
+Check one clear spoken line and compare:
+
+- when the person actually starts speaking
+- when the subtitle appears
+
+If subtitles appear `1.2 seconds late`, shift the whole file by `-1200 ms`.
+
+If subtitles appear `0.8 seconds early`, shift the whole file by `800 ms`.
+
+## Step 3: apply a global shift
+
+Use the [Subtitle Time Shifter](/tools/subtitle-time-shifter) and enter:
+
+- positive numbers to delay captions
+- negative numbers to move them earlier
+
+## Step 4: test multiple points
+
+After shifting, check:
+
+- the beginning
+- the middle
+- the end
+
+If all three are close, you fixed a constant offset. If not, the file may be drifting rather than simply shifted.
+
+## Common causes
+
+- the intro of the video was trimmed after subtitles were exported
+- subtitles were downloaded from a different video cut
+- captions were generated before the final edit
+
+## Related tools
+
+- [Subtitle Time Shifter](/tools/subtitle-time-shifter)
+- [VTT to SRT Converter](/tools/vtt-to-srt)
+

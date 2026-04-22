@@ -1,0 +1,161 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Subtitlist" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Subtitlist" [ref=e5]
+      - navigation [ref=e6]:
+        - link "Home" [ref=e7] [cursor=pointer]:
+          - /url: /
+        - link "About" [ref=e8] [cursor=pointer]:
+          - /url: /about
+        - link "Privacy Policy" [ref=e9] [cursor=pointer]:
+          - /url: /privacy-policy
+        - link "Terms and Conditions" [ref=e10] [cursor=pointer]:
+          - /url: /terms-and-conditions
+      - button "Toggle theme" [ref=e12]:
+        - img
+        - generic [ref=e13]: Toggle theme
+  - main [ref=e14]:
+    - generic [ref=e15]:
+      - generic [ref=e16]:
+        - heading "Subtitlist - Subtitle Tools Hub" [level=1] [ref=e17]
+        - paragraph [ref=e18]: Convert, clean, fix, and synchronize subtitle files with ease.
+      - generic [ref=e19]:
+        - generic [ref=e20]:
+          - generic [ref=e21]:
+            - heading "🛠️ Subtitle Conversion Tools" [level=2] [ref=e22]
+            - paragraph [ref=e23]: Convert between popular subtitle formats.
+          - generic [ref=e24]:
+            - link "SRT to VTT Convert .srt (SubRip) to .vtt (WebVTT)" [ref=e25] [cursor=pointer]:
+              - /url: /convert-srt-to-vtt
+              - generic [ref=e27]:
+                - img [ref=e29]:
+                  - generic [ref=e31]: SRT
+                  - generic [ref=e33]: VTT
+                - generic [ref=e35]: SRT to VTT
+                - generic [ref=e36]: Convert .srt (SubRip) to .vtt (WebVTT)
+            - link "VTT to SRT Convert .vtt (WebVTT) to .srt (SubRip)" [ref=e37] [cursor=pointer]:
+              - /url: /convert-vtt-to-srt
+              - generic [ref=e39]:
+                - img [ref=e41]:
+                  - generic [ref=e43]: VTT
+                  - generic [ref=e45]: SRT
+                - generic [ref=e47]: VTT to SRT
+                - generic [ref=e48]: Convert .vtt (WebVTT) to .srt (SubRip)
+            - link "SRT to ASS Convert .srt to .ass (Advanced SubStation)" [ref=e49] [cursor=pointer]:
+              - /url: /convert-srt-to-ass
+              - generic [ref=e51]:
+                - img [ref=e53]:
+                  - generic [ref=e55]: SRT
+                  - generic [ref=e57]: ASS
+                - generic [ref=e59]: SRT to ASS
+                - generic [ref=e60]: Convert .srt to .ass (Advanced SubStation)
+            - link "SRT to SBV Convert .srt to .sbv (YouTube captions)" [ref=e61] [cursor=pointer]:
+              - /url: /convert-srt-to-sbv
+              - generic [ref=e63]:
+                - img [ref=e65]:
+                  - generic [ref=e67]: SRT
+                  - generic [ref=e69]: SBV
+                - generic [ref=e71]: SRT to SBV
+                - generic [ref=e72]: Convert .srt to .sbv (YouTube captions)
+            - link "VTT to ASS Convert .vtt to .ass subtitle format" [ref=e73] [cursor=pointer]:
+              - /url: /convert-vtt-to-ass
+              - generic [ref=e75]:
+                - img [ref=e77]:
+                  - generic [ref=e79]: VTT
+                  - generic [ref=e81]: ASS
+                - generic [ref=e83]: VTT to ASS
+                - generic [ref=e84]: Convert .vtt to .ass subtitle format
+            - link "More Formats... See all 90+ subtitle conversions supported by Subtitlist." [ref=e85] [cursor=pointer]:
+              - /url: /subtitle-converters
+              - generic [ref=e87]:
+                - generic [ref=e88]: More Formats...
+                - generic [ref=e89]: See all 90+ subtitle conversions supported by Subtitlist.
+        - generic [ref=e90]:
+          - generic [ref=e91]:
+            - heading "🔧 Fix & Clean Tools" [level=2] [ref=e92]
+            - paragraph [ref=e93]: Fix broken subtitles, shift timings, or remove noise.
+          - generic [ref=e94]:
+            - link "Subtitle Time Shifter Adjust subtitle start/end times to fix syncing issues." [ref=e95] [cursor=pointer]:
+              - /url: /subtitle-time-shifter
+              - generic [ref=e97]:
+                - img [ref=e99]
+                - generic [ref=e103]: Subtitle Time Shifter
+                - generic [ref=e104]: Adjust subtitle start/end times to fix syncing issues.
+            - link "Synchronize Subtitles Fix out-of-sync subtitles for any format to match video playback" [ref=e105] [cursor=pointer]:
+              - /url: /synchronize-subtitles
+              - generic [ref=e107]:
+                - img [ref=e109]
+                - generic [ref=e111]: Synchronize Subtitles
+                - generic [ref=e112]: Fix out-of-sync subtitles for any format to match video playback
+            - link "Subtitle Cleaner Fix malformed subtitles, encoding issues, and formatting." [ref=e113] [cursor=pointer]:
+              - /url: /subtitle-cleaner
+              - generic [ref=e115]:
+                - img [ref=e117]
+                - generic [ref=e120]: Subtitle Cleaner
+                - generic [ref=e121]: Fix malformed subtitles, encoding issues, and formatting.
+        - generic [ref=e122]:
+          - generic [ref=e123]:
+            - heading "📦 Utility Tools" [level=2] [ref=e124]
+            - paragraph [ref=e125]: Extra utilities for working with subtitle files.
+          - generic [ref=e126]:
+            - link "Translate Subtitles Translate subtitles to any language instantly." [ref=e127] [cursor=pointer]:
+              - /url: /translate-subtitles
+              - generic [ref=e129]:
+                - img [ref=e131]
+                - generic [ref=e133]: Translate Subtitles
+                - generic [ref=e134]: Translate subtitles to any language instantly.
+            - link "Extract ZIP Subtitles Upload ZIP and extract embedded subtitle files." [ref=e135] [cursor=pointer]:
+              - /url: /extract-zip-subtitles
+              - generic [ref=e137]:
+                - img [ref=e139]
+                - generic [ref=e141]: Extract ZIP Subtitles
+                - generic [ref=e142]: Upload ZIP and extract embedded subtitle files.
+            - link "Subtitle Stats Get detailed statistics about your subtitle files." [ref=e143] [cursor=pointer]:
+              - /url: /subtitle-stats
+              - generic [ref=e145]:
+                - img [ref=e147]
+                - generic [ref=e149]: Subtitle Stats
+                - generic [ref=e150]: Get detailed statistics about your subtitle files.
+      - generic [ref=e151]:
+        - generic [ref=e152]:
+          - heading "Why Choose Subtitlist?" [level=2] [ref=e153]
+          - generic [ref=e154]:
+            - generic [ref=e156]:
+              - generic [ref=e157]: All-in-One Subtitle Toolkit
+              - generic [ref=e158]: Convert, sync, clean, combine, and extract — everything in one place.
+            - generic [ref=e160]:
+              - generic [ref=e161]: Supports All Popular Formats
+              - generic [ref=e162]: SRT, VTT, ASS, SUB, SBV, TXT, CSV, and more.
+            - generic [ref=e164]:
+              - generic [ref=e165]: No Installation Needed
+              - generic [ref=e166]: 100% online and works directly in your browser.
+            - generic [ref=e168]:
+              - generic [ref=e169]: Free & Easy to Use
+              - generic [ref=e170]: Simple drag-and-drop interface for everyone.
+        - generic [ref=e171]:
+          - heading "How It Works" [level=2] [ref=e172]
+          - generic [ref=e173]:
+            - generic [ref=e175]:
+              - generic [ref=e176]: "1"
+              - generic [ref=e177]: Upload
+              - generic [ref=e178]: Drag & drop your subtitle file or choose one from your device.
+            - generic [ref=e180]:
+              - generic [ref=e181]: "2"
+              - generic [ref=e182]: Edit or Convert
+              - generic [ref=e183]: Choose your desired tool and format settings.
+            - generic [ref=e185]:
+              - generic [ref=e186]: "3"
+              - generic [ref=e187]: Download & Use
+              - generic [ref=e188]: Get your ready-to-use subtitle instantly.
+        - generic [ref=e189]:
+          - heading "About Subtitles" [level=2] [ref=e190]
+          - paragraph [ref=e191]: "Subtitles make movies, TV shows, and videos accessible to audiences worldwide. Whether you`'re a content creator, translator, or casual viewer, properly formatted subtitles improve understanding, accessibility, and engagement. Subtitlist provides free, online tools to convert, sync, and clean subtitles in seconds — no technical skills required."
+        - generic [ref=e192]:
+          - heading "Get Started with Your First Subtitle Conversion" [level=2] [ref=e193]
+          - paragraph [ref=e194]: It's fast, free, and works directly in your browser — no signup required!
+          - link "Start Converting" [ref=e195] [cursor=pointer]:
+            - /url: /subtitle-converters
+  - contentinfo [ref=e196]:
+    - generic [ref=e197]: © 2025 Subtitlist. All rights reserved.

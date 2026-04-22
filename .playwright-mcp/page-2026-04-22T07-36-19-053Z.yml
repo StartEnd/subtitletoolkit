@@ -1,0 +1,255 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - list [ref=e4]:
+        - listitem [ref=e5]:
+          - link "Web" [ref=e6] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e7]:
+          - link "CDN" [ref=e8] [cursor=pointer]:
+            - /url: https://tinify.com/cdn
+        - listitem [ref=e9]:
+          - link "Photoshop" [ref=e10] [cursor=pointer]:
+            - /url: /photoshop
+        - listitem [ref=e11]:
+          - link "Developer API" [ref=e12] [cursor=pointer]:
+            - /url: /developers
+        - listitem [ref=e13]:
+          - link "Third-Party" [ref=e14] [cursor=pointer]:
+            - /url: /third-party
+        - listitem [ref=e15]:
+          - link "Analyzer" [ref=e16] [cursor=pointer]:
+            - /url: /analyzer
+        - listitem [ref=e17]:
+          - link "Pricing" [ref=e18] [cursor=pointer]:
+            - /url: https://tinify.com/pricing/web
+        - listitem [ref=e19]:
+          - generic [ref=e20] [cursor=pointer]: LOGIN
+      - figure:
+        - link [ref=e21] [cursor=pointer]:
+          - /url: /
+    - paragraph [ref=e23]:
+      - text: "New API feature: Convert your images to other formats, like WebP, JPG or PNG. For more information read"
+      - link "here" [ref=e24] [cursor=pointer]:
+        - /url: https://tinypng.com/developers/reference#converting-images
+      - text: .
+    - generic [ref=e25]:
+      - generic [ref=e26]:
+        - figure [ref=e27]
+        - figure [ref=e28]
+        - figure [ref=e29]
+        - figure [ref=e30]
+        - figure [ref=e31]
+        - generic [ref=e32] [cursor=pointer]:
+          - figure [ref=e33]
+          - paragraph [ref=e34]: Drop your WebP, PNG or JPEG files here!
+          - paragraph [ref=e35]: Up to 20 images, max 5 MB each.
+          - button "Choose File" [ref=e36]
+      - generic [ref=e38]:
+        - text: Like to compress more?
+        - button "Go Pro!" [ref=e39] [cursor=pointer]
+  - main [ref=e40]:
+    - generic [ref=e41]:
+      - heading "Smart WebP, JPEG and PNG compression" [level=1] [ref=e42]:
+        - text: Smart
+        - strong [ref=e43]: WebP
+        - text: ","
+        - strong [ref=e44]: JPEG
+        - text: and
+        - strong [ref=e45]: PNG
+        - text: compression
+      - heading "More than 1 billion WebP, PNG and JPEG images optimized and still counting!" [level=2] [ref=e46]
+    - generic [ref=e47]:
+      - complementary [ref=e48]:
+        - link "Create perfect thumbnails The API now resizes images intelligently! Whenever you change the aspect ratio, smart cropping removes the boring bits. Smart image resize API And when cut out images are detected the API will add more background if needed. Cut out image detection" [ref=e49] [cursor=pointer]:
+          - /url: /developers#area-of-interest-detection
+          - heading "Create perfect thumbnails" [level=2] [ref=e50]
+          - paragraph [ref=e51]:
+            - text: The API now
+            - strong [ref=e52]: resizes
+            - text: images intelligently! Whenever you change the
+            - strong [ref=e53]: aspect ratio
+            - text: ","
+            - strong [ref=e54]: smart cropping
+            - text: removes the boring bits.
+          - paragraph [ref=e55]:
+            - img "Smart image resize API" [ref=e56]
+          - paragraph [ref=e57]:
+            - text: And when
+            - strong [ref=e58]: cut out
+            - text: images are detected the API will add more
+            - strong [ref=e59]: background
+            - text: if needed.
+          - paragraph [ref=e60]:
+            - img "Cut out image detection" [ref=e61]
+      - article [ref=e62]:
+        - generic [ref=e63]:
+          - generic [ref=e64]:
+            - heading "What does TinyJPG do?" [level=3] [ref=e65]
+            - paragraph [ref=e66]:
+              - text: TinyJPG reduces the file size of your JPEG images. Every uploaded image is
+              - strong [ref=e67]: analyzed
+              - text: to apply the best possible JPEG encoding. Based on the
+              - strong [ref=e68]: content of your image
+              - text: an optimal strategy is chosen. The result is a quality image without wasting storage or bandwidth!
+          - generic [ref=e69]:
+            - heading "Why should I use TinyJPG?" [level=3] [ref=e70]
+            - paragraph [ref=e71]:
+              - text: JPEG is the most popular format for photos on your websites and apps. Many JPEG files do not use optimal compression, wasting valuable bytes. Balancing
+              - strong [ref=e72]: quality
+              - text: and
+              - strong [ref=e73]: small file size
+              - text: used to be a time consuming task that only humans could do. Not anymore. Let us worry about compression.
+        - heading "How does it work?" [level=2] [ref=e74]
+        - paragraph [ref=e75]:
+          - text: "Panda says: Excellent question! When you upload a JPEG file, the image is analyzed. Textures, patterns and colours are"
+          - strong [ref=e76]: automatically identified
+          - text: . The encoder creates an optimally compressed JPEG file based on that information. The final result is compared with the original and fine-tuned. Distracting JPEG artifacts are minimized
+          - strong [ref=e77]: without big sacrifices in file size
+          - text: . Unnecessary metadata is stripped as well. You will get an optimal image, every time!
+        - heading "Can you tell the difference?" [level=2] [ref=e78]
+        - paragraph [ref=e79]:
+          - text: "Panda says: Let me give you a side by side comparison. Move the slider to compare the compressed image with the original. The file size is reduced by"
+          - strong [ref=e80]: more than 70%
+          - text: "!"
+    - figure [ref=e81]:
+      - figure "Original" [ref=e82]:
+        - generic [ref=e83]: Original
+        - paragraph [ref=e84]:
+          - text: "File size:"
+          - text: 641 KB
+        - text: TinyJPG
+      - figure "TinyJPG":
+        - paragraph [ref=e86]:
+          - text: "File size:"
+          - text: 162 KB
+  - main [ref=e87]:
+    - heading "Trusted by thousands of companies around the world" [level=2] [ref=e88]
+    - list [ref=e89]:
+      - listitem [ref=e90]: Ask
+      - listitem [ref=e91]: Samsung
+      - listitem [ref=e92]: Amazon
+      - listitem [ref=e93]: Walmart
+      - listitem [ref=e94]: Drinks
+      - listitem [ref=e95]: Electronic Arts
+      - listitem [ref=e96]: Bank of America
+      - listitem [ref=e97]: Peta
+      - listitem [ref=e98]: Airbnb
+      - listitem [ref=e99]: NBC Universal
+      - listitem [ref=e100]: Sony
+      - listitem [ref=e101]: Printing.com
+      - listitem [ref=e102]: Flok
+      - listitem [ref=e103]: Hertz
+      - listitem [ref=e104]: Grability
+      - listitem [ref=e105]: Samsung
+      - listitem [ref=e106]: Savings.com
+      - listitem [ref=e107]: Burton
+  - contentinfo [ref=e108]:
+    - list [ref=e110]:
+      - listitem [ref=e111]:
+        - link "Photoshop" [ref=e112] [cursor=pointer]:
+          - /url: /photoshop
+          - strong [ref=e113]: Photoshop
+        - list [ref=e114]:
+          - listitem [ref=e115]:
+            - link "Support" [ref=e116] [cursor=pointer]:
+              - /url: /photoshop/support
+          - listitem [ref=e117]:
+            - link "EULA" [ref=e118] [cursor=pointer]:
+              - /url: /photoshop/eula
+      - listitem [ref=e119]:
+        - link "Developer API" [ref=e120] [cursor=pointer]:
+          - /url: /developers
+          - strong [ref=e121]: Developer API
+        - list [ref=e122]:
+          - listitem [ref=e123]:
+            - link "API reference" [ref=e124] [cursor=pointer]:
+              - /url: /developers/reference
+          - listitem [ref=e125]:
+            - link "Ruby gem" [ref=e126] [cursor=pointer]:
+              - /url: /developers/reference/ruby
+          - listitem [ref=e127]:
+            - link "PHP library" [ref=e128] [cursor=pointer]:
+              - /url: /developers/reference/php
+          - listitem [ref=e129]:
+            - link "Node.js package" [ref=e130] [cursor=pointer]:
+              - /url: /developers/reference/nodejs
+          - listitem [ref=e131]:
+            - link "Python package" [ref=e132] [cursor=pointer]:
+              - /url: /developers/reference/python
+          - listitem [ref=e133]:
+            - link "JAVA component" [ref=e134] [cursor=pointer]:
+              - /url: /developers/reference/java
+          - listitem [ref=e135]:
+            - link ".NET client library" [ref=e136] [cursor=pointer]:
+              - /url: /developers/reference/dotnet
+      - listitem [ref=e137]:
+        - strong [ref=e138]: Official add-ons
+        - list [ref=e139]:
+          - listitem [ref=e140]:
+            - link "WordPress plugin" [ref=e141] [cursor=pointer]:
+              - /url: https://wordpress.org/plugins/tiny-compress-images/
+          - listitem [ref=e142]:
+            - link "Zapier (beta)" [ref=e143] [cursor=pointer]:
+              - /url: https://zapier.com/developer/invite/45840/f911a9a5d1ca6425ea86ea189935a716/
+      - listitem [ref=e144]:
+        - link "Third-party solutions" [ref=e145] [cursor=pointer]:
+          - /url: /third-party
+          - strong [ref=e146]: Third-party solutions
+        - link "Page analyzer" [ref=e147] [cursor=pointer]:
+          - /url: /analyzer
+          - strong [ref=e148]: Page analyzer
+        - link "Blog" [ref=e149] [cursor=pointer]:
+          - /url: https://blog.tinify.com/
+          - strong [ref=e150]: Blog
+        - link "Jobs" [ref=e151] [cursor=pointer]:
+          - /url: https://jobs.tinify.com/
+          - strong [ref=e152]: Jobs
+        - link "Donate" [ref=e154] [cursor=pointer]:
+          - /url: /
+          - strong [ref=e155]: Donate
+      - listitem [ref=e156]:
+        - list [ref=e157]:
+          - listitem [ref=e158]:
+            - generic [ref=e159]:
+              - link "Compress JPEG images" [ref=e160] [cursor=pointer]:
+                - /url: https://tinyjpg.com/
+              - link "Compress PNG images" [ref=e161] [cursor=pointer]:
+                - /url: https://tinypng.com/
+          - listitem [ref=e162]:
+            - paragraph [ref=e164]: "Follow us at:"
+          - listitem [ref=e165]:
+            - generic [ref=e166]:
+              - link "twitter logo" [ref=e167] [cursor=pointer]:
+                - /url: https://twitter.com/Tinypng
+                - img "twitter logo" [ref=e168]
+              - link "Facebook logo" [ref=e169] [cursor=pointer]:
+                - /url: https://www.facebook.com/TinyPng
+                - img "Facebook logo" [ref=e170]
+              - link "linkedin logo" [ref=e171] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/tinypng/
+                - img "linkedin logo" [ref=e172]
+              - link "github logo" [ref=e173] [cursor=pointer]:
+                - /url: https://github.com/tinify
+                - img "github logo" [ref=e174]
+          - listitem [ref=e175]:
+            - generic [ref=e176]:
+              - link "English" [ref=e177] [cursor=pointer]:
+                - /url: https://tinypng.com/
+              - generic [ref=e178]: /
+              - link "简体" [ref=e179] [cursor=pointer]:
+                - /url: https://tinify.cn/
+          - listitem [ref=e180]:
+            - link "Cookie settings" [ref=e181] [cursor=pointer]:
+              - /url: "javascript: Cookiebot.renew()"
+    - paragraph [ref=e185]:
+      - generic [ref=e186]:
+        - text: Made by
+        - generic [ref=e187]: Voormedia
+      - generic [ref=e188]:
+        - text: By using this site you accept the
+        - link "terms of use" [ref=e189] [cursor=pointer]:
+          - /url: /terms
+        - text: .
+  - iframe [ref=e190]:
+    

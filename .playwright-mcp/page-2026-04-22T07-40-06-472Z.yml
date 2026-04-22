@@ -1,0 +1,272 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "To the homepage" [ref=e6] [cursor=pointer]:
+          - /url: /en/
+          - text: PDF24 Tools
+        - link "To the all tools page" [ref=e7] [cursor=pointer]:
+          - /url: /en/all-tools
+          - generic [ref=e8]: 
+          - generic [ref=e9]: All tools
+      - link "Reload current page" [ref=e11] [cursor=pointer]:
+        - /url: /en/
+        - img "PDF24" [ref=e12]
+      - generic [ref=e13]:
+        - link "To the desktop app download page" [ref=e14] [cursor=pointer]:
+          - /url: /en/creator
+          - generic [ref=e15]: 
+        - generic [ref=e16] [cursor=pointer]:
+          - generic "Activate dark mode" [ref=e17]: 
+          - text: 
+  - main [ref=e18]:
+    - generic [ref=e19]:
+      - heading "PDF24 Tools" [level=1] [ref=e20]
+      - heading "Free and easy-to-use online PDF tools that make you more productive." [level=2] [ref=e21]
+      - navigation [ref=e22]:
+        - generic [ref=e25]:
+          - link "Merge PDF files into a single PDF" [ref=e26] [cursor=pointer]:
+            - /url: /en/merge-pdf
+            - generic [ref=e28]: Merge PDF
+            - generic "Toggle favorite status" [ref=e29]:
+              - generic [ref=e30]: 
+          - link "Split PDF files into pieces which creates new PDF files" [ref=e31] [cursor=pointer]:
+            - /url: /en/split-pdf
+            - generic [ref=e33]: Split PDF
+            - generic "Toggle favorite status" [ref=e34]:
+              - generic [ref=e35]: 
+          - link "PDF compressor to reduce the size of PDF files" [ref=e36] [cursor=pointer]:
+            - /url: /en/compress-pdf
+            - generic [ref=e38]: Compress PDF
+            - generic "Toggle favorite status" [ref=e39]:
+              - generic [ref=e40]: 
+          - link "PDF editor to edit PDF files online" [ref=e41] [cursor=pointer]:
+            - /url: /en/edit-pdf
+            - generic [ref=e43]: Edit PDF
+            - generic "Toggle favorite status" [ref=e44]:
+              - generic [ref=e45]: 
+          - link "Sign PDF files" [ref=e46] [cursor=pointer]:
+            - /url: /en/sign-pdf
+            - generic [ref=e48]: Sign PDF
+            - generic "Toggle favorite status" [ref=e49]:
+              - generic [ref=e50]: 
+          - link "Online PDF Converter to convert files to PDF and PDF to other file formats" [ref=e51] [cursor=pointer]:
+            - /url: /en/pdf-converter
+            - generic [ref=e53]: PDF Converter
+            - generic "Toggle favorite status" [ref=e54]:
+              - generic [ref=e55]: 
+          - link "Create PDFs based on JPG and other images" [ref=e56] [cursor=pointer]:
+            - /url: /en/images-to-pdf
+            - generic [ref=e58]: Images to PDF
+            - generic "Toggle favorite status" [ref=e59]:
+              - generic [ref=e60]: 
+          - link "Convert pages of a PDF to JPG and other images" [ref=e61] [cursor=pointer]:
+            - /url: /en/pdf-to-images
+            - generic [ref=e63]: PDF to Images
+            - generic "Toggle favorite status" [ref=e64]:
+              - generic [ref=e65]: 
+          - link "Extract all embedded images in PDF files" [ref=e66] [cursor=pointer]:
+            - /url: /en/extract-images
+            - generic [ref=e68]: Extract PDF images
+            - generic "Toggle favorite status" [ref=e69]:
+              - generic [ref=e70]: 
+          - link "Protect PDF files with a password and set permissions" [ref=e71] [cursor=pointer]:
+            - /url: /en/lock-pdf
+            - generic [ref=e73]: Protect PDF
+            - generic "Toggle favorite status" [ref=e74]:
+              - generic [ref=e75]: 
+          - link "Unlock PDF files and remove password request" [ref=e76] [cursor=pointer]:
+            - /url: /en/unlock-pdf
+            - generic [ref=e78]: Unlock PDF
+            - generic "Toggle favorite status" [ref=e79]:
+              - generic [ref=e80]: 
+          - link "Rotate pages in PDF files" [ref=e81] [cursor=pointer]:
+            - /url: /en/rotate-pdf-pages
+            - generic [ref=e83]: Rotate PDF pages
+            - generic "Toggle favorite status" [ref=e84]:
+              - generic [ref=e85]: 
+          - link "Removes pages from PDF files" [ref=e86] [cursor=pointer]:
+            - /url: /en/remove-pdf-pages
+            - generic [ref=e88]: Remove PDF pages
+            - generic "Toggle favorite status" [ref=e89]:
+              - generic [ref=e90]: 
+          - link "Extract pages from PDF files" [ref=e91] [cursor=pointer]:
+            - /url: /en/extract-pdf-pages
+            - generic [ref=e93]: Extract PDF pages
+            - generic "Toggle favorite status" [ref=e94]:
+              - generic [ref=e95]: 
+          - link "Sort pages inside PDF files" [ref=e96] [cursor=pointer]:
+            - /url: /en/rearrange-pdf-pages
+            - generic [ref=e98]: Rearrange PDF pages
+            - generic "Toggle favorite status" [ref=e99]:
+              - generic [ref=e100]: 
+          - link "Convert a webpage to a PDF file" [ref=e101] [cursor=pointer]:
+            - /url: /en/webpage-to-pdf
+            - generic [ref=e103]: Webpage to PDF
+            - generic "Toggle favorite status" [ref=e104]:
+              - generic [ref=e105]: 
+          - link "Recognize text via OCR and create searchable PDF files" [ref=e106] [cursor=pointer]:
+            - /url: /en/ocr-pdf
+            - generic [ref=e108]: PDF OCR
+            - generic "Toggle favorite status" [ref=e109]:
+              - generic [ref=e110]: 
+          - link "Add a watermark to PDF files" [ref=e111] [cursor=pointer]:
+            - /url: /en/add-watermark
+            - generic [ref=e113]: Add watermark
+            - generic "Toggle favorite status" [ref=e114]:
+              - generic [ref=e115]: 
+          - link "Add page numbers to PDF files" [ref=e116] [cursor=pointer]:
+            - /url: /en/add-page-numbers
+            - generic [ref=e118]: Add page numbers
+            - generic "Toggle favorite status" [ref=e119]:
+              - generic [ref=e120]: 
+          - link "Overlay PDF files, e.g. to combine PDFs with a digital paper" [ref=e121] [cursor=pointer]:
+            - /url: /en/overlay-pdf
+            - generic [ref=e123]: PDF Overlay
+            - generic "Toggle favorite status" [ref=e124]:
+              - generic [ref=e125]: 
+          - link "Compare PDF files and show the differences" [ref=e126] [cursor=pointer]:
+            - /url: /en/compare-pdf
+            - generic [ref=e128]: Compare PDFs
+            - generic "Toggle favorite status" [ref=e129]:
+              - generic [ref=e130]: 
+          - link "Linearize PDF files for a faster web view" [ref=e131] [cursor=pointer]:
+            - /url: /en/optimize-pdf
+            - generic [ref=e133]: Web optimize PDF
+            - generic "Toggle favorite status" [ref=e134]:
+              - generic [ref=e135]: 
+          - link "Redact PDF files" [ref=e136] [cursor=pointer]:
+            - /url: /en/redact-pdf
+            - generic [ref=e138]: Redact PDF
+            - generic "Toggle favorite status" [ref=e139]:
+              - generic [ref=e140]: 
+          - link "Create PDF files" [ref=e141] [cursor=pointer]:
+            - /url: /en/create-pdf
+            - generic [ref=e143]: Create PDF
+            - generic "Toggle favorite status" [ref=e144]:
+              - generic [ref=e145]: 
+        - link " All tools" [ref=e147] [cursor=pointer]:
+          - /url: /en/all-tools
+          - generic [ref=e148]: 
+          - generic [ref=e149]: All tools
+      - complementary [ref=e150]:
+        - generic [ref=e151]: Advertisement
+        - insertion [ref=e153]
+    - generic [ref=e154]:
+      - heading "Information" [level=2] [ref=e155]
+      - generic [ref=e156]:
+        - generic [ref=e157]:
+          - generic [ref=e158]:
+            - generic [ref=e159]: 
+            - heading "Extensive tools collection" [level=3] [ref=e160]
+            - paragraph [ref=e161]: PDF24 offers you a collection of tools that you can use to work productively with PDFs and other files. The PDF24 tools leave nothing to be desired. There is hardly anything in the PDF area that you cannot do with PDF24.
+          - generic [ref=e162]:
+            - generic [ref=e163]: 
+            - heading "Easy to use" [level=3] [ref=e164]
+            - paragraph [ref=e165]: The PDF24 tools were developed to be as easy to use as possible. Intuitive usability was the goal. We have achieved this goal and that is why the PDF24 tools are so popular.
+          - generic [ref=e166]:
+            - generic [ref=e167]: 
+            - heading "Safety is important to us" [level=3] [ref=e168]
+            - paragraph [ref=e169]:
+              - text: File transfers to the PDF24 servers are encrypted. All files are completely removed from our servers after a short time. If you want to be even more secure, you can use the
+              - link "PDF24 Creator" [ref=e170] [cursor=pointer]:
+                - /url: /en/creator
+              - text: ", where all files remain on your PC."
+          - generic [ref=e171]:
+            - generic [ref=e172]: 
+            - heading "No installation necessary" [level=3] [ref=e173]
+            - paragraph [ref=e174]: PDF24's online tools work directly in the web browser. You do not need to install any software. This means you can use the PDF24 tools on any device with an Internet connection.
+          - generic [ref=e175]:
+            - generic [ref=e176]: 
+            - heading "Supports your system" [level=3] [ref=e177]
+            - paragraph [ref=e178]: PDF24 supports all current operating systems and browsers. Whether on Windows, Linux, MACs or smartphones, PDF24 does a good job almost everywhere.
+          - generic [ref=e179]:
+            - generic [ref=e180]: 
+            - heading "Saves your resources" [level=3] [ref=e181]
+            - paragraph [ref=e182]: The PDF24 Online Tools process files on special PDF24 servers. Your system is not burdened in the process and therefore does not need any special requirements.
+          - generic [ref=e183]:
+            - generic [ref=e184]: 
+            - heading "100% free of charge" [level=3] [ref=e185]
+            - paragraph [ref=e186]: You can use all PDF24 tools free of charge and without any restrictions. This is achieved via some advertising on the web pages. PDF24 is not greedy, but smart.
+          - generic [ref=e187]:
+            - generic [ref=e188]: 
+            - heading "No limits" [level=3] [ref=e189]
+            - paragraph [ref=e190]: There are no artificial limits at PDF24. Thanks to our scalable infrastructure, we can make everything that the PDF24 tools can do available to users.
+          - generic [ref=e191]:
+            - generic [ref=e192]: 
+            - heading "Online and Offline" [level=3] [ref=e193]
+            - paragraph [ref=e194]:
+              - text: PDF24's online tools process files on special PDF24 servers. If you prefer to work offline, you can install the
+              - link "PDF24 Creator" [ref=e195] [cursor=pointer]:
+                - /url: /en/creator
+              - text: and receive all PDF24 tools as an offline version.
+        - link "Stefan Ziegler Developed by Stefan Ziegler" [ref=e196] [cursor=pointer]:
+          - /url: https://www.pdf24.org/en/about#stefan-ziegler
+          - generic [ref=e197]:
+            - img "Stefan Ziegler" [ref=e198]
+            - generic [ref=e199]: Developed by Stefan Ziegler
+    - complementary [ref=e200]:
+      - heading "Please share PDF24 with friends" [level=2] [ref=e201]
+      - generic [ref=e202]:
+        - generic [ref=e203]:
+          - generic "Share this page on Facebook" [ref=e204] [cursor=pointer]: 
+          - generic "Share this page on X (Twitter)" [ref=e205] [cursor=pointer]: 
+          - generic "Share this page on LinkedIn" [ref=e206] [cursor=pointer]: 
+        - generic [ref=e207]:
+          - generic [ref=e208]: Help our new, cool and free tools to grow!
+          - generic [ref=e209]: Write an article about our tools on your forum, blog or website.
+    - complementary [ref=e210]:
+      - 'heading "Alternative: PDF24 Creator" [level=2] [ref=e211]'
+      - generic [ref=e212]: Desktop software for Windows with similar functions
+      - generic [ref=e213]:
+        - generic [ref=e215]:
+          - generic [ref=e217] [cursor=pointer]: 🔍
+          - generic [ref=e219] [cursor=pointer]: 🔍
+          - generic [ref=e221] [cursor=pointer]: 🔍
+          - generic [ref=e223] [cursor=pointer]: 🔍
+          - generic [ref=e225] [cursor=pointer]: 🔍
+          - generic [ref=e227] [cursor=pointer]: 🔍
+        - link "PDF24 Creator →" [ref=e229] [cursor=pointer]:
+          - /url: /en/creator
+  - contentinfo [ref=e230]:
+    - generic [ref=e231]:
+      - generic [ref=e232]:
+        - generic [ref=e233]:
+          - link "About Us" [ref=e234] [cursor=pointer]:
+            - /url: https://www.pdf24.org/about-us
+          - link "FAQ" [ref=e235] [cursor=pointer]:
+            - /url: /en/faq
+          - link "Help" [ref=e236] [cursor=pointer]:
+            - /url: https://help.pdf24.org/
+          - link "Contact" [ref=e237] [cursor=pointer]:
+            - /url: /en/contact
+        - link "Chrome Extension" [ref=e239] [cursor=pointer]:
+          - /url: https://chromewebstore.google.com/detail/pdf24-tools/eoinpcbakedlpilhibkbejdgkifenhfb?hl=en
+        - generic [ref=e240]:
+          - link "Legal notice" [ref=e241] [cursor=pointer]:
+            - /url: https://www.pdf24.org/legal-notice
+          - link "Terms of use" [ref=e242] [cursor=pointer]:
+            - /url: https://www.pdf24.org/terms-of-use
+          - link "Privacy policy" [ref=e243] [cursor=pointer]:
+            - /url: https://www.pdf24.org/privacy-policy
+          - generic [ref=e244] [cursor=pointer]: Privacy Settings
+      - generic [ref=e245]:
+        - generic [ref=e246]:
+          - link "PDF24 @ Facebook" [ref=e247] [cursor=pointer]:
+            - /url: https://www.facebook.com/pdf24/
+            - generic "PDF24 @ Facebook" [ref=e248]: 
+          - link "PDF24 @ X (Twitter)" [ref=e249] [cursor=pointer]:
+            - /url: https://x.com/PDF24
+            - generic "PDF24 @ X (Twitter)" [ref=e250]: 
+          - link "PDF24 @ LinkedIn" [ref=e251] [cursor=pointer]:
+            - /url: https://www.linkedin.com/company/pdf24/
+            - generic "PDF24 @ LinkedIn" [ref=e252]: 
+        - list [ref=e254]:
+          - listitem [ref=e255]:
+            - link "English" [ref=e256] [cursor=pointer]:
+              - /url: /en/
+      - link "tools.pdf24.org" [ref=e258] [cursor=pointer]:
+        - /url: /en/
+      - generic [ref=e259]:
+        - text: © 2026 Geek Software GmbH —
+        - generic [ref=e260]: WE love❤️ PDF

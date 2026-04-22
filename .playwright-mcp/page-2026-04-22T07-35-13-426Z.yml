@@ -1,0 +1,351 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - generic [ref=e5]:
+      - link "Subconverter Home" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img [ref=e8]
+        - generic [ref=e10]: Subconverter
+      - navigation "Main navigation" [ref=e11]:
+        - link "Tools" [ref=e12] [cursor=pointer]:
+          - /url: "#tools"
+        - link "How It Works" [ref=e13] [cursor=pointer]:
+          - /url: "#how-it-works"
+        - link "FAQ" [ref=e14] [cursor=pointer]:
+          - /url: "#faq"
+        - link "Start using tools" [ref=e15] [cursor=pointer]:
+          - /url: https://subconverter.com/convert-sub-idx-to-srt-online
+          - text: Start Free
+  - complementary "Statistics" [ref=e16]:
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - img [ref=e20]
+        - generic [ref=e22]:
+          - strong [ref=e23]: 10,000+
+          - text: users
+      - generic [ref=e24]:
+        - img [ref=e25]
+        - generic [ref=e27]:
+          - strong [ref=e28]: 500k+
+          - text: conversions
+      - generic [ref=e29]:
+        - img [ref=e30]
+        - generic [ref=e32]:
+          - strong [ref=e33]: 4.9/5
+          - text: rating
+  - insertion [ref=e37]:
+    - iframe [ref=e39]:
+      - generic [active] [ref=f3e1]:
+        - 'link "Take Profit Trader The #1 Prop Firm Payout Policy OPEN" [ref=f3e6] [cursor=pointer]':
+          - /url: https://googleads.g.doubleclick.net/aclk?sa=l&ai=CcZvXLnroaanYINmA4dkP2-us0AnUl83ehQGmuvLt0hW944aikQ4QASD48ZGZAWCdAaAB9oHCtSjIAQGoAwHIA8sEqgTdAU_Q_3BDZpvPKBP-fJvWSyaEaW_0NuC6ATtqk5omHBdFFa9cLjDVGtrZjZwoZCqyG9Ds_hSPJPITAaYb1qF2H53S8IMX8Jhj1b9y7TkCx7_D0H_6zZbdWjcTbKgnVmIKXdOh1uIB8Vc2V9Og0euSq0J2X4yNXuKrQr_16My1OLdTd48vdz6zhArLOAMlS07UqfeHP56kMPj1DJfOq4XMz75WRuGUMZ_RdcEsjcqD_MZpC5SmZxmBTY3lD_l3Uec2lELKUdeXk7TCIKqZyudV2SJWi-oT1G4oI_G9nRiNwATb1rv71wWIBZTPgpJXgAf2uZKVA6gHp8yxAqgHpr4bqAfMzrECqAfz0RuoB5bYG6gHqpuxAqgHjs4bqAeT2BuoB_DgG6gH7paxAqgH_p6xAqgHr76xAqgHmuGxAqgH1ckbqAfZtrECqAeaBqgH_56xAqgH35-xAqgH-MKxAqgH-8KxAtgHAdIILwiAYRABGJ8DMgiKgoCAgICACDoNgECAwICAgICogAKoA0i9_cE6WLrs4JL5gJQDsQlrrL6Vp45TSoAKAZgLAcgLAaIMDCoKCgiO37ECleKxAqoNAkNOyA0B6g0TCIut4pL5gJQDFVlAOAUd2zULmvANAogOCbAOoaTG_BjYEwvQFQHKFgIKAPgWAYAXAbIXEBgBKgo3MDM5NDY4NTI0UAa6FwI4AaoYFwkAAAAA4vAsQRIKNzAzOTQ2ODUyNBgBshgJEgLvThgBIgEA0BgB6BgBwhkCCAE&ae=1&gclid=EAIaIQobChMIqafikvmAlAMVWUA4BR3bNQuaEAEYASAAEgI_evD_BwE&num=1&cid=CAQS-wEABaugfW8oksa1EjwGJ8IX8g9lUWtvpEHB6VSyASRbB9WaSLPxt33WVGc1bgdGPVD-HAKkwdWZOlOpRmQhj8NMx3vqjG-Af07Cn-hkAX1HGsxrYP_2TN6CpRvBb7n1X_YBFIsuyfONZlc8R5jmMRzA0rL-H2mTV8-muknmszcPicyq-BlFFOd0lfrmwrkZFBZZfl0P9o8a-8HFTBKEzs_VknkuHSfqSsq_wkjYWTIbGdWcx6BBBy4hhKJ76fSCoFcOhNbqmXypfoHlISFcTrzM_LhKtlr6l33dPsJTJt5FkAXNhbLlSWnSAvvtAIn7uRM4GXaRgN4uvgiNCRgB&sig=AOD64_1aslZdmw-iNdGQQiQWWfAhrgsiPQ&client=ca-pub-2453235401343800&rf=1&nb=2&adurl=https://try.takeprofittrader.com/topstep-vs-tpt-5-reasons-nf40-4-0725%3Fgc_id%3D23391669339%26h_ad_id%3D%26gad_source%3D5%26gad_campaignid%3D23391676308%26gclid%3DEAIaIQobChMIqafikvmAlAMVWUA4BR3bNQuaEAEYASAAEgI_evD_BwE
+          - generic [ref=f3e7]:
+            - generic [ref=f3e10]:
+              - generic "Take Profit Trader" [ref=f3e11]
+              - generic "Take Profit Trader" [ref=f3e12]: "The #1 Prop Firm Payout Policy"
+            - generic [ref=f3e16]:
+              - generic: OPEN
+              - img [ref=f3e17]
+        - img [ref=f3e23] [cursor=pointer]
+        - button [ref=f3e25] [cursor=pointer]:
+          - img [ref=f3e26]
+        - iframe
+  - main [ref=e40]:
+    - region "Professional Subtitles Made Simple" [ref=e41]:
+      - generic [ref=e42]:
+        - img [ref=e43]
+        - generic [ref=e45]: Free Online Subtitle Tools
+      - heading "Professional Subtitles Made Simple" [level=2] [ref=e46]:
+        - text: Professional Subtitles
+        - text: Made Simple
+      - paragraph [ref=e47]:
+        - text: Powerful tools for syncing, converting, and perfecting subtitle files.
+        - strong [ref=e48]: No signup required
+        - text: •
+        - strong [ref=e49]: 100% free
+      - generic [ref=e50]:
+        - generic [ref=e51]:
+          - generic [ref=e53] [cursor=pointer]:
+            - img [ref=e54]
+            - text: Select .SUB
+          - generic [ref=e56] [cursor=pointer]: Select .IDX
+          - button "Convert Now" [disabled] [ref=e57]
+        - generic [ref=e58]:
+          - button "Use sample files for demo" [ref=e59] [cursor=pointer]: Use Sample
+          - link "Browse all tools (jumps to tool list)" [ref=e60] [cursor=pointer]:
+            - /url: "#tools"
+            - text: Browse All Tools
+    - navigation "Tool categories" [ref=e61]:
+      - generic [ref=e62]:
+        - link "Syncing" [ref=e63] [cursor=pointer]:
+          - /url: "#syncing"
+        - link "Converting" [ref=e64] [cursor=pointer]:
+          - /url: "#converting"
+        - link "Fixing & Cleaning" [ref=e65] [cursor=pointer]:
+          - /url: "#fixing"
+        - link "Advanced" [ref=e66] [cursor=pointer]:
+          - /url: "#advanced"
+    - region "Most Popular Tools" [ref=e67]:
+      - heading "Most Popular Tools" [level=3] [ref=e68]:
+        - img [ref=e69]
+        - text: Most Popular Tools
+      - generic [ref=e71]:
+        - article [ref=e72]:
+          - generic [ref=e73]: ⭐
+          - generic [ref=e74]:
+            - text: "#1 POPULAR"
+            - link "Subtitle conversion tools" [ref=e75] [cursor=pointer]:
+              - img [ref=e77]
+              - text: Subtitle conversion tools
+          - img [ref=e80]
+          - heading "SUB/IDX to SRT" [level=4] [ref=e82]
+          - paragraph [ref=e83]: Convert image-based subtitles to editable text using OCR technology.
+          - generic [ref=e84]:
+            - generic [ref=e85]: 250k+ conversions
+            - link "Use Tool →" [ref=e86] [cursor=pointer]:
+              - /url: https://subconverter.com/convert-sub-idx-to-srt-online
+        - article [ref=e87]:
+          - img [ref=e89]
+          - heading "Subtitle Shifter" [level=4] [ref=e91]
+          - paragraph [ref=e92]: Adjust all subtitle timestamps forward or backward. Fix sync issues instantly.
+          - generic [ref=e93]:
+            - generic [ref=e94]: 180k+ uses
+            - link "Use Tool →" [ref=e95] [cursor=pointer]:
+              - /url: https://subconverter.com/subtitle-sync-shifter
+        - article [ref=e96]:
+          - img [ref=e98]
+          - heading "Convert to SRT" [level=4] [ref=e100]
+          - paragraph [ref=e101]: Convert any subtitle format to universal SRT. Supports all major formats.
+          - generic [ref=e102]:
+            - generic [ref=e103]: 150k+ uses
+            - link "Use Tool →" [ref=e104] [cursor=pointer]:
+              - /url: https://subconverter.com/convert-to-srt-online
+    - generic [ref=e105]:
+      - generic:
+        - insertion:
+          - iframe [ref=e107]:
+            
+      - heading "How It Works" [level=3] [ref=e108]
+      - generic [ref=e109]:
+        - generic [ref=e110]:
+          - generic [ref=e111]: "1"
+          - heading "Choose Tool" [level=4] [ref=e112]
+          - paragraph [ref=e113]:
+            - text: Select the tool you need from our collection
+            - link "SubRip subtitle tools" [ref=e114] [cursor=pointer]:
+              - img [ref=e116]
+              - text: SubRip subtitle tools
+        - generic [ref=e118]:
+          - generic [ref=e119]: "2"
+          - heading "Upload File" [level=4] [ref=e120]
+          - paragraph [ref=e121]: Drag and drop or browse your subtitle file
+        - generic [ref=e122]:
+          - generic [ref=e123]: "3"
+          - heading "Download Result" [level=4] [ref=e124]
+          - paragraph [ref=e125]: Get your processed file instantly
+    - generic [ref=e126]:
+      - heading "All Tools" [level=3] [ref=e127]
+      - generic [ref=e128]:
+        - heading "⏱️ Syncing Tools" [level=4] [ref=e129]
+        - generic [ref=e130]:
+          - link "Subtitle Shifter Shift all timestamps" [ref=e131] [cursor=pointer]:
+            - /url: https://subconverter.com/subtitle-sync-shifter
+            - generic [ref=e132]:
+              - img [ref=e134]
+              - generic [ref=e136]:
+                - heading "Subtitle Shifter" [level=5] [ref=e137]
+                - paragraph [ref=e138]: Shift all timestamps
+          - link "Partial Shifter Fix specific sections" [ref=e139] [cursor=pointer]:
+            - /url: https://subconverter.com/partial-subtitle-sync-shifter
+            - generic [ref=e140]:
+              - img [ref=e142]
+              - generic [ref=e144]:
+                - heading "Partial Shifter" [level=5] [ref=e145]
+                - paragraph [ref=e146]: Fix specific sections
+      - generic [ref=e147]:
+        - insertion [ref=e149]:
+          - generic [ref=e152]:
+            - heading "These are topics related to the article that might interest you" [level=2] [ref=e154]: Discover more
+            - link "Photo & Video Software" [ref=e155] [cursor=pointer]:
+              - generic "Photo & Video Software" [ref=e156]
+              - img [ref=e158]
+            - link "Online collaboration tools" [ref=e160] [cursor=pointer]:
+              - generic "Online collaboration tools" [ref=e161]
+              - img [ref=e163]
+            - link "Premium media players" [ref=e165] [cursor=pointer]:
+              - generic "Premium media players" [ref=e166]
+              - img [ref=e168]
+        - heading "🔄 Converting Tools" [level=4] [ref=e170]
+        - generic [ref=e171]:
+          - link "SUB/IDX to SRT OCR conversion" [ref=e172] [cursor=pointer]:
+            - /url: https://subconverter.com/convert-sub-idx-to-srt-online
+            - generic [ref=e173]:
+              - img [ref=e175]
+              - generic [ref=e177]:
+                - heading "SUB/IDX to SRT" [level=5] [ref=e178]
+                - paragraph [ref=e179]: OCR conversion
+          - link "SUP to SRT Blu-ray conversion" [ref=e180] [cursor=pointer]:
+            - /url: https://subconverter.com/convert-sup-to-srt-online
+            - generic [ref=e181]:
+              - img [ref=e183]
+              - generic [ref=e185]:
+                - heading "SUP to SRT" [level=5] [ref=e186]
+                - paragraph [ref=e187]: Blu-ray conversion
+          - link "Convert to SRT Universal format" [ref=e188] [cursor=pointer]:
+            - /url: https://subconverter.com/convert-to-srt-online
+            - generic [ref=e189]:
+              - img [ref=e191]
+              - generic [ref=e193]:
+                - heading "Convert to SRT" [level=5] [ref=e194]
+                - paragraph [ref=e195]: Universal format
+          - link "Convert to VTT Web-friendly format" [ref=e196] [cursor=pointer]:
+            - /url: https://subconverter.com/convert-to-vtt-online
+            - generic [ref=e197]:
+              - img [ref=e199]
+              - generic [ref=e201]:
+                - heading "Convert to VTT" [level=5] [ref=e202]
+                - paragraph [ref=e203]: Web-friendly format
+      - generic [ref=e204]:
+        - heading "🔧 Fixing & Cleaning Tools" [level=4] [ref=e205]
+        - generic [ref=e206]:
+          - link "SRT Cleaner Remove formatting" [ref=e207] [cursor=pointer]:
+            - /url: https://subconverter.com/srt-cleaner-online
+            - generic [ref=e208]:
+              - img [ref=e210]
+              - generic [ref=e213]:
+                - heading "SRT Cleaner" [level=5] [ref=e214]
+                - paragraph [ref=e215]: Remove formatting
+          - link "Convert to UTF-8 Fix encoding" [ref=e216] [cursor=pointer]:
+            - /url: https://subconverter.com/convert-to-utf8-online
+            - generic [ref=e217]:
+              - img [ref=e219]
+              - generic [ref=e221]:
+                - heading "Convert to UTF-8" [level=5] [ref=e222]
+                - paragraph [ref=e223]: Fix encoding
+      - generic [ref=e224]:
+        - heading "⚡ Advanced Tools" [level=4] [ref=e225]
+        - generic [ref=e226]:
+          - link "Merge Subtitles Combine files" [ref=e227] [cursor=pointer]:
+            - /url: https://subconverter.com/merge-subtitles-online
+            - generic [ref=e228]:
+              - img [ref=e230]
+              - generic [ref=e232]:
+                - heading "Merge Subtitles" [level=5] [ref=e233]
+                - paragraph [ref=e234]: Combine files
+          - link "Change Color Customize style" [ref=e235] [cursor=pointer]:
+            - /url: https://subconverter.com/change-subtitle-color-online
+            - generic [ref=e236]:
+              - img [ref=e238]
+              - generic [ref=e240]:
+                - heading "Change Color" [level=5] [ref=e241]
+                - paragraph [ref=e242]: Customize style
+          - link "Chinese Pinyin Add pronunciation" [ref=e243] [cursor=pointer]:
+            - /url: https://subconverter.com/convert-to-pinyin-online
+            - generic [ref=e244]:
+              - img [ref=e246]
+              - generic [ref=e248]:
+                - heading "Chinese Pinyin" [level=5] [ref=e249]
+                - paragraph [ref=e250]: Add pronunciation
+          - link "To Plain Text Extract text only" [ref=e251] [cursor=pointer]:
+            - /url: https://subconverter.com/convert-subtitles-to-plain-text-online
+            - generic [ref=e252]:
+              - img [ref=e254]
+              - generic [ref=e256]:
+                - heading "To Plain Text" [level=5] [ref=e257]
+                - paragraph [ref=e258]: Extract text only
+    - generic [ref=e259]:
+      - heading "Frequently Asked Questions" [level=3] [ref=e260]
+      - generic [ref=e261]:
+        - group [ref=e262]:
+          - generic "Is this tool really free?" [ref=e263] [cursor=pointer]
+        - group [ref=e264]:
+          - generic "Which subtitle formats are supported?" [ref=e265] [cursor=pointer]
+        - group [ref=e266]:
+          - generic "Is my data safe and private?" [ref=e267] [cursor=pointer]
+        - group [ref=e268]:
+          - generic "How accurate is the OCR for SUB/IDX conversion?" [ref=e269] [cursor=pointer]
+    - generic [ref=e270]:
+      - heading "Everything You Need to Know About Subtitle Conversion" [level=2] [ref=e271]
+      - insertion [ref=e273]:
+        - generic [ref=e276]:
+          - heading "These are topics related to the article that might interest you" [level=2] [ref=e278]: Discover more
+          - link "Custom Subtitle Styling Service" [ref=e279] [cursor=pointer]:
+            - generic "Custom Subtitle Styling Service" [ref=e280]
+            - img [ref=e282]
+          - link "Captioning services" [ref=e284] [cursor=pointer]:
+            - generic "Captioning services" [ref=e285]
+            - img [ref=e287]
+          - link "Cloud storage subscriptions" [ref=e289] [cursor=pointer]:
+            - generic "Cloud storage subscriptions" [ref=e290]
+            - img [ref=e292]
+      - paragraph [ref=e294]:
+        - strong [ref=e295]: Subtitle conversion
+        - text: is an essential process for anyone working with video content. Our comprehensive suite of
+        - strong [ref=e296]: free online subtitle tools
+        - text: makes it easy to convert, sync, and perfect subtitles in any format.
+        - link "Subtitle format knowledge" [ref=e297] [cursor=pointer]:
+          - img [ref=e299]
+          - text: Subtitle format knowledge
+      - heading "What is a Subtitle Converter?" [level=3] [ref=e301]
+      - paragraph [ref=e302]:
+        - text: A
+        - strong [ref=e303]: subtitle converter
+        - text: transforms subtitle files from one format to another, supporting SRT, VTT, SUB/IDX, SUP, SSA/ASS, and more. Whether you're working with text-based subtitles or image-based formats, our tools handle all conversions seamlessly.
+      - heading "Popular Subtitle Formats" [level=3] [ref=e304]
+      - list [ref=e305]:
+        - listitem [ref=e306]:
+          - strong [ref=e307]: SRT (SubRip)
+          - text: "- The most universal subtitle format, supported by virtually all media players"
+        - listitem [ref=e308]:
+          - strong [ref=e309]: VTT (WebVTT)
+          - text: "- Web-friendly format ideal for HTML5 video players"
+        - listitem [ref=e310]:
+          - strong [ref=e311]: SUB/IDX
+          - text: "- Image-based format commonly found on DVDs"
+        - listitem [ref=e312]:
+          - strong [ref=e313]: SUP
+          - text: "- Blu-ray subtitle format requiring OCR conversion"
+        - listitem [ref=e314]:
+          - strong [ref=e315]: SSA/ASS
+          - text: "- Advanced formats with styling and positioning options"
+    - generic [ref=e316]:
+      - insertion [ref=e318]
+      - heading "Ready to Create Perfect Subtitles?" [level=2] [ref=e320]
+      - paragraph [ref=e321]:
+        - text: Join
+        - strong [ref=e322]: 10,000+ users
+        - text: who trust our tools
+        - link "SubRip subtitle tools" [ref=e323] [cursor=pointer]:
+          - img [ref=e325]
+          - text: SubRip subtitle tools
+      - link "Start Converting Now - It's Free!" [ref=e327] [cursor=pointer]:
+        - /url: https://subconverter.com/convert-sub-idx-to-srt-online
+    - generic [ref=e328]:
+      - heading "Trusted by Subtitle Creators" [level=3] [ref=e329]
+      - generic [ref=e330]:
+        - blockquote [ref=e331]:
+          - paragraph [ref=e332]: “Fast conversion and a clean UI. Saves me time every week.”
+          - generic [ref=e333]: — Amir, Fansub Editor
+        - blockquote [ref=e334]:
+          - paragraph [ref=e335]: “SUP → SRT in minutes, tidy OCR output. Love it.”
+          - generic [ref=e336]: — Hana, Translator
+        - blockquote [ref=e337]:
+          - paragraph [ref=e338]: "“All‑in‑one tools: shifter, cleaner, converter.”"
+          - generic [ref=e339]: — Rizal, Content Creator
+  - insertion [ref=e341]
+  - contentinfo [ref=e343]:
+    - generic [ref=e345]:
+      - paragraph [ref=e347]: © 2026 Subconverter • Made with care for subtitle creators
+      - navigation [ref=e348]:
+        - link "Privacy Policy" [ref=e349] [cursor=pointer]:
+          - /url: https://subconverter.com/privacy
+        - link "Terms of Service" [ref=e350] [cursor=pointer]:
+          - /url: https://subconverter.com/terms
+        - link "Contact" [ref=e351] [cursor=pointer]:
+          - /url: https://subconverter.com/contact
+        - link "Stats" [ref=e352] [cursor=pointer]:
+          - /url: https://subconverter.com/stats
+        - link "Blog" [ref=e353] [cursor=pointer]:
+          - /url: https://subconverter.com/blog
+        - link "FAQ" [ref=e354] [cursor=pointer]:
+          - /url: https://subconverter.com/faq

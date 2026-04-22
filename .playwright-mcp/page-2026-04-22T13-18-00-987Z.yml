@@ -1,0 +1,241 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "Subtitle Toolkit" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img [ref=e5]
+        - generic [ref=e8]: Subtitle Toolkit
+      - generic [ref=e9]:
+        - link "Tools" [ref=e10] [cursor=pointer]:
+          - /url: /tools
+        - link "Guides" [ref=e11] [cursor=pointer]:
+          - /url: /guides
+      - link "Use Tools" [ref=e12] [cursor=pointer]:
+        - /url: /tools
+        - text: Use Tools
+        - generic [ref=e13]: →
+  - main [ref=e14]:
+    - generic [ref=e15]:
+      - generic [ref=e16]: Free subtitle tools
+      - heading "Convert, fix, and clean subtitle files in your browser." [level=1] [ref=e17]:
+        - text: Convert, fix, and clean
+        - text: subtitle files in your browser.
+      - paragraph [ref=e18]: Subtitle Toolkit gives you fast, free tools for SRT, VTT, and ASS conversion, timing fixes, and format cleanup. No signup, no server upload — everything runs locally.
+      - generic [ref=e19]:
+        - link "Browse tools" [ref=e20] [cursor=pointer]:
+          - /url: /tools
+          - text: Browse tools
+          - generic [ref=e21]: →
+        - link "Read guides" [ref=e22] [cursor=pointer]:
+          - /url: /guides
+      - list [ref=e23]:
+        - listitem [ref=e24]: Free forever
+        - listitem [ref=e25]: No signup
+        - listitem [ref=e26]: Browser-local processing
+    - generic [ref=e28]:
+      - generic [ref=e29]: Core tools
+      - heading "Start with the jobs people actually search for." [level=2] [ref=e30]
+      - paragraph [ref=e31]: Convert, shift, clean, and repair subtitle files without opening a heavy video editor or uploading them to a server.
+      - generic [ref=e32]:
+        - article [ref=e33]:
+          - generic [ref=e34]:
+            - generic [ref=e35]: SRT
+            - generic [ref=e36]: →
+            - generic [ref=e37]: VTT
+          - heading "SRT to VTT Converter" [level=3] [ref=e38]:
+            - link "SRT to VTT Converter" [ref=e39] [cursor=pointer]:
+              - /url: /tools/srt-to-vtt
+          - paragraph [ref=e40]: Convert SubRip subtitle files into WebVTT format for HTML5 video and browser players.
+          - link "Open tool" [ref=e41] [cursor=pointer]:
+            - /url: /tools/srt-to-vtt
+            - text: Open tool
+            - generic [ref=e42]: →
+        - article [ref=e43]:
+          - generic [ref=e44]:
+            - generic [ref=e45]: VTT
+            - generic [ref=e46]: →
+            - generic [ref=e47]: SRT
+          - heading "VTT to SRT Converter" [level=3] [ref=e48]:
+            - link "VTT to SRT Converter" [ref=e49] [cursor=pointer]:
+              - /url: /tools/vtt-to-srt
+          - paragraph [ref=e50]: Turn WebVTT captions into numbered SubRip blocks that work with older editors and players.
+          - link "Open tool" [ref=e51] [cursor=pointer]:
+            - /url: /tools/vtt-to-srt
+            - text: Open tool
+            - generic [ref=e52]: →
+        - article [ref=e53]:
+          - generic [ref=e54]:
+            - generic [ref=e55]: SRT
+            - generic [ref=e56]: →
+            - generic [ref=e57]: ASS
+          - heading "SRT to ASS Converter" [level=3] [ref=e58]:
+            - link "SRT to ASS Converter" [ref=e59] [cursor=pointer]:
+              - /url: /tools/srt-to-ass
+          - paragraph [ref=e60]: Convert simple SubRip captions into ASS format for workflows that need style-ready subtitle files.
+          - link "Open tool" [ref=e61] [cursor=pointer]:
+            - /url: /tools/srt-to-ass
+            - text: Open tool
+            - generic [ref=e62]: →
+        - article [ref=e63]:
+          - generic [ref=e64]:
+            - generic [ref=e65]: ASS
+            - generic [ref=e66]: →
+            - generic [ref=e67]: SRT
+          - heading "ASS to SRT Converter" [level=3] [ref=e68]:
+            - link "ASS to SRT Converter" [ref=e69] [cursor=pointer]:
+              - /url: /tools/ass-to-srt
+          - paragraph [ref=e70]: Flatten ASS dialogue lines into simple SubRip subtitles for broader compatibility.
+          - link "Open tool" [ref=e71] [cursor=pointer]:
+            - /url: /tools/ass-to-srt
+            - text: Open tool
+            - generic [ref=e72]: →
+        - article [ref=e73]:
+          - generic [ref=e74]:
+            - generic [ref=e75]: VTT
+            - generic [ref=e76]: →
+            - generic [ref=e77]: ASS
+          - heading "VTT to ASS Converter" [level=3] [ref=e78]:
+            - link "VTT to ASS Converter" [ref=e79] [cursor=pointer]:
+              - /url: /tools/vtt-to-ass
+          - paragraph [ref=e80]: Convert browser-friendly WebVTT captions into ASS format for editing and advanced subtitle workflows.
+          - link "Open tool" [ref=e81] [cursor=pointer]:
+            - /url: /tools/vtt-to-ass
+            - text: Open tool
+            - generic [ref=e82]: →
+        - article [ref=e83]:
+          - generic [ref=e84]:
+            - generic [ref=e85]: ASS
+            - generic [ref=e86]: →
+            - generic [ref=e87]: VTT
+          - heading "ASS to VTT Converter" [level=3] [ref=e88]:
+            - link "ASS to VTT Converter" [ref=e89] [cursor=pointer]:
+              - /url: /tools/ass-to-vtt
+          - paragraph [ref=e90]: Convert ASS subtitles into WebVTT for browser playback and HTML5 video workflows.
+          - link "Open tool" [ref=e91] [cursor=pointer]:
+            - /url: /tools/ass-to-vtt
+            - text: Open tool
+            - generic [ref=e92]: →
+    - generic [ref=e93]:
+      - generic [ref=e94]: Why Subtitle Toolkit
+      - heading "Built for trust and speed." [level=2] [ref=e95]
+      - generic [ref=e96]:
+        - generic [ref=e97]:
+          - img [ref=e99]
+          - heading "No server upload" [level=3] [ref=e102]
+          - paragraph [ref=e103]: Files never leave your browser. All processing happens locally, so privacy is built in by default.
+        - generic [ref=e104]:
+          - img [ref=e106]
+          - heading "Instant processing" [level=3] [ref=e108]
+          - paragraph [ref=e109]: No waiting, no queueing. Paste or upload a file and get results immediately.
+        - generic [ref=e110]:
+          - img [ref=e112]
+          - heading "Free forever" [level=3] [ref=e115]
+          - paragraph [ref=e116]: No signup, no limits, no paywall. Every tool is completely free to use, now and always.
+    - generic [ref=e119]:
+      - generic [ref=e120]: Popular guides
+      - heading "Learn what format to use and when." [level=2] [ref=e121]
+      - generic [ref=e122]:
+        - article [ref=e123]:
+          - heading "ASS vs SRT" [level=3] [ref=e124]:
+            - link "ASS vs SRT" [ref=e125] [cursor=pointer]:
+              - /url: /guides/ass-vs-srt
+          - paragraph [ref=e126]: Understand when ASS makes sense, when SRT is enough, and how to choose between them for delivery or editing.
+          - link "Read guide" [ref=e127] [cursor=pointer]:
+            - /url: /guides/ass-vs-srt
+            - text: Read guide
+            - generic [ref=e128]: →
+        - article [ref=e129]:
+          - heading "Best subtitle format for HTML5 video" [level=3] [ref=e130]:
+            - link "Best subtitle format for HTML5 video" [ref=e131] [cursor=pointer]:
+              - /url: /guides/best-subtitle-format-for-html5-video
+          - paragraph [ref=e132]: Learn why WebVTT is usually the safest subtitle format for HTML5 video players and when to convert from SRT or ASS.
+          - link "Read guide" [ref=e133] [cursor=pointer]:
+            - /url: /guides/best-subtitle-format-for-html5-video
+            - text: Read guide
+            - generic [ref=e134]: →
+        - article [ref=e135]:
+          - heading "Best subtitle format for YouTube" [level=3] [ref=e136]:
+            - link "Best subtitle format for YouTube" [ref=e137] [cursor=pointer]:
+              - /url: /guides/best-subtitle-format-for-youtube
+          - paragraph [ref=e138]: Choose the right subtitle format for YouTube uploads and understand when to convert between SRT and VTT.
+          - link "Read guide" [ref=e139] [cursor=pointer]:
+            - /url: /guides/best-subtitle-format-for-youtube
+            - text: Read guide
+            - generic [ref=e140]: →
+        - article [ref=e141]:
+          - heading "Common subtitle format errors and fixes" [level=3] [ref=e142]:
+            - link "Common subtitle format errors and fixes" [ref=e143] [cursor=pointer]:
+              - /url: /guides/common-subtitle-format-errors-and-fixes
+          - paragraph [ref=e144]: Common subtitle formatting mistakes, what usually causes them, and how to clean or convert files before delivery.
+          - link "Read guide" [ref=e145] [cursor=pointer]:
+            - /url: /guides/common-subtitle-format-errors-and-fixes
+            - text: Read guide
+            - generic [ref=e146]: →
+      - link "View all guides" [ref=e148] [cursor=pointer]:
+        - /url: /guides
+        - text: View all guides
+        - generic [ref=e149]: →
+    - generic [ref=e150]:
+      - generic [ref=e151]: FAQ
+      - heading "Common questions" [level=2] [ref=e152]
+      - generic [ref=e153]:
+        - group [ref=e154]:
+          - generic "Is this really free? +" [ref=e155] [cursor=pointer]:
+            - text: Is this really free?
+            - generic [ref=e156]: +
+        - group [ref=e157]:
+          - generic "Are my files uploaded anywhere? +" [ref=e158] [cursor=pointer]:
+            - text: Are my files uploaded anywhere?
+            - generic [ref=e159]: +
+        - group [ref=e160]:
+          - generic "What subtitle formats are supported? +" [ref=e161] [cursor=pointer]:
+            - text: What subtitle formats are supported?
+            - generic [ref=e162]: +
+        - group [ref=e163]:
+          - generic "Do I need to create an account? +" [ref=e164] [cursor=pointer]:
+            - text: Do I need to create an account?
+            - generic [ref=e165]: +
+  - contentinfo [ref=e166]:
+    - generic [ref=e167]:
+      - generic [ref=e168]:
+        - paragraph [ref=e169]: Subtitle Toolkit
+        - paragraph [ref=e170]: Free browser-based subtitle tools. No signup, no server upload.
+      - generic [ref=e171]:
+        - generic [ref=e172]:
+          - paragraph [ref=e173]: Tools
+          - link "SRT to VTT" [ref=e174] [cursor=pointer]:
+            - /url: /tools/srt-to-vtt
+          - link "VTT to SRT" [ref=e175] [cursor=pointer]:
+            - /url: /tools/vtt-to-srt
+          - link "SRT to ASS" [ref=e176] [cursor=pointer]:
+            - /url: /tools/srt-to-ass
+          - link "Time Shifter" [ref=e177] [cursor=pointer]:
+            - /url: /tools/subtitle-time-shifter
+          - link "Cleaner" [ref=e178] [cursor=pointer]:
+            - /url: /tools/subtitle-cleaner
+        - generic [ref=e179]:
+          - paragraph [ref=e180]: Resources
+          - link "Guides" [ref=e181] [cursor=pointer]:
+            - /url: /guides
+          - link "Privacy Policy" [ref=e182] [cursor=pointer]:
+            - /url: /privacy-policy
+          - link "Terms of Service" [ref=e183] [cursor=pointer]:
+            - /url: /terms-of-service
+          - link "Support" [ref=e184] [cursor=pointer]:
+            - /url: mailto:support@subtitletoolkit.tools
+    - generic [ref=e185]:
+      - paragraph [ref=e186]: © 2026 Subtitle Toolkit. All rights reserved.
+      - paragraph [ref=e187]: subtitletoolkit.tools
+  - generic [ref=e190]:
+    - button "Menu" [ref=e191]:
+      - img [ref=e193]
+      - generic: Menu
+    - button "Inspect" [ref=e197]:
+      - img [ref=e199]
+      - generic: Inspect
+    - button "Audit" [ref=e201]:
+      - img [ref=e203]
+      - generic: Audit
+    - button "Settings" [ref=e206]:
+      - img [ref=e208]
+      - generic: Settings

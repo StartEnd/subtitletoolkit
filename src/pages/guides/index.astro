@@ -1,0 +1,36 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { getCollection } from 'astro:content';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+
+const guides = (await getCollection('guides')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<SiteLayout title={`Guides | ${SITE_TITLE}`} description={SITE_DESCRIPTION}>
+	<section class="section">
+		<span class="eyebrow">Guide archive</span>
+		<h1>Guides for practical subtitle workflows.</h1>
+		<p class="lede">
+			Format comparisons, web video workflows, and common timing or formatting repairs.
+			Each guide connects to a free tool you can use right away.
+		</p>
+	</section>
+
+	<section class="section-muted">
+		<div class="section-inner">
+			<div class="card-grid">
+				{
+					guides.map((guide) => (
+						<article class="card">
+							<h3><a href={`/guides/${guide.id}`}>{guide.data.title}</a></h3>
+							<p class="muted">{guide.data.description}</p>
+							<a class="card-link" href={`/guides/${guide.id}`}>Read guide <span aria-hidden="true">&rarr;</span></a>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</SiteLayout>

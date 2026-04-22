@@ -1,0 +1,153 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import ToolWorkbench from '../../components/ToolWorkbench.astro';
+import { SITE_TITLE } from '../../consts';
+import { getSubtitleCatalog, getSubtitleTool } from '../../lib/subtitles/catalog';
+
+export async function getStaticPaths() {
+	const catalog = getSubtitleCatalog('en');
+	return catalog.tools.map((tool) => ({
+		params: { slug: tool.id },
+		props: { toolId: tool.id },
+	}));
+}
+
+const catalog = getSubtitleCatalog('en');
+const toolId = Astro.props.toolId ?? Astro.params.slug ?? '';
+const currentTool = getSubtitleTool('en', toolId);
+
+if (!currentTool) {
+	return Astro.redirect('/tools');
+}
+
+const relatedTools = currentTool.relatedTools
+	.map((id) => getSubtitleTool('en', id))
+	.filter(Boolean);
+
+const isConversionTool = !['subtitle-time-shifter', 'subtitle-cleaner'].includes(currentTool.id);
+---
+
+<SiteLayout title={`${currentTool.title} | ${SITE_TITLE}`} description={currentTool.description}>
+	<!-- Tool Header -->
+	<section class="section tool-header">
+		<span class="eyebrow">{isConversionTool ? 'Format conversion' : 'Subtitle utility'}</span>
+		<h1>{currentTool.title}</h1>
+		<p class="lede">{currentTool.description}</p>
+		<div class="badge-row" style="margin-top: var(--space-4);">
+			<span class="trust-badge">Free</span>
+			<span class="trust-badge">No signup</span>
+			<span class="trust-badge">Browser-local</span>
+		</div>
+	</section>
+
+	<!-- Workspace -->
+	<section class="section" style="padding-top: 0;">
+		<ToolWorkbench tool={currentTool} labels={catalog.pageLabels} />
+	</section>
+
+	<!-- Info Grid -->
+	<section class="section-muted">
+		<div class="section-inner">
+			<div class="info-grid">
+				<!-- Use Cases -->
+				<article class="info-card">
+					<h2>{catalog.pageLabels.useCasesTitle}</h2>
+					<p class="muted" style="margin-bottom: var(--space-4);">{currentTool.summary}</p>
+					<ul>
+						{currentTool.useCases.map((useCase) => <li>{useCase}</li>)}
+					</ul>
+				</article>
+
+				<!-- FAQ -->
+				<article class="info-card">
+					<h2>{catalog.pageLabels.faqTitle}</h2>
+					<div class="faq-list">
+						{
+							currentTool.faqs.map((faq) => (
+								<details class="faq-item">
+									<summary class="faq-question">
+										{faq.question}
+										<span class="faq-icon">+</span>
+									</summary>
+									<div class="faq-answer">
+										<p>{faq.answer}</p>
+									</div>
+								</details>
+							))
+						}
+					</div>
+				</article>
+
+				<!-- Related -->
+				<article class="info-card">
+					<h2>{catalog.pageLabels.relatedToolsTitle}</h2>
+					<ul>
+						{
+							relatedTools.map((tool) => (
+								<li><a href={`/tools/${tool?.id}`}>{tool?.title}</a></li>
+							))
+						}
+					</ul>
+					<h2 style="margin-top: var(--space-6);">{catalog.pageLabels.relatedGuidesTitle}</h2>
+					<ul>
+						{
+							currentTool.relatedGuides.map((guide) => (
+								<li><a href={guide.href}>{guide.title}</a></li>
+							))
+						}
+					</ul>
+				</article>
+			</div>
+
+			<!-- Ad slot placeholder -->
+			<div class="ad-slot"></div>
+		</div>
+	</section>
+</SiteLayout>
+
+<style>
+	.tool-header {
+		padding-bottom: var(--space-4);
+	}
+
+	.tool-header h1 {
+		margin-bottom: var(--space-3);
+	}
+
+	/* FAQ in info card context */
+	.info-card .faq-list {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.info-card .faq-item {
+		border-bottom-color: var(--color-subtle);
+	}
+
+	.info-card .faq-question {
+		font-size: 0.875rem;
+		padding: var(--space-3) 0;
+	}
+
+	.info-card .faq-answer {
+		padding: 0 0 var(--space-3) 0;
+		font-size: 0.8125rem;
+	}
+
+	.info-card .faq-answer p {
+		margin: 0;
+	}
+
+	/* Related links */
+	.info-card a {
+		color: var(--color-accent);
+		font-size: 0.875rem;
+		font-weight: 500;
+		text-decoration: none;
+	}
+
+	.info-card a:hover {
+		color: var(--color-accent-hover);
+		text-decoration: underline;
+	}
+</style>

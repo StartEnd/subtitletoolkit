@@ -1,0 +1,112 @@
+---
+import SiteLayout from './SiteLayout.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import type { CollectionEntry } from 'astro:content';
+
+type Props = CollectionEntry<'guides'>['data'];
+
+const { title, description, pubDate, updatedDate } = Astro.props;
+---
+
+<SiteLayout title={title} description={description}>
+	<article class="guide-article">
+		<!-- Article Header -->
+		<header class="guide-header">
+			<span class="eyebrow">Subtitle guide</span>
+			<h1>{title}</h1>
+			<div class="guide-meta">
+				<FormattedDate date={pubDate} />
+				{
+					updatedDate && (
+						<span class="guide-updated">Updated <FormattedDate date={updatedDate} /></span>
+					)
+				}
+			</div>
+			<hr />
+		</header>
+
+		<!-- TL;DR -->
+		<div class="tldr">
+			<p><strong>TL;DR</strong> — {description}</p>
+		</div>
+
+		<!-- Content -->
+		<div class="prose">
+			<slot />
+		</div>
+
+		<!-- Related Tool CTA -->
+		<div class="guide-cta">
+			<p class="guide-cta-title">Try it with our free tools</p>
+			<p class="guide-cta-text">Convert, shift, and clean subtitle files directly in your browser. No signup, no upload.</p>
+			<a class="button" href="/tools">Browse tools <span aria-hidden="true">&rarr;</span></a>
+		</div>
+	</article>
+</SiteLayout>
+
+<style>
+	.guide-article {
+		max-width: var(--max-width-narrow);
+		margin: 0 auto;
+	}
+
+	.guide-header {
+		margin-bottom: var(--space-8);
+	}
+
+	.guide-header h1 {
+		margin-bottom: var(--space-3);
+	}
+
+	.guide-meta {
+		display: flex;
+		align-items: center;
+		gap: var(--space-4);
+		color: var(--color-secondary);
+		font-size: 0.875rem;
+		margin-bottom: var(--space-4);
+	}
+
+	.guide-updated {
+		color: var(--color-tertiary);
+		font-style: italic;
+	}
+
+	.guide-meta hr {
+		margin-top: var(--space-4);
+	}
+
+	/* Related tool CTA */
+	.guide-cta {
+		margin-top: var(--space-16);
+		padding: var(--space-8);
+		background: var(--color-accent);
+		border-radius: var(--radius-lg);
+		text-align: center;
+	}
+
+	.guide-cta-title {
+		color: white;
+		font-size: 1.25rem;
+		font-weight: 700;
+		margin-bottom: var(--space-2);
+	}
+
+	.guide-cta-text {
+		color: rgba(255, 255, 255, 0.8);
+		font-size: 0.9375rem;
+		margin-bottom: var(--space-6);
+	}
+
+	.guide-cta .button {
+		background: white;
+		color: var(--color-accent);
+	}
+
+	.guide-cta .button:hover {
+		background: var(--color-accent-light);
+		color: var(--color-accent-hover);
+		transform: translateY(-1px);
+		box-shadow: var(--shadow-md);
+	}
+</style>

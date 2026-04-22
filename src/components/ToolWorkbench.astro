@@ -1,0 +1,453 @@
+---
+import type { SubtitleCatalog, SubtitleTool } from '../lib/subtitles/catalog';
+
+const { tool, labels } = Astro.props as {
+	tool: SubtitleTool;
+	labels: SubtitleCatalog['pageLabels'];
+};
+---
+
+<section class="workspace" data-tool-id={tool.id}>
+	<div class="workspace-grid">
+		<div class="workspace-panel">
+			<div class="workspace-head">
+				<h2 class="workspace-title">{tool.inputLabel}</h2>
+				<span class="workspace-hint">{labels.runLocally}</span>
+			</div>
+
+			<div class="workspace-tabs" role="tablist" aria-label="Input mode">
+				<button class="workspace-tab is-active" type="button" data-mode-trigger="upload">
+					{labels.uploadTab}
+				</button>
+				<button class="workspace-tab" type="button" data-mode-trigger="paste">
+					{labels.pasteTab}
+				</button>
+			</div>
+
+			<div class="workspace-mode" data-mode-panel="upload">
+				<div class="workspace-dropzone">
+					<p class="workspace-dropzone-title">{labels.uploadTitle}</p>
+					<p class="workspace-dropzone-hint">{labels.uploadHint}</p>
+					<input type="file" accept={tool.acceptedExtensions.join(',')} data-file-input />
+					<p class="workspace-file-name">
+						{labels.selectedFile}: <span data-file-name>{tool.sampleFileName}</span>
+					</p>
+				</div>
+			</div>
+
+			<div class="workspace-mode is-hidden" data-mode-panel="paste">
+				<label class="workspace-field-label" for="shared-input">{tool.inputLabel}</label>
+				<textarea id="shared-input" data-shared-input rows="14">{tool.sampleInput}</textarea>
+			</div>
+
+			<div class="workspace-actions">
+				<button class="button" type="button" data-load-sample>{labels.loadSample}</button>
+				<button class="button secondary" type="button" data-clear>{labels.clear}</button>
+			</div>
+
+			{
+				tool.id === 'subtitle-time-shifter' && (
+					<div class="workspace-shift">
+						<label class="workspace-field-label" for="shift-input">{labels.shiftLabel}</label>
+						<input id="shift-input" type="text" value="1200" data-shift />
+						<p class="workspace-shift-help">{labels.shiftHelp}</p>
+					</div>
+				)
+			}
+		</div>
+
+		<div class="workspace-panel">
+			<div class="workspace-head">
+				<h2 class="workspace-title">{tool.outputLabel}</h2>
+				<span class="workspace-hint">{labels.processingHint}</span>
+			</div>
+			<div class="workspace-actions">
+				<button class="button" type="button" data-download>{labels.downloadOutput}</button>
+				<button class="button secondary" type="button" data-copy>{labels.copyOutput}</button>
+			</div>
+			<textarea data-output rows="20" readonly></textarea>
+			<p class="workspace-file-name">
+				{labels.selectedFile}: <span data-output-file>{tool.sampleFileName}</span>
+			</p>
+		</div>
+	</div>
+</section>
+
+<script define:vars={{ tool, labels }}>
+	import { buildOutputFileName, processSubtitleTool } from '../lib/subtitles/processor';
+
+	const root = document.currentScript?.closest('.workspace');
+
+	if (root instanceof HTMLElement) {
+		const track = (eventName, props = {}) => {
+			if (typeof window !== 'undefined' && typeof window.plausible === 'function') {
+				window.plausible(eventName, { props });
+			}
+		};
+
+		const triggers = Array.from(root.querySelectorAll('[data-mode-trigger]'));
+		const panels = Array.from(root.querySelectorAll('[data-mode-panel]'));
+		const fileInput = root.querySelector('[data-file-input]');
+		const fileName = root.querySelector('[data-file-name]');
+		const inputArea = root.querySelector('[data-shared-input]');
+		const outputArea = root.querySelector('[data-output]');
+		const shiftInput = root.querySelector('[data-shift]');
+		const outputFile = root.querySelector('[data-output-file]');
+		const copyButton = root.querySelector('[data-copy]');
+		const downloadButton = root.querySelector('[data-download]');
+		const loadSampleButton = root.querySelector('[data-load-sample]');
+		const clearButton = root.querySelector('[data-clear]');
+
+		let currentInput = tool.sampleInput;
+		let currentFileName = tool.sampleFileName;
+
+		const render = () => {
+			if (!(inputArea instanceof HTMLTextAreaElement)) return;
+			if (!(outputArea instanceof HTMLTextAreaElement)) return;
+
+			const shiftValue =
+				shiftInput instanceof HTMLInputElement ? shiftInput.value : '0';
+			const output = processSubtitleTool(tool.id, currentInput, shiftValue);
+
+			outputArea.value = output;
+			inputArea.value = currentInput;
+
+			if (fileName instanceof HTMLElement) {
+				fileName.textContent = currentFileName || labels.noFileSelected;
+			}
+
+			if (outputFile instanceof HTMLElement) {
+				outputFile.textContent = buildOutputFileName(
+					currentFileName,
+					tool.id,
+					currentInput,
+				);
+			}
+		};
+
+		const setMode = (mode) => {
+			triggers.forEach((trigger) => {
+				trigger.classList.toggle(
+					'is-active',
+					trigger.getAttribute('data-mode-trigger') === mode,
+				);
+			});
+			panels.forEach((panel) => {
+				panel.classList.toggle(
+					'is-hidden',
+					panel.getAttribute('data-mode-panel') !== mode,
+				);
+			});
+		};
+
+		triggers.forEach((trigger) => {
+			trigger.addEventListener('click', () => {
+				const mode = trigger.getAttribute('data-mode-trigger') || 'upload';
+				setMode(mode);
+				track('subtitle_tool_switch_mode', { tool: tool.id, mode });
+			});
+		});
+
+		if (inputArea instanceof HTMLTextAreaElement) {
+			inputArea.addEventListener('input', () => {
+				currentInput = inputArea.value;
+				currentFileName = null;
+				render();
+			});
+		}
+
+		if (shiftInput instanceof HTMLInputElement) {
+			shiftInput.addEventListener('input', render);
+		}
+
+		if (fileInput instanceof HTMLInputElement) {
+			fileInput.addEventListener('change', async () => {
+				const file = fileInput.files?.[0];
+				if (!file) return;
+
+				currentInput = await file.text();
+				currentFileName = file.name;
+				setMode('upload');
+				track('subtitle_tool_upload_file', {
+					tool: tool.id,
+					extension: file.name.split('.').pop() || 'unknown',
+				});
+				render();
+			});
+		}
+
+		loadSampleButton?.addEventListener('click', () => {
+			currentInput = tool.sampleInput;
+			currentFileName = tool.sampleFileName;
+			track('subtitle_tool_load_sample', { tool: tool.id });
+			render();
+		});
+
+		clearButton?.addEventListener('click', () => {
+			currentInput = '';
+			currentFileName = null;
+			render();
+		});
+
+		copyButton?.addEventListener('click', async () => {
+			if (!(outputArea instanceof HTMLTextAreaElement) || !outputArea.value) return;
+			await navigator.clipboard.writeText(outputArea.value);
+			track('subtitle_tool_copy_output', { tool: tool.id });
+			if (copyButton instanceof HTMLButtonElement) {
+				const original = copyButton.textContent;
+				copyButton.textContent = labels.copied;
+				window.setTimeout(() => {
+					copyButton.textContent = original;
+				}, 1200);
+			}
+		});
+
+		downloadButton?.addEventListener('click', () => {
+			if (!(outputArea instanceof HTMLTextAreaElement) || !outputArea.value) return;
+			const blob = new Blob([outputArea.value], {
+				type: 'text/plain;charset=utf-8',
+			});
+			const url = URL.createObjectURL(blob);
+			const link = document.createElement('a');
+			link.href = url;
+			link.download =
+				outputFile instanceof HTMLElement
+					? outputFile.textContent || 'subtitle-output.txt'
+					: 'subtitle-output.txt';
+			link.click();
+			URL.revokeObjectURL(url);
+			track('subtitle_tool_download_output', {
+				tool: tool.id,
+				output_file:
+					outputFile instanceof HTMLElement
+						? outputFile.textContent || 'subtitle-output.txt'
+						: 'subtitle-output.txt',
+			});
+		});
+
+		render();
+	}
+</script>
+
+<style>
+	.workspace-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+		gap: var(--space-6);
+	}
+
+	.workspace-panel {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+	}
+
+	.workspace-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.workspace-title {
+		color: var(--color-workspace-text);
+		font-size: 0.9375rem;
+		font-weight: 600;
+		margin: 0;
+		letter-spacing: 0;
+	}
+
+	.workspace-hint {
+		color: var(--color-workspace-muted);
+		font-size: 0.6875rem;
+		font-weight: 500;
+	}
+
+	/* Tabs */
+	.workspace-tabs {
+		display: inline-flex;
+		gap: 4px;
+		padding: 3px;
+		border-radius: var(--radius-sm);
+		background: var(--color-workspace-input);
+	}
+
+	.workspace-tab {
+		border: none;
+		border-radius: 4px;
+		padding: 0.5rem 0.875rem;
+		background: transparent;
+		color: var(--color-workspace-muted);
+		font-family: var(--font-sans);
+		font-weight: 600;
+		font-size: 0.8125rem;
+		cursor: pointer;
+		transition: all var(--duration-fast) var(--ease);
+	}
+
+	.workspace-tab.is-active {
+		background: var(--color-workspace-bg);
+		color: var(--color-workspace-text);
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+	}
+
+	/* Mode panels */
+	.workspace-mode {
+		margin-top: 0;
+	}
+
+	.workspace-mode.is-hidden {
+		display: none;
+	}
+
+	/* Dropzone */
+	.workspace-dropzone {
+		padding: var(--space-6);
+		border: 1px dashed var(--color-workspace-border);
+		border-radius: var(--radius-md);
+		background: var(--color-workspace-input);
+		text-align: center;
+	}
+
+	.workspace-dropzone-title {
+		color: var(--color-workspace-text);
+		font-weight: 600;
+		font-size: 0.875rem;
+		margin-bottom: var(--space-1);
+	}
+
+	.workspace-dropzone-hint {
+		color: var(--color-workspace-muted);
+		font-size: 0.75rem;
+		margin: 0;
+	}
+
+	/* File input */
+	.workspace [type='file'] {
+		display: block;
+		width: 100%;
+		margin: var(--space-4) 0 var(--space-2);
+		padding: var(--space-2);
+		border: 1px solid var(--color-workspace-border);
+		border-radius: var(--radius-sm);
+		background: var(--color-workspace-bg);
+		color: var(--color-workspace-text);
+		font-family: var(--font-sans);
+		font-size: 0.8125rem;
+		cursor: pointer;
+	}
+
+	.workspace [type='file']::file-selector-button {
+		padding: 0.375rem 0.75rem;
+		border: 1px solid var(--color-workspace-border);
+		border-radius: var(--radius-sm);
+		background: var(--color-workspace-bg);
+		color: var(--color-workspace-text);
+		font-family: var(--font-sans);
+		font-weight: 600;
+		font-size: 0.75rem;
+		cursor: pointer;
+		margin-right: var(--space-3);
+	}
+
+	/* Field labels */
+	.workspace-field-label {
+		display: block;
+		margin-bottom: var(--space-2);
+		color: var(--color-workspace-text);
+		font-weight: 600;
+		font-size: 0.8125rem;
+	}
+
+	/* Textarea */
+	.workspace textarea {
+		width: 100%;
+		min-height: 16rem;
+		padding: var(--space-4);
+		border: 1px solid var(--color-workspace-border);
+		border-radius: var(--radius-md);
+		background: var(--color-workspace-input);
+		color: var(--color-workspace-text);
+		font-family: var(--font-mono);
+		font-size: 0.8125rem;
+		line-height: 1.6;
+		resize: vertical;
+	}
+
+	.workspace textarea:focus {
+		outline: none;
+		border-color: var(--color-workspace-accent);
+		box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.2);
+	}
+
+	/* Text input (shift) */
+	.workspace [type='text'] {
+		width: 100%;
+		padding: var(--space-3) var(--space-4);
+		border: 1px solid var(--color-workspace-border);
+		border-radius: var(--radius-sm);
+		background: var(--color-workspace-input);
+		color: var(--color-workspace-text);
+		font-family: var(--font-mono);
+		font-size: 0.875rem;
+	}
+
+	.workspace [type='text']:focus {
+		outline: none;
+		border-color: var(--color-workspace-accent);
+	}
+
+	/* Shift box */
+	.workspace-shift {
+		padding: var(--space-4);
+		border: 1px dashed var(--color-workspace-border);
+		border-radius: var(--radius-md);
+		background: var(--color-workspace-input);
+	}
+
+	.workspace-shift-help {
+		color: var(--color-workspace-muted);
+		font-size: 0.75rem;
+		margin-top: var(--space-2);
+		margin-bottom: 0;
+	}
+
+	/* File name display */
+	.workspace-file-name {
+		color: var(--color-workspace-muted);
+		font-size: 0.75rem;
+		margin: 0;
+	}
+
+	/* Action buttons — override global .button for dark bg */
+	.workspace-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+	}
+
+	.workspace .button {
+		padding: 0.5rem 1rem;
+		font-size: 0.8125rem;
+		border-radius: var(--radius-sm);
+	}
+
+	.workspace .button.secondary {
+		border-color: var(--color-workspace-border);
+		color: var(--color-workspace-text);
+		background: var(--color-workspace-input);
+	}
+
+	.workspace .button.secondary:hover {
+		border-color: var(--color-workspace-muted);
+		background: var(--color-workspace-border);
+		color: var(--color-workspace-text);
+		transform: none;
+		box-shadow: none;
+	}
+
+	@media (max-width: 1024px) {
+		.workspace-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

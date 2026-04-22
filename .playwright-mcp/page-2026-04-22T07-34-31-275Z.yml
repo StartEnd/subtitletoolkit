@@ -1,0 +1,144 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link "Subtitle Tools" [ref=e4] [cursor=pointer]:
+        - /url: https://subtitletools.com
+      - generic [ref=e5]:
+        - button "All tools" [ref=e6] [cursor=pointer]:
+          - generic [ref=e7]: All tools
+          - img [ref=e8]
+        - link "Get premium" [ref=e10] [cursor=pointer]:
+          - /url: https://subtitletools.com/support-me/upgrade-to-premium
+          - img [ref=e11]
+          - generic [ref=e13]: Get premium
+        - link "Login" [ref=e14] [cursor=pointer]:
+          - /url: https://subtitletools.com/login
+          - img [ref=e15]
+          - text: Login
+  - generic [ref=e17]:
+    - generic [ref=e19]:
+      - heading "Subtitle Tools" [level=1] [ref=e20]
+      - paragraph [ref=e21]: Online tools for syncing, fixing and converting subtitles.
+    - generic [ref=e23]:
+      - generic [ref=e24]: In the last 30 days
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - text: The tools were used
+          - strong [ref=e27]: 325,651
+          - text: times
+        - generic [ref=e28]:
+          - strong [ref=e29]: 637,963
+          - text: subtitle files were uploaded
+        - generic [ref=e30]:
+          - strong [ref=e31]: 494 gb
+          - text: of files were processed
+    - generic [ref=e33]:
+      - heading "Converters" [level=2] [ref=e34]
+      - generic [ref=e35]:
+        - link "Convert to Srt Changes many types of plain-text subtitles to srt." [ref=e37] [cursor=pointer]:
+          - /url: https://subtitletools.com/convert-to-srt-online
+          - text: Convert to Srt
+          - paragraph [ref=e38]: Changes many types of plain-text subtitles to srt.
+        - link "Convert to WebVtt Converts many types of text-based subtitle files to Vtt." [ref=e40] [cursor=pointer]:
+          - /url: https://subtitletools.com/convert-to-vtt-online
+          - text: Convert to WebVtt
+          - paragraph [ref=e41]: Converts many types of text-based subtitle files to Vtt.
+        - link "Sup to Srt Converter Converts picture-based sup subtitles to srt." [ref=e43] [cursor=pointer]:
+          - /url: https://subtitletools.com/convert-sup-to-srt-online
+          - text: Sup to Srt Converter
+          - paragraph [ref=e44]: Converts picture-based sup subtitles to srt.
+        - link "Sub/Idx to Srt Converter Converts picture-based sub/idx subtitles to srt." [ref=e46] [cursor=pointer]:
+          - /url: https://subtitletools.com/convert-sub-idx-to-srt-online
+          - text: Sub/Idx to Srt Converter
+          - paragraph [ref=e47]: Converts picture-based sub/idx subtitles to srt.
+        - link "Convert to Plain Text Convert text-based subtitles to plain text." [ref=e49] [cursor=pointer]:
+          - /url: https://subtitletools.com/convert-subtitles-to-plain-text-online
+          - text: Convert to Plain Text
+          - paragraph [ref=e50]: Convert text-based subtitles to plain text.
+        - link "Convert to PDF Convert text-based subtitles to PDF." [ref=e52] [cursor=pointer]:
+          - /url: https://subtitletools.com/convert-subtitles-to-pdf
+          - text: Convert to PDF
+          - paragraph [ref=e53]: Convert text-based subtitles to PDF.
+    - generic [ref=e55]:
+      - heading "Syncing" [level=2] [ref=e56]
+      - generic [ref=e57]:
+        - link "Subtitle Shifter Shift all cue timestamps of a subtitle file in sync with the video." [ref=e59] [cursor=pointer]:
+          - /url: https://subtitletools.com/subtitle-sync-shifter
+          - text: Subtitle Shifter
+          - paragraph [ref=e60]: Shift all cue timestamps of a subtitle file in sync with the video.
+        - link "Partial Subtitle Shifter Resync multiple specific parts of a subtitle file." [ref=e62] [cursor=pointer]:
+          - /url: https://subtitletools.com/partial-subtitle-sync-shifter
+          - text: Partial Subtitle Shifter
+          - paragraph [ref=e63]: Resync multiple specific parts of a subtitle file.
+    - generic [ref=e66]:
+      - heading "Fixing and cleaning" [level=2] [ref=e67]
+      - generic [ref=e68]:
+        - link "Srt Cleaner Remove incorrect formatting and SDH from srt files." [ref=e70] [cursor=pointer]:
+          - /url: https://subtitletools.com/srt-cleaner
+          - text: Srt Cleaner
+          - paragraph [ref=e71]: Remove incorrect formatting and SDH from srt files.
+        - link "Convert to UTF-8 Change text encoding of any text file to UTF-8." [ref=e73] [cursor=pointer]:
+          - /url: https://subtitletools.com/convert-text-files-to-utf8-online
+          - text: Convert to UTF-8
+          - paragraph [ref=e74]: Change text encoding of any text file to UTF-8.
+    - generic [ref=e77]:
+      - heading "Other tools" [level=2] [ref=e78]
+      - generic [ref=e79]:
+        - link "New! Extract Subtitles from Video Extract and download embedded subtitle tracks from video files." [ref=e81] [cursor=pointer]:
+          - /url: https://subtitletools.com/extract-subtitles-from-video
+          - generic [ref=e83]: New!
+          - text: Extract Subtitles from Video
+          - paragraph [ref=e84]: Extract and download embedded subtitle tracks from video files.
+        - link "New! Timed Lyrics Editor Create synchronized karaoke-style .lrc lyric files by tapping along to a song." [ref=e86] [cursor=pointer]:
+          - /url: https://subtitletools.com/timed-lyrics-editor
+          - generic [ref=e88]: New!
+          - text: Timed Lyrics Editor
+          - paragraph [ref=e89]: Create synchronized karaoke-style .lrc lyric files by tapping along to a song.
+        - link "Subtitle Merger Combine two subtitles into a single file." [ref=e91] [cursor=pointer]:
+          - /url: https://subtitletools.com/merge-subtitles-online
+          - text: Subtitle Merger
+          - paragraph [ref=e92]: Combine two subtitles into a single file.
+        - link "Color changer Make subtitles stand out by changing the color of the text." [ref=e94] [cursor=pointer]:
+          - /url: https://subtitletools.com/change-subtitle-color-online
+          - text: Color changer
+          - paragraph [ref=e95]: Make subtitles stand out by changing the color of the text.
+        - link "Position changer Change where your subtitles appear on screen." [ref=e97] [cursor=pointer]:
+          - /url: https://subtitletools.com/change-subtitle-position
+          - text: Position changer
+          - paragraph [ref=e98]: Change where your subtitles appear on screen.
+        - link "Make Pinyin Subtitles Turn normal Chinese subtitles into romanized, pinyin subtitles." [ref=e100] [cursor=pointer]:
+          - /url: https://subtitletools.com/make-chinese-pinyin-subtitles
+          - text: Make Pinyin Subtitles
+          - paragraph [ref=e101]: Turn normal Chinese subtitles into romanized, pinyin subtitles.
+  - contentinfo [ref=e102]:
+    - generic [ref=e103]:
+      - generic [ref=e105]:
+        - generic [ref=e106]:
+          - generic [ref=e107]: Support this website
+          - img [ref=e108]
+        - link "Upgrade to premium" [ref=e111] [cursor=pointer]:
+          - /url: https://subtitletools.com/support-me/upgrade-to-premium
+      - generic [ref=e112]:
+        - link "Contact me" [ref=e113] [cursor=pointer]:
+          - /url: https://subtitletools.com/contact-me
+          - text: Contact me
+          - img [ref=e114]
+        - link "Developer API" [ref=e116] [cursor=pointer]:
+          - /url: https://subtitletools.com/docs/api
+          - text: Developer API
+          - img [ref=e117]
+        - link "Privacy policy" [ref=e119] [cursor=pointer]:
+          - /url: https://subtitletools.com/privacy-policy
+          - text: Privacy policy
+          - img [ref=e120]
+        - link "Changelog" [ref=e122] [cursor=pointer]:
+          - /url: https://subtitletools.com/changelog
+          - text: Changelog
+          - img [ref=e123]
+        - link "Login" [ref=e125] [cursor=pointer]:
+          - /url: https://subtitletools.com/login
+          - text: Login
+          - img [ref=e126]
+    - generic [ref=e128]:
+      - text: This website is ad-free and doesn't use any third-party tracking cookies
+      - text: Since 2017 — Made in the Netherlands 🇳🇱

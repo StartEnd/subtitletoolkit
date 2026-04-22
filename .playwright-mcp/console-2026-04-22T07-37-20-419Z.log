@@ -1,0 +1,3 @@
+[    2210ms] TypeError: Cannot set properties of undefined (setting 'FileSaver')
+    at https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js:1:130
+    at https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js:1:154

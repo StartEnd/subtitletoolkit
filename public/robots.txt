@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://subtitletoolkit.tools/sitemap-index.xml

@@ -1,0 +1,65 @@
+---
+title: SRT vs VTT
+description: Learn the practical differences between SRT and WebVTT, and when each subtitle format makes more sense.
+pubDate: 2026-04-21
+author_name: Admin
+author_image: /logo.png
+image: /imgs/features/admin.png
+---
+
+SRT and VTT solve a similar job, but they fit different playback environments.
+
+## The short version
+
+- `SRT` is simple, old, and widely supported.
+- `VTT` is better for HTML5 video and web players.
+- If your workflow is browser-first, `VTT` is usually the safer output.
+
+## What changes between them
+
+### Timestamp format
+
+SRT uses commas:
+
+```text
+00:00:01,000 --> 00:00:03,500
+```
+
+VTT uses dots:
+
+```text
+00:00:01.000 --> 00:00:03.500
+```
+
+### Header
+
+VTT needs a `WEBVTT` header.  
+SRT does not.
+
+### Cue numbering
+
+SRT commonly includes cue numbers.  
+VTT does not require them.
+
+## When to use SRT
+
+- You are sending subtitle files to a client.
+- Your editor or archive process expects SubRip.
+- You need the simplest portable format.
+
+## When to use VTT
+
+- You are working with HTML5 video.
+- Your player or site expects WebVTT.
+- You want web-friendly caption delivery.
+
+## Practical rule
+
+If subtitles are being displayed in a browser, start from `VTT`.  
+If subtitles are being exchanged between people or tools, `SRT` is still a very common handoff format.
+
+## Related tools
+
+- [SRT to VTT Converter](/tools/srt-to-vtt)
+- [VTT to SRT Converter](/tools/vtt-to-srt)
+

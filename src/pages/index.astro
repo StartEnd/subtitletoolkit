@@ -1,49 +1,214 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { getCollection } from 'astro:content';
+import { getSubtitleCatalog } from '../lib/subtitles/catalog';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const catalog = getSubtitleCatalog('en');
+const featuredTools = catalog.tools.slice(0, 6);
+const utilityTools = catalog.tools.filter(t => t.id === 'subtitle-time-shifter' || t.id === 'subtitle-cleaner');
+const featuredGuides = (await getCollection('guides')).slice(0, 4);
+
+const faqs = [
+	{ q: 'Is this really free?', a: 'Yes. All tools are completely free with no limits, no signup, and no hidden paywall.' },
+	{ q: 'Are my files uploaded anywhere?', a: 'No. All processing happens locally in your browser. Your files never leave your device.' },
+	{ q: 'What subtitle formats are supported?', a: 'SRT, VTT (WebVTT), and ASS. You can convert between any of these formats, shift timing, and clean up formatting.' },
+	{ q: 'Do I need to create an account?', a: 'No. There is no login, no account, and no email required. Just open a tool and start using it.' },
+];
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<SiteLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<!-- Hero -->
+	<section class="section hero">
+		<span class="eyebrow">Free subtitle tools</span>
+		<h1>Convert, fix, and clean<br/>subtitle files in your browser.</h1>
+		<p class="lede">
+			Subtitle Toolkit gives you fast, free tools for SRT, VTT, and ASS conversion,
+			timing fixes, and format cleanup. No signup, no server upload — everything runs locally.
+		</p>
+		<div class="button-row">
+			<a class="button" href="/tools">Browse tools <span aria-hidden="true">&rarr;</span></a>
+			<a class="button secondary" href="/guides">Read guides</a>
+		</div>
+		<ul class="inline-list hero-badges">
+			<li>Free forever</li>
+			<li>No signup</li>
+			<li>Browser-local processing</li>
+		</ul>
+	</section>
+
+	<!-- Core Tools -->
+	<section class="section-muted">
+		<div class="section-inner">
+			<span class="eyebrow">Core tools</span>
+			<h2>Start with the jobs people actually search for.</h2>
+			<p class="lede">{catalog.toolsPage.description}</p>
+			<div class="card-grid" style="margin-top: var(--space-8);">
+				{
+					featuredTools.map((tool) => (
+						<article class="card">
+							<div class="badge-row">
+								<span class="format-badge">{tool.shortTitle.split(' to ')[0]}</span>
+								<span class="format-arrow">&rarr;</span>
+								<span class="format-badge">{tool.shortTitle.split(' to ')[1]}</span>
+							</div>
+							<h3><a href={`/tools/${tool.id}`}>{tool.title}</a></h3>
+							<p class="muted">{tool.description}</p>
+							<a class="card-link" href={`/tools/${tool.id}`}>Open tool <span aria-hidden="true">&rarr;</span></a>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- Why Section -->
+	<section class="section">
+		<span class="eyebrow">Why Subtitle Toolkit</span>
+		<h2>Built for trust and speed.</h2>
+		<div class="trust-grid">
+			<div class="trust-item">
+				<div class="trust-icon">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+				</div>
+				<h3>No server upload</h3>
+				<p>Files never leave your browser. All processing happens locally, so privacy is built in by default.</p>
+			</div>
+			<div class="trust-item">
+				<div class="trust-icon">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+				</div>
+				<h3>Instant processing</h3>
+				<p>No waiting, no queueing. Paste or upload a file and get results immediately.</p>
+			</div>
+			<div class="trust-item">
+				<div class="trust-icon">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+				</div>
+				<h3>Free forever</h3>
+				<p>No signup, no limits, no paywall. Every tool is completely free to use, now and always.</p>
+			</div>
+		</div>
+
+		<!-- Ad slot placeholder -->
+		<div class="ad-slot"></div>
+	</section>
+
+	<!-- Popular Guides -->
+	<section class="section-muted">
+		<div class="section-inner">
+			<span class="eyebrow">Popular guides</span>
+			<h2>Learn what format to use and when.</h2>
+			<div class="card-grid" style="margin-top: var(--space-8);">
+				{
+					featuredGuides.map((guide) => (
+						<article class="card">
+							<h3><a href={`/guides/${guide.id}`}>{guide.data.title}</a></h3>
+							<p class="muted">{guide.data.description}</p>
+							<a class="card-link" href={`/guides/${guide.id}`}>Read guide <span aria-hidden="true">&rarr;</span></a>
+						</article>
+					))
+				}
+			</div>
+			<div style="margin-top: var(--space-8);">
+				<a class="button secondary" href="/guides">View all guides <span aria-hidden="true">&rarr;</span></a>
+			</div>
+		</div>
+	</section>
+
+	<!-- FAQ -->
+	<section class="section">
+		<span class="eyebrow">FAQ</span>
+		<h2>Common questions</h2>
+		<div class="faq-list">
+			{
+				faqs.map((faq) => (
+					<details class="faq-item">
+						<summary class="faq-question">
+							{faq.q}
+							<span class="faq-icon">+</span>
+						</summary>
+						<div class="faq-answer">
+							<p>{faq.a}</p>
+						</div>
+					</details>
+				))
+			}
+		</div>
+	</section>
+</SiteLayout>
+
+<style>
+	.hero {
+		padding-top: var(--space-20);
+		padding-bottom: var(--space-16);
+	}
+
+	.hero h1 {
+		margin-bottom: var(--space-5);
+	}
+
+	.hero-badges {
+		margin-top: var(--space-8);
+	}
+
+	/* Format arrow */
+	.format-arrow {
+		color: var(--color-tertiary);
+		font-size: 0.75rem;
+		font-weight: 600;
+	}
+
+	/* Trust grid */
+	.trust-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		gap: var(--space-10);
+		margin-top: var(--space-10);
+	}
+
+	.trust-item {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+	}
+
+	.trust-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 48px;
+		height: 48px;
+		border-radius: var(--radius-md);
+		background: var(--color-accent-light);
+		color: var(--color-accent);
+	}
+
+	.trust-item h3 {
+		font-size: 1.0625rem;
+		margin-bottom: 0;
+	}
+
+	.trust-item p {
+		color: var(--color-secondary);
+		font-size: 0.9375rem;
+		margin: 0;
+		line-height: 1.6;
+	}
+
+	/* FAQ list */
+	.faq-list {
+		max-width: 48rem;
+		margin-top: var(--space-8);
+	}
+
+	@media (max-width: 768px) {
+		.hero {
+			padding-top: var(--space-12);
+		}
+
+		.trust-grid {
+			gap: var(--space-6);
+		}
+	}
+</style>

@@ -1,0 +1,37 @@
+---
+title: Common subtitle format errors and fixes
+description: Common subtitle formatting mistakes, what usually causes them, and how to clean or convert files before delivery.
+pubDate: 2026-04-21
+author_name: Admin
+author_image: /logo.png
+image: /imgs/features/admin.png
+---
+
+Subtitle files often break for boring reasons rather than complicated ones.
+
+## Common problems
+
+### Wrong format for the destination
+
+You may have `SRT` when the player wants `VTT`, or `ASS` when a client only wants `SRT`.
+
+### Timing is fine, but the file is messy
+
+Spacing, line breaks, or inconsistent formatting can make a file look sloppy even when the cues are technically correct.
+
+### Styled subtitles are being delivered to a simple player
+
+ASS is not always the right delivery format. Sometimes you need to flatten it first.
+
+## Simple fixes
+
+- Convert formats before upload
+- Normalize text before handoff
+- Shift the whole subtitle file if the timing offset is constant
+
+## Related tools
+
+- [Subtitle Cleaner](/tools/subtitle-cleaner)
+- [Subtitle Time Shifter](/tools/subtitle-time-shifter)
+- [ASS to SRT](/tools/ass-to-srt)
+

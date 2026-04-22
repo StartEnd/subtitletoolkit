@@ -1,0 +1,5 @@
+[     497ms] [LOG] Index Init.. @ https://shop.bmoplus.com/:285
+[     502ms] [INFO] Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details. Fallback font will be used while loading: https://shop.bmoplus.com/app/View/User/Theme/DreamYi/Assets/css/fonts/linear-icons-font/fonts/Linearicons-Free.woff2?w118d @ https://shop.bmoplus.com/#shop:0
+[     502ms] [INFO] Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details. Fallback font will be used while loading: https://shop.bmoplus.com/app/View/User/Theme/DreamYi/Assets/css/fonts/fontawesome-free-5.12.1-web/webfonts/fa-solid-900.woff2 @ https://shop.bmoplus.com/#shop:0
+[    4706ms] [LOG] 总渲染消耗时间：4707毫秒 @ https://shop.bmoplus.com/app/View/User/Theme/DreamYi/Assets/js/main.js:37
+[   13198ms] [LOG] API获取并渲染耗时：12414毫秒.. @ https://shop.bmoplus.com/:378

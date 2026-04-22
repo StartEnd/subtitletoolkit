@@ -1,63 +1,72 @@
-# Astro Starter Kit: Blog
+# Subtitle Toolkit
 
-```sh
-pnpm create astro@latest -- --template blog
+Astro-based subtitle tool site for overseas users.
+
+Current scope:
+
+- subtitle format conversion pages
+- subtitle timing and cleanup tool pages
+- SEO guide pages
+- ad-first, no-payment-first product structure
+
+## Why This Repo Exists
+
+This project replaces the heavier SaaS-style template used in the earlier prototype.
+The goal here is a cleaner foundation for:
+
+- `Home / Tools / Guides`
+- static-first SEO pages
+- simpler long-term maintenance
+- fewer template leftovers
+
+## Current Routes
+
+- `/`
+- `/tools`
+- `/tools/[slug]`
+- `/guides`
+- `/guides/[slug]`
+- `/rss.xml`
+
+## Local Development
+
+```bash
+pnpm install
+pnpm dev
+pnpm build
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Optional env:
 
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+```bash
+cp .env.example .env
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Current Project Status
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Already set up:
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+- site domain: `https://subtitletoolkit.tools`
+- header / footer branding
+- migrated subtitle processor and tool catalog
+- 8 subtitle tool detail pages
+- 8 validated English guide pages
+- Plausible-ready pageview and tool event hooks
+- privacy policy and terms pages
+- deployment and launch docs
+- placeholder favicon, OG preview, and robots.txt
+- RSS and sitemap
 
-Any static assets, like images, can be placed in the `public/` directory.
+Still worth improving before production:
 
-## 🧞 Commands
+- replace placeholder OG image with final brand asset
+- regenerate favicon set if you finalize a brand mark
+- connect the repo to your actual hosting provider
 
-All commands are run from the root of the project, from a terminal:
+## Migration Source
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+The previous working prototype remains in:
 
-## 👀 Want to learn more?
+- `/Users/song/Project/shipany-template`
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+Treat that repo as a source of validated product logic and content, not as the long-term base.

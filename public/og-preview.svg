@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#FFFFFF"/>
+  <rect x="72" y="72" width="1056" height="486" rx="24" fill="#F4F5F7"/>
+  <rect x="108" y="110" width="168" height="40" rx="20" fill="#EEF2FF"/>
+  <text x="192" y="136" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#4F46E5">Subtitle Toolkit</text>
+  <text x="108" y="238" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="800" fill="#0A0E1A" letter-spacing="-2">
+    Convert, fix, and clean
+  </text>
+  <text x="108" y="314" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="800" fill="#0A0E1A" letter-spacing="-2">
+    subtitle files in your
+  </text>
+  <text x="108" y="390" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="800" fill="#0A0E1A" letter-spacing="-2">
+    browser.
+  </text>
+  <text x="108" y="440" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#6B7280">
+    Free  ·  No signup  ·  Browser-local processing  ·  SRT, VTT, ASS
+  </text>
+  <rect x="108" y="478" width="220" height="48" rx="6" fill="#4F46E5"/>
+  <text x="218" y="508" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#FFFFFF">subtitletoolkit.tools</text>
+  <g transform="translate(840 130)">
+    <rect x="0" y="0" width="220" height="300" rx="16" fill="#1E1E2E"/>
+    <text x="20" y="36" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#CDD6F4">Input</text>
+    <text x="180" y="36" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#585B70">Local</text>
+    <rect x="16" y="50" width="188" height="80" rx="10" fill="#181825" stroke="#313244"/>
+    <path d="M36 78H100" stroke="#4F46E5" stroke-width="6" stroke-linecap="round"/>
+    <path d="M36 100H80" stroke="#585B70" stroke-width="6" stroke-linecap="round"/>
+    <text x="20" y="162" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#CDD6F4">Output</text>
+    <rect x="16" y="176" width="188" height="80" rx="10" fill="#181825" stroke="#313244"/>
+    <path d="M36 204H120" stroke="#818CF8" stroke-width="6" stroke-linecap="round"/>
+    <path d="M36 226H96" stroke="#585B70" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>
