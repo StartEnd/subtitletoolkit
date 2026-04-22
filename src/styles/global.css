@@ -4,7 +4,7 @@
 	/* Colors — Base */
 	--color-base: #0A0E1A;
 	--color-surface: #FFFFFF;
-	--color-muted: #F4F5F7;
+	--color-muted: #F8F9FA;
 	--color-subtle: #E8EAED;
 	--color-secondary: #6B7280;
 	--color-tertiary: #9CA3AF;
@@ -22,12 +22,12 @@
 	--color-danger: #DC2626;
 
 	/* Colors — Workspace (dark) */
-	--color-workspace-bg: #1E1E2E;
-	--color-workspace-text: #CDD6F4;
-	--color-workspace-muted: #585B70;
-	--color-workspace-border: #313244;
-	--color-workspace-input: #181825;
-	--color-workspace-accent: #818CF8;
+	--color-workspace-bg: #FFFFFF;
+	--color-workspace-text: #0A0E1A;
+	--color-workspace-muted: #6B7280;
+	--color-workspace-border: #E8EAED;
+	--color-workspace-input: #F9FAFB;
+	--color-workspace-accent: var(--color-accent);
 
 	/* Typography */
 	--font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
@@ -423,7 +423,7 @@ strong, b {
 	background: var(--color-workspace-bg);
 	border-radius: var(--radius-lg);
 	padding: var(--space-8);
-	box-shadow: 0 0 0 1px var(--color-workspace-border), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+	box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01), 0 0 0 1px rgba(0,0,0,0.05);
 }
 
 .workspace-grid {

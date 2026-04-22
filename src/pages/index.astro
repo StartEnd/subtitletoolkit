@@ -19,7 +19,8 @@ const faqs = [
 
 <SiteLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
 	<!-- Hero -->
-	<section class="section hero">
+	<div class="hero-wrapper">
+		<section class="section hero">
 		<span class="eyebrow">Free subtitle tools</span>
 		<h1>Convert, fix, and clean<br/>subtitle files in your browser.</h1>
 		<p class="lede">
@@ -36,6 +37,7 @@ const faqs = [
 			<li>Browser-local processing</li>
 		</ul>
 	</section>
+	</div>
 
 	<!-- Core Tools -->
 	<section class="section-muted">
@@ -210,5 +212,20 @@ const faqs = [
 		.trust-grid {
 			gap: var(--space-6);
 		}
+	}
+</style>
+
+<style>
+	.hero-wrapper {
+		position: relative;
+		overflow: hidden;
+		background: radial-gradient(circle at 50% 0%, var(--color-accent-light) 0%, transparent 70%);
+	}
+	.hero-wrapper::before {
+		content: '';
+		position: absolute;
+		top: 0; left: 0; right: 0; height: 1px;
+		background: linear-gradient(90deg, transparent, var(--color-accent-muted), transparent);
+		opacity: 0.5;
 	}
 </style>
