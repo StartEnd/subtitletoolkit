@@ -73,14 +73,23 @@ const { tool, labels } = Astro.props as {
 			</p>
 		</div>
 	</div>
+	<script
+		type="application/json"
+		data-workspace-config
+		set:html={JSON.stringify({ tool, labels })}
+	></script>
 </section>
 
-<script define:vars={{ tool, labels }}>
+<script>
 	import { buildOutputFileName, processSubtitleTool } from '../lib/subtitles/processor';
 
-	const root = document.currentScript?.closest('.workspace');
+	const root = document.querySelector('.workspace');
+	const config = root?.querySelector('[data-workspace-config]');
+	const { tool, labels } = config?.textContent
+		? JSON.parse(config.textContent)
+		: { tool: null, labels: null };
 
-	if (root instanceof HTMLElement) {
+	if (root instanceof HTMLElement && tool && labels) {
 		const track = (eventName, props = {}) => {
 			if (typeof window !== 'undefined' && typeof window.plausible === 'function') {
 				window.plausible(eventName, { props });

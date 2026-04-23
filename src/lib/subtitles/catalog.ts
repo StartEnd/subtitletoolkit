@@ -403,9 +403,9 @@ const enTools: SubtitleTool[] = [
     title: 'Subtitle Cleaner',
     shortTitle: 'Cleaner',
     description:
-      'Normalize subtitle spacing and line formatting while keeping the same file format.',
+      'Clean subtitle text by removing leftover HTML tags, normalizing spacing, and keeping the same file format.',
     summary:
-      'Use this when subtitle text is messy, spacing is inconsistent, or you want a cleaner handoff before the next editing step.',
+      'Use this when subtitle text is messy, leftover tags slipped in, spacing is inconsistent, or you want a cleaner handoff before the next editing step.',
     buttonLabel: 'Clean subtitles',
     inputLabel: 'Subtitle input',
     outputLabel: 'Cleaned subtitle output',
@@ -414,6 +414,7 @@ const enTools: SubtitleTool[] = [
     sampleFileName: 'sample.srt',
     useCases: [
       'Normalize spacing before sending subtitle files to someone else.',
+      'Strip leftover inline HTML tags from imported subtitle text.',
       'Clean imported subtitle text before doing more edits.',
       'Standardize line formatting without changing the target format.',
     ],
@@ -422,6 +423,11 @@ const enTools: SubtitleTool[] = [
         question: 'Does this change timing?',
         answer:
           'No. The cleaner keeps timing as-is and focuses on text normalization and consistent output structure.',
+      },
+      {
+        question: 'Can it remove leftover HTML-style subtitle tags?',
+        answer:
+          'Yes. The cleaner strips common inline HTML tags such as `<b>`, `<i>`, and similar markup while keeping the subtitle text itself.',
       },
       {
         question: 'Will the file extension stay the same?',

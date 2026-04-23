@@ -2,6 +2,8 @@
 
 Astro-based subtitle tool site for overseas users.
 
+Primary project record: `PROJECT_BASELINE.md`
+
 Current scope:
 
 - subtitle format conversion pages
@@ -44,7 +46,9 @@ cp .env.example .env
 
 ## Current Project Status
 
-Already set up:
+Launch-ready as of `2026-04-23`.
+
+Confirmed in the current baseline:
 
 - site domain: `https://subtitletoolkit.tools`
 - header / footer branding
@@ -54,14 +58,12 @@ Already set up:
 - Plausible-ready pageview and tool event hooks
 - privacy policy and terms pages
 - deployment and launch docs
-- placeholder favicon, OG preview, and robots.txt
+- favicon, OG preview, and robots.txt
 - RSS and sitemap
+- Cloudflare Pages friendly static deployment model
+- browser-local processing with no backend subtitle handling
 
-Still worth improving before production:
-
-- replace placeholder OG image with final brand asset
-- regenerate favicon set if you finalize a brand mark
-- connect the repo to your actual hosting provider
+For the full launch baseline and maintenance notes, see `PROJECT_BASELINE.md`.
 
 ## Migration Source
 

@@ -311,12 +311,30 @@ function shiftCueTimes(cues: SubtitleCue[], shiftMs: number) {
   }));
 }
 
+function decodeHtmlEntities(input: string) {
+  return input
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'");
+}
+
+function cleanSubtitleLine(line: string) {
+  return decodeHtmlEntities(line)
+    .replace(/<[^>\n]+>/g, ' ')
+    .replace(/[\u00A0\u200B-\u200D\u2060]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function cleanCueText(cues: SubtitleCue[]) {
   return cues.map((cue) => ({
     ...cue,
     text: cue.text
-      .map((line) => line.replace(/\s+/g, ' ').trim())
-      .filter((line, index, list) => !(line === '' && index === list.length - 1)),
+      .map((line) => cleanSubtitleLine(line))
+      .filter(Boolean),
   }));
 }
 
@@ -411,4 +429,3 @@ export function buildOutputFileName(
   const baseName = inputName.replace(/\.[^.]+$/, '');
   return `${baseName}.${extension}`;
 }
-
