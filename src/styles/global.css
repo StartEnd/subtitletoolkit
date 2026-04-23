@@ -519,6 +519,7 @@ strong, b {
 /* ─── Utility: Ad Slot Placeholder ─── */
 
 .ad-slot {
+	display: none; /* Hidden until ad network is integrated */
 	min-height: 90px;
 	margin: var(--space-10) 0;
 	border: 1px dashed var(--color-subtle);
