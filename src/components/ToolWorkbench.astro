@@ -25,16 +25,18 @@ const { tool, labels } = Astro.props as {
 			</div>
 
 			<div class="workspace-mode" data-mode-panel="upload">
-				<div class="workspace-dropzone">
-					<p class="workspace-dropzone-title">{labels.uploadTitle}</p>
-					<p class="workspace-dropzone-hint">{labels.uploadHint}</p>
-					<input type="file" accept={tool.acceptedExtensions.join(',')} data-file-input />
-					<p class="workspace-file-name">
-						{labels.selectedFile}: <span data-file-name>{tool.sampleFileName}</span>
-					</p>
-				</div>
-			</div>
-
+			                                <div class="workspace-dropzone">
+			                                        <p class="workspace-dropzone-title">{labels.uploadTitle}</p>
+			                                        <p class="workspace-dropzone-hint">{labels.uploadHint}</p>
+			                                        <label class="workspace-file-label">
+			                                                <span class="button secondary">Browse files</span>
+			                                                <input type="file" accept={tool.acceptedExtensions.join(',')} data-file-input class="sr-only" />
+			                                        </label>
+			                                        <p class="workspace-file-name">
+			                                                {labels.selectedFile}: <span data-file-name>{tool.sampleFileName}</span>
+			                                        </p>
+			                                </div>
+			                        </div>
 			<div class="workspace-mode is-hidden" data-mode-panel="paste">
 				<label class="workspace-field-label" for="shared-input">{tool.inputLabel}</label>
 				<textarea id="shared-input" data-shared-input rows="14">{tool.sampleInput}</textarea>
@@ -322,33 +324,27 @@ const { tool, labels } = Astro.props as {
 	}
 
 	/* File input */
-	.workspace [type='file'] {
-		display: block;
-		width: 100%;
-		margin: var(--space-4) 0 var(--space-2);
-		padding: var(--space-2);
-		border: 1px solid var(--color-workspace-border);
-		border-radius: var(--radius-sm);
-		background: var(--color-workspace-bg);
-		color: var(--color-workspace-text);
-		font-family: var(--font-sans);
-		font-size: 0.8125rem;
-		cursor: pointer;
-	}
+	        .workspace-file-label {
+	                display: inline-block;
+	                margin: var(--space-4) 0 var(--space-2);
+	                cursor: pointer;
+	        }
 
-	.workspace [type='file']::file-selector-button {
-		padding: 0.375rem 0.75rem;
-		border: 1px solid var(--color-workspace-border);
-		border-radius: var(--radius-sm);
-		background: var(--color-workspace-bg);
-		color: var(--color-workspace-text);
-		font-family: var(--font-sans);
-		font-weight: 600;
-		font-size: 0.75rem;
-		cursor: pointer;
-		margin-right: var(--space-3);
-	}
+	        .workspace-file-label .button {
+	                pointer-events: none; /* Let the label handle the click */
+	        }
 
+	        .sr-only {
+	                position: absolute;
+	                width: 1px;
+	                height: 1px;
+	                padding: 0;
+	                margin: -1px;
+	                overflow: hidden;
+	                clip: rect(0, 0, 0, 0);
+	                white-space: nowrap;
+	                border-width: 0;
+	        }
 	/* Field labels */
 	.workspace-field-label {
 		display: block;
