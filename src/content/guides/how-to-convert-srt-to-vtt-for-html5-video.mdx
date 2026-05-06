@@ -1,0 +1,74 @@
+---
+title: How to convert SRT to VTT for HTML5 video
+description: Convert SRT subtitles into browser-friendly WebVTT files for HTML5 video players without breaking timestamps or cue text.
+pubDate: 2026-05-06
+category: conversion-guides
+tags:
+  - srt
+  - vtt
+  - html5 video
+  - web players
+  - conversion
+primaryTool: srt-to-vtt
+---
+
+If your subtitles started as `SRT` and the destination is an HTML5 video player, `VTT` is usually the correct final format.
+
+## Quick answer
+
+Use `SRT` while collecting or exchanging subtitle files, then convert the final delivery file to `VTT` before browser playback.
+
+That conversion mainly does three things:
+
+- adds the `WEBVTT` header
+- switches timestamp commas to dots
+- removes SRT cue numbering
+
+## Why HTML5 video usually wants VTT
+
+Most browser-based players expect WebVTT because it is the web-native caption format. That includes:
+
+- plain HTML5 `<track>` playback
+- custom video components
+- many JavaScript player libraries
+
+SRT may still work in some workflows, but VTT is the safer default when captions are meant to render inside a browser.
+
+## Step-by-step workflow
+
+1. Start with a clean `.srt` file.
+2. Open the [SRT to VTT Converter](/tools/srt-to-vtt).
+3. Paste the file or upload it directly.
+4. Review the output and confirm the `WEBVTT` header is present.
+5. Download the converted `.vtt` file.
+6. Test the result in the target player before shipping it.
+
+## Common mistakes
+
+### Uploading SRT directly into a browser workflow
+
+Some players or components are strict about VTT formatting. If captions do not render, wrong file format is one of the first things to check.
+
+### Forgetting the header
+
+VTT files need a `WEBVTT` header. A file that looks close to VTT but lacks that first line can still fail.
+
+### Keeping commas in timestamps
+
+SRT uses commas in timestamps. VTT uses dots. If those timestamps are not normalized, browser playback can reject the file.
+
+## When not to convert
+
+Keep the original `SRT` if:
+
+- a client specifically asked for SRT
+- you are archiving a delivery file that already works
+- the next tool in the workflow only supports SRT
+
+In that case, treat VTT as the playback export rather than the only master file.
+
+## Related guides
+
+- [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video)
+- [SRT vs VTT](/guides/srt-vs-vtt)
+- [How to convert subtitle files for web players](/guides/how-to-convert-subtitle-files-for-web-players)

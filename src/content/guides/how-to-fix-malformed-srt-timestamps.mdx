@@ -1,0 +1,73 @@
+---
+title: How to fix malformed SRT timestamps
+description: Repair SRT files with broken timestamp formatting by cleaning common structure issues before delivery or conversion.
+pubDate: 2026-05-06
+category: sync-fixes
+tags:
+  - srt
+  - timestamps
+  - malformed subtitles
+  - subtitle errors
+  - cleanup
+primaryTool: subtitle-cleaner
+---
+
+Malformed `SRT` timestamps usually mean the subtitle file structure has drifted away from normal SRT formatting.
+
+## Quick answer
+
+If the file still contains subtitle text and timing blocks but the formatting is inconsistent, clean the structure first before trying to deliver or convert it.
+
+The [Subtitle Cleaner](/tools/subtitle-cleaner) is the right first step for that kind of repair.
+
+## What valid SRT timestamps look like
+
+A normal SRT timing line looks like this:
+
+```text
+00:00:01,000 --> 00:00:03,500
+```
+
+Common failures include:
+
+- missing commas
+- damaged spacing
+- broken arrow formatting
+- mixed timestamp styles copied from another format
+
+## Why this matters
+
+Even when the subtitle text itself is fine, malformed timing lines can break:
+
+- uploads
+- conversions
+- browser testing
+- client delivery
+
+## Step-by-step workflow
+
+1. Open the [Subtitle Cleaner](/tools/subtitle-cleaner).
+2. Paste the SRT content or upload the file.
+3. Review the cleaned output and check whether the block structure looks consistent.
+4. Save the cleaned file.
+5. If the destination needs another format, convert only after the SRT structure is stable.
+
+## Common mistakes
+
+### Converting a broken source file too early
+
+If the SRT structure is already malformed, conversion can carry the mess forward.
+
+### Mixing SRT and VTT timing styles
+
+SRT uses commas. VTT uses dots. A mixed file is often a sign of manual editing gone wrong.
+
+### Editing many timing lines by hand
+
+That is slow and usually introduces new mistakes.
+
+## Related guides
+
+- [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes)
+- [How to remove subtitle line numbers](/guides/how-to-remove-subtitle-line-numbers)
+- [How to fix invalid WebVTT timestamps](/guides/how-to-fix-invalid-webvtt-timestamps)

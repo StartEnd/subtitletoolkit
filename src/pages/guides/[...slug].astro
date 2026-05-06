@@ -1,6 +1,8 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import GuidePage from '../../layouts/GuidePage.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import { getSubtitleTool } from '../../lib/subtitles/catalog';
 
 export async function getStaticPaths() {
 	const guides = await getCollection('guides');
@@ -12,10 +14,56 @@ export async function getStaticPaths() {
 
 type Props = CollectionEntry<'guides'>;
 
-const guide = Astro.props;
+const guide = Astro.props as Props;
 const { Content } = await render(guide);
+const allGuides = await getCollection('guides');
+
+const relatedGuides = allGuides
+	.filter((entry) => entry.id !== guide.id)
+	.map((entry) => {
+		const sameCategoryScore = entry.data.category === guide.data.category ? 3 : 0;
+		const sharedTags = entry.data.tags.filter((tag) => guide.data.tags.includes(tag)).length;
+
+		return {
+			entry,
+			score: sameCategoryScore + sharedTags,
+		};
+	})
+	.filter(({ score }) => score > 0)
+	.sort((a, b) => {
+		if (b.score !== a.score) {
+			return b.score - a.score;
+		}
+
+		return b.entry.data.pubDate.valueOf() - a.entry.data.pubDate.valueOf();
+	})
+	.slice(0, 3)
+	.map(({ entry }) => entry);
+
+const primaryToolData = guide.data.primaryTool
+	? getSubtitleTool('en', guide.data.primaryTool)
+	: null;
 ---
 
-<GuidePage {...guide.data}>
+<GuidePage {...guide.data} relatedGuides={relatedGuides} primaryToolData={primaryToolData}>
+	<JsonLd type="article" data={{
+		'@type': 'Article',
+		headline: guide.data.title,
+		description: guide.data.description,
+		datePublished: guide.data.pubDate.toISOString(),
+		...(guide.data.updatedDate ? { dateModified: guide.data.updatedDate.toISOString() } : {}),
+		author: {
+			'@type': 'Organization',
+			name: 'Subtitle Toolkit',
+		},
+		publisher: {
+			'@type': 'Organization',
+			name: 'Subtitle Toolkit',
+			logo: {
+				'@type': 'ImageObject',
+				url: 'https://subtitletoolkit.tools/favicon.svg',
+			},
+		},
+	}} />
 	<Content />
 </GuidePage>

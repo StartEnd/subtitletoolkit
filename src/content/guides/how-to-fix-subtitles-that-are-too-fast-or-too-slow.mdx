@@ -1,0 +1,71 @@
+---
+title: How to fix subtitles that are too fast or too slow
+description: Repair subtitle timing when captions consistently run early or late and decide whether a simple global shift is enough.
+pubDate: 2026-05-06
+category: sync-fixes
+tags:
+  - subtitle sync
+  - timing
+  - too fast
+  - too slow
+  - repair
+primaryTool: subtitle-time-shifter
+---
+
+If subtitles feel `too fast` or `too slow`, the first question is whether the whole file is offset by a fixed amount.
+
+## Quick answer
+
+When every subtitle cue is consistently early or consistently late, a global time shift is usually enough.
+
+Use the [Subtitle Time Shifter](/tools/subtitle-time-shifter) first before assuming the file needs a full re-edit.
+
+## What "too fast" or "too slow" usually means
+
+People often describe sync problems in different ways:
+
+- subtitles are too fast
+- subtitles are too slow
+- captions appear before the speech
+- captions appear after the speech
+
+Most of the time, they all point to the same underlying issue: the timestamps need to move earlier or later together.
+
+## How to test the problem
+
+Check three moments in the video:
+
+1. near the beginning
+2. around the middle
+3. near the end
+
+If the mismatch is about the same in all three places, use a global shift.
+
+If the mismatch keeps growing, the file is drifting and needs more than one adjustment.
+
+## Step-by-step workflow
+
+1. Measure whether subtitles are early or late.
+2. Open the [Subtitle Time Shifter](/tools/subtitle-time-shifter).
+3. Enter a negative value if captions need to move earlier.
+4. Enter a positive value if captions need to move later.
+5. Export the adjusted file and test again.
+
+## Common mistakes
+
+### Adjusting line by line too early
+
+Start with the global fix. Many "too fast" or "too slow" complaints are really just one offset problem.
+
+### Confusing delay with drift
+
+If the error grows over time, a single shift will not hold.
+
+### Forgetting to re-test the end of the file
+
+A file can look fixed in the first minute and still fail later.
+
+## Related guides
+
+- [How to fix subtitle delay](/guides/how-to-fix-subtitle-delay)
+- [How to fix out-of-sync subtitles](/guides/fix-out-of-sync-subtitles)

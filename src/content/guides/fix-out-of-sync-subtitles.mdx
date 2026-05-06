@@ -5,6 +5,13 @@ pubDate: 2026-04-21
 author_name: Admin
 author_image: /logo.png
 image: /imgs/features/admin.png
+category: sync-fixes
+tags:
+  - subtitle sync
+  - timing
+  - delay
+  - repair
+primaryTool: subtitle-time-shifter
 ---
 
 Out-of-sync subtitles usually fall into two buckets:
@@ -18,7 +25,7 @@ This first version of the site is built for the first case.
 
 If every subtitle line is late by about the same amount, a time shifter is enough.
 
-If the sync gets worse over time, the file probably needs deeper retiming or re-export from your editor.
+If the sync gets worse over time, the file probably needs deeper retiming or re-export from your editor. For the simpler fixed-offset case, [How to fix subtitle delay](/guides/how-to-fix-subtitle-delay) breaks the workflow down further.
 
 ## Step 2: measure the offset
 
@@ -48,14 +55,17 @@ After shifting, check:
 
 If all three are close, you fixed a constant offset. If not, the file may be drifting rather than simply shifted.
 
+That growing mismatch is the same pattern described in [How to fix subtitles that are too fast or too slow](/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow).
+
 ## Common causes
 
 - the intro of the video was trimmed after subtitles were exported
 - subtitles were downloaded from a different video cut
 - captions were generated before the final edit
 
+If the issue came from a messy subtitle export rather than a clean offset, check [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes) next.
+
 ## Related tools
 
 - [Subtitle Time Shifter](/tools/subtitle-time-shifter)
 - [VTT to SRT Converter](/tools/vtt-to-srt)
-

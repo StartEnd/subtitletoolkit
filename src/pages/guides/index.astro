@@ -2,10 +2,19 @@
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { getCollection } from 'astro:content';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { guideCategoryMeta, guideCategoryOrder } from '../../lib/guides/catalog';
 
 const guides = (await getCollection('guides')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const groupedGuides = guideCategoryOrder
+	.map((category) => ({
+		category,
+		meta: guideCategoryMeta[category],
+		guides: guides.filter((guide) => guide.data.category === category),
+	}))
+	.filter((group) => group.guides.length > 0);
 ---
 
 <SiteLayout title={`Guides | ${SITE_TITLE}`} description={SITE_DESCRIPTION}>
@@ -13,24 +22,99 @@ const guides = (await getCollection('guides')).sort(
 		<span class="eyebrow">Guide archive</span>
 		<h1>Guides for practical subtitle workflows.</h1>
 		<p class="lede">
-			Format comparisons, web video workflows, and common timing or formatting repairs.
-			Each guide connects to a free tool you can use right away.
+			Long-tail tutorials for subtitle conversion, repair, format decisions, and delivery workflows.
+			Each guide is organized by job-to-be-done and links directly into a relevant tool.
 		</p>
 	</section>
 
 	<section class="section-muted">
 		<div class="section-inner">
-			<div class="card-grid">
+			<div class="guide-clusters">
 				{
-					guides.map((guide) => (
-						<article class="card">
-							<h3><a href={`/guides/${guide.id}`}>{guide.data.title}</a></h3>
-							<p class="muted">{guide.data.description}</p>
-							<a class="card-link" href={`/guides/${guide.id}`}>Read guide <span aria-hidden="true">&rarr;</span></a>
-						</article>
+					groupedGuides.map((group) => (
+						<section class="guide-cluster" aria-labelledby={`cluster-${group.category}`}>
+							<div class="guide-cluster-head">
+								<div>
+									<p class="guide-cluster-kicker">Cluster</p>
+									<h2 id={`cluster-${group.category}`}>{group.meta.label}</h2>
+								</div>
+								<p class="guide-cluster-description">{group.meta.description}</p>
+							</div>
+							<div class="card-grid">
+								{
+									group.guides.map((guide) => (
+										<article class="card">
+											<p class="guide-card-meta">
+												{guide.data.primaryTool ? 'Mapped to a tool' : 'Reference guide'}
+											</p>
+											<h3><a href={`/guides/${guide.id}`}>{guide.data.title}</a></h3>
+											<p class="muted">{guide.data.description}</p>
+											<a class="card-link" href={`/guides/${guide.id}`}>Read guide <span aria-hidden="true">&rarr;</span></a>
+										</article>
+									))
+								}
+							</div>
+						</section>
 					))
 				}
 			</div>
 		</div>
 	</section>
 </SiteLayout>
+
+<style>
+	.guide-clusters {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-12);
+	}
+
+	.guide-cluster {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-6);
+	}
+
+	.guide-cluster-head {
+		display: grid;
+		grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+		gap: var(--space-6);
+		align-items: end;
+	}
+
+	.guide-cluster-kicker {
+		margin: 0 0 var(--space-2);
+		color: var(--color-tertiary);
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	.guide-cluster-head h2 {
+		margin: 0;
+	}
+
+	.guide-cluster-description {
+		margin: 0;
+		color: var(--color-secondary);
+		font-size: 0.9375rem;
+		line-height: 1.7;
+	}
+
+	.guide-card-meta {
+		margin: 0 0 var(--space-2);
+		color: var(--color-tertiary);
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	@media (max-width: 768px) {
+		.guide-cluster-head {
+			grid-template-columns: 1fr;
+			align-items: start;
+		}
+	}
+</style>

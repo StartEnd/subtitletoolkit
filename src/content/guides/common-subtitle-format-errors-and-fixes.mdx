@@ -5,6 +5,13 @@ pubDate: 2026-04-21
 author_name: Admin
 author_image: /logo.png
 image: /imgs/features/admin.png
+category: sync-fixes
+tags:
+  - subtitle errors
+  - cleanup
+  - malformed files
+  - delivery
+primaryTool: subtitle-cleaner
 ---
 
 Subtitle files often break for boring reasons rather than complicated ones.
@@ -13,15 +20,15 @@ Subtitle files often break for boring reasons rather than complicated ones.
 
 ### Wrong format for the destination
 
-You may have `SRT` when the player wants `VTT`, or `ASS` when a client only wants `SRT`.
+You may have `SRT` when the player wants `VTT`, or `ASS` when a client only wants `SRT`. For the browser side of that decision, start with [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video).
 
 ### Timing is fine, but the file is messy
 
-Spacing, line breaks, or inconsistent formatting can make a file look sloppy even when the cues are technically correct.
+Spacing, line breaks, or inconsistent formatting can make a file look sloppy even when the cues are technically correct. If the upload step is the immediate problem, read [How to clean subtitle formatting before upload](/guides/how-to-clean-subtitle-formatting-before-upload).
 
 ### Styled subtitles are being delivered to a simple player
 
-ASS is not always the right delivery format. Sometimes you need to flatten it first.
+ASS is not always the right delivery format. Sometimes you need to flatten it first. [ASS vs SRT](/guides/ass-vs-srt) explains that tradeoff in more detail.
 
 ## Simple fixes
 
@@ -29,9 +36,10 @@ ASS is not always the right delivery format. Sometimes you need to flatten it fi
 - Normalize text before handoff
 - Shift the whole subtitle file if the timing offset is constant
 
+If the issue is a broken timing line rather than general mess, jump to [How to fix malformed SRT timestamps](/guides/how-to-fix-malformed-srt-timestamps) or [How to fix invalid WebVTT timestamps](/guides/how-to-fix-invalid-webvtt-timestamps).
+
 ## Related tools
 
 - [Subtitle Cleaner](/tools/subtitle-cleaner)
 - [Subtitle Time Shifter](/tools/subtitle-time-shifter)
 - [ASS to SRT](/tools/ass-to-srt)
-

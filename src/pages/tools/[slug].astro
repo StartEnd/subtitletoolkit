@@ -1,6 +1,7 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import ToolWorkbench from '../../components/ToolWorkbench.astro';
+import JsonLd from '../../components/JsonLd.astro';
 import { SITE_TITLE } from '../../consts';
 import { getSubtitleCatalog, getSubtitleTool } from '../../lib/subtitles/catalog';
 
@@ -28,6 +29,19 @@ const isConversionTool = !['subtitle-time-shifter', 'subtitle-cleaner'].includes
 ---
 
 <SiteLayout title={`${currentTool.title} | ${SITE_TITLE}`} description={currentTool.description}>
+		<JsonLd type="softwareApplication" data={{
+			'@type': 'SoftwareApplication',
+			name: currentTool.title,
+			description: currentTool.description,
+			url: `https://subtitletoolkit.tools/tools/${currentTool.id}`,
+			applicationCategory: 'UtilityApplication',
+			operatingSystem: 'Web Browser',
+			offers: {
+				'@type': 'Offer',
+				price: '0',
+				priceCurrency: 'USD',
+			},
+		}} />
 	<!-- Tool Header -->
 	<section class="section tool-header">
 		<span class="eyebrow">{isConversionTool ? 'Format conversion' : 'Subtitle utility'}</span>

@@ -1,13 +1,23 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import JsonLd from '../components/JsonLd.astro';
 import { getCollection } from 'astro:content';
 import { getSubtitleCatalog } from '../lib/subtitles/catalog';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { guideCategoryMeta, guideCategoryOrder } from '../lib/guides/catalog';
+import { SITE_DESCRIPTION, SITE_DOMAIN, SITE_TITLE } from '../consts';
 
 const catalog = getSubtitleCatalog('en');
 const featuredTools = catalog.tools.slice(0, 6);
-const utilityTools = catalog.tools.filter(t => t.id === 'subtitle-time-shifter' || t.id === 'subtitle-cleaner');
-const featuredGuides = (await getCollection('guides')).slice(0, 4);
+const guides = await getCollection('guides');
+const featuredGuides = guides.slice(0, 4);
+const guideClusters = guideCategoryOrder
+	.map((category) => ({
+		category,
+		meta: guideCategoryMeta[category],
+		count: guides.filter((guide) => guide.data.category === category).length,
+		sample: guides.find((guide) => guide.data.category === category),
+	}))
+	.filter((cluster) => cluster.count > 0);
 
 const faqs = [
 	{ q: 'Is this really free?', a: 'Yes. All tools are completely free with no limits, no signup, and no hidden paywall.' },
@@ -18,11 +28,17 @@ const faqs = [
 ---
 
 <SiteLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+		<JsonLd type="website" data={{
+			'@type': 'WebSite',
+			name: SITE_TITLE,
+			description: SITE_DESCRIPTION,
+			url: `https://${SITE_DOMAIN}`,
+		}} />
 	<!-- Hero -->
 	<div class="hero-wrapper">
 		<section class="section hero">
 		<span class="eyebrow">Free subtitle tools</span>
-		<h1>Convert, fix, and clean<br/>subtitle files in your browser.</h1>
+		<h1>Convert, fix, and clean<br />subtitle files in your browser.</h1>
 		<p class="lede">
 			Subtitle Toolkit gives you fast, free tools for SRT, VTT, and ASS conversion,
 			timing fixes, and format cleanup. No signup, no server upload — everything runs locally.
@@ -118,6 +134,31 @@ const faqs = [
 		</div>
 	</section>
 
+	<!-- Guide Clusters -->
+	<section class="section">
+		<span class="eyebrow">Search by workflow</span>
+		<h2>Find the right guide cluster before you open a tool.</h2>
+		<div class="cluster-grid">
+			{
+				guideClusters.map((cluster) => (
+					<article class="cluster-card">
+						<p class="cluster-card-count">{cluster.count} guides</p>
+						<h3>{cluster.meta.label}</h3>
+						<p>{cluster.meta.description}</p>
+						{
+							cluster.sample && (
+								<p class="cluster-card-sample">
+									Start with <a href={`/guides/${cluster.sample.id}`}>{cluster.sample.data.title}</a>
+								</p>
+							)
+						}
+						<a class="card-link" href="/guides">Browse cluster <span aria-hidden="true">&rarr;</span></a>
+					</article>
+				))
+			}
+		</div>
+	</section>
+
 	<!-- FAQ -->
 	<section class="section">
 		<span class="eyebrow">FAQ</span>
@@ -202,6 +243,50 @@ const faqs = [
 	.faq-list {
 		max-width: 48rem;
 		margin-top: var(--space-8);
+	}
+
+	.cluster-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: var(--space-5);
+		margin-top: var(--space-8);
+	}
+
+	.cluster-card {
+		padding: var(--space-6);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 248, 251, 0.9));
+	}
+
+	.cluster-card h3 {
+		margin-bottom: var(--space-2);
+	}
+
+	.cluster-card p {
+		margin-bottom: var(--space-3);
+		color: var(--color-secondary);
+		font-size: 0.9375rem;
+		line-height: 1.6;
+	}
+
+	.cluster-card-count {
+		margin: 0 0 var(--space-2);
+		color: var(--color-accent);
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+	}
+
+	.cluster-card-sample a {
+		color: var(--color-accent);
+		text-decoration: none;
+	}
+
+	.cluster-card-sample a:hover {
+		color: var(--color-accent-hover);
+		text-decoration: underline;
 	}
 
 	@media (max-width: 768px) {

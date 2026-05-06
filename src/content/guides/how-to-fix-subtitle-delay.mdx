@@ -1,0 +1,74 @@
+---
+title: How to fix subtitle delay
+description: Fix subtitle files that consistently appear too early or too late by measuring the offset and applying a global time shift.
+pubDate: 2026-05-06
+category: sync-fixes
+tags:
+  - subtitle delay
+  - subtitle sync
+  - timing
+  - repair
+  - offset
+primaryTool: subtitle-time-shifter
+---
+
+Subtitle delay usually means one simple thing: every cue is offset by roughly the same amount.
+
+## Quick answer
+
+If the whole file is late or early by a fixed amount, measure the offset and apply a global shift to every subtitle timestamp.
+
+That is what the [Subtitle Time Shifter](/tools/subtitle-time-shifter) is for.
+
+## Confirm that it is really delay
+
+This guide is for the easy case:
+
+- subtitles are late by about the same amount throughout the file
+- or subtitles are early by about the same amount throughout the file
+
+If the mismatch gets worse over time, that is drift rather than simple delay, and the file may need deeper retiming. [How to fix subtitles that are too fast or too slow](/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow) helps distinguish those two cases.
+
+## How to measure the offset
+
+Pick one obvious line where speech starts clearly.
+
+Compare:
+
+- the moment the speech starts
+- the moment the subtitle appears
+
+Examples:
+
+- subtitle appears `1.5 seconds late` -> shift by `-1500 ms`
+- subtitle appears `0.7 seconds early` -> shift by `700 ms`
+
+## Step-by-step workflow
+
+1. Open the video and subtitle file together.
+2. Measure whether captions are early or late.
+3. Open the [Subtitle Time Shifter](/tools/subtitle-time-shifter).
+4. Enter a positive value to delay subtitles more.
+5. Enter a negative value to move subtitles earlier.
+6. Export the adjusted file and test it again.
+
+## Common mistakes
+
+### Guessing instead of measuring
+
+Even a rough measurement is better than repeated random shifts.
+
+### Using the wrong sign
+
+If subtitles are late, you usually need a negative shift. If subtitles are early, you usually need a positive shift.
+
+### Trying to fix drift with one global change
+
+If sync gets better in one scene and worse in another, the problem is not just delay.
+
+For a broader troubleshooting pass, open [How to fix out-of-sync subtitles](/guides/fix-out-of-sync-subtitles) next.
+
+## Related guides
+
+- [How to fix out-of-sync subtitles](/guides/fix-out-of-sync-subtitles)
+- [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes)

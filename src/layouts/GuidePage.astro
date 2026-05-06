@@ -2,17 +2,37 @@
 import SiteLayout from './SiteLayout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import type { CollectionEntry } from 'astro:content';
+import { guideCategoryMeta } from '../lib/guides/catalog';
+import type { SubtitleTool } from '../lib/subtitles/catalog';
 
-type Props = CollectionEntry<'guides'>['data'];
+type GuideEntry = CollectionEntry<'guides'>;
 
-const { title, description, pubDate, updatedDate } = Astro.props;
+type Props = GuideEntry['data'] & {
+	relatedGuides?: GuideEntry[];
+	primaryToolData?: SubtitleTool | null;
+};
+
+const {
+	title,
+	description,
+	pubDate,
+	updatedDate,
+	category,
+	relatedGuides = [],
+	primaryToolData = null,
+} = Astro.props as Props;
+
+const categoryMeta = guideCategoryMeta[category];
 ---
 
 <SiteLayout title={title} description={description}>
 	<article class="guide-article">
 		<!-- Article Header -->
 		<header class="guide-header">
-			<span class="eyebrow">Subtitle guide</span>
+			<div class="guide-kicker">
+				<span class="eyebrow">Subtitle guide</span>
+				<span class="guide-category">{categoryMeta.label}</span>
+			</div>
 			<h1>{title}</h1>
 			<div class="guide-meta">
 				<FormattedDate date={pubDate} />
@@ -37,10 +57,43 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 
 		<!-- Related Tool CTA -->
 		<div class="guide-cta">
-			<p class="guide-cta-title">Try it with our free tools</p>
-			<p class="guide-cta-text">Convert, shift, and clean subtitle files directly in your browser. No signup, no upload.</p>
-			<a class="button" href="/tools">Browse tools <span aria-hidden="true">&rarr;</span></a>
+			<p class="guide-cta-title">
+				{primaryToolData ? `Use the ${primaryToolData.title}` : 'Try it with our free tools'}
+			</p>
+			<p class="guide-cta-text">
+				{
+					primaryToolData
+						? `${primaryToolData.description} No signup, no upload, and everything runs locally in the browser.`
+						: 'Convert, shift, and clean subtitle files directly in your browser. No signup, no upload.'
+				}
+			</p>
+			<a class="button" href={primaryToolData ? `/tools/${primaryToolData.id}` : '/tools'}>
+				{primaryToolData ? `Open ${primaryToolData.shortTitle}` : 'Browse tools'} <span aria-hidden="true">&rarr;</span>
+			</a>
 		</div>
+
+		{
+			relatedGuides.length > 0 && (
+				<section class="related-guides" aria-labelledby="related-guides-title">
+					<div class="related-guides-head">
+						<div>
+							<p class="related-guides-kicker">{categoryMeta.label}</p>
+							<h2 id="related-guides-title">Read next</h2>
+						</div>
+						<a class="related-guides-link" href="/guides">View all guides</a>
+					</div>
+					<div class="related-guides-grid">
+						{relatedGuides.map((guide) => (
+							<article class="related-guide-card">
+								<p class="related-guide-meta">{guideCategoryMeta[guide.data.category].label}</p>
+								<h3><a href={`/guides/${guide.id}`}>{guide.data.title}</a></h3>
+								<p>{guide.data.description}</p>
+							</article>
+						))}
+					</div>
+				</section>
+			)
+		}
 	</article>
 </SiteLayout>
 
@@ -52,6 +105,26 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 
 	.guide-header {
 		margin-bottom: var(--space-8);
+	}
+
+	.guide-kicker {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-3);
+	}
+
+	.guide-category {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.2rem 0.6rem;
+		border-radius: 999px;
+		background: var(--color-accent-light);
+		color: var(--color-accent);
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
 	}
 
 	.guide-header h1 {
@@ -108,5 +181,96 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 		color: var(--color-accent-hover);
 		transform: translateY(-1px);
 		box-shadow: var(--shadow-md);
+	}
+
+	.related-guides {
+		margin-top: var(--space-16);
+		padding-top: var(--space-10);
+		border-top: 1px solid var(--color-border);
+	}
+
+	.related-guides-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: end;
+		gap: var(--space-4);
+		margin-bottom: var(--space-6);
+	}
+
+	.related-guides-kicker {
+		margin: 0 0 var(--space-2);
+		color: var(--color-tertiary);
+		font-size: 0.8125rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+
+	.related-guides-head h2 {
+		margin: 0;
+	}
+
+	.related-guides-link {
+		color: var(--color-accent);
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.related-guides-link:hover {
+		color: var(--color-accent-hover);
+		text-decoration: underline;
+	}
+
+	.related-guides-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--space-4);
+	}
+
+	.related-guide-card {
+		padding: var(--space-5);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		background: var(--color-background);
+	}
+
+	.related-guide-meta {
+		margin: 0 0 var(--space-2);
+		color: var(--color-tertiary);
+		font-size: 0.75rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+
+	.related-guide-card h3 {
+		margin-bottom: var(--space-2);
+		font-size: 1rem;
+	}
+
+	.related-guide-card h3 a {
+		color: var(--color-primary);
+		text-decoration: none;
+	}
+
+	.related-guide-card h3 a:hover {
+		color: var(--color-accent);
+	}
+
+	.related-guide-card p:last-child {
+		margin-bottom: 0;
+		color: var(--color-secondary);
+		font-size: 0.9375rem;
+	}
+
+	@media (max-width: 768px) {
+		.related-guides-head {
+			align-items: start;
+			flex-direction: column;
+		}
+
+		.related-guides-grid {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>

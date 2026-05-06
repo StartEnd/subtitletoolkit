@@ -1,0 +1,77 @@
+---
+title: How to fix invalid WebVTT timestamps
+description: Fix WebVTT files with malformed timestamp formatting by converting or normalizing subtitle timing into browser-friendly VTT output.
+pubDate: 2026-05-06
+category: sync-fixes
+tags:
+  - webvtt
+  - vtt
+  - timestamps
+  - subtitle errors
+  - browser playback
+primaryTool: srt-to-vtt
+---
+
+Invalid WebVTT timestamps usually mean the file looks close to `VTT`, but its timing format does not match what browser playback expects.
+
+## Quick answer
+
+If your subtitle file came from an `SRT` source or a messy export, normalize it into clean VTT output with the [SRT to VTT Converter](/tools/srt-to-vtt).
+
+That fixes the most common timestamp mismatch in one step.
+
+## What valid VTT timestamps look like
+
+VTT timestamps use dots, not commas:
+
+```text
+00:00:01.000 --> 00:00:03.500
+```
+
+SRT timestamps use commas:
+
+```text
+00:00:01,000 --> 00:00:03,500
+```
+
+If a file uses SRT timing inside a VTT workflow, browser players may reject it.
+
+## Other common VTT problems
+
+Besides timestamp punctuation, WebVTT files can fail because:
+
+- the `WEBVTT` header is missing
+- formatting was copied from a non-VTT source
+- cues were edited manually and structure drifted
+
+If the file began as SRT rather than VTT, [How to convert SRT to VTT for HTML5 video](/guides/how-to-convert-srt-to-vtt-for-html5-video) is often the cleanest fix instead of hand-editing every cue.
+
+## Step-by-step workflow
+
+1. Confirm the destination actually needs `VTT`.
+2. If the source file is `SRT`, open the [SRT to VTT Converter](/tools/srt-to-vtt).
+3. Paste or upload the subtitle content.
+4. Check that the output includes the `WEBVTT` header and dot-based timestamps.
+5. Download the new file and test it in the browser player.
+
+## Common mistakes
+
+### Renaming the file without converting it
+
+Changing `.srt` to `.vtt` does not make it valid WebVTT.
+
+### Fixing one timestamp but leaving the rest untouched
+
+If the file came from the wrong source format, normalize the whole file.
+
+### Debugging the player before checking the subtitle file
+
+Many playback issues are really subtitle format problems, not player problems.
+
+That is especially true for web player workflows like the one described in [How to convert subtitle files for web players](/guides/how-to-convert-subtitle-files-for-web-players).
+
+## Related guides
+
+- [How to convert SRT to VTT for HTML5 video](/guides/how-to-convert-srt-to-vtt-for-html5-video)
+- [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video)
+- [How to convert subtitle files for web players](/guides/how-to-convert-subtitle-files-for-web-players)

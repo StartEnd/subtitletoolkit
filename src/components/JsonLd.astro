@@ -1,0 +1,58 @@
+---
+export type JsonLdType = 'website' | 'softwareApplication' | 'article';
+
+interface WebsiteData {
+  '@type': 'WebSite';
+  name: string;
+  description: string;
+  url: string;
+}
+
+interface SoftwareApplicationData {
+  '@type': 'SoftwareApplication';
+  name: string;
+  description: string;
+  url: string;
+  applicationCategory: 'UtilityApplication';
+  operatingSystem: 'Web Browser';
+  offers?: {
+    '@type': 'Offer';
+    price: '0';
+    priceCurrency: 'USD';
+  };
+}
+
+interface ArticleData {
+  '@type': 'Article';
+  headline: string;
+  description: string;
+  datePublished: string;
+  dateModified?: string;
+  author?: {
+    '@type': 'Organization';
+    name: string;
+  };
+  publisher?: {
+    '@type': 'Organization';
+    name: string;
+    logo?: {
+      '@type': 'ImageObject';
+      url: string;
+    };
+  };
+}
+
+type Props =
+  | { type: 'website'; data: WebsiteData }
+  | { type: 'softwareApplication'; data: SoftwareApplicationData }
+  | { type: 'article'; data: ArticleData };
+
+const { type, data } = Astro.props;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  ...data,
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd, null, 2)}></script>
