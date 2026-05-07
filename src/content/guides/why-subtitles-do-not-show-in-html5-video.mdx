@@ -1,0 +1,84 @@
+---
+title: Why subtitles do not show in HTML5 video
+description: Diagnose and fix the most common reasons subtitle tracks fail to render in HTML5 video players, from wrong file formats to missing WEBVTT headers.
+pubDate: 2026-05-07
+category: workflow-guides
+tags:
+  - html5 video
+  - vtt
+  - subtitles not showing
+  - troubleshooting
+  - web players
+primaryTool: srt-to-vtt
+---
+
+If subtitles are not showing in your HTML5 video player, the problem is almost always one of a few fixable causes.
+
+## Quick answer
+
+HTML5 video requires WebVTT format. If captions are not rendering, the file is likely in the wrong format, has a missing header, or is not being loaded correctly by the player.
+
+## The most common causes
+
+### 1. Wrong subtitle format
+
+HTML5 `<track>` elements are designed for WebVTT. Browsers will silently ignore SRT or ASS files in most cases, even if the player loads without an error.
+
+**Fix:** Convert your subtitle file to VTT using the [SRT to VTT Converter](/tools/srt-to-vtt) or [ASS to VTT Converter](/tools/ass-to-vtt).
+
+### 2. Missing WEBVTT header
+
+A valid VTT file must start with the exact string `WEBVTT` on the first line. A file that looks almost like VTT but lacks this header will fail to parse.
+
+```text
+WEBVTT
+
+00:00:01.000 --> 00:00:03.500
+Your subtitle text here.
+```
+
+**Fix:** Open the file in a text editor or run it through the converter to confirm the header is present.
+
+### 3. Comma instead of dot in timestamps
+
+SRT uses commas (`00:00:01,000`). VTT requires dots (`00:00:01.000`). A file with comma-based timestamps will not be recognized as valid WebVTT.
+
+**Fix:** Convert the file properly rather than renaming the extension.
+
+### 4. Wrong MIME type on the server
+
+Even with a valid VTT file, some servers do not serve `.vtt` files with the correct MIME type (`text/vtt`). Browsers may block the track load when the content type is wrong.
+
+**Fix:** Add the correct MIME type in your server or CDN configuration:
+
+```
+text/vtt    vtt
+```
+
+### 5. Cross-origin (CORS) issues
+
+If the video and the subtitle file are on different domains, the browser may block the track due to CORS policy. This is a common issue when hosting static assets on a CDN or separate domain.
+
+**Fix:** Make sure the server serving the VTT file includes an appropriate `Access-Control-Allow-Origin` header.
+
+### 6. File path or URL is wrong
+
+A typo in the `<track>` element `src` attribute will load silently with no visible error in most browsers.
+
+**Fix:** Open the subtitle URL directly in the browser to confirm it loads. A 404 is easy to miss in the player UI.
+
+## Diagnostic checklist
+
+Work through these in order before looking for complex causes:
+
+1. Is the file in VTT format with a `WEBVTT` header?
+2. Are timestamps using dots, not commas?
+3. Does the file URL return a 200 response with `content-type: text/vtt`?
+4. Are the video and subtitle file on the same origin, or is CORS configured correctly?
+5. Is the `<track>` element `src` pointing to the right path?
+
+## Related guides
+
+- [How to convert SRT to VTT for HTML5 video](/guides/how-to-convert-srt-to-vtt-for-html5-video)
+- [How to fix invalid WebVTT timestamps](/guides/how-to-fix-invalid-webvtt-timestamps)
+- [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video)

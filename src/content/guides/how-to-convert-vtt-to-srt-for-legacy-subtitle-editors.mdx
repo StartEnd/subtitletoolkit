@@ -1,0 +1,77 @@
+---
+title: How to convert VTT to SRT for legacy subtitle editors
+description: Turn WebVTT caption files into SRT format for editors, archive workflows, and tools that do not support VTT natively.
+pubDate: 2026-05-07
+category: conversion-guides
+tags:
+  - vtt
+  - srt
+  - legacy editors
+  - conversion
+  - archive
+primaryTool: vtt-to-srt
+---
+
+If you have a `.vtt` file and the next step involves an editor or workflow that only accepts `.srt`, converting it is straightforward.
+
+## Quick answer
+
+Export or convert your VTT file to SRT when:
+
+- a client or collaborator needs a SubRip file
+- your subtitle editor only supports SRT input
+- you are archiving a delivery and want the more universally readable format
+
+## Why VTT is awkward in legacy editors
+
+VTT is the web-native caption format. It works well in browsers, but many subtitle editors and older tools were built around SRT. Common friction points include:
+
+- editors that do not recognize the `WEBVTT` header
+- parsers that fail on dot-based timestamps instead of commas
+- tools that expect numbered cue blocks and reject optional VTT identifiers
+
+Converting to SRT removes that friction without changing the subtitle content.
+
+## Step-by-step workflow
+
+1. Start with a clean `.vtt` file.
+2. Open the [VTT to SRT Converter](/tools/vtt-to-srt).
+3. Upload the file or paste the VTT text directly.
+4. Review the output and confirm cue numbers and comma-based timestamps are present.
+5. Download the converted `.srt` file.
+6. Open the result in the target editor before passing it on.
+
+## What changes during conversion
+
+When moving from VTT to SRT:
+
+- the `WEBVTT` header is removed
+- timestamps switch from dots to commas
+- sequential cue numbers are added
+
+Subtitle text and timing are preserved.
+
+## Common mistakes
+
+### Losing the VTT source file
+
+SRT is a convenient delivery format but VTT is more useful for browser playback. Keep the original `.vtt` file if the subtitle workflow will need both:
+
+- `VTT` for web and browser delivery
+- `SRT` for editors, clients, and archive
+
+### Assuming all editors behave the same
+
+Some editors handle VTT fine. Others fail silently or import timestamps incorrectly. If captions look wrong after import, convert to SRT and try again.
+
+## When to stay in VTT
+
+Keep the file as VTT if the next step is a browser player, an HTML5 video component, or any web-based platform that expects WebVTT. Converting to SRT for those cases adds an unnecessary roundtrip.
+
+For a broader comparison of when each format is useful, read [SRT vs VTT](/guides/srt-vs-vtt).
+
+## Related guides
+
+- [SRT vs VTT](/guides/srt-vs-vtt)
+- [How to convert SRT to VTT for HTML5 video](/guides/how-to-convert-srt-to-vtt-for-html5-video)
+- [How to convert subtitle files for web players](/guides/how-to-convert-subtitle-files-for-web-players)
