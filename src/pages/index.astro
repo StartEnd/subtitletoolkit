@@ -157,24 +157,27 @@ const faqs = [
 
 	<!-- Guide Clusters -->
 	<section class="section">
-		<span class="eyebrow">Search by workflow</span>
-		<h2>Find the right guide cluster before you open a tool.</h2>
+		<span class="eyebrow">Browse by topic</span>
+		<h2>Pick the cluster that matches the job.</h2>
+		<p class="lede" style="max-width: 48rem;">
+			Every guide on this site is grouped into one of four clusters. Open a cluster to see all its guides and jump straight into the related tool.
+		</p>
 		<div class="cluster-grid">
 			{
 				guideClusters.map((cluster) => (
-					<article class="cluster-card">
+					<a class="cluster-card" href={cluster.meta.hubPath}>
 						<p class="cluster-card-count">{cluster.count} guides</p>
 						<h3>{cluster.meta.label}</h3>
 						<p>{cluster.meta.description}</p>
 						{
 							cluster.sample && (
 								<p class="cluster-card-sample">
-									Start with <a href={`/guides/${cluster.sample.id}`}>{cluster.sample.data.title}</a>
+									Start with <span class="cluster-card-sample-title">{cluster.sample.data.title}</span>
 								</p>
 							)
 						}
-						<a class="card-link" href="/guides">Browse cluster <span aria-hidden="true">&rarr;</span></a>
-					</article>
+						<span class="card-link">Open cluster <span aria-hidden="true">&rarr;</span></span>
+					</a>
 				))
 			}
 		</div>
@@ -274,10 +277,21 @@ const faqs = [
 	}
 
 	.cluster-card {
+		display: flex;
+		flex-direction: column;
 		padding: var(--space-6);
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius-lg);
 		background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 248, 251, 0.9));
+		color: var(--color-primary);
+		text-decoration: none;
+		transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.cluster-card:hover {
+		border-color: var(--color-accent);
+		transform: translateY(-2px);
+		box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
 	}
 
 	.cluster-card h3 {
@@ -300,14 +314,26 @@ const faqs = [
 		text-transform: uppercase;
 	}
 
-	.cluster-card-sample a {
-		color: var(--color-accent);
-		text-decoration: none;
+	.cluster-card-sample {
+		margin-top: auto;
+		color: var(--color-secondary);
+		font-size: 0.875rem;
 	}
 
-	.cluster-card-sample a:hover {
+	.cluster-card-sample-title {
+		color: var(--color-primary);
+		font-weight: 500;
+	}
+
+	.cluster-card .card-link {
+		margin-top: var(--space-3);
+		color: var(--color-accent);
+		font-size: 0.875rem;
+		font-weight: 600;
+	}
+
+	.cluster-card:hover .card-link {
 		color: var(--color-accent-hover);
-		text-decoration: underline;
 	}
 
 	.popular-searches {
