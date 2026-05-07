@@ -18,6 +18,14 @@ const guideClusters = guideCategoryOrder
 		sample: guides.find((guide) => guide.data.category === category),
 	}))
 	.filter((cluster) => cluster.count > 0);
+const popularSearches = [
+	{ href: '/guides/how-to-convert-srt-to-vtt-for-html5-video', label: 'How to convert SRT to VTT for HTML5 video' },
+	{ href: '/guides/how-to-fix-subtitle-delay', label: 'How to fix subtitle delay' },
+	{ href: '/guides/how-to-fix-invalid-webvtt-timestamps', label: 'How to fix invalid WebVTT timestamps' },
+	{ href: '/guides/best-subtitle-format-for-youtube', label: 'Best subtitle format for YouTube' },
+	{ href: '/guides/best-subtitle-format-for-videojs', label: 'Best subtitle format for Video.js' },
+	{ href: '/guides/how-to-clean-subtitle-formatting-before-upload', label: 'How to clean subtitle formatting before upload' },
+];
 
 const faqs = [
 	{ q: 'Is this really free?', a: 'Yes. All tools are completely free with no limits, no signup, and no hidden paywall.' },
@@ -54,6 +62,19 @@ const faqs = [
 		</ul>
 	</section>
 	</div>
+
+	<!-- Popular Searches -->
+	<section class="section">
+		<span class="eyebrow">Popular searches</span>
+		<h2>Jump into the subtitle jobs people search for most.</h2>
+		<div class="popular-searches">
+			{
+				popularSearches.map((item) => (
+					<a class="search-chip" href={item.href}>{item.label}</a>
+				))
+			}
+		</div>
+	</section>
 
 	<!-- Core Tools -->
 	<section class="section-muted">
@@ -287,6 +308,34 @@ const faqs = [
 	.cluster-card-sample a:hover {
 		color: var(--color-accent-hover);
 		text-decoration: underline;
+	}
+
+	.popular-searches {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+		margin-top: var(--space-8);
+	}
+
+	.search-chip {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.85rem 1rem;
+		border: 1px solid var(--color-border);
+		border-radius: 999px;
+		background: var(--color-background);
+		color: var(--color-primary);
+		font-size: 0.9375rem;
+		font-weight: 500;
+		line-height: 1.4;
+		text-decoration: none;
+		transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+	}
+
+	.search-chip:hover {
+		border-color: var(--color-accent);
+		color: var(--color-accent);
+		transform: translateY(-1px);
 	}
 
 	@media (max-width: 768px) {

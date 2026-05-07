@@ -347,10 +347,10 @@ const enTools: SubtitleTool[] = [
     relatedTools: ['vtt-to-ass', 'srt-to-vtt'],
     relatedGuides: [
       {
-        href: '/guides/best-subtitle-format-for-html5-video',
-        title: 'Best subtitle format for HTML5 video',
+        href: '/guides/how-to-convert-ass-to-vtt-for-web-players',
+        title: 'How to convert ASS to VTT for web players',
       },
-      { href: '/guides/ass-vs-srt', title: 'ASS vs SRT' },
+      { href: '/guides/ass-vs-vtt', title: 'ASS vs VTT for browser playback' },
     ],
     sampleInput: sharedSamples.ass,
   },

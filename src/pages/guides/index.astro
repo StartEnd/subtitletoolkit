@@ -25,6 +25,15 @@ const groupedGuides = guideCategoryOrder
 			Long-tail tutorials for subtitle conversion, repair, format decisions, and delivery workflows.
 			Each guide is organized by job-to-be-done and links directly into a relevant tool.
 		</p>
+		<nav class="guide-nav" aria-label="Guide clusters">
+			{
+				groupedGuides.map((group) => (
+					<a class="guide-nav-link" href={`#cluster-${group.category}`}>
+						{group.meta.label} <span>{group.guides.length}</span>
+					</a>
+				))
+			}
+		</nav>
 	</section>
 
 	<section class="section-muted">
@@ -36,7 +45,7 @@ const groupedGuides = guideCategoryOrder
 							<div class="guide-cluster-head">
 								<div>
 									<p class="guide-cluster-kicker">Cluster</p>
-									<h2 id={`cluster-${group.category}`}>{group.meta.label}</h2>
+									<h2 id={`cluster-${group.category}`}>{group.meta.label} <span class="guide-cluster-count">({group.guides.length})</span></h2>
 								</div>
 								<p class="guide-cluster-description">{group.meta.description}</p>
 							</div>
@@ -47,6 +56,11 @@ const groupedGuides = guideCategoryOrder
 											<p class="guide-card-meta">
 												{guide.data.primaryTool ? 'Mapped to a tool' : 'Reference guide'}
 											</p>
+											{
+												guide.data.primaryTool && (
+													<p class="guide-card-tool">Tool intent page</p>
+												)
+											}
 											<h3><a href={`/guides/${guide.id}`}>{guide.data.title}</a></h3>
 											<p class="muted">{guide.data.description}</p>
 											<a class="card-link" href={`/guides/${guide.id}`}>Read guide <span aria-hidden="true">&rarr;</span></a>
@@ -63,6 +77,38 @@ const groupedGuides = guideCategoryOrder
 </SiteLayout>
 
 <style>
+	.guide-nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+		margin-top: var(--space-8);
+	}
+
+	.guide-nav-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.75rem 0.95rem;
+		border: 1px solid var(--color-border);
+		border-radius: 999px;
+		background: var(--color-background);
+		color: var(--color-primary);
+		font-size: 0.9375rem;
+		font-weight: 500;
+		text-decoration: none;
+	}
+
+	.guide-nav-link span {
+		color: var(--color-accent);
+		font-size: 0.8125rem;
+		font-weight: 700;
+	}
+
+	.guide-nav-link:hover {
+		border-color: var(--color-accent);
+		color: var(--color-accent);
+	}
+
 	.guide-clusters {
 		display: flex;
 		flex-direction: column;
@@ -95,6 +141,12 @@ const groupedGuides = guideCategoryOrder
 		margin: 0;
 	}
 
+	.guide-cluster-count {
+		color: var(--color-tertiary);
+		font-size: 0.85em;
+		font-weight: 600;
+	}
+
 	.guide-cluster-description {
 		margin: 0;
 		color: var(--color-secondary);
@@ -109,6 +161,13 @@ const groupedGuides = guideCategoryOrder
 		font-weight: 700;
 		letter-spacing: 0.04em;
 		text-transform: uppercase;
+	}
+
+	.guide-card-tool {
+		margin: -0.1rem 0 var(--space-3);
+		color: var(--color-secondary);
+		font-size: 0.8125rem;
+		font-weight: 500;
 	}
 
 	@media (max-width: 768px) {
