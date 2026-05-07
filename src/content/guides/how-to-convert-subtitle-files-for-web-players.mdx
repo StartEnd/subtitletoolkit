@@ -2,6 +2,7 @@
 title: How to convert subtitle files for web players
 description: A practical guide to preparing subtitle files for browser playback and HTML5-based video components.
 pubDate: 2026-04-21
+updatedDate: 2026-05-07
 author_name: Admin
 author_image: /logo.png
 image: /imgs/features/admin.png
@@ -32,7 +33,7 @@ The destination is usually `VTT`, because that is the most browser-friendly form
 - `ASS -> VTT` when you are leaving a styled editing workflow
 - `VTT -> SRT` when a collaborator or tool still needs the simpler format
 
-For the most common browser conversion path, [How to convert SRT to VTT for HTML5 video](/guides/how-to-convert-srt-to-vtt-for-html5-video) is the direct step-by-step page.
+For the most common browser conversion path, [How to convert SRT to VTT for HTML5 video](/guides/how-to-convert-srt-to-vtt-for-html5-video) is the direct step-by-step page. If your source file is ASS, [How to convert ASS to VTT for web players](/guides/how-to-convert-ass-to-vtt-for-web-players) covers that exact path. For VTT files going back to legacy editors, see [How to convert VTT to SRT for legacy subtitle editors](/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors).
 
 ## Before you ship the file
 
@@ -42,7 +43,11 @@ Check these points:
 - Multi-line captions still break where expected
 - Browser playback accepts the file without errors
 
-If browser playback still rejects the file, [How to fix invalid WebVTT timestamps](/guides/how-to-fix-invalid-webvtt-timestamps) is usually the next debug step.
+If browser playback still rejects the file, [How to fix invalid WebVTT timestamps](/guides/how-to-fix-invalid-webvtt-timestamps) is usually the next debug step. For a broader troubleshooting flow, [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video) walks through the most common causes.
+
+## Browse the cluster
+
+See all [conversion guides](/guides/conversion-guides) for format-specific subtitle conversion tutorials.
 
 ## Related tools
 

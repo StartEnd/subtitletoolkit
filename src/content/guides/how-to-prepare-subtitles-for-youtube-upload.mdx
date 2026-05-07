@@ -1,0 +1,93 @@
+---
+title: How to prepare subtitles for YouTube upload
+description: A step-by-step workflow for preparing clean, correctly timed subtitle files for YouTube caption uploads.
+pubDate: 2026-05-07
+category: workflow-guides
+tags:
+  - youtube
+  - caption upload
+  - srt
+  - subtitle workflow
+  - delivery
+primaryTool: subtitle-cleaner
+---
+
+YouTube caption uploads are forgiving in some ways and strict in others. A clean, well-timed `SRT` file is almost always the right delivery format. The work is in the preparation, not the upload itself.
+
+## Quick answer
+
+Upload an `SRT` file with:
+
+- correct timing aligned to the published video cut
+- no styling tags or formatting markup
+- timestamps in `HH:MM:SS,mmm` format
+- consistent spacing and line breaks
+
+If you start from `VTT` or `ASS`, convert to SRT before uploading.
+
+## Step-by-step workflow
+
+### 1. Confirm the source format
+
+YouTube accepts several subtitle formats, but `SRT` is the most reliable. If your file is in another format:
+
+- For VTT → use the [VTT to SRT Converter](/tools/vtt-to-srt) or [How to convert VTT to SRT for legacy subtitle editors](/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors)
+- For ASS → use the [ASS to SRT Converter](/tools/ass-to-srt) and follow [How to convert ASS to SRT for YouTube uploads](/guides/how-to-convert-ass-to-srt-for-youtube-uploads)
+
+### 2. Match the subtitle timing to the published video
+
+Subtitles must be aligned to the final video cut. If the video was edited after the subtitle file was generated, timing will drift. Check three points to confirm:
+
+- the first spoken line
+- a line in the middle of the video
+- a line near the end
+
+If any of these are off, fix the timing before upload. See [How to fix subtitle delay](/guides/how-to-fix-subtitle-delay) for a constant offset, or [How to fix subtitles that are too fast or too slow](/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow) if the drift grows over the video.
+
+### 3. Clean up formatting
+
+YouTube ignores most subtitle styling. Files that contain leftover HTML tags, ASS styling, or inconsistent spacing import inconsistently. Run the file through the [Subtitle Cleaner](/tools/subtitle-cleaner) before upload.
+
+If the source had cue numbering noise or stray markers, [How to remove subtitle line numbers](/guides/how-to-remove-subtitle-line-numbers) and [How to clean subtitle formatting before upload](/guides/how-to-clean-subtitle-formatting-before-upload) cover the specific cleanups.
+
+### 4. Verify cue order
+
+Each cue should appear in increasing time order. If cues are out of sequence, see [How to fix out-of-order subtitle cues](/guides/how-to-fix-out-of-order-subtitle-cues).
+
+### 5. Final check before upload
+
+Open the cleaned `.srt` file in a text editor and confirm:
+
+- no styling or HTML tags remain
+- timestamps use commas, not dots (`00:00:01,000`)
+- there are no empty cue blocks
+- the file ends cleanly with a newline
+
+### 6. Upload through YouTube Studio
+
+In YouTube Studio: **Subtitles → Add new language → Upload file → With timing**.  
+Pick the cleaned `.srt` and confirm the captions render correctly in the preview before publishing.
+
+## Common mistakes
+
+### Uploading a styled ASS file directly
+
+Even if YouTube accepts the upload, styling is dropped and some characters may import incorrectly. Convert to SRT first. For the reasoning, see [SRT vs ASS for YouTube captions](/guides/srt-vs-ass-for-youtube-captions).
+
+### Trusting auto-generated captions without review
+
+Auto-captions are a starting point, not a final caption file. Always review timing and spelling before treating them as the published subtitle.
+
+### Skipping the cleanup step
+
+Even subtitles that look clean often contain invisible inconsistencies — non-breaking spaces, mixed line endings, leftover BOM markers. The cleanup step removes these without changing the visible content.
+
+## Browse the cluster
+
+See all [workflow guides](/guides/workflow-guides) for more end-to-end subtitle workflows.
+
+## Related guides
+
+- [Best subtitle format for YouTube](/guides/best-subtitle-format-for-youtube)
+- [SRT vs ASS for YouTube captions](/guides/srt-vs-ass-for-youtube-captions)
+- [How to clean subtitle formatting before upload](/guides/how-to-clean-subtitle-formatting-before-upload)

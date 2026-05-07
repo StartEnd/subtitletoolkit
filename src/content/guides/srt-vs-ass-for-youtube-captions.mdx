@@ -1,0 +1,72 @@
+---
+title: SRT vs ASS for YouTube captions
+description: Compare SRT and ASS subtitle formats for YouTube uploads and learn which is the safer choice for caption delivery.
+pubDate: 2026-05-07
+category: format-comparisons
+tags:
+  - srt
+  - ass
+  - youtube
+  - caption upload
+  - format comparison
+primaryTool: ass-to-srt
+---
+
+When uploading subtitles to YouTube, the format you choose changes how reliable the caption import will be. SRT is almost always the better choice. ASS adds complexity that YouTube does not use.
+
+## The short version
+
+- Use `SRT` for YouTube caption uploads.
+- Keep `ASS` only as your editing source if you need styling control.
+- Convert ASS to SRT before upload.
+
+## Why SRT works on YouTube
+
+SRT is a simple text-and-timing format. It contains exactly what YouTube needs:
+
+- a sequence number per cue
+- a start and end timestamp
+- the visible subtitle text
+
+YouTube renders captions using its own player styling. Anything beyond timing and text is discarded during the upload, so SRT's simplicity is a feature, not a limitation.
+
+## Why ASS is awkward on YouTube
+
+ASS supports:
+
+- font and color styling
+- precise positioning of cues
+- layered subtitle tracks
+
+None of those features are honored by YouTube's caption rendering. Uploading ASS works in some cases but adds risk:
+
+- styling instructions are silently dropped
+- positioning is ignored
+- some ASS exports include encoded characters that confuse the importer
+
+In practice, ASS is the wrong delivery format for YouTube even when it imports without obvious errors.
+
+## A practical workflow
+
+1. Edit subtitles in the format you prefer (often `ASS` if styling matters).
+2. Before upload, convert the delivery copy to `SRT` using the [ASS to SRT Converter](/tools/ass-to-srt).
+3. Keep the original ASS file as your editing source.
+4. Upload the SRT file to YouTube and verify the captions display correctly.
+
+## When you might keep ASS
+
+If your video has ASS-styled subtitles burned directly into the rendered video frame, you do not need to upload a caption file at all. In that case, ASS lives in your editor, and YouTube simply receives a video with subtitles already part of the picture.
+
+For the exact upload-conversion path, see [How to convert ASS to SRT for YouTube uploads](/guides/how-to-convert-ass-to-srt-for-youtube-uploads).
+
+For a broader format comparison, [ASS vs SRT](/guides/ass-vs-srt) covers the general tradeoff outside the YouTube context.
+
+## Browse the cluster
+
+See all [format comparison guides](/guides/format-comparisons) for more side-by-side decisions.
+
+## Related guides
+
+- [Best subtitle format for YouTube](/guides/best-subtitle-format-for-youtube)
+- [How to convert ASS to SRT for YouTube uploads](/guides/how-to-convert-ass-to-srt-for-youtube-uploads)
+- [When to use ASS instead of SRT](/guides/when-to-use-ass-instead-of-srt)
