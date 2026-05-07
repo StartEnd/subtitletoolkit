@@ -1,0 +1,189 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+import JsonLd from './JsonLd.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import {
+	guideCategoryMeta,
+	guideCategoryOrder,
+	type GuideCategory,
+} from '../lib/guides/catalog';
+import { SITE_DOMAIN, SITE_TITLE } from '../consts';
+
+interface Props {
+	category: GuideCategory;
+	intro: string;
+}
+
+const { category, intro } = Astro.props;
+const meta = guideCategoryMeta[category];
+
+type GuideEntry = CollectionEntry<'guides'>;
+
+const allGuides = (await getCollection('guides')).sort(
+	(a: GuideEntry, b: GuideEntry) =>
+		b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const guides = allGuides.filter(
+	(guide: GuideEntry) => guide.data.category === category,
+);
+
+const otherCategories = guideCategoryOrder
+	.filter((c) => c !== category)
+	.map((c) => ({
+		category: c,
+		meta: guideCategoryMeta[c],
+		count: allGuides.filter(
+			(g: GuideEntry) => g.data.category === c,
+		).length,
+	}))
+	.filter((entry) => entry.count > 0);
+
+const pageTitle = `${meta.label} | ${SITE_TITLE}`;
+const pageDescription = intro;
+
+const breadcrumbItems = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Guides', href: '/guides' },
+	{ label: meta.label },
+];
+---
+
+<SiteLayout title={pageTitle} description={pageDescription}>
+	<JsonLd
+		type="website"
+		data={{
+			'@type': 'WebSite',
+			name: meta.label,
+			description: pageDescription,
+			url: `https://${SITE_DOMAIN}${meta.hubPath}`,
+		}}
+	/>
+	<section class="section">
+		<Breadcrumbs items={breadcrumbItems} />
+		<span class="eyebrow">Guide cluster</span>
+		<h1>{meta.label} <span class="hub-count">({guides.length})</span></h1>
+		<p class="lede">{intro}</p>
+	</section>
+
+	<section class="section-muted">
+		<div class="section-inner">
+			<div class="card-grid">
+				{
+					guides.map((guide) => (
+						<article class="card">
+							<p class="hub-card-meta">
+								{guide.data.primaryTool ? 'Mapped to a tool' : 'Reference guide'}
+							</p>
+							<h3>
+								<a href={`/guides/${guide.id}`}>{guide.data.title}</a>
+							</h3>
+							<p class="muted">{guide.data.description}</p>
+							<a class="card-link" href={`/guides/${guide.id}`}>
+								Read guide <span aria-hidden="true">&rarr;</span>
+							</a>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	{
+		otherCategories.length > 0 && (
+			<section class="section">
+				<span class="eyebrow">Other clusters</span>
+				<h2>Browse the rest of the guide library</h2>
+				<div class="hub-other-grid">
+					{otherCategories.map((entry) => (
+						<a class="hub-other-card" href={entry.meta.hubPath}>
+							<p class="hub-other-meta">{entry.count} guides</p>
+							<h3>{entry.meta.label}</h3>
+							<p>{entry.meta.description}</p>
+							<span class="hub-other-link">
+								Open cluster <span aria-hidden="true">&rarr;</span>
+							</span>
+						</a>
+					))}
+				</div>
+			</section>
+		)
+	}
+</SiteLayout>
+
+<style>
+	.hub-count {
+		color: var(--color-tertiary);
+		font-size: 0.7em;
+		font-weight: 600;
+	}
+
+	.hub-card-meta {
+		margin: 0 0 var(--space-2);
+		color: var(--color-tertiary);
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	.hub-other-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--space-4);
+		margin-top: var(--space-6);
+	}
+
+	.hub-other-card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+		padding: var(--space-5);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		background: var(--color-background);
+		color: var(--color-primary);
+		text-decoration: none;
+		transition: border-color 0.2s ease, transform 0.2s ease;
+	}
+
+	.hub-other-card:hover {
+		border-color: var(--color-accent);
+		transform: translateY(-1px);
+	}
+
+	.hub-other-meta {
+		margin: 0;
+		color: var(--color-tertiary);
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	.hub-other-card h3 {
+		margin: 0;
+		font-size: 1.05rem;
+	}
+
+	.hub-other-card p {
+		margin: 0;
+		color: var(--color-secondary);
+		font-size: 0.9375rem;
+		line-height: 1.6;
+	}
+
+	.hub-other-link {
+		margin-top: var(--space-2);
+		color: var(--color-accent);
+		font-size: 0.875rem;
+		font-weight: 600;
+	}
+
+	@media (max-width: 768px) {
+		.hub-other-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

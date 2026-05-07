@@ -2,6 +2,7 @@
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import ToolWorkbench from '../../components/ToolWorkbench.astro';
 import JsonLd from '../../components/JsonLd.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { SITE_TITLE } from '../../consts';
 import { getSubtitleCatalog, getSubtitleTool } from '../../lib/subtitles/catalog';
 
@@ -26,6 +27,12 @@ const relatedTools = currentTool.relatedTools
 	.filter(Boolean);
 
 const isConversionTool = !['subtitle-time-shifter', 'subtitle-cleaner'].includes(currentTool.id);
+
+const breadcrumbItems = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Tools', href: '/tools' },
+	{ label: currentTool.shortTitle },
+];
 ---
 
 <SiteLayout title={`${currentTool.title} | ${SITE_TITLE}`} description={currentTool.description}>
@@ -42,6 +49,9 @@ const isConversionTool = !['subtitle-time-shifter', 'subtitle-cleaner'].includes
 				priceCurrency: 'USD',
 			},
 		}} />
+	<section class="section" style="padding-bottom: 0;">
+		<Breadcrumbs items={breadcrumbItems} />
+	</section>
 	<!-- Tool Header -->
 	<section class="section tool-header">
 		<span class="eyebrow">{isConversionTool ? 'Format conversion' : 'Subtitle utility'}</span>

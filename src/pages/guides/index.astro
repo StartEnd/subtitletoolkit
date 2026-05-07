@@ -28,7 +28,7 @@ const groupedGuides = guideCategoryOrder
 		<nav class="guide-nav" aria-label="Guide clusters">
 			{
 				groupedGuides.map((group) => (
-					<a class="guide-nav-link" href={`#cluster-${group.category}`}>
+					<a class="guide-nav-link" href={group.meta.hubPath}>
 						{group.meta.label} <span>{group.guides.length}</span>
 					</a>
 				))

@@ -1,6 +1,7 @@
 ---
 import SiteLayout from './SiteLayout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 import type { CollectionEntry } from 'astro:content';
 import { guideCategoryMeta } from '../lib/guides/catalog';
 import type { SubtitleTool } from '../lib/subtitles/catalog';
@@ -23,10 +24,18 @@ const {
 } = Astro.props as Props;
 
 const categoryMeta = guideCategoryMeta[category];
+
+const breadcrumbItems = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Guides', href: '/guides' },
+	{ label: categoryMeta.label, href: categoryMeta.hubPath },
+	{ label: title },
+];
 ---
 
 <SiteLayout title={title} description={description}>
 	<article class="guide-article">
+		<Breadcrumbs items={breadcrumbItems} />
 		<!-- Article Header -->
 		<header class="guide-header">
 			<div class="guide-kicker">
