@@ -382,6 +382,8 @@ export function processSubtitleTool(
 
       return serializeByFormat(cleanCueText(cues), format);
     }
+    case 'subtitle-encoding-fixer':
+      return normalized;
     default:
       return normalized;
   }
@@ -403,6 +405,7 @@ export function inferOutputFormat(
       return 'ass';
     case 'subtitle-time-shifter':
     case 'subtitle-cleaner':
+    case 'subtitle-encoding-fixer':
       return detectSubtitleFormat(input);
     default:
       return 'unknown';
@@ -427,5 +430,10 @@ export function buildOutputFileName(
   }
 
   const baseName = inputName.replace(/\.[^.]+$/, '');
+  if (toolId === 'subtitle-encoding-fixer') {
+    const originalExtension = inputName.match(/\.([^.]+)$/)?.[1] || extension;
+    return `${baseName}.utf8.${originalExtension}`;
+  }
+
   return `${baseName}.${extension}`;
 }

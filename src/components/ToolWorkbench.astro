@@ -56,6 +56,25 @@ const { tool, labels } = Astro.props as {
 					</div>
 				)
 			}
+
+			{
+				tool.id === 'subtitle-encoding-fixer' && (
+					<div class="workspace-shift">
+						<label class="workspace-field-label" for="encoding-input">{labels.encodingLabel}</label>
+						<select id="encoding-input" data-encoding>
+							<option value="utf-8">UTF-8</option>
+							<option value="windows-1252">Windows-1252</option>
+							<option value="iso-8859-1">ISO-8859-1</option>
+							<option value="gb18030">GB18030</option>
+							<option value="big5">Big5</option>
+							<option value="shift_jis">Shift JIS</option>
+							<option value="euc-kr">EUC-KR</option>
+							<option value="windows-1250">Windows-1250</option>
+						</select>
+						<p class="workspace-shift-help">{labels.encodingHelp}</p>
+					</div>
+				)
+			}
 		</div>
 
 		<div class="workspace-panel">
@@ -103,6 +122,7 @@ const { tool, labels } = Astro.props as {
 		const inputArea = root.querySelector('[data-shared-input]');
 		const outputArea = root.querySelector('[data-output]');
 		const shiftInput = root.querySelector('[data-shift]');
+		const encodingInput = root.querySelector('[data-encoding]');
 		const outputFile = root.querySelector('[data-output-file]');
 		const copyButton = root.querySelector('[data-copy]');
 		const downloadButton = root.querySelector('[data-download]');
@@ -171,12 +191,24 @@ const { tool, labels } = Astro.props as {
 			shiftInput.addEventListener('input', render);
 		}
 
+		if (encodingInput instanceof HTMLSelectElement) {
+			encodingInput.addEventListener('change', render);
+		}
+
 		if (fileInput instanceof HTMLInputElement) {
 			fileInput.addEventListener('change', async () => {
 				const file = fileInput.files?.[0];
 				if (!file) return;
 
-				currentInput = await file.text();
+				if (
+					tool.id === 'subtitle-encoding-fixer' &&
+					encodingInput instanceof HTMLSelectElement
+				) {
+					const buffer = await file.arrayBuffer();
+					currentInput = new TextDecoder(encodingInput.value).decode(buffer);
+				} else {
+					currentInput = await file.text();
+				}
 				currentFileName = file.name;
 				setMode('upload');
 				track('subtitle_tool_upload_file', {
@@ -385,7 +417,8 @@ const { tool, labels } = Astro.props as {
 	}
 
 	/* Text input (shift) */
-	.workspace [type='text'] {
+	.workspace [type='text'],
+	.workspace select {
 		width: 100%;
 		padding: var(--space-3) var(--space-4);
 		border: 1px solid var(--color-workspace-border);
@@ -396,7 +429,8 @@ const { tool, labels } = Astro.props as {
 		font-size: 0.875rem;
 	}
 
-	.workspace [type='text']:focus {
+	.workspace [type='text']:focus,
+	.workspace select:focus {
 		outline: none;
 		border-color: var(--color-workspace-accent);
 	}

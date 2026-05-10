@@ -1,5 +1,5 @@
 ---
-export type JsonLdType = 'website' | 'softwareApplication' | 'article';
+export type JsonLdType = 'website' | 'softwareApplication' | 'article' | 'faqPage';
 
 interface WebsiteData {
   '@type': 'WebSite';
@@ -42,10 +42,23 @@ interface ArticleData {
   };
 }
 
+interface FAQPageData {
+  '@type': 'FAQPage';
+  mainEntity: {
+    '@type': 'Question';
+    name: string;
+    acceptedAnswer: {
+      '@type': 'Answer';
+      text: string;
+    };
+  }[];
+}
+
 type Props =
   | { type: 'website'; data: WebsiteData }
   | { type: 'softwareApplication'; data: SoftwareApplicationData }
-  | { type: 'article'; data: ArticleData };
+  | { type: 'article'; data: ArticleData }
+  | { type: 'faqPage'; data: FAQPageData };
 
 const { type, data } = Astro.props;
 

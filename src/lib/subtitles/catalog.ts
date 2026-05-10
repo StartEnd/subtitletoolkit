@@ -6,7 +6,8 @@ export type SubtitleToolId =
   | 'vtt-to-ass'
   | 'ass-to-vtt'
   | 'subtitle-time-shifter'
-  | 'subtitle-cleaner';
+  | 'subtitle-cleaner'
+  | 'subtitle-encoding-fixer';
 
 export type SupportedLocale = 'en' | 'zh';
 
@@ -66,6 +67,8 @@ export interface SubtitleCatalog {
     shiftLabel: string;
     shiftHelp: string;
     shiftPlaceholder: string;
+    encodingLabel: string;
+    encodingHelp: string;
     runLocally: string;
     useCasesTitle: string;
     faqTitle: string;
@@ -103,6 +106,13 @@ Style: Default,Arial,36,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,0,0,0,0,100,
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 0,0:00:01.00,0:00:03.50,Default,,0,0,0,,Welcome back to the edit.
 Dialogue: 0,0:00:04.20,0:00:06.00,Default,,0,0,0,,Today we are fixing captions locally.`,
+  encodedSrt: `1
+00:00:01,000 --> 00:00:03,500
+Café subtitles should stay readable.
+
+2
+00:00:04,200 --> 00:00:06,000
+Use the source encoding selector when a file looks garbled.`,
 };
 
 const enTools: SubtitleTool[] = [
@@ -448,6 +458,55 @@ const enTools: SubtitleTool[] = [
     ],
     sampleInput: sharedSamples.srt,
   },
+  {
+    id: 'subtitle-encoding-fixer',
+    title: 'Subtitle Encoding Fixer',
+    shortTitle: 'Encoding fixer',
+    description:
+      'Convert subtitle files to clean UTF-8 text when captions show garbled characters or wrong accents.',
+    summary:
+      'Use this when an SRT, VTT, ASS, SSA, or SMI file opens with broken characters because it was saved with the wrong text encoding.',
+    buttonLabel: 'Convert to UTF-8',
+    inputLabel: 'Subtitle input',
+    outputLabel: 'UTF-8 subtitle output',
+    placeholder: 'Paste your subtitle text here',
+    acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.smi', '.txt'],
+    sampleFileName: 'sample.srt',
+    useCases: [
+      'Fix garbled subtitles before uploading them to a video platform.',
+      'Convert legacy subtitle files into UTF-8 for modern editors.',
+      'Repair broken accents and non-English characters when the source encoding is known.',
+    ],
+    faqs: [
+      {
+        question: 'Does this upload my subtitle file?',
+        answer:
+          'No. The file is decoded and exported locally in your browser.',
+      },
+      {
+        question: 'Which source encodings can I try?',
+        answer:
+          'The tool supports common encodings such as UTF-8, Windows-1252, ISO-8859-1, GB18030, Big5, Shift JIS, EUC-KR, and Windows-1250.',
+      },
+      {
+        question: 'Will the subtitle timing change?',
+        answer:
+          'No. The tool only changes how text is decoded and saved. Subtitle timing and cue order stay the same.',
+      },
+    ],
+    relatedTools: ['subtitle-cleaner', 'srt-to-vtt'],
+    relatedGuides: [
+      {
+        href: '/guides/common-subtitle-format-errors-and-fixes/',
+        title: 'Common subtitle format errors and fixes',
+      },
+      {
+        href: '/guides/how-to-clean-subtitle-formatting-before-upload/',
+        title: 'How to clean subtitle formatting before upload',
+      },
+    ],
+    sampleInput: sharedSamples.encodedSrt,
+  },
 ];
 
 
@@ -494,6 +553,9 @@ const catalogs: Record<SupportedLocale, SubtitleCatalog> = {
       shiftHelp:
         'Use positive numbers to delay captions and negative numbers to move them earlier.',
       shiftPlaceholder: 'e.g. 1200 or -800',
+      encodingLabel: 'Source text encoding',
+      encodingHelp:
+        'If the output still looks garbled, try a different source encoding and upload the file again.',
       runLocally: 'No signup. No server upload. Browser-only processing.',
       useCasesTitle: 'When to use this tool',
       faqTitle: 'FAQ',

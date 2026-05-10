@@ -26,7 +26,11 @@ const relatedTools = currentTool.relatedTools
 	.map((id) => getSubtitleTool('en', id))
 	.filter(Boolean);
 
-const isConversionTool = !['subtitle-time-shifter', 'subtitle-cleaner'].includes(currentTool.id);
+const isConversionTool = ![
+	'subtitle-time-shifter',
+	'subtitle-cleaner',
+	'subtitle-encoding-fixer',
+].includes(currentTool.id);
 
 const breadcrumbItems = [
 	{ label: 'Home', href: '/' },
@@ -48,6 +52,17 @@ const breadcrumbItems = [
 				price: '0',
 				priceCurrency: 'USD',
 			},
+		}} />
+		<JsonLd type="faqPage" data={{
+			'@type': 'FAQPage',
+			mainEntity: currentTool.faqs.map((faq) => ({
+				'@type': 'Question',
+				name: faq.question,
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: faq.answer,
+				},
+			})),
 		}} />
 	<section class="section" style="padding-bottom: 0;">
 		<Breadcrumbs items={breadcrumbItems} />
