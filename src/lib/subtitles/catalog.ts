@@ -7,7 +7,10 @@ export type SubtitleToolId =
   | 'ass-to-vtt'
   | 'subtitle-time-shifter'
   | 'subtitle-cleaner'
-  | 'subtitle-encoding-fixer';
+  | 'subtitle-encoding-fixer'
+  | 'subtitle-merger'
+  | 'partial-subtitle-shifter'
+  | 'extract-subtitles-from-video';
 
 export type SupportedLocale = 'en' | 'zh';
 
@@ -33,6 +36,9 @@ export interface SubtitleTool {
   placeholder: string;
   acceptedExtensions: string[];
   sampleFileName: string;
+  secondaryInputLabel?: string;
+  secondarySampleFileName?: string;
+  secondarySampleInput?: string;
   useCases: string[];
   faqs: SubtitleToolFAQ[];
   relatedTools: SubtitleToolId[];
@@ -67,8 +73,16 @@ export interface SubtitleCatalog {
     shiftLabel: string;
     shiftHelp: string;
     shiftPlaceholder: string;
+    partialStartLabel: string;
+    partialEndLabel: string;
+    partialRangeHelp: string;
     encodingLabel: string;
     encodingHelp: string;
+    secondInputTitle: string;
+    videoUploadTitle: string;
+    videoUploadHint: string;
+    ffmpegLoading: string;
+    ffmpegExtracting: string;
     runLocally: string;
     useCasesTitle: string;
     faqTitle: string;
@@ -113,6 +127,13 @@ Café subtitles should stay readable.
 2
 00:00:04,200 --> 00:00:06,000
 Use the source encoding selector when a file looks garbled.`,
+  secondSrt: `1
+00:00:07,000 --> 00:00:09,200
+This second file should follow the first one.
+
+2
+00:00:10,000 --> 00:00:12,000
+Merge the cues, then sort them by time.`,
 };
 
 const enTools: SubtitleTool[] = [
@@ -507,6 +528,157 @@ const enTools: SubtitleTool[] = [
     ],
     sampleInput: sharedSamples.encodedSrt,
   },
+  {
+    id: 'subtitle-merger',
+    title: 'Subtitle Merger',
+    shortTitle: 'Merger',
+    description:
+      'Merge two SRT, VTT, or ASS subtitle files into one sorted subtitle file in your browser.',
+    summary:
+      'Use this when captions are split across two files, a translator sends a second track, or you need one clean subtitle file before delivery.',
+    buttonLabel: 'Merge subtitles',
+    inputLabel: 'First subtitle input',
+    outputLabel: 'Merged subtitle output',
+    placeholder: 'Paste the first subtitle file here',
+    acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.txt'],
+    sampleFileName: 'part-one.srt',
+    secondaryInputLabel: 'Second subtitle input',
+    secondarySampleFileName: 'part-two.srt',
+    secondarySampleInput: sharedSamples.secondSrt,
+    useCases: [
+      'Join subtitle files that were exported in separate parts.',
+      'Create one sorted subtitle file from two subtitle sources.',
+      'Merge SRT, VTT, or ASS cues before doing a final timing pass.',
+    ],
+    faqs: [
+      {
+        question: 'Can I merge different subtitle formats?',
+        answer:
+          'The safest workflow is to merge two files in the same format. If formats differ, the output uses the first file format and keeps timing plus text.',
+      },
+      {
+        question: 'Does the merger renumber SRT cues?',
+        answer:
+          'Yes. Merged SRT output is sorted by start time and renumbered from 1.',
+      },
+      {
+        question: 'Will ASS styling be preserved?',
+        answer:
+          'No. ASS output keeps timing and text in a clean default ASS structure. Advanced styling should be checked in a subtitle editor afterward.',
+      },
+    ],
+    relatedTools: ['subtitle-time-shifter', 'subtitle-cleaner'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-merge-two-srt-files/',
+        title: 'How to merge two SRT files',
+      },
+      {
+        href: '/guides/how-to-create-dual-language-subtitles/',
+        title: 'How to create dual-language subtitles',
+      },
+    ],
+    sampleInput: sharedSamples.srt,
+  },
+  {
+    id: 'partial-subtitle-shifter',
+    title: 'Partial Subtitle Shifter',
+    shortTitle: 'Partial shifter',
+    description:
+      'Shift only a selected time range inside an SRT, VTT, or ASS subtitle file.',
+    summary:
+      'Use this when only one scene or one edited segment is out of sync, while the rest of the subtitle file already matches the video.',
+    buttonLabel: 'Shift selected range',
+    inputLabel: 'Subtitle input',
+    outputLabel: 'Partially shifted subtitle output',
+    placeholder: 'Paste SRT, VTT, or ASS subtitles here',
+    acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.txt'],
+    sampleFileName: 'sample.srt',
+    useCases: [
+      'Fix sync after a scene cut without moving the whole file.',
+      'Repair a middle section that drifts while the intro and ending are correct.',
+      'Move a selected subtitle range earlier or later before final review.',
+    ],
+    faqs: [
+      {
+        question: 'Which cues are shifted?',
+        answer:
+          'The tool shifts cues whose start time falls inside the selected start and end range.',
+      },
+      {
+        question: 'Can I use a negative shift?',
+        answer:
+          'Yes. Negative milliseconds move the selected cues earlier; positive milliseconds delay them.',
+      },
+      {
+        question: 'Will cues outside the range change?',
+        answer:
+          'No. Cues outside the selected range keep their original timing.',
+      },
+    ],
+    relatedTools: ['subtitle-time-shifter', 'subtitle-merger'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-shift-only-part-of-a-subtitle-file/',
+        title: 'How to shift only part of a subtitle file',
+      },
+      {
+        href: '/guides/fix-subtitle-sync-after-a-scene-cut/',
+        title: 'Fix subtitle sync after a scene cut',
+      },
+    ],
+    sampleInput: sharedSamples.srt,
+  },
+  {
+    id: 'extract-subtitles-from-video',
+    title: 'Extract Subtitles from Video',
+    shortTitle: 'Video extractor',
+    description:
+      'Extract embedded text subtitle tracks from MKV, MP4, MOV, and WebM files locally in your browser.',
+    summary:
+      'Use this when a video file contains an embedded subtitle stream and you need a separate subtitle file without uploading the video.',
+    buttonLabel: 'Extract subtitles',
+    inputLabel: 'Video input',
+    outputLabel: 'Extracted subtitle output',
+    placeholder: 'Choose a video file with an embedded subtitle track',
+    acceptedExtensions: ['.mkv', '.mp4', '.mov', '.webm', '.m4v'],
+    sampleFileName: 'video.mkv',
+    useCases: [
+      'Extract a text subtitle track from an MKV file.',
+      'Check whether an MP4 contains an embedded caption stream.',
+      'Create a separate subtitle file before conversion or cleanup.',
+    ],
+    faqs: [
+      {
+        question: 'Can this extract burned-in subtitles?',
+        answer:
+          'No. Burned-in subtitles are part of the video image and require OCR. This tool extracts embedded text subtitle tracks only.',
+      },
+      {
+        question: 'Does the video upload to a server?',
+        answer:
+          'No. FFmpeg runs in your browser. The video file stays on your device.',
+      },
+      {
+        question: 'Which subtitle track does it extract?',
+        answer:
+          'The tool attempts to extract the first embedded subtitle stream as SRT. If the stream is image-based, conversion may fail.',
+      },
+    ],
+    relatedTools: ['subtitle-encoding-fixer', 'subtitle-cleaner'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-extract-subtitles-from-mkv/',
+        title: 'How to extract subtitles from MKV',
+      },
+      {
+        href: '/guides/embedded-vs-burned-in-subtitles/',
+        title: 'Embedded vs burned-in subtitles',
+      },
+    ],
+    sampleInput:
+      'Choose a video file that contains an embedded text subtitle stream. Burned-in subtitles cannot be extracted as text.',
+  },
 ];
 
 
@@ -553,9 +725,19 @@ const catalogs: Record<SupportedLocale, SubtitleCatalog> = {
       shiftHelp:
         'Use positive numbers to delay captions and negative numbers to move them earlier.',
       shiftPlaceholder: 'e.g. 1200 or -800',
+      partialStartLabel: 'Range start time',
+      partialEndLabel: 'Range end time',
+      partialRangeHelp:
+        'Use SRT-style timestamps such as 00:01:20,000. Only cues starting inside this range are shifted.',
       encodingLabel: 'Source text encoding',
       encodingHelp:
         'If the output still looks garbled, try a different source encoding and upload the file again.',
+      secondInputTitle: 'Second subtitle file',
+      videoUploadTitle: 'Choose a video file with embedded subtitles',
+      videoUploadHint:
+        'Runs FFmpeg locally. Text subtitle streams can be extracted; burned-in subtitles cannot.',
+      ffmpegLoading: 'Loading FFmpeg in the browser...',
+      ffmpegExtracting: 'Extracting the first embedded subtitle stream...',
       runLocally: 'No signup. No server upload. Browser-only processing.',
       useCasesTitle: 'When to use this tool',
       faqTitle: 'FAQ',

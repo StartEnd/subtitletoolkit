@@ -1,0 +1,71 @@
+---
+title: Embedded vs burned-in subtitles
+description: Learn the difference between embedded subtitle tracks and burned-in subtitles before trying to extract captions from a video.
+pubDate: 2026-05-10
+category: format-comparisons
+tags:
+  - embedded subtitles
+  - burned in subtitles
+  - extract subtitles
+  - subtitle tracks
+primaryTool: extract-subtitles-from-video
+---
+
+Subtitle extraction depends on whether the captions are a real text track or part of the video image.
+
+## Quick answer
+
+Embedded subtitles can often be extracted. Burned-in subtitles cannot be extracted as text without OCR.
+
+Use [Extract Subtitles from Video](/tools/extract-subtitles-from-video/) when the video file contains an embedded text subtitle stream.
+
+## Embedded subtitles
+
+Embedded subtitles are separate streams stored inside a video container.
+
+Common examples:
+
+```text
+MKV file
+- video stream
+- audio stream
+- subtitle stream: subrip
+- subtitle stream: ass
+```
+
+These can often be extracted into a separate `.srt`, `.vtt`, or `.ass` file.
+
+## Burned-in subtitles
+
+Burned-in subtitles are pixels in the video itself. A player cannot turn them off because they are part of every frame.
+
+They look like subtitles, but there is no subtitle file inside the video to extract.
+
+## How to tell the difference
+
+Try these checks:
+
+1. If the player has a subtitle menu and can turn captions off, they may be embedded.
+2. If the subtitles are always visible and cannot be disabled, they are probably burned in.
+3. If FFmpeg lists a subtitle stream, it is embedded.
+4. If FFmpeg finds no subtitle stream, extraction will not produce text.
+
+## Common mistakes
+
+### Assuming every MKV has subtitles
+
+MKV supports subtitle streams, but a specific file may still have none.
+
+### Expecting OCR from a subtitle extractor
+
+OCR is a different workflow. It reads text from video frames and often needs manual correction.
+
+### Ignoring image-based subtitle streams
+
+Some embedded subtitle streams are image-based, such as PGS. They are embedded, but not plain text, so conversion to SRT may fail.
+
+## Related guides
+
+- [How to extract subtitles from MKV](/guides/how-to-extract-subtitles-from-mkv/)
+- [How to merge two SRT files](/guides/how-to-merge-two-srt-files/)
+- [Best subtitle format for Plex](/guides/best-subtitle-format-for-plex/)

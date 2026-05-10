@@ -2,7 +2,7 @@
 title: Common subtitle format errors and fixes
 description: Common subtitle formatting mistakes, what usually causes them, and how to clean or convert files before delivery.
 pubDate: 2026-04-21
-updatedDate: 2026-05-07
+updatedDate: 2026-05-10
 author_name: Admin
 author_image: /logo.png
 image: /imgs/features/admin.png
@@ -35,11 +35,21 @@ Broken accents, mojibake, or unreadable non-English text usually point to an enc
 
 ASS is not always the right delivery format. Sometimes you need to flatten it first. [ASS vs SRT](/guides/ass-vs-srt/) explains that tradeoff in more detail.
 
+### Only the middle section is out of sync
+
+If the start of the video is correct but a later edited scene is off, do not shift the whole file. Use [How to shift only part of a subtitle file](/guides/how-to-shift-only-part-of-a-subtitle-file/) and move only the affected range.
+
+### A video file has subtitles inside it
+
+If the captions are embedded as a text track, extract them first, then clean or convert the subtitle file. If the subtitles are burned into the video image, read [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/) before trying an extractor.
+
 ## Simple fixes
 
 - Convert formats before upload
 - Normalize text before handoff
 - Shift the whole subtitle file if the timing offset is constant
+- Use a partial shift when only one time range is wrong
+- Extract embedded text subtitles before trying to edit them
 
 If the issue is a broken timing line rather than general mess, jump to [How to fix malformed SRT timestamps](/guides/how-to-fix-malformed-srt-timestamps/) or [How to fix invalid WebVTT timestamps](/guides/how-to-fix-invalid-webvtt-timestamps/). If the player simply refuses to render captions at all, [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/) covers the most common causes.
 
@@ -52,4 +62,7 @@ See all [sync and fix guides](/guides/sync-fixes/) for more subtitle repair work
 - [Subtitle Cleaner](/tools/subtitle-cleaner/)
 - [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
 - [Subtitle Time Shifter](/tools/subtitle-time-shifter/)
+- [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/)
+- [Subtitle Merger](/tools/subtitle-merger/)
+- [Extract Subtitles from Video](/tools/extract-subtitles-from-video/)
 - [ASS to SRT](/tools/ass-to-srt/)

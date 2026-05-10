@@ -25,22 +25,48 @@ const { tool, labels } = Astro.props as {
 			</div>
 
 			<div class="workspace-mode" data-mode-panel="upload">
-			                                <div class="workspace-dropzone">
-			                                        <p class="workspace-dropzone-title">{labels.uploadTitle}</p>
-			                                        <p class="workspace-dropzone-hint">{labels.uploadHint}</p>
-			                                        <label class="workspace-file-label">
-			                                                <span class="button secondary">Browse files</span>
-			                                                <input type="file" accept={tool.acceptedExtensions.join(',')} data-file-input class="sr-only" />
-			                                        </label>
-			                                        <p class="workspace-file-name">
-			                                                {labels.selectedFile}: <span data-file-name>{tool.sampleFileName}</span>
-			                                        </p>
-			                                </div>
-			                        </div>
+				<div class="workspace-dropzone">
+					<p class="workspace-dropzone-title">
+						{tool.id === 'extract-subtitles-from-video' ? labels.videoUploadTitle : labels.uploadTitle}
+					</p>
+					<p class="workspace-dropzone-hint">
+						{tool.id === 'extract-subtitles-from-video' ? labels.videoUploadHint : labels.uploadHint}
+					</p>
+					<label class="workspace-file-label">
+						<span class="button secondary">Browse files</span>
+						<input type="file" accept={tool.acceptedExtensions.join(',')} data-file-input class="sr-only" />
+					</label>
+					<p class="workspace-file-name">
+						{labels.selectedFile}: <span data-file-name>{tool.sampleFileName}</span>
+					</p>
+				</div>
+			</div>
 			<div class="workspace-mode is-hidden" data-mode-panel="paste">
 				<label class="workspace-field-label" for="shared-input">{tool.inputLabel}</label>
 				<textarea id="shared-input" data-shared-input rows="14">{tool.sampleInput}</textarea>
 			</div>
+
+			{
+				tool.id === 'subtitle-merger' && (
+					<div class="workspace-shift">
+						<div class="workspace-head">
+							<label class="workspace-field-label" for="secondary-input">
+								{tool.secondaryInputLabel || labels.secondInputTitle}
+							</label>
+							<label class="workspace-file-label compact">
+								<span class="button secondary">Browse second file</span>
+								<input type="file" accept={tool.acceptedExtensions.join(',')} data-secondary-file-input class="sr-only" />
+							</label>
+						</div>
+						<textarea id="secondary-input" data-secondary-input rows="8">
+							{tool.secondarySampleInput}
+						</textarea>
+						<p class="workspace-file-name">
+							{labels.selectedFile}: <span data-secondary-file-name>{tool.secondarySampleFileName}</span>
+						</p>
+					</div>
+				)
+			}
 
 			<div class="workspace-actions">
 				<button class="button" type="button" data-load-sample>{labels.loadSample}</button>
@@ -48,11 +74,29 @@ const { tool, labels } = Astro.props as {
 			</div>
 
 			{
-				tool.id === 'subtitle-time-shifter' && (
+				(tool.id === 'subtitle-time-shifter' || tool.id === 'partial-subtitle-shifter') && (
 					<div class="workspace-shift">
 						<label class="workspace-field-label" for="shift-input">{labels.shiftLabel}</label>
 						<input id="shift-input" type="text" value="1200" data-shift />
 						<p class="workspace-shift-help">{labels.shiftHelp}</p>
+					</div>
+				)
+			}
+
+			{
+				tool.id === 'partial-subtitle-shifter' && (
+					<div class="workspace-shift">
+						<div class="workspace-range-grid">
+							<div>
+								<label class="workspace-field-label" for="partial-start">{labels.partialStartLabel}</label>
+								<input id="partial-start" type="text" value="00:00:01,000" data-partial-start />
+							</div>
+							<div>
+								<label class="workspace-field-label" for="partial-end">{labels.partialEndLabel}</label>
+								<input id="partial-end" type="text" value="00:00:05,000" data-partial-end />
+							</div>
+						</div>
+						<p class="workspace-shift-help">{labels.partialRangeHelp}</p>
 					</div>
 				)
 			}
@@ -120,8 +164,13 @@ const { tool, labels } = Astro.props as {
 		const fileInput = root.querySelector('[data-file-input]');
 		const fileName = root.querySelector('[data-file-name]');
 		const inputArea = root.querySelector('[data-shared-input]');
+		const secondaryInputArea = root.querySelector('[data-secondary-input]');
+		const secondaryFileInput = root.querySelector('[data-secondary-file-input]');
+		const secondaryFileName = root.querySelector('[data-secondary-file-name]');
 		const outputArea = root.querySelector('[data-output]');
 		const shiftInput = root.querySelector('[data-shift]');
+		const partialStartInput = root.querySelector('[data-partial-start]');
+		const partialEndInput = root.querySelector('[data-partial-end]');
 		const encodingInput = root.querySelector('[data-encoding]');
 		const outputFile = root.querySelector('[data-output-file]');
 		const copyButton = root.querySelector('[data-copy]');
@@ -130,21 +179,59 @@ const { tool, labels } = Astro.props as {
 		const clearButton = root.querySelector('[data-clear]');
 
 		let currentInput = tool.sampleInput;
+		let currentSecondaryInput = tool.secondarySampleInput || '';
 		let currentFileName = tool.sampleFileName;
+		let currentSecondaryFileName = tool.secondarySampleFileName || null;
+		let ffmpegInstance = null;
 
 		const render = () => {
 			if (!(inputArea instanceof HTMLTextAreaElement)) return;
 			if (!(outputArea instanceof HTMLTextAreaElement)) return;
 
+			if (tool.id === 'extract-subtitles-from-video') {
+				inputArea.value = currentInput;
+				if (!outputArea.value) {
+					outputArea.value = tool.sampleInput;
+				}
+				if (fileName instanceof HTMLElement) {
+					fileName.textContent = currentFileName || labels.noFileSelected;
+				}
+				if (outputFile instanceof HTMLElement) {
+					outputFile.textContent = buildOutputFileName(
+						currentFileName,
+						tool.id,
+						currentInput,
+					);
+				}
+				return;
+			}
+
 			const shiftValue =
 				shiftInput instanceof HTMLInputElement ? shiftInput.value : '0';
-			const output = processSubtitleTool(tool.id, currentInput, shiftValue);
+			const output = processSubtitleTool(tool.id, currentInput, shiftValue, {
+				secondaryInput: currentSecondaryInput,
+				partialStart:
+					partialStartInput instanceof HTMLInputElement
+						? partialStartInput.value
+						: undefined,
+				partialEnd:
+					partialEndInput instanceof HTMLInputElement
+						? partialEndInput.value
+						: undefined,
+			});
 
 			outputArea.value = output;
 			inputArea.value = currentInput;
+			if (secondaryInputArea instanceof HTMLTextAreaElement) {
+				secondaryInputArea.value = currentSecondaryInput;
+			}
 
 			if (fileName instanceof HTMLElement) {
 				fileName.textContent = currentFileName || labels.noFileSelected;
+			}
+			if (secondaryFileName instanceof HTMLElement) {
+				secondaryFileName.textContent =
+					currentSecondaryFileName || labels.noFileSelected;
 			}
 
 			if (outputFile instanceof HTMLElement) {
@@ -191,16 +278,149 @@ const { tool, labels } = Astro.props as {
 			shiftInput.addEventListener('input', render);
 		}
 
+		if (partialStartInput instanceof HTMLInputElement) {
+			partialStartInput.addEventListener('input', render);
+		}
+
+		if (partialEndInput instanceof HTMLInputElement) {
+			partialEndInput.addEventListener('input', render);
+		}
+
+		if (secondaryInputArea instanceof HTMLTextAreaElement) {
+			secondaryInputArea.addEventListener('input', () => {
+				currentSecondaryInput = secondaryInputArea.value;
+				currentSecondaryFileName = null;
+				render();
+			});
+		}
+
 		if (encodingInput instanceof HTMLSelectElement) {
 			encodingInput.addEventListener('change', render);
 		}
+
+		const extractSubtitlesFromVideo = async (file) => {
+			if (!(outputArea instanceof HTMLTextAreaElement)) return;
+
+			currentInput = tool.sampleInput;
+			currentFileName = file.name;
+			render();
+			outputArea.value = labels.ffmpegLoading;
+
+			const logLines = [];
+			const logHandler = ({ message }) => {
+				logLines.push(message);
+			};
+			const inputExtension = file.name.split('.').pop() || 'mkv';
+			const inputName = `input.${inputExtension}`;
+			const outputAttempts = [
+				{
+					name: 'output.srt',
+					args: ['-y', '-i', inputName, '-map', '0:s:0', '-c:s', 'srt', 'output.srt'],
+				},
+				{
+					name: 'output.srt',
+					args: ['-y', '-i', inputName, '-map', '0:s:0', '-c:s', 'copy', 'output.srt'],
+				},
+				{
+					name: 'output.ass',
+					args: ['-y', '-i', inputName, '-map', '0:s:0', '-c:s', 'copy', 'output.ass'],
+				},
+				{
+					name: 'output.vtt',
+					args: ['-y', '-i', inputName, '-map', '0:s:0', '-c:s', 'webvtt', 'output.vtt'],
+				},
+			];
+
+			try {
+				const [{ FFmpeg }, { fetchFile }] = await Promise.all([
+					import('@ffmpeg/ffmpeg'),
+					import('@ffmpeg/util'),
+				]);
+
+				if (!ffmpegInstance) {
+					ffmpegInstance = new FFmpeg();
+				}
+				ffmpegInstance.on('log', logHandler);
+
+				if (!ffmpegInstance.loaded) {
+					const baseUrl = 'https://unpkg.com/@ffmpeg/core@0.12.10/dist/esm';
+					await ffmpegInstance.load({
+						coreURL: `${baseUrl}/ffmpeg-core.js`,
+						wasmURL: `${baseUrl}/ffmpeg-core.wasm`,
+					});
+				}
+
+				outputArea.value = labels.ffmpegExtracting;
+				await ffmpegInstance.writeFile(inputName, await fetchFile(file));
+				await ffmpegInstance.exec(['-i', inputName]).catch(() => {});
+				let extractedOutputName = '';
+				let data = null;
+				let lastError = null;
+
+				for (const attempt of outputAttempts) {
+					try {
+						await ffmpegInstance.exec(attempt.args);
+						data = await ffmpegInstance.readFile(attempt.name);
+						extractedOutputName = attempt.name;
+						break;
+					} catch (error) {
+						lastError = error;
+						await ffmpegInstance.deleteFile(attempt.name).catch(() => {});
+					}
+				}
+
+				if (!data) {
+					throw lastError || new Error('No subtitle output was created.');
+				}
+
+				const text =
+					typeof data === 'string' ? data : new TextDecoder().decode(data);
+				const outputExtension = extractedOutputName.split('.').pop() || 'srt';
+
+				outputArea.value =
+					text.trim() ||
+					'No subtitle text was extracted. The video may not contain an embedded text subtitle stream.';
+				if (outputFile instanceof HTMLElement) {
+					const baseName = currentFileName.replace(/\.[^.]+$/, '');
+					outputFile.textContent = `${baseName}.subtitles.${outputExtension}`;
+				}
+
+				await Promise.allSettled(
+					[inputName, ...outputAttempts.map((attempt) => attempt.name)].map((name) =>
+						ffmpegInstance.deleteFile(name),
+					),
+				);
+				track('subtitle_tool_extract_video', {
+					tool: tool.id,
+					extension: inputExtension,
+				});
+			} catch (error) {
+				const details = logLines.slice(-12).join('\n');
+				outputArea.value = [
+					'Could not extract a subtitle track from this video.',
+					'This usually means the file has no embedded text subtitle stream, the subtitle stream is image-based, or the video uses a codec FFmpeg.wasm cannot handle in the browser.',
+					error instanceof Error ? `Error: ${error.message}` : `Error: ${String(error)}`,
+					details ? `\nFFmpeg details:\n${details}` : '',
+				]
+					.filter(Boolean)
+					.join('\n\n');
+				track('subtitle_tool_extract_video_failed', {
+					tool: tool.id,
+					message: error instanceof Error ? error.message : 'unknown',
+				});
+			} finally {
+				ffmpegInstance?.off?.('log', logHandler);
+			}
+		};
 
 		if (fileInput instanceof HTMLInputElement) {
 			fileInput.addEventListener('change', async () => {
 				const file = fileInput.files?.[0];
 				if (!file) return;
 
-				if (
+				if (tool.id === 'extract-subtitles-from-video') {
+					await extractSubtitlesFromVideo(file);
+				} else if (
 					tool.id === 'subtitle-encoding-fixer' &&
 					encodingInput instanceof HTMLSelectElement
 				) {
@@ -219,16 +439,38 @@ const { tool, labels } = Astro.props as {
 			});
 		}
 
+		if (secondaryFileInput instanceof HTMLInputElement) {
+			secondaryFileInput.addEventListener('change', async () => {
+				const file = secondaryFileInput.files?.[0];
+				if (!file) return;
+
+				currentSecondaryInput = await file.text();
+				currentSecondaryFileName = file.name;
+				track('subtitle_tool_upload_file', {
+					tool: tool.id,
+					extension: file.name.split('.').pop() || 'unknown',
+				});
+				render();
+			});
+		}
+
 		loadSampleButton?.addEventListener('click', () => {
 			currentInput = tool.sampleInput;
+			currentSecondaryInput = tool.secondarySampleInput || '';
 			currentFileName = tool.sampleFileName;
+			currentSecondaryFileName = tool.secondarySampleFileName || null;
 			track('subtitle_tool_load_sample', { tool: tool.id });
 			render();
 		});
 
 		clearButton?.addEventListener('click', () => {
 			currentInput = '';
+			currentSecondaryInput = '';
 			currentFileName = null;
+			currentSecondaryFileName = null;
+			if (outputArea instanceof HTMLTextAreaElement) {
+				outputArea.value = '';
+			}
 			render();
 		});
 
@@ -371,6 +613,10 @@ const { tool, labels } = Astro.props as {
 	                cursor: pointer;
 	        }
 
+	        .workspace-file-label.compact {
+	                margin: 0 0 var(--space-2);
+	        }
+
 	        .workspace-file-label .button {
 	                pointer-events: none; /* Let the label handle the click */
 	        }
@@ -450,6 +696,12 @@ const { tool, labels } = Astro.props as {
 		margin-bottom: 0;
 	}
 
+	.workspace-range-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--space-3);
+	}
+
 	/* File name display */
 	.workspace-file-name {
 		color: var(--color-workspace-muted);
@@ -486,6 +738,12 @@ const { tool, labels } = Astro.props as {
 
 	@media (max-width: 1024px) {
 		.workspace-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.workspace-range-grid {
 			grid-template-columns: 1fr;
 		}
 	}

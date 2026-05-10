@@ -1,0 +1,67 @@
+---
+title: How to create dual-language subtitles
+description: Build bilingual subtitles by combining translated lines with existing subtitle timing and checking the result in one subtitle file.
+pubDate: 2026-05-10
+category: workflow-guides
+tags:
+  - dual language subtitles
+  - bilingual subtitles
+  - merge subtitles
+  - subtitle workflow
+primaryTool: subtitle-merger
+---
+
+Dual-language subtitles work best when both language tracks share the same cue timing.
+
+## Quick answer
+
+Create one subtitle file with the original line and translated line inside each cue. If you already have two files with matching timestamps, use the [Subtitle Merger](/tools/subtitle-merger/) to inspect and combine them, then clean any duplicate or overlapping cues by hand.
+
+## Recommended cue format
+
+```text
+1
+00:00:01,000 --> 00:00:03,500
+We need to leave now.
+我们现在得走了。
+
+2
+00:00:04,200 --> 00:00:06,000
+The train arrives in five minutes.
+火车五分钟后到。
+```
+
+This keeps both languages inside the same timing block, which is easier for most players than two separate subtitle tracks.
+
+## Step-by-step workflow
+
+1. Start with the subtitle file that has the correct timing.
+2. Add the translated line below each original line.
+3. Keep each cue short enough to read on screen.
+4. If you have two separate files, use the [Subtitle Merger](/tools/subtitle-merger/) to compare cue order and timing.
+5. Use the [Subtitle Cleaner](/tools/subtitle-cleaner/) if copied text includes HTML tags or odd spacing.
+6. Preview the final file in the target player.
+
+## When a merger helps
+
+A merger is useful when a translator sends a separate subtitle file and you need to line it up with the original. It can reveal whether the two files have the same cue count, matching time ranges, and obvious overlaps.
+
+## Common mistakes
+
+### Keeping two separate cues at the same time
+
+Some players show overlapping cues poorly. For bilingual delivery, put both languages in one cue when possible.
+
+### Making every cue too tall
+
+Two languages can easily take four lines. Keep wording concise and check mobile playback.
+
+### Translating after timing changes
+
+If the video was edited, fix timing first. Then merge or write the bilingual text.
+
+## Related guides
+
+- [How to merge two SRT files](/guides/how-to-merge-two-srt-files/)
+- [How to clean subtitle formatting before upload](/guides/how-to-clean-subtitle-formatting-before-upload/)
+- [Best subtitle format for YouTube](/guides/best-subtitle-format-for-youtube/)

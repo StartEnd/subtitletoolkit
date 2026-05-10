@@ -1,0 +1,72 @@
+---
+title: Fix subtitle sync after a scene cut
+description: Repair subtitle timing when a video edit changes the middle of the timeline but the beginning still lines up.
+pubDate: 2026-05-10
+category: sync-fixes
+tags:
+  - subtitle scene cut
+  - partial subtitle shifter
+  - subtitle sync fix
+  - video edit subtitles
+primaryTool: partial-subtitle-shifter
+---
+
+A scene cut often breaks subtitle sync only after the edit point.
+
+## Quick answer
+
+If the beginning is correct but the subtitles drift after a cut, use the [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/) on the affected section instead of shifting the whole file.
+
+## Typical symptom
+
+The first minute plays correctly:
+
+```text
+00:00:01,000 - correct
+00:00:22,500 - correct
+00:01:05,000 - correct
+```
+
+Then an edit removes 2 seconds from the video, and later cues are late:
+
+```text
+00:02:10,000 - appears 2 seconds too late
+00:03:40,000 - appears 2 seconds too late
+```
+
+The fix is usually a negative shift for the section after the cut.
+
+## Step-by-step workflow
+
+1. Play the video until the first cue that is out of sync.
+2. Note that cue start time as the range start.
+3. Note the last affected cue as the range end.
+4. Enter a negative value if the subtitles are late, such as `-2000`.
+5. Enter a positive value if the subtitles appear too early.
+6. Check the edit point and the end of the shifted section.
+
+## When to use full-file shifting instead
+
+Use the [Subtitle Time Shifter](/tools/subtitle-time-shifter/) if every cue is wrong by the same amount from the start of the video.
+
+Use a partial shift only when the sync error begins after a specific point.
+
+## Common mistakes
+
+### Moving the intro by accident
+
+If the intro is already correct, keep the range start after the edit point.
+
+### Fixing the wrong direction
+
+If captions appear after the spoken words, use a negative number. If captions appear before the spoken words, use a positive number.
+
+### Ignoring later edits
+
+A video with multiple cuts may need more than one partial shift. Fix one section, then re-check the next section.
+
+## Related guides
+
+- [How to shift only part of a subtitle file](/guides/how-to-shift-only-part-of-a-subtitle-file/)
+- [How to fix subtitles that are too fast or too slow](/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/)
+- [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)

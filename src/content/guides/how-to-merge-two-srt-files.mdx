@@ -1,0 +1,77 @@
+---
+title: How to merge two SRT files
+description: Merge two SRT subtitle files into one sorted and renumbered subtitle file without uploading either file.
+pubDate: 2026-05-10
+category: workflow-guides
+tags:
+  - merge srt files
+  - subtitle merger
+  - combine subtitles
+  - srt workflow
+primaryTool: subtitle-merger
+---
+
+Use a subtitle merger when you have two valid SRT files and need one final `.srt` file.
+
+## Quick answer
+
+Open the [Subtitle Merger](/tools/subtitle-merger/), add the first SRT file, add the second SRT file, then download the merged output. The tool sorts cues by start time and renumbers SRT blocks from 1.
+
+## Example input
+
+First file:
+
+```text
+1
+00:00:01,000 --> 00:00:03,000
+Welcome back.
+```
+
+Second file:
+
+```text
+1
+00:00:04,500 --> 00:00:06,000
+Let's continue with the demo.
+```
+
+Merged output:
+
+```text
+1
+00:00:01,000 --> 00:00:03,000
+Welcome back.
+
+2
+00:00:04,500 --> 00:00:06,000
+Let's continue with the demo.
+```
+
+## Step-by-step workflow
+
+1. Open the [Subtitle Merger](/tools/subtitle-merger/).
+2. Upload or paste the first SRT file in the main input.
+3. Paste or upload the second SRT file in the second input box.
+4. Check that the merged preview is sorted by time.
+5. Download the merged `.srt` file.
+6. Play it against the video before publishing.
+
+## Common mistakes
+
+### Merging files with overlapping cues
+
+The merger keeps both cues. If two captions overlap, the output may still be valid SRT, but it can look crowded in a player.
+
+### Mixing formats too early
+
+If one file is VTT and the other is SRT, convert them first or make sure the output format is the one you need. The safest workflow is same format in, same format out.
+
+### Forgetting a final sync check
+
+Merging changes cue order and numbering, not timing intent. If one half was already out of sync, fix it with the [Subtitle Time Shifter](/tools/subtitle-time-shifter/) or [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/) after merging.
+
+## Related guides
+
+- [How to create dual-language subtitles](/guides/how-to-create-dual-language-subtitles/)
+- [How to shift only part of a subtitle file](/guides/how-to-shift-only-part-of-a-subtitle-file/)
+- [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)

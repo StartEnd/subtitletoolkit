@@ -1,0 +1,73 @@
+---
+title: How to shift only part of a subtitle file
+description: Move one selected time range inside an SRT, VTT, or ASS subtitle file without changing the rest of the captions.
+pubDate: 2026-05-10
+category: sync-fixes
+tags:
+  - partial subtitle shift
+  - subtitle sync
+  - shift subtitle range
+  - subtitle delay
+primaryTool: partial-subtitle-shifter
+---
+
+Use a partial shift when only one section is wrong and the rest of the subtitle file is already synced.
+
+## Quick answer
+
+Open the [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/), enter the start and end time of the bad section, enter the offset in milliseconds, then download the updated file.
+
+## Example
+
+Original cue:
+
+```text
+2
+00:00:04,200 --> 00:00:06,000
+Today we are fixing captions locally.
+```
+
+If only cues from `00:00:01,000` to `00:00:05,000` need to move 1200 ms later, the output becomes:
+
+```text
+2
+00:00:05,400 --> 00:00:07,200
+Today we are fixing captions locally.
+```
+
+Cues outside that range stay unchanged.
+
+## Step-by-step workflow
+
+1. Find the first cue in the bad section.
+2. Find the last cue in the bad section.
+3. Open the [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/).
+4. Enter the range start and range end using `00:00:00,000` format.
+5. Enter a positive offset to delay captions or a negative offset to move them earlier.
+6. Check the output around the range boundary.
+
+## How the range works
+
+The tool shifts cues whose start time falls inside the selected range. A cue that starts before the range but ends inside it is left unchanged.
+
+This behavior is useful because it avoids moving long captions that begin before the edited section.
+
+## Common mistakes
+
+### Using seconds instead of milliseconds
+
+`1200` means 1.2 seconds. `12` means 0.012 seconds.
+
+### Setting the range too wide
+
+If you include already-correct cues, they will move too. Start with a tight range and expand only if needed.
+
+### Forgetting the boundary check
+
+Always inspect the cue before the shifted section and the cue after it. Those two points reveal most partial-shift errors.
+
+## Related guides
+
+- [Fix subtitle sync after a scene cut](/guides/fix-subtitle-sync-after-a-scene-cut/)
+- [How to fix subtitle delay](/guides/how-to-fix-subtitle-delay/)
+- [Fix out-of-sync subtitles](/guides/fix-out-of-sync-subtitles/)

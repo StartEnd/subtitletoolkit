@@ -1,0 +1,66 @@
+---
+title: How to extract subtitles from MKV
+description: Extract an embedded text subtitle track from an MKV file locally in the browser and save it as a separate subtitle file.
+pubDate: 2026-05-10
+category: workflow-guides
+tags:
+  - extract subtitles from mkv
+  - mkv subtitles
+  - embedded subtitles
+  - ffmpeg subtitles
+primaryTool: extract-subtitles-from-video
+---
+
+MKV files often contain separate subtitle streams inside the video container.
+
+## Quick answer
+
+Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/), choose the MKV file, and let the browser extract the first embedded text subtitle stream as SRT.
+
+## What this can extract
+
+This works when the MKV contains a text subtitle stream such as:
+
+```text
+Stream #0:2: Subtitle: subrip
+Stream #0:3: Subtitle: ass
+```
+
+It usually cannot convert image-based subtitle streams such as:
+
+```text
+Stream #0:4: Subtitle: hdmv_pgs_subtitle
+```
+
+## Step-by-step workflow
+
+1. Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/).
+2. Choose your `.mkv` file.
+3. Wait for FFmpeg.wasm to load in the browser.
+4. Check the extracted SRT preview.
+5. Download the subtitle file.
+6. If the text has broken characters, run it through the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/).
+
+## Privacy note
+
+The video stays on your device. FFmpeg runs in the browser, so the file does not need to be uploaded to a server.
+
+## Common mistakes
+
+### Expecting burned-in subtitles to extract
+
+If subtitles are part of the video picture, there is no text track to extract. You need OCR for that.
+
+### Confusing audio language with subtitle language
+
+An MKV can have multiple audio streams and no subtitle streams. The extractor only looks for subtitle streams.
+
+### Skipping cleanup
+
+Extracted subtitles can still need cleanup. Use the [Subtitle Cleaner](/tools/subtitle-cleaner/) if the text contains unwanted tags or spacing.
+
+## Related guides
+
+- [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)
+- [How to convert subtitles to UTF-8](/guides/how-to-convert-subtitles-to-utf-8/)
+- [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)

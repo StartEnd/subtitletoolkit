@@ -63,6 +63,43 @@ function srtOrVttTimestampToMs(timestamp: string) {
   );
 }
 
+export function timestampInputToMs(input: string) {
+  const normalized = input.trim().replace(',', '.');
+  if (!normalized) {
+    return 0;
+  }
+
+  if (/^-?\d+$/.test(normalized)) {
+    return Number(normalized);
+  }
+
+  const parts = normalized.split(':');
+  if (parts.length === 2) {
+    const [minutes, secondsPart] = parts;
+    const [seconds, milliseconds = '0'] = secondsPart.split('.');
+
+    return (
+      Number(minutes) * 60000 +
+      Number(seconds) * 1000 +
+      Number(milliseconds.padEnd(3, '0').slice(0, 3))
+    );
+  }
+
+  if (parts.length === 3) {
+    const [hours, minutes, secondsPart] = parts;
+    const [seconds, milliseconds = '0'] = secondsPart.split('.');
+
+    return (
+      Number(hours) * 3600000 +
+      Number(minutes) * 60000 +
+      Number(seconds) * 1000 +
+      Number(milliseconds.padEnd(3, '0').slice(0, 3))
+    );
+  }
+
+  return 0;
+}
+
 function assTimestampToMs(timestamp: string) {
   const [hours, minutes, rest] = timestamp.split(':');
   const [seconds, centiseconds = '00'] = rest.split('.');
@@ -311,6 +348,53 @@ function shiftCueTimes(cues: SubtitleCue[], shiftMs: number) {
   }));
 }
 
+function sortCuesByStart(cues: SubtitleCue[]) {
+  return [...cues].sort((a, b) => a.start - b.start || a.end - b.end);
+}
+
+function shiftCueTimesInRange(
+  cues: SubtitleCue[],
+  shiftMs: number,
+  rangeStartMs: number,
+  rangeEndMs: number
+) {
+  const start = Math.min(rangeStartMs, rangeEndMs);
+  const end = Math.max(rangeStartMs, rangeEndMs);
+
+  return cues.map((cue) => {
+    if (cue.start < start || cue.start > end) {
+      return cue;
+    }
+
+    return {
+      ...cue,
+      start: Math.max(0, cue.start + shiftMs),
+      end: Math.max(0, cue.end + shiftMs),
+    };
+  });
+}
+
+function mergeSubtitleInputs(primaryInput: string, secondaryInput: string) {
+  const primaryFormat = detectSubtitleFormat(primaryInput);
+  const secondaryFormat = detectSubtitleFormat(secondaryInput);
+  const outputFormat =
+    primaryFormat === 'unknown' ? secondaryFormat : primaryFormat;
+
+  if (outputFormat === 'unknown') {
+    return [primaryInput, secondaryInput].filter(Boolean).join('\n\n');
+  }
+
+  const primaryCues = parseSubtitleByFormat(primaryInput, primaryFormat);
+  const secondaryCues = parseSubtitleByFormat(secondaryInput, secondaryFormat);
+  const cues = sortCuesByStart([...primaryCues, ...secondaryCues]);
+
+  if (!cues.length) {
+    return [primaryInput, secondaryInput].filter(Boolean).join('\n\n');
+  }
+
+  return serializeByFormat(cues, outputFormat);
+}
+
 function decodeHtmlEntities(input: string) {
   return input
     .replace(/&nbsp;/gi, ' ')
@@ -341,7 +425,12 @@ function cleanCueText(cues: SubtitleCue[]) {
 export function processSubtitleTool(
   toolId: SubtitleToolId,
   input: string,
-  shiftValue = '0'
+  shiftValue = '0',
+  options: {
+    secondaryInput?: string;
+    partialStart?: string;
+    partialEnd?: string;
+  } = {}
 ) {
   const normalized = normalizeSubtitleInput(input);
   if (!normalized) {
@@ -384,6 +473,28 @@ export function processSubtitleTool(
     }
     case 'subtitle-encoding-fixer':
       return normalized;
+    case 'subtitle-merger':
+      return mergeSubtitleInputs(
+        normalized,
+        normalizeSubtitleInput(options.secondaryInput || '')
+      );
+    case 'partial-subtitle-shifter': {
+      const format = detectSubtitleFormat(normalized);
+      const cues = parseSubtitleByFormat(normalized, format);
+      if (!cues.length || format === 'unknown') {
+        return normalized;
+      }
+
+      return serializeByFormat(
+        shiftCueTimesInRange(
+          cues,
+          Number(shiftValue || '0'),
+          timestampInputToMs(options.partialStart || '00:00:00,000'),
+          timestampInputToMs(options.partialEnd || '99:59:59,999')
+        ),
+        format
+      );
+    }
     default:
       return normalized;
   }
@@ -406,7 +517,11 @@ export function inferOutputFormat(
     case 'subtitle-time-shifter':
     case 'subtitle-cleaner':
     case 'subtitle-encoding-fixer':
+    case 'subtitle-merger':
+    case 'partial-subtitle-shifter':
       return detectSubtitleFormat(input);
+    case 'extract-subtitles-from-video':
+      return 'srt';
     default:
       return 'unknown';
   }
@@ -433,6 +548,15 @@ export function buildOutputFileName(
   if (toolId === 'subtitle-encoding-fixer') {
     const originalExtension = inputName.match(/\.([^.]+)$/)?.[1] || extension;
     return `${baseName}.utf8.${originalExtension}`;
+  }
+  if (toolId === 'subtitle-merger') {
+    return `${baseName}.merged.${extension}`;
+  }
+  if (toolId === 'partial-subtitle-shifter') {
+    return `${baseName}.partial-shift.${extension}`;
+  }
+  if (toolId === 'extract-subtitles-from-video') {
+    return `${baseName}.subtitles.srt`;
   }
 
   return `${baseName}.${extension}`;
