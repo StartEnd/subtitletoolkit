@@ -19,7 +19,7 @@ const toolId = Astro.props.toolId ?? Astro.params.slug ?? '';
 const currentTool = getSubtitleTool('en', toolId);
 
 if (!currentTool) {
-	return Astro.redirect('/tools');
+	return Astro.redirect('/tools/');
 }
 
 const relatedTools = currentTool.relatedTools
@@ -30,7 +30,7 @@ const isConversionTool = !['subtitle-time-shifter', 'subtitle-cleaner'].includes
 
 const breadcrumbItems = [
 	{ label: 'Home', href: '/' },
-	{ label: 'Tools', href: '/tools' },
+	{ label: 'Tools', href: '/tools/' },
 	{ label: currentTool.shortTitle },
 ];
 ---
@@ -40,7 +40,7 @@ const breadcrumbItems = [
 			'@type': 'SoftwareApplication',
 			name: currentTool.title,
 			description: currentTool.description,
-			url: `https://subtitletoolkit.tools/tools/${currentTool.id}`,
+			url: `https://subtitletoolkit.tools/tools/${currentTool.id}/`,
 			applicationCategory: 'UtilityApplication',
 			operatingSystem: 'Web Browser',
 			offers: {
@@ -108,7 +108,7 @@ const breadcrumbItems = [
 					<ul>
 						{
 							relatedTools.map((tool) => (
-								<li><a href={`/tools/${tool?.id}`}>{tool?.title}</a></li>
+								<li><a href={`/tools/${tool?.id}/`}>{tool?.title}</a></li>
 							))
 						}
 					</ul>

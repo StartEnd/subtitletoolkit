@@ -45,7 +45,7 @@ const pageDescription = intro;
 
 const breadcrumbItems = [
 	{ label: 'Home', href: '/' },
-	{ label: 'Guides', href: '/guides' },
+	{ label: 'Guides', href: '/guides/' },
 	{ label: meta.label },
 ];
 ---
@@ -77,10 +77,10 @@ const breadcrumbItems = [
 								{guide.data.primaryTool ? 'Mapped to a tool' : 'Reference guide'}
 							</p>
 							<h3>
-								<a href={`/guides/${guide.id}`}>{guide.data.title}</a>
+								<a href={`/guides/${guide.id}/`}>{guide.data.title}</a>
 							</h3>
 							<p class="muted">{guide.data.description}</p>
-							<a class="card-link" href={`/guides/${guide.id}`}>
+							<a class="card-link" href={`/guides/${guide.id}/`}>
 								Read guide <span aria-hidden="true">&rarr;</span>
 							</a>
 						</article>

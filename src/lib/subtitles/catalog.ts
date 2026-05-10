@@ -139,9 +139,9 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['vtt-to-srt', 'srt-to-ass'],
     relatedGuides: [
-      { href: '/guides/srt-vs-vtt', title: 'SRT vs VTT' },
+      { href: '/guides/srt-vs-vtt/', title: 'SRT vs VTT' },
       {
-        href: '/guides/best-subtitle-format-for-html5-video',
+        href: '/guides/best-subtitle-format-for-html5-video/',
         title: 'Best subtitle format for HTML5 video',
       },
     ],
@@ -179,9 +179,9 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['srt-to-vtt', 'vtt-to-ass'],
     relatedGuides: [
-      { href: '/guides/srt-vs-vtt', title: 'SRT vs VTT' },
+      { href: '/guides/srt-vs-vtt/', title: 'SRT vs VTT' },
       {
-        href: '/guides/how-to-convert-subtitle-files-for-web-players',
+        href: '/guides/how-to-convert-subtitle-files-for-web-players/',
         title: 'How to convert subtitle files for web players',
       },
     ],
@@ -220,9 +220,9 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['ass-to-srt', 'ass-to-vtt'],
     relatedGuides: [
-      { href: '/guides/ass-vs-srt', title: 'ASS vs SRT' },
+      { href: '/guides/ass-vs-srt/', title: 'ASS vs SRT' },
       {
-        href: '/guides/when-to-use-ass-instead-of-srt',
+        href: '/guides/when-to-use-ass-instead-of-srt/',
         title: 'When to use ASS instead of SRT',
       },
     ],
@@ -261,9 +261,9 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['srt-to-ass', 'ass-to-vtt'],
     relatedGuides: [
-      { href: '/guides/ass-vs-srt', title: 'ASS vs SRT' },
+      { href: '/guides/ass-vs-srt/', title: 'ASS vs SRT' },
       {
-        href: '/guides/common-subtitle-format-errors-and-fixes',
+        href: '/guides/common-subtitle-format-errors-and-fixes/',
         title: 'Common subtitle format errors and fixes',
       },
     ],
@@ -303,11 +303,11 @@ const enTools: SubtitleTool[] = [
     relatedTools: ['ass-to-vtt', 'vtt-to-srt'],
     relatedGuides: [
       {
-        href: '/guides/how-to-convert-subtitle-files-for-web-players',
+        href: '/guides/how-to-convert-subtitle-files-for-web-players/',
         title: 'How to convert subtitle files for web players',
       },
       {
-        href: '/guides/when-to-use-ass-instead-of-srt',
+        href: '/guides/when-to-use-ass-instead-of-srt/',
         title: 'When to use ASS instead of SRT',
       },
     ],
@@ -347,10 +347,10 @@ const enTools: SubtitleTool[] = [
     relatedTools: ['vtt-to-ass', 'srt-to-vtt'],
     relatedGuides: [
       {
-        href: '/guides/how-to-convert-ass-to-vtt-for-web-players',
+        href: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
         title: 'How to convert ASS to VTT for web players',
       },
-      { href: '/guides/ass-vs-vtt', title: 'ASS vs VTT for browser playback' },
+      { href: '/guides/ass-vs-vtt/', title: 'ASS vs VTT for browser playback' },
     ],
     sampleInput: sharedSamples.ass,
   },
@@ -388,11 +388,11 @@ const enTools: SubtitleTool[] = [
     relatedTools: ['subtitle-cleaner', 'vtt-to-srt'],
     relatedGuides: [
       {
-        href: '/guides/fix-out-of-sync-subtitles',
+        href: '/guides/fix-out-of-sync-subtitles/',
         title: 'How to fix out-of-sync subtitles',
       },
       {
-        href: '/guides/common-subtitle-format-errors-and-fixes',
+        href: '/guides/common-subtitle-format-errors-and-fixes/',
         title: 'Common subtitle format errors and fixes',
       },
     ],
@@ -438,11 +438,11 @@ const enTools: SubtitleTool[] = [
     relatedTools: ['subtitle-time-shifter', 'ass-to-srt'],
     relatedGuides: [
       {
-        href: '/guides/common-subtitle-format-errors-and-fixes',
+        href: '/guides/common-subtitle-format-errors-and-fixes/',
         title: 'Common subtitle format errors and fixes',
       },
       {
-        href: '/guides/how-to-convert-subtitle-files-for-web-players',
+        href: '/guides/how-to-convert-subtitle-files-for-web-players/',
         title: 'How to convert subtitle files for web players',
       },
     ],
@@ -469,10 +469,10 @@ const catalogs: Record<SupportedLocale, SubtitleCatalog> = {
       guideDescription:
         'These guides support the tool pages and give you the first internal-linking cluster.',
       guides: [
-        { href: '/guides/srt-vs-vtt', title: 'SRT vs VTT' },
-        { href: '/guides/ass-vs-srt', title: 'ASS vs SRT' },
+        { href: '/guides/srt-vs-vtt/', title: 'SRT vs VTT' },
+        { href: '/guides/ass-vs-srt/', title: 'ASS vs SRT' },
         {
-          href: '/guides/fix-out-of-sync-subtitles',
+          href: '/guides/fix-out-of-sync-subtitles/',
           title: 'How to fix out-of-sync subtitles',
         },
       ],

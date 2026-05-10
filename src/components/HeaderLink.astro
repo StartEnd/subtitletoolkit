@@ -6,7 +6,16 @@ type Props = HTMLAttributes<'a'>;
 const { href, class: className, ...props } = Astro.props;
 const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
 const subpath = pathname.match(/[^\/]+/g);
-const isActive = href === pathname || href === '/' + (subpath?.[0] || '');
+const normalizePath = (path: string | undefined) => {
+	if (!path || path === '/') {
+		return '/';
+	}
+
+	return path.endsWith('/') ? path.slice(0, -1) : path;
+};
+const isActive =
+	normalizePath(href) === normalizePath(pathname) ||
+	normalizePath(href) === normalizePath('/' + (subpath?.[0] || ''));
 ---
 
 <a href={href} class:list={['nav-link', className, { active: isActive }]} {...props}>

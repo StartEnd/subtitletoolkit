@@ -27,7 +27,7 @@ const categoryMeta = guideCategoryMeta[category];
 
 const breadcrumbItems = [
 	{ label: 'Home', href: '/' },
-	{ label: 'Guides', href: '/guides' },
+	{ label: 'Guides', href: '/guides/' },
 	{ label: categoryMeta.label, href: categoryMeta.hubPath },
 	{ label: title },
 ];
@@ -76,7 +76,7 @@ const breadcrumbItems = [
 						: 'Convert, shift, and clean subtitle files directly in your browser. No signup, no upload.'
 				}
 			</p>
-			<a class="button" href={primaryToolData ? `/tools/${primaryToolData.id}` : '/tools'}>
+			<a class="button" href={primaryToolData ? `/tools/${primaryToolData.id}/` : '/tools/'}>
 				{primaryToolData ? `Open ${primaryToolData.shortTitle}` : 'Browse tools'} <span aria-hidden="true">&rarr;</span>
 			</a>
 		</div>
@@ -89,13 +89,13 @@ const breadcrumbItems = [
 							<p class="related-guides-kicker">{categoryMeta.label}</p>
 							<h2 id="related-guides-title">Read next</h2>
 						</div>
-						<a class="related-guides-link" href="/guides">View all guides</a>
+						<a class="related-guides-link" href="/guides/">View all guides</a>
 					</div>
 					<div class="related-guides-grid">
 						{relatedGuides.map((guide) => (
 							<article class="related-guide-card">
 								<p class="related-guide-meta">{guideCategoryMeta[guide.data.category].label}</p>
-								<h3><a href={`/guides/${guide.id}`}>{guide.data.title}</a></h3>
+								<h3><a href={`/guides/${guide.id}/`}>{guide.data.title}</a></h3>
 								<p>{guide.data.description}</p>
 							</article>
 						))}
