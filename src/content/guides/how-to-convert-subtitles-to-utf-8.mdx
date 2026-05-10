@@ -1,0 +1,88 @@
+---
+title: How to convert subtitles to UTF-8
+description: Convert subtitle files to UTF-8 so they open correctly in modern editors, video platforms, and browser video workflows.
+pubDate: 2026-05-10
+category: conversion-guides
+tags:
+  - utf-8
+  - subtitle encoding
+  - subtitle conversion
+  - srt
+  - vtt
+primaryTool: subtitle-encoding-fixer
+---
+
+UTF-8 is the safest default encoding for modern subtitle workflows.
+
+## Quick answer
+
+If a subtitle file came from an old editor, archive, DVD workflow, or regional subtitle site, convert it to UTF-8 before upload or delivery.
+
+Use the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) to decode the original file and download a UTF-8 copy.
+
+## Why UTF-8 is usually the right target
+
+Modern tools and platforms expect UTF-8 more often than older encodings. UTF-8 handles English, accented Latin text, Chinese, Japanese, Korean, and many other scripts in one format.
+
+That makes it safer for:
+
+- browser video captions
+- YouTube or Vimeo uploads
+- subtitle editing tools
+- client handoff
+- archive copies
+
+## Step-by-step workflow
+
+1. Keep a backup of the original subtitle file.
+2. Open the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/).
+3. Select the source encoding if you know it.
+4. Upload the file and review the preview.
+5. Try another source encoding if the preview still looks garbled.
+6. Download the UTF-8 output.
+7. Test the output in the target player or editor.
+
+## Example
+
+If this appears in the broken file:
+
+```text
+El niÃ±o llegÃ³ tarde.
+```
+
+Try `Windows-1252` as the source encoding. The UTF-8 output should read:
+
+```text
+El niño llegó tarde.
+```
+
+## What this changes
+
+Converting to UTF-8 changes how the text is stored. It should not change:
+
+- cue timing
+- cue order
+- subtitle format
+- line numbers
+
+If you also need to clean markup or spacing, run the file through the [Subtitle Cleaner](/tools/subtitle-cleaner/) after the encoding looks correct.
+
+## Common mistakes
+
+### Choosing UTF-8 as the source for a broken legacy file
+
+If the file already looks garbled, choosing UTF-8 as the source may simply preserve the broken text. Try the legacy encoding that matches the file origin.
+
+### Converting after upload fails
+
+Encoding is best fixed before upload. Some platforms reject or misread subtitle text silently.
+
+### Losing the original
+
+Always keep the original until the converted copy has been checked.
+
+## Related guides
+
+- [How to fix garbled subtitles](/guides/how-to-fix-garbled-subtitles/)
+- [Subtitle encoding: Windows-1252 vs UTF-8](/guides/subtitle-encoding-windows-1252-vs-utf-8/)
+- [How to clean subtitle formatting before upload](/guides/how-to-clean-subtitle-formatting-before-upload/)

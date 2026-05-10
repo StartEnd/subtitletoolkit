@@ -1,0 +1,85 @@
+---
+title: How to fix garbled subtitles
+description: Fix subtitle files that show weird characters, mojibake, or broken accents by reopening the file with the correct text encoding.
+pubDate: 2026-05-10
+category: sync-fixes
+tags:
+  - garbled subtitles
+  - subtitle encoding
+  - mojibake
+  - utf-8
+  - subtitle errors
+primaryTool: subtitle-encoding-fixer
+---
+
+Garbled subtitles usually mean the subtitle text was decoded with the wrong character encoding.
+
+## Quick answer
+
+If a subtitle file opens with broken accents, strange symbols, or unreadable non-English text, do not edit the text by hand. Reopen the file with the likely source encoding, then save a clean UTF-8 copy.
+
+The [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) is the fastest browser-local way to try common encodings.
+
+## What garbled subtitles look like
+
+Encoding problems often look like this:
+
+```text
+CafÃ©
+EspaÃ±ol
+FranÃ§ais
+```
+
+Those words were probably meant to be:
+
+```text
+Café
+Español
+Français
+```
+
+For Chinese, Japanese, or Korean subtitles, the symptom is often blocks of unrelated characters instead of readable text.
+
+## Why this happens
+
+Subtitle files are plain text files. If the file was saved as `Windows-1252`, `ISO-8859-1`, `GB18030`, `Big5`, `Shift JIS`, or another legacy encoding, opening it as UTF-8 can corrupt how the characters display.
+
+The timing lines may still be fine. The problem is the text decoding step.
+
+## Step-by-step workflow
+
+1. Open the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/).
+2. Choose the source encoding that matches where the subtitle file came from.
+3. Upload the subtitle file.
+4. Check the output preview.
+5. If the output still looks wrong, try another source encoding and upload the original file again.
+6. Download the UTF-8 version once the text looks readable.
+
+## Which encoding should you try first?
+
+- Western European accents: try `Windows-1252`, then `ISO-8859-1`.
+- Simplified Chinese subtitles: try `GB18030`.
+- Traditional Chinese subtitles: try `Big5`.
+- Japanese subtitles: try `Shift JIS`.
+- Korean subtitles: try `EUC-KR`.
+- Central European text: try `Windows-1250`.
+
+## Common mistakes
+
+### Editing corrupted text manually
+
+If the text is already garbled, manual edits are slow and easy to get wrong. Fix the encoding first.
+
+### Saving over the only copy
+
+Keep the original file until you have confirmed the UTF-8 output works in the target editor or player.
+
+### Confusing encoding problems with format problems
+
+If the text is readable but timestamps are malformed, read [How to fix malformed SRT timestamps](/guides/how-to-fix-malformed-srt-timestamps/) instead.
+
+## Related guides
+
+- [How to convert subtitles to UTF-8](/guides/how-to-convert-subtitles-to-utf-8/)
+- [Subtitle encoding: Windows-1252 vs UTF-8](/guides/subtitle-encoding-windows-1252-vs-utf-8/)
+- [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)

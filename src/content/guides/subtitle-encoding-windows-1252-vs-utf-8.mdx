@@ -1,0 +1,88 @@
+---
+title: "Subtitle encoding: Windows-1252 vs UTF-8"
+description: Understand the practical difference between Windows-1252 and UTF-8 subtitle files, and when to convert subtitles before upload.
+pubDate: 2026-05-10
+category: format-comparisons
+tags:
+  - windows-1252
+  - utf-8
+  - subtitle encoding
+  - garbled subtitles
+  - srt
+primaryTool: subtitle-encoding-fixer
+---
+
+`Windows-1252` and `UTF-8` can both store readable subtitle text, but they are not interchangeable.
+
+## Quick answer
+
+Use `UTF-8` for the final subtitle file whenever possible. If an older subtitle file shows broken accents, try decoding the original as `Windows-1252`, then save a UTF-8 copy.
+
+The [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) can do that in the browser.
+
+## What Windows-1252 is
+
+`Windows-1252` is a legacy text encoding commonly used for Western European text. Old `.srt` files, subtitle archives, and Windows-era editing workflows may still use it.
+
+It can represent characters such as:
+
+```text
+é
+ñ
+ç
+ü
+```
+
+But if a `Windows-1252` file is opened as UTF-8, those characters may display as mojibake.
+
+## What UTF-8 is
+
+`UTF-8` is the modern default for web and cross-platform text. It supports far more languages and is usually the safest choice for subtitles that need to move between editors, browsers, and video platforms.
+
+## Common symptom
+
+A `Windows-1252` subtitle decoded incorrectly may show:
+
+```text
+FranÃ§ais
+EspaÃ±ol
+```
+
+After decoding as `Windows-1252` and saving as UTF-8, it should read:
+
+```text
+Français
+Español
+```
+
+## When to suspect Windows-1252
+
+Try `Windows-1252` first when:
+
+- the subtitles are in English or Western European languages
+- accents are broken but timing lines look normal
+- the file came from an old editor or subtitle archive
+- the broken text includes patterns like `Ã©`, `Ã±`, or `Â`
+
+## When Windows-1252 is probably wrong
+
+Do not assume `Windows-1252` for every file. For non-Latin subtitle text, try an encoding that matches the language or source:
+
+- Simplified Chinese: `GB18030`
+- Traditional Chinese: `Big5`
+- Japanese: `Shift JIS`
+- Korean: `EUC-KR`
+
+## Step-by-step workflow
+
+1. Open the original subtitle file in the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/).
+2. Select `Windows-1252` as the source encoding.
+3. Check whether accents and symbols look correct.
+4. Download the UTF-8 output.
+5. Test the UTF-8 file in the final editor or video platform.
+
+## Related guides
+
+- [How to fix garbled subtitles](/guides/how-to-fix-garbled-subtitles/)
+- [How to convert subtitles to UTF-8](/guides/how-to-convert-subtitles-to-utf-8/)
+- [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)

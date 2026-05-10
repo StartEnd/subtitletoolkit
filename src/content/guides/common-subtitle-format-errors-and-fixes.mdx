@@ -27,6 +27,10 @@ You may have `SRT` when the player wants `VTT`, or `ASS` when a client only want
 
 Spacing, line breaks, or inconsistent formatting can make a file look sloppy even when the cues are technically correct. If the upload step is the immediate problem, read [How to clean subtitle formatting before upload](/guides/how-to-clean-subtitle-formatting-before-upload/).
 
+### Text is readable in one app but garbled in another
+
+Broken accents, mojibake, or unreadable non-English text usually point to an encoding problem rather than a timing problem. Start with [How to fix garbled subtitles](/guides/how-to-fix-garbled-subtitles/) before editing the text by hand.
+
 ### Styled subtitles are being delivered to a simple player
 
 ASS is not always the right delivery format. Sometimes you need to flatten it first. [ASS vs SRT](/guides/ass-vs-srt/) explains that tradeoff in more detail.
@@ -46,5 +50,6 @@ See all [sync and fix guides](/guides/sync-fixes/) for more subtitle repair work
 ## Related tools
 
 - [Subtitle Cleaner](/tools/subtitle-cleaner/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
 - [Subtitle Time Shifter](/tools/subtitle-time-shifter/)
 - [ASS to SRT](/tools/ass-to-srt/)

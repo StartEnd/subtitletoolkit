@@ -497,12 +497,12 @@ const enTools: SubtitleTool[] = [
     relatedTools: ['subtitle-cleaner', 'srt-to-vtt'],
     relatedGuides: [
       {
-        href: '/guides/common-subtitle-format-errors-and-fixes/',
-        title: 'Common subtitle format errors and fixes',
+        href: '/guides/how-to-fix-garbled-subtitles/',
+        title: 'How to fix garbled subtitles',
       },
       {
-        href: '/guides/how-to-clean-subtitle-formatting-before-upload/',
-        title: 'How to clean subtitle formatting before upload',
+        href: '/guides/how-to-convert-subtitles-to-utf-8/',
+        title: 'How to convert subtitles to UTF-8',
       },
     ],
     sampleInput: sharedSamples.encodedSrt,
