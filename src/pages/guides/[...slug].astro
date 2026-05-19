@@ -51,7 +51,7 @@ const primaryToolData = guide.data.primaryTool
 		headline: guide.data.title,
 		description: guide.data.description,
 		datePublished: guide.data.pubDate.toISOString(),
-		...(guide.data.updatedDate ? { dateModified: guide.data.updatedDate.toISOString() } : {}),
+		dateModified: (guide.data.updatedDate || guide.data.pubDate).toISOString(),
 		author: {
 			'@type': 'Organization',
 			name: 'Subtitle Toolkit',

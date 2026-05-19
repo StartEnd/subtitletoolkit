@@ -390,7 +390,7 @@ const enTools: SubtitleTool[] = [
     title: 'Subtitle Time Shifter',
     shortTitle: 'Time shifter',
     description:
-      'Move subtitle timestamps forward or backward for SRT, VTT, and ASS files.',
+      'Move subtitle timestamps forward or backward for SRT, VTT, and ASS files. Free browser-based tool — no signup, no upload.',
     summary:
       'Use this when subtitles start too early or too late, but the cue order is otherwise correct.',
     buttonLabel: 'Shift timestamps',

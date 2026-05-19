@@ -3,6 +3,7 @@ import SiteLayout from './SiteLayout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import type { CollectionEntry } from 'astro:content';
+import { SITE_TITLE } from '../consts';
 import { guideCategoryMeta } from '../lib/guides/catalog';
 import type { SubtitleTool } from '../lib/subtitles/catalog';
 
@@ -33,7 +34,7 @@ const breadcrumbItems = [
 ];
 ---
 
-<SiteLayout title={title} description={description}>
+<SiteLayout title={`${title} | ${SITE_TITLE}`} description={description}>
 	<article class="guide-article">
 		<Breadcrumbs items={breadcrumbItems} />
 		<!-- Article Header -->
