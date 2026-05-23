@@ -1,6 +1,6 @@
 ---
-title: How to fix subtitles that are too fast or too slow
-description: Repair subtitle timing when captions consistently run early or late and decide whether a simple global shift is enough.
+title: Fix subtitles that are too fast or slow
+description: Repair subtitles that appear too early or too late by checking timing drift, measuring the offset, and applying the right subtitle shift.
 pubDate: 2026-05-06
 category: sync-fixes
 tags:
@@ -43,6 +43,12 @@ If the mismatch is about the same in all three places, use a global shift.
 
 If the mismatch keeps growing, the file is drifting and needs more than one adjustment.
 
+## Decide whether it is offset or drift
+
+An offset problem is stable. A subtitle might appear 900 ms late at the start, middle, and end of the video. That is the easiest case because one global shift can repair the whole file.
+
+A drift problem changes over time. The first cue might be close, the middle might be two seconds late, and the final cue might be five seconds late. That usually means the subtitle file was made for a different frame rate, a different edit, or a video with missing footage. Do not keep applying one global shift if the error keeps changing.
+
 ## Step-by-step workflow
 
 1. Measure whether subtitles are early or late.
@@ -50,6 +56,12 @@ If the mismatch keeps growing, the file is drifting and needs more than one adju
 3. Enter a negative value if captions need to move earlier.
 4. Enter a positive value if captions need to move later.
 5. Export the adjusted file and test again.
+
+## How to choose the shift value
+
+Measure a cue against the spoken line it should match. If the subtitle appears one second after the speech, enter `1000` to delay or `-1000` to move earlier depending on the direction you need. The important part is the sign: positive values push captions later, while negative values pull them earlier.
+
+After exporting, test at least three moments again. If the same amount is still wrong everywhere, adjust once more. If different parts are wrong by different amounts, use a partial shift or repair the edit-specific section separately.
 
 ## Common mistakes
 
@@ -65,7 +77,12 @@ If the error grows over time, a single shift will not hold.
 
 A file can look fixed in the first minute and still fail later.
 
+## When to use a partial fix instead
+
+If the beginning and ending are correct but one scene is wrong, use [How to shift only part of a subtitle file](/guides/how-to-shift-only-part-of-a-subtitle-file/) instead of moving the whole file. That workflow is safer after scene cuts, removed intros, inserted sponsor segments, or edits where only the middle of the timeline changed.
+
 ## Related guides
 
 - [How to fix subtitle delay](/guides/how-to-fix-subtitle-delay/)
 - [How to fix out-of-sync subtitles](/guides/fix-out-of-sync-subtitles/)
+- [Fix subtitle sync after a scene cut](/guides/fix-subtitle-sync-after-a-scene-cut/)

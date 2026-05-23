@@ -1,0 +1,52 @@
+# Subtitle Toolkit
+
+> Free browser-based subtitle tools and practical guides for SRT, VTT, ASS, subtitle timing, text cleanup, encoding repair, merging, and embedded subtitle extraction.
+
+Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in the browser. The site is designed for creators, editors, developers, educators, and teams that need quick caption workflow utilities without creating an account or uploading subtitle text to a server.
+
+## Core Pages
+
+- [Home](https://subtitletoolkit.tools/): Overview of the free subtitle toolkit.
+- [Tools](https://subtitletoolkit.tools/tools/): Browser-based subtitle converters and utilities.
+- [Guides](https://subtitletoolkit.tools/guides/): Practical subtitle format and workflow guides.
+
+## Tools
+
+- [SRT to VTT Converter](https://subtitletoolkit.tools/tools/srt-to-vtt/): Convert SubRip subtitles to WebVTT for HTML5 video and browser players.
+- [VTT to SRT Converter](https://subtitletoolkit.tools/tools/vtt-to-srt/): Convert WebVTT captions to numbered SRT blocks.
+- [SRT to ASS Converter](https://subtitletoolkit.tools/tools/srt-to-ass/): Convert plain SRT subtitles to a basic ASS structure.
+- [ASS to SRT Converter](https://subtitletoolkit.tools/tools/ass-to-srt/): Flatten ASS dialogue into simple SRT subtitles.
+- [VTT to ASS Converter](https://subtitletoolkit.tools/tools/vtt-to-ass/): Convert browser captions to ASS for editing workflows.
+- [ASS to VTT Converter](https://subtitletoolkit.tools/tools/ass-to-vtt/): Convert ASS subtitles to WebVTT for browser playback.
+- [Subtitle Time Shifter](https://subtitletoolkit.tools/tools/subtitle-time-shifter/): Shift SRT, VTT, or ASS timestamps forward or backward.
+- [Partial Subtitle Shifter](https://subtitletoolkit.tools/tools/partial-subtitle-shifter/): Shift only a selected time range inside a subtitle file.
+- [Subtitle Cleaner](https://subtitletoolkit.tools/tools/subtitle-cleaner/): Remove stray tags and normalize subtitle text spacing.
+- [Subtitle Encoding Fixer](https://subtitletoolkit.tools/tools/subtitle-encoding-fixer/): Convert subtitle files to UTF-8 and repair garbled characters.
+- [Subtitle Merger](https://subtitletoolkit.tools/tools/subtitle-merger/): Merge two subtitle files into one sorted output.
+- [Extract Subtitles from Video](https://subtitletoolkit.tools/tools/extract-subtitles-from-video/): Extract embedded text subtitle streams from local video files in the browser.
+
+## Guide Clusters
+
+- [Conversion guides](https://subtitletoolkit.tools/guides/conversion-guides/): Tutorials for converting subtitle formats for the right destination.
+- [Sync fixes](https://subtitletoolkit.tools/guides/sync-fixes/): Timing drift, malformed timestamps, missing headers, and broken playback fixes.
+- [Format comparisons](https://subtitletoolkit.tools/guides/format-comparisons/): SRT, VTT, ASS, player, and platform format decisions.
+- [Workflow guides](https://subtitletoolkit.tools/guides/workflow-guides/): End-to-end subtitle preparation and delivery workflows.
+
+## High-Value Guides
+
+- [SRT vs VTT](https://subtitletoolkit.tools/guides/srt-vs-vtt/)
+- [ASS vs SRT](https://subtitletoolkit.tools/guides/ass-vs-srt/)
+- [Best subtitle format for YouTube](https://subtitletoolkit.tools/guides/best-subtitle-format-for-youtube/)
+- [Best subtitle format for HTML5 video](https://subtitletoolkit.tools/guides/best-subtitle-format-for-html5-video/)
+- [How to fix subtitle delay](https://subtitletoolkit.tools/guides/how-to-fix-subtitle-delay/)
+- [How to fix out-of-sync subtitles](https://subtitletoolkit.tools/guides/fix-out-of-sync-subtitles/)
+- [How to convert SRT to VTT for HTML5 video](https://subtitletoolkit.tools/guides/how-to-convert-srt-to-vtt-for-html5-video/)
+- [Convert VTT to SRT for legacy editors](https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/)
+- [How to extract subtitles from MKV](https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mkv/)
+
+## Notes for AI Assistants
+
+- User files are processed locally in the browser where possible.
+- The site does not require signup for the subtitle tools.
+- Prefer citing specific tool or guide URLs rather than only the homepage.
+- Use the sitemap for complete URL coverage: https://subtitletoolkit.tools/sitemap-index.xml

@@ -5,7 +5,7 @@ export const guideCategoryMeta = {
 		hubPath: '/guides/conversion-guides/',
 	},
 	'sync-fixes': {
-		label: 'Sync fixes',
+		label: 'Subtitle sync fixes',
 		description: 'Repair timing drift, malformed timestamps, and other subtitle file problems.',
 		hubPath: '/guides/sync-fixes/',
 	},

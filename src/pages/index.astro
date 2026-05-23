@@ -6,6 +6,8 @@ import { getSubtitleCatalog } from '../lib/subtitles/catalog';
 import { guideCategoryMeta, guideCategoryOrder } from '../lib/guides/catalog';
 import { SITE_DESCRIPTION, SITE_DOMAIN, SITE_TITLE } from '../consts';
 
+const pageTitle = 'Free Subtitle Tools for SRT, VTT, and ASS';
+
 const catalog = getSubtitleCatalog('en');
 const featuredTools = catalog.tools.slice(0, 6);
 const guides = await getCollection('guides');
@@ -35,7 +37,7 @@ const faqs = [
 ];
 ---
 
-<SiteLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<SiteLayout title={`${pageTitle} | ${SITE_TITLE}`} description={SITE_DESCRIPTION}>
 		<JsonLd type="website" data={{
 			'@type': 'WebSite',
 			name: SITE_TITLE,

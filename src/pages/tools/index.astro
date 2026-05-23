@@ -1,7 +1,7 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { getSubtitleCatalog } from '../../lib/subtitles/catalog';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { SITE_TITLE } from '../../consts';
 
 const catalog = getSubtitleCatalog('en');
 const utilityToolIds = [
@@ -14,9 +14,11 @@ const utilityToolIds = [
 ];
 const conversionTools = catalog.tools.filter(t => !utilityToolIds.includes(t.id));
 const utilityTools = catalog.tools.filter(t => utilityToolIds.includes(t.id));
+const pageDescription =
+	'Browse free browser-based subtitle tools for converting SRT, VTT, and ASS files, shifting timing, cleaning text, merging files, and extracting captions locally.';
 ---
 
-<SiteLayout title={`Tools | ${SITE_TITLE}`} description={SITE_DESCRIPTION}>
+<SiteLayout title={`Free Subtitle Tools | ${SITE_TITLE}`} description={pageDescription}>
 	<!-- Header -->
 	<section class="section">
 		<span class="eyebrow">Subtitle tools</span>

@@ -26,6 +26,126 @@ const relatedTools = currentTool.relatedTools
 	.map((id) => getSubtitleTool('en', id))
 	.filter(Boolean);
 
+const toolMetaDescriptions: Record<string, string> = {
+	'srt-to-vtt':
+		'Convert SRT subtitles to WebVTT for HTML5 video players. Runs locally in your browser with no signup, upload, or watermark.',
+	'vtt-to-srt':
+		'Convert WebVTT captions to numbered SRT blocks for editors, archives, upload workflows, and client handoff with a free browser tool.',
+	'srt-to-ass':
+		'Convert SRT subtitles to ASS format with a clean default style, ready for subtitle editors, timing review, and styling workflows.',
+	'ass-to-srt':
+		'Convert ASS dialogue lines to simple SRT subtitles for uploads, review, client handoff, and broader player compatibility.',
+	'vtt-to-ass':
+		'Convert WebVTT captions to ASS format for subtitle editing and style-ready workflows, locally in your browser with no upload.',
+	'ass-to-vtt':
+		'Convert ASS subtitles to WebVTT for browser playback and HTML5 video delivery while keeping subtitle timing and readable text.',
+	'subtitle-time-shifter':
+		'Shift SRT, VTT, and ASS subtitle timing forward or backward in milliseconds with a free local browser tool and no upload.',
+	'subtitle-cleaner':
+		'Clean SRT, VTT, and ASS subtitle text by removing stray tags, normalizing spacing, preserving cue timing, and preparing files for upload.',
+	'subtitle-encoding-fixer':
+		'Convert subtitle files to UTF-8 and fix garbled accents, mojibake, or broken characters locally in your browser before upload.',
+	'subtitle-merger':
+		'Merge two SRT, VTT, or ASS subtitle files into one sorted output file locally in your browser, with no account or server upload.',
+	'partial-subtitle-shifter':
+		'Shift only a selected time range inside an SRT, VTT, or ASS subtitle file without moving the rest of the captions, locally in your browser.',
+	'extract-subtitles-from-video':
+		'Extract embedded text subtitle tracks from MKV, MP4, MOV, and WebM files locally in your browser with FFmpeg and no upload.',
+};
+
+const workflowNotes: Record<string, string> = {
+	'srt-to-vtt':
+		'SRT is common for handoff, but browser players usually expect WebVTT. This converter adds the WEBVTT header, changes timestamp commas to dots, and removes SRT cue numbers so the file is ready for HTML5 video.',
+	'vtt-to-srt':
+		'WebVTT is ideal for browsers, but many subtitle editors, archive tools, and review workflows still ask for SRT. This converter removes the WEBVTT wrapper and adds numbered cue blocks.',
+	'srt-to-ass':
+		'SRT is plain and portable. ASS is useful when the next step involves subtitle styling, karaoke timing, or an editor that expects an ASS structure. This tool creates a clean default ASS file from simple cue text.',
+	'ass-to-srt':
+		'ASS files can carry styling, position, and dialogue metadata. SRT is better when the destination needs simple timed text. This converter keeps timing and readable dialogue while flattening style-specific markup.',
+	'vtt-to-ass':
+		'Use this when captions begin in a web player workflow but need to move into an editor that works better with ASS. The output gives you a basic ASS structure that can be styled afterward.',
+	'ass-to-vtt':
+		'ASS is not the safest final format for browser playback. This converter creates WebVTT output so the same subtitle text can be used in HTML5 video and web player workflows.',
+	'subtitle-time-shifter':
+		'Use a global shift when every subtitle cue is off by the same amount. Positive milliseconds delay captions; negative milliseconds move them earlier. The tool preserves the detected subtitle format.',
+	'subtitle-cleaner':
+		'Cleaning is useful before upload, review, or conversion. The tool keeps cue timing intact while removing stray inline tags and normalizing subtitle text that often breaks player imports.',
+	'subtitle-encoding-fixer':
+		'Encoding problems usually show up as mojibake, broken accents, or unreadable non-English text. Choose the likely source encoding, then export a UTF-8 file for modern editors and video platforms.',
+	'subtitle-merger':
+		'Merging helps when subtitles were exported in parts or when two timed text files need one final delivery file. The output is sorted by start time, and SRT output is renumbered.',
+	'partial-subtitle-shifter':
+		'Use a partial shift when only a middle section changed after an edit. Cues outside the selected range keep their original timing, which avoids breaking sections that already match the video.',
+	'extract-subtitles-from-video':
+		'This tool is for embedded text subtitle streams, not burned-in subtitles. It runs FFmpeg in the browser and attempts to save the first subtitle stream as a separate subtitle file.',
+};
+
+const mistakeNotes: Record<string, string[]> = {
+	'srt-to-vtt': [
+		'Missing the WEBVTT header after conversion.',
+		'Keeping comma-based SRT timestamps in a browser VTT file.',
+		'Uploading a subtitle file before checking cue text in the target player.',
+	],
+	'vtt-to-srt': [
+		'Leaving WebVTT notes or metadata in a workflow that expects plain SRT.',
+		'Forgetting that SRT uses comma-based milliseconds.',
+		'Assuming every legacy editor understands WebVTT cue settings.',
+	],
+	'srt-to-ass': [
+		'Expecting advanced styling to appear automatically from a plain SRT source.',
+		'Forgetting to review line breaks after conversion.',
+		'Delivering ASS to a platform that only wants SRT or VTT.',
+	],
+	'ass-to-srt': [
+		'Expecting ASS positioning, colors, or effects to survive in SRT.',
+		'Not reviewing dialogue lines that used complex override tags.',
+		'Using SRT when the destination still requires styled subtitles.',
+	],
+	'vtt-to-ass': [
+		'Expecting VTT cue settings to become styled ASS rules automatically.',
+		'Forgetting to review the default ASS style before final delivery.',
+		'Using ASS as the final file for a browser player that expects VTT.',
+	],
+	'ass-to-vtt': [
+		'Expecting ASS styling and positioning to render in WebVTT.',
+		'Forgetting to test the output in the actual web player.',
+		'Leaving complex styled dialogue unreviewed after flattening.',
+	],
+	'subtitle-time-shifter': [
+		'Using a global shift when only one section is out of sync.',
+		'Entering seconds when the tool expects milliseconds.',
+		'Applying the wrong sign: positive delays captions, negative moves them earlier.',
+	],
+	'subtitle-cleaner': [
+		'Cleaning text before saving a backup of the original file.',
+		'Assuming cleanup can repair badly timed subtitles.',
+		'Leaving malformed timestamps for the video platform to reject later.',
+	],
+	'subtitle-encoding-fixer': [
+		'Choosing UTF-8 as the source when the file was saved as Windows-1252 or another legacy encoding.',
+		'Re-saving garbled text instead of reopening from the original file.',
+		'Confusing encoding problems with missing fonts in a player.',
+	],
+	'subtitle-merger': [
+		'Merging files with overlapping cue ranges without reviewing the result.',
+		'Mixing formats when a same-format merge would be safer.',
+		'Forgetting to check cue order after joining separate exports.',
+	],
+	'partial-subtitle-shifter': [
+		'Setting a range that does not include the cue start times you want to move.',
+		'Using a partial shift when the whole file is offset by the same amount.',
+		'Forgetting to review the cue just before and after the edited section.',
+	],
+	'extract-subtitles-from-video': [
+		'Expecting burned-in subtitles to be extracted as text.',
+		'Assuming every embedded subtitle stream can be converted to SRT.',
+		'Uploading a very large video before confirming it actually contains a text subtitle track.',
+	],
+};
+
+const supportedFormatText = currentTool.acceptedExtensions.join(', ');
+const metaDescription = toolMetaDescriptions[currentTool.id] ?? currentTool.description;
+
 const isConversionTool = ![
 	'subtitle-time-shifter',
 	'subtitle-cleaner',
@@ -42,11 +162,11 @@ const breadcrumbItems = [
 ];
 ---
 
-<SiteLayout title={`${currentTool.title} | ${SITE_TITLE}`} description={currentTool.description}>
+<SiteLayout title={`${currentTool.title} | ${SITE_TITLE}`} description={metaDescription}>
 		<JsonLd type="softwareApplication" data={{
 			'@type': 'SoftwareApplication',
 			name: currentTool.title,
-			description: currentTool.description,
+			description: metaDescription,
 			url: `https://subtitletoolkit.tools/tools/${currentTool.id}/`,
 			applicationCategory: 'UtilityApplication',
 			operatingSystem: 'Web Browser',
@@ -90,6 +210,37 @@ const breadcrumbItems = [
 	<!-- Info Grid -->
 	<section class="section-muted">
 		<div class="section-inner">
+			<section class="tool-seo-copy" aria-labelledby="tool-workflow-title">
+				<div>
+					<span class="eyebrow">Workflow notes</span>
+					<h2 id="tool-workflow-title">How to use this {currentTool.shortTitle} tool</h2>
+				</div>
+				<p>{workflowNotes[currentTool.id]}</p>
+				<p>
+					Start by uploading or pasting a supported file ({supportedFormatText}). Check the sample input if you want to see the expected structure first, then run the conversion or repair step and review the output before downloading it. The tool is designed for quick subtitle jobs where opening a full video editor would be unnecessary.
+				</p>
+				<div class="tool-seo-columns">
+					<div>
+						<h3>Input and output checklist</h3>
+						<ul>
+							<li>Use a complete subtitle file with valid cue timing when possible.</li>
+							<li>Keep a copy of the original file before replacing it in your workflow.</li>
+							<li>Review the first few cues, the middle of the file, and the final cue after export.</li>
+							<li>Test the downloaded output in the destination player, editor, or upload form.</li>
+						</ul>
+					</div>
+					<div>
+						<h3>Common mistakes to avoid</h3>
+						<ul>
+							{mistakeNotes[currentTool.id].map((note) => <li>{note}</li>)}
+						</ul>
+					</div>
+				</div>
+				<p>
+					All processing runs in your browser, so the subtitle or video file does not need to be uploaded to a server. That is useful for client review files, unreleased videos, internal training material, and other caption workflows where the text should stay on your device.
+				</p>
+			</section>
+
 			<div class="info-grid">
 				<!-- Use Cases -->
 				<article class="info-card">
@@ -178,6 +329,47 @@ const breadcrumbItems = [
 
 	.info-card .faq-answer p {
 		margin: 0;
+	}
+
+	.tool-seo-copy {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-5);
+		max-width: 64rem;
+		margin-bottom: var(--space-10);
+	}
+
+	.tool-seo-copy p {
+		max-width: 58rem;
+		color: var(--color-secondary);
+		line-height: 1.7;
+	}
+
+	.tool-seo-columns {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--space-6);
+	}
+
+	.tool-seo-columns h3 {
+		font-size: 1rem;
+	}
+
+	.tool-seo-columns ul {
+		margin: var(--space-3) 0 0;
+		padding-left: var(--space-5);
+	}
+
+	.tool-seo-columns li {
+		color: var(--color-secondary);
+		font-size: 0.9375rem;
+		line-height: 1.6;
+	}
+
+	@media (max-width: 768px) {
+		.tool-seo-columns {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	/* Related links */

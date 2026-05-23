@@ -1,7 +1,7 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { getCollection } from 'astro:content';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { SITE_TITLE } from '../../consts';
 import { guideCategoryMeta, guideCategoryOrder } from '../../lib/guides/catalog';
 
 const guides = (await getCollection('guides')).sort(
@@ -15,9 +15,11 @@ const groupedGuides = guideCategoryOrder
 		guides: guides.filter((guide) => guide.data.category === category),
 	}))
 	.filter((group) => group.guides.length > 0);
+const pageDescription =
+	'Read practical subtitle guides for format conversion, sync fixes, SRT vs VTT comparisons, YouTube uploads, HTML5 video, and browser caption workflows.';
 ---
 
-<SiteLayout title={`Guides | ${SITE_TITLE}`} description={SITE_DESCRIPTION}>
+<SiteLayout title={`Subtitle Guides and Format Fixes | ${SITE_TITLE}`} description={pageDescription}>
 	<section class="section">
 		<span class="eyebrow">Guide archive</span>
 		<h1>Guides for practical subtitle workflows.</h1>

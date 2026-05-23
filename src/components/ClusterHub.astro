@@ -42,6 +42,50 @@ const otherCategories = guideCategoryOrder
 
 const pageTitle = `${meta.label} | ${SITE_TITLE}`;
 const pageDescription = intro;
+const hubCopy: Record<GuideCategory, { title: string; body: string; bullets: string[] }> = {
+	'conversion-guides': {
+		title: 'Use these guides when the destination format is the problem',
+		body:
+			'Conversion questions usually start with a working subtitle file that is not accepted by the next platform, editor, or player. These guides explain what changes between SRT, VTT, and ASS so you can convert the file intentionally instead of guessing from the extension alone.',
+		bullets: [
+			'Prepare captions for HTML5 video, YouTube uploads, legacy editors, and browser players.',
+			'Understand what happens to timestamps, headers, cue numbers, and styling during conversion.',
+			'Choose the matching browser tool after you know the source and destination format.',
+		],
+	},
+	'sync-fixes': {
+		title: 'Use these guides when subtitle timing or structure is broken',
+		body:
+			'Sync problems are easier to fix when you first identify the pattern: a global delay, a changed scene, malformed timestamps, out-of-order cues, or formatting that a player rejects. These guides help you choose the smallest repair before editing the whole file by hand.',
+		bullets: [
+			'Diagnose whether captions are early, late, drifting, or broken only in one section.',
+			'Clean malformed SRT and WebVTT structures before converting or uploading.',
+			'Use global and partial time shifting only when the timing pattern matches the fix.',
+		],
+	},
+	'format-comparisons': {
+		title: 'Use these guides before choosing a delivery format',
+		body:
+			'Format comparisons are useful when more than one subtitle file type could work. The right answer changes depending on whether the final target is a browser player, YouTube, Plex, Vimeo, JW Player, a client handoff, or an editing workflow.',
+		bullets: [
+			'Compare SRT, VTT, and ASS by compatibility, styling, browser support, and upload behavior.',
+			'Pick a final delivery format without losing the editable source format too early.',
+			'Use platform-specific guidance when generic format advice is too broad.',
+		],
+	},
+	'workflow-guides': {
+		title: 'Use these guides for end-to-end subtitle jobs',
+		body:
+			'Workflow guides cover practical jobs that involve more than one format decision, such as preparing captions for YouTube, extracting subtitles from video files, building bilingual subtitles, or cleaning files before delivery.',
+		bullets: [
+			'Follow a complete subtitle preparation path from source file to final upload.',
+			'Handle privacy-sensitive browser-local workflows without sending files to a server.',
+			'Combine conversion, cleanup, timing, and review steps in the right order.',
+		],
+	},
+};
+
+const currentHubCopy = hubCopy[category];
 
 const breadcrumbItems = [
 	{ label: 'Home', href: '/' },
@@ -69,6 +113,17 @@ const breadcrumbItems = [
 
 	<section class="section-muted">
 		<div class="section-inner">
+			<section class="hub-intro-copy" aria-labelledby="hub-intro-title">
+				<div>
+					<span class="eyebrow">How to choose</span>
+					<h2 id="hub-intro-title">{currentHubCopy.title}</h2>
+				</div>
+				<p>{currentHubCopy.body}</p>
+				<ul>
+					{currentHubCopy.bullets.map((item) => <li>{item}</li>)}
+				</ul>
+			</section>
+
 			<div class="card-grid">
 				{
 					guides.map((guide) => (
@@ -179,6 +234,29 @@ const breadcrumbItems = [
 		color: var(--color-accent);
 		font-size: 0.875rem;
 		font-weight: 600;
+	}
+
+	.hub-intro-copy {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+		max-width: 58rem;
+		margin-bottom: var(--space-8);
+	}
+
+	.hub-intro-copy p {
+		color: var(--color-secondary);
+		line-height: 1.7;
+	}
+
+	.hub-intro-copy ul {
+		margin: 0;
+		padding-left: var(--space-5);
+	}
+
+	.hub-intro-copy li {
+		color: var(--color-secondary);
+		line-height: 1.6;
 	}
 
 	@media (max-width: 768px) {
