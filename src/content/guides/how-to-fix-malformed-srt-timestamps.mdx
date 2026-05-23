@@ -14,6 +14,8 @@ primaryTool: subtitle-cleaner
 
 Malformed `SRT` timestamps usually mean the subtitle file structure has drifted away from normal SRT formatting.
 
+SRT is simple, but it is strict about its timing line. A small change such as using dots instead of commas, removing spaces around the arrow, or mixing VTT syntax into an SRT file can make uploads and converters fail.
+
 ## Quick answer
 
 If the file still contains subtitle text and timing blocks but the formatting is inconsistent, clean the structure first before trying to deliver or convert it.
@@ -35,6 +37,28 @@ Common failures include:
 - broken arrow formatting
 - mixed timestamp styles copied from another format
 
+## Examples of malformed timing lines
+
+These lines are common failure cases:
+
+```text
+00:00:01.000 --> 00:00:03.500
+```
+
+That is VTT-style timing, not SRT-style timing.
+
+```text
+00:00:01,000->00:00:03,500
+```
+
+The timestamps are close, but the arrow spacing is not the normal SRT structure.
+
+```text
+00:01 --> 00:03
+```
+
+This is too short for normal SRT delivery. Use full hour, minute, second, and millisecond timing.
+
 ## Why this matters
 
 Even when the subtitle text itself is fine, malformed timing lines can break:
@@ -44,6 +68,8 @@ Even when the subtitle text itself is fine, malformed timing lines can break:
 - browser testing
 - client delivery
 
+Malformed timestamps also make later conversion less reliable. If you convert a broken SRT file to VTT, the conversion step may preserve the problem or create output that looks valid but fails during playback.
+
 ## Step-by-step workflow
 
 1. Open the [Subtitle Cleaner](/tools/subtitle-cleaner/).
@@ -51,6 +77,17 @@ Even when the subtitle text itself is fine, malformed timing lines can break:
 3. Review the cleaned output and check whether the block structure looks consistent.
 4. Save the cleaned file.
 5. If the destination needs another format, convert only after the SRT structure is stable.
+
+## Manual checklist before conversion
+
+If you are reviewing the file by hand, check these points:
+
+- Each cue has one timing line.
+- The arrow is `-->`.
+- SRT timestamps use commas for milliseconds.
+- Cue start time is earlier than cue end time.
+- Blank lines separate subtitle blocks.
+- The file does not mix `WEBVTT` headers or VTT cue settings into SRT output.
 
 ## Common mistakes
 
@@ -65,6 +102,14 @@ SRT uses commas. VTT uses dots. A mixed file is often a sign of manual editing g
 ### Editing many timing lines by hand
 
 That is slow and usually introduces new mistakes.
+
+### Fixing only the first bad block
+
+Malformed SRT problems often repeat. After fixing one cue, scan the whole file or run a cleanup pass before uploading.
+
+## When cleanup is not enough
+
+If the file has valid-looking timestamps but captions appear too early or too late, the problem is sync rather than malformed structure. Use [How to fix subtitle delay](/guides/how-to-fix-subtitle-delay/) or [How to fix subtitles that are too fast or too slow](/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/) instead.
 
 ## Related guides
 

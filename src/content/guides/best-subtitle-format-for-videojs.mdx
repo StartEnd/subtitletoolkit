@@ -1,6 +1,6 @@
 ---
 title: Best subtitle format for Video.js
-description: Learn why WebVTT is usually safest for Video.js players, when SRT needs conversion, and how to test captions in browser playback.
+description: Learn why WebVTT is safest for Video.js captions, when SRT needs conversion, and how to test subtitle files in browser playback.
 pubDate: 2026-05-06
 category: format-comparisons
 tags:
@@ -13,6 +13,8 @@ primaryTool: srt-to-vtt
 ---
 
 For most `Video.js` subtitle workflows, `VTT` is the safest default format.
+
+Video.js runs in the browser, so caption delivery should follow browser-friendly subtitle rules. SRT can be a good source format, but WebVTT is the safer final file for a player integration.
 
 ## Quick answer
 
@@ -30,6 +32,8 @@ WebVTT is a good match because it:
 - uses the `WEBVTT` structure browser tooling expects
 - is easier to reason about in HTML5 video workflows
 
+It also gives developers a cleaner debugging path. If the VTT file is valid, caption issues are more likely to come from the player setup, track configuration, or how the file is served.
+
 ## When SRT still appears
 
 SRT still shows up because it is common in:
@@ -40,6 +44,16 @@ SRT still shows up because it is common in:
 
 That does not make it the best final delivery format for a browser player.
 
+Use SRT for review, translation, or archive. Convert the browser delivery copy to VTT before wiring it into Video.js.
+
+## Video.js caption checklist
+
+- Use a `.vtt` file for browser playback.
+- Confirm the file begins with `WEBVTT`.
+- Confirm timestamps use dots, not commas.
+- Serve the caption file from a URL the page can request.
+- Test with the same Video.js setup that will be used in production.
+
 ## Practical workflow
 
 1. Start with the original subtitle file.
@@ -47,6 +61,12 @@ That does not make it the best final delivery format for a browser player.
 3. If it is `SRT`, use the [SRT to VTT Converter](/tools/srt-to-vtt/).
 4. If it is `ASS`, convert it to VTT before browser playback.
 5. Attach the VTT file to the player and test caption rendering.
+
+## If Video.js does not show captions
+
+Check the file first. A missing header, SRT-style timestamps, broken encoding, or a file renamed without conversion can stop captions before Video.js configuration becomes relevant.
+
+If the file passes those checks, inspect the player track configuration, caption URL, and browser console. For a broader failure checklist, use [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/).
 
 ## Common mistakes
 
@@ -57,6 +77,10 @@ Two files can contain the same lines and timing but still behave differently in 
 ### Testing only in an editor
 
 Always test the final file in the real playback environment. A subtitle file that looks fine in a text editor can still fail in the player.
+
+### Shipping the source file instead of the delivery file
+
+Keep the SRT or ASS source if it helps the workflow, but ship the VTT file to Video.js unless your implementation has a specific reason to do otherwise.
 
 ## Related guides
 

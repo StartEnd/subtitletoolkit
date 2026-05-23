@@ -14,6 +14,8 @@ primaryTool: srt-to-vtt
 
 Subtitle line numbers are normal in `SRT`, but they are not always useful in the next step of the workflow.
 
+The important point is that line numbers are not random clutter. In SRT, they are part of the block structure. In VTT and many browser workflows, they are unnecessary or unwanted. Remove them only when the destination format does not use them.
+
 ## Quick answer
 
 If you need a subtitle file without SRT cue numbering, the cleanest fix is often to convert the file into the right target format rather than manually deleting numbers.
@@ -32,6 +34,17 @@ Hello there.
 
 Those sequence numbers help define each block in SRT, but other subtitle formats do not always need them.
 
+When converting to WebVTT, a normal output cue usually looks closer to this:
+
+```text
+WEBVTT
+
+00:00:01.000 --> 00:00:03.000
+Hello there.
+```
+
+Notice that the cue number is gone, the timestamp uses dots, and the file has a `WEBVTT` header.
+
 ## When you should remove them
 
 Removing line numbers makes sense when:
@@ -40,6 +53,8 @@ Removing line numbers makes sense when:
 - a browser-based player is involved
 - you are normalizing subtitles for a new workflow
 
+Do not remove numbers if the destination still expects SRT. A valid SRT file can include cue numbers, and many tools use them to make the file easier to inspect.
+
 ## Step-by-step workflow
 
 1. Start with the original `.srt` file.
@@ -47,6 +62,12 @@ Removing line numbers makes sense when:
 3. Upload or paste the subtitle text.
 4. Review the output and confirm the cue numbers are gone.
 5. Download the `.vtt` file and test it in the target player.
+
+## Why conversion is safer than manual deletion
+
+Manual deletion only removes the visible cue number lines. It does not add a VTT header, change comma milliseconds to dot milliseconds, or validate whether the subtitle blocks still make sense. A proper conversion handles those format differences together.
+
+Use manual cleanup only when you know the target system wants a numberless text structure but does not require a full VTT file.
 
 ## Common mistakes
 
@@ -61,6 +82,14 @@ If the target is VTT, the timestamp style and header matter too, not just the cu
 ### Forgetting what format the destination actually wants
 
 Do not remove structure blindly. Remove it because the next system expects a different wrapper.
+
+### Removing dialogue lines that look like numbers
+
+Some subtitles include numeric text as the caption itself, such as countdowns, scores, or chapter titles. A converter can distinguish cue numbering from subtitle text more safely than a broad find-and-delete pass.
+
+## Check the output
+
+After removing line numbers or converting to VTT, check the first few cues and one cue near the end. Confirm that the subtitle text is still present, timestamps still increase, and the player accepts the file.
 
 ## Related guides
 

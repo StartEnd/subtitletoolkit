@@ -1,6 +1,6 @@
 ---
 title: How to extract subtitles from MKV
-description: Extract an embedded text subtitle track from an MKV file locally in the browser and save it as a separate subtitle file.
+description: Extract embedded text subtitles from MKV files locally, check whether the stream is text-based, and save captions as a separate subtitle file.
 pubDate: 2026-05-10
 category: workflow-guides
 tags:
@@ -12,6 +12,8 @@ primaryTool: extract-subtitles-from-video
 ---
 
 MKV files often contain separate subtitle streams inside the video container.
+
+That is different from a subtitle file sitting next to the video. In an MKV container, the captions can be packaged inside the video file as their own stream. If that stream is text-based, it can usually be extracted into a separate subtitle file. If it is image-based or burned into the picture, extraction is a different problem.
 
 ## Quick answer
 
@@ -32,6 +34,16 @@ It usually cannot convert image-based subtitle streams such as:
 Stream #0:4: Subtitle: hdmv_pgs_subtitle
 ```
 
+## Embedded, external, and burned-in subtitles
+
+Before extracting, identify what kind of subtitle you have:
+
+- Embedded text subtitles are stored inside the MKV as a selectable text stream. These are the best match for this workflow.
+- External subtitles are separate files such as `.srt`, `.ass`, or `.vtt` next to the video. You do not need extraction for those.
+- Burned-in subtitles are part of the video image. They cannot be saved as text without OCR.
+
+If you can turn captions on and off in the player, they are probably embedded or external. If the text is always visible in the picture, it is probably burned in.
+
 ## Step-by-step workflow
 
 1. Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/).
@@ -40,6 +52,17 @@ Stream #0:4: Subtitle: hdmv_pgs_subtitle
 4. Check the extracted SRT preview.
 5. Download the subtitle file.
 6. If the text has broken characters, run it through the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/).
+
+## What to check after extraction
+
+Do not treat the first extracted file as final until you check it:
+
+- Open the output and confirm it contains readable text, not binary-looking symbols.
+- Check the first cue, a middle cue, and the final cue against the video.
+- Confirm the language is the one you wanted if the MKV has more than one subtitle stream.
+- Convert or clean the output before delivery if the extracted file contains tags, odd spacing, or encoding issues.
+
+For a simple delivery file, SRT is often easiest. For browser playback, convert the cleaned subtitle file to VTT afterward.
 
 ## Privacy note
 
@@ -55,9 +78,17 @@ If subtitles are part of the video picture, there is no text track to extract. Y
 
 An MKV can have multiple audio streams and no subtitle streams. The extractor only looks for subtitle streams.
 
+### Assuming the first stream is the right language
+
+Some MKV files contain multiple subtitle tracks. The browser tool attempts the first subtitle stream, so check the language and text before sending the file to someone else.
+
 ### Skipping cleanup
 
 Extracted subtitles can still need cleanup. Use the [Subtitle Cleaner](/tools/subtitle-cleaner/) if the text contains unwanted tags or spacing.
+
+## Next steps after extraction
+
+The extracted file is often the start of the workflow, not the end. Use [How to convert subtitles to UTF-8](/guides/how-to-convert-subtitles-to-utf-8/) if characters look wrong, [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/) if the structure looks messy, or [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video/) if the final target is a browser player.
 
 ## Related guides
 
