@@ -96,12 +96,20 @@ const breadcrumbItems = [
 
 <SiteLayout title={pageTitle} description={pageDescription}>
 	<JsonLd
-		type="website"
+		type="collectionPage"
 		data={{
-			'@type': 'WebSite',
+			'@type': 'CollectionPage',
 			name: meta.label,
 			description: pageDescription,
 			url: `https://${SITE_DOMAIN}${meta.hubPath}`,
+			mainEntity: {
+				'@type': 'ItemList',
+				itemListElement: guides.map((guide) => ({
+					url: `https://${SITE_DOMAIN}/guides/${guide.id}/`,
+					name: guide.data.title,
+					description: guide.data.description,
+				})),
+			},
 		}}
 	/>
 	<section class="section">

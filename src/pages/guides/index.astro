@@ -1,7 +1,8 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
+import JsonLd from '../../components/JsonLd.astro';
 import { getCollection } from 'astro:content';
-import { SITE_TITLE } from '../../consts';
+import { SITE_DOMAIN, SITE_TITLE } from '../../consts';
 import { guideCategoryMeta, guideCategoryOrder } from '../../lib/guides/catalog';
 
 const guides = (await getCollection('guides')).sort(
@@ -20,6 +21,23 @@ const pageDescription =
 ---
 
 <SiteLayout title={`Subtitle Guides and Format Fixes | ${SITE_TITLE}`} description={pageDescription}>
+	<JsonLd
+		type="collectionPage"
+		data={{
+			'@type': 'CollectionPage',
+			name: 'Subtitle Guides',
+			description: pageDescription,
+			url: `https://${SITE_DOMAIN}/guides/`,
+			mainEntity: {
+				'@type': 'ItemList',
+				itemListElement: groupedGuides.map((group) => ({
+					url: `https://${SITE_DOMAIN}${group.meta.hubPath}`,
+					name: group.meta.label,
+					description: group.meta.description,
+				})),
+			},
+		}}
+	/>
 	<section class="section">
 		<span class="eyebrow">Guide archive</span>
 		<h1>Guides for practical subtitle workflows.</h1>

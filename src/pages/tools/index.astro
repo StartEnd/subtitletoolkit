@@ -1,7 +1,8 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
+import JsonLd from '../../components/JsonLd.astro';
 import { getSubtitleCatalog } from '../../lib/subtitles/catalog';
-import { SITE_TITLE } from '../../consts';
+import { SITE_DOMAIN, SITE_TITLE } from '../../consts';
 
 const catalog = getSubtitleCatalog('en');
 const utilityToolIds = [
@@ -19,6 +20,23 @@ const pageDescription =
 ---
 
 <SiteLayout title={`Free Subtitle Tools | ${SITE_TITLE}`} description={pageDescription}>
+	<JsonLd
+		type="collectionPage"
+		data={{
+			'@type': 'CollectionPage',
+			name: 'Subtitle Tools',
+			description: pageDescription,
+			url: `https://${SITE_DOMAIN}/tools/`,
+			mainEntity: {
+				'@type': 'ItemList',
+				itemListElement: catalog.tools.map((tool) => ({
+					url: `https://${SITE_DOMAIN}/tools/${tool.id}/`,
+					name: tool.title,
+					description: tool.description,
+				})),
+			},
+		}}
+	/>
 	<!-- Header -->
 	<section class="section">
 		<span class="eyebrow">Subtitle tools</span>

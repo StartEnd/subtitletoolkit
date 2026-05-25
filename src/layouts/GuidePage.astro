@@ -34,7 +34,13 @@ const breadcrumbItems = [
 ];
 ---
 
-<SiteLayout title={`${title} | ${SITE_TITLE}`} description={description}>
+<SiteLayout
+	title={`${title} | ${SITE_TITLE}`}
+	description={description}
+	pageType="article"
+	publishedTime={pubDate}
+	modifiedTime={updatedDate}
+>
 	<article class="guide-article">
 		<Breadcrumbs items={breadcrumbItems} />
 		<!-- Article Header -->
