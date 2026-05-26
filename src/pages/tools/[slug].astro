@@ -45,6 +45,18 @@ const toolMetaDescriptions: Record<string, string> = {
 		'Convert WebVTT captions to ASS format for subtitle editing and style-ready workflows, locally in your browser with no upload.',
 	'ass-to-vtt':
 		'Convert ASS subtitles to WebVTT for browser playback and HTML5 video delivery while keeping subtitle timing and readable text.',
+	'youtube-subtitle-converter':
+		'Convert VTT or ASS subtitles to YouTube-ready SRT captions online for free. Runs locally in your browser with no upload.',
+	'html5-video-subtitle-converter':
+		'Convert SRT or ASS subtitles to WebVTT for HTML5 video tracks. Create browser-ready VTT captions online for free.',
+	'videojs-subtitle-converter':
+		'Convert SRT or ASS subtitles to WebVTT captions for Video.js players. Free browser-based subtitle conversion.',
+	'jw-player-subtitle-converter':
+		'Convert SRT or ASS subtitles to WebVTT captions for JW Player and browser video delivery, locally in your browser.',
+	'plex-subtitle-converter':
+		'Convert VTT or ASS subtitles to SRT for Plex libraries and broad playback compatibility. Free browser-based converter.',
+	'vimeo-subtitle-converter':
+		'Convert SRT or ASS subtitles to WebVTT for Vimeo embeds and web playback. Free browser-local subtitle converter.',
 	'subtitle-time-shifter':
 		'Shift subtitle timing online for SRT, VTT, and ASS files. Fix subtitles that are too early or too late without signup or upload.',
 	'subtitle-delay-fixer':
@@ -82,6 +94,12 @@ const toolPageTitles: Record<string, string> = {
 	'vtt-to-txt': 'VTT to TXT Converter - Extract Caption Text Online',
 	'ass-to-txt': 'ASS to TXT Converter - Extract Subtitle Text Online',
 	'ass-to-srt': 'ASS to SRT Converter - Convert Subtitles Online Free',
+	'youtube-subtitle-converter': 'YouTube Subtitle Converter - Convert Captions to SRT',
+	'html5-video-subtitle-converter': 'HTML5 Video Subtitle Converter - Convert Captions to VTT',
+	'videojs-subtitle-converter': 'Video.js Subtitle Converter - Convert Captions to VTT',
+	'jw-player-subtitle-converter': 'JW Player Subtitle Converter - Convert Captions to VTT',
+	'plex-subtitle-converter': 'Plex Subtitle Converter - Convert Captions to SRT',
+	'vimeo-subtitle-converter': 'Vimeo Subtitle Converter - Convert Captions to VTT',
 	'subtitle-time-shifter': 'Subtitle Time Shifter - Fix Subtitle Delay Online',
 	'subtitle-delay-fixer': 'Subtitle Delay Fixer - Fix Subtitle Timing Online',
 	'fix-out-of-sync-subtitles': 'Fix Out-of-Sync Subtitles Online',
@@ -113,6 +131,18 @@ const workflowNotes: Record<string, string> = {
 		'Use this when captions begin in a web player workflow but need to move into an editor that works better with ASS. The output gives you a basic ASS structure that can be styled afterward.',
 	'ass-to-vtt':
 		'ASS is not the safest final format for browser playback. This converter creates WebVTT output so the same subtitle text can be used in HTML5 video and web player workflows.',
+	'youtube-subtitle-converter':
+		'Use this when the destination is a YouTube caption upload or creator handoff. The tool keeps timing and readable text, then exports a simple SRT copy for upload review.',
+	'html5-video-subtitle-converter':
+		'Use this when captions need to work in an HTML5 video track. The output is WebVTT with a WEBVTT header and browser-friendly timestamp formatting.',
+	'videojs-subtitle-converter':
+		'Use this before adding captions to a Video.js player. The tool creates VTT output from supported subtitle input so player debugging starts from the right file format.',
+	'jw-player-subtitle-converter':
+		'Use this before wiring captions into JW Player. The converter prepares WebVTT output, but you should still test the file in the actual player configuration.',
+	'plex-subtitle-converter':
+		'Use this when a Plex library needs a simple portable subtitle file. The output is SRT, which is easier to store, inspect, and reuse across devices.',
+	'vimeo-subtitle-converter':
+		'Use this when a Vimeo or embed workflow needs web-ready captions. The converter creates VTT output while preserving parsed subtitle timing and text.',
 	'subtitle-time-shifter':
 		'Use a global shift when every subtitle cue is off by the same amount. Positive milliseconds delay captions; negative milliseconds move them earlier. The tool preserves the detected subtitle format.',
 	'subtitle-delay-fixer':
@@ -188,6 +218,36 @@ const mistakeNotes: Record<string, string[]> = {
 		'Expecting ASS styling and positioning to render in WebVTT.',
 		'Forgetting to test the output in the actual web player.',
 		'Leaving complex styled dialogue unreviewed after flattening.',
+	],
+	'youtube-subtitle-converter': [
+		'Expecting ASS styling or positioning to survive in YouTube captions.',
+		'Uploading without reviewing the first, middle, and final cues.',
+		'Using a converted SRT file before checking non-English characters.',
+	],
+	'html5-video-subtitle-converter': [
+		'Renaming SRT to VTT instead of converting timestamp syntax.',
+		'Forgetting to serve the final VTT file from a URL the browser can reach.',
+		'Skipping playback tests in the actual HTML5 video component.',
+	],
+	'videojs-subtitle-converter': [
+		'Assuming conversion fixes player configuration or file path problems.',
+		'Publishing without checking that the VTT file loads in Video.js.',
+		'Leaving ASS styling unreviewed after flattening to browser captions.',
+	],
+	'jw-player-subtitle-converter': [
+		'Using a correct VTT file but attaching it with the wrong player URL.',
+		'Forgetting that conversion does not configure JW Player automatically.',
+		'Skipping validation when captions still do not show.',
+	],
+	'plex-subtitle-converter': [
+		'Expecting SRT output to preserve ASS styles and positions.',
+		'Not matching the subtitle file name to the media library naming workflow.',
+		'Replacing the editable ASS source before confirming the SRT copy works.',
+	],
+	'vimeo-subtitle-converter': [
+		'Using web-ready VTT output without testing the embed workflow.',
+		'Expecting ASS styling to carry into WebVTT captions.',
+		'Deleting the source subtitle file before confirming the uploaded captions.',
 	],
 	'subtitle-time-shifter': [
 		'Using a global shift when only one section is out of sync.',
@@ -266,6 +326,12 @@ const metaDescription = toolMetaDescriptions[currentTool.id] ?? currentTool.desc
 const pageTitle = toolPageTitles[currentTool.id] ?? `${currentTool.title} | ${SITE_TITLE}`;
 
 const isConversionTool = ![
+	'youtube-subtitle-converter',
+	'html5-video-subtitle-converter',
+	'videojs-subtitle-converter',
+	'jw-player-subtitle-converter',
+	'plex-subtitle-converter',
+	'vimeo-subtitle-converter',
 	'subtitle-time-shifter',
 	'subtitle-delay-fixer',
 	'fix-out-of-sync-subtitles',

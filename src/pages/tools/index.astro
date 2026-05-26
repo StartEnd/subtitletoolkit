@@ -5,6 +5,14 @@ import { getSubtitleCatalog } from '../../lib/subtitles/catalog';
 import { SITE_DOMAIN, SITE_TITLE } from '../../consts';
 
 const catalog = getSubtitleCatalog('en');
+const platformToolIds = [
+  'youtube-subtitle-converter',
+  'html5-video-subtitle-converter',
+  'videojs-subtitle-converter',
+  'jw-player-subtitle-converter',
+  'plex-subtitle-converter',
+  'vimeo-subtitle-converter',
+];
 const utilityToolIds = [
 	'subtitle-time-shifter',
 	'subtitle-delay-fixer',
@@ -21,7 +29,8 @@ const utilityToolIds = [
 	'partial-subtitle-shifter',
 	'extract-subtitles-from-video',
 ];
-const conversionTools = catalog.tools.filter(t => !utilityToolIds.includes(t.id));
+const conversionTools = catalog.tools.filter(t => !utilityToolIds.includes(t.id) && !platformToolIds.includes(t.id));
+const platformTools = catalog.tools.filter(t => platformToolIds.includes(t.id));
 const utilityTools = catalog.tools.filter(t => utilityToolIds.includes(t.id));
 const pageDescription =
 	'Browse free browser-based subtitle tools for converting SRT, VTT, and ASS files, shifting timing, cleaning text, merging files, and extracting captions locally.';
@@ -76,13 +85,13 @@ const pageDescription =
 		</div>
 	</section>
 
-	<!-- Subtitle Utilities -->
+	<!-- Platform Workflows -->
 	<section class="section">
-		<span class="eyebrow">Subtitle utilities</span>
-		<h2>Fix timing, merge files, and extract subtitle tracks</h2>
+		<span class="eyebrow">Platform workflows</span>
+		<h2>Prepare subtitles for video platforms and web players</h2>
 		<div class="card-grid" style="margin-top: var(--space-8);">
 			{
-				utilityTools.map((tool) => (
+				platformTools.map((tool) => (
 					<article class="card">
 						<div class="badge-row">
 							<span class="format-badge">{tool.shortTitle}</span>
@@ -93,6 +102,28 @@ const pageDescription =
 					</article>
 				))
 			}
+		</div>
+	</section>
+
+	<!-- Subtitle Utilities -->
+	<section class="section-muted">
+		<div class="section-inner">
+			<span class="eyebrow">Subtitle utilities</span>
+			<h2>Fix timing, merge files, and extract subtitle tracks</h2>
+			<div class="card-grid" style="margin-top: var(--space-8);">
+				{
+					utilityTools.map((tool) => (
+						<article class="card">
+							<div class="badge-row">
+								<span class="format-badge">{tool.shortTitle}</span>
+							</div>
+							<h3><a href={`/tools/${tool.id}/`}>{tool.title}</a></h3>
+							<p class="muted">{tool.description}</p>
+							<a class="card-link" href={`/tools/${tool.id}/`}>Open tool <span aria-hidden="true">&rarr;</span></a>
+						</article>
+					))
+				}
+			</div>
 		</div>
 	</section>
 

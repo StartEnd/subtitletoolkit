@@ -8,6 +8,12 @@ export type SubtitleToolId =
   | 'ass-to-srt'
   | 'vtt-to-ass'
   | 'ass-to-vtt'
+  | 'youtube-subtitle-converter'
+  | 'html5-video-subtitle-converter'
+  | 'videojs-subtitle-converter'
+  | 'jw-player-subtitle-converter'
+  | 'plex-subtitle-converter'
+  | 'vimeo-subtitle-converter'
   | 'subtitle-time-shifter'
   | 'subtitle-delay-fixer'
   | 'fix-out-of-sync-subtitles'
@@ -603,6 +609,315 @@ const enTools: SubtitleTool[] = [
       { href: '/guides/ass-vs-vtt/', title: 'ASS vs VTT for browser playback' },
     ],
     sampleInput: sharedSamples.ass,
+  },
+  {
+    id: 'youtube-subtitle-converter',
+    title: 'YouTube Subtitle Converter',
+    shortTitle: 'YouTube converter',
+    description:
+      'Convert VTT or ASS subtitles to YouTube-ready SRT captions directly in your browser.',
+    summary:
+      'Use this free YouTube subtitle converter when your source file is VTT or ASS but your upload workflow needs a simple SRT caption file.',
+    buttonLabel: 'Convert for YouTube',
+    inputLabel: 'Subtitle input',
+    outputLabel: 'YouTube SRT output',
+    placeholder: 'Paste SRT, VTT, or ASS subtitles here',
+    acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.txt'],
+    sampleFileName: 'youtube-captions.vtt',
+    useCases: [
+      'Prepare subtitles for YouTube uploads.',
+      'Convert WebVTT captions into SRT for a YouTube handoff.',
+      'Flatten ASS styling before uploading captions.',
+      'Create a simple SRT copy for creator review.',
+    ],
+    faqs: [
+      {
+        question: 'What subtitle format should I upload to YouTube?',
+        answer:
+          'SRT is the safest default for most YouTube caption upload workflows because it is simple and easy to inspect.',
+      },
+      {
+        question: 'Can this convert VTT captions for YouTube?',
+        answer:
+          'Yes. VTT input is converted to comma-based SRT timing with numbered cue blocks.',
+      },
+      {
+        question: 'What happens to ASS styling?',
+        answer:
+          'ASS styling and positioning are removed because YouTube captions mainly need timing and readable text.',
+      },
+      {
+        question: 'Are my subtitle files uploaded to a server?',
+        answer:
+          'No. YouTube subtitle conversion runs locally in your browser, so your file stays on your device.',
+      },
+    ],
+    relatedTools: ['vtt-to-srt', 'ass-to-srt'],
+    relatedGuides: [
+      { href: '/guides/best-subtitle-format-for-youtube/', title: 'Best subtitle format for YouTube' },
+      {
+        href: '/guides/how-to-convert-ass-to-srt-for-youtube-uploads/',
+        title: 'How to convert ASS to SRT for YouTube uploads',
+      },
+    ],
+    sampleInput: sharedSamples.vtt,
+  },
+  {
+    id: 'html5-video-subtitle-converter',
+    title: 'HTML5 Video Subtitle Converter',
+    shortTitle: 'HTML5 converter',
+    description:
+      'Convert SRT or ASS subtitles to WebVTT for HTML5 video tracks and browser playback.',
+    summary:
+      'Use this free HTML5 video subtitle converter when a browser video player needs VTT output with a WEBVTT header and dot-based timestamps.',
+    buttonLabel: 'Convert for HTML5 video',
+    inputLabel: 'Subtitle input',
+    outputLabel: 'HTML5 VTT output',
+    placeholder: 'Paste SRT, VTT, or ASS subtitles here',
+    acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.txt'],
+    sampleFileName: 'html5-captions.srt',
+    useCases: [
+      'Prepare captions for an HTML5 video track.',
+      'Convert SRT files into WebVTT before publishing.',
+      'Flatten ASS subtitles into browser-friendly captions.',
+      'Create a VTT file for a web page or static site.',
+    ],
+    faqs: [
+      {
+        question: 'What format does HTML5 video need?',
+        answer:
+          'HTML5 track elements normally expect WebVTT, so this tool outputs VTT for supported subtitle input.',
+      },
+      {
+        question: 'Does the output include the WEBVTT header?',
+        answer:
+          'Yes. The VTT output includes the WEBVTT header and dot-based timestamp formatting.',
+      },
+      {
+        question: 'Can I paste SRT input?',
+        answer:
+          'Yes. SRT input is converted to browser-ready VTT output.',
+      },
+      {
+        question: 'Are my subtitle files uploaded to a server?',
+        answer:
+          'No. HTML5 subtitle conversion runs locally in your browser.',
+      },
+    ],
+    relatedTools: ['srt-to-vtt', 'ass-to-vtt'],
+    relatedGuides: [
+      { href: '/guides/best-subtitle-format-for-html5-video/', title: 'Best subtitle format for HTML5 video' },
+      {
+        href: '/guides/how-to-convert-srt-to-vtt-for-html5-video/',
+        title: 'How to convert SRT to VTT for HTML5 video',
+      },
+    ],
+    sampleInput: sharedSamples.srt,
+  },
+  {
+    id: 'videojs-subtitle-converter',
+    title: 'Video.js Subtitle Converter',
+    shortTitle: 'Video.js converter',
+    description:
+      'Convert SRT or ASS subtitles to WebVTT captions for Video.js players and web video workflows.',
+    summary:
+      'Use this free Video.js subtitle converter to create VTT captions that fit common Video.js and browser playback workflows.',
+    buttonLabel: 'Convert for Video.js',
+    inputLabel: 'Subtitle input',
+    outputLabel: 'Video.js VTT output',
+    placeholder: 'Paste SRT, VTT, or ASS subtitles here',
+    acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.txt'],
+    sampleFileName: 'videojs-captions.srt',
+    useCases: [
+      'Prepare captions for Video.js players.',
+      'Convert SRT subtitles into WebVTT for a web player.',
+      'Create browser-ready VTT output before testing playback.',
+      'Flatten ASS captions before using them in Video.js.',
+    ],
+    faqs: [
+      {
+        question: 'What subtitle format should I use with Video.js?',
+        answer:
+          'WebVTT is the safest default for Video.js captions because it matches browser video track expectations.',
+      },
+      {
+        question: 'Can this fix a missing WEBVTT header?',
+        answer:
+          'Yes. When converting parsed subtitle cues to VTT, the output includes a WEBVTT header.',
+      },
+      {
+        question: 'Should I test the output in Video.js?',
+        answer:
+          'Yes. Conversion prepares the file, but you should still test captions in the actual player setup.',
+      },
+      {
+        question: 'Are my subtitle files uploaded to a server?',
+        answer:
+          'No. Video.js subtitle conversion runs locally in your browser.',
+      },
+    ],
+    relatedTools: ['srt-to-vtt', 'webvtt-validator'],
+    relatedGuides: [
+      { href: '/guides/best-subtitle-format-for-videojs/', title: 'Best subtitle format for Video.js' },
+      {
+        href: '/guides/how-to-convert-subtitle-files-for-web-players/',
+        title: 'How to convert subtitle files for web players',
+      },
+    ],
+    sampleInput: sharedSamples.srt,
+  },
+  {
+    id: 'jw-player-subtitle-converter',
+    title: 'JW Player Subtitle Converter',
+    shortTitle: 'JW Player converter',
+    description:
+      'Convert SRT or ASS subtitles to WebVTT captions for JW Player and browser-based video delivery.',
+    summary:
+      'Use this free JW Player subtitle converter when your web video workflow needs clean VTT captions from SRT or ASS source files.',
+    buttonLabel: 'Convert for JW Player',
+    inputLabel: 'Subtitle input',
+    outputLabel: 'JW Player VTT output',
+    placeholder: 'Paste SRT, VTT, or ASS subtitles here',
+    acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.txt'],
+    sampleFileName: 'jw-player-captions.srt',
+    useCases: [
+      'Prepare subtitles for JW Player captions.',
+      'Convert SRT to WebVTT before web delivery.',
+      'Create VTT captions from ASS editing files.',
+      'Check caption format before debugging player setup.',
+    ],
+    faqs: [
+      {
+        question: 'What format should I use for JW Player captions?',
+        answer:
+          'WebVTT is usually the safest web delivery format for JW Player and browser-based players.',
+      },
+      {
+        question: 'Can I convert SRT to VTT here?',
+        answer:
+          'Yes. The converter turns SRT cue blocks into WebVTT output.',
+      },
+      {
+        question: 'Does this configure JW Player for me?',
+        answer:
+          'No. It prepares the subtitle file. You still need to attach the VTT file in your player configuration.',
+      },
+      {
+        question: 'Are my subtitle files uploaded to a server?',
+        answer:
+          'No. JW Player subtitle conversion runs locally in your browser.',
+      },
+    ],
+    relatedTools: ['srt-to-vtt', 'webvtt-validator'],
+    relatedGuides: [
+      { href: '/guides/best-subtitle-format-for-jw-player/', title: 'Best subtitle format for JW Player' },
+      {
+        href: '/guides/how-to-convert-subtitle-files-for-web-players/',
+        title: 'How to convert subtitle files for web players',
+      },
+    ],
+    sampleInput: sharedSamples.srt,
+  },
+  {
+    id: 'plex-subtitle-converter',
+    title: 'Plex Subtitle Converter',
+    shortTitle: 'Plex converter',
+    description:
+      'Convert VTT or ASS subtitles to SRT for Plex libraries, media folders, and broad playback compatibility.',
+    summary:
+      'Use this free Plex subtitle converter when you want a simple SRT copy for a media library or device-friendly playback workflow.',
+    buttonLabel: 'Convert for Plex',
+    inputLabel: 'Subtitle input',
+    outputLabel: 'Plex SRT output',
+    placeholder: 'Paste SRT, VTT, or ASS subtitles here',
+    acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.txt'],
+    sampleFileName: 'plex-captions.ass',
+    useCases: [
+      'Prepare subtitles for Plex libraries.',
+      'Convert ASS subtitles to a simpler SRT copy.',
+      'Convert VTT captions for media library storage.',
+      'Create a portable subtitle file for device playback.',
+    ],
+    faqs: [
+      {
+        question: 'What format is safest for Plex subtitles?',
+        answer:
+          'SRT is the safest default for broad Plex library compatibility because it keeps timing and text simple.',
+      },
+      {
+        question: 'Can this convert ASS subtitles for Plex?',
+        answer:
+          'Yes. ASS input is flattened into SRT timing and readable subtitle text.',
+      },
+      {
+        question: 'Will ASS styling be preserved?',
+        answer:
+          'No. SRT output does not preserve ASS colors, positioning, or effects.',
+      },
+      {
+        question: 'Are my subtitle files uploaded to a server?',
+        answer:
+          'No. Plex subtitle conversion runs locally in your browser.',
+      },
+    ],
+    relatedTools: ['ass-to-srt', 'vtt-to-srt'],
+    relatedGuides: [
+      { href: '/guides/best-subtitle-format-for-plex/', title: 'Best subtitle format for Plex' },
+      { href: '/guides/ass-vs-srt/', title: 'ASS vs SRT' },
+    ],
+    sampleInput: sharedSamples.ass,
+  },
+  {
+    id: 'vimeo-subtitle-converter',
+    title: 'Vimeo Subtitle Converter',
+    shortTitle: 'Vimeo converter',
+    description:
+      'Convert SRT or ASS subtitles to WebVTT for Vimeo embeds, web playback, and caption delivery.',
+    summary:
+      'Use this free Vimeo subtitle converter when a web embed workflow needs VTT captions from SRT or ASS source files.',
+    buttonLabel: 'Convert for Vimeo',
+    inputLabel: 'Subtitle input',
+    outputLabel: 'Vimeo VTT output',
+    placeholder: 'Paste SRT, VTT, or ASS subtitles here',
+    acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.txt'],
+    sampleFileName: 'vimeo-captions.srt',
+    useCases: [
+      'Prepare captions for Vimeo embed workflows.',
+      'Convert SRT subtitles to WebVTT for web playback.',
+      'Create VTT captions from ASS subtitle exports.',
+      'Check caption files before publishing a video page.',
+    ],
+    faqs: [
+      {
+        question: 'What format does this converter output for Vimeo?',
+        answer:
+          'It outputs WebVTT because VTT is the safer default for browser and embed caption workflows.',
+      },
+      {
+        question: 'Can I use SRT input?',
+        answer:
+          'Yes. SRT input is converted to VTT with a WEBVTT header and dot-based timestamps.',
+      },
+      {
+        question: 'Should I keep the original subtitle file?',
+        answer:
+          'Yes. Keep the source SRT or ASS file if you may need to edit captions again later.',
+      },
+      {
+        question: 'Are my subtitle files uploaded to a server?',
+        answer:
+          'No. Vimeo subtitle conversion runs locally in your browser.',
+      },
+    ],
+    relatedTools: ['srt-to-vtt', 'ass-to-vtt'],
+    relatedGuides: [
+      { href: '/guides/best-subtitle-format-for-vimeo-embeds/', title: 'Best subtitle format for Vimeo embeds' },
+      {
+        href: '/guides/how-to-convert-subtitle-files-for-web-players/',
+        title: 'How to convert subtitle files for web players',
+      },
+    ],
+    sampleInput: sharedSamples.srt,
   },
   {
     id: 'subtitle-time-shifter',

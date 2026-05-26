@@ -539,6 +539,28 @@ export function processSubtitleTool(
       return serializeAss(parseVtt(normalized));
     case 'ass-to-vtt':
       return serializeVtt(parseAss(normalized));
+    case 'youtube-subtitle-converter':
+    case 'plex-subtitle-converter': {
+      const format = detectSubtitleFormat(normalized);
+      const cues = parseSubtitleByFormat(normalized, format);
+      if (!cues.length || format === 'unknown') {
+        return normalized;
+      }
+
+      return serializeSrt(cues);
+    }
+    case 'html5-video-subtitle-converter':
+    case 'videojs-subtitle-converter':
+    case 'jw-player-subtitle-converter':
+    case 'vimeo-subtitle-converter': {
+      const format = detectSubtitleFormat(normalized);
+      const cues = parseSubtitleByFormat(normalized, format);
+      if (!cues.length || format === 'unknown') {
+        return normalized;
+      }
+
+      return serializeVtt(cues);
+    }
     case 'subtitle-time-shifter': {
       const format = detectSubtitleFormat(normalized);
       const cues = parseSubtitleByFormat(normalized, format);
@@ -627,9 +649,15 @@ export function inferOutputFormat(
   switch (toolId) {
     case 'srt-to-vtt':
     case 'ass-to-vtt':
+    case 'html5-video-subtitle-converter':
+    case 'videojs-subtitle-converter':
+    case 'jw-player-subtitle-converter':
+    case 'vimeo-subtitle-converter':
       return 'vtt';
     case 'vtt-to-srt':
     case 'ass-to-srt':
+    case 'youtube-subtitle-converter':
+    case 'plex-subtitle-converter':
       return 'srt';
     case 'srt-to-txt':
     case 'vtt-to-txt':
