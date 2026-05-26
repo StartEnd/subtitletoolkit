@@ -1,0 +1,81 @@
+---
+title: Why subtitles are out of sync after export
+description: Diagnose subtitles that become out of sync after exporting a video by checking constant offsets, timeline cuts, drift, and format conversion issues.
+pubDate: 2026-05-26
+category: sync-fixes
+tags:
+  - subtitle sync
+  - export
+  - timing
+  - delay
+  - drift
+primaryTool: fix-out-of-sync-subtitles
+---
+
+Subtitles that were correct during editing can become wrong after export if the video timeline changed.
+
+## Quick answer
+
+First decide whether the problem is a constant offset, a middle cut, or drift.
+
+Use [Fix Out-of-Sync Subtitles](/tools/fix-out-of-sync-subtitles/) or [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/) for a constant offset. Use [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/) if sync breaks after a specific edit point.
+
+## Common causes
+
+Subtitles often go out of sync after export because:
+
+- an intro or countdown was added
+- the beginning of the video was trimmed
+- a scene was removed in the middle
+- the exported video uses a different duration than the edit timeline
+- captions were exported before the final video cut
+- a subtitle file was converted after timing edits
+
+## Identify the pattern
+
+Check three points in the video:
+
+- near the beginning
+- near the middle
+- near the end
+
+If the offset is the same everywhere, use a global shift.
+
+If subtitles are correct before one scene but wrong after it, use a partial shift.
+
+If the offset grows over time, the file may have drift and needs deeper retiming.
+
+## Step-by-step workflow
+
+1. Compare speech and subtitles near the start.
+2. Check the same comparison near the middle and end.
+3. Measure the offset in milliseconds.
+4. Apply a global shift if the offset is constant.
+5. Apply a partial shift if the error starts after a cut.
+6. Export and preview the final video with the corrected subtitle file.
+
+## Common mistakes
+
+### Fixing drift with one offset
+
+A global offset cannot repair timing that gets worse across the video.
+
+### Exporting captions before the final edit
+
+Caption timing should be checked after the video timeline is locked.
+
+### Measuring from a vague speech moment
+
+Use a clear word, clap, cut, or visible action to measure the offset more reliably.
+
+## Related guides
+
+- [How to fix out-of-sync subtitles](/guides/fix-out-of-sync-subtitles/)
+- [How to fix subtitle timing after cutting a video](/guides/how-to-fix-subtitle-timing-after-cutting-video/)
+- [How to fix subtitles that are too fast or too slow](/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/)
+
+## Related tools
+
+- [Fix Out-of-Sync Subtitles](/tools/fix-out-of-sync-subtitles/)
+- [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/)
+- [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/)

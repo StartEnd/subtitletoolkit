@@ -1,0 +1,80 @@
+---
+title: How to fix subtitles showing boxes
+description: Fix subtitles that show boxes, question marks, or broken characters by identifying the source encoding and exporting clean UTF-8 text.
+pubDate: 2026-05-26
+category: sync-fixes
+tags:
+  - encoding
+  - garbled subtitles
+  - boxes
+  - utf-8
+  - repair
+primaryTool: subtitle-encoding-fixer
+---
+
+Boxes, question marks, and strange symbols usually mean the subtitle text was decoded with the wrong character encoding.
+
+## Quick answer
+
+Use the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) to try the source encoding and export a clean UTF-8 subtitle file.
+
+Start with common encodings such as Windows-1252, ISO-8859-1, GB18030, Big5, Shift JIS, or EUC-KR depending on the language.
+
+## What the problem looks like
+
+Encoding problems often show up as:
+
+- square boxes instead of letters
+- question marks inside words
+- accented characters turning into symbols
+- non-English subtitles becoming unreadable
+- names or punctuation changing after upload
+
+This is different from a missing font in a video editor. Subtitle files are text files, so the first fix is usually decoding and saving as UTF-8.
+
+## Step-by-step workflow
+
+1. Keep the original subtitle file unchanged.
+2. Open the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/).
+3. Upload the subtitle file.
+4. Try the most likely source encoding.
+5. Check whether the preview text becomes readable.
+6. Export the file as UTF-8 and test it in the target player or platform.
+
+## Which encoding should you try
+
+Use language and file origin as clues:
+
+- Western European text: Windows-1252 or ISO-8859-1
+- Simplified Chinese: GB18030
+- Traditional Chinese: Big5
+- Japanese: Shift JIS
+- Korean: EUC-KR
+
+If the first guess is wrong, try another encoding and compare the output.
+
+## Common mistakes
+
+### Editing broken text manually
+
+If the text is decoded wrong, manual edits can make the damage permanent. Decode from the original file again.
+
+### Assuming conversion changes timing
+
+Encoding repair should not change timestamps or cue order. It changes how text characters are decoded and saved.
+
+### Uploading before checking names and accents
+
+Always scan proper names, accents, and non-English lines after exporting UTF-8.
+
+## Related guides
+
+- [How to fix garbled subtitles](/guides/how-to-fix-garbled-subtitles/)
+- [How to convert subtitles to UTF-8](/guides/how-to-convert-subtitles-to-utf-8/)
+- [Subtitle encoding: Windows-1252 vs UTF-8](/guides/subtitle-encoding-windows-1252-vs-utf-8/)
+
+## Related tools
+
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
+- [Subtitle Cleaner](/tools/subtitle-cleaner/)
+- [SRT Validator](/tools/srt-validator/)

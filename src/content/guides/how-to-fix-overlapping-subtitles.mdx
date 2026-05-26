@@ -1,0 +1,76 @@
+---
+title: How to fix overlapping subtitles
+description: Fix overlapping subtitle cues by finding timing conflicts, checking cue order, and cleaning or retiming the subtitle file before delivery.
+pubDate: 2026-05-26
+category: sync-fixes
+tags:
+  - overlapping subtitles
+  - subtitle sync
+  - timing
+  - repair
+  - srt
+primaryTool: subtitle-cleaner
+---
+
+Overlapping subtitles happen when one cue starts before the previous cue has ended.
+
+## Quick answer
+
+First validate or clean the subtitle file so cue order and timestamp formatting are predictable. Then adjust any cue that overlaps the next one.
+
+Use [Subtitle Cleaner](/tools/subtitle-cleaner/) for messy structure and [Subtitle Time Shifter](/tools/subtitle-time-shifter/) when an entire section needs to move earlier or later.
+
+## Why overlaps happen
+
+Common causes include:
+
+- manual edits that changed one cue but not the next
+- subtitle exports from editing software with rounded timestamps
+- merged subtitle files with cues in the wrong order
+- scene cuts that moved part of the video timeline
+- converted files with malformed timestamps
+
+Some players tolerate overlaps. Others flicker, hide one cue, or show confusing stacked captions.
+
+## Step-by-step workflow
+
+1. Save a copy of the subtitle file.
+2. Clean or validate the file to confirm cues are parseable.
+3. Search for cues where the next start time is earlier than the current end time.
+4. Shorten the earlier cue or move the later cue forward.
+5. If only one section is affected, use a partial timing shift.
+6. Preview the repaired file in the target player.
+
+## How to decide what to change
+
+If two cues overlap by a tiny amount, shortening the first cue is usually enough.
+
+If a whole section overlaps after a cut, shift that section instead of editing every cue manually.
+
+If overlaps appear throughout the file, check whether the file has drift or was exported with the wrong frame rate.
+
+## Common mistakes
+
+### Moving the whole file for a local overlap
+
+A global shift fixes constant delay. It does not fix one bad transition in the middle of a file.
+
+### Ignoring reading time
+
+Do not shorten cues so much that viewers cannot read them. Fix overlaps while keeping lines readable.
+
+### Merging files without sorting
+
+If overlaps appeared after merging, sort by start time and inspect the join point.
+
+## Related guides
+
+- [How to fix out-of-order subtitle cues](/guides/how-to-fix-out-of-order-subtitle-cues/)
+- [How to shift only part of a subtitle file](/guides/how-to-shift-only-part-of-a-subtitle-file/)
+- [Fix subtitle sync after a scene cut](/guides/fix-subtitle-sync-after-a-scene-cut/)
+
+## Related tools
+
+- [Subtitle Cleaner](/tools/subtitle-cleaner/)
+- [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/)
+- [Subtitle Time Shifter](/tools/subtitle-time-shifter/)

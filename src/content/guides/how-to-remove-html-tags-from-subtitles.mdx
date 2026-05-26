@@ -1,0 +1,80 @@
+---
+title: How to remove HTML tags from subtitles
+description: Remove leftover HTML tags from SRT, VTT, or ASS subtitle text while keeping readable captions and valid subtitle timing.
+pubDate: 2026-05-26
+category: workflow-guides
+tags:
+  - clean subtitles
+  - html tags
+  - srt
+  - vtt
+  - formatting
+primaryTool: subtitle-cleaner
+---
+
+Subtitle files sometimes contain leftover tags from editors, transcripts, or copied web text.
+
+## Quick answer
+
+Use [Subtitle Cleaner](/tools/subtitle-cleaner/) to remove common inline tags such as `<b>`, `<i>`, and similar markup while keeping subtitle text and timing.
+
+For SRT-only cleanup, use [Clean SRT File Online](/tools/clean-srt-file/).
+
+## When to remove tags
+
+Remove HTML-style tags when:
+
+- a platform rejects the subtitle file
+- captions show raw tags on screen
+- copied transcript text contains markup
+- subtitle styling should be handled by the player instead
+- you need a clean handoff file for review
+
+Some platforms support limited formatting, but plain captions are usually safer for upload and review.
+
+## Step-by-step workflow
+
+1. Keep a copy of the original subtitle file.
+2. Open [Subtitle Cleaner](/tools/subtitle-cleaner/).
+3. Upload or paste the SRT, VTT, or ASS file.
+4. Clean the subtitle text.
+5. Check that timing and cue order stayed intact.
+6. Export the cleaned file and test it in the destination platform.
+
+## What to look for
+
+Common tags include:
+
+```text
+<b>important line</b>
+<i>whispered text</i>
+<font color="red">warning</font>
+```
+
+If a tag appears as visible text during playback, remove it or convert the subtitle file for a player that supports the intended styling.
+
+## Common mistakes
+
+### Removing tags from the only source copy
+
+If styling matters, keep the original file. Cleanup creates a safer delivery copy, not a full replacement for an edited source.
+
+### Treating ASS override tags as HTML
+
+ASS uses a different styling syntax. Convert or clean ASS separately and preview the result.
+
+### Ignoring line breaks after cleanup
+
+Removing tags can change how a line reads. Scan the result for awkward line breaks.
+
+## Related guides
+
+- [How to clean subtitle formatting before upload](/guides/how-to-clean-subtitle-formatting-before-upload/)
+- [How to clean an SRT file](/guides/how-to-clean-an-srt-file/)
+- [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)
+
+## Related tools
+
+- [Subtitle Cleaner](/tools/subtitle-cleaner/)
+- [Clean SRT File Online](/tools/clean-srt-file/)
+- [ASS to SRT Converter](/tools/ass-to-srt/)

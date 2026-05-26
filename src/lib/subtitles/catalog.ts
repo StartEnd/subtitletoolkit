@@ -996,6 +996,10 @@ const enTools: SubtitleTool[] = [
         title: 'How to fix out-of-sync subtitles',
       },
       {
+        href: '/guides/why-subtitles-are-out-of-sync-after-export/',
+        title: 'Why subtitles are out of sync after export',
+      },
+      {
         href: '/guides/common-subtitle-format-errors-and-fixes/',
         title: 'Common subtitle format errors and fixes',
       },
@@ -1041,6 +1045,18 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['subtitle-time-shifter', 'ass-to-srt'],
     relatedGuides: [
+      {
+        href: '/guides/how-to-remove-html-tags-from-subtitles/',
+        title: 'How to remove HTML tags from subtitles',
+      },
+      {
+        href: '/guides/how-to-fix-subtitle-line-breaks/',
+        title: 'How to fix subtitle line breaks',
+      },
+      {
+        href: '/guides/how-to-fix-overlapping-subtitles/',
+        title: 'How to fix overlapping subtitles',
+      },
       {
         href: '/guides/common-subtitle-format-errors-and-fixes/',
         title: 'Common subtitle format errors and fixes',
@@ -1097,6 +1113,10 @@ const enTools: SubtitleTool[] = [
     relatedTools: ['subtitle-time-shifter', 'fix-out-of-sync-subtitles'],
     relatedGuides: [
       { href: '/guides/how-to-fix-subtitle-delay/', title: 'How to fix subtitle delay' },
+      {
+        href: '/guides/why-subtitles-are-out-of-sync-after-export/',
+        title: 'Why subtitles are out of sync after export',
+      },
       { href: '/guides/fix-out-of-sync-subtitles/', title: 'How to fix out-of-sync subtitles' },
     ],
     sampleInput: sharedSamples.srt,
@@ -1146,6 +1166,10 @@ const enTools: SubtitleTool[] = [
     relatedTools: ['subtitle-delay-fixer', 'partial-subtitle-shifter'],
     relatedGuides: [
       { href: '/guides/fix-out-of-sync-subtitles/', title: 'How to fix out-of-sync subtitles' },
+      {
+        href: '/guides/why-subtitles-are-out-of-sync-after-export/',
+        title: 'Why subtitles are out of sync after export',
+      },
       {
         href: '/guides/fix-subtitle-sync-after-a-scene-cut/',
         title: 'Fix subtitle sync after a scene cut',
@@ -1200,6 +1224,10 @@ const enTools: SubtitleTool[] = [
       {
         href: '/guides/how-to-clean-an-srt-file/',
         title: 'How to clean an SRT file',
+      },
+      {
+        href: '/guides/why-srt-file-wont-upload/',
+        title: 'Why your SRT file will not upload',
       },
       {
         href: '/guides/how-to-clean-subtitle-formatting-before-upload/',
@@ -1316,6 +1344,10 @@ const enTools: SubtitleTool[] = [
         title: 'How to fix malformed SRT timestamps',
       },
       {
+        href: '/guides/why-srt-file-wont-upload/',
+        title: 'Why your SRT file will not upload',
+      },
+      {
         href: '/guides/common-subtitle-format-errors-and-fixes/',
         title: 'Common subtitle format errors and fixes',
       },
@@ -1366,6 +1398,10 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['fix-srt-timestamps', 'clean-srt-file'],
     relatedGuides: [
+      {
+        href: '/guides/why-srt-file-wont-upload/',
+        title: 'Why your SRT file will not upload',
+      },
       {
         href: '/guides/how-to-validate-srt-files/',
         title: 'How to validate SRT files',
@@ -1425,6 +1461,10 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['srt-to-vtt', 'vtt-to-srt'],
     relatedGuides: [
+      {
+        href: '/guides/why-vtt-captions-are-not-loading/',
+        title: 'Why VTT captions are not loading',
+      },
       {
         href: '/guides/how-to-validate-webvtt-files/',
         title: 'How to validate WebVTT files',
@@ -1549,6 +1589,10 @@ const enTools: SubtitleTool[] = [
     relatedTools: ['subtitle-cleaner', 'srt-to-vtt'],
     relatedGuides: [
       {
+        href: '/guides/how-to-fix-subtitles-showing-boxes/',
+        title: 'How to fix subtitles showing boxes',
+      },
+      {
         href: '/guides/how-to-fix-garbled-subtitles/',
         title: 'How to fix garbled subtitles',
       },
@@ -1649,6 +1693,14 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['subtitle-time-shifter', 'subtitle-merger'],
     relatedGuides: [
+      {
+        href: '/guides/how-to-fix-subtitle-timing-after-cutting-video/',
+        title: 'How to fix subtitle timing after cutting a video',
+      },
+      {
+        href: '/guides/how-to-fix-overlapping-subtitles/',
+        title: 'How to fix overlapping subtitles',
+      },
       {
         href: '/guides/how-to-shift-only-part-of-a-subtitle-file/',
         title: 'How to shift only part of a subtitle file',

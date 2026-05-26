@@ -1,0 +1,78 @@
+---
+title: Why your SRT file will not upload
+description: Diagnose why an SRT subtitle file fails to upload by checking timestamp format, cue numbering, blank lines, encoding, and file structure.
+pubDate: 2026-05-26
+category: sync-fixes
+tags:
+  - srt
+  - upload error
+  - validator
+  - timestamps
+  - repair
+primaryTool: srt-validator
+---
+
+An SRT upload can fail even when the file looks readable in a text editor.
+
+## Quick answer
+
+Run the file through the [SRT Validator](/tools/srt-validator/) first. Most SRT upload failures come from malformed timestamps, missing blank lines, duplicated cue numbers, broken encoding, or a file that is not really SRT.
+
+If the issue is mechanical, clean or rebuild the file before uploading again.
+
+## Common reasons SRT uploads fail
+
+Check these first:
+
+- timestamps use dots instead of commas
+- cue blocks are missing blank lines
+- cue numbers are duplicated, missing, or out of order
+- start times are later than end times
+- the file was saved with the wrong text encoding
+- subtitle text contains unsupported markup
+- the file extension is `.srt`, but the content is actually VTT or another format
+
+## Step-by-step workflow
+
+1. Open the [SRT Validator](/tools/srt-validator/).
+2. Upload or paste the rejected SRT file.
+3. Check whether cues are parsed correctly.
+4. If timestamps are malformed, use [Fix SRT Timestamps](/tools/fix-srt-timestamps/).
+5. If spacing, numbers, or tags are messy, use [Clean SRT File Online](/tools/clean-srt-file/).
+6. Upload the cleaned file again and preview captions in the target platform.
+
+## What a valid SRT block looks like
+
+```text
+1
+00:00:01,000 --> 00:00:03,500
+Welcome back to the edit.
+```
+
+The timestamp should use commas for milliseconds. Each cue block should be separated by a blank line.
+
+## Common mistakes
+
+### Renaming a VTT file to SRT
+
+Changing the extension does not convert the format. If the file starts with `WEBVTT`, convert it with the [VTT to SRT Converter](/tools/vtt-to-srt/).
+
+### Fixing cue numbers but ignoring timestamps
+
+Numbering is only one part of SRT structure. Timestamp separators and cue order matter too.
+
+### Uploading a file with garbled characters
+
+If accents, names, or non-English text looks broken, fix encoding before validating again.
+
+## Related guides
+
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+- [How to fix malformed SRT timestamps](/guides/how-to-fix-malformed-srt-timestamps/)
+- [How to clean an SRT file](/guides/how-to-clean-an-srt-file/)
+
+## Related tools
+
+- [SRT Validator](/tools/srt-validator/)
+- [Fix SRT Timestamps](/tools/fix-srt-timestamps/)
+- [Clean SRT File Online](/tools/clean-srt-file/)

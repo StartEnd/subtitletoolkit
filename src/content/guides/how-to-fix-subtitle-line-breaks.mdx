@@ -1,0 +1,95 @@
+---
+title: How to fix subtitle line breaks
+description: Fix messy subtitle line breaks by cleaning spacing, preserving readable cue text, and avoiding broken captions before upload or review.
+pubDate: 2026-05-26
+category: workflow-guides
+tags:
+  - line breaks
+  - clean subtitles
+  - srt
+  - vtt
+  - formatting
+primaryTool: subtitle-cleaner
+---
+
+Subtitle line breaks affect readability even when timing is correct.
+
+## Quick answer
+
+Use [Subtitle Cleaner](/tools/subtitle-cleaner/) to normalize spacing and clean subtitle text without intentionally changing timing.
+
+Then do a quick readability pass for cues that are split in awkward places.
+
+## What good line breaks should do
+
+Good subtitle line breaks should:
+
+- keep short phrases together
+- avoid splitting names or numbers awkwardly
+- avoid very long single lines
+- preserve meaning across two-line captions
+- stay readable at normal playback speed
+
+The goal is not only valid format. The goal is captions people can read.
+
+## Step-by-step workflow
+
+1. Open [Subtitle Cleaner](/tools/subtitle-cleaner/).
+2. Upload or paste the subtitle file.
+3. Clean spacing and formatting.
+4. Review long cues and awkward breaks.
+5. Edit text where a line split hurts readability.
+6. Export and preview the file in the target player.
+
+## Common line break problems
+
+### Broken phrases
+
+Avoid splits like:
+
+```text
+We need to talk about
+the
+final export.
+```
+
+A cleaner version is:
+
+```text
+We need to talk about
+the final export.
+```
+
+### Leftover hard breaks from transcripts
+
+Transcript text often wraps by page width, not subtitle readability. Clean and review it before upload.
+
+### ASS line breaks after conversion
+
+ASS files use `\\N` for line breaks. After converting ASS to SRT or TXT, scan the output to make sure those breaks still make sense.
+
+## Common mistakes
+
+### Only checking the text file
+
+Preview subtitles in the actual player. A line that looks fine in a text editor may wrap badly on screen.
+
+### Making every cue one line
+
+One-line captions are not always better. Long single lines can be harder to read and may overflow small players.
+
+### Changing line breaks while ignoring timing
+
+If a cue is too short to read, line breaks alone will not fix it. Timing may need adjustment.
+
+## Related guides
+
+- [How to clean subtitle formatting before upload](/guides/how-to-clean-subtitle-formatting-before-upload/)
+- [How to create a transcript from subtitles](/guides/how-to-create-a-transcript-from-subtitles/)
+- [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)
+
+## Related tools
+
+- [Subtitle Cleaner](/tools/subtitle-cleaner/)
+- [Clean SRT File Online](/tools/clean-srt-file/)
+- [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/)

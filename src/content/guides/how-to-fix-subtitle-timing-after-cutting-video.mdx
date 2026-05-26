@@ -1,0 +1,77 @@
+---
+title: How to fix subtitle timing after cutting a video
+description: Fix subtitle timing after trimming or cutting a video by shifting the whole file or only the affected section of cues.
+pubDate: 2026-05-26
+category: sync-fixes
+tags:
+  - video cut
+  - subtitle sync
+  - timing
+  - partial shift
+  - repair
+primaryTool: partial-subtitle-shifter
+---
+
+Cutting a video often changes subtitle timing. The right fix depends on where the cut happened.
+
+## Quick answer
+
+If the video was trimmed at the beginning, shift the whole subtitle file earlier by the trimmed duration.
+
+If a scene was removed in the middle, use the [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/) to move only the cues after the cut.
+
+## Choose the right timing fix
+
+Use a global shift when:
+
+- the video start was trimmed
+- every subtitle cue is off by the same amount
+- the offset is consistent from beginning to end
+
+Use a partial shift when:
+
+- a middle scene was removed
+- subtitles are correct before the cut
+- subtitles become wrong after the cut
+- only one section needs to move
+
+## Step-by-step workflow
+
+1. Identify exactly how much video time was removed.
+2. Check whether subtitles are wrong from the start or only after a cut point.
+3. Use [Subtitle Time Shifter](/tools/subtitle-time-shifter/) for a whole-file offset.
+4. Use [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/) for cues after a scene cut.
+5. Export the corrected subtitle file.
+6. Preview the beginning, cut point, and ending.
+
+## Example
+
+If you removed a 12-second intro, subtitles will usually appear 12 seconds late. Shift the whole file by `-12000 ms`.
+
+If you removed a 12-second scene at `00:10:00`, keep cues before that point unchanged and shift later cues by `-12000 ms`.
+
+## Common mistakes
+
+### Applying one global shift after a middle cut
+
+That fixes the section after the cut but breaks the section before it. Use a partial shift instead.
+
+### Guessing the offset
+
+Use the exact removed duration when possible. Guessing leads to repeated exports and previews.
+
+### Checking only the first subtitle
+
+After a cut, check several points: before the cut, just after the cut, and near the end.
+
+## Related guides
+
+- [Fix subtitle sync after a scene cut](/guides/fix-subtitle-sync-after-a-scene-cut/)
+- [How to shift only part of a subtitle file](/guides/how-to-shift-only-part-of-a-subtitle-file/)
+- [How to fix subtitle delay](/guides/how-to-fix-subtitle-delay/)
+
+## Related tools
+
+- [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/)
+- [Subtitle Time Shifter](/tools/subtitle-time-shifter/)
+- [Fix Out-of-Sync Subtitles](/tools/fix-out-of-sync-subtitles/)
