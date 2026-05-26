@@ -678,6 +678,14 @@ const enTools: SubtitleTool[] = [
         href: '/guides/how-to-convert-subtitles-for-youtube/',
         title: 'How to convert subtitles for YouTube',
       },
+      {
+        href: '/guides/why-youtube-subtitles-upload-failed/',
+        title: 'Why YouTube subtitle upload failed',
+      },
+      {
+        href: '/guides/best-srt-settings-for-youtube-upload/',
+        title: 'Best SRT settings for YouTube upload',
+      },
       { href: '/guides/best-subtitle-format-for-youtube/', title: 'Best subtitle format for YouTube' },
     ],
     sampleInput: sharedSamples.vtt,
@@ -729,6 +737,18 @@ const enTools: SubtitleTool[] = [
       {
         href: '/guides/how-to-convert-subtitles-for-html5-video/',
         title: 'How to convert subtitles for HTML5 video',
+      },
+      {
+        href: '/guides/how-to-fix-vtt-mime-type-for-html5-video/',
+        title: 'How to fix VTT MIME type for HTML5 video',
+      },
+      {
+        href: '/guides/how-to-fix-cors-errors-for-vtt-subtitles/',
+        title: 'How to fix CORS errors for VTT subtitles',
+      },
+      {
+        href: '/guides/how-to-add-multiple-subtitle-languages-to-html5-video/',
+        title: 'How to add multiple subtitle languages to HTML5 video',
       },
       { href: '/guides/best-subtitle-format-for-html5-video/', title: 'Best subtitle format for HTML5 video' },
     ],
@@ -782,6 +802,10 @@ const enTools: SubtitleTool[] = [
         href: '/guides/how-to-convert-subtitles-for-videojs/',
         title: 'How to convert subtitles for Video.js',
       },
+      {
+        href: '/guides/why-videojs-captions-are-not-showing/',
+        title: 'Why Video.js captions are not showing',
+      },
       { href: '/guides/best-subtitle-format-for-videojs/', title: 'Best subtitle format for Video.js' },
     ],
     sampleInput: sharedSamples.srt,
@@ -833,6 +857,10 @@ const enTools: SubtitleTool[] = [
       {
         href: '/guides/how-to-convert-subtitles-for-jw-player/',
         title: 'How to convert subtitles for JW Player',
+      },
+      {
+        href: '/guides/why-jw-player-captions-are-not-showing/',
+        title: 'Why JW Player captions are not showing',
       },
       { href: '/guides/best-subtitle-format-for-jw-player/', title: 'Best subtitle format for JW Player' },
     ],
@@ -886,6 +914,14 @@ const enTools: SubtitleTool[] = [
         href: '/guides/how-to-convert-subtitles-for-plex/',
         title: 'How to convert subtitles for Plex',
       },
+      {
+        href: '/guides/why-plex-subtitles-are-not-showing/',
+        title: 'Why Plex subtitles are not showing',
+      },
+      {
+        href: '/guides/how-to-name-subtitle-files-for-plex/',
+        title: 'How to name subtitle files for Plex',
+      },
       { href: '/guides/best-subtitle-format-for-plex/', title: 'Best subtitle format for Plex' },
     ],
     sampleInput: sharedSamples.ass,
@@ -937,6 +973,10 @@ const enTools: SubtitleTool[] = [
       {
         href: '/guides/how-to-convert-subtitles-for-vimeo/',
         title: 'How to convert subtitles for Vimeo',
+      },
+      {
+        href: '/guides/why-vimeo-captions-are-not-showing/',
+        title: 'Why Vimeo captions are not showing',
       },
       { href: '/guides/best-subtitle-format-for-vimeo-embeds/', title: 'Best subtitle format for Vimeo embeds' },
     ],
@@ -1464,6 +1504,10 @@ const enTools: SubtitleTool[] = [
       {
         href: '/guides/why-vtt-captions-are-not-loading/',
         title: 'Why VTT captions are not loading',
+      },
+      {
+        href: '/guides/how-to-fix-cors-errors-for-vtt-subtitles/',
+        title: 'How to fix CORS errors for VTT subtitles',
       },
       {
         href: '/guides/how-to-validate-webvtt-files/',

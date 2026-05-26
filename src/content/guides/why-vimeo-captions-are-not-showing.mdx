@@ -1,0 +1,67 @@
+---
+title: Why Vimeo captions are not showing
+description: Fix Vimeo captions that do not show by checking caption format, WebVTT output, language track setup, and embed playback behavior.
+pubDate: 2026-05-26
+category: workflow-guides
+tags:
+  - vimeo
+  - webvtt
+  - captions not showing
+  - vtt
+  - subtitles
+primaryTool: vimeo-subtitle-converter
+---
+
+Vimeo caption problems often come from the uploaded caption file or the way the language track is configured.
+
+## Quick answer
+
+Use a clean WebVTT file for Vimeo caption workflows. If your source file is SRT or ASS, convert it with the [Vimeo Subtitle Converter](/tools/vimeo-subtitle-converter/) before uploading or testing embed captions.
+
+Then check that the caption language track is enabled and available in the player.
+
+## What to check
+
+Check these items:
+
+- the caption file is valid WebVTT
+- the file has a `WEBVTT` header
+- timestamps use dots, not commas
+- the correct language is assigned
+- captions are enabled in the Vimeo player
+- the embed settings allow captions to appear
+
+## Step-by-step workflow
+
+1. Convert the subtitle file to VTT if needed.
+2. Validate the VTT output.
+3. Upload or attach the caption file in Vimeo.
+4. Confirm the language track settings.
+5. Test the video on the Vimeo page.
+6. Test the embedded player if the video is used on your site.
+
+## Common mistakes
+
+### Uploading a file that looks like VTT but is really SRT
+
+VTT needs a header and dot-based timestamps. Convert the file properly.
+
+### Forgetting the embed
+
+Captions can behave differently between the Vimeo page and an embedded player. Test the context where viewers watch.
+
+### Replacing the source file
+
+Keep the original subtitle source. Use VTT as the delivery copy for Vimeo.
+
+## Related guides
+
+- [How to convert subtitles for Vimeo](/guides/how-to-convert-subtitles-for-vimeo/)
+- [Best subtitle format for Vimeo embeds](/guides/best-subtitle-format-for-vimeo-embeds/)
+- [Why VTT captions are not loading](/guides/why-vtt-captions-are-not-loading/)
+
+## Related tools
+
+- [Vimeo Subtitle Converter](/tools/vimeo-subtitle-converter/)
+- [WebVTT Validator](/tools/webvtt-validator/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)

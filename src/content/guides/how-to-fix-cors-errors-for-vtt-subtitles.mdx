@@ -1,0 +1,76 @@
+---
+title: How to fix CORS errors for VTT subtitles
+description: Fix WebVTT subtitle CORS errors by serving caption files from an allowed origin and checking track URLs, headers, and browser requests.
+pubDate: 2026-05-26
+category: workflow-guides
+tags:
+  - webvtt
+  - cors
+  - html5 video
+  - vtt
+  - captions not loading
+primaryTool: html5-video-subtitle-converter
+---
+
+VTT subtitles can fail even when the file is valid if the browser is not allowed to fetch it.
+
+## Quick answer
+
+If captions are hosted on a different domain, configure that server to allow the video page origin to request the `.vtt` file.
+
+Also confirm the VTT file itself is valid with the [WebVTT Validator](/tools/webvtt-validator/).
+
+## What a CORS problem looks like
+
+Common signs include:
+
+- captions work locally but not after deployment
+- the browser console mentions CORS
+- the VTT URL opens directly, but the video player does not load it
+- captions are hosted on a CDN or separate domain
+
+The player cannot override browser security rules. The server hosting the VTT file must send the right headers.
+
+## Step-by-step workflow
+
+1. Open browser developer tools.
+2. Find the `.vtt` network request.
+3. Confirm the request URL is correct.
+4. Check whether the response is blocked by CORS.
+5. Add an allowed origin header on the VTT file server.
+6. Reload the page and test captions again.
+
+## File checks still matter
+
+Do not stop at CORS. The VTT file should also have:
+
+- a `WEBVTT` header
+- dot-based timestamps
+- parseable cue blocks
+- a suitable `text/vtt` content type
+
+## Common mistakes
+
+### Moving captions to another domain without headers
+
+If videos and captions are served from different origins, CORS rules become part of the caption setup.
+
+### Testing only by opening the VTT file
+
+Opening the file directly is useful, but it does not prove the video page is allowed to fetch it as a track.
+
+### Ignoring CDN behavior
+
+Some CDN rules change headers by file type or path. Check the actual response from the deployed URL.
+
+## Related guides
+
+- [How to fix VTT MIME type for HTML5 video](/guides/how-to-fix-vtt-mime-type-for-html5-video/)
+- [Why VTT captions are not loading](/guides/why-vtt-captions-are-not-loading/)
+- [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/)
+
+## Related tools
+
+- [WebVTT Validator](/tools/webvtt-validator/)
+- [HTML5 Video Subtitle Converter](/tools/html5-video-subtitle-converter/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)

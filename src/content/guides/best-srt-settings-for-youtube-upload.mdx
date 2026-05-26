@@ -1,0 +1,74 @@
+---
+title: Best SRT settings for YouTube upload
+description: Prepare SRT subtitles for YouTube by using clean timestamps, UTF-8 text encoding, simple cue structure, and readable caption lines.
+pubDate: 2026-05-26
+category: workflow-guides
+tags:
+  - youtube
+  - srt
+  - utf-8
+  - upload
+  - captions
+primaryTool: youtube-subtitle-converter
+---
+
+YouTube accepts several caption formats, but clean SRT is the safest default for most creators.
+
+## Quick answer
+
+Use SRT with comma-based timestamps, sequential cue numbers, UTF-8 text, and simple readable caption lines.
+
+If your subtitle source is VTT or ASS, create a clean upload copy with the [YouTube Subtitle Converter](/tools/youtube-subtitle-converter/).
+
+## Recommended SRT structure
+
+A YouTube-ready SRT file should use:
+
+- sequential cue numbers
+- timestamps like `00:00:01,000 --> 00:00:03,500`
+- one blank line between cue blocks
+- plain text captions
+- UTF-8 encoding
+
+Keep styling out of the upload file unless you have tested that YouTube handles it the way you expect.
+
+## Step-by-step workflow
+
+1. Export or convert your subtitles to SRT.
+2. Validate the SRT file.
+3. Fix encoding issues before upload.
+4. Check long lines and awkward line breaks.
+5. Upload the file in YouTube Studio.
+6. Preview the captions on the video page.
+
+## Encoding and language notes
+
+UTF-8 is the safest encoding for YouTube uploads. It helps preserve accents, names, punctuation, and non-English characters.
+
+If the subtitle text looks garbled before upload, fix the encoding first instead of editing broken characters manually.
+
+## Common mistakes
+
+### Uploading a styled editing file
+
+Keep ASS or other styled files as editing sources. Export a plain SRT upload copy for YouTube.
+
+### Skipping preview
+
+Even valid SRT files should be previewed. YouTube may wrap lines differently from your editor.
+
+### Using the wrong language track
+
+The file can be valid but still assigned to the wrong language in YouTube Studio. Check track language before publishing.
+
+## Related guides
+
+- [Prepare subtitles for YouTube upload](/guides/how-to-prepare-subtitles-for-youtube-upload/)
+- [How to convert ASS to SRT for YouTube uploads](/guides/how-to-convert-ass-to-srt-for-youtube-uploads/)
+- [How to convert subtitles to UTF-8](/guides/how-to-convert-subtitles-to-utf-8/)
+
+## Related tools
+
+- [YouTube Subtitle Converter](/tools/youtube-subtitle-converter/)
+- [SRT Validator](/tools/srt-validator/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)

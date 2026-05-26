@@ -1,0 +1,76 @@
+---
+title: How to fix VTT MIME type for HTML5 video
+description: Fix WebVTT captions that fail in HTML5 video by checking the VTT file, track element, and server content type for .vtt files.
+pubDate: 2026-05-26
+category: workflow-guides
+tags:
+  - webvtt
+  - mime type
+  - html5 video
+  - captions not loading
+  - vtt
+primaryTool: html5-video-subtitle-converter
+---
+
+Sometimes a VTT file is valid, but the browser still refuses to load it correctly.
+
+## Quick answer
+
+Validate the VTT file first. Then make sure the server serves `.vtt` files with the `text/vtt` content type.
+
+Use the [HTML5 Video Subtitle Converter](/tools/html5-video-subtitle-converter/) if your source file needs to be converted into clean WebVTT.
+
+## What to check
+
+For HTML5 video captions, check:
+
+- the file starts with `WEBVTT`
+- timestamps use dots, not commas
+- the file URL returns the VTT file
+- the server content type is `text/vtt`
+- the `track` element points to the correct URL
+
+## Example track element
+
+```html
+<video controls>
+  <source src="video.mp4" type="video/mp4" />
+  <track kind="subtitles" src="captions.en.vtt" srclang="en" label="English" />
+</video>
+```
+
+The VTT file must be reachable from the browser, not only present in the project folder.
+
+## Step-by-step workflow
+
+1. Validate the VTT file.
+2. Open the VTT URL directly in a browser.
+3. Check the response headers for `content-type`.
+4. Configure the server to serve `.vtt` as `text/vtt` if needed.
+5. Reload the video page and test captions.
+
+## Common mistakes
+
+### Fixing MIME type before validating the file
+
+A wrong content type is only one possible issue. A malformed VTT file will still fail after the server is fixed.
+
+### Using a local file path in production
+
+The track `src` must point to a URL the browser can fetch from the deployed site.
+
+### Renaming SRT to VTT
+
+Convert SRT to VTT properly so the header and timestamp format are correct.
+
+## Related guides
+
+- [Why VTT captions are not loading](/guides/why-vtt-captions-are-not-loading/)
+- [How to validate WebVTT files](/guides/how-to-validate-webvtt-files/)
+- [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/)
+
+## Related tools
+
+- [HTML5 Video Subtitle Converter](/tools/html5-video-subtitle-converter/)
+- [WebVTT Validator](/tools/webvtt-validator/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)

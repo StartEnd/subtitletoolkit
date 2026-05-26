@@ -1,0 +1,67 @@
+---
+title: Why JW Player captions are not showing
+description: Fix JW Player captions that do not show by checking VTT formatting, caption file URLs, player tracks, MIME type, and CORS settings.
+pubDate: 2026-05-26
+category: workflow-guides
+tags:
+  - jw player
+  - webvtt
+  - captions not showing
+  - vtt
+  - player setup
+primaryTool: jw-player-subtitle-converter
+---
+
+JW Player caption failures are usually caused by the caption file, the URL, or the player track configuration.
+
+## Quick answer
+
+Prepare a clean WebVTT file, validate it, and attach the correct VTT URL in the JW Player caption configuration.
+
+Use the [JW Player Subtitle Converter](/tools/jw-player-subtitle-converter/) when your source subtitles are SRT or ASS.
+
+## Checklist
+
+Before changing player code, check:
+
+- the file is WebVTT, not renamed SRT
+- the VTT file starts with `WEBVTT`
+- timestamps use dot-based milliseconds
+- the VTT URL returns a `200` response
+- CORS allows the player page to load the file
+- the caption track is included in the JW Player setup
+
+## Step-by-step workflow
+
+1. Convert source subtitles to VTT if needed.
+2. Validate the VTT file.
+3. Open the deployed VTT URL directly.
+4. Check network requests in browser developer tools.
+5. Confirm the caption track configuration.
+6. Test captions in the embedded player.
+
+## Common mistakes
+
+### Uploading SRT where VTT is expected
+
+Web players generally work best with WebVTT. Convert the file instead of renaming it.
+
+### Hosting captions on a blocked domain
+
+If the caption file is served from another origin, browser security settings can block it.
+
+### Testing only the media file
+
+The video can load successfully while the caption file fails separately. Check caption network requests too.
+
+## Related guides
+
+- [How to convert subtitles for JW Player](/guides/how-to-convert-subtitles-for-jw-player/)
+- [Best subtitle format for JW Player](/guides/best-subtitle-format-for-jw-player/)
+- [How to fix CORS errors for VTT subtitles](/guides/how-to-fix-cors-errors-for-vtt-subtitles/)
+
+## Related tools
+
+- [JW Player Subtitle Converter](/tools/jw-player-subtitle-converter/)
+- [WebVTT Validator](/tools/webvtt-validator/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)

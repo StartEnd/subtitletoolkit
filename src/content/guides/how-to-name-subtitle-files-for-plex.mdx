@@ -1,0 +1,75 @@
+---
+title: How to name subtitle files for Plex
+description: Name external subtitle files for Plex by matching the video filename, adding language codes, and keeping subtitles beside the media file.
+pubDate: 2026-05-26
+category: workflow-guides
+tags:
+  - plex
+  - subtitle filename
+  - srt
+  - language code
+  - media library
+primaryTool: plex-subtitle-converter
+---
+
+Plex needs to discover external subtitle files before it can show them in the player.
+
+## Quick answer
+
+Put the subtitle file in the same folder as the video and make the base filename match the video filename.
+
+For most libraries, a pattern like `Movie.Name.en.srt` is a safe choice.
+
+## Basic naming pattern
+
+Use this structure:
+
+```text
+Video.File.Name.mkv
+Video.File.Name.en.srt
+Video.File.Name.es.srt
+Video.File.Name.fr.srt
+```
+
+The part before the language code should match the video filename. The language code tells Plex which subtitle language the file contains.
+
+## Step-by-step workflow
+
+1. Convert the subtitle to SRT if the playback device has trouble with ASS or VTT.
+2. Copy the video filename without the extension.
+3. Add a language code such as `.en`, `.es`, or `.fr`.
+4. Save the subtitle file as `.srt`.
+5. Place it beside the video file.
+6. Refresh the Plex library and select the subtitle track.
+
+## When format matters
+
+SRT is the safest external subtitle format for broad Plex playback. ASS can be useful for styled subtitles, but support depends on device and playback mode.
+
+If you need compatibility first, convert ASS or VTT to SRT.
+
+## Common mistakes
+
+### Using a completely different subtitle name
+
+Plex may not associate the subtitle with the video if the base filenames do not match.
+
+### Forgetting language codes
+
+Language codes are especially useful when there are multiple external subtitle files for the same video.
+
+### Leaving subtitles outside the media folder
+
+Keep external subtitle files next to the video unless your Plex library uses a different established organization pattern.
+
+## Related guides
+
+- [Why Plex subtitles are not showing](/guides/why-plex-subtitles-are-not-showing/)
+- [Best subtitle format for Plex](/guides/best-subtitle-format-for-plex/)
+- [How to convert subtitles for Plex](/guides/how-to-convert-subtitles-for-plex/)
+
+## Related tools
+
+- [Plex Subtitle Converter](/tools/plex-subtitle-converter/)
+- [VTT to SRT Converter](/tools/vtt-to-srt/)
+- [ASS to SRT Converter](/tools/ass-to-srt/)

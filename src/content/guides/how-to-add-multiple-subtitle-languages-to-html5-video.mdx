@@ -1,0 +1,79 @@
+---
+title: How to add multiple subtitle languages to HTML5 video
+description: Add multiple subtitle languages to HTML5 video by preparing separate WebVTT files with language codes, labels, and track elements.
+pubDate: 2026-05-26
+category: workflow-guides
+tags:
+  - html5 video
+  - webvtt
+  - multiple languages
+  - subtitles
+  - track element
+primaryTool: html5-video-subtitle-converter
+---
+
+HTML5 video uses one track element per subtitle language.
+
+## Quick answer
+
+Create one WebVTT file per language, then add one `track` element for each file.
+
+Use the [HTML5 Video Subtitle Converter](/tools/html5-video-subtitle-converter/) when source subtitles need to be converted to WebVTT first.
+
+## Example
+
+```html
+<video controls>
+  <source src="video.mp4" type="video/mp4" />
+  <track kind="subtitles" src="captions.en.vtt" srclang="en" label="English" default />
+  <track kind="subtitles" src="captions.es.vtt" srclang="es" label="Spanish" />
+  <track kind="subtitles" src="captions.fr.vtt" srclang="fr" label="French" />
+</video>
+```
+
+Each VTT file should contain subtitles for one language.
+
+## Step-by-step workflow
+
+1. Prepare one subtitle file per language.
+2. Convert each file to WebVTT if needed.
+3. Validate each VTT file.
+4. Use clear filenames such as `captions.en.vtt`.
+5. Add one track element per language.
+6. Test the language selector in the browser.
+
+## Naming tips
+
+Use language codes consistently:
+
+- `captions.en.vtt` for English
+- `captions.es.vtt` for Spanish
+- `captions.fr.vtt` for French
+
+The `srclang` value should match the language of the captions, not the video file name.
+
+## Common mistakes
+
+### Combining multiple languages in one VTT track
+
+Use separate tracks so the browser can expose each language cleanly.
+
+### Forgetting labels
+
+Labels help viewers choose the right language in the player UI.
+
+### Setting every track as default
+
+Only one track should usually be marked as default.
+
+## Related guides
+
+- [How to convert subtitles for HTML5 video](/guides/how-to-convert-subtitles-for-html5-video/)
+- [How to validate WebVTT files](/guides/how-to-validate-webvtt-files/)
+- [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/)
+
+## Related tools
+
+- [HTML5 Video Subtitle Converter](/tools/html5-video-subtitle-converter/)
+- [WebVTT Validator](/tools/webvtt-validator/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)

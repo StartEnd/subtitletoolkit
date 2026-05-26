@@ -1,0 +1,77 @@
+---
+title: Why Plex subtitles are not showing
+description: Fix Plex subtitles that do not show by checking file naming, subtitle format, library scanning, encoding, and device compatibility.
+pubDate: 2026-05-26
+category: workflow-guides
+tags:
+  - plex
+  - srt
+  - subtitles not showing
+  - naming
+  - media library
+primaryTool: plex-subtitle-converter
+---
+
+When Plex subtitles do not show, the issue is often file discovery rather than subtitle text.
+
+## Quick answer
+
+Use a simple SRT file, name it to match the video file, keep it in the same folder, and refresh the Plex library.
+
+If your source subtitle is ASS or VTT, create an SRT copy with the [Plex Subtitle Converter](/tools/plex-subtitle-converter/).
+
+## Common causes
+
+Plex may not show subtitles when:
+
+- the subtitle filename does not match the video filename
+- the subtitle file is in the wrong folder
+- the library has not been refreshed
+- the subtitle format is not supported on the playback device
+- the file encoding is broken
+- the subtitle track is disabled in the player
+
+## Step-by-step workflow
+
+1. Convert the subtitle file to SRT if needed.
+2. Rename the subtitle file to match the video file.
+3. Put the SRT file next to the video file.
+4. Refresh or rescan the Plex library.
+5. Select the subtitle track in the Plex player.
+6. Test playback on the actual device.
+
+## Example naming
+
+```text
+Movie.Name.2026.mkv
+Movie.Name.2026.en.srt
+Movie.Name.2026.es.srt
+```
+
+The language code helps Plex and viewers choose the right track.
+
+## Common mistakes
+
+### Using styled ASS when SRT is enough
+
+Some Plex clients handle ASS differently. SRT is the safer fallback for broad device compatibility.
+
+### Forgetting to refresh the library
+
+Plex may not detect a new subtitle file until the folder is scanned again.
+
+### Fixing the wrong file
+
+If the subtitle appears on one device but not another, the file may be valid and the issue may be client compatibility.
+
+## Related guides
+
+- [How to convert subtitles for Plex](/guides/how-to-convert-subtitles-for-plex/)
+- [Best subtitle format for Plex](/guides/best-subtitle-format-for-plex/)
+- [How to name subtitle files for Plex](/guides/how-to-name-subtitle-files-for-plex/)
+
+## Related tools
+
+- [Plex Subtitle Converter](/tools/plex-subtitle-converter/)
+- [ASS to SRT Converter](/tools/ass-to-srt/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
