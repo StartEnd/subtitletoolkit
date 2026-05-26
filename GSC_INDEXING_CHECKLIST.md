@@ -1,6 +1,6 @@
 # Google Search Console Indexing Checklist
 
-Last updated: 2026-05-06
+Last updated: 2026-05-26
 Site: `https://subtitletoolkit.tools`
 
 ## Goal
@@ -20,10 +20,16 @@ Only submit URLs after the latest version is live.
 
 This matters because the current build now includes:
 
-- guide clusters
-- related guides
-- stronger internal links
-- 20 guide pages total
+- canonical URLs that use `https://subtitletoolkit.tools`
+- sitemap URLs that use the non-`www` domain and trailing slash format
+- stronger metadata and FAQ content on `/tools/srt-to-vtt/`
+- related guides and internal links for the core converter pages
+
+Before submitting URLs, confirm the deployment layer has a host redirect rule:
+
+`https://www.subtitletoolkit.tools/*` -> `https://subtitletoolkit.tools/$1`
+
+This rule belongs in Cloudflare Redirect Rules or Bulk Redirects, not in page content. The goal is to make `www` a redirect-only host and keep Search Console focused on the non-`www` property.
 
 ## Step 2: Resubmit Sitemap
 
@@ -41,34 +47,44 @@ Use URL Inspection and request indexing for these pages first.
 ### Tier 1: Site entry pages
 
 1. `https://subtitletoolkit.tools/`
-2. `https://subtitletoolkit.tools/tools`
-3. `https://subtitletoolkit.tools/guides`
+2. `https://subtitletoolkit.tools/tools/`
+3. `https://subtitletoolkit.tools/guides/`
 
-### Tier 2: Core format comparison pages
+### Tier 2: Core tool pages
 
-4. `https://subtitletoolkit.tools/guides/srt-vs-vtt`
-5. `https://subtitletoolkit.tools/guides/ass-vs-srt`
-6. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-html5-video`
+4. `https://subtitletoolkit.tools/tools/srt-to-vtt/`
+5. `https://subtitletoolkit.tools/tools/vtt-to-srt/`
+6. `https://subtitletoolkit.tools/tools/ass-to-srt/`
+7. `https://subtitletoolkit.tools/tools/subtitle-time-shifter/`
+8. `https://subtitletoolkit.tools/tools/subtitle-encoding-fixer/`
 
-### Tier 3: Strongest long-tail action pages
+### Tier 3: Core format comparison pages
 
-7. `https://subtitletoolkit.tools/guides/how-to-convert-srt-to-vtt-for-html5-video`
-8. `https://subtitletoolkit.tools/guides/how-to-fix-subtitle-delay`
-9. `https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps`
-10. `https://subtitletoolkit.tools/guides/how-to-clean-subtitle-formatting-before-upload`
+9. `https://subtitletoolkit.tools/guides/srt-vs-vtt/`
+10. `https://subtitletoolkit.tools/guides/ass-vs-srt/`
+11. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-html5-video/`
+
+### Tier 4: Strongest long-tail action pages
+
+12. `https://subtitletoolkit.tools/guides/how-to-convert-srt-to-vtt-for-html5-video/`
+13. `https://subtitletoolkit.tools/guides/how-to-fix-subtitle-delay/`
+14. `https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/`
+15. `https://subtitletoolkit.tools/guides/how-to-clean-subtitle-formatting-before-upload/`
 
 ## Step 4: Secondary URLs To Submit Later
 
 Wait a few days before requesting these unless they are already showing impressions.
 
-1. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-videojs`
-2. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-jw-player`
-3. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-vimeo-embeds`
-4. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-plex`
-5. `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-srt-for-youtube-uploads`
-6. `https://subtitletoolkit.tools/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow`
-7. `https://subtitletoolkit.tools/guides/how-to-remove-subtitle-line-numbers`
-8. `https://subtitletoolkit.tools/guides/how-to-fix-malformed-srt-timestamps`
+1. `https://subtitletoolkit.tools/tools/srt-to-ass/`
+2. `https://subtitletoolkit.tools/tools/subtitle-cleaner/`
+3. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-videojs/`
+4. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-jw-player/`
+5. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-vimeo-embeds/`
+6. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-plex/`
+7. `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-srt-for-youtube-uploads/`
+8. `https://subtitletoolkit.tools/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/`
+9. `https://subtitletoolkit.tools/guides/how-to-remove-subtitle-line-numbers/`
+10. `https://subtitletoolkit.tools/guides/how-to-fix-malformed-srt-timestamps/`
 
 ## Step 5: What To Ignore For Now
 
@@ -95,6 +111,12 @@ When checking a URL, ask:
 3. Does it redirect more than once?
 4. Is it an old page from a previous structure?
 
+For the current Search Console state, inspect these buckets first:
+
+1. `Redirect error`: fix the exact URL before submitting more pages.
+2. `Not found (404)`: remove from sitemap/internal links or 301 to the closest relevant page.
+3. `Page with redirect`: acceptable for `www`, `http`, or no-trailing-slash variants if the final URL is indexed.
+
 ## Step 7: Submission Pace
 
 Use this pace:
@@ -109,7 +131,8 @@ Do not request indexing for the same page every day.
 
 In the first stage, good signs are:
 
-- homepage, `/guides`, and `/tools` become indexed
+- homepage, `/guides/`, and `/tools/` become indexed
+- `/tools/srt-to-vtt/` starts receiving impressions for SRT to VTT queries
 - comparison pages index before smaller niche pages
 - impressions start showing before clicks
 - long-tail pages move from `Discovered` to `Indexed`

@@ -142,9 +142,9 @@ const enTools: SubtitleTool[] = [
     title: 'SRT to VTT Converter',
     shortTitle: 'SRT to VTT',
     description:
-      'Convert SubRip subtitle files into WebVTT format for HTML5 video and browser players.',
+      'Convert SRT subtitles to VTT WebVTT format online for HTML5 video and browser players.',
     summary:
-      'Use this when you already have an `.srt` file and need a clean `.vtt` file with the `WEBVTT` header and dot-based timestamps.',
+      'Use this free SRT to VTT converter when you already have an `.srt` file and need a clean `.vtt` WebVTT file with the `WEBVTT` header and dot-based timestamps.',
     buttonLabel: 'Convert to VTT',
     inputLabel: 'SRT input',
     outputLabel: 'VTT output',
@@ -153,23 +153,43 @@ const enTools: SubtitleTool[] = [
     sampleFileName: 'sample.srt',
     useCases: [
       'Prepare subtitles for HTML5 video players.',
+      'Convert SRT to WebVTT before adding captions to a website.',
       'Convert captions for custom web video components.',
       'Clean up SRT files before uploading them into browser-based workflows.',
     ],
     faqs: [
+      {
+        question: 'Is this SRT to VTT converter free?',
+        answer:
+          'Yes. The converter is free to use, requires no signup, and runs in your browser.',
+      },
       {
         question: 'What changes during SRT to VTT conversion?',
         answer:
           'Sequence numbers are removed, the WEBVTT header is added, and commas in timestamps become dots.',
       },
       {
+        question: 'Can I use the VTT file with HTML5 video?',
+        answer:
+          'Yes. The output is WebVTT, the subtitle format commonly used with HTML5 video tracks and browser players.',
+      },
+      {
         question: 'Will cue text be changed?',
         answer:
           'No. The tool keeps caption text as-is and only adjusts the format wrapper.',
       },
+      {
+        question: 'Are my subtitle files uploaded to a server?',
+        answer:
+          'No. SRT to VTT conversion happens locally in your browser, so your subtitle file stays on your device.',
+      },
     ],
     relatedTools: ['vtt-to-srt', 'srt-to-ass'],
     relatedGuides: [
+      {
+        href: '/guides/how-to-convert-srt-to-vtt-for-html5-video/',
+        title: 'How to convert SRT to VTT for HTML5 video',
+      },
       { href: '/guides/srt-vs-vtt/', title: 'SRT vs VTT' },
       {
         href: '/guides/best-subtitle-format-for-html5-video/',
@@ -183,9 +203,9 @@ const enTools: SubtitleTool[] = [
     title: 'VTT to SRT Converter',
     shortTitle: 'VTT to SRT',
     description:
-      'Turn WebVTT captions into numbered SubRip blocks that work with older editors and players.',
+      'Convert VTT WebVTT captions to SRT subtitle files online for editors, uploads, and legacy players.',
     summary:
-      'Use this when a website or player exports `.vtt`, but your editor, archive workflow, or client asks for `.srt`.',
+      'Use this free VTT to SRT converter when a website or player exports `.vtt`, but your editor, archive workflow, or client asks for `.srt`.',
     buttonLabel: 'Convert to SRT',
     inputLabel: 'VTT input',
     outputLabel: 'SRT output',
@@ -193,11 +213,17 @@ const enTools: SubtitleTool[] = [
     acceptedExtensions: ['.vtt', '.txt'],
     sampleFileName: 'sample.vtt',
     useCases: [
+      'Convert VTT to SRT before uploading captions to a platform that expects SubRip files.',
       'Move browser captions into legacy editors.',
       'Prepare subtitle files for offline review and archive workflows.',
       'Convert player-ready WebVTT into a format many teams already use.',
     ],
     faqs: [
+      {
+        question: 'Is this VTT to SRT converter free?',
+        answer:
+          'Yes. You can convert VTT to SRT for free in your browser without creating an account.',
+      },
       {
         question: 'Does the tool keep the cue order?',
         answer:
@@ -206,6 +232,16 @@ const enTools: SubtitleTool[] = [
       {
         question: 'What happens to the WEBVTT header?',
         answer: 'It is removed, because SRT files do not use that header.',
+      },
+      {
+        question: 'Are VTT cue settings kept in the SRT file?',
+        answer:
+          'No. SRT does not support WebVTT cue settings, so the converter keeps timing and text only.',
+      },
+      {
+        question: 'Are my VTT files uploaded to a server?',
+        answer:
+          'No. The VTT to SRT conversion runs locally in your browser, so your subtitle file stays on your device.',
       },
     ],
     relatedTools: ['srt-to-vtt', 'vtt-to-ass'],
@@ -264,9 +300,9 @@ const enTools: SubtitleTool[] = [
     title: 'ASS to SRT Converter',
     shortTitle: 'ASS to SRT',
     description:
-      'Flatten ASS dialogue lines into simple SubRip subtitles for broader compatibility.',
+      'Convert ASS subtitles to SRT online by flattening styled dialogue into simple SubRip captions.',
     summary:
-      'Use this when you need to move away from ASS and hand a simpler subtitle file to clients, editors, or upload workflows.',
+      'Use this free ASS to SRT converter when you need to move away from styled ASS subtitles and hand a simpler `.srt` file to clients, editors, or upload workflows.',
     buttonLabel: 'Convert to SRT',
     inputLabel: 'ASS input',
     outputLabel: 'SRT output',
@@ -274,11 +310,17 @@ const enTools: SubtitleTool[] = [
     acceptedExtensions: ['.ass', '.ssa', '.txt'],
     sampleFileName: 'sample.ass',
     useCases: [
+      'Convert ASS to SRT for platforms that reject styled subtitle files.',
       'Deliver a simpler subtitle format to clients.',
       'Prepare styled ASS subtitles for platforms that only want SRT.',
       'Flatten ASS dialogue into a more portable file format.',
     ],
     faqs: [
+      {
+        question: 'Is this ASS to SRT converter free?',
+        answer:
+          'Yes. You can convert ASS subtitles to SRT for free without signup or server upload.',
+      },
       {
         question: 'What happens to styles and positioning?',
         answer:
@@ -288,6 +330,16 @@ const enTools: SubtitleTool[] = [
         question: 'Can this handle `\\N` line breaks?',
         answer:
           'Yes. ASS line breaks are converted into normal multi-line subtitle text.',
+      },
+      {
+        question: 'Will karaoke effects be kept?',
+        answer:
+          'No. SRT cannot represent ASS karaoke effects, colors, positioning, or animation.',
+      },
+      {
+        question: 'Are my ASS files uploaded to a server?',
+        answer:
+          'No. ASS to SRT conversion happens locally in your browser, so the subtitle file stays on your device.',
       },
     ],
     relatedTools: ['srt-to-ass', 'ass-to-vtt'],
@@ -390,9 +442,9 @@ const enTools: SubtitleTool[] = [
     title: 'Subtitle Time Shifter',
     shortTitle: 'Time shifter',
     description:
-      'Move subtitle timestamps forward or backward for SRT, VTT, and ASS files. Free browser-based tool — no signup, no upload.',
+      'Shift subtitle timing online for SRT, VTT, and ASS files when captions are too early or too late.',
     summary:
-      'Use this when subtitles start too early or too late, but the cue order is otherwise correct.',
+      'Use this free subtitle time shifter when subtitles start too early or too late, but the cue order is otherwise correct.',
     buttonLabel: 'Shift timestamps',
     inputLabel: 'Subtitle input',
     outputLabel: 'Shifted subtitle output',
@@ -400,11 +452,17 @@ const enTools: SubtitleTool[] = [
     acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.txt'],
     sampleFileName: 'sample.srt',
     useCases: [
+      'Fix subtitle delay without opening a video editor.',
       'Fix subtitles that lag behind the speaker.',
       'Repair captions after editing the intro of a video.',
       'Quickly offset a whole subtitle file without opening a timeline editor.',
     ],
     faqs: [
+      {
+        question: 'Is this subtitle time shifter free?',
+        answer:
+          'Yes. You can shift subtitle timing for free in your browser without signup.',
+      },
       {
         question: 'Can I use negative numbers?',
         answer:
@@ -414,6 +472,16 @@ const enTools: SubtitleTool[] = [
         question: 'Will this preserve the original format?',
         answer:
           'Yes. SRT stays SRT, VTT stays VTT, and ASS stays ASS after the shift.',
+      },
+      {
+        question: 'Should I shift subtitles forward or backward?',
+        answer:
+          'If subtitles appear too early, use a positive value to delay them. If they appear too late, use a negative value to move them earlier.',
+      },
+      {
+        question: 'Are my subtitle files uploaded to a server?',
+        answer:
+          'No. Timing changes run locally in your browser, so your subtitle file stays on your device.',
       },
     ],
     relatedTools: ['subtitle-cleaner', 'vtt-to-srt'],
@@ -484,9 +552,9 @@ const enTools: SubtitleTool[] = [
     title: 'Subtitle Encoding Fixer',
     shortTitle: 'Encoding fixer',
     description:
-      'Convert subtitle files to clean UTF-8 text when captions show garbled characters or wrong accents.',
+      'Fix garbled subtitles online by converting SRT, VTT, ASS, SSA, and SMI files to clean UTF-8 text.',
     summary:
-      'Use this when an SRT, VTT, ASS, SSA, or SMI file opens with broken characters because it was saved with the wrong text encoding.',
+      'Use this free subtitle encoding fixer when an SRT, VTT, ASS, SSA, or SMI file opens with broken characters because it was saved with the wrong text encoding.',
     buttonLabel: 'Convert to UTF-8',
     inputLabel: 'Subtitle input',
     outputLabel: 'UTF-8 subtitle output',
@@ -494,11 +562,17 @@ const enTools: SubtitleTool[] = [
     acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.smi', '.txt'],
     sampleFileName: 'sample.srt',
     useCases: [
+      'Fix garbled SRT subtitles before sharing or uploading them.',
       'Fix garbled subtitles before uploading them to a video platform.',
       'Convert legacy subtitle files into UTF-8 for modern editors.',
       'Repair broken accents and non-English characters when the source encoding is known.',
     ],
     faqs: [
+      {
+        question: 'Is this subtitle encoding fixer free?',
+        answer:
+          'Yes. You can fix garbled subtitle text and export UTF-8 output for free in your browser.',
+      },
       {
         question: 'Does this upload my subtitle file?',
         answer:
@@ -513,6 +587,11 @@ const enTools: SubtitleTool[] = [
         question: 'Will the subtitle timing change?',
         answer:
           'No. The tool only changes how text is decoded and saved. Subtitle timing and cue order stay the same.',
+      },
+      {
+        question: 'What should I try if the output is still garbled?',
+        answer:
+          'Try another source encoding such as Windows-1252, ISO-8859-1, GB18030, Big5, Shift JIS, or EUC-KR, then export again.',
       },
     ],
     relatedTools: ['subtitle-cleaner', 'srt-to-vtt'],

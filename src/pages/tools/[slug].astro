@@ -28,29 +28,37 @@ const relatedTools = currentTool.relatedTools
 
 const toolMetaDescriptions: Record<string, string> = {
 	'srt-to-vtt':
-		'Convert SRT subtitles to WebVTT for HTML5 video players. Runs locally in your browser with no signup, upload, or watermark.',
+		'Convert SRT subtitles to VTT WebVTT online for free. Upload or paste an .srt file, convert it to .vtt, and download instantly.',
 	'vtt-to-srt':
-		'Convert WebVTT captions to numbered SRT blocks for editors, archives, upload workflows, and client handoff with a free browser tool.',
+		'Convert VTT WebVTT captions to SRT subtitle files online for free. Upload or paste a .vtt file, convert it to .srt, and download instantly.',
 	'srt-to-ass':
 		'Convert SRT subtitles to ASS format with a clean default style, ready for subtitle editors, timing review, and styling workflows.',
 	'ass-to-srt':
-		'Convert ASS dialogue lines to simple SRT subtitles for uploads, review, client handoff, and broader player compatibility.',
+		'Convert ASS subtitles to SRT online for free. Flatten styled ASS dialogue into simple SubRip captions for uploads, review, and compatibility.',
 	'vtt-to-ass':
 		'Convert WebVTT captions to ASS format for subtitle editing and style-ready workflows, locally in your browser with no upload.',
 	'ass-to-vtt':
 		'Convert ASS subtitles to WebVTT for browser playback and HTML5 video delivery while keeping subtitle timing and readable text.',
 	'subtitle-time-shifter':
-		'Shift SRT, VTT, and ASS subtitle timing forward or backward in milliseconds with a free local browser tool and no upload.',
+		'Shift subtitle timing online for SRT, VTT, and ASS files. Fix subtitles that are too early or too late without signup or upload.',
 	'subtitle-cleaner':
 		'Clean SRT, VTT, and ASS subtitle text by removing stray tags, normalizing spacing, preserving cue timing, and preparing files for upload.',
 	'subtitle-encoding-fixer':
-		'Convert subtitle files to UTF-8 and fix garbled accents, mojibake, or broken characters locally in your browser before upload.',
+		'Fix garbled subtitles online by converting SRT, VTT, ASS, SSA, and SMI files to clean UTF-8 text locally in your browser.',
 	'subtitle-merger':
 		'Merge two SRT, VTT, or ASS subtitle files into one sorted output file locally in your browser, with no account or server upload.',
 	'partial-subtitle-shifter':
 		'Shift only a selected time range inside an SRT, VTT, or ASS subtitle file without moving the rest of the captions, locally in your browser.',
 	'extract-subtitles-from-video':
 		'Extract embedded text subtitle tracks from MKV, MP4, MOV, and WebM files locally in your browser with FFmpeg and no upload.',
+};
+
+const toolPageTitles: Record<string, string> = {
+	'srt-to-vtt': 'SRT to VTT Converter - Convert Subtitles Online Free',
+	'vtt-to-srt': 'VTT to SRT Converter - Convert Subtitles Online Free',
+	'ass-to-srt': 'ASS to SRT Converter - Convert Subtitles Online Free',
+	'subtitle-time-shifter': 'Subtitle Time Shifter - Fix Subtitle Delay Online',
+	'subtitle-encoding-fixer': 'Subtitle Encoding Fixer - Fix Garbled Subtitles Online',
 };
 
 const workflowNotes: Record<string, string> = {
@@ -145,6 +153,7 @@ const mistakeNotes: Record<string, string[]> = {
 
 const supportedFormatText = currentTool.acceptedExtensions.join(', ');
 const metaDescription = toolMetaDescriptions[currentTool.id] ?? currentTool.description;
+const pageTitle = toolPageTitles[currentTool.id] ?? `${currentTool.title} | ${SITE_TITLE}`;
 
 const isConversionTool = ![
 	'subtitle-time-shifter',
@@ -162,7 +171,7 @@ const breadcrumbItems = [
 ];
 ---
 
-<SiteLayout title={`${currentTool.title} | ${SITE_TITLE}`} description={metaDescription}>
+<SiteLayout title={pageTitle} description={metaDescription}>
 		<JsonLd type="softwareApplication" data={{
 			'@type': 'SoftwareApplication',
 			name: currentTool.title,
