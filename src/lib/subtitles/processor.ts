@@ -1,6 +1,6 @@
 import type { SubtitleToolId } from './catalog';
 
-export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'unknown';
+export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'txt' | 'unknown';
 
 export interface SubtitleCue {
   start: number;
@@ -335,9 +335,19 @@ function serializeByFormat(cues: SubtitleCue[], format: SubtitleFormat) {
       return serializeVtt(cues);
     case 'ass':
       return serializeAss(cues);
+    case 'txt':
+      return serializePlainText(cues);
     default:
       return '';
   }
+}
+
+export function serializePlainText(cues: SubtitleCue[]) {
+  return cues
+    .map((cue) => cue.text.map((line) => line.trimEnd()).join('\n'))
+    .filter(Boolean)
+    .join('\n\n')
+    .trim();
 }
 
 function shiftCueTimes(cues: SubtitleCue[], shiftMs: number) {
@@ -442,6 +452,10 @@ export function processSubtitleTool(
       return serializeVtt(parseSrt(normalized));
     case 'vtt-to-srt':
       return serializeSrt(parseVtt(normalized));
+    case 'srt-to-txt':
+      return serializePlainText(parseSrt(normalized));
+    case 'vtt-to-txt':
+      return serializePlainText(parseVtt(normalized));
     case 'srt-to-ass':
       return serializeAss(parseSrt(normalized));
     case 'ass-to-srt':
@@ -511,6 +525,9 @@ export function inferOutputFormat(
     case 'vtt-to-srt':
     case 'ass-to-srt':
       return 'srt';
+    case 'srt-to-txt':
+    case 'vtt-to-txt':
+      return 'txt';
     case 'srt-to-ass':
     case 'vtt-to-ass':
       return 'ass';

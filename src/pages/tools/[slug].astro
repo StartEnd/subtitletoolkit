@@ -31,6 +31,10 @@ const toolMetaDescriptions: Record<string, string> = {
 		'Convert SRT subtitles to VTT WebVTT online for free. Upload or paste an .srt file, convert it to .vtt, and download instantly.',
 	'vtt-to-srt':
 		'Convert VTT WebVTT captions to SRT subtitle files online for free. Upload or paste a .vtt file, convert it to .srt, and download instantly.',
+	'srt-to-txt':
+		'Convert SRT subtitles to plain text online for free. Remove timestamps and cue numbers, then copy or download clean TXT output.',
+	'vtt-to-txt':
+		'Convert VTT WebVTT captions to plain text online for free. Remove headers, timestamps, and cue settings from a .vtt file.',
 	'srt-to-ass':
 		'Convert SRT subtitles to ASS format with a clean default style, ready for subtitle editors, timing review, and styling workflows.',
 	'ass-to-srt':
@@ -56,6 +60,8 @@ const toolMetaDescriptions: Record<string, string> = {
 const toolPageTitles: Record<string, string> = {
 	'srt-to-vtt': 'SRT to VTT Converter - Convert Subtitles Online Free',
 	'vtt-to-srt': 'VTT to SRT Converter - Convert Subtitles Online Free',
+	'srt-to-txt': 'SRT to TXT Converter - Extract Subtitle Text Online',
+	'vtt-to-txt': 'VTT to TXT Converter - Extract Caption Text Online',
 	'ass-to-srt': 'ASS to SRT Converter - Convert Subtitles Online Free',
 	'subtitle-time-shifter': 'Subtitle Time Shifter - Fix Subtitle Delay Online',
 	'subtitle-encoding-fixer': 'Subtitle Encoding Fixer - Fix Garbled Subtitles Online',
@@ -66,6 +72,10 @@ const workflowNotes: Record<string, string> = {
 		'SRT is common for handoff, but browser players usually expect WebVTT. This converter adds the WEBVTT header, changes timestamp commas to dots, and removes SRT cue numbers so the file is ready for HTML5 video.',
 	'vtt-to-srt':
 		'WebVTT is ideal for browsers, but many subtitle editors, archive tools, and review workflows still ask for SRT. This converter removes the WEBVTT wrapper and adds numbered cue blocks.',
+	'srt-to-txt':
+		'Use SRT to TXT when you need the spoken subtitle text without timing metadata. The converter parses SRT cue blocks, removes cue numbers and timestamps, and exports the readable text for review, translation, or notes.',
+	'vtt-to-txt':
+		'Use VTT to TXT when captions come from a browser player or web workflow but the next step only needs readable text. The converter removes the WEBVTT header, cue timing, and browser-specific cue settings.',
 	'srt-to-ass':
 		'SRT is plain and portable. ASS is useful when the next step involves subtitle styling, karaoke timing, or an editor that expects an ASS structure. This tool creates a clean default ASS file from simple cue text.',
 	'ass-to-srt':
@@ -98,6 +108,16 @@ const mistakeNotes: Record<string, string[]> = {
 		'Leaving WebVTT notes or metadata in a workflow that expects plain SRT.',
 		'Forgetting that SRT uses comma-based milliseconds.',
 		'Assuming every legacy editor understands WebVTT cue settings.',
+	],
+	'srt-to-txt': [
+		'Using plain text output when the next step still needs subtitle timing.',
+		'Deleting the original SRT file before confirming the transcript text is enough.',
+		'Expecting TXT output to preserve cue numbers or timestamps.',
+	],
+	'vtt-to-txt': [
+		'Using plain text output when the destination still needs WebVTT timing.',
+		'Deleting the original VTT file before checking the exported text.',
+		'Expecting WebVTT cue settings to appear in the TXT output.',
 	],
 	'srt-to-ass': [
 		'Expecting advanced styling to appear automatically from a plain SRT source.',

@@ -1,6 +1,8 @@
 export type SubtitleToolId =
   | 'srt-to-vtt'
   | 'vtt-to-srt'
+  | 'srt-to-txt'
+  | 'vtt-to-txt'
   | 'srt-to-ass'
   | 'ass-to-srt'
   | 'vtt-to-ass'
@@ -250,6 +252,110 @@ const enTools: SubtitleTool[] = [
       {
         href: '/guides/how-to-convert-subtitle-files-for-web-players/',
         title: 'How to convert subtitle files for web players',
+      },
+    ],
+    sampleInput: sharedSamples.vtt,
+  },
+  {
+    id: 'srt-to-txt',
+    title: 'SRT to TXT Converter',
+    shortTitle: 'SRT to TXT',
+    description:
+      'Convert SRT subtitles to plain text online by removing timestamps and cue numbers.',
+    summary:
+      'Use this free SRT to TXT converter when you need the subtitle text without timing lines, cue numbers, or file-format markup.',
+    buttonLabel: 'Convert to TXT',
+    inputLabel: 'SRT input',
+    outputLabel: 'Plain text output',
+    placeholder: 'Paste your SRT subtitles here',
+    acceptedExtensions: ['.srt', '.txt'],
+    sampleFileName: 'sample.srt',
+    useCases: [
+      'Extract dialogue text from an SRT subtitle file.',
+      'Create a readable transcript draft from SubRip captions.',
+      'Remove timestamps and cue numbers before editing subtitle text.',
+      'Prepare subtitle text for review, translation, or notes.',
+    ],
+    faqs: [
+      {
+        question: 'Is this SRT to TXT converter free?',
+        answer:
+          'Yes. You can convert SRT subtitles to plain text for free in your browser without signup.',
+      },
+      {
+        question: 'Does the TXT output include timestamps?',
+        answer:
+          'No. The converter removes SRT cue numbers and timing lines, then keeps the subtitle text only.',
+      },
+      {
+        question: 'Will line breaks be preserved?',
+        answer:
+          'Yes. Multi-line subtitle cues stay readable in the plain text output.',
+      },
+      {
+        question: 'Are my SRT files uploaded to a server?',
+        answer:
+          'No. SRT to TXT conversion runs locally in your browser, so your subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['srt-to-vtt', 'vtt-to-txt'],
+    relatedGuides: [
+      { href: '/guides/srt-vs-vtt/', title: 'SRT vs VTT' },
+      {
+        href: '/guides/how-to-remove-subtitle-line-numbers/',
+        title: 'How to remove subtitle line numbers',
+      },
+    ],
+    sampleInput: sharedSamples.srt,
+  },
+  {
+    id: 'vtt-to-txt',
+    title: 'VTT to TXT Converter',
+    shortTitle: 'VTT to TXT',
+    description:
+      'Convert VTT WebVTT captions to plain text online by removing timestamps, headers, and cue settings.',
+    summary:
+      'Use this free VTT to TXT converter when you need the readable caption text from a WebVTT file without timing or browser-specific markup.',
+    buttonLabel: 'Convert to TXT',
+    inputLabel: 'VTT input',
+    outputLabel: 'Plain text output',
+    placeholder: 'Paste your VTT subtitles here',
+    acceptedExtensions: ['.vtt', '.txt'],
+    sampleFileName: 'sample.vtt',
+    useCases: [
+      'Extract readable text from a WebVTT caption file.',
+      'Create a transcript draft from browser caption tracks.',
+      'Remove the WEBVTT header, timestamps, and cue settings.',
+      'Prepare caption text for review, editing, or translation.',
+    ],
+    faqs: [
+      {
+        question: 'Is this VTT to TXT converter free?',
+        answer:
+          'Yes. You can convert VTT captions to plain text for free in your browser without signup.',
+      },
+      {
+        question: 'Does the TXT output include WebVTT timestamps?',
+        answer:
+          'No. The converter removes WebVTT timing lines and keeps the caption text only.',
+      },
+      {
+        question: 'What happens to the WEBVTT header?',
+        answer:
+          'It is removed because plain text output does not need a WebVTT header.',
+      },
+      {
+        question: 'Are my VTT files uploaded to a server?',
+        answer:
+          'No. VTT to TXT conversion runs locally in your browser, so your caption file stays on your device.',
+      },
+    ],
+    relatedTools: ['vtt-to-srt', 'srt-to-txt'],
+    relatedGuides: [
+      { href: '/guides/srt-vs-vtt/', title: 'SRT vs VTT' },
+      {
+        href: '/guides/when-webvtt-is-better-than-srt/',
+        title: 'When WebVTT is better than SRT',
       },
     ],
     sampleInput: sharedSamples.vtt,
