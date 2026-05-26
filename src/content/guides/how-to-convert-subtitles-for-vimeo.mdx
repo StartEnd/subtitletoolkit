@@ -1,0 +1,76 @@
+---
+title: How to convert subtitles for Vimeo
+description: Convert SRT or ASS subtitles into WebVTT captions for Vimeo embeds, browser playback, and web delivery workflows.
+pubDate: 2026-05-26
+category: conversion-guides
+tags:
+  - vimeo
+  - vtt
+  - srt
+  - ass
+  - embeds
+  - conversion
+primaryTool: vimeo-subtitle-converter
+---
+
+Vimeo embed workflows are browser playback workflows, so `VTT` is usually the safest caption delivery format.
+
+## Quick answer
+
+Use the [Vimeo Subtitle Converter](/tools/vimeo-subtitle-converter/) to create VTT output from SRT or ASS subtitle input before using captions in a Vimeo embed workflow.
+
+The output is WebVTT, which is easier to test and validate for web playback.
+
+## When to use this workflow
+
+Use this workflow when:
+
+- your source captions are SRT from an editor or collaborator
+- your source captions are ASS from a styled editing workflow
+- captions need to be prepared for a browser embed
+- you want a web-ready copy separate from the editing source
+
+Keep the original source file if future caption edits are likely.
+
+## Step-by-step workflow
+
+1. Start with the subtitle file you already have.
+2. Open the [Vimeo Subtitle Converter](/tools/vimeo-subtitle-converter/).
+3. Upload or paste SRT, VTT, or ASS subtitle content.
+4. Review the VTT output and confirm the `WEBVTT` header is present.
+5. Download the `.vtt` file.
+6. Test captions in the Vimeo embed or final web page.
+
+## What changes during conversion
+
+- SRT cue numbers are removed.
+- SRT timestamps become WebVTT dot timestamps.
+- ASS styling is flattened into readable caption text.
+- The output is ready for VTT validation.
+
+## Common mistakes
+
+### Treating embed playback like offline review
+
+A subtitle file that is convenient for editing is not always the safest file for browser playback.
+
+### Debugging the embed first
+
+Check the caption file before changing the embed setup. Missing headers and wrong timestamp punctuation are common file-level causes.
+
+### Deleting the source file
+
+Keep the SRT or ASS source file until the final captions have been tested in the embed workflow.
+
+## Related guides
+
+- [Best subtitle format for Vimeo embeds](/guides/best-subtitle-format-for-vimeo-embeds/)
+- [How to convert subtitle files for web players](/guides/how-to-convert-subtitle-files-for-web-players/)
+- [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/)
+
+## Related tools
+
+- [Vimeo Subtitle Converter](/tools/vimeo-subtitle-converter/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [ASS to VTT Converter](/tools/ass-to-vtt/)
+- [WebVTT Validator](/tools/webvtt-validator/)

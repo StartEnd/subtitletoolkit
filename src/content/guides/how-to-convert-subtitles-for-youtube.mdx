@@ -1,0 +1,76 @@
+---
+title: How to convert subtitles for YouTube
+description: Convert VTT or ASS subtitles into YouTube-ready SRT captions and avoid styling, timestamp, and upload compatibility problems.
+pubDate: 2026-05-26
+category: conversion-guides
+tags:
+  - youtube
+  - srt
+  - vtt
+  - ass
+  - caption upload
+  - conversion
+primaryTool: youtube-subtitle-converter
+---
+
+If subtitles are going to YouTube, a simple `SRT` file is usually the safest delivery copy.
+
+## Quick answer
+
+Use the [YouTube Subtitle Converter](/tools/youtube-subtitle-converter/) when your source file is `VTT` or `ASS` but the final upload should be a YouTube-friendly `SRT` file.
+
+The converter keeps parsed timing and readable subtitle text, then exports numbered SRT cue blocks.
+
+## When to use this workflow
+
+Use this workflow when:
+
+- captions came from a web player as `VTT`
+- styled subtitles came from an editor as `ASS`
+- a collaborator wants a simple upload file
+- you want a clean SRT copy before YouTube review
+
+If your source file is already clean SRT, validate it instead of converting it again.
+
+## Step-by-step workflow
+
+1. Keep the original subtitle file as your editable source.
+2. Open the [YouTube Subtitle Converter](/tools/youtube-subtitle-converter/).
+3. Upload or paste the VTT, ASS, or SRT subtitle content.
+4. Review the SRT output for line breaks and timing.
+5. Download the `.srt` file.
+6. Upload the SRT copy to YouTube and check captions in the YouTube player.
+
+## What changes during conversion
+
+- VTT timestamps are converted from dots to comma-based SRT timing.
+- ASS dialogue is flattened into plain timed text.
+- Styling, positioning, and effects are removed.
+- SRT cue numbers are rebuilt for the delivery file.
+
+## Common mistakes
+
+### Expecting styled subtitles to survive
+
+YouTube captions use the platform player, not your ASS style definitions. If styling is part of the creative output, render it into the video image instead of relying on uploaded captions.
+
+### Uploading without checking encoding
+
+If names, accents, or non-English captions look wrong, fix encoding before upload. Use the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) before converting again.
+
+### Confusing upload format with editing format
+
+Keep the editing source, then create a separate SRT upload copy. Do not replace the editable subtitle file until the YouTube caption upload has been checked.
+
+## Related guides
+
+- [Best subtitle format for YouTube](/guides/best-subtitle-format-for-youtube/)
+- [How to convert ASS to SRT for YouTube uploads](/guides/how-to-convert-ass-to-srt-for-youtube-uploads/)
+- [SRT vs ASS for YouTube captions](/guides/srt-vs-ass-for-youtube-captions/)
+
+## Related tools
+
+- [YouTube Subtitle Converter](/tools/youtube-subtitle-converter/)
+- [VTT to SRT Converter](/tools/vtt-to-srt/)
+- [ASS to SRT Converter](/tools/ass-to-srt/)
+- [SRT Validator](/tools/srt-validator/)

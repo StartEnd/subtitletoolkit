@@ -1,0 +1,77 @@
+---
+title: How to convert subtitles for Plex
+description: Convert VTT or ASS subtitles into SRT files for Plex libraries, media folders, and broad device playback compatibility.
+pubDate: 2026-05-26
+category: conversion-guides
+tags:
+  - plex
+  - srt
+  - vtt
+  - ass
+  - media library
+  - conversion
+primaryTool: plex-subtitle-converter
+---
+
+For Plex libraries, a simple `SRT` file is often the most portable subtitle delivery copy.
+
+## Quick answer
+
+Use the [Plex Subtitle Converter](/tools/plex-subtitle-converter/) when your source file is VTT or ASS but you want an SRT copy for a Plex media library.
+
+The converter keeps timing and readable text, then exports a clean SRT file.
+
+## When to use this workflow
+
+Use this workflow when:
+
+- subtitles came from a browser workflow as VTT
+- subtitles came from an editor as ASS
+- the library needs broad device compatibility
+- you want a simple subtitle file stored next to the video
+
+Do not convert just to standardize if the current file already works for the target Plex client.
+
+## Step-by-step workflow
+
+1. Keep the original subtitle file as the editable source.
+2. Open the [Plex Subtitle Converter](/tools/plex-subtitle-converter/).
+3. Upload or paste VTT, ASS, or SRT subtitle content.
+4. Review the SRT output for timing and text.
+5. Download the `.srt` file.
+6. Store the SRT copy with the media file.
+7. Test playback in the Plex client that matters most.
+
+## What changes during conversion
+
+- VTT timestamps become SRT comma timestamps.
+- ASS styling and positioning are flattened.
+- SRT cue numbers are rebuilt.
+- The output is easier to inspect and archive.
+
+## Common mistakes
+
+### Expecting ASS styling to survive
+
+SRT output keeps timing and text, not ASS colors, positions, or effects.
+
+### Replacing the editable source
+
+Keep the original ASS or VTT file if future edits may be needed. Treat SRT as the library delivery copy.
+
+### Forgetting file naming
+
+Plex library workflows often depend on consistent media and subtitle file names. Conversion is only one part of the handoff.
+
+## Related guides
+
+- [Best subtitle format for Plex](/guides/best-subtitle-format-for-plex/)
+- [ASS vs SRT](/guides/ass-vs-srt/)
+- [How to fix garbled subtitles](/guides/how-to-fix-garbled-subtitles/)
+
+## Related tools
+
+- [Plex Subtitle Converter](/tools/plex-subtitle-converter/)
+- [ASS to SRT Converter](/tools/ass-to-srt/)
+- [VTT to SRT Converter](/tools/vtt-to-srt/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)

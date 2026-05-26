@@ -1,0 +1,76 @@
+---
+title: How to convert subtitles for Video.js
+description: Convert SRT or ASS subtitle files into WebVTT captions for Video.js players and browser-based playback.
+pubDate: 2026-05-26
+category: conversion-guides
+tags:
+  - video.js
+  - vtt
+  - srt
+  - ass
+  - web players
+  - conversion
+primaryTool: videojs-subtitle-converter
+---
+
+Video.js captions should usually be delivered as `VTT` because the player runs in a browser environment.
+
+## Quick answer
+
+Use the [Video.js Subtitle Converter](/tools/videojs-subtitle-converter/) to turn SRT or ASS source subtitles into WebVTT output before attaching captions to the player.
+
+The converter prepares the caption file. You still need to test the Video.js track configuration separately.
+
+## When to use this workflow
+
+Use this workflow when:
+
+- subtitles came from a transcription tool as SRT
+- subtitles came from an editor as ASS
+- a Video.js integration needs a web-ready caption file
+- captions fail because a file was renamed instead of converted
+
+If the file is already VTT, validate it before debugging player settings.
+
+## Step-by-step workflow
+
+1. Keep the source subtitle file for editing or archive.
+2. Open the [Video.js Subtitle Converter](/tools/videojs-subtitle-converter/).
+3. Upload or paste the SRT, VTT, or ASS subtitle content.
+4. Confirm the output is VTT and starts with `WEBVTT`.
+5. Download the `.vtt` file.
+6. Attach the VTT file to Video.js and test captions in the actual page.
+
+## What changes during conversion
+
+- SRT files become WebVTT with dot-based timestamps.
+- ASS dialogue is flattened for browser captions.
+- Unsupported styling metadata is removed.
+- The output is ready to validate as a VTT file.
+
+## Common mistakes
+
+### Assuming conversion fixes player configuration
+
+Conversion only prepares the subtitle file. If captions still do not appear, check the track URL, kind, label, language, and browser console.
+
+### Testing only the text file
+
+A valid-looking VTT file still needs to be tested in the real Video.js environment.
+
+### Shipping ASS as the browser caption file
+
+ASS is useful in editors, but it is not the normal final caption format for browser-based Video.js playback.
+
+## Related guides
+
+- [Best subtitle format for Video.js](/guides/best-subtitle-format-for-videojs/)
+- [How to convert subtitle files for web players](/guides/how-to-convert-subtitle-files-for-web-players/)
+- [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/)
+
+## Related tools
+
+- [Video.js Subtitle Converter](/tools/videojs-subtitle-converter/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [ASS to VTT Converter](/tools/ass-to-vtt/)
+- [WebVTT Validator](/tools/webvtt-validator/)

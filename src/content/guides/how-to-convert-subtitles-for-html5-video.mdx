@@ -1,0 +1,76 @@
+---
+title: How to convert subtitles for HTML5 video
+description: Convert SRT or ASS subtitles into WebVTT files for HTML5 video tracks, browser playback, and web delivery.
+pubDate: 2026-05-26
+category: conversion-guides
+tags:
+  - html5 video
+  - vtt
+  - srt
+  - ass
+  - web players
+  - conversion
+primaryTool: html5-video-subtitle-converter
+---
+
+HTML5 video workflows usually need `VTT` captions, even when the source subtitles started as SRT or ASS.
+
+## Quick answer
+
+Use the [HTML5 Video Subtitle Converter](/tools/html5-video-subtitle-converter/) to create a browser-ready WebVTT file from SRT, VTT, or ASS input.
+
+The output includes the `WEBVTT` header and dot-based timestamps required by strict browser playback.
+
+## When to use this workflow
+
+Use this workflow when captions will be loaded through:
+
+- an HTML5 `<track>` element
+- a custom web video component
+- a static site video page
+- a browser-based preview or QA workflow
+
+Keep the source subtitle file if editing will continue later.
+
+## Step-by-step workflow
+
+1. Start with the subtitle file you already have.
+2. Open the [HTML5 Video Subtitle Converter](/tools/html5-video-subtitle-converter/).
+3. Upload or paste SRT, VTT, or ASS subtitle content.
+4. Review the VTT output and confirm it starts with `WEBVTT`.
+5. Download the `.vtt` file.
+6. Attach the VTT file to the HTML5 video track and test playback.
+
+## What changes during conversion
+
+- SRT cue numbers are removed.
+- SRT comma timestamps become VTT dot timestamps.
+- ASS styling and positioning are flattened.
+- A `WEBVTT` header is added to the output.
+
+## Common mistakes
+
+### Renaming SRT to VTT
+
+Changing the extension does not convert the subtitle format. Browsers can reject a renamed file if the header and timestamps are still SRT-style.
+
+### Debugging player code before the file
+
+Check the VTT file first. If the file has no header, comma timestamps, or malformed cue blocks, the player configuration is not the first problem.
+
+### Forgetting the hosting layer
+
+The VTT file must be reachable from the page. After conversion, open the caption URL directly and test it in the final browser environment.
+
+## Related guides
+
+- [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video/)
+- [How to convert SRT to VTT for HTML5 video](/guides/how-to-convert-srt-to-vtt-for-html5-video/)
+- [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/)
+
+## Related tools
+
+- [HTML5 Video Subtitle Converter](/tools/html5-video-subtitle-converter/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [ASS to VTT Converter](/tools/ass-to-vtt/)
+- [WebVTT Validator](/tools/webvtt-validator/)

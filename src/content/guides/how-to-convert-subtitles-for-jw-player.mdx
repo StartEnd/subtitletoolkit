@@ -1,0 +1,77 @@
+---
+title: How to convert subtitles for JW Player
+description: Convert SRT or ASS subtitles into WebVTT captions for JW Player and browser-based video delivery.
+pubDate: 2026-05-26
+category: conversion-guides
+tags:
+  - jw player
+  - vtt
+  - srt
+  - ass
+  - web players
+  - conversion
+primaryTool: jw-player-subtitle-converter
+---
+
+JW Player caption workflows usually work best when the final delivery file is WebVTT.
+
+## Quick answer
+
+Use the [JW Player Subtitle Converter](/tools/jw-player-subtitle-converter/) to create VTT output from SRT, VTT, or ASS subtitle input before wiring captions into JW Player.
+
+The converter prepares the subtitle file, not the player configuration.
+
+## When to use this workflow
+
+Use this workflow when:
+
+- the source subtitle file is SRT from a collaborator
+- the source file is ASS from an editing workflow
+- captions need to be hosted for a browser player
+- JW Player captions fail because the file is not valid VTT
+
+If the file is already VTT, validate it first with the WebVTT validator.
+
+## Step-by-step workflow
+
+1. Keep the original subtitle source file.
+2. Open the [JW Player Subtitle Converter](/tools/jw-player-subtitle-converter/).
+3. Upload or paste SRT, VTT, or ASS subtitle content.
+4. Review the VTT output and confirm the header is present.
+5. Download the `.vtt` file.
+6. Host the file and attach it in the JW Player setup.
+7. Test captions in the embedded player.
+
+## What changes during conversion
+
+- SRT timing is converted to WebVTT timing.
+- ASS styling is flattened into readable caption text.
+- The output receives a `WEBVTT` header.
+- The file becomes easier to validate before player debugging.
+
+## Common mistakes
+
+### Using the right file at the wrong URL
+
+Even a valid VTT file will not show if JW Player cannot fetch it. Test the caption URL directly after upload or deployment.
+
+### Renaming instead of converting
+
+Changing `.srt` to `.vtt` leaves SRT timing and missing WebVTT structure behind.
+
+### Skipping validation
+
+If captions do not show, validate the VTT file before changing the player code.
+
+## Related guides
+
+- [Best subtitle format for JW Player](/guides/best-subtitle-format-for-jw-player/)
+- [How to convert subtitle files for web players](/guides/how-to-convert-subtitle-files-for-web-players/)
+- [How to fix invalid WebVTT timestamps](/guides/how-to-fix-invalid-webvtt-timestamps/)
+
+## Related tools
+
+- [JW Player Subtitle Converter](/tools/jw-player-subtitle-converter/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [ASS to VTT Converter](/tools/ass-to-vtt/)
+- [WebVTT Validator](/tools/webvtt-validator/)

@@ -654,11 +654,11 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['vtt-to-srt', 'ass-to-srt'],
     relatedGuides: [
-      { href: '/guides/best-subtitle-format-for-youtube/', title: 'Best subtitle format for YouTube' },
       {
-        href: '/guides/how-to-convert-ass-to-srt-for-youtube-uploads/',
-        title: 'How to convert ASS to SRT for YouTube uploads',
+        href: '/guides/how-to-convert-subtitles-for-youtube/',
+        title: 'How to convert subtitles for YouTube',
       },
+      { href: '/guides/best-subtitle-format-for-youtube/', title: 'Best subtitle format for YouTube' },
     ],
     sampleInput: sharedSamples.vtt,
   },
@@ -706,11 +706,11 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['srt-to-vtt', 'ass-to-vtt'],
     relatedGuides: [
-      { href: '/guides/best-subtitle-format-for-html5-video/', title: 'Best subtitle format for HTML5 video' },
       {
-        href: '/guides/how-to-convert-srt-to-vtt-for-html5-video/',
-        title: 'How to convert SRT to VTT for HTML5 video',
+        href: '/guides/how-to-convert-subtitles-for-html5-video/',
+        title: 'How to convert subtitles for HTML5 video',
       },
+      { href: '/guides/best-subtitle-format-for-html5-video/', title: 'Best subtitle format for HTML5 video' },
     ],
     sampleInput: sharedSamples.srt,
   },
@@ -758,11 +758,11 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['srt-to-vtt', 'webvtt-validator'],
     relatedGuides: [
-      { href: '/guides/best-subtitle-format-for-videojs/', title: 'Best subtitle format for Video.js' },
       {
-        href: '/guides/how-to-convert-subtitle-files-for-web-players/',
-        title: 'How to convert subtitle files for web players',
+        href: '/guides/how-to-convert-subtitles-for-videojs/',
+        title: 'How to convert subtitles for Video.js',
       },
+      { href: '/guides/best-subtitle-format-for-videojs/', title: 'Best subtitle format for Video.js' },
     ],
     sampleInput: sharedSamples.srt,
   },
@@ -810,11 +810,11 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['srt-to-vtt', 'webvtt-validator'],
     relatedGuides: [
-      { href: '/guides/best-subtitle-format-for-jw-player/', title: 'Best subtitle format for JW Player' },
       {
-        href: '/guides/how-to-convert-subtitle-files-for-web-players/',
-        title: 'How to convert subtitle files for web players',
+        href: '/guides/how-to-convert-subtitles-for-jw-player/',
+        title: 'How to convert subtitles for JW Player',
       },
+      { href: '/guides/best-subtitle-format-for-jw-player/', title: 'Best subtitle format for JW Player' },
     ],
     sampleInput: sharedSamples.srt,
   },
@@ -862,8 +862,11 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['ass-to-srt', 'vtt-to-srt'],
     relatedGuides: [
+      {
+        href: '/guides/how-to-convert-subtitles-for-plex/',
+        title: 'How to convert subtitles for Plex',
+      },
       { href: '/guides/best-subtitle-format-for-plex/', title: 'Best subtitle format for Plex' },
-      { href: '/guides/ass-vs-srt/', title: 'ASS vs SRT' },
     ],
     sampleInput: sharedSamples.ass,
   },
@@ -911,11 +914,11 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['srt-to-vtt', 'ass-to-vtt'],
     relatedGuides: [
-      { href: '/guides/best-subtitle-format-for-vimeo-embeds/', title: 'Best subtitle format for Vimeo embeds' },
       {
-        href: '/guides/how-to-convert-subtitle-files-for-web-players/',
-        title: 'How to convert subtitle files for web players',
+        href: '/guides/how-to-convert-subtitles-for-vimeo/',
+        title: 'How to convert subtitles for Vimeo',
       },
+      { href: '/guides/best-subtitle-format-for-vimeo-embeds/', title: 'Best subtitle format for Vimeo embeds' },
     ],
     sampleInput: sharedSamples.srt,
   },
