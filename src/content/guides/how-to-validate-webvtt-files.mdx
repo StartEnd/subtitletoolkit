@@ -1,0 +1,67 @@
+---
+title: How to validate WebVTT files
+description: Validate WebVTT caption files by checking the WEBVTT header, dot-based timestamps, cue structure, and browser playback compatibility.
+pubDate: 2026-05-26
+category: sync-fixes
+tags:
+  - webvtt
+  - vtt
+  - validator
+  - html5 video
+  - timestamps
+primaryTool: webvtt-validator
+---
+
+WebVTT files are easy to break with small formatting mistakes, especially when converting from SRT.
+
+## Quick answer
+
+Use the [WebVTT Validator](/tools/webvtt-validator/) to check whether a `.vtt` file has a `WEBVTT` header, valid dot-based timestamps, and parseable cues.
+
+This is useful before wiring captions into an HTML5 video player.
+
+## What a valid WebVTT file needs
+
+A basic VTT file should include:
+
+- `WEBVTT` at the top of the file
+- timestamps using dots, such as `00:00:01.000`
+- cue timing lines with `-->`
+- readable caption text after timing lines
+- blank lines between cue blocks
+
+Unlike SRT, WebVTT does not require cue numbers.
+
+## Step-by-step workflow
+
+1. Open the [WebVTT Validator](/tools/webvtt-validator/).
+2. Upload the `.vtt` file or paste its contents.
+3. Run validation.
+4. Check for a missing header, comma timestamps, or parse errors.
+5. Fix the file or reconvert from the source subtitle.
+6. Test the VTT file in the actual web player.
+
+## Common WebVTT problems
+
+### Missing WEBVTT header
+
+Browsers expect the file to start with `WEBVTT`. A file that looks like VTT but lacks the header may fail silently.
+
+### SRT-style commas
+
+VTT timestamps should use dots for milliseconds. If the file contains commas, it may have been copied from SRT without conversion.
+
+### Wrong MIME type or player setup
+
+A valid file can still fail if the server or player is configured incorrectly. Validation checks the file, not the whole web page.
+
+## Related guides
+
+- [How to fix invalid WebVTT timestamps](/guides/how-to-fix-invalid-webvtt-timestamps/)
+- [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/)
+
+## Related tools
+
+- [WebVTT Validator](/tools/webvtt-validator/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [HTML5 Video Subtitle Converter](/tools/html5-video-subtitle-converter/)

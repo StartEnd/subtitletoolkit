@@ -1,0 +1,72 @@
+---
+title: How to validate SRT files
+description: Validate SRT subtitle files before upload by checking cue structure, timestamp separators, cue order, and parseable subtitle blocks.
+pubDate: 2026-05-26
+category: sync-fixes
+tags:
+  - srt
+  - validator
+  - repair
+  - timestamps
+  - upload
+primaryTool: srt-validator
+---
+
+Validating an SRT file is a fast way to find obvious format problems before a platform rejects it.
+
+## Quick answer
+
+Open the [SRT Validator](/tools/srt-validator/), paste or upload the subtitle file, and read the validation report.
+
+The report helps confirm whether the file has parseable cues, standard SRT timestamps, and basic cue structure.
+
+## What to check
+
+An SRT file should usually have:
+
+- numbered cue blocks
+- timestamps in `HH:MM:SS,mmm` format
+- an arrow written as `-->`
+- start times before end times
+- blank lines between cues
+- subtitle text after each timestamp line
+
+Small formatting issues can still break upload workflows, especially in strict caption tools.
+
+## Step-by-step workflow
+
+1. Open the [SRT Validator](/tools/srt-validator/).
+2. Upload the SRT file or paste its contents.
+3. Run validation and check the cue count.
+4. Look for timestamp separator warnings or parse failures.
+5. Fix the source file or use a repair tool when the issue is mechanical.
+6. Validate again before uploading.
+
+## Common validation problems
+
+### Dot-based milliseconds
+
+SRT normally uses commas, like `00:00:01,000`. Dot-based milliseconds are common after a VTT conversion mistake.
+
+### Missing blank lines
+
+Some parsers need a blank line between cue blocks. A cleaner can rebuild spacing.
+
+### Out-of-order cues
+
+Cue order matters for playback and review. If cues are out of order, clean or rebuild the file before delivery.
+
+## When to repair instead of validate
+
+Validation tells you what looks wrong. It does not rewrite the file. Use [Fix SRT Timestamps](/tools/fix-srt-timestamps/) or [Clean SRT File Online](/tools/clean-srt-file/) when you need corrected output.
+
+## Related guides
+
+- [How to fix malformed SRT timestamps](/guides/how-to-fix-malformed-srt-timestamps/)
+- [How to clean an SRT file](/guides/how-to-clean-an-srt-file/)
+
+## Related tools
+
+- [SRT Validator](/tools/srt-validator/)
+- [Fix SRT Timestamps](/tools/fix-srt-timestamps/)
+- [Clean SRT File Online](/tools/clean-srt-file/)

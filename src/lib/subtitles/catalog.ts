@@ -315,6 +315,10 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['srt-to-vtt', 'vtt-to-txt'],
     relatedGuides: [
+      {
+        href: '/guides/how-to-convert-srt-to-txt/',
+        title: 'How to convert SRT to TXT',
+      },
       { href: '/guides/srt-vs-vtt/', title: 'SRT vs VTT' },
       {
         href: '/guides/how-to-remove-subtitle-line-numbers/',
@@ -367,6 +371,10 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['vtt-to-srt', 'srt-to-txt'],
     relatedGuides: [
+      {
+        href: '/guides/how-to-convert-vtt-to-txt/',
+        title: 'How to convert VTT to TXT',
+      },
       { href: '/guides/srt-vs-vtt/', title: 'SRT vs VTT' },
       {
         href: '/guides/when-webvtt-is-better-than-srt/',
@@ -419,6 +427,10 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['ass-to-srt', 'srt-to-txt'],
     relatedGuides: [
+      {
+        href: '/guides/how-to-convert-ass-to-txt/',
+        title: 'How to convert ASS to TXT',
+      },
       { href: '/guides/ass-vs-srt/', title: 'ASS vs SRT' },
       {
         href: '/guides/common-subtitle-format-errors-and-fixes/',
@@ -460,6 +472,10 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['ass-to-srt', 'ass-to-vtt'],
     relatedGuides: [
+      {
+        href: '/guides/how-to-convert-srt-to-ass/',
+        title: 'How to convert SRT to ASS',
+      },
       { href: '/guides/ass-vs-srt/', title: 'ASS vs SRT' },
       {
         href: '/guides/when-to-use-ass-instead-of-srt/',
@@ -558,6 +574,10 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['ass-to-vtt', 'vtt-to-srt'],
     relatedGuides: [
+      {
+        href: '/guides/how-to-convert-vtt-to-ass/',
+        title: 'How to convert VTT to ASS',
+      },
       {
         href: '/guides/how-to-convert-subtitle-files-for-web-players/',
         title: 'How to convert subtitle files for web players',
@@ -1178,6 +1198,10 @@ const enTools: SubtitleTool[] = [
     relatedTools: ['subtitle-cleaner', 'remove-srt-line-numbers'],
     relatedGuides: [
       {
+        href: '/guides/how-to-clean-an-srt-file/',
+        title: 'How to clean an SRT file',
+      },
+      {
         href: '/guides/how-to-clean-subtitle-formatting-before-upload/',
         title: 'How to clean subtitle formatting before upload',
       },
@@ -1343,6 +1367,10 @@ const enTools: SubtitleTool[] = [
     relatedTools: ['fix-srt-timestamps', 'clean-srt-file'],
     relatedGuides: [
       {
+        href: '/guides/how-to-validate-srt-files/',
+        title: 'How to validate SRT files',
+      },
+      {
         href: '/guides/how-to-fix-malformed-srt-timestamps/',
         title: 'How to fix malformed SRT timestamps',
       },
@@ -1398,6 +1426,10 @@ const enTools: SubtitleTool[] = [
     relatedTools: ['srt-to-vtt', 'vtt-to-srt'],
     relatedGuides: [
       {
+        href: '/guides/how-to-validate-webvtt-files/',
+        title: 'How to validate WebVTT files',
+      },
+      {
         href: '/guides/how-to-fix-invalid-webvtt-timestamps/',
         title: 'How to fix invalid WebVTT timestamps',
       },
@@ -1452,6 +1484,10 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['srt-to-txt', 'vtt-to-txt'],
     relatedGuides: [
+      {
+        href: '/guides/how-to-create-a-transcript-from-subtitles/',
+        title: 'How to create a transcript from subtitles',
+      },
       {
         href: '/guides/how-to-convert-subtitle-files-for-web-players/',
         title: 'How to convert subtitle files for web players',

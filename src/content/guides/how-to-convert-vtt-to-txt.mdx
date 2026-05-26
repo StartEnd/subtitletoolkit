@@ -1,0 +1,77 @@
+---
+title: How to convert VTT to TXT
+description: Convert WebVTT captions into plain text by removing the WEBVTT header, timestamps, cue settings, and browser caption markup.
+pubDate: 2026-05-26
+category: conversion-guides
+tags:
+  - vtt
+  - webvtt
+  - txt
+  - transcript
+  - conversion
+primaryTool: vtt-to-txt
+---
+
+VTT is useful for browser playback, but it is noisy when you only need the caption text.
+
+## Quick answer
+
+Use the [VTT to TXT Converter](/tools/vtt-to-txt/) to remove the `WEBVTT` header, WebVTT timestamps, cue settings, and metadata from a caption file.
+
+The result is a plain text copy that is easier to review, edit, quote, or send for translation.
+
+## When this is useful
+
+Convert VTT to TXT when:
+
+- captions were exported from a web player
+- you need a transcript draft from browser captions
+- cue settings like `align:start` are getting in the way
+- a reviewer wants text without video timing
+
+Keep the original VTT file if the same captions still need to be used in HTML5 video or another web player.
+
+## Step-by-step workflow
+
+1. Open the [VTT to TXT Converter](/tools/vtt-to-txt/).
+2. Upload the `.vtt` file or paste its contents.
+3. Convert the file to plain text.
+4. Confirm that the `WEBVTT` header and timing lines are removed.
+5. Review the text for paragraph breaks.
+6. Download the `.txt` copy.
+
+## What changes during conversion
+
+The converter removes WebVTT-only structure:
+
+- the `WEBVTT` header
+- timestamp lines with dot-based milliseconds
+- cue settings after timestamp lines
+- note and metadata blocks when they are not caption text
+
+The spoken caption text stays readable.
+
+## Common mistakes
+
+### Using TXT for video playback
+
+TXT does not contain timing information. Use VTT for browser playback and TXT only for reading or editing text.
+
+### Keeping cue settings in the transcript
+
+Cue settings are useful for playback, but they make transcript text harder to read. Remove them before sending text to a reviewer.
+
+### Ignoring invalid VTT input
+
+If the converter cannot parse enough cues, validate the source file with the [WebVTT Validator](/tools/webvtt-validator/) first.
+
+## Related guides
+
+- [When WebVTT is better than SRT](/guides/when-webvtt-is-better-than-srt/)
+- [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/)
+
+## Related tools
+
+- [VTT to TXT Converter](/tools/vtt-to-txt/)
+- [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/)
+- [WebVTT Validator](/tools/webvtt-validator/)

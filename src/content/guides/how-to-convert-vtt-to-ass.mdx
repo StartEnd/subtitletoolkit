@@ -1,0 +1,78 @@
+---
+title: How to convert VTT to ASS
+description: Convert WebVTT captions into ASS subtitles when browser caption files need to move into style-capable editing workflows.
+pubDate: 2026-05-26
+category: conversion-guides
+tags:
+  - vtt
+  - webvtt
+  - ass
+  - conversion
+  - subtitle editing
+primaryTool: vtt-to-ass
+---
+
+VTT is built for browsers. ASS is built for subtitle styling and editing workflows.
+
+## Quick answer
+
+Use the [VTT to ASS Converter](/tools/vtt-to-ass/) when you have WebVTT captions but need an ASS file for a subtitle editor or style-capable workflow.
+
+The converter keeps cue timing and text, then wraps them in a basic ASS file structure.
+
+## When this is useful
+
+Convert VTT to ASS when:
+
+- captions came from a web player export
+- an editor needs ASS input
+- you want to add styling after receiving browser captions
+- VTT cue text needs to become editable dialogue events
+
+If the destination is still a website or HTML5 player, keep the file as VTT.
+
+## Step-by-step workflow
+
+1. Keep the original `.vtt` file.
+2. Open the [VTT to ASS Converter](/tools/vtt-to-ass/).
+3. Upload or paste the WebVTT captions.
+4. Convert to ASS.
+5. Open the output in your subtitle editor for styling or review.
+6. Export a separate delivery copy when the edit is finished.
+
+## What changes during conversion
+
+During conversion:
+
+- the `WEBVTT` header is removed
+- WebVTT timestamps become ASS timestamps
+- cues become ASS dialogue lines
+- browser-specific cue settings are not preserved
+- a default ASS style is added
+
+This is a format bridge, not a complete styling pass.
+
+## Common mistakes
+
+### Treating ASS as a web delivery format
+
+Browsers expect WebVTT for native caption tracks. Convert to ASS only when the next workflow really needs ASS.
+
+### Expecting VTT cue settings to map perfectly
+
+VTT and ASS have different styling models. Cue settings should be checked manually after conversion.
+
+### Forgetting to export a final delivery format
+
+After editing in ASS, you may still need SRT or VTT depending on where the subtitles will be published.
+
+## Related guides
+
+- [When to use ASS instead of SRT](/guides/when-to-use-ass-instead-of-srt/)
+- [How to convert subtitle files for web players](/guides/how-to-convert-subtitle-files-for-web-players/)
+
+## Related tools
+
+- [VTT to ASS Converter](/tools/vtt-to-ass/)
+- [ASS to VTT Converter](/tools/ass-to-vtt/)
+- [VTT to SRT Converter](/tools/vtt-to-srt/)

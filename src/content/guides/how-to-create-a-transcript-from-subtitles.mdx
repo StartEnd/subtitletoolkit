@@ -1,0 +1,76 @@
+---
+title: How to create a transcript from subtitles
+description: Create a readable transcript from SRT, VTT, or ASS subtitle files by extracting caption text and removing timing metadata.
+pubDate: 2026-05-26
+category: workflow-guides
+tags:
+  - transcript
+  - srt
+  - vtt
+  - ass
+  - plain text
+primaryTool: subtitle-transcript-generator
+---
+
+Subtitle files already contain the words spoken in a video. A transcript workflow extracts those words and removes playback timing.
+
+## Quick answer
+
+Use the [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/) to create plain text from SRT, VTT, or ASS subtitles.
+
+The tool removes timing metadata and keeps readable caption text.
+
+## When this is useful
+
+Create a transcript from subtitles when:
+
+- you need a draft transcript for a video page
+- a writer wants caption text for editing
+- you need notes from an interview or webinar
+- subtitles need to be translated as plain text first
+
+This works best when subtitles are already accurate. It does not transcribe audio from scratch.
+
+## Step-by-step workflow
+
+1. Start with an SRT, VTT, or ASS subtitle file.
+2. Open the [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/).
+3. Upload or paste the subtitle content.
+4. Generate the transcript.
+5. Review paragraph breaks, repeated phrases, and speaker labels.
+6. Download or copy the plain text output.
+
+## Transcript cleanup checklist
+
+After extracting text, check for:
+
+- captions split in the middle of a sentence
+- repeated lines caused by overlapping cues
+- missing speaker names
+- hard subtitle line breaks that should become paragraphs
+- leftover formatting tags from styled subtitles
+
+## Common mistakes
+
+### Treating subtitle text as a finished transcript
+
+Subtitles are timed for reading speed. Transcripts are read as documents. A short editorial pass usually improves readability.
+
+### Using a transcript when timed captions are required
+
+Transcript output has no timestamps. Keep the original subtitle file for video playback or upload.
+
+### Starting from a broken subtitle file
+
+If the source file has malformed timestamps or encoding problems, fix those first so the transcript extraction is cleaner.
+
+## Related guides
+
+- [How to convert SRT to TXT](/guides/how-to-convert-srt-to-txt/)
+- [How to convert VTT to TXT](/guides/how-to-convert-vtt-to-txt/)
+
+## Related tools
+
+- [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/)
+- [SRT to TXT Converter](/tools/srt-to-txt/)
+- [VTT to TXT Converter](/tools/vtt-to-txt/)

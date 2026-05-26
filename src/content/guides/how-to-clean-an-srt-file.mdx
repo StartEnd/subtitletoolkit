@@ -1,0 +1,77 @@
+---
+title: How to clean an SRT file
+description: Clean messy SRT subtitles by normalizing cue numbers, timestamp formatting, spacing, and leftover inline tags before upload or handoff.
+pubDate: 2026-05-26
+category: sync-fixes
+tags:
+  - srt
+  - clean subtitles
+  - repair
+  - timestamps
+  - upload
+primaryTool: clean-srt-file
+---
+
+An SRT file can be technically readable but still messy enough to cause upload or review problems.
+
+## Quick answer
+
+Use [Clean SRT File Online](/tools/clean-srt-file/) to rebuild cue numbers, normalize timestamp formatting, remove stray inline tags, and produce a cleaner SRT output.
+
+The cleaner does not intentionally retime subtitles. It focuses on file structure and text cleanup.
+
+## When this is useful
+
+Clean an SRT file when:
+
+- cue numbers are duplicated or inconsistent
+- spacing around subtitle blocks is messy
+- timestamps are parseable but formatted inconsistently
+- subtitle text contains leftover HTML-style tags
+- a platform rejects a file that looks mostly correct
+
+For severe timing damage, validate first and repair manually where needed.
+
+## Step-by-step workflow
+
+1. Save a copy of the original SRT file.
+2. Open [Clean SRT File Online](/tools/clean-srt-file/).
+3. Upload or paste the SRT content.
+4. Clean the file.
+5. Review the output for cue count, line breaks, and timing order.
+6. Download the cleaned `.srt` file and test it in the target platform.
+
+## What a clean SRT should contain
+
+A clean SRT file should have:
+
+- sequential cue numbers
+- comma-based timestamps
+- one blank line between cue blocks
+- readable subtitle text
+- no stray formatting tags unless the target platform supports them
+
+## Common mistakes
+
+### Cleaning without checking timing
+
+Cleaning does not mean the subtitles are synced. If captions appear early or late, use a timing tool afterward.
+
+### Removing source files too early
+
+Keep the original. If a cleaner removes unsupported markup, you may still need the source for editing.
+
+### Assuming every rejected file has the same issue
+
+Some upload failures are caused by encoding, not SRT structure. If characters look broken, use the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/).
+
+## Related guides
+
+- [How to fix malformed SRT timestamps](/guides/how-to-fix-malformed-srt-timestamps/)
+- [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)
+
+## Related tools
+
+- [Clean SRT File Online](/tools/clean-srt-file/)
+- [SRT Validator](/tools/srt-validator/)
+- [Fix SRT Timestamps](/tools/fix-srt-timestamps/)

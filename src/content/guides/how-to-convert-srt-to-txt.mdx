@@ -1,0 +1,77 @@
+---
+title: How to convert SRT to TXT
+description: Convert SRT subtitles into plain text by removing cue numbers, timestamps, and subtitle file markup while keeping readable dialogue.
+pubDate: 2026-05-26
+category: conversion-guides
+tags:
+  - srt
+  - txt
+  - transcript
+  - plain text
+  - conversion
+primaryTool: srt-to-txt
+---
+
+Use SRT to TXT conversion when you need the words from a subtitle file, not the timing data.
+
+## Quick answer
+
+Open the [SRT to TXT Converter](/tools/srt-to-txt/), paste or upload the `.srt` file, and export the plain text result.
+
+The converter removes SRT cue numbers and timestamp lines, then keeps the subtitle text in reading order.
+
+## When this is useful
+
+Convert SRT to TXT when:
+
+- you need a transcript draft from captions
+- a translator only needs the spoken text
+- you want notes or quotes without timestamps
+- you are cleaning subtitle text before rewriting it
+
+If you still need timings for playback, keep the original SRT file and treat TXT as a separate working copy.
+
+## Step-by-step workflow
+
+1. Keep a backup of the original `.srt` file.
+2. Open the [SRT to TXT Converter](/tools/srt-to-txt/).
+3. Upload the SRT file or paste the subtitle text.
+4. Check that cue numbers and timestamp lines are gone.
+5. Review paragraph breaks and repeated lines.
+6. Download the `.txt` output for editing, review, or translation.
+
+## What gets removed
+
+SRT files usually contain:
+
+- cue numbers such as `1`, `2`, and `3`
+- timestamps such as `00:00:01,000 --> 00:00:03,500`
+- blank lines between cues
+- subtitle text
+
+TXT output keeps the readable subtitle text and removes the structure used by video players.
+
+## Common mistakes
+
+### Replacing the subtitle source with TXT
+
+TXT is not a subtitle format. It cannot be uploaded as a timed caption file unless another tool retimes it later.
+
+### Expecting perfect paragraphs
+
+Subtitle line breaks are written for screen timing, not article-style reading. After conversion, do a quick pass for paragraph flow.
+
+### Converting a broken SRT file first
+
+If timestamps are malformed, validate or clean the SRT before extracting text. Use the [SRT Validator](/tools/srt-validator/) if the file looks suspicious.
+
+## Related guides
+
+- [How to remove subtitle line numbers](/guides/how-to-remove-subtitle-line-numbers/)
+- [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)
+
+## Related tools
+
+- [SRT to TXT Converter](/tools/srt-to-txt/)
+- [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/)
+- [SRT Validator](/tools/srt-validator/)
