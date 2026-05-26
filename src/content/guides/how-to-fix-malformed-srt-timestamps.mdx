@@ -21,7 +21,7 @@ SRT is simple, but it is strict about its timing line. A small change such as us
 
 If the file still contains subtitle text and timing blocks but the formatting is inconsistent, clean the structure first before trying to deliver or convert it.
 
-The [Subtitle Cleaner](/tools/subtitle-cleaner/) is the right first step for that kind of repair.
+The [Fix SRT Timestamps](/tools/fix-srt-timestamps/) tool is the right first step for parseable timing blocks. If you only want a report before changing the file, use the [SRT Validator](/tools/srt-validator/).
 
 ## What valid SRT timestamps look like
 
@@ -73,7 +73,7 @@ Malformed timestamps also make later conversion less reliable. If you convert a 
 
 ## Step-by-step workflow
 
-1. Open the [Subtitle Cleaner](/tools/subtitle-cleaner/).
+1. Open [Fix SRT Timestamps](/tools/fix-srt-timestamps/) or run the file through the [SRT Validator](/tools/srt-validator/) first.
 2. Paste the SRT content or upload the file.
 3. Review the cleaned output and check whether the block structure looks consistent.
 4. Save the cleaned file.
@@ -117,3 +117,9 @@ If the file has valid-looking timestamps but captions appear too early or too la
 - [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)
 - [How to remove subtitle line numbers](/guides/how-to-remove-subtitle-line-numbers/)
 - [How to fix invalid WebVTT timestamps](/guides/how-to-fix-invalid-webvtt-timestamps/)
+
+## Related tools
+
+- [Fix SRT Timestamps](/tools/fix-srt-timestamps/)
+- [SRT Validator](/tools/srt-validator/)
+- [Clean SRT File Online](/tools/clean-srt-file/)

@@ -35,6 +35,8 @@ const toolMetaDescriptions: Record<string, string> = {
 		'Convert SRT subtitles to plain text online for free. Remove timestamps and cue numbers, then copy or download clean TXT output.',
 	'vtt-to-txt':
 		'Convert VTT WebVTT captions to plain text online for free. Remove headers, timestamps, and cue settings from a .vtt file.',
+	'ass-to-txt':
+		'Convert ASS subtitles to plain text online for free. Remove style tags, timing, and dialogue metadata from ASS or SSA files.',
 	'srt-to-ass':
 		'Convert SRT subtitles to ASS format with a clean default style, ready for subtitle editors, timing review, and styling workflows.',
 	'ass-to-srt':
@@ -45,8 +47,24 @@ const toolMetaDescriptions: Record<string, string> = {
 		'Convert ASS subtitles to WebVTT for browser playback and HTML5 video delivery while keeping subtitle timing and readable text.',
 	'subtitle-time-shifter':
 		'Shift subtitle timing online for SRT, VTT, and ASS files. Fix subtitles that are too early or too late without signup or upload.',
+	'subtitle-delay-fixer':
+		'Fix subtitle delay online for SRT, VTT, and ASS files. Shift captions earlier or later without signup or upload.',
+	'fix-out-of-sync-subtitles':
+		'Fix out-of-sync subtitles online by shifting SRT, VTT, or ASS cues earlier or later to match the video.',
 	'subtitle-cleaner':
 		'Clean SRT, VTT, and ASS subtitle text by removing stray tags, normalizing spacing, preserving cue timing, and preparing files for upload.',
+	'clean-srt-file':
+		'Clean an SRT file online by normalizing cue numbers, timestamps, spacing, and subtitle text locally in your browser.',
+	'remove-srt-line-numbers':
+		'Remove and rebuild SRT line numbers online while keeping subtitle timing and text readable. Free browser-based SRT tool.',
+	'fix-srt-timestamps':
+		'Fix SRT timestamp formatting online by exporting clean comma-based SubRip timing, cue numbers, and subtitle text.',
+	'srt-validator':
+		'Validate SRT subtitles online and check for missing cues, timestamp separator issues, cue order, and format problems.',
+	'webvtt-validator':
+		'Validate WebVTT captions online and check for missing WEBVTT headers, timestamp issues, and cue problems.',
+	'subtitle-transcript-generator':
+		'Generate a plain text transcript from SRT, VTT, or ASS subtitle files directly in your browser without uploading files.',
 	'subtitle-encoding-fixer':
 		'Fix garbled subtitles online by converting SRT, VTT, ASS, SSA, and SMI files to clean UTF-8 text locally in your browser.',
 	'subtitle-merger':
@@ -62,9 +80,18 @@ const toolPageTitles: Record<string, string> = {
 	'vtt-to-srt': 'VTT to SRT Converter - Convert Subtitles Online Free',
 	'srt-to-txt': 'SRT to TXT Converter - Extract Subtitle Text Online',
 	'vtt-to-txt': 'VTT to TXT Converter - Extract Caption Text Online',
+	'ass-to-txt': 'ASS to TXT Converter - Extract Subtitle Text Online',
 	'ass-to-srt': 'ASS to SRT Converter - Convert Subtitles Online Free',
 	'subtitle-time-shifter': 'Subtitle Time Shifter - Fix Subtitle Delay Online',
+	'subtitle-delay-fixer': 'Subtitle Delay Fixer - Fix Subtitle Timing Online',
+	'fix-out-of-sync-subtitles': 'Fix Out-of-Sync Subtitles Online',
 	'subtitle-encoding-fixer': 'Subtitle Encoding Fixer - Fix Garbled Subtitles Online',
+	'clean-srt-file': 'Clean SRT File Online - Free Subtitle Cleaner',
+	'remove-srt-line-numbers': 'Remove SRT Line Numbers Online',
+	'fix-srt-timestamps': 'Fix SRT Timestamps Online',
+	'srt-validator': 'SRT Validator - Check Subtitle Format Online',
+	'webvtt-validator': 'WebVTT Validator - Check VTT Captions Online',
+	'subtitle-transcript-generator': 'Subtitle Transcript Generator - Convert Subtitles to Text',
 };
 
 const workflowNotes: Record<string, string> = {
@@ -76,6 +103,8 @@ const workflowNotes: Record<string, string> = {
 		'Use SRT to TXT when you need the spoken subtitle text without timing metadata. The converter parses SRT cue blocks, removes cue numbers and timestamps, and exports the readable text for review, translation, or notes.',
 	'vtt-to-txt':
 		'Use VTT to TXT when captions come from a browser player or web workflow but the next step only needs readable text. The converter removes the WEBVTT header, cue timing, and browser-specific cue settings.',
+	'ass-to-txt':
+		'Use ASS to TXT when styled subtitles need to become readable text. The converter parses dialogue lines, removes override tags and timing metadata, and keeps the spoken subtitle text.',
 	'srt-to-ass':
 		'SRT is plain and portable. ASS is useful when the next step involves subtitle styling, karaoke timing, or an editor that expects an ASS structure. This tool creates a clean default ASS file from simple cue text.',
 	'ass-to-srt':
@@ -86,8 +115,24 @@ const workflowNotes: Record<string, string> = {
 		'ASS is not the safest final format for browser playback. This converter creates WebVTT output so the same subtitle text can be used in HTML5 video and web player workflows.',
 	'subtitle-time-shifter':
 		'Use a global shift when every subtitle cue is off by the same amount. Positive milliseconds delay captions; negative milliseconds move them earlier. The tool preserves the detected subtitle format.',
+	'subtitle-delay-fixer':
+		'Use this when all captions are consistently delayed or early. Enter milliseconds to move every cue, then review the first and last few subtitles before replacing the original file.',
+	'fix-out-of-sync-subtitles':
+		'Use this for a constant sync offset across the whole subtitle file. If only one section is out of sync, use the partial shifter instead so the rest of the file stays unchanged.',
 	'subtitle-cleaner':
 		'Cleaning is useful before upload, review, or conversion. The tool keeps cue timing intact while removing stray inline tags and normalizing subtitle text that often breaks player imports.',
+	'clean-srt-file':
+		'Use this when an SRT file is readable but messy. The cleaner parses cue blocks, normalizes numbering and timestamps, removes stray inline tags, and exports a cleaner SRT file.',
+	'remove-srt-line-numbers':
+		'Use this when SRT numbering is missing, duplicated, or out of order. The tool finds cue timing lines and exports a clean SRT file with sequential cue numbers.',
+	'fix-srt-timestamps':
+		'Use this when SRT timing lines are parseable but inconsistently formatted. The output rebuilds cue numbers and comma-based timestamps in standard SubRip style.',
+	'srt-validator':
+		'Use this before upload when you want a quick report instead of a modified file. The validator checks whether SRT cues can be parsed and highlights common timing issues.',
+	'webvtt-validator':
+		'Use this before publishing captions with HTML5 video. The validator checks for a WEBVTT header, parseable cues, dot-based timestamps, and obvious timing problems.',
+	'subtitle-transcript-generator':
+		'Use this when the destination is notes, review, or translation instead of a timed caption track. The generator extracts readable text from supported subtitle formats.',
 	'subtitle-encoding-fixer':
 		'Encoding problems usually show up as mojibake, broken accents, or unreadable non-English text. Choose the likely source encoding, then export a UTF-8 file for modern editors and video platforms.',
 	'subtitle-merger':
@@ -119,6 +164,11 @@ const mistakeNotes: Record<string, string[]> = {
 		'Deleting the original VTT file before checking the exported text.',
 		'Expecting WebVTT cue settings to appear in the TXT output.',
 	],
+	'ass-to-txt': [
+		'Using plain text output when the destination still needs subtitle timing.',
+		'Expecting ASS styles, positions, or effects to survive in TXT output.',
+		'Deleting the original ASS file before confirming the extracted text is enough.',
+	],
 	'srt-to-ass': [
 		'Expecting advanced styling to appear automatically from a plain SRT source.',
 		'Forgetting to review line breaks after conversion.',
@@ -144,10 +194,50 @@ const mistakeNotes: Record<string, string[]> = {
 		'Entering seconds when the tool expects milliseconds.',
 		'Applying the wrong sign: positive delays captions, negative moves them earlier.',
 	],
+	'subtitle-delay-fixer': [
+		'Applying a global delay fix to subtitles that drift gradually over time.',
+		'Entering seconds when the tool expects milliseconds.',
+		'Using the wrong sign for early or late captions.',
+	],
+	'fix-out-of-sync-subtitles': [
+		'Using a whole-file sync fix when only one scene is wrong.',
+		'Not checking the beginning and end of the output file.',
+		'Replacing the original file before confirming the timing in the target player.',
+	],
 	'subtitle-cleaner': [
 		'Cleaning text before saving a backup of the original file.',
 		'Assuming cleanup can repair badly timed subtitles.',
 		'Leaving malformed timestamps for the video platform to reject later.',
+	],
+	'clean-srt-file': [
+		'Using cleanup when the source timing lines are too broken to parse.',
+		'Assuming text cleanup can repair subtitle sync issues.',
+		'Replacing the source file before checking the cleaned output.',
+	],
+	'remove-srt-line-numbers': [
+		'Using this when you actually need plain text without timestamps.',
+		'Expecting numbering repair to fix badly malformed timing lines.',
+		'Uploading without reviewing the first and last cue after export.',
+	],
+	'fix-srt-timestamps': [
+		'Expecting automatic repair for timing lines that cannot be parsed at all.',
+		'Using timestamp normalization to fix subtitle sync drift.',
+		'Not checking whether any cues were dropped because they were malformed.',
+	],
+	'srt-validator': [
+		'Expecting a validator report to modify the subtitle file.',
+		'Ignoring dot-based timestamps in an SRT upload workflow.',
+		'Assuming one successful parse means the file was tested in the destination platform.',
+	],
+	'webvtt-validator': [
+		'Publishing a VTT file without the WEBVTT header.',
+		'Using comma-based SRT timestamps in a WebVTT file.',
+		'Assuming validation replaces testing in the actual HTML5 player.',
+	],
+	'subtitle-transcript-generator': [
+		'Using transcript output when the destination still needs subtitle timing.',
+		'Expecting transcript text to preserve styling or cue metadata.',
+		'Deleting the original subtitle file after creating plain text.',
 	],
 	'subtitle-encoding-fixer': [
 		'Choosing UTF-8 as the source when the file was saved as Windows-1252 or another legacy encoding.',
@@ -177,7 +267,15 @@ const pageTitle = toolPageTitles[currentTool.id] ?? `${currentTool.title} | ${SI
 
 const isConversionTool = ![
 	'subtitle-time-shifter',
+	'subtitle-delay-fixer',
+	'fix-out-of-sync-subtitles',
 	'subtitle-cleaner',
+	'clean-srt-file',
+	'remove-srt-line-numbers',
+	'fix-srt-timestamps',
+	'srt-validator',
+	'webvtt-validator',
+	'subtitle-transcript-generator',
 	'subtitle-encoding-fixer',
 	'subtitle-merger',
 	'partial-subtitle-shifter',

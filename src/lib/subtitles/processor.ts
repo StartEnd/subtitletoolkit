@@ -432,6 +432,79 @@ function cleanCueText(cues: SubtitleCue[]) {
   }));
 }
 
+function formatValidationReport(title: string, issues: string[], details: string[]) {
+  const lines = [title, ''];
+
+  if (issues.length) {
+    lines.push('Issues found:');
+    issues.forEach((issue) => lines.push(`- ${issue}`));
+  } else {
+    lines.push('No blocking issues found.');
+  }
+
+  if (details.length) {
+    lines.push('', 'Details:');
+    details.forEach((detail) => lines.push(`- ${detail}`));
+  }
+
+  return lines.join('\n').trim();
+}
+
+function validateSrt(input: string) {
+  const issues: string[] = [];
+  const details: string[] = [];
+  const cues = parseSrt(input);
+
+  if (!cues.length) {
+    issues.push('No valid SRT cues were detected.');
+  }
+  if (!/^\d+\s*\n\d{2}:\d{2}:\d{2},\d{3}\s-->/m.test(input)) {
+    issues.push('SRT cue numbering or comma-based timestamps may be missing.');
+  }
+  if (/\d{2}:\d{2}:\d{2}\.\d{3}\s-->/m.test(input)) {
+    issues.push('Dot-based timestamps were found. Standard SRT uses commas.');
+  }
+  if (cues.some((cue) => cue.end < cue.start)) {
+    issues.push('At least one cue ends before it starts.');
+  }
+
+  details.push(`${cues.length} cue${cues.length === 1 ? '' : 's'} parsed.`);
+  if (cues.length) {
+    details.push(`First cue starts at ${formatSrtTime(cues[0].start)}.`);
+    details.push(`Last cue ends at ${formatSrtTime(cues[cues.length - 1].end)}.`);
+  }
+
+  return formatValidationReport('SRT validation report', issues, details);
+}
+
+function validateVtt(input: string) {
+  const issues: string[] = [];
+  const details: string[] = [];
+  const normalized = normalizeSubtitleInput(input);
+  const cues = parseVtt(normalized);
+
+  if (!normalized.startsWith('WEBVTT')) {
+    issues.push('Missing WEBVTT header.');
+  }
+  if (!cues.length) {
+    issues.push('No valid WebVTT cues were detected.');
+  }
+  if (/\d{2}:\d{2}:\d{2},\d{3}\s-->/m.test(normalized)) {
+    issues.push('Comma-based timestamps were found. WebVTT uses dots.');
+  }
+  if (cues.some((cue) => cue.end < cue.start)) {
+    issues.push('At least one cue ends before it starts.');
+  }
+
+  details.push(`${cues.length} cue${cues.length === 1 ? '' : 's'} parsed.`);
+  if (cues.length) {
+    details.push(`First cue starts at ${formatVttTime(cues[0].start)}.`);
+    details.push(`Last cue ends at ${formatVttTime(cues[cues.length - 1].end)}.`);
+  }
+
+  return formatValidationReport('WebVTT validation report', issues, details);
+}
+
 export function processSubtitleTool(
   toolId: SubtitleToolId,
   input: string,
@@ -456,6 +529,8 @@ export function processSubtitleTool(
       return serializePlainText(parseSrt(normalized));
     case 'vtt-to-txt':
       return serializePlainText(parseVtt(normalized));
+    case 'ass-to-txt':
+      return serializePlainText(parseAss(normalized));
     case 'srt-to-ass':
       return serializeAss(parseSrt(normalized));
     case 'ass-to-srt':
@@ -476,6 +551,19 @@ export function processSubtitleTool(
         format
       );
     }
+    case 'subtitle-delay-fixer':
+    case 'fix-out-of-sync-subtitles': {
+      const format = detectSubtitleFormat(normalized);
+      const cues = parseSubtitleByFormat(normalized, format);
+      if (!cues.length || format === 'unknown') {
+        return normalized;
+      }
+
+      return serializeByFormat(
+        shiftCueTimes(cues, Number(shiftValue || '0')),
+        format
+      );
+    }
     case 'subtitle-cleaner': {
       const format = detectSubtitleFormat(normalized);
       const cues = parseSubtitleByFormat(normalized, format);
@@ -484,6 +572,24 @@ export function processSubtitleTool(
       }
 
       return serializeByFormat(cleanCueText(cues), format);
+    }
+    case 'clean-srt-file':
+      return serializeSrt(cleanCueText(parseSrt(normalized)));
+    case 'remove-srt-line-numbers':
+    case 'fix-srt-timestamps':
+      return serializeSrt(parseSrt(normalized));
+    case 'srt-validator':
+      return validateSrt(normalized);
+    case 'webvtt-validator':
+      return validateVtt(normalized);
+    case 'subtitle-transcript-generator': {
+      const format = detectSubtitleFormat(normalized);
+      const cues = parseSubtitleByFormat(normalized, format);
+      if (!cues.length || format === 'unknown') {
+        return cleanSubtitleLine(normalized);
+      }
+
+      return serializePlainText(cues);
     }
     case 'subtitle-encoding-fixer':
       return normalized;
@@ -527,12 +633,22 @@ export function inferOutputFormat(
       return 'srt';
     case 'srt-to-txt':
     case 'vtt-to-txt':
+    case 'ass-to-txt':
+    case 'subtitle-transcript-generator':
+      return 'txt';
+    case 'srt-validator':
+    case 'webvtt-validator':
       return 'txt';
     case 'srt-to-ass':
     case 'vtt-to-ass':
       return 'ass';
     case 'subtitle-time-shifter':
+    case 'subtitle-delay-fixer':
+    case 'fix-out-of-sync-subtitles':
     case 'subtitle-cleaner':
+    case 'clean-srt-file':
+    case 'remove-srt-line-numbers':
+    case 'fix-srt-timestamps':
     case 'subtitle-encoding-fixer':
     case 'subtitle-merger':
     case 'partial-subtitle-shifter':

@@ -19,7 +19,7 @@ Before uploading subtitle files to a platform, client portal, or browser workflo
 
 If the subtitle file looks messy, inconsistent, or copied from different sources, normalize it before upload instead of hoping the destination will tolerate it.
 
-The [Subtitle Cleaner](/tools/subtitle-cleaner/) is the fastest first pass for that job.
+The [Subtitle Cleaner](/tools/subtitle-cleaner/) is the fastest first pass for that job. If the file is SRT and you mainly need to normalize cue blocks, use [Clean SRT File Online](/tools/clean-srt-file/) and then check the result with the [SRT Validator](/tools/srt-validator/).
 
 ## What "formatting cleanup" usually means
 
@@ -45,11 +45,12 @@ If the text itself shows broken characters, fix the encoding before cleanup. [Ho
 
 ## Step-by-step workflow
 
-1. Open the [Subtitle Cleaner](/tools/subtitle-cleaner/).
+1. Open the [Subtitle Cleaner](/tools/subtitle-cleaner/) or [Clean SRT File Online](/tools/clean-srt-file/) for SRT-specific cleanup.
 2. Paste or upload the subtitle file.
 3. Review the cleaned output and check whether the structure is more consistent.
-4. Save the cleaned version.
-5. If needed, convert the cleaned file into the final delivery format afterward.
+4. If the file is SRT, run the cleaned copy through the [SRT Validator](/tools/srt-validator/) before upload.
+5. Save the cleaned version.
+6. If needed, convert the cleaned file into the final delivery format afterward.
 
 ## Common mistakes
 
@@ -62,6 +63,8 @@ Auto-generated subtitle files often need a quick cleanup pass before they are sa
 If the file structure is already messy, clean first so the next step starts from a stable base.
 
 After cleanup, browser-bound files usually continue into [How to convert subtitle files for web players](/guides/how-to-convert-subtitle-files-for-web-players/).
+
+If the goal is only to review the words and not deliver timed subtitles, create a plain transcript with the [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/) instead of cleaning a timed file.
 
 ### Treating cleanup as optional for client delivery
 

@@ -68,7 +68,7 @@ Do not remove numbers if the destination still expects SRT. A valid SRT file can
 
 Manual deletion only removes the visible cue number lines. It does not add a VTT header, change comma milliseconds to dot milliseconds, or validate whether the subtitle blocks still make sense. A proper conversion handles those format differences together.
 
-Use manual cleanup only when you know the target system wants a numberless text structure but does not require a full VTT file.
+Use manual cleanup only when you know the target system wants a numberless text structure but does not require a full VTT file. If the file should remain SRT, use [Remove SRT Line Numbers](/tools/remove-srt-line-numbers/) to rebuild cue numbering instead of deleting lines by hand.
 
 ## Common mistakes
 
@@ -97,3 +97,9 @@ After removing line numbers or converting to VTT, check the first few cues and o
 - [How to convert SRT to VTT for HTML5 video](/guides/how-to-convert-srt-to-vtt-for-html5-video/)
 - [SRT vs VTT](/guides/srt-vs-vtt/)
 - [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video/)
+
+## Related tools
+
+- [Remove SRT Line Numbers](/tools/remove-srt-line-numbers/)
+- [SRT to TXT Converter](/tools/srt-to-txt/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)

@@ -74,7 +74,12 @@ const { tool, labels } = Astro.props as {
 			</div>
 
 			{
-				(tool.id === 'subtitle-time-shifter' || tool.id === 'partial-subtitle-shifter') && (
+				(
+					tool.id === 'subtitle-time-shifter' ||
+					tool.id === 'subtitle-delay-fixer' ||
+					tool.id === 'fix-out-of-sync-subtitles' ||
+					tool.id === 'partial-subtitle-shifter'
+				) && (
 					<div class="workspace-shift">
 						<label class="workspace-field-label" for="shift-input">{labels.shiftLabel}</label>
 						<input id="shift-input" type="text" value="1200" data-shift />

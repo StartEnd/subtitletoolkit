@@ -40,6 +40,8 @@ Your subtitle text here.
 
 **Fix:** Open the file in a text editor or run it through the converter to confirm the header is present.
 
+If you want a quick structural check before editing, paste the file into the [WebVTT Validator](/tools/webvtt-validator/).
+
 ### 3. Comma instead of dot in timestamps
 
 SRT uses commas (`00:00:01,000`). VTT requires dots (`00:00:01.000`). A file with comma-based timestamps will not be recognized as valid WebVTT.
@@ -77,6 +79,8 @@ Work through these in order before looking for complex causes:
 3. Does the file URL return a 200 response with `content-type: text/vtt`?
 4. Are the video and subtitle file on the same origin, or is CORS configured correctly?
 5. Is the `<track>` element `src` pointing to the right path?
+
+For file-level validation, use the [WebVTT Validator](/tools/webvtt-validator/) before debugging player code.
 
 ## Related guides
 

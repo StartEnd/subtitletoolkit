@@ -3,12 +3,21 @@ export type SubtitleToolId =
   | 'vtt-to-srt'
   | 'srt-to-txt'
   | 'vtt-to-txt'
+  | 'ass-to-txt'
   | 'srt-to-ass'
   | 'ass-to-srt'
   | 'vtt-to-ass'
   | 'ass-to-vtt'
   | 'subtitle-time-shifter'
+  | 'subtitle-delay-fixer'
+  | 'fix-out-of-sync-subtitles'
   | 'subtitle-cleaner'
+  | 'clean-srt-file'
+  | 'remove-srt-line-numbers'
+  | 'fix-srt-timestamps'
+  | 'srt-validator'
+  | 'webvtt-validator'
+  | 'subtitle-transcript-generator'
   | 'subtitle-encoding-fixer'
   | 'subtitle-merger'
   | 'partial-subtitle-shifter'
@@ -361,6 +370,58 @@ const enTools: SubtitleTool[] = [
     sampleInput: sharedSamples.vtt,
   },
   {
+    id: 'ass-to-txt',
+    title: 'ASS to TXT Converter',
+    shortTitle: 'ASS to TXT',
+    description:
+      'Convert ASS subtitles to plain text online by removing style tags, timing, and dialogue metadata.',
+    summary:
+      'Use this free ASS to TXT converter when you need readable subtitle text from a styled ASS or SSA file without timing or formatting markup.',
+    buttonLabel: 'Convert to TXT',
+    inputLabel: 'ASS input',
+    outputLabel: 'Plain text output',
+    placeholder: 'Paste your ASS subtitles here',
+    acceptedExtensions: ['.ass', '.ssa', '.txt'],
+    sampleFileName: 'sample.ass',
+    useCases: [
+      'Extract dialogue text from ASS subtitle files.',
+      'Create a transcript draft from styled subtitles.',
+      'Remove ASS override tags, timing, and style metadata.',
+      'Prepare readable subtitle text for review or translation.',
+    ],
+    faqs: [
+      {
+        question: 'Is this ASS to TXT converter free?',
+        answer:
+          'Yes. You can convert ASS subtitles to plain text for free without signup or server upload.',
+      },
+      {
+        question: 'Will ASS styling be kept?',
+        answer:
+          'No. Plain text output keeps readable dialogue text and removes ASS styling, positioning, and timing metadata.',
+      },
+      {
+        question: 'Can this handle ASS line breaks?',
+        answer:
+          'Yes. ASS line breaks are converted into normal readable line breaks in the text output.',
+      },
+      {
+        question: 'Are my ASS files uploaded to a server?',
+        answer:
+          'No. ASS to TXT conversion runs locally in your browser, so your subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['ass-to-srt', 'srt-to-txt'],
+    relatedGuides: [
+      { href: '/guides/ass-vs-srt/', title: 'ASS vs SRT' },
+      {
+        href: '/guides/common-subtitle-format-errors-and-fixes/',
+        title: 'Common subtitle format errors and fixes',
+      },
+    ],
+    sampleInput: sharedSamples.ass,
+  },
+  {
     id: 'srt-to-ass',
     title: 'SRT to ASS Converter',
     shortTitle: 'SRT to ASS',
@@ -649,6 +710,437 @@ const enTools: SubtitleTool[] = [
       {
         href: '/guides/how-to-convert-subtitle-files-for-web-players/',
         title: 'How to convert subtitle files for web players',
+      },
+    ],
+    sampleInput: sharedSamples.srt,
+  },
+  {
+    id: 'subtitle-delay-fixer',
+    title: 'Subtitle Delay Fixer',
+    shortTitle: 'Delay fixer',
+    description:
+      'Fix subtitle delay online by shifting SRT, VTT, or ASS timestamps earlier or later.',
+    summary:
+      'Use this free subtitle delay fixer when every caption is consistently too early or too late by the same amount.',
+    buttonLabel: 'Fix delay',
+    inputLabel: 'Subtitle input',
+    outputLabel: 'Fixed subtitle output',
+    placeholder: 'Paste SRT, VTT, or ASS subtitles here',
+    acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.txt'],
+    sampleFileName: 'sample.srt',
+    useCases: [
+      'Fix subtitles that appear too early or too late.',
+      'Delay captions after a video intro was added.',
+      'Move all subtitle cues earlier after trimming a video start.',
+      'Repair a constant subtitle offset without opening a video editor.',
+    ],
+    faqs: [
+      {
+        question: 'Is this subtitle delay fixer free?',
+        answer:
+          'Yes. You can fix subtitle delay for free in your browser without signup.',
+      },
+      {
+        question: 'Should I use a positive or negative value?',
+        answer:
+          'Use a positive value when subtitles appear too early. Use a negative value when subtitles appear too late.',
+      },
+      {
+        question: 'Does this preserve the subtitle format?',
+        answer:
+          'Yes. SRT stays SRT, VTT stays VTT, and ASS stays ASS after the delay fix.',
+      },
+      {
+        question: 'Are my subtitle files uploaded to a server?',
+        answer:
+          'No. The delay fix runs locally in your browser, so your subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['subtitle-time-shifter', 'fix-out-of-sync-subtitles'],
+    relatedGuides: [
+      { href: '/guides/how-to-fix-subtitle-delay/', title: 'How to fix subtitle delay' },
+      { href: '/guides/fix-out-of-sync-subtitles/', title: 'How to fix out-of-sync subtitles' },
+    ],
+    sampleInput: sharedSamples.srt,
+  },
+  {
+    id: 'fix-out-of-sync-subtitles',
+    title: 'Fix Out-of-Sync Subtitles',
+    shortTitle: 'Fix sync',
+    description:
+      'Fix out-of-sync subtitles online by shifting SRT, VTT, or ASS cues to match the video.',
+    summary:
+      'Use this when subtitles are consistently ahead of or behind the audio and need a global timing correction.',
+    buttonLabel: 'Fix sync',
+    inputLabel: 'Subtitle input',
+    outputLabel: 'Synced subtitle output',
+    placeholder: 'Paste SRT, VTT, or ASS subtitles here',
+    acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.txt'],
+    sampleFileName: 'sample.srt',
+    useCases: [
+      'Move out-of-sync subtitles earlier or later.',
+      'Repair captions after a video export changed timing.',
+      'Fix a constant timing offset across the whole file.',
+      'Create a corrected subtitle file for review or upload.',
+    ],
+    faqs: [
+      {
+        question: 'Can this fix drifting subtitles?',
+        answer:
+          'This tool fixes a constant offset. If subtitles drift more over time, the file may need a more advanced retiming workflow.',
+      },
+      {
+        question: 'Can I move subtitles earlier?',
+        answer:
+          'Yes. Enter a negative millisecond value to move subtitles earlier.',
+      },
+      {
+        question: 'Can I move subtitles later?',
+        answer:
+          'Yes. Enter a positive millisecond value to delay subtitles.',
+      },
+      {
+        question: 'Are my subtitle files uploaded to a server?',
+        answer:
+          'No. Sync fixes run locally in your browser, so your subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['subtitle-delay-fixer', 'partial-subtitle-shifter'],
+    relatedGuides: [
+      { href: '/guides/fix-out-of-sync-subtitles/', title: 'How to fix out-of-sync subtitles' },
+      {
+        href: '/guides/fix-subtitle-sync-after-a-scene-cut/',
+        title: 'Fix subtitle sync after a scene cut',
+      },
+    ],
+    sampleInput: sharedSamples.srt,
+  },
+  {
+    id: 'clean-srt-file',
+    title: 'Clean SRT File Online',
+    shortTitle: 'Clean SRT',
+    description:
+      'Clean an SRT file online by normalizing cue numbers, timestamps, spacing, and subtitle text.',
+    summary:
+      'Use this free SRT cleaner when a SubRip file has messy spacing, stray inline tags, or inconsistent cue numbering before upload.',
+    buttonLabel: 'Clean SRT',
+    inputLabel: 'SRT input',
+    outputLabel: 'Clean SRT output',
+    placeholder: 'Paste your SRT subtitles here',
+    acceptedExtensions: ['.srt', '.txt'],
+    sampleFileName: 'sample.srt',
+    useCases: [
+      'Clean messy SRT files before upload.',
+      'Remove stray inline HTML tags from subtitle text.',
+      'Normalize SRT cue numbering and timestamp formatting.',
+      'Prepare a cleaner SRT file for review or handoff.',
+    ],
+    faqs: [
+      {
+        question: 'Does this change subtitle timing?',
+        answer:
+          'No. The cleaner preserves parsed cue timing while normalizing structure and text.',
+      },
+      {
+        question: 'Can it remove HTML tags from SRT text?',
+        answer:
+          'Yes. It strips common inline tags and normalizes spacing in subtitle text.',
+      },
+      {
+        question: 'Will SRT cue numbers be renumbered?',
+        answer:
+          'Yes. The output is serialized as clean SRT with sequential cue numbers.',
+      },
+      {
+        question: 'Are my SRT files uploaded to a server?',
+        answer:
+          'No. SRT cleaning runs locally in your browser, so your subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['subtitle-cleaner', 'remove-srt-line-numbers'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-clean-subtitle-formatting-before-upload/',
+        title: 'How to clean subtitle formatting before upload',
+      },
+      {
+        href: '/guides/common-subtitle-format-errors-and-fixes/',
+        title: 'Common subtitle format errors and fixes',
+      },
+    ],
+    sampleInput: sharedSamples.srt,
+  },
+  {
+    id: 'remove-srt-line-numbers',
+    title: 'Remove SRT Line Numbers',
+    shortTitle: 'Remove SRT numbers',
+    description:
+      'Remove and rebuild SRT line numbers online while keeping subtitle timing and text readable.',
+    summary:
+      'Use this when SRT cue numbers are missing, duplicated, out of order, or need to be regenerated before upload.',
+    buttonLabel: 'Renumber SRT',
+    inputLabel: 'SRT input',
+    outputLabel: 'Renumbered SRT output',
+    placeholder: 'Paste your SRT subtitles here',
+    acceptedExtensions: ['.srt', '.txt'],
+    sampleFileName: 'sample.srt',
+    useCases: [
+      'Fix duplicated SRT cue numbers.',
+      'Rebuild missing or out-of-order SRT numbering.',
+      'Normalize line numbers before uploading subtitles.',
+      'Create a clean SRT file from readable cue blocks.',
+    ],
+    faqs: [
+      {
+        question: 'Does this remove subtitle text?',
+        answer:
+          'No. It keeps subtitle text and timing, then rebuilds sequential SRT cue numbers.',
+      },
+      {
+        question: 'Can I use it when line numbers are missing?',
+        answer:
+          'Yes. The parser looks for timing lines and outputs a clean numbered SRT file.',
+      },
+      {
+        question: 'Does this output TXT or SRT?',
+        answer:
+          'It outputs SRT. If you want text without timestamps, use the SRT to TXT converter instead.',
+      },
+      {
+        question: 'Are my SRT files uploaded to a server?',
+        answer:
+          'No. Renumbering runs locally in your browser, so your subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['srt-to-txt', 'clean-srt-file'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-remove-subtitle-line-numbers/',
+        title: 'How to remove subtitle line numbers',
+      },
+      {
+        href: '/guides/how-to-fix-malformed-srt-timestamps/',
+        title: 'How to fix malformed SRT timestamps',
+      },
+    ],
+    sampleInput: sharedSamples.srt,
+  },
+  {
+    id: 'fix-srt-timestamps',
+    title: 'Fix SRT Timestamps',
+    shortTitle: 'Fix SRT timestamps',
+    description:
+      'Fix SRT timestamp formatting online by parsing cues and exporting clean comma-based SubRip timing.',
+    summary:
+      'Use this free SRT timestamp fixer when timing lines have inconsistent separators, spacing, or numbering before upload.',
+    buttonLabel: 'Fix timestamps',
+    inputLabel: 'SRT input',
+    outputLabel: 'Fixed SRT output',
+    placeholder: 'Paste your SRT subtitles here',
+    acceptedExtensions: ['.srt', '.txt'],
+    sampleFileName: 'sample.srt',
+    useCases: [
+      'Normalize SRT timestamps before upload.',
+      'Convert dot-based milliseconds back to comma-based SRT timing.',
+      'Rebuild a clean SRT file from parseable cue blocks.',
+      'Fix spacing around SRT timestamp arrows.',
+    ],
+    faqs: [
+      {
+        question: 'Can this fix every broken SRT file?',
+        answer:
+          'No. It can normalize parseable cue blocks. Severely damaged timing lines may still need manual repair.',
+      },
+      {
+        question: 'Does this preserve subtitle text?',
+        answer:
+          'Yes. It keeps parsed subtitle text and exports clean SRT timing.',
+      },
+      {
+        question: 'Will cue numbers be rebuilt?',
+        answer:
+          'Yes. The output uses sequential SRT cue numbers.',
+      },
+      {
+        question: 'Are my SRT files uploaded to a server?',
+        answer:
+          'No. Timestamp fixing runs locally in your browser, so your subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['srt-validator', 'clean-srt-file'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-fix-malformed-srt-timestamps/',
+        title: 'How to fix malformed SRT timestamps',
+      },
+      {
+        href: '/guides/common-subtitle-format-errors-and-fixes/',
+        title: 'Common subtitle format errors and fixes',
+      },
+    ],
+    sampleInput: sharedSamples.srt,
+  },
+  {
+    id: 'srt-validator',
+    title: 'SRT Validator',
+    shortTitle: 'SRT validator',
+    description:
+      'Validate SRT subtitles online and check for missing cues, timestamp issues, and format problems.',
+    summary:
+      'Use this free SRT validator to check whether a SubRip file has parseable cues, comma-based timestamps, and valid cue order.',
+    buttonLabel: 'Validate SRT',
+    inputLabel: 'SRT input',
+    outputLabel: 'Validation report',
+    placeholder: 'Paste your SRT subtitles here',
+    acceptedExtensions: ['.srt', '.txt'],
+    sampleFileName: 'sample.srt',
+    useCases: [
+      'Check SRT files before uploading them.',
+      'Find timestamp separator problems.',
+      'Confirm how many cues can be parsed.',
+      'Diagnose SRT files that a platform rejects.',
+    ],
+    faqs: [
+      {
+        question: 'Does the validator change my subtitle file?',
+        answer:
+          'No. It outputs a text report. Use the SRT timestamp fixer or cleaner if you want a repaired file.',
+      },
+      {
+        question: 'Can it detect dot-based timestamps?',
+        answer:
+          'Yes. It flags dot-based milliseconds because standard SRT uses commas.',
+      },
+      {
+        question: 'Does it count parsed cues?',
+        answer:
+          'Yes. The report includes how many subtitle cues were detected.',
+      },
+      {
+        question: 'Are my SRT files uploaded to a server?',
+        answer:
+          'No. Validation runs locally in your browser, so your subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['fix-srt-timestamps', 'clean-srt-file'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-fix-malformed-srt-timestamps/',
+        title: 'How to fix malformed SRT timestamps',
+      },
+      {
+        href: '/guides/common-subtitle-format-errors-and-fixes/',
+        title: 'Common subtitle format errors and fixes',
+      },
+    ],
+    sampleInput: sharedSamples.srt,
+  },
+  {
+    id: 'webvtt-validator',
+    title: 'WebVTT Validator',
+    shortTitle: 'VTT validator',
+    description:
+      'Validate WebVTT captions online and check for missing WEBVTT headers, timestamp issues, and cue problems.',
+    summary:
+      'Use this free WebVTT validator to check whether a VTT file has a valid header, dot-based timestamps, and parseable cues.',
+    buttonLabel: 'Validate VTT',
+    inputLabel: 'VTT input',
+    outputLabel: 'Validation report',
+    placeholder: 'Paste your VTT subtitles here',
+    acceptedExtensions: ['.vtt', '.txt'],
+    sampleFileName: 'sample.vtt',
+    useCases: [
+      'Check WebVTT files before using them in HTML5 video.',
+      'Find missing WEBVTT headers.',
+      'Detect comma-based timestamps in VTT files.',
+      'Diagnose VTT captions that do not render in a browser.',
+    ],
+    faqs: [
+      {
+        question: 'Does the validator repair VTT files?',
+        answer:
+          'No. It outputs a validation report. Use the SRT to VTT converter or edit the file if repairs are needed.',
+      },
+      {
+        question: 'Can it detect a missing WEBVTT header?',
+        answer:
+          'Yes. The report flags VTT files that do not start with the WEBVTT header.',
+      },
+      {
+        question: 'Does it count parsed cues?',
+        answer:
+          'Yes. The report includes how many WebVTT cues were detected.',
+      },
+      {
+        question: 'Are my VTT files uploaded to a server?',
+        answer:
+          'No. Validation runs locally in your browser, so your caption file stays on your device.',
+      },
+    ],
+    relatedTools: ['srt-to-vtt', 'vtt-to-srt'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-fix-invalid-webvtt-timestamps/',
+        title: 'How to fix invalid WebVTT timestamps',
+      },
+      {
+        href: '/guides/why-subtitles-do-not-show-in-html5-video/',
+        title: 'Why subtitles do not show in HTML5 video',
+      },
+    ],
+    sampleInput: sharedSamples.vtt,
+  },
+  {
+    id: 'subtitle-transcript-generator',
+    title: 'Subtitle Transcript Generator',
+    shortTitle: 'Transcript generator',
+    description:
+      'Generate a plain text transcript from SRT, VTT, or ASS subtitle files directly in your browser.',
+    summary:
+      'Use this free subtitle transcript generator when you want readable dialogue text from a timed subtitle file without timestamps.',
+    buttonLabel: 'Generate transcript',
+    inputLabel: 'Subtitle input',
+    outputLabel: 'Transcript output',
+    placeholder: 'Paste SRT, VTT, or ASS subtitles here',
+    acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.txt'],
+    sampleFileName: 'sample.srt',
+    useCases: [
+      'Create a transcript draft from subtitle files.',
+      'Extract readable dialogue for review or notes.',
+      'Remove timing metadata before translation.',
+      'Turn captions into plain text without uploading files.',
+    ],
+    faqs: [
+      {
+        question: 'Is this subtitle transcript generator free?',
+        answer:
+          'Yes. You can generate plain text transcripts from subtitle files for free in your browser.',
+      },
+      {
+        question: 'Does it support SRT and VTT?',
+        answer:
+          'Yes. It supports SRT, VTT, and ASS subtitle input when the cues can be parsed.',
+      },
+      {
+        question: 'Will timestamps be included?',
+        answer:
+          'No. The transcript output keeps readable subtitle text and removes timing metadata.',
+      },
+      {
+        question: 'Are my subtitle files uploaded to a server?',
+        answer:
+          'No. Transcript generation runs locally in your browser, so your subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['srt-to-txt', 'vtt-to-txt'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-convert-subtitle-files-for-web-players/',
+        title: 'How to convert subtitle files for web players',
+      },
+      {
+        href: '/guides/common-subtitle-format-errors-and-fixes/',
+        title: 'Common subtitle format errors and fixes',
       },
     ],
     sampleInput: sharedSamples.srt,
