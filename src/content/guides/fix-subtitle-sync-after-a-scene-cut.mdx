@@ -12,11 +12,21 @@ tags:
 primaryTool: partial-subtitle-shifter
 ---
 
-A scene cut often breaks subtitle sync only after the edit point.
+A scene cut often breaks subtitle sync only after the edit point. This is one of the most common subtitle timing issues when working with edited video content.
 
 ## Quick answer
 
-If the beginning is correct but the subtitles drift after a cut, use the [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/) on the affected section instead of shifting the whole file.
+If the beginning is correct but the subtitles drift after a cut, use the [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/) on the affected section instead of shifting the whole file. This preserves the correctly timed sections while fixing only the problematic range.
+
+## Why scene cuts break subtitle sync
+
+When video editors remove or add footage, they change the video's timeline. If subtitles were timed to the original video, any content after the edit point will be out of sync by exactly the duration of the removed or added footage.
+
+For example:
+- **Removing 2 seconds** at 01:00 means all subtitles after that point appear 2 seconds too late
+- **Adding 3 seconds** at 02:30 means all subtitles after that point appear 3 seconds too early
+
+The key insight: subtitles before the edit point remain perfectly synced, so you only need to shift the affected range.
 
 ## Typical symptom
 
@@ -39,12 +49,38 @@ The fix is usually a negative shift for the section after the cut.
 
 ## Step-by-step workflow
 
-1. Play the video until the first cue that is out of sync.
-2. Note that cue start time as the range start.
-3. Note the last affected cue as the range end.
-4. Enter a negative value if the subtitles are late, such as `-2000`.
-5. Enter a positive value if the subtitles appear too early.
-6. Check the edit point and the end of the shifted section.
+### 1. Identify the first out-of-sync subtitle
+
+Play your video and watch for the first subtitle that doesn't match the audio. This marks where the edit occurred. Note the timestamp of this subtitle—this becomes your **range start**.
+
+### 2. Determine the shift amount
+
+Compare when the subtitle appears versus when it should appear:
+- If subtitles appear **after** the spoken words → use a **negative** value (e.g., `-2000` for 2 seconds late)
+- If subtitles appear **before** the spoken words → use a **positive** value (e.g., `+3000` for 3 seconds early)
+
+The shift amount usually matches the duration of footage removed or added during editing.
+
+### 3. Find the range end
+
+Determine where the sync problem ends:
+- If the edit affects the rest of the video → set range end to the last subtitle timestamp
+- If there are multiple edits → set range end just before the next edit point
+
+### 4. Apply the partial shift
+
+Open the [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/) and enter:
+- **Range start**: First out-of-sync subtitle timestamp
+- **Range end**: Last affected subtitle timestamp  
+- **Shift amount**: The millisecond offset (negative for late, positive for early)
+
+### 5. Verify the fix
+
+After applying the shift:
+- Check the first shifted subtitle matches the audio
+- Spot-check a few subtitles in the middle of the range
+- Verify the last subtitle in the range is still correct
+- Confirm subtitles after the range (if any) remain unaffected
 
 ## When to use full-file shifting instead
 
@@ -56,15 +92,94 @@ Use a partial shift only when the sync error begins after a specific point.
 
 ### Moving the intro by accident
 
-If the intro is already correct, keep the range start after the edit point.
+**Problem**: Applying the shift from the beginning of the file instead of from the edit point.
+
+**Solution**: Always set your range start to the first out-of-sync subtitle, not 00:00:00. The intro is already correct and should remain untouched.
 
 ### Fixing the wrong direction
 
-If captions appear after the spoken words, use a negative number. If captions appear before the spoken words, use a positive number.
+**Problem**: Using a positive shift when you need negative, or vice versa.
+
+**How to remember**:
+- Subtitles appear **late** (after the audio) → shift **backward** with negative values (`-2000`)
+- Subtitles appear **early** (before the audio) → shift **forward** with positive values (`+2000`)
 
 ### Ignoring later edits
 
-A video with multiple cuts may need more than one partial shift. Fix one section, then re-check the next section.
+**Problem**: A video with multiple cuts requires multiple partial shifts, but you only fix the first one.
+
+**Solution**: After fixing one section, continue watching the video. If sync breaks again at another point, that's a second edit requiring another partial shift. Fix each edit separately, working from beginning to end.
+
+### Using milliseconds incorrectly
+
+**Problem**: Entering `2` instead of `2000` for a 2-second shift.
+
+**Remember**: Subtitle timing uses milliseconds:
+- 1 second = 1000 milliseconds
+- 2 seconds = 2000 milliseconds
+- 0.5 seconds = 500 milliseconds
+
+## Real-world examples
+
+### Example 1: Intro removed from YouTube video
+
+**Scenario**: A 10-second intro was removed from a video. Original subtitles start at 00:00:10.
+
+**Symptoms**: 
+- First subtitle (originally at 00:00:10) now appears at 00:00:00 ✓ correct
+- Subtitle at 00:01:30 appears 10 seconds late ✗ wrong
+
+**Fix**:
+- Range start: `00:00:10,000` (first subtitle after the removed intro)
+- Range end: Last subtitle timestamp
+- Shift: `-10000` (negative 10 seconds)
+
+### Example 2: Commercial break inserted
+
+**Scenario**: A 30-second ad was inserted at the 5-minute mark.
+
+**Symptoms**:
+- Subtitles before 05:00 are correct ✓
+- Subtitles after 05:00 appear 30 seconds early ✗
+
+**Fix**:
+- Range start: `00:05:00,000`
+- Range end: Last subtitle timestamp
+- Shift: `+30000` (positive 30 seconds)
+
+### Example 3: Multiple scene cuts
+
+**Scenario**: Three scenes were removed: 5 seconds at 02:00, 3 seconds at 04:30, and 8 seconds at 07:15.
+
+**Fix**: Apply three separate partial shifts:
+1. From 02:00 to 04:30 → shift `-5000`
+2. From 04:30 to 07:15 → shift `-3000`  
+3. From 07:15 to end → shift `-8000`
+
+## Frequently asked questions
+
+### How do I know if I need a partial shift or a full-file shift?
+
+**Use partial shift** when:
+- The beginning of the video is correctly synced
+- Sync problems start at a specific point
+- You know an edit was made to the video
+
+**Use [full-file shift](/tools/subtitle-time-shifter/)** when:
+- Every subtitle is wrong by the same amount from the start
+- The video wasn't edited, but subtitles were timed to a different version
+
+### Can I fix multiple edits at once?
+
+No. Each edit point requires a separate partial shift. Work through them sequentially from beginning to end.
+
+### What if I don't know the exact shift amount?
+
+Watch the video at the first out-of-sync point. Count how many seconds the subtitle is off. Start with that estimate, apply the shift, and fine-tune if needed.
+
+### Will this work with all subtitle formats?
+
+Yes. Partial shifting works with SRT, VTT, ASS, and SSA formats. The [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/) supports all common formats.
 
 ## Related guides
 

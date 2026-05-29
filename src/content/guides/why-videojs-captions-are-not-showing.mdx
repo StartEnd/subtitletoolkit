@@ -12,13 +12,24 @@ tags:
 primaryTool: videojs-subtitle-converter
 ---
 
-Video.js caption problems usually come from WebVTT file issues or player configuration.
+Video.js caption problems usually come from WebVTT file issues or player configuration. This guide walks through the most common causes and how to fix them systematically.
 
 ## Quick answer
 
 Use WebVTT for Video.js captions. Validate the VTT file, confirm the file URL loads, and check the track configuration in your Video.js setup.
 
 If your source file is SRT or ASS, convert it with the [Video.js Subtitle Converter](/tools/videojs-subtitle-converter/).
+
+## Why Video.js captions fail to display
+
+Video.js is one of the most popular HTML5 video players, but caption issues are common. The player expects WebVTT format and requires proper server configuration. When captions don't show, the problem usually falls into one of these categories:
+
+1. **File format issues** - Using SRT instead of VTT, or malformed WebVTT syntax
+2. **Server configuration** - Wrong MIME type or CORS blocking the caption file
+3. **Player setup** - Incorrect track configuration or disabled captions
+4. **Path problems** - Broken URLs or incorrect file paths after deployment
+
+Understanding which category your issue falls into helps you fix it faster.
 
 ## What to check
 
@@ -33,26 +44,289 @@ Check these in order:
 
 ## Step-by-step workflow
 
-1. Convert SRT or ASS source subtitles to VTT.
-2. Validate the VTT file.
-3. Open the VTT URL directly in the browser.
-4. Check browser network requests for errors.
-5. Review the Video.js track configuration.
-6. Test the player after clearing browser cache.
+### 1. Verify you're using WebVTT format
+
+Video.js requires WebVTT (`.vtt`) files for captions. SRT files won't work directly.
+
+**Check your file**:
+- Open the caption file in a text editor
+- The first line must be exactly `WEBVTT`
+- Timestamps use dots, not commas: `00:00:01.000` not `00:00:01,000`
+
+**If you have an SRT file**:
+1. Use the [Video.js Subtitle Converter](/tools/videojs-subtitle-converter/) to convert it
+2. The converter adds the WEBVTT header and fixes timestamp format
+3. Download the converted VTT file
+
+### 2. Validate the VTT file structure
+
+Even if your file has the WEBVTT header, syntax errors can prevent captions from displaying.
+
+**Common VTT syntax errors**:
+- Missing blank line after `WEBVTT`
+- Cue identifiers that conflict with timestamps
+- Malformed timestamp format
+- Missing `-->` separator between start and end times
+
+**How to validate**:
+1. Use the [WebVTT Validator](/tools/webvtt-validator/)
+2. Upload or paste your VTT file
+3. Fix any reported errors before testing in Video.js
+
+### 3. Test the caption file URL directly
+
+Before debugging the player, confirm the caption file is accessible.
+
+**Steps**:
+1. Copy the caption file URL from your Video.js track configuration
+2. Paste it directly into your browser address bar
+3. Press Enter
+
+**What you should see**:
+- The VTT file content displays as plain text
+- The first line shows `WEBVTT`
+
+**If you see an error**:
+- 404 Not Found → The file path is wrong or the file wasn't uploaded
+- 403 Forbidden → Check file permissions on your server
+- CORS error → See step 5 below
+
+### 4. Verify the server MIME type
+
+Browsers expect WebVTT files to be served with the correct content type.
+
+**Correct MIME types** (any of these work):
+- `text/vtt`
+- `text/plain`
+- `application/octet-stream`
+
+**How to check**:
+1. Open browser DevTools (F12)
+2. Go to the Network tab
+3. Reload your page
+4. Find the VTT file request
+5. Check the `Content-Type` response header
+
+**If the MIME type is wrong**:
+- Add this to your `.htaccess` (Apache):
+  ```apache
+  AddType text/vtt .vtt
+  ```
+- Or configure your CDN/hosting to serve `.vtt` files with `text/vtt`
+
+### 5. Check CORS configuration
+
+If your caption file is hosted on a different domain than your player page, CORS must allow cross-origin requests.
+
+**Symptoms of CORS issues**:
+- Console error: "Access to fetch at '...' has been blocked by CORS policy"
+- The VTT file loads when you open it directly, but not in the player
+
+**How to fix**:
+Add this header to your caption file server:
+```
+Access-Control-Allow-Origin: *
+```
+
+Or restrict it to your player domain:
+```
+Access-Control-Allow-Origin: https://yourdomain.com
+```
+
+**For Apache** (`.htaccess`):
+```apache
+<FilesMatch "\.(vtt)$">
+  Header set Access-Control-Allow-Origin "*"
+</FilesMatch>
+```
+
+**For Nginx**:
+```nginx
+location ~* \.(vtt)$ {
+  add_header Access-Control-Allow-Origin *;
+}
+```
+
+### 6. Review Video.js track configuration
+
+Even with a valid VTT file, incorrect player setup can hide captions.
+
+**Check your HTML**:
+```html
+<video id="my-video" class="video-js" controls>
+  <source src="video.mp4" type="video/mp4">
+  <track kind="captions" 
+         src="captions.vtt" 
+         srclang="en" 
+         label="English"
+         default>
+</video>
+```
+
+**Key attributes**:
+- `kind="captions"` or `kind="subtitles"` (both work)
+- `src` must point to a valid VTT file URL
+- `srclang` should match the caption language (e.g., `en`, `es`, `fr`)
+- `label` is what users see in the caption menu
+- `default` makes captions show automatically (optional)
+
+**JavaScript configuration**:
+```javascript
+var player = videojs('my-video');
+player.addRemoteTextTrack({
+  kind: 'captions',
+  src: 'captions.vtt',
+  srclang: 'en',
+  label: 'English',
+  default: true
+}, false);
+```
+
+### 7. Enable captions in the player UI
+
+Even with everything configured correctly, captions might be disabled in the player.
+
+**How to enable**:
+1. Click the CC (closed captions) button in the Video.js player controls
+2. Select your caption track from the menu
+3. Captions should appear immediately
+
+**If the CC button is missing**:
+Check that your Video.js initialization includes controls:
+```javascript
+var player = videojs('my-video', {
+  controls: true,
+  textTrackSettings: true
+});
+```
+
+### 8. Clear browser cache and test
+
+Browsers aggressively cache VTT files. After fixing issues, you might still see the old broken version.
+
+**Steps**:
+1. Open DevTools (F12)
+2. Right-click the refresh button
+3. Select "Empty Cache and Hard Reload"
+4. Or use Ctrl+Shift+R (Windows) / Cmd+Shift+R (Mac)
 
 ## Common mistakes
 
 ### Using SRT directly
 
-Video.js caption workflows should use WebVTT for browser playback. Convert SRT to VTT first.
+Video.js caption workflows should use WebVTT for browser playback. SRT files use a different timestamp format (commas instead of dots) and lack the required `WEBVTT` header.
+
+**Why this fails**:
+- Video.js expects `00:00:01.000` but SRT uses `00:00:01,000`
+- Browsers won't parse the file without the `WEBVTT` header
+- The player silently fails with no error message
+
+**Solution**: Always convert SRT to VTT before using with Video.js. Use the [SRT to VTT Converter](/tools/srt-to-vtt/).
 
 ### Debugging JavaScript before validating captions
 
-Malformed VTT can look like a player bug. Validate the file before changing player code.
+Malformed VTT can look like a player bug. You might spend hours debugging your Video.js configuration when the real problem is a syntax error in the caption file.
+
+**How to avoid this**:
+1. Always validate the VTT file first using the [WebVTT Validator](/tools/webvtt-validator/)
+2. Only after validation passes should you debug player configuration
+3. Check the browser console for VTT parsing errors
 
 ### Forgetting deployment paths
 
-A path that works locally may break after deployment. Check the deployed VTT URL.
+A path that works locally may break after deployment. This is especially common when using relative paths.
+
+**Example**:
+```html
+<!-- Works locally -->
+<track src="captions.vtt">
+
+<!-- Breaks after deployment if file structure changes -->
+<track src="/assets/captions.vtt">
+```
+
+**Solution**:
+- Use absolute URLs for production: `https://cdn.example.com/captions.vtt`
+- Or use root-relative paths: `/captions/video-1.vtt`
+- Test the VTT URL directly in production before debugging the player
+
+### Not testing with the CC button
+
+Some developers assume captions will show automatically. But even with `default` set, users might have disabled captions in a previous session.
+
+**Always test**:
+1. Load the page
+2. Click the CC button
+3. Verify your caption track appears in the menu
+4. Select it and confirm captions display
+
+### Mixing up kind="subtitles" and kind="captions"
+
+While both work in Video.js, they have different semantic meanings:
+- `kind="captions"` → Includes sound effects and speaker identification (for accessibility)
+- `kind="subtitles"` → Translation of dialogue only
+
+**Best practice**: Use `kind="captions"` for same-language accessibility, `kind="subtitles"` for translations.
+
+## Real-world troubleshooting examples
+
+### Example 1: Captions work locally but not in production
+
+**Symptom**: Captions display perfectly on localhost but disappear after deploying to your CDN.
+
+**Diagnosis**:
+1. Open DevTools Network tab
+2. Find the VTT file request
+3. See CORS error: "blocked by CORS policy"
+
+**Cause**: Your CDN doesn't allow cross-origin requests.
+
+**Fix**: Add CORS headers to your CDN configuration or move the VTT file to the same domain as your player.
+
+### Example 2: Only the first few captions show
+
+**Symptom**: The first 2-3 captions appear, then nothing.
+
+**Diagnosis**: Validate the VTT file and find a syntax error at line 15.
+
+**Cause**: A malformed timestamp like `00:00:15.00` (missing a digit) causes the parser to stop.
+
+**Fix**: Correct the timestamp to `00:00:15.000` and re-validate.
+
+### Example 3: CC button is grayed out
+
+**Symptom**: The closed captions button appears but is disabled.
+
+**Diagnosis**: Check the browser console and see "Failed to load resource: 404"
+
+**Cause**: The VTT file path is wrong or the file wasn't uploaded.
+
+**Fix**: Verify the file exists at the specified URL by opening it directly in the browser.
+
+## Frequently asked questions
+
+### Can I use SRT files with Video.js?
+
+No, Video.js requires WebVTT format. You must convert SRT to VTT first. Use the [Video.js Subtitle Converter](/tools/videojs-subtitle-converter/) for quick conversion.
+
+### Why do my captions have weird characters?
+
+This is usually an encoding issue. VTT files must be UTF-8 encoded. If you see garbled text, use the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) to convert your file to UTF-8.
+
+### Do I need to enable captions in Video.js settings?
+
+Video.js enables caption support by default. You don't need special configuration unless you want to customize the caption styling or behavior.
+
+### Can I style Video.js captions with CSS?
+
+Yes, but with limitations. You can style the caption container, but individual cue styling requires WebVTT cue settings or the Video.js TextTrackSettings API.
+
+### What's the difference between captions and subtitles in Video.js?
+
+- **Captions** (`kind="captions"`) include sound effects and speaker IDs for accessibility
+- **Subtitles** (`kind="subtitles"`) are translations of dialogue
+
+Both work the same way technically, but captions are better for accessibility compliance.
 
 ## Related guides
 

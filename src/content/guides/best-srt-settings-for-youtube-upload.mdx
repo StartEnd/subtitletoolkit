@@ -12,54 +12,383 @@ tags:
 primaryTool: youtube-subtitle-converter
 ---
 
-YouTube accepts several caption formats, but clean SRT is the safest default for most creators.
+YouTube accepts several caption formats, but clean SRT is the safest default for most creators. This guide shows you the exact settings YouTube expects for reliable caption uploads.
 
 ## Quick answer
 
-Use SRT with comma-based timestamps, sequential cue numbers, UTF-8 text, and simple readable caption lines.
+Use SRT with comma-based timestamps (`00:00:01,000`), sequential cue numbers, UTF-8 text encoding, and simple readable caption lines. Avoid styling tags and keep lines under 42 characters for best readability.
 
 If your subtitle source is VTT or ASS, create a clean upload copy with the [YouTube Subtitle Converter](/tools/youtube-subtitle-converter/).
 
-## Recommended SRT structure
+## Why SRT settings matter for YouTube
 
-A YouTube-ready SRT file should use:
+**YouTube is strict about caption format**. Even small formatting issues can cause:
+- Upload rejection with vague error messages
+- Captions that upload but don't display
+- Timing issues or garbled text
+- Captions that work on desktop but fail on mobile
 
-- sequential cue numbers
-- timestamps like `00:00:01,000 --> 00:00:03,500`
-- one blank line between cue blocks
-- plain text captions
-- UTF-8 encoding
+Following YouTube's preferred format prevents these issues and ensures captions work across all devices.
+
+## Recommended SRT structure for YouTube
+
+A YouTube-ready SRT file must have:
+
+### 1. Sequential cue numbers (required)
+```
+1
+00:00:01,000 --> 00:00:03,000
+First caption
+
+2
+00:00:03,000 --> 00:00:05,000
+Second caption
+```
+
+Numbers must be sequential (1, 2, 3...) with no gaps.
+
+### 2. Comma-based timestamps (required)
+✅ **Correct**: `00:00:01,000 --> 00:00:03,500`  
+❌ **Wrong**: `00:00:01.000 --> 00:00:03.500` (dots are WebVTT, not SRT)
+
+### 3. One blank line between cues (required)
+Each cue must be separated by exactly one blank line. No more, no less.
+
+### 4. Plain text captions (recommended)
+Avoid HTML tags, styling codes, or special formatting:
+```
+❌ Wrong:
+<b>Bold text</b>
+<i>Italic text</i>
+{\\an8}Top-aligned text
+
+✅ Correct:
+Bold text
+Italic text
+Top-aligned text
+```
+
+YouTube strips most styling anyway, so keep it simple.
+
+### 5. UTF-8 encoding (required)
+Save your SRT file as UTF-8 to support:
+- Accented characters (é, ñ, ü)
+- Non-Latin scripts (中文, العربية, हिन्दी)
+- Special punctuation (—, ", ")
+- Emoji (if needed)
+
+### 6. Reasonable line length (recommended)
+**Best practice**: Keep lines under 42 characters for mobile readability.
+
+❌ **Too long**:
+```
+This is a very long caption line that will wrap awkwardly on mobile devices and make it hard to read.
+```
+
+✅ **Better**:
+```
+This is a caption line
+that wraps nicely on mobile.
+```
+
+### 7. Maximum 2 lines per cue (recommended)
+YouTube displays up to 2 lines at once. More lines get truncated or cause display issues.
 
 Keep styling out of the upload file unless you have tested that YouTube handles it the way you expect.
 
 ## Step-by-step workflow
 
-1. Export or convert your subtitles to SRT.
-2. Validate the SRT file.
-3. Fix encoding issues before upload.
-4. Check long lines and awkward line breaks.
-5. Upload the file in YouTube Studio.
-6. Preview the captions on the video page.
+### 1. Export or convert your subtitles to SRT
+
+**If you have VTT or ASS files**:
+1. Go to [YouTube Subtitle Converter](/tools/youtube-subtitle-converter/)
+2. Upload your file
+3. Convert to SRT
+4. Download the result
+
+**If you're creating from scratch**: Use a subtitle editor like Subtitle Edit, Aegisub, or a simple text editor.
+
+### 2. Validate the SRT file
+
+Before uploading to YouTube, validate the format:
+1. Open the [SRT Validator](/tools/srt-validator/)
+2. Upload your SRT file
+3. Fix any reported errors
+4. Re-validate until it passes
+
+**Common validation errors**:
+- Dot-based timestamps (should be commas)
+- Missing blank lines between cues
+- Non-sequential cue numbers
+- Invalid timestamp format
+
+### 3. Fix encoding issues before upload
+
+**Check for encoding problems**:
+- Open the file in a text editor
+- Look for garbled characters (�, ?, boxes)
+- Check that accents and special characters display correctly
+
+**If you see garbled text**:
+1. Use the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
+2. Convert to UTF-8
+3. Re-save and check again
+
+**Don't manually edit broken characters** - fix the encoding instead.
+
+### 4. Check long lines and awkward line breaks
+
+**Review your captions for readability**:
+- Lines should be under 42 characters
+- Break at natural speech pauses
+- Avoid mid-word breaks
+
+**Example of good line breaks**:
+```
+✅ Good:
+I'm going to show you
+how to upload captions.
+
+❌ Bad:
+I'm going to show you how to upl
+oad captions.
+```
+
+### 5. Upload the file in YouTube Studio
+
+**Steps**:
+1. Go to YouTube Studio
+2. Select your video
+3. Click "Subtitles" in the left menu
+4. Click "Add language" (if needed)
+5. Click "Upload file"
+6. Select "With timing"
+7. Choose your SRT file
+8. Click "Upload"
+
+**YouTube will process the file** (usually takes a few seconds).
+
+### 6. Preview the captions on the video page
+
+**Critical step**: Always preview before publishing.
+
+**How to preview**:
+1. Go to your video page
+2. Click the CC button
+3. Select your caption track
+4. Watch at least 2-3 minutes
+5. Check for timing issues, garbled text, or display problems
+
+**What to check**:
+- ✅ Captions appear at the correct times
+- ✅ Text is readable and properly formatted
+- ✅ No garbled characters
+- ✅ Line breaks look natural
+- ✅ Captions work on mobile (test on your phone)
 
 ## Encoding and language notes
 
-UTF-8 is the safest encoding for YouTube uploads. It helps preserve accents, names, punctuation, and non-English characters.
+### Why UTF-8 is essential
+
+UTF-8 is the safest encoding for YouTube uploads because it supports:
+- **All languages**: Latin, Cyrillic, Arabic, Chinese, Japanese, Korean, etc.
+- **Special characters**: Accents (é, ñ, ü), punctuation (—, ", ")
+- **Emoji**: 😀 👍 ❤️ (if you use them in captions)
+
+**Other encodings cause problems**:
+- Windows-1252 → Breaks accents and special characters
+- ISO-8859-1 → Limited character support
+- ANSI → Platform-specific, unreliable
+
+### How to check encoding
+
+**In VS Code**:
+- Look at the bottom-right corner
+- Should say "UTF-8"
+
+**In Notepad++**:
+- Go to Encoding menu
+- Should show "UTF-8" or "UTF-8 without BOM"
+
+**In Sublime Text**:
+- Look at the bottom-right corner
+- Should say "UTF-8"
+
+### How to convert to UTF-8
+
+**Option 1: Use the Encoding Fixer**
+1. Go to [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
+2. Upload your SRT file
+3. Download the UTF-8 version
+
+**Option 2: In your text editor**
+- VS Code: Click encoding in bottom-right → "Save with Encoding" → UTF-8
+- Notepad++: Encoding → Convert to UTF-8
+- Sublime Text: File → Save with Encoding → UTF-8
+
+### Setting the correct language
 
 If the subtitle text looks garbled before upload, fix the encoding first instead of editing broken characters manually.
+
+**In YouTube Studio**:
+1. When uploading, select the correct language
+2. This affects auto-translation and accessibility features
+3. Don't select "English" for Spanish captions, etc.
+
+**Language codes YouTube uses**:
+- English → en
+- Spanish → es
+- French → fr
+- German → de
+- Japanese → ja
+- Chinese (Simplified) → zh-Hans
+- Chinese (Traditional) → zh-Hant
 
 ## Common mistakes
 
 ### Uploading a styled editing file
 
-Keep ASS or other styled files as editing sources. Export a plain SRT upload copy for YouTube.
+**Problem**: Uploading an ASS file with complex styling directly to YouTube.
+
+**Why this fails**: YouTube expects plain SRT. ASS styling tags cause upload errors or display issues.
+
+**Solution**: Keep ASS or other styled files as editing sources. Export a plain SRT upload copy for YouTube.
+
+**Workflow**:
+1. Edit in Aegisub or similar (ASS format with styling)
+2. Export to SRT (removes styling)
+3. Upload the SRT to YouTube
 
 ### Skipping preview
 
-Even valid SRT files should be previewed. YouTube may wrap lines differently from your editor.
+**Problem**: Uploading captions and publishing without testing.
+
+**Why this is risky**: Even valid SRT files can have issues:
+- Timing might be off
+- Line breaks might look awkward
+- Encoding issues might appear only on YouTube
+- Mobile display might differ from desktop
+
+**Solution**: Always preview captions on the actual video page before publishing. Watch at least 2-3 minutes to catch issues.
 
 ### Using the wrong language track
 
-The file can be valid but still assigned to the wrong language in YouTube Studio. Check track language before publishing.
+**Problem**: The file is valid but assigned to the wrong language in YouTube Studio.
+
+**Example**: Spanish captions uploaded as "English" track.
+
+**Why this matters**:
+- Users looking for Spanish captions won't find them
+- Auto-translation features won't work correctly
+- Accessibility features may fail
+
+**Solution**: Check track language before publishing. YouTube Studio shows the language next to each caption track.
+
+### Not testing on mobile
+
+**Problem**: Captions look fine on desktop but are unreadable on mobile.
+
+**Why this happens**: Mobile screens are smaller, so long lines wrap awkwardly or get cut off.
+
+**Solution**: 
+- Keep lines under 42 characters
+- Test on your phone before publishing
+- Check both portrait and landscape orientations
+
+### Including HTML or styling tags
+
+**Problem**: Adding tags like `<b>`, `<i>`, or `{\\an8}` in SRT files.
+
+**Why this fails**: YouTube strips most tags, and some cause upload errors.
+
+**Example of what NOT to do**:
+```
+1
+00:00:01,000 --> 00:00:03,000
+<b>This is bold</b>
+<i>This is italic</i>
+```
+
+**What YouTube does**: Displays "This is bold This is italic" (tags removed, no styling).
+
+**Solution**: Use plain text only. YouTube applies its own default styling.
+
+### Forgetting to renumber after edits
+
+**Problem**: After manually editing, cue numbers are out of sequence.
+
+**Example**:
+```
+1
+00:00:01,000 --> 00:00:03,000
+First
+
+3  ← Skipped 2!
+00:00:03,000 --> 00:00:05,000
+Second
+```
+
+**Solution**: Use the [Clean SRT File](/tools/clean-srt-file/) tool to automatically renumber cues.
+
+## YouTube-specific requirements
+
+### File size limits
+- **Maximum**: 5 MB per SRT file
+- **Typical**: 100-200 KB for a 10-minute video
+- If your file is larger, it might have encoding issues or unnecessary data
+
+### Caption duration limits
+- **Maximum cue duration**: 7 seconds
+- **Minimum cue duration**: 0.5 seconds
+- Longer cues may be split automatically by YouTube
+
+### Character limits
+- **Maximum characters per cue**: ~200 characters
+- **Recommended**: 42 characters per line, 2 lines max (84 total)
+
+### Timing requirements
+- Timestamps must be in chronological order
+- No overlapping cues (end time of cue 1 should be ≤ start time of cue 2)
+- Gaps between cues are fine
+
+## Frequently asked questions
+
+### Can I upload VTT files to YouTube?
+
+Yes, YouTube accepts VTT files, but SRT is more reliable. If you have VTT, convert to SRT first using the [VTT to SRT Converter](/tools/vtt-to-srt/).
+
+### Does YouTube support styled captions?
+
+YouTube applies its own styling. Custom fonts, colors, and positioning from ASS files are ignored. Use plain SRT for uploads.
+
+### Can I edit captions after uploading?
+
+Yes, in YouTube Studio:
+1. Go to Subtitles
+2. Click the three dots next to your caption track
+3. Select "Edit"
+4. Make changes in the YouTube editor
+
+Or download, edit locally, and re-upload.
+
+### Why do my captions have garbled characters?
+
+Encoding issue. Your file is not UTF-8. Use the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) to convert.
+
+### Can I upload multiple language captions?
+
+Yes, upload one SRT file per language. Each gets its own language track in YouTube Studio.
+
+### Do I need to upload captions for auto-generated captions?
+
+No. YouTube auto-generates captions for most videos. Upload custom captions only if:
+- Auto-generated captions are inaccurate
+- You want to add captions in other languages
+- You need precise timing or formatting
+
+### How long does YouTube take to process captions?
+
+Usually a few seconds to a minute. If it takes longer than 5 minutes, there might be an error. Check the file format and try again.
 
 ## Related guides
 

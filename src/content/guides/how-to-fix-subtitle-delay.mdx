@@ -1,6 +1,6 @@
 ---
 title: How to fix subtitle delay
-description: Fix subtitle files that consistently appear too early or too late by measuring the offset and applying a global time shift.
+description: Fix subtitle delay in seconds. Measure the offset and shift all timestamps at once. Free tool works with SRT, VTT, and ASS formats instantly.
 pubDate: 2026-05-06
 updatedDate: 2026-05-25
 category: sync-fixes
@@ -13,69 +13,211 @@ tags:
 primaryTool: subtitle-time-shifter
 ---
 
-Subtitle delay usually means one simple thing: every cue is offset by roughly the same amount.
+Subtitle delay usually means one simple thing: every cue is offset by roughly the same amount. If subtitles appear 2 seconds late throughout the entire video, or 1 second early from start to finish, you have a delay problem. This guide shows you how to measure the offset and fix it with a global time shift.
 
 ## Quick answer
 
-If the whole file is late or early by a fixed amount, measure the offset and apply a global shift to every subtitle timestamp.
+If the whole file is late or early by a fixed amount, measure the offset and apply a global shift to every subtitle timestamp. Use the [Subtitle Time Shifter](/tools/subtitle-time-shifter/) to shift all timestamps by a fixed amount (positive to delay, negative to advance).
 
-That is what the [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/) is for. The broader [Subtitle Time Shifter](/tools/subtitle-time-shifter/) uses the same global offset idea for SRT, VTT, and ASS files.
-
-## Confirm that it is really delay
+## Confirm that it's really delay (not drift)
 
 This guide is for the easy case:
 
-- subtitles are late by about the same amount throughout the file
-- or subtitles are early by about the same amount throughout the file
+- ✅ **Subtitles are late by about the same amount throughout the file**: Every subtitle appears 2 seconds late, from start to finish
+- ✅ **Subtitles are early by about the same amount throughout the file**: Every subtitle appears 1 second early, consistently
 
-If the mismatch gets worse over time, that is drift rather than simple delay, and the file may need deeper retiming. [How to fix subtitles that are too fast or too slow](/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/) helps distinguish those two cases.
+If the mismatch gets worse over time (subtitles start in sync but drift further out of sync as the video progresses), that's **drift** rather than simple delay. Drift requires different fixes. For a complete sync troubleshooting guide, see [how to fix out-of-sync subtitles](/guides/fix-out-of-sync-subtitles/).
+
+See [How to fix subtitles that are too fast or too slow](/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/) to distinguish delay from drift.
+
+## Why subtitle delay happens
+
+Subtitle delay occurs when:
+
+- **Video was edited after subtitles were created**: An intro, outro, or section was added/removed
+- **Subtitles were created for a different video cut**: Theatrical vs. extended edition, TV vs. streaming version
+- **Export timing was wrong**: Subtitle editor or transcription tool used the wrong start time
+- **Frame rate mismatch**: Subtitles were created for 23.976 fps but the video is 25 fps (or vice versa)
+- **Audio track was shifted**: Video was re-encoded with audio offset
 
 ## How to measure the offset
 
-Pick one obvious line where speech starts clearly.
+Pick one obvious line where speech starts clearly. Compare the moment the speech starts with the moment the subtitle appears.
 
-Compare:
+### Step-by-step measurement:
 
-- the moment the speech starts
-- the moment the subtitle appears
+1. **Play the video with subtitles enabled**
+2. **Find a clear dialogue line**: Pick a line where speech starts sharply (e.g., "Hello", "Welcome", "Let's begin")
+3. **Note when the speech starts**: Pause at the exact moment the speaker begins talking
+4. **Note when the subtitle appears**: Does it appear before, during, or after the speech?
+5. **Calculate the offset**:
+   - If subtitle appears **after** speech starts → subtitles are **late** → use **negative** shift
+   - If subtitle appears **before** speech starts → subtitles are **early** → use **positive** shift
 
-Examples:
+### Examples:
 
-- subtitle appears `1.5 seconds late` -> shift by `-1500 ms`
-- subtitle appears `0.7 seconds early` -> shift by `700 ms`
+- Speech starts at `00:00:10.000`, subtitle appears at `00:00:11.500` → **1.5 seconds late** → shift by **-1500 ms**
+- Speech starts at `00:00:10.000`, subtitle appears at `00:00:09.300` → **0.7 seconds early** → shift by **+700 ms**
+
+### Pro tip:
+
+Check 2-3 lines at different points in the video (beginning, middle, end) to confirm the offset is consistent. If the offset changes, you have drift, not delay.
 
 ## Step-by-step workflow
 
-1. Open the video and subtitle file together.
-2. Measure whether captions are early or late.
-3. Open the [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/).
-4. Enter a positive value to delay subtitles more.
-5. Enter a negative value to move subtitles earlier.
-6. Export the adjusted file and test it again.
+### 1. Open the video and subtitle file together
+
+Use a video player that supports external subtitle files:
+
+- **VLC**: Drag the subtitle file onto the video window
+- **MPC-HC**: Right-click → Subtitles → Load subtitle
+- **mpv**: Place the subtitle file in the same directory with the same name as the video
+
+### 2. Measure whether captions are early or late
+
+Follow the measurement steps above to calculate the offset in milliseconds.
+
+### 3. Open the Subtitle Time Shifter
+
+1. Go to the [Subtitle Time Shifter](/tools/subtitle-time-shifter/). If the delay only affects part of the video (after a scene cut), use the [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/) instead — see [how to fix subtitle sync after a scene cut](/guides/fix-subtitle-sync-after-a-scene-cut/).
+2. Upload or paste your subtitle file (SRT, VTT, or ASS)
+
+### 4. Enter the time shift
+
+- **Positive value** (e.g., `+1500`) → delays subtitles (moves them later)
+- **Negative value** (e.g., `-1500`) → advances subtitles (moves them earlier)
+
+**Remember**:
+- If subtitles are **late**, use a **negative** shift to move them earlier
+- If subtitles are **early**, use a **positive** shift to move them later
+
+### 5. Apply the shift
+
+Click **Shift Timestamps** to apply the offset to all cues in the file.
+
+### 6. Download and test
+
+1. Download the adjusted subtitle file
+2. Load it in your video player
+3. Test the same dialogue line you measured earlier
+4. If still not perfect, repeat with a smaller adjustment
 
 ## Common mistakes
 
 ### Guessing instead of measuring
 
-Even a rough measurement is better than repeated random shifts.
+Even a rough measurement is better than repeated random shifts. Guessing wastes time and may make sync worse.
+
+**Fix**: Always measure the offset before applying a shift. Use the video player's timestamp display to calculate the exact offset.
 
 ### Using the wrong sign
 
-If subtitles are late, you usually need a negative shift. If subtitles are early, you usually need a positive shift.
+If subtitles are late, you usually need a **negative** shift (to move them earlier). If subtitles are early, you usually need a **positive** shift (to move them later).
+
+**Common confusion**:
+- "Subtitles are 2 seconds late" → shift by **-2000 ms** (not +2000 ms)
+- "Subtitles are 1 second early" → shift by **+1000 ms** (not -1000 ms)
+
+**Fix**: Think of it as "where do I want the subtitles to move?" Late subtitles need to move backward in time (negative). Early subtitles need to move forward in time (positive).
 
 ### Trying to fix drift with one global change
 
-If sync gets better in one scene and worse in another, the problem is not just delay.
+If sync gets better in one scene and worse in another, the problem is not just delay. You have drift, which requires different fixes (speed adjustment or manual re-timing).
 
-For a broader troubleshooting pass, open [How to fix out-of-sync subtitles](/guides/fix-out-of-sync-subtitles/) next.
+**Fix**: Check sync at the beginning, middle, and end of the video. If the offset changes, see [How to fix subtitles that are too fast or too slow](/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/).
+
+### Not testing after the shift
+
+Always test the adjusted file before considering the fix complete. The first shift may not be perfect, and you may need a small adjustment.
+
+**Fix**: Load the adjusted file in your video player and verify sync at multiple points in the video.
+
+### Shifting the wrong file
+
+If you have multiple versions of the same subtitle file, make sure you're shifting the correct one (the latest version, not an old backup).
+
+**Fix**: Use clear naming conventions and version control.
+
+## Troubleshooting scenarios
+
+### Scenario 1: Shift made sync worse
+
+**Cause**: You used the wrong sign (positive instead of negative, or vice versa).
+
+**Fix**: Apply the opposite shift. If you shifted by +2000 ms and sync got worse, shift by -2000 ms instead.
+
+### Scenario 2: Sync is better but still not perfect
+
+**Cause**: Your initial measurement was slightly off.
+
+**Fix**: Measure the remaining offset and apply a smaller adjustment. For example, if you shifted by -2000 ms but subtitles are still 500 ms late, shift by an additional -500 ms.
+
+### Scenario 3: Sync is good at the beginning but bad at the end
+
+**Cause**: You have drift, not delay. The subtitle file was created for a different video cut or frame rate.
+
+**Fix**: See [How to fix subtitles that are too fast or too slow](/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/) for drift fixes.
+
+### Scenario 4: Sync is good for some scenes but bad for others
+
+**Cause**: The video was edited after subtitles were created (scenes added, removed, or rearranged).
+
+**Fix**: You may need to manually re-time subtitles for the affected scenes, or find a subtitle file that matches your video cut.
+
+### Scenario 5: Shift tool reports errors
+
+**Cause**: The subtitle file has malformed timestamps or broken structure.
+
+**Fix**: Validate the file with the [SRT Validator](/tools/srt-validator/) or [WebVTT Validator](/tools/webvtt-validator/) before shifting. See [how to validate SRT files](/guides/how-to-validate-srt-files/) for a detailed walkthrough. Fix any reported errors, then try shifting again.
+
+## Frequently asked questions
+
+### What's the difference between delay and drift?
+
+**Delay**: Subtitles are consistently early or late by the same amount throughout the video. Fixed with a global time shift.
+
+**Drift**: Subtitles start in sync but gradually drift out of sync as the video progresses. Requires speed adjustment or manual re-timing.
+
+### How do I know if I have delay or drift?
+
+Check sync at three points: beginning, middle, and end. If the offset is the same at all three points, you have delay. If the offset changes, you have drift.
+
+### Can I fix delay for VTT and ASS files?
+
+Yes. The [Subtitle Time Shifter](/tools/subtitle-time-shifter/) supports SRT, VTT, and ASS formats.
+
+### What if I don't know the exact offset?
+
+Make your best estimate, apply the shift, and test. If sync is better but not perfect, measure the remaining offset and apply a smaller adjustment.
+
+### Can I shift only part of the subtitle file?
+
+Yes. Use the [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/) to shift only a specific time range (e.g., after a scene cut).
+
+### What if the video has multiple audio tracks?
+
+Make sure you're measuring sync against the correct audio track. Different audio tracks (original language, dubbed, commentary) may have different timing.
+
+### How precise does my measurement need to be?
+
+Aim for ±100 ms accuracy. Most viewers won't notice sync errors under 100 ms. For professional work, aim for ±50 ms.
+
+### Can I undo a shift?
+
+Yes. Apply the opposite shift. If you shifted by -2000 ms, shift by +2000 ms to undo.
 
 ## Related guides
 
 - [How to fix out-of-sync subtitles](/guides/fix-out-of-sync-subtitles/)
+- [How to fix subtitles that are too fast or too slow](/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/)
+- [How to fix subtitle sync after a scene cut](/guides/fix-subtitle-sync-after-a-scene-cut/)
 - [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
 
 ## Related tools
 
-- [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/)
-- [Fix Out-of-Sync Subtitles](/tools/fix-out-of-sync-subtitles/)
 - [Subtitle Time Shifter](/tools/subtitle-time-shifter/)
+- [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/)
+- [Fix Out-of-Sync Subtitles](/tools/fix-out-of-sync-subtitles/)
+- [SRT Validator](/tools/srt-validator/)
+- [WebVTT Validator](/tools/webvtt-validator/)

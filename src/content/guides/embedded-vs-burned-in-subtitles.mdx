@@ -12,58 +12,380 @@ tags:
 primaryTool: extract-subtitles-from-video
 ---
 
-Subtitle extraction depends on whether the captions are a real text track or part of the video image.
+Subtitle extraction depends on whether the captions are a real text track or part of the video image. Understanding this difference is crucial before attempting to extract subtitles from a video file.
 
 ## Quick answer
 
-Embedded subtitles can often be extracted. Burned-in subtitles cannot be extracted as text without OCR.
+**Embedded subtitles** are separate text streams stored inside the video container. They can be extracted as `.srt`, `.vtt`, or `.ass` files.
+
+**Burned-in subtitles** are pixels permanently rendered into the video frames. They cannot be extracted as text without OCR (Optical Character Recognition).
 
 Use [Extract Subtitles from Video](/tools/extract-subtitles-from-video/) when the video file contains an embedded text subtitle stream.
 
-## Embedded subtitles
+## Key differences at a glance
 
-Embedded subtitles are separate streams stored inside a video container.
+| Feature | Embedded Subtitles | Burned-in Subtitles |
+|---------|-------------------|---------------------|
+| **Can be turned off** | ✅ Yes | ❌ No |
+| **Can be extracted** | ✅ Yes (as text) | ❌ No (requires OCR) |
+| **File size impact** | Minimal (~100KB per language) | None (already in video) |
+| **Quality** | Perfect text | Depends on video quality |
+| **Editability** | Easy to edit after extraction | Must re-encode video to change |
+| **Multiple languages** | Can have many tracks | Only one language visible |
+| **Accessibility** | Screen readers can access | Screen readers cannot access |
 
-Common examples:
+## Embedded subtitles (extractable)
 
+Embedded subtitles are separate text streams stored inside a video container file. They exist as data alongside the video and audio streams.
+
+### How embedded subtitles work
+
+**Video container structure**:
 ```text
-MKV file
-- video stream
-- audio stream
-- subtitle stream: subrip
-- subtitle stream: ass
+MKV file (example)
+├── Video stream (H.264)
+├── Audio stream (AAC)
+├── Subtitle stream 1: English (SubRip/SRT)
+├── Subtitle stream 2: Spanish (SubRip/SRT)
+└── Subtitle stream 3: French (ASS)
 ```
 
-These can often be extracted into a separate `.srt`, `.vtt`, or `.ass` file.
+Each subtitle stream is a separate data track that can be:
+- Turned on/off by the player
+- Extracted as a standalone file
+- Replaced or removed without re-encoding the video
 
-## Burned-in subtitles
+### Common embedded subtitle formats
 
-Burned-in subtitles are pixels in the video itself. A player cannot turn them off because they are part of every frame.
+**Text-based** (easily extractable):
+- **SubRip (SRT)** - Most common, simple text format
+- **ASS/SSA** - Advanced styling, used in anime
+- **WebVTT** - Web standard, used in HTML5 video
+- **SubStation Alpha** - Older format with styling
 
-They look like subtitles, but there is no subtitle file inside the video to extract.
+**Image-based** (harder to extract):
+- **PGS (Presentation Graphic Stream)** - Used in Blu-ray
+- **VobSub** - Used in DVD
+- **DVB subtitles** - Used in broadcast TV
+
+**Note**: Image-based subtitles are embedded but not plain text. Extracting them gives you images, not editable text files.
+
+### Containers that support embedded subtitles
+
+- **MKV (Matroska)** - Best support, can hold unlimited subtitle tracks
+- **MP4** - Limited support, mainly for streaming
+- **AVI** - Limited support, older format
+- **MOV** - Apple format, supports subtitles
+- **WebM** - Web format, supports WebVTT
+
+### Advantages of embedded subtitles
+
+✅ **User control** - Viewers can turn captions on/off  
+✅ **Multiple languages** - One video file can have many subtitle tracks  
+✅ **Small file size** - Text subtitles add minimal size (~100KB per language)  
+✅ **Easy to edit** - Extract, edit, and re-embed without touching the video  
+✅ **Accessibility** - Screen readers can access the text  
+✅ **Quality** - Perfect text quality regardless of video resolution
+
+### Disadvantages of embedded subtitles
+
+❌ **Player support required** - Not all players support all subtitle formats  
+❌ **Extraction needed** - Must extract to edit or convert  
+❌ **Container limitations** - Some containers (MP4) have limited subtitle support
+
+## Burned-in subtitles (hardcoded, not extractable)
+
+Burned-in subtitles (also called "hardcoded" or "hardsubbed") are permanently rendered into the video frames as pixels. They are part of the video image itself, not a separate data stream.
+
+### How burned-in subtitles work
+
+**Video structure**:
+```text
+MP4 file (example)
+├── Video stream (with subtitles rendered into frames)
+└── Audio stream
+```
+
+The subtitle text is literally painted onto each video frame during encoding. A player cannot turn them off because they are part of every frame, just like any other visual element in the video.
+
+### Visual comparison
+
+**Embedded subtitles**:
+```
+Video frame: [person talking]
+Subtitle layer: "Hello, how are you?"
+↓
+Player can show/hide the subtitle layer
+```
+
+**Burned-in subtitles**:
+```
+Video frame: [person talking + "Hello, how are you?" text]
+↓
+Text is part of the image, cannot be removed
+```
+
+### When burned-in subtitles are used
+
+**Common scenarios**:
+- **Social media videos** - Instagram, TikTok, Facebook videos often have hardcoded captions
+- **Fansubs** - Anime fan translations are often burned in
+- **Broadcast TV recordings** - News, sports with permanent captions
+- **Accessibility compliance** - Some platforms require always-visible captions
+- **Pirated content** - Watermarked subtitles to identify the source
+- **Legacy formats** - Old VHS or DVD rips
+
+### Advantages of burned-in subtitles
+
+✅ **Universal compatibility** - Works on any player, no subtitle support needed  
+✅ **Always visible** - Guaranteed to display, no user action required  
+✅ **No extraction needed** - Subtitles are already "there"  
+✅ **Styling preserved** - Custom fonts, colors, and effects are permanent
+
+### Disadvantages of burned-in subtitles
+
+❌ **Cannot be turned off** - Always visible, even if unwanted  
+❌ **Cannot be extracted as text** - Requires OCR to get editable text  
+❌ **Single language only** - Can't have multiple language options  
+❌ **Larger file size** - Increases video bitrate and file size  
+❌ **Quality depends on video** - Low-resolution video = blurry subtitles  
+❌ **Not accessible** - Screen readers cannot read burned-in text  
+❌ **Cannot be edited** - Must re-encode the entire video to change subtitles  
+❌ **Blocks video content** - Can cover important visual elements
+
+### Why burned-in subtitles increase file size
+
+When subtitles are burned in, the video encoder must work harder to compress frames with text. Text creates sharp edges and high-contrast areas that are harder to compress efficiently.
+
+**Example**:
+- Video without subtitles: 500 MB
+- Same video with burned-in subtitles: 550-600 MB (10-20% larger)
+
+Embedded subtitles add only ~100KB per language, regardless of video length.
 
 ## How to tell the difference
 
-Try these checks:
+Before attempting extraction, determine which type of subtitles you have.
 
-1. If the player has a subtitle menu and can turn captions off, they may be embedded.
-2. If the subtitles are always visible and cannot be disabled, they are probably burned in.
-3. If FFmpeg lists a subtitle stream, it is embedded.
-4. If FFmpeg finds no subtitle stream, extraction will not produce text.
+### Method 1: Try to turn captions off in the player
+
+**Steps**:
+1. Play the video in VLC, MPC-HC, or another media player
+2. Look for a subtitle menu or CC button
+3. Try to disable subtitles
+
+**Results**:
+- ✅ **Captions disappear** → Embedded subtitles
+- ❌ **Captions stay visible** → Burned-in subtitles
+
+### Method 2: Check with FFmpeg (most reliable)
+
+**Command**:
+```bash
+ffmpeg -i video.mkv
+```
+
+**Look for subtitle streams in the output**:
+
+**Embedded subtitles example**:
+```
+Stream #0:0: Video: h264
+Stream #0:1: Audio: aac
+Stream #0:2(eng): Subtitle: subrip
+Stream #0:3(spa): Subtitle: ass
+```
+
+**Burned-in subtitles example**:
+```
+Stream #0:0: Video: h264
+Stream #0:1: Audio: aac
+(no subtitle streams listed)
+```
+
+**If FFmpeg lists subtitle streams**, they are embedded and can be extracted.  
+**If FFmpeg finds no subtitle streams**, the captions are either burned-in or the video has no subtitles.
+
+### Method 3: Check file properties
+
+**In VLC**:
+1. Open the video
+2. Go to Tools → Media Information
+3. Click the "Codec Details" tab
+4. Look for subtitle tracks
+
+**In Windows**:
+1. Right-click the video file
+2. Properties → Details tab
+3. Look for "Subtitle" field
+
+**In macOS**:
+1. Select the video file
+2. Press Cmd+I (Get Info)
+3. Look for subtitle track information
+
+### Method 4: Visual inspection
+
+**Embedded subtitles typically**:
+- Have clean, sharp text
+- Use standard fonts
+- Appear in a consistent position
+- Have a semi-transparent background
+
+**Burned-in subtitles often**:
+- Match the video quality (blurry if video is low-res)
+- Use custom or stylized fonts
+- May have creative positioning or effects
+- Are part of the video compression artifacts
+
+### Method 5: Check the file extension
+
+**Likely to have embedded subtitles**:
+- `.mkv` (Matroska) - Best subtitle support
+- `.mp4` (with subtitle tracks)
+- `.mov` (QuickTime)
+
+**Less likely to have embedded subtitles**:
+- `.avi` (older format, limited support)
+- `.wmv` (Windows Media)
+- `.flv` (Flash video)
+
+**Note**: File extension alone doesn't guarantee embedded subtitles. Always check with FFmpeg or a player.
 
 ## Common mistakes
 
 ### Assuming every MKV has subtitles
 
-MKV supports subtitle streams, but a specific file may still have none.
+**Problem**: MKV is a container format that *supports* subtitles, but not every MKV file *contains* subtitles.
+
+**Reality**: 
+- MKV can hold 0 to unlimited subtitle tracks
+- Just because a file is `.mkv` doesn't mean it has subtitles
+- Always check with FFmpeg or a player before attempting extraction
+
+**Example**:
+```
+video1.mkv → Has 3 subtitle tracks (English, Spanish, French)
+video2.mkv → Has 0 subtitle tracks (video and audio only)
+```
 
 ### Expecting OCR from a subtitle extractor
 
-OCR is a different workflow. It reads text from video frames and often needs manual correction.
+**Problem**: Trying to use [Extract Subtitles from Video](/tools/extract-subtitles-from-video/) on burned-in subtitles.
+
+**Why this fails**: Extraction tools read subtitle *data streams*, not video pixels. They cannot "see" burned-in text.
+
+**Solution for burned-in subtitles**: Use OCR (Optical Character Recognition) software:
+- **Subtitle Edit** (free, Windows) - Has built-in OCR
+- **SubtitleExtractor** (paid) - Automated OCR
+- **Manual transcription** - Most accurate but time-consuming
+
+**OCR limitations**:
+- Requires manual correction (70-90% accuracy)
+- Slow process (can take hours for a movie)
+- Struggles with stylized fonts or low-quality video
+- Cannot handle overlapping text or complex layouts
 
 ### Ignoring image-based subtitle streams
 
-Some embedded subtitle streams are image-based, such as PGS. They are embedded, but not plain text, so conversion to SRT may fail.
+**Problem**: Extracting PGS or VobSub subtitles and expecting editable text.
+
+**What happens**: You get image files (`.sup`, `.idx/.sub`), not text files (`.srt`).
+
+**Why this matters**: Image-based subtitles are embedded but not plain text. They're essentially a series of images timed to appear at specific moments.
+
+**Common image-based formats**:
+- **PGS** - Blu-ray subtitles (`.sup` files)
+- **VobSub** - DVD subtitles (`.idx` + `.sub` files)
+- **DVB** - Broadcast TV subtitles
+
+**Solution**: Use OCR to convert image-based subtitles to text:
+1. Extract the image-based subtitle stream
+2. Use Subtitle Edit or similar tool to OCR the images
+3. Export as SRT or VTT
+
+**Or**: Look for a text-based subtitle track in the same video file. Many Blu-rays include both PGS (for players) and SRT (for accessibility).
+
+### Confusing "closed captions" with embedded subtitles
+
+**Closed captions** can be:
+- **Embedded** (e.g., CEA-608/708 in broadcast video)
+- **Burned-in** (e.g., open captions on social media)
+- **Separate files** (e.g., SRT uploaded to YouTube)
+
+The term "closed captions" refers to the content (includes sound effects, speaker IDs), not the technical implementation.
+
+### Trying to extract from streaming video
+
+**Problem**: Attempting to extract subtitles from Netflix, YouTube, or other streaming services.
+
+**Why this fails**: Streaming subtitles are delivered separately from the video, not embedded in the video file you're watching.
+
+**Solution**: 
+- **YouTube**: Download subtitles directly from the video page (if available)
+- **Netflix, etc.**: Use browser extensions or official download features (where legal)
+- **Live streams**: Captions are often not saved and cannot be extracted after the stream ends
+
+## When to use each type
+
+### Use embedded subtitles when:
+- ✅ You want viewers to control caption visibility
+- ✅ You need multiple language options
+- ✅ You want to keep file size small
+- ✅ You need accessibility compliance (screen readers)
+- ✅ You might need to edit subtitles later
+- ✅ You're distributing via Plex, Kodi, or similar media servers
+
+### Use burned-in subtitles when:
+- ✅ You need guaranteed caption visibility (social media)
+- ✅ Target platform doesn't support subtitle files
+- ✅ You want custom styling that players might not support
+- ✅ You're creating content for platforms that strip subtitle tracks
+- ✅ You want to prevent subtitle removal or editing
+
+## Frequently asked questions
+
+### Can I convert burned-in subtitles to embedded subtitles?
+
+Not directly. You would need to:
+1. Use OCR to extract the text from video frames
+2. Manually correct OCR errors
+3. Time the subtitles to match the video
+4. Embed the resulting SRT file into the video
+
+This is time-consuming and often imperfect.
+
+### Can I remove burned-in subtitles?
+
+No, not without re-encoding the video and losing quality. Burned-in subtitles are permanent. You would need the original video without subtitles to start over.
+
+### How do I extract embedded subtitles?
+
+Use the [Extract Subtitles from Video](/tools/extract-subtitles-from-video/) tool or FFmpeg:
+```bash
+ffmpeg -i video.mkv -map 0:s:0 subtitles.srt
+```
+
+### Why do some videos have both embedded and burned-in subtitles?
+
+This happens when:
+- Someone burned in subtitles to a video that already had embedded subtitles
+- A video was re-encoded with hardcoded captions added
+- Fansubs added their own burned-in subtitles to official releases
+
+Result: You see two sets of subtitles (one you can turn off, one you can't).
+
+### Are YouTube subtitles embedded or burned-in?
+
+YouTube subtitles are **neither**. They're delivered as separate WebVTT files that the player overlays on the video. You can download them directly from YouTube without extracting from the video file.
+
+### Can I add embedded subtitles to a video?
+
+Yes, using FFmpeg or video editing software:
+```bash
+ffmpeg -i video.mp4 -i subtitles.srt -c copy -c:s mov_text output.mp4
+```
+
+This creates a new video file with the subtitle track embedded.
 
 ## Related guides
 

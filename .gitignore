@@ -30,3 +30,13 @@ pnpm-debug.log*
 
 # local pnpm store
 .pnpm-store/
+
+# SEO working docs (local only)
+SEO-OPTIMIZATION-PLAN.md
+internal-links-plan.md
+meta-descriptions-optimization.md
+
+# agent scratch symlinks
+AGENTS.md
+references
+skills

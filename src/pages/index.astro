@@ -34,7 +34,26 @@ const faqs = [
 	{ q: 'Are my files uploaded anywhere?', a: 'No. All processing happens locally in your browser. Your files never leave your device.' },
 	{ q: 'What subtitle formats are supported?', a: 'SRT, VTT (WebVTT), and ASS. You can convert between any of these formats, shift timing, and clean up formatting.' },
 	{ q: 'Do I need to create an account?', a: 'No. There is no login, no account, and no email required. Just open a tool and start using it.' },
+	{ q: 'Can I convert SRT to VTT for HTML5 video?', a: 'Yes. Use the SRT to VTT converter to change comma-based timestamps to dots and add the WEBVTT header required for HTML5 video players.' },
+	{ q: 'How do I fix subtitle timing issues?', a: 'Use the Subtitle Time Shifter to adjust all timestamps by a fixed amount, or the Partial Subtitle Shifter to fix only a specific time range after a scene cut.' },
+	{ q: 'What\'s the best subtitle format for YouTube?', a: 'YouTube accepts both SRT and VTT, but SRT is more reliable. Make sure to use UTF-8 encoding and comma-based timestamps for SRT files.' },
+	{ q: 'Can I use these tools on mobile?', a: 'Yes. All tools work in mobile browsers (Safari, Chrome, Firefox). Processing happens in your browser, so no app installation is needed.' },
+	{ q: 'Do these tools work offline?', a: 'Once you load a tool page, it works offline. The processing code runs entirely in your browser without needing an internet connection.' },
+	{ q: 'How do I clean up subtitle formatting before upload?', a: 'Use the Clean SRT File tool to remove extra blank lines, renumber cues sequentially, and fix common formatting issues that cause upload failures.' },
 ];
+
+const faqSchema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	"mainEntity": faqs.map(faq => ({
+		"@type": "Question",
+		"name": faq.q,
+		"acceptedAnswer": {
+			"@type": "Answer",
+			"text": faq.a
+		}
+	}))
+};
 ---
 
 <SiteLayout title={`${pageTitle} | ${SITE_TITLE}`} description={SITE_DESCRIPTION}>
@@ -44,6 +63,7 @@ const faqs = [
 			description: SITE_DESCRIPTION,
 			url: `https://${SITE_DOMAIN}/`,
 		}} />
+		<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
 	<!-- Hero -->
 	<div class="hero-wrapper">
 		<section class="section hero">

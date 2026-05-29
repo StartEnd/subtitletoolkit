@@ -12,53 +12,414 @@ tags:
 primaryTool: srt-validator
 ---
 
-Validating an SRT file is a fast way to find obvious format problems before a platform rejects it.
+Validating an SRT file is a fast way to find obvious format problems before a platform rejects it. This guide shows you how to validate SRT files and fix common issues.
 
 ## Quick answer
 
-Open the [SRT Validator](/tools/srt-validator/), paste or upload the subtitle file, and read the validation report.
+Open the [SRT Validator](/tools/srt-validator/), paste or upload the subtitle file, and read the validation report. The validator checks cue structure, timestamp format, cue order, and common syntax errors.
 
-The report helps confirm whether the file has parseable cues, standard SRT timestamps, and basic cue structure.
+The report helps confirm whether the file has parseable cues, standard SRT timestamps, and basic cue structure before you upload to YouTube, Vimeo, or other platforms.
+
+## Why SRT validation matters
+
+**SRT is the most common subtitle format**, but it's easy to break:
+
+- **Platform rejections** - YouTube, Vimeo, and other platforms reject malformed SRT files
+- **Silent failures** - Some players accept invalid SRT but display captions incorrectly
+- **Manual editing errors** - Hand-editing timestamps or text can introduce syntax errors
+- **Conversion issues** - Converting from other formats can create malformed SRT
+- **Encoding problems** - Wrong character encoding causes garbled text
+
+Validating before upload saves time and prevents frustrating rejections.
 
 ## What to check
 
-An SRT file should usually have:
+A valid SRT file must follow this structure:
 
-- numbered cue blocks
-- timestamps in `HH:MM:SS,mmm` format
-- an arrow written as `-->`
-- start times before end times
-- blank lines between cues
-- subtitle text after each timestamp line
+### 1. Numbered cue blocks (required)
 
-Small formatting issues can still break upload workflows, especially in strict caption tools.
+Each subtitle cue starts with a sequential number:
+
+```
+1
+00:00:01,000 --> 00:00:03,000
+First subtitle
+
+2
+00:00:03,000 --> 00:00:05,000
+Second subtitle
+```
+
+**Requirements**:
+- Numbers must be sequential (1, 2, 3...)
+- Each cue must have a unique number
+- Numbers can't be skipped (no jumping from 5 to 7)
+
+### 2. Timestamp format (required)
+
+SRT uses this exact format: `HH:MM:SS,mmm --> HH:MM:SS,mmm`
+
+✅ **Correct**: `00:00:01,000 --> 00:00:03,500`  
+❌ **Wrong**: `00:00:01.000 --> 00:00:03.500` (dots instead of commas - that's WebVTT)
+
+**Format breakdown**:
+- `HH` = hours (00-99)
+- `MM` = minutes (00-59)
+- `SS` = seconds (00-59)
+- `mmm` = milliseconds (000-999)
+- `,` = comma separator (not a dot!)
+- ` --> ` = arrow with spaces
+
+### 3. Arrow separator (required)
+
+Use exactly ` --> ` (space, two hyphens, greater-than, space):
+
+✅ **Correct**: `00:00:01,000 --> 00:00:03,000`  
+❌ **Wrong**: `00:00:01,000->00:00:03,000` (no spaces)  
+❌ **Wrong**: `00:00:01,000 - 00:00:03,000` (single hyphen)
+
+### 4. Start time before end time (required)
+
+The start timestamp must be earlier than the end timestamp:
+
+✅ **Correct**: `00:00:01,000 --> 00:00:03,000` (1 second to 3 seconds)  
+❌ **Wrong**: `00:00:03,000 --> 00:00:01,000` (end before start)
+
+### 5. Blank lines between cues (required)
+
+Each cue must be separated by at least one blank line:
+
+```
+1
+00:00:01,000 --> 00:00:03,000
+First subtitle
+
+2
+00:00:03,000 --> 00:00:05,000
+Second subtitle
+```
+
+### 6. Subtitle text (required)
+
+After the timestamp line, add the subtitle text:
+
+```
+1
+00:00:01,000 --> 00:00:03,000
+This is the subtitle text.
+```
+
+**Multiple lines allowed**:
+```
+1
+00:00:01,000 --> 00:00:03,000
+This is line one.
+This is line two.
+```
+
+### 7. UTF-8 encoding (recommended)
+
+SRT files should be saved as UTF-8 to support international characters. If you see garbled text (�, ?, boxes), the encoding is wrong.
+
+Small formatting issues can still break upload workflows, especially in strict caption tools like YouTube Studio or professional video editors.
 
 ## Step-by-step workflow
 
-1. Open the [SRT Validator](/tools/srt-validator/).
-2. Upload the SRT file or paste its contents.
-3. Run validation and check the cue count.
-4. Look for timestamp separator warnings or parse failures.
-5. Fix the source file or use a repair tool when the issue is mechanical.
-6. Validate again before uploading.
+### 1. Open the SRT Validator
+
+Go to the [SRT Validator](/tools/srt-validator/) tool.
+
+### 2. Load your SRT file
+
+**Option A: Upload file**
+- Click "Choose File" or drag and drop your `.srt` file
+- The validator reads the file locally (nothing is uploaded to a server)
+
+**Option B: Paste content**
+- Open your SRT file in a text editor
+- Copy all content (Ctrl+A, Ctrl+C)
+- Paste into the validator text area
+
+### 3. Run validation and check the cue count
+
+Click "Validate". The validator checks:
+- ✅ Cue numbering (sequential, no gaps)
+- ✅ Timestamp format (commas, not dots)
+- ✅ Arrow separator (` --> ` with spaces)
+- ✅ Start/end time order
+- ✅ Blank lines between cues
+- ✅ Overall file structure
+
+**If validation passes**:
+```
+✓ Valid SRT file
+- 127 cues found
+- No errors detected
+- Ready for upload
+```
+
+### 4. Look for timestamp separator warnings or parse failures
+
+**If validation fails**, you'll see specific errors:
+
+```
+✗ Invalid SRT file
+- Line 15: Dot instead of comma in timestamp
+- Line 23: Missing blank line between cues
+- Line 45: Start time after end time
+- Line 67: Invalid arrow separator
+```
+
+Each error shows the line number and what's wrong.
+
+### 5. Fix the source file or use a repair tool
+
+**Common fixes**:
+
+**Dot-based milliseconds** → Replace all `.` with `,` in timestamps  
+**Missing blank lines** → Add empty lines between cues  
+**Wrong separator** → Use ` --> ` (with spaces)  
+**Out-of-order cues** → Renumber cues sequentially
+
+**For mechanical issues**, use repair tools:
+- [Fix SRT Timestamps](/tools/fix-srt-timestamps/) - Fixes timestamp format
+- [Clean SRT File](/tools/clean-srt-file/) - Rebuilds spacing and numbering
+
+### 6. Validate again before uploading
+
+After making fixes:
+1. Save the file
+2. Re-upload or paste the updated content
+3. Validate again
+4. Repeat until all errors are fixed
+
+**Then test in your target platform** (YouTube, Vimeo, video editor) to ensure it works in practice.
 
 ## Common validation problems
 
-### Dot-based milliseconds
+### Dot-based milliseconds (WebVTT format)
 
-SRT normally uses commas, like `00:00:01,000`. Dot-based milliseconds are common after a VTT conversion mistake.
+**Problem**: Timestamps use dots instead of commas.
 
-### Missing blank lines
+**Example of broken SRT**:
+```
+1
+00:00:01.000 --> 00:00:03.000
+This won't work in SRT
+```
 
-Some parsers need a blank line between cue blocks. A cleaner can rebuild spacing.
+**Why this happens**: After converting from WebVTT to SRT, the converter failed to change dots to commas.
+
+**Fix**: Replace all `.` with `,` in timestamps:
+```
+1
+00:00:01,000 --> 00:00:03,000
+This will work
+```
+
+**Quick fix**: Use Find & Replace in your text editor, but be careful not to replace dots in subtitle text.
+
+### Missing blank lines between cues
+
+**Problem**: Cues run together without separation.
+
+**Example of broken SRT**:
+```
+1
+00:00:01,000 --> 00:00:03,000
+First subtitle
+2
+00:00:03,000 --> 00:00:05,000
+Second subtitle
+```
+
+**Fix**: Add blank lines between each cue:
+```
+1
+00:00:01,000 --> 00:00:03,000
+First subtitle
+
+2
+00:00:03,000 --> 00:00:05,000
+Second subtitle
+```
+
+**Automatic fix**: Use the [Clean SRT File](/tools/clean-srt-file/) tool to rebuild spacing automatically.
 
 ### Out-of-order cues
 
-Cue order matters for playback and review. If cues are out of order, clean or rebuild the file before delivery.
+**Problem**: Cue numbers are not sequential or timestamps are out of order.
+
+**Example of broken numbering**:
+```
+1
+00:00:01,000 --> 00:00:03,000
+First
+
+3
+00:00:03,000 --> 00:00:05,000
+Third (skipped 2!)
+
+2
+00:00:05,000 --> 00:00:07,000
+Second (out of order)
+```
+
+**Why this matters**: 
+- Some players require sequential numbering
+- Out-of-order timestamps cause captions to appear at wrong times
+- Video editors may reject the file
+
+**Fix**: Renumber cues sequentially and sort by timestamp. Use the [Clean SRT File](/tools/clean-srt-file/) tool to do this automatically.
+
+### Invalid arrow separator
+
+**Problem**: Using wrong characters for the arrow.
+
+**Examples of broken separators**:
+```
+00:00:01,000->00:00:03,000  (no spaces)
+00:00:01,000 - 00:00:03,000  (single hyphen)
+00:00:01,000 — 00:00:03,000  (em dash)
+00:00:01,000 => 00:00:03,000  (wrong arrow)
+```
+
+**Fix**: Use exactly ` --> ` (space, two hyphens, greater-than, space):
+```
+00:00:01,000 --> 00:00:03,000
+```
+
+### Start time after end time
+
+**Problem**: The end timestamp comes before the start timestamp.
+
+**Example**:
+```
+1
+00:00:05,000 --> 00:00:03,000
+This is backwards
+```
+
+**Why this happens**: Manual editing error or timestamp shifting gone wrong.
+
+**Fix**: Swap the timestamps:
+```
+1
+00:00:03,000 --> 00:00:05,000
+This is correct
+```
+
+### Missing cue numbers
+
+**Problem**: Some cues lack numbers.
+
+**Example**:
+```
+1
+00:00:01,000 --> 00:00:03,000
+First subtitle
+
+00:00:03,000 --> 00:00:05,000
+Missing number!
+```
+
+**Fix**: Add sequential numbers to all cues. Use the [Clean SRT File](/tools/clean-srt-file/) tool to renumber automatically.
+
+### Character encoding issues
+
+**Problem**: Special characters display as � or garbled text.
+
+**Example**:
+```
+1
+00:00:01,000 --> 00:00:03,000
+Caf� (should be Café)
+```
+
+**Cause**: File is not saved as UTF-8.
+
+**Fix**: 
+1. Open the file in a text editor that supports encoding (VS Code, Notepad++, Sublime)
+2. Save as UTF-8 (without BOM)
+3. Re-validate
+
+Or use the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) to convert automatically.
+
+### Extra blank lines at the end
+
+**Problem**: Multiple blank lines at the end of the file.
+
+**Why this matters**: Some parsers treat trailing blank lines as errors.
+
+**Fix**: Remove all blank lines after the last cue. Most cleaners do this automatically.
 
 ## When to repair instead of validate
 
-Validation tells you what looks wrong. It does not rewrite the file. Use [Fix SRT Timestamps](/tools/fix-srt-timestamps/) or [Clean SRT File Online](/tools/clean-srt-file/) when you need corrected output.
+**Validation tells you what's wrong. Repair tools fix it.**
+
+**Use validation when**:
+- You want to check if a file is correct
+- You need to identify specific errors
+- You're debugging upload failures
+
+**Use repair tools when**:
+- You need corrected output, not just a report
+- You have many mechanical errors (spacing, numbering)
+- You want to automate fixes
+
+**Recommended repair tools**:
+- [Fix SRT Timestamps](/tools/fix-srt-timestamps/) - Fixes timestamp format issues
+- [Clean SRT File](/tools/clean-srt-file/) - Rebuilds spacing, numbering, and structure
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) - Fixes character encoding
+
+**Workflow**: Validate → Identify errors → Repair → Validate again → Upload
+
+## Validation vs testing
+
+**Validation** checks file format.  
+**Testing** checks if captions work in the actual player.
+
+**Both are necessary**:
+1. ✅ Validate first to catch syntax errors
+2. ✅ Then test in your target platform (YouTube, Vimeo, video editor)
+
+Don't skip either step. A file can pass validation but still fail in specific platforms due to platform-specific requirements.
+
+## Frequently asked questions
+
+### Can the validator fix errors automatically?
+
+No, the validator only reports errors. Use repair tools like [Clean SRT File](/tools/clean-srt-file/) or [Fix SRT Timestamps](/tools/fix-srt-timestamps/) to automatically fix common issues.
+
+### What if validation passes but YouTube rejects my file?
+
+YouTube has additional requirements beyond basic SRT syntax:
+- Maximum file size (usually 5MB)
+- Maximum cue duration (usually 7 seconds)
+- Character limits per line
+- Specific encoding requirements
+
+Check YouTube's help documentation for platform-specific requirements.
+
+### Can I validate multiple SRT files at once?
+
+The validator processes one file at a time. For batch validation, validate each file individually.
+
+### Does the validator work offline?
+
+Yes, the validator runs entirely in your browser. No files are uploaded to a server. You can save the validator page and use it offline.
+
+### What's the difference between SRT and WebVTT validation?
+
+- **SRT** uses commas for milliseconds: `00:00:01,000`
+- **WebVTT** uses dots: `00:00:01.000`
+- **WebVTT** requires a `WEBVTT` header; SRT doesn't
+
+Use the [SRT Validator](/tools/srt-validator/) for SRT files and the [WebVTT Validator](/tools/webvtt-validator/) for VTT files.
+
+### Can I use the validator for other subtitle formats?
+
+No, this validator is specifically for SRT format. For WebVTT files, use the [WebVTT Validator](/tools/webvtt-validator/). For ASS files, convert to SRT first.
 
 ## Related guides
 

@@ -26,6 +26,7 @@ const { title, description, image, pageType, publishedTime, modifiedTime } = Ast
 			publishedTime={publishedTime}
 			modifiedTime={modifiedTime}
 		/>
+		<slot name="head" />
 	</head>
 	<body>
 		<Header />

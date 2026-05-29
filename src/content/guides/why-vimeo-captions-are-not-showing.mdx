@@ -12,47 +12,285 @@ tags:
 primaryTool: vimeo-subtitle-converter
 ---
 
-Vimeo caption problems often come from the uploaded caption file or the way the language track is configured.
+Vimeo caption problems often come from the uploaded caption file format or the way the language track is configured. This guide helps you diagnose and fix caption issues on both Vimeo.com and embedded players.
 
 ## Quick answer
 
-Use a clean WebVTT file for Vimeo caption workflows. If your source file is SRT or ASS, convert it with the [Vimeo Subtitle Converter](/tools/vimeo-subtitle-converter/) before uploading or testing embed captions.
+Use a clean WebVTT file for Vimeo caption workflows. If your source file is SRT or ASS, convert it with the [Vimeo Subtitle Converter](/tools/vimeo-subtitle-converter/) before uploading.
 
-Then check that the caption language track is enabled and available in the player.
+Then check that the caption language track is enabled in Vimeo's video settings and that embed settings allow captions to display.
+
+## Why Vimeo captions fail
+
+Vimeo has specific requirements for caption files and player configuration:
+
+1. **File format** - Vimeo requires WebVTT format; SRT files must be converted first
+2. **Upload issues** - Invalid VTT files are rejected or fail silently during upload
+3. **Language settings** - Captions must be assigned to the correct language code
+4. **Embed restrictions** - Embed settings can hide captions even if they work on Vimeo.com
+5. **Player controls** - Captions might be uploaded but disabled in the player UI
+
+Understanding these failure points helps you fix issues faster.
 
 ## What to check
 
-Check these items:
+Before troubleshooting Vimeo's player settings, verify your caption file is correct:
 
-- the caption file is valid WebVTT
-- the file has a `WEBVTT` header
-- timestamps use dots, not commas
-- the correct language is assigned
-- captions are enabled in the Vimeo player
-- the embed settings allow captions to appear
+### File format requirements
+- ✅ The caption file is valid WebVTT (`.vtt` extension)
+- ✅ The file starts with exactly `WEBVTT` on line 1
+- ✅ Timestamps use dots for milliseconds: `00:00:01.000` not `00:00:01,000`
+- ✅ Blank line exists after the WEBVTT header
+- ✅ Cues are separated by blank lines
+
+### Vimeo-specific checks
+- ✅ The correct language is assigned to the caption track
+- ✅ Captions are enabled in the Vimeo video settings
+- ✅ The embed settings allow captions to appear
+- ✅ The player controls show the CC button
+- ✅ The caption track is set as default (if you want auto-display)
+
+### Testing checklist
+- ✅ Captions work on the Vimeo.com video page
+- ✅ Captions work in the embedded player on your site
+- ✅ Captions work on mobile devices
+- ✅ Multiple language tracks (if applicable) all display correctly
 
 ## Step-by-step workflow
 
-1. Convert the subtitle file to VTT if needed.
-2. Validate the VTT output.
-3. Upload or attach the caption file in Vimeo.
-4. Confirm the language track settings.
-5. Test the video on the Vimeo page.
-6. Test the embedded player if the video is used on your site.
+### 1. Convert the subtitle file to VTT if needed
+
+Vimeo requires WebVTT format. If you have SRT or ASS files, convert them first.
+
+**Using the converter**:
+1. Go to [Vimeo Subtitle Converter](/tools/vimeo-subtitle-converter/)
+2. Upload or paste your SRT/ASS file
+3. Convert to WebVTT
+4. Download the `.vtt` file
+
+**What gets converted**:
+- Adds `WEBVTT` header
+- Changes comma timestamps to dots
+- Removes SRT cue numbers
+- Ensures proper spacing
+
+### 2. Validate the VTT output
+
+Before uploading to Vimeo, validate the file to catch syntax errors.
+
+**Steps**:
+1. Open the [WebVTT Validator](/tools/webvtt-validator/)
+2. Upload your VTT file
+3. Fix any reported errors
+4. Re-validate until it passes
+
+**Why this matters**: Vimeo may accept invalid VTT files but fail to display them, giving no error message.
+
+### 3. Upload the caption file in Vimeo
+
+**On Vimeo.com**:
+1. Go to your video's settings page
+2. Click the "Distribution" tab
+3. Scroll to "Subtitles"
+4. Click "Add subtitles"
+5. Upload your VTT file
+6. Select the language (e.g., English, Spanish)
+7. Click "Save"
+
+**Important**: Choose the correct language code. This affects how the caption track appears in the player menu.
+
+### 4. Confirm the language track settings
+
+After uploading, verify the caption track is configured correctly.
+
+**Check**:
+- Language is set correctly (English, Español, etc.)
+- Caption track is enabled (toggle should be ON)
+- If you want captions on by default, set the track as "Default"
+
+**Multiple languages**: Upload separate VTT files for each language and assign the correct language code to each.
+
+### 5. Test the video on the Vimeo page
+
+Before testing embeds, verify captions work on Vimeo.com.
+
+**Steps**:
+1. Go to your video page on Vimeo.com
+2. Play the video
+3. Click the CC button in the player controls
+4. Select your caption track from the menu
+5. Verify captions display at the correct times
+
+**If captions don't appear**:
+- Check if the CC button is visible
+- Verify the caption track appears in the menu
+- Re-upload the VTT file if needed
+
+### 6. Test the embedded player
+
+Captions can behave differently in embedded players than on Vimeo.com.
+
+**Embed the video**:
+1. Get the embed code from Vimeo
+2. Add it to your website
+3. Load the page and play the video
+4. Check if the CC button appears
+5. Test caption display
+
+**Common embed issues**:
+- Embed settings might hide the CC button
+- Privacy settings might block captions
+- Custom player colors might hide the CC button
+
+**Fix embed settings**:
+1. Go to video settings on Vimeo
+2. Click "Embed" tab
+3. Ensure "Show text track" is enabled
+4. Save and re-test
+
+### 7. Test on mobile devices
+
+Mobile players sometimes handle captions differently.
+
+**Test on**:
+- iOS Safari (iPhone/iPad)
+- Android Chrome
+- Mobile browsers
+
+**Mobile-specific issues**:
+- CC button might be in a different location
+- Fullscreen mode might hide controls
+- Native mobile players might override Vimeo's player
 
 ## Common mistakes
 
 ### Uploading a file that looks like VTT but is really SRT
 
-VTT needs a header and dot-based timestamps. Convert the file properly.
+**Problem**: You renamed `captions.srt` to `captions.vtt` without converting.
 
-### Forgetting the embed
+**Why this fails**:
+- SRT uses commas: `00:00:01,000`
+- VTT uses dots: `00:00:01.000`
+- SRT lacks the `WEBVTT` header
+- Vimeo may accept the upload but captions won't display
 
-Captions can behave differently between the Vimeo page and an embedded player. Test the context where viewers watch.
+**Solution**: Always convert SRT to VTT using the [Vimeo Subtitle Converter](/tools/vimeo-subtitle-converter/). Don't just rename.
+
+### Forgetting to test the embed
+
+**Problem**: Captions work on Vimeo.com but not on your embedded player.
+
+**Why this happens**: Embed settings can hide captions even if they're enabled on Vimeo.
+
+**Solution**: 
+1. Check embed settings in Vimeo video settings
+2. Ensure "Show text track" is enabled
+3. Test the actual embed on your site, not just on Vimeo.com
 
 ### Replacing the source file
 
-Keep the original subtitle source. Use VTT as the delivery copy for Vimeo.
+**Problem**: You upload the VTT file and delete your original SRT source.
+
+**Why this matters**: If you need to edit captions later, it's easier to edit SRT (simpler format) and re-convert than to edit VTT directly.
+
+**Best practice**: 
+- Keep original SRT/ASS files as your source
+- Use VTT as the delivery format for Vimeo
+- Store both versions in version control
+
+### Wrong language code
+
+**Problem**: You upload English captions but select the wrong language code.
+
+**Why this matters**: Users looking for English captions won't find them if they're labeled as Spanish.
+
+**Solution**: Always match the language code to the actual caption language:
+- English → `en`
+- Spanish → `es`
+- French → `fr`
+- German → `de`
+
+### Not setting a default track
+
+**Problem**: Captions are uploaded but users must manually enable them.
+
+**Why this matters**: Many users don't know how to enable captions or won't bother.
+
+**Solution**: Set one caption track as "Default" in Vimeo settings. This makes captions appear automatically.
+
+### Privacy settings blocking captions
+
+**Problem**: Video is set to private or password-protected, and captions don't work in embeds.
+
+**Why this happens**: Some Vimeo privacy settings restrict caption access in embedded players.
+
+**Solution**: Check your video's privacy settings and ensure captions are allowed in embeds.
+
+## Troubleshooting specific scenarios
+
+### Scenario 1: Captions work on Vimeo but not in embed
+
+**Diagnosis**: Check embed settings.
+
+**Fix**:
+1. Go to video settings → Embed tab
+2. Enable "Show text track"
+3. Update the embed code on your site
+4. Clear browser cache and test
+
+### Scenario 2: CC button is missing
+
+**Diagnosis**: Captions might not be uploaded or enabled.
+
+**Fix**:
+1. Verify caption file is uploaded in Vimeo settings
+2. Check that the caption track is enabled (toggle ON)
+3. Refresh the page and check again
+
+### Scenario 3: Multiple languages don't show
+
+**Diagnosis**: Each language needs a separate VTT file.
+
+**Fix**:
+1. Upload one VTT file per language
+2. Assign the correct language code to each
+3. Test that all languages appear in the CC menu
+
+### Scenario 4: Captions show but timing is wrong
+
+**Diagnosis**: VTT file might be for a different video version.
+
+**Fix**: Use the [Subtitle Time Shifter](/tools/subtitle-time-shifter/) to adjust timing, then re-upload.
+
+## Frequently asked questions
+
+### Does Vimeo support SRT files?
+
+Vimeo officially requires WebVTT format. While some SRT files might work, it's not guaranteed. Always convert SRT to VTT for reliable playback.
+
+### Can I edit captions after uploading?
+
+Yes, but you must download the VTT file, edit it, and re-upload. It's easier to edit your source SRT file and re-convert.
+
+### How many caption languages can I add?
+
+Vimeo supports multiple caption tracks. Upload one VTT file per language and assign the correct language code to each.
+
+### Do captions work on Vimeo's mobile app?
+
+Yes, captions work in the Vimeo mobile app if they're properly uploaded and enabled.
+
+### Can I style Vimeo captions?
+
+Vimeo provides default caption styling. Custom styling is limited in embedded players. WebVTT cue settings (position, alignment) are supported.
+
+### Why do captions work in Chrome but not Safari?
+
+Different browsers parse WebVTT slightly differently. Always validate your VTT files to ensure cross-browser compatibility.
+
+### Do I need a Vimeo Pro account for captions?
+
+Caption support is available on all Vimeo plans, including free accounts. However, some advanced features require paid plans.
 
 ## Related guides
 

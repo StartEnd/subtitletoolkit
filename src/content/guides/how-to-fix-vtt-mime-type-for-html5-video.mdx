@@ -12,56 +12,323 @@ tags:
 primaryTool: html5-video-subtitle-converter
 ---
 
-Sometimes a VTT file is valid, but the browser still refuses to load it correctly.
+Sometimes a VTT file is valid, but the browser still refuses to load it correctly. The most common cause is an incorrect MIME type - the server is sending the file with the wrong `Content-Type` header. This guide walks you through diagnosing and fixing MIME type issues for WebVTT captions.
 
 ## Quick answer
 
-Validate the VTT file first. Then make sure the server serves `.vtt` files with the `text/vtt` content type.
+Validate the VTT file first. Then make sure the server serves `.vtt` files with the `text/vtt` content type. Most servers default to `text/plain` or `application/octet-stream` for unknown extensions, which causes browsers to refuse to parse the file as WebVTT.
 
 Use the [HTML5 Video Subtitle Converter](/tools/html5-video-subtitle-converter/) if your source file needs to be converted into clean WebVTT.
 
+## Why MIME type matters for WebVTT
+
+Browsers use the `Content-Type` HTTP header to decide how to interpret a file. For WebVTT captions, the spec requires `text/vtt`. If the server sends a different type:
+
+- **Chrome and Edge** silently refuse to load the track
+- **Firefox** logs a console warning and disables the track
+- **Safari** may load the file but display captions inconsistently
+- **Mobile browsers** often fail with no visible error
+
+Even if the VTT file content is perfect, the wrong MIME type makes captions invisible. This is one of the most frustrating subtitle bugs because the file looks correct, the `<track>` element looks correct, but captions never appear.
+
 ## What to check
 
-For HTML5 video captions, check:
+For HTML5 video captions, check each of these in order:
 
-- the file starts with `WEBVTT`
-- timestamps use dots, not commas
-- the file URL returns the VTT file
-- the server content type is `text/vtt`
-- the `track` element points to the correct URL
+### 1. The file starts with `WEBVTT`
+The very first line must be `WEBVTT` (uppercase, no BOM). Anything else - even a blank line above it - causes the parser to reject the file.
+
+### 2. Timestamps use dots, not commas
+WebVTT uses `00:00:01.000` (with a dot). SRT uses `00:00:01,000` (with a comma). Mixing these breaks the file.
+
+### 3. The file URL returns the VTT file
+Open the URL directly in a browser tab. You should see the raw VTT text. If you get a 404, redirect, or HTML error page, the URL is wrong.
+
+### 4. The server content type is `text/vtt`
+Use browser DevTools (Network tab) to inspect the response headers. The `Content-Type` should be exactly `text/vtt` (or `text/vtt; charset=utf-8`).
+
+### 5. The `track` element points to the correct URL
+The `src` attribute must resolve to the same URL you tested in step 3.
+
+### 6. CORS headers are correct (cross-origin)
+If the VTT file is on a different domain than the video page, the server must send `Access-Control-Allow-Origin` headers, and the `<track>` element needs `crossorigin="anonymous"`.
 
 ## Example track element
 
 ```html
-<video controls>
+<video controls crossorigin="anonymous">
   <source src="video.mp4" type="video/mp4" />
-  <track kind="subtitles" src="captions.en.vtt" srclang="en" label="English" />
+  <track kind="subtitles" src="captions.en.vtt" srclang="en" label="English" default />
 </video>
 ```
 
-The VTT file must be reachable from the browser, not only present in the project folder.
+The VTT file must be reachable from the browser, not only present in the project folder. If you're testing locally, serve files through a local web server (not `file://`) - browsers block VTT loading from `file://` URLs.
 
 ## Step-by-step workflow
 
-1. Validate the VTT file.
-2. Open the VTT URL directly in a browser.
-3. Check the response headers for `content-type`.
-4. Configure the server to serve `.vtt` as `text/vtt` if needed.
-5. Reload the video page and test captions.
+### 1. Validate the VTT file
+
+Before fixing the server, make sure the file is actually valid WebVTT.
+
+1. Open the [WebVTT Validator](/tools/webvtt-validator/)
+2. Upload your `.vtt` file
+3. Fix any reported errors (missing header, wrong timestamp format, etc.)
+4. Re-validate until the report is clean
+
+A malformed VTT file will fail even with the right MIME type.
+
+### 2. Open the VTT URL directly in a browser
+
+Copy the exact URL from the `<track src="...">` attribute and paste it into a new browser tab.
+
+**Expected**: The browser displays the raw VTT text, starting with `WEBVTT`.
+
+**Common failures**:
+- 404 Not Found → file is missing or the path is wrong
+- Redirect to login → the file is behind authentication
+- HTML error page → the path resolves to a server-rendered page, not the file
+- Download prompt → the server sent the wrong MIME type (often `application/octet-stream`)
+
+### 3. Check the response headers for `content-type`
+
+Open browser DevTools (F12), go to the **Network** tab, reload the video page, and click the `.vtt` request.
+
+Look at the **Response Headers** section:
+
+```
+content-type: text/vtt; charset=utf-8     ✅ Correct
+content-type: text/plain                  ❌ Wrong - browsers refuse to parse
+content-type: application/octet-stream    ❌ Wrong - triggers download
+content-type: text/html                   ❌ Wrong - usually means a 404 page
+```
+
+You can also check from the command line:
+
+```bash
+curl -I https://example.com/captions.en.vtt
+```
+
+### 4. Configure the server to serve `.vtt` as `text/vtt`
+
+The fix depends on your server:
+
+**Apache** (`.htaccess` or virtual host config):
+```apache
+AddType text/vtt .vtt
+```
+
+**Nginx** (in `mime.types` or server block):
+```nginx
+types {
+    text/vtt vtt;
+}
+```
+
+Or directly in a `location` block:
+```nginx
+location ~ \.vtt$ {
+    add_header Content-Type text/vtt;
+}
+```
+
+**IIS** (`web.config`):
+```xml
+<configuration>
+  <system.webServer>
+    <staticContent>
+      <mimeMap fileExtension=".vtt" mimeType="text/vtt" />
+    </staticContent>
+  </system.webServer>
+</configuration>
+```
+
+**Express.js** (Node):
+```javascript
+express.static('public', {
+  setHeaders: (res, path) => {
+    if (path.endsWith('.vtt')) {
+      res.setHeader('Content-Type', 'text/vtt');
+    }
+  }
+});
+```
+
+**Netlify** (`_headers` file):
+```
+/*.vtt
+  Content-Type: text/vtt; charset=utf-8
+```
+
+**Vercel** (`vercel.json`):
+```json
+{
+  "headers": [{
+    "source": "/(.*).vtt",
+    "headers": [{ "key": "Content-Type", "value": "text/vtt; charset=utf-8" }]
+  }]
+}
+```
+
+**Cloudflare Pages** (`_headers` file):
+```
+/*.vtt
+  Content-Type: text/vtt; charset=utf-8
+  Access-Control-Allow-Origin: *
+```
+
+**S3 + CloudFront**: Set `Content-Type: text/vtt` as object metadata when uploading. For existing files, copy the object back to itself with new metadata or use the AWS CLI:
+```bash
+aws s3 cp s3://bucket/captions.vtt s3://bucket/captions.vtt \
+  --content-type "text/vtt" --metadata-directive REPLACE
+```
+
+### 5. Reload the video page and test captions
+
+After updating server config:
+
+1. Restart the server (or wait for the config to apply)
+2. Hard refresh the video page (Ctrl+Shift+R / Cmd+Shift+R)
+3. Re-check the `Content-Type` in DevTools - it should now show `text/vtt`
+4. Click the CC button in the video player
+5. Verify captions appear at the correct times
+
+If captions still don't show, see the troubleshooting section below.
 
 ## Common mistakes
 
 ### Fixing MIME type before validating the file
 
-A wrong content type is only one possible issue. A malformed VTT file will still fail after the server is fixed.
+A wrong content type is only one possible issue. A malformed VTT file will still fail after the server is fixed. Always validate the file first.
+
+**Order of operations**:
+1. Validate the file (catch syntax errors)
+2. Verify the URL returns the file (catch 404s and routing issues)
+3. Check the MIME type (catch server config issues)
+4. Test in the browser (catch CORS or browser-specific issues)
 
 ### Using a local file path in production
 
-The track `src` must point to a URL the browser can fetch from the deployed site.
+The `track` `src` must point to a URL the browser can fetch from the deployed site. Common mistakes:
+
+- `src="C:\Users\me\captions.vtt"` → only works on the dev machine
+- `src="file:///path/to/captions.vtt"` → blocked by browser security
+- `src="../captions/en.vtt"` → may resolve incorrectly after deployment
+
+**Use absolute or root-relative URLs**:
+```html
+<track src="/captions/en.vtt" srclang="en" />
+<track src="https://cdn.example.com/captions/en.vtt" srclang="en" />
+```
 
 ### Renaming SRT to VTT
 
-Convert SRT to VTT properly so the header and timestamp format are correct.
+Renaming `captions.srt` to `captions.vtt` does **not** convert the file. SRT and WebVTT use different formats:
+
+| Difference | SRT | WebVTT |
+|------------|-----|--------|
+| Header | None | `WEBVTT` required |
+| Timestamps | `00:00:01,000` | `00:00:01.000` |
+| Cue numbers | Required | Optional |
+| Styling | Limited | CSS-like cue settings |
+
+Convert SRT to VTT properly using the [SRT to VTT Converter](/tools/srt-to-vtt/) so the header and timestamp format are correct.
+
+### Forgetting CORS headers for cross-origin VTT files
+
+If your video page is at `example.com` and the VTT file is at `cdn.example.com`, the browser blocks the request unless the server sends:
+
+```
+Access-Control-Allow-Origin: https://example.com
+```
+
+And the `<track>` element includes:
+```html
+<video crossorigin="anonymous">
+  <track src="https://cdn.example.com/captions.vtt" />
+</video>
+```
+
+Without both, captions silently fail to load.
+
+### BOM (Byte Order Mark) at the start of the file
+
+Some text editors (Notepad on Windows, older versions of Excel) save UTF-8 files with a BOM - 3 invisible bytes at the start. The WebVTT parser sees this as garbage before `WEBVTT` and rejects the file.
+
+**Fix**: Re-save the file as "UTF-8 without BOM" in your editor:
+- VS Code: Click encoding in bottom-right → "Save with Encoding" → "UTF-8"
+- Notepad++: Encoding menu → "Convert to UTF-8 (without BOM)"
+- Sublime Text: File → Save with Encoding → "UTF-8"
+
+## Troubleshooting scenarios
+
+### Scenario 1: VTT works locally but fails after deployment
+
+**Likely cause**: Production server has different MIME type config than dev server.
+
+**Fix**: Apply the server-specific config from step 4 above. Many static hosts (Netlify, Vercel, Cloudflare) need an explicit `_headers` file to override defaults.
+
+### Scenario 2: Works in Chrome but not Firefox
+
+**Likely cause**: Firefox is stricter about MIME types and CORS than Chrome.
+
+**Fix**:
+1. Confirm `Content-Type: text/vtt` (not `text/plain`)
+2. If cross-origin, ensure `Access-Control-Allow-Origin` is set
+3. Check the Firefox console for specific error messages
+
+### Scenario 3: Works on desktop but not mobile
+
+**Likely cause**: Mobile browsers (especially iOS Safari) are stricter about HTTPS, CORS, and MIME types.
+
+**Fix**:
+1. Serve all assets (video and VTT) over HTTPS
+2. Verify CORS headers
+3. Test on actual devices, not just desktop emulators
+
+### Scenario 4: Captions show briefly then disappear
+
+**Likely cause**: Track loads but the cue parser fails partway through the file.
+
+**Fix**: Re-validate the VTT file. Look for malformed cues in the middle of the file - a single bad timestamp can break everything that follows.
+
+### Scenario 5: Console shows "Cross-origin track must specify crossorigin"
+
+**Fix**: Add `crossorigin="anonymous"` to the `<video>` element AND ensure the VTT file's server sends `Access-Control-Allow-Origin`.
+
+## Frequently asked questions
+
+### What's the correct MIME type for WebVTT?
+
+`text/vtt` is the official MIME type defined in the WebVTT specification. Some older docs mention `text/vtt; charset=utf-8` - both work, but always use UTF-8 encoding.
+
+### Can I use `text/plain` for VTT files?
+
+No. Browsers specifically check for `text/vtt` and refuse to parse files with other types. This is a security and correctness measure - it prevents arbitrary text files from being interpreted as captions.
+
+### How do I check the MIME type without DevTools?
+
+Use `curl` from the command line:
+```bash
+curl -I https://example.com/captions.vtt
+```
+
+Or use an online HTTP header checker. Look for the `Content-Type` line.
+
+### Why does the file download instead of displaying?
+
+The server is sending `Content-Type: application/octet-stream` (the default "unknown binary file" type). This tells the browser to download rather than display. Configure the server to send `text/vtt` instead.
+
+### Do I need to set the MIME type for `.srt` files too?
+
+If you serve SRT files for download (rather than embedding as `<track>`), the MIME type is `application/x-subrip` or `text/plain`. But HTML5 `<track>` requires WebVTT, so SRT files shouldn't be referenced from `<track>` directly.
+
+### Will fixing the MIME type fix all caption issues?
+
+Only MIME-type-related issues. If the file is malformed, the URL is wrong, or CORS is misconfigured, captions still fail. Always validate the file and check the network request as well.
+
+### How do I know if my CDN supports custom MIME types?
+
+Most CDNs (CloudFront, Cloudflare, Fastly, Akamai) honor the origin server's `Content-Type` header by default. If your origin sends `text/vtt`, the CDN forwards it. Some CDNs let you override headers in their config.
 
 ## Related guides
 

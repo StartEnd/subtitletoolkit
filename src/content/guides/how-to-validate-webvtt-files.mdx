@@ -12,48 +12,436 @@ tags:
 primaryTool: webvtt-validator
 ---
 
-WebVTT files are easy to break with small formatting mistakes, especially when converting from SRT.
+WebVTT files are easy to break with small formatting mistakes, especially when converting from SRT. A single syntax error can cause captions to fail silently in the browser, leaving you wondering why your subtitles won't display.
 
 ## Quick answer
 
-Use the [WebVTT Validator](/tools/webvtt-validator/) to check whether a `.vtt` file has a `WEBVTT` header, valid dot-based timestamps, and parseable cues.
+Use the [WebVTT Validator](/tools/webvtt-validator/) to check whether a `.vtt` file has a `WEBVTT` header, valid dot-based timestamps, and parseable cues. Validation catches syntax errors before you deploy, saving hours of debugging.
 
-This is useful before wiring captions into an HTML5 video player.
+This is essential before wiring captions into an HTML5 video player, Video.js, or any browser-based video platform.
+
+## Why WebVTT validation matters
+
+**WebVTT is strict about syntax**. Unlike SRT, which browsers are forgiving about, WebVTT parsers will reject files with even minor formatting issues:
+
+- **Silent failures** - Browsers often fail silently when VTT is malformed, showing no error message
+- **Cross-browser inconsistencies** - A file that works in Chrome might fail in Safari
+- **Conversion errors** - Automated SRT-to-VTT converters can introduce subtle bugs
+- **Manual editing mistakes** - Hand-editing timestamps or cue text can break the format
+
+Validating before deployment prevents these issues from reaching your users.
 
 ## What a valid WebVTT file needs
 
-A basic VTT file should include:
+A properly formatted WebVTT file must follow this structure:
 
-- `WEBVTT` at the top of the file
-- timestamps using dots, such as `00:00:01.000`
-- cue timing lines with `-->`
-- readable caption text after timing lines
-- blank lines between cue blocks
+### 1. WEBVTT header (required)
 
-Unlike SRT, WebVTT does not require cue numbers.
+The file must start with exactly `WEBVTT` on the first line:
+
+```
+WEBVTT
+```
+
+**Optional**: You can add a description after the header:
+```
+WEBVTT - English captions for product demo
+```
+
+**Common mistakes**:
+- ❌ `WebVTT` (wrong capitalization)
+- ❌ `WEBVTT FILE` (extra text without separator)
+- ❌ Starting with a blank line before `WEBVTT`
+
+### 2. Blank line after header (required)
+
+There must be at least one blank line between the header and the first cue:
+
+```
+WEBVTT
+
+1
+00:00:01.000 --> 00:00:03.000
+First caption
+```
+
+### 3. Dot-based timestamps (required)
+
+WebVTT uses dots (`.`) for milliseconds, not commas:
+
+✅ **Correct**: `00:00:01.000 --> 00:00:03.500`  
+❌ **Wrong**: `00:00:01,000 --> 00:00:03,500` (SRT format)
+
+**Format**: `HH:MM:SS.mmm` where:
+- `HH` = hours (can be omitted if under 1 hour)
+- `MM` = minutes (00-59)
+- `SS` = seconds (00-59)
+- `mmm` = milliseconds (000-999)
+
+**Valid variations**:
+- `00:00:01.000` (full format)
+- `00:01.000` (omit hours if under 1 hour)
+- `01:23.456` (1 minute, 23.456 seconds)
+
+### 4. Cue timing separator (required)
+
+Use ` --> ` (space, two hyphens, greater-than, space) between start and end times:
+
+✅ **Correct**: `00:00:01.000 --> 00:00:03.000`  
+❌ **Wrong**: `00:00:01.000->00:00:03.000` (no spaces)  
+❌ **Wrong**: `00:00:01.000 - 00:00:03.000` (single hyphen)
+
+### 5. Caption text (required)
+
+After the timing line, add the caption text:
+
+```
+00:00:01.000 --> 00:00:03.000
+This is the caption text.
+```
+
+**Multiple lines are allowed**:
+```
+00:00:01.000 --> 00:00:03.000
+This is line one.
+This is line two.
+```
+
+### 6. Blank lines between cues (required)
+
+Each cue must be separated by at least one blank line:
+
+```
+WEBVTT
+
+00:00:01.000 --> 00:00:03.000
+First caption
+
+00:00:03.000 --> 00:00:05.000
+Second caption
+```
+
+### 7. Cue identifiers (optional)
+
+Unlike SRT, WebVTT doesn't require cue numbers, but you can add them:
+
+```
+WEBVTT
+
+1
+00:00:01.000 --> 00:00:03.000
+First caption
+
+2
+00:00:03.000 --> 00:00:05.000
+Second caption
+```
+
+**Note**: Identifiers can be any text, not just numbers:
+```
+intro
+00:00:01.000 --> 00:00:03.000
+Welcome to our video
+```
 
 ## Step-by-step workflow
 
-1. Open the [WebVTT Validator](/tools/webvtt-validator/).
-2. Upload the `.vtt` file or paste its contents.
-3. Run validation.
-4. Check for a missing header, comma timestamps, or parse errors.
-5. Fix the file or reconvert from the source subtitle.
-6. Test the VTT file in the actual web player.
+### 1. Open the WebVTT Validator
+
+Go to the [WebVTT Validator](/tools/webvtt-validator/) tool.
+
+### 2. Load your VTT file
+
+You have two options:
+
+**Option A: Upload file**
+- Click "Choose File" or drag and drop your `.vtt` file
+- The validator reads the file locally (nothing is uploaded to a server)
+
+**Option B: Paste content**
+- Open your VTT file in a text editor
+- Copy all content (Ctrl+A, Ctrl+C)
+- Paste into the validator text area
+
+### 3. Run validation
+
+Click the "Validate" button. The validator checks:
+- ✅ WEBVTT header presence and format
+- ✅ Timestamp format (dots vs commas)
+- ✅ Cue structure and separators
+- ✅ Blank line requirements
+- ✅ Character encoding (must be UTF-8)
+
+### 4. Review validation results
+
+**If validation passes**:
+```
+✓ Valid WebVTT file
+- 45 cues found
+- No errors detected
+```
+
+Your file is ready to use.
+
+**If validation fails**:
+```
+✗ Invalid WebVTT file
+- Line 1: Missing WEBVTT header
+- Line 15: Invalid timestamp format (comma instead of dot)
+- Line 23: Missing blank line between cues
+```
+
+The validator shows exactly which lines have errors.
+
+### 5. Fix reported errors
+
+Common fixes:
+
+**Missing header** → Add `WEBVTT` as the first line  
+**Comma timestamps** → Replace `,` with `.` in all timestamps  
+**Missing blank lines** → Add empty lines between cues  
+**Wrong separator** → Use ` --> ` (with spaces)
+
+### 6. Re-validate after fixes
+
+After making corrections:
+1. Save the file
+2. Re-upload or paste the updated content
+3. Validate again
+4. Repeat until all errors are fixed
+
+### 7. Test in actual player
+
+Even after validation passes, test the VTT file in your actual video player:
+
+```html
+<video controls>
+  <source src="video.mp4" type="video/mp4">
+  <track kind="subtitles" src="captions.vtt" srclang="en" label="English" default>
+</video>
+```
+
+**Check**:
+- Captions display at the correct times
+- Text is readable and properly formatted
+- No captions are missing
+- Special characters display correctly
+
+### 8. Check browser console for runtime errors
+
+Open DevTools (F12) and check the Console tab for VTT-related errors:
+- `Failed to load resource` → File path is wrong
+- `Text track failed to load` → CORS or MIME type issue
+- `Cue parsing error` → Syntax error the validator missed
 
 ## Common WebVTT problems
 
 ### Missing WEBVTT header
 
-Browsers expect the file to start with `WEBVTT`. A file that looks like VTT but lacks the header may fail silently.
+**Symptom**: Captions don't show, no error message in browser.
 
-### SRT-style commas
+**Example of broken file**:
+```
+1
+00:00:01.000 --> 00:00:03.000
+First caption
+```
 
-VTT timestamps should use dots for milliseconds. If the file contains commas, it may have been copied from SRT without conversion.
+**Fix**: Add `WEBVTT` as the very first line:
+```
+WEBVTT
+
+1
+00:00:01.000 --> 00:00:03.000
+First caption
+```
+
+**Why this happens**: When converting from SRT manually or using a broken converter, the header gets omitted. Browsers expect the file to start with `WEBVTT` and will reject it silently if missing.
+
+### SRT-style commas in timestamps
+
+**Symptom**: Captions don't display, or only some cues show.
+
+**Example of broken timestamps**:
+```
+WEBVTT
+
+00:00:01,000 --> 00:00:03,500
+This won't work
+```
+
+**Fix**: Replace all commas with dots:
+```
+WEBVTT
+
+00:00:01.000 --> 00:00:03.500
+This will work
+```
+
+**Why this happens**: SRT uses commas for milliseconds (`00:00:01,000`), but WebVTT requires dots (`00:00:01.000`). If you copy-paste from SRT without converting, the commas break the format.
+
+**Quick fix**: Find and replace all `,` with `.` in timestamps (but be careful not to replace commas in caption text).
+
+### Missing blank line after header
+
+**Symptom**: First caption doesn't show, rest work fine.
+
+**Example of broken file**:
+```
+WEBVTT
+1
+00:00:01.000 --> 00:00:03.000
+First caption
+```
+
+**Fix**: Add a blank line after `WEBVTT`:
+```
+WEBVTT
+
+1
+00:00:01.000 --> 00:00:03.000
+First caption
+```
+
+### Missing blank lines between cues
+
+**Symptom**: Some captions merge together or don't display.
+
+**Example of broken file**:
+```
+WEBVTT
+
+00:00:01.000 --> 00:00:03.000
+First caption
+00:00:03.000 --> 00:00:05.000
+Second caption
+```
+
+**Fix**: Add blank lines between each cue:
+```
+WEBVTT
+
+00:00:01.000 --> 00:00:03.000
+First caption
+
+00:00:03.000 --> 00:00:05.000
+Second caption
+```
+
+### Wrong cue separator
+
+**Symptom**: Captions don't parse correctly.
+
+**Example of broken separators**:
+```
+00:00:01.000->00:00:03.000  (no spaces)
+00:00:01.000 - 00:00:03.000  (single hyphen)
+00:00:01.000 — 00:00:03.000  (em dash)
+```
+
+**Fix**: Use exactly ` --> ` (space, two hyphens, greater-than, space):
+```
+00:00:01.000 --> 00:00:03.000
+```
+
+### Invalid timestamp format
+
+**Common invalid formats**:
+```
+0:1:5.0           (missing leading zeros)
+00:00:65.000      (seconds > 59)
+00:00:01.1        (milliseconds need 3 digits)
+00:00:01          (missing milliseconds)
+```
+
+**Valid formats**:
+```
+00:00:01.000      (full format)
+00:01.000         (can omit hours if under 1 hour)
+01:23.456         (1 minute, 23.456 seconds)
+```
+
+### Character encoding issues
+
+**Symptom**: Special characters display as � or garbled text.
+
+**Cause**: File is not saved as UTF-8.
+
+**Fix**: 
+1. Open the file in a text editor that supports encoding (VS Code, Notepad++, Sublime)
+2. Save as UTF-8 (without BOM)
+3. Re-validate
+
+Or use the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) to convert automatically.
+
+### Cue settings syntax errors
+
+WebVTT supports cue settings for positioning, but syntax errors break parsing:
+
+**Wrong**:
+```
+00:00:01.000 --> 00:00:03.000 align=middle
+Caption text
+```
+
+**Correct**:
+```
+00:00:01.000 --> 00:00:03.000 align:middle
+Caption text
+```
+
+Note: Use colon (`:`) not equals (`=`) for cue settings.
 
 ### Wrong MIME type or player setup
 
-A valid file can still fail if the server or player is configured incorrectly. Validation checks the file, not the whole web page.
+**Important**: A valid file can still fail if the server or player is configured incorrectly. 
+
+**Validation checks the file format only**, not:
+- Server MIME type configuration
+- CORS headers
+- Player JavaScript setup
+- File path correctness
+
+If validation passes but captions still don't show, see:
+- [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/)
+- [How to fix CORS errors for VTT subtitles](/guides/how-to-fix-cors-errors-for-vtt-subtitles/)
+
+## Validation vs testing
+
+**Validation** checks syntax and format.  
+**Testing** checks if captions actually work in the browser.
+
+**Both are necessary**:
+1. ✅ Validate first to catch syntax errors
+2. ✅ Then test in the actual player to catch configuration issues
+
+Don't skip either step.
+
+## Frequently asked questions
+
+### Can I validate multiple VTT files at once?
+
+The validator processes one file at a time. For batch validation, validate each file individually or use a command-line tool.
+
+### Does the validator fix errors automatically?
+
+No, it only reports errors. You need to manually fix the file based on the error messages. However, if you're converting from SRT, use the [SRT to VTT Converter](/tools/srt-to-vtt/) which automatically fixes common issues.
+
+### What if validation passes but captions still don't show?
+
+The file format is correct, but there's likely a configuration issue:
+- Check the file path in your `<track>` element
+- Verify CORS headers if the VTT is on a different domain
+- Check the browser console for errors
+- Confirm the MIME type is `text/vtt` or `text/plain`
+
+### Can I use the validator offline?
+
+Yes, the validator runs entirely in your browser. No files are uploaded to a server. You can save the validator page and use it offline.
+
+### Does WebVTT support styling?
+
+Yes, WebVTT supports CSS-like styling with cue settings and `<c>` tags. However, styling syntax is complex and easy to break. Validate carefully after adding styles.
 
 ## Related guides
 

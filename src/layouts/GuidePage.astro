@@ -32,6 +32,36 @@ const breadcrumbItems = [
 	{ label: categoryMeta.label, href: categoryMeta.hubPath },
 	{ label: title },
 ];
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Article Schema
+const articleSchema = {
+	"@context": "https://schema.org",
+	"@type": "Article",
+	"headline": title,
+	"description": description,
+	"datePublished": pubDate.toISOString(),
+	"dateModified": (updatedDate || pubDate).toISOString(),
+	"author": {
+		"@type": "Organization",
+		"name": "SubtitleToolkit",
+		"url": Astro.site
+	},
+	"publisher": {
+		"@type": "Organization",
+		"name": "SubtitleToolkit",
+		"url": Astro.site,
+		"logo": {
+			"@type": "ImageObject",
+			"url": new URL('/og-preview.png', Astro.site).toString()
+		}
+	},
+	"mainEntityOfPage": {
+		"@type": "WebPage",
+		"@id": canonicalURL.toString()
+	}
+};
 ---
 
 <SiteLayout
@@ -41,6 +71,7 @@ const breadcrumbItems = [
 	publishedTime={pubDate}
 	modifiedTime={updatedDate}
 >
+	<script type="application/ld+json" set:html={JSON.stringify(articleSchema)} slot="head" />
 	<article class="guide-article">
 		<Breadcrumbs items={breadcrumbItems} />
 		<!-- Article Header -->
