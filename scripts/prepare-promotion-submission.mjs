@@ -94,17 +94,21 @@ async function checkSubmissionAssets() {
 		if (!existsSync(resolve(filePath))) {
 			fail(`Missing promotion asset: ${filePath}`);
 		}
+
+		console.log(`PASS ${filePath}: exists`);
 	}
 
 	const logo = readPngDimensions(assetPaths.logoPng);
 	if (logo.width !== 512 || logo.height !== 512) {
 		fail(`${assetPaths.logoPng} must be a 512x512 PNG.`);
 	}
+	console.log(`PASS ${assetPaths.logoPng}: ${logo.width}x${logo.height} PNG`);
 
 	const ogImage = readPngDimensions(assetPaths.ogImage);
 	if (ogImage.width !== 1200 || ogImage.height !== 630) {
 		fail(`${assetPaths.ogImage} must be a 1200x630 PNG.`);
 	}
+	console.log(`PASS ${assetPaths.ogImage}: ${ogImage.width}x${ogImage.height} PNG`);
 }
 
 function readPngDimensions(filePath) {

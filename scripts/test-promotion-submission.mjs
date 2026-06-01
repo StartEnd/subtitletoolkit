@@ -46,6 +46,9 @@ assertIncludes(directory.stdout, 'pnpm promotion:record -- --date 2026-06-01 --c
 
 const checkedAssets = run(['--submitted-on', '2026-06-01', '--section', 'directory', '--check-assets']);
 assertExit(checkedAssets, 0);
+assertIncludes(checkedAssets.stdout, 'PASS public/logo-512.png: exists');
+assertIncludes(checkedAssets.stdout, 'PASS public/logo-512.png: 512x512 PNG');
+assertIncludes(checkedAssets.stdout, 'PASS public/og-preview.png: 1200x630 PNG');
 assertIncludes(checkedAssets.stdout, 'Logo PNG: public/logo-512.png');
 
 const logoPath = join(rootDir, 'public/logo-512.png');
