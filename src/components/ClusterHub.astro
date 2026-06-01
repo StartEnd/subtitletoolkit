@@ -40,7 +40,7 @@ const otherCategories = guideCategoryOrder
 	}))
 	.filter((entry) => entry.count > 0);
 
-const pageTitle = `${meta.label} | ${SITE_TITLE}`;
+const pageTitle = meta.seoTitle ?? `${meta.label} | ${SITE_TITLE}`;
 const pageDescription = intro;
 const hubCopy: Record<GuideCategory, { title: string; body: string; bullets: string[] }> = {
 	'conversion-guides': {

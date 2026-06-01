@@ -1,7 +1,6 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import GuidePage from '../../layouts/GuidePage.astro';
-import JsonLd from '../../components/JsonLd.astro';
 import { getSubtitleTool } from '../../lib/subtitles/catalog';
 
 export async function getStaticPaths() {
@@ -46,24 +45,5 @@ const primaryToolData = guide.data.primaryTool
 ---
 
 <GuidePage {...guide.data} relatedGuides={relatedGuides} primaryToolData={primaryToolData}>
-	<JsonLd type="article" data={{
-		'@type': 'Article',
-		headline: guide.data.title,
-		description: guide.data.description,
-		datePublished: guide.data.pubDate.toISOString(),
-		dateModified: (guide.data.updatedDate || guide.data.pubDate).toISOString(),
-		author: {
-			'@type': 'Organization',
-			name: 'Subtitle Toolkit',
-		},
-		publisher: {
-			'@type': 'Organization',
-			name: 'Subtitle Toolkit',
-			logo: {
-				'@type': 'ImageObject',
-				url: 'https://subtitletoolkit.tools/favicon.svg',
-			},
-		},
-	}} />
 	<Content />
 </GuidePage>

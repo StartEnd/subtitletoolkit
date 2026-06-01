@@ -2,7 +2,7 @@
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import JsonLd from '../../components/JsonLd.astro';
 import { getSubtitleCatalog } from '../../lib/subtitles/catalog';
-import { SITE_DOMAIN, SITE_TITLE } from '../../consts';
+import { SITE_DOMAIN } from '../../consts';
 
 const catalog = getSubtitleCatalog('en');
 const platformToolIds = [
@@ -32,11 +32,12 @@ const utilityToolIds = [
 const conversionTools = catalog.tools.filter(t => !utilityToolIds.includes(t.id) && !platformToolIds.includes(t.id));
 const platformTools = catalog.tools.filter(t => platformToolIds.includes(t.id));
 const utilityTools = catalog.tools.filter(t => utilityToolIds.includes(t.id));
+const pageTitle = 'Free Subtitle Tools - Convert, Fix, Clean SRT, VTT, ASS';
 const pageDescription =
 	'Browse free browser-based subtitle tools for converting SRT, VTT, and ASS files, shifting timing, cleaning text, merging files, and extracting captions locally.';
 ---
 
-<SiteLayout title={`Free Subtitle Tools | ${SITE_TITLE}`} description={pageDescription}>
+<SiteLayout title={pageTitle} description={pageDescription}>
 	<JsonLd
 		type="collectionPage"
 		data={{

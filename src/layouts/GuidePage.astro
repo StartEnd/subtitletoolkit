@@ -16,6 +16,8 @@ type Props = GuideEntry['data'] & {
 
 const {
 	title,
+	seoTitle,
+	seoDescription,
 	description,
 	pubDate,
 	updatedDate,
@@ -23,6 +25,9 @@ const {
 	relatedGuides = [],
 	primaryToolData = null,
 } = Astro.props as Props;
+
+const pageTitle = seoTitle ?? `${title} | ${SITE_TITLE}`;
+const pageDescription = seoDescription ?? description;
 
 const categoryMeta = guideCategoryMeta[category];
 
@@ -40,7 +45,7 @@ const articleSchema = {
 	"@context": "https://schema.org",
 	"@type": "Article",
 	"headline": title,
-	"description": description,
+	"description": pageDescription,
 	"datePublished": pubDate.toISOString(),
 	"dateModified": (updatedDate || pubDate).toISOString(),
 	"author": {
@@ -65,8 +70,8 @@ const articleSchema = {
 ---
 
 <SiteLayout
-	title={`${title} | ${SITE_TITLE}`}
-	description={description}
+	title={pageTitle}
+	description={pageDescription}
 	pageType="article"
 	publishedTime={pubDate}
 	modifiedTime={updatedDate}

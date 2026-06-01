@@ -16,6 +16,17 @@ const groupedGuides = guideCategoryOrder
 		guides: guides.filter((guide) => guide.data.category === category),
 	}))
 	.filter((group) => group.guides.length > 0);
+const priorityGuideIds = [
+	'how-to-convert-srt-to-vtt-for-html5-video',
+	'how-to-fix-subtitle-delay',
+	'how-to-fix-invalid-webvtt-timestamps',
+	'how-to-clean-subtitle-formatting-before-upload',
+	'best-subtitle-format-for-youtube',
+	'why-subtitles-do-not-show-in-html5-video',
+];
+const priorityGuides = priorityGuideIds
+	.map((id) => guides.find((guide) => guide.id === id))
+	.filter(Boolean);
 const pageDescription =
 	'Read practical subtitle guides for format conversion, sync fixes, SRT vs VTT comparisons, YouTube uploads, HTML5 video, and browser caption workflows.';
 ---
@@ -54,6 +65,29 @@ const pageDescription =
 				))
 			}
 		</nav>
+	</section>
+
+	<section class="section">
+		<span class="eyebrow">Start here</span>
+		<h2>High-intent subtitle problems to fix first.</h2>
+		<p class="lede priority-lede">
+			These guides match the searches most likely to turn into a tool action: convert a file,
+			fix timing, clean a broken upload, or prepare captions for a specific platform.
+		</p>
+		<div class="priority-grid">
+			{
+				priorityGuides.map((guide) => (
+					<article class="priority-card">
+						<p class="priority-card-meta">
+							{guideCategoryMeta[guide.data.category].label}
+						</p>
+						<h3><a href={`/guides/${guide.id}/`}>{guide.data.title}</a></h3>
+						<p>{guide.data.description}</p>
+						<a class="card-link" href={`/guides/${guide.id}/`}>Read guide <span aria-hidden="true">&rarr;</span></a>
+					</article>
+				))
+			}
+		</div>
 	</section>
 
 	<section class="section-muted">
@@ -135,6 +169,47 @@ const pageDescription =
 		gap: var(--space-12);
 	}
 
+	.priority-lede {
+		max-width: 52rem;
+	}
+
+	.priority-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--space-5);
+		margin-top: var(--space-8);
+	}
+
+	.priority-card {
+		display: flex;
+		flex-direction: column;
+		padding: var(--space-6);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		background: var(--color-background);
+		box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+	}
+
+	.priority-card-meta {
+		margin: 0 0 var(--space-2);
+		color: var(--color-tertiary);
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	.priority-card h3 {
+		margin-bottom: var(--space-3);
+		font-size: 1.05rem;
+	}
+
+	.priority-card p:not(.priority-card-meta) {
+		color: var(--color-secondary);
+		font-size: 0.9375rem;
+		line-height: 1.6;
+	}
+
 	.guide-cluster {
 		display: flex;
 		flex-direction: column;
@@ -191,6 +266,10 @@ const pageDescription =
 	}
 
 	@media (max-width: 768px) {
+		.priority-grid {
+			grid-template-columns: 1fr;
+		}
+
 		.guide-cluster-head {
 			grid-template-columns: 1fr;
 			align-items: start;

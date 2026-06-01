@@ -1,6 +1,6 @@
 # Google Search Console Indexing Checklist
 
-Last updated: 2026-05-26
+Last updated: 2026-06-01
 Site: `https://subtitletoolkit.tools`
 
 ## Goal
@@ -20,10 +20,12 @@ Only submit URLs after the latest version is live.
 
 This matters because the current build now includes:
 
-- canonical URLs that use `https://subtitletoolkit.tools`
-- sitemap URLs that use the non-`www` domain and trailing slash format
-- stronger metadata and FAQ content on `/tools/srt-to-vtt/`
-- related guides and internal links for the core converter pages
+- click-through oriented titles and meta descriptions for priority guide pages
+- updated tool and guide hub titles for stronger query fit
+- a single Article JSON-LD block on guide pages
+- SoftwareApplication schema with `isAccessibleForFree: true` on tool pages
+- homepage, footer, and hub links toward high-intent subtitle jobs
+- sitemap `lastmod` entries tied to the deployed git commit time
 
 Before submitting URLs, confirm the deployment layer has a host redirect rule:
 
@@ -40,9 +42,66 @@ Submit or refresh this sitemap in Search Console:
 Do this once after deployment.
 Do not keep resubmitting it every day.
 
+## Step 2.5: Verify The SEO Update Is Live
+
+Before requesting indexing, confirm Google can fetch the updated page content instead of the previous build.
+
+Check these URLs after deployment:
+
+1. `https://subtitletoolkit.tools/`
+   - expected links: `/tools/subtitle-delay-fixer/`, `/tools/extract-subtitles-from-video/`, and `/guides/why-subtitles-do-not-show-in-html5-video/`
+2. `https://subtitletoolkit.tools/guides/how-to-fix-subtitle-delay/`
+   - expected title: `Fix Subtitle Delay Online - SRT, VTT, ASS Timing Guide`
+   - expected description: `Fix subtitles that appear too early or too late.`
+   - expected structured data: one `Article` JSON-LD block
+3. `https://subtitletoolkit.tools/guides/how-to-convert-srt-to-vtt-for-html5-video/`
+   - expected title: `SRT to VTT for HTML5 Video - Free Converter Guide`
+   - expected description: `Convert SRT subtitles to WebVTT for HTML5 video.`
+   - expected footer link text: `SRT to VTT for HTML5`
+4. `https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/`
+   - expected title: `VTT to SRT Converter Guide - Free WebVTT to SubRip`
+5. `https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mkv/`
+   - expected title: `Extract Subtitles from MKV - Free No Upload Guide`
+6. `https://subtitletoolkit.tools/tools/srt-to-ass/`
+   - expected title: `SRT to ASS Converter - Convert Subtitles Online Free`
+   - expected structured data: `isAccessibleForFree: true`
+7. `https://subtitletoolkit.tools/tools/`
+   - expected title: `Free Subtitle Tools - Convert, Fix, Clean SRT, VTT, ASS`
+8. `https://subtitletoolkit.tools/guides/`
+   - expected section: `High-intent subtitle problems to fix first.`
+9. `https://subtitletoolkit.tools/guides/conversion-guides/`
+   - expected title: `Subtitle Conversion Guides - SRT, VTT, ASS Workflows`
+10. `https://subtitletoolkit.tools/guides/sync-fixes/`
+   - expected title: `Subtitle Sync Fixes - Timing, Delay, and VTT Errors`
+11. `https://subtitletoolkit.tools/sitemap-0.xml`
+   - expected: sitemap `lastmod` entries match the deployed commit time
+
+If any of these checks still show the old title or missing footer links, wait for the Pages deployment to finish before using Search Console URL Inspection.
+
+You can run the same checks from the repo:
+
+```bash
+pnpm verify:seo:ready
+pnpm verify:seo
+```
+
+To wait for a just-triggered Cloudflare Pages deployment, retry production verification for up to five minutes:
+
+```bash
+pnpm verify:seo:live
+```
+
+For a Cloudflare Pages preview deployment, point the check at the preview URL:
+
+```bash
+SEO_VERIFY_BASE_URL=https://<preview-host> pnpm verify:seo
+```
+
 ## Step 3: Priority URLs To Request Manually
 
 Use URL Inspection and request indexing for these pages first.
+
+Do not submit all URLs in one sitting. On deploy day, use `GSC_DAY0_URLS.md`: submit the sitemap, Tier 1, Tier 2, and the first four Tier 4 long-tail pages. Use Tier 3 and the remaining Tier 4 URLs after Google starts showing crawl or impression movement.
 
 ### Tier 1: Site entry pages
 
@@ -55,36 +114,47 @@ Use URL Inspection and request indexing for these pages first.
 4. `https://subtitletoolkit.tools/tools/srt-to-vtt/`
 5. `https://subtitletoolkit.tools/tools/vtt-to-srt/`
 6. `https://subtitletoolkit.tools/tools/ass-to-srt/`
-7. `https://subtitletoolkit.tools/tools/subtitle-time-shifter/`
-8. `https://subtitletoolkit.tools/tools/subtitle-encoding-fixer/`
+7. `https://subtitletoolkit.tools/tools/srt-to-ass/`
+8. `https://subtitletoolkit.tools/tools/subtitle-delay-fixer/`
+9. `https://subtitletoolkit.tools/tools/subtitle-cleaner/`
+10. `https://subtitletoolkit.tools/tools/extract-subtitles-from-video/`
 
-### Tier 3: Core format comparison pages
+### Tier 3: Guide hub pages
 
-9. `https://subtitletoolkit.tools/guides/srt-vs-vtt/`
-10. `https://subtitletoolkit.tools/guides/ass-vs-srt/`
-11. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-html5-video/`
+11. `https://subtitletoolkit.tools/guides/conversion-guides/`
+12. `https://subtitletoolkit.tools/guides/sync-fixes/`
+13. `https://subtitletoolkit.tools/guides/format-comparisons/`
+14. `https://subtitletoolkit.tools/guides/workflow-guides/`
 
 ### Tier 4: Strongest long-tail action pages
 
-12. `https://subtitletoolkit.tools/guides/how-to-convert-srt-to-vtt-for-html5-video/`
-13. `https://subtitletoolkit.tools/guides/how-to-fix-subtitle-delay/`
-14. `https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/`
-15. `https://subtitletoolkit.tools/guides/how-to-clean-subtitle-formatting-before-upload/`
+15. `https://subtitletoolkit.tools/guides/how-to-convert-srt-to-vtt-for-html5-video/`
+16. `https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/`
+17. `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-srt-for-youtube-uploads/`
+18. `https://subtitletoolkit.tools/guides/how-to-fix-subtitle-delay/`
+19. `https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/`
+20. `https://subtitletoolkit.tools/guides/how-to-clean-subtitle-formatting-before-upload/`
+21. `https://subtitletoolkit.tools/guides/why-vtt-captions-are-not-loading/`
+22. `https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mkv/`
 
 ## Step 4: Secondary URLs To Submit Later
 
 Wait a few days before requesting these unless they are already showing impressions.
 
-1. `https://subtitletoolkit.tools/tools/srt-to-ass/`
-2. `https://subtitletoolkit.tools/tools/subtitle-cleaner/`
-3. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-videojs/`
-4. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-jw-player/`
-5. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-vimeo-embeds/`
-6. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-plex/`
-7. `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-srt-for-youtube-uploads/`
-8. `https://subtitletoolkit.tools/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/`
-9. `https://subtitletoolkit.tools/guides/how-to-remove-subtitle-line-numbers/`
-10. `https://subtitletoolkit.tools/guides/how-to-fix-malformed-srt-timestamps/`
+1. `https://subtitletoolkit.tools/tools/subtitle-time-shifter/`
+2. `https://subtitletoolkit.tools/tools/fix-out-of-sync-subtitles/`
+3. `https://subtitletoolkit.tools/tools/srt-validator/`
+4. `https://subtitletoolkit.tools/tools/webvtt-validator/`
+5. `https://subtitletoolkit.tools/tools/subtitle-encoding-fixer/`
+6. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-youtube/`
+7. `https://subtitletoolkit.tools/guides/why-subtitles-do-not-show-in-html5-video/`
+8. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-videojs/`
+9. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-jw-player/`
+10. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-vimeo-embeds/`
+11. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-plex/`
+12. `https://subtitletoolkit.tools/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/`
+13. `https://subtitletoolkit.tools/guides/how-to-remove-subtitle-line-numbers/`
+14. `https://subtitletoolkit.tools/guides/how-to-fix-malformed-srt-timestamps/`
 
 ## Step 5: What To Ignore For Now
 
@@ -145,3 +215,4 @@ Each time you ship a meaningful content batch:
 2. resubmit sitemap once
 3. manually submit only the 5 to 10 most important URLs
 4. wait and observe
+5. record weekly GSC results in `GSC_WEEKLY_TRACKER.md`

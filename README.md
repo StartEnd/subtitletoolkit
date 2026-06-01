@@ -38,6 +38,32 @@ pnpm dev
 pnpm build
 ```
 
+## SEO Verification
+
+Run the build and generated-output SEO checks before publishing search-facing changes:
+
+```bash
+pnpm verify:seo:ready
+```
+
+After Cloudflare Pages deploys, verify the live site has the updated titles, structured data, and priority guide links:
+
+```bash
+pnpm verify:seo
+```
+
+To wait for a deployment to finish propagating, add retries:
+
+```bash
+pnpm verify:seo:live
+```
+
+For a Pages preview URL, set the base URL explicitly:
+
+```bash
+SEO_VERIFY_BASE_URL=https://<preview-host> pnpm verify:seo
+```
+
 Optional env:
 
 ```bash

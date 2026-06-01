@@ -9,9 +9,32 @@ import { SITE_DESCRIPTION, SITE_DOMAIN, SITE_TITLE } from '../consts';
 const pageTitle = 'Free Subtitle Tools for SRT, VTT, and ASS';
 
 const catalog = getSubtitleCatalog('en');
-const featuredTools = catalog.tools.slice(0, 6);
 const guides = await getCollection('guides');
-const featuredGuides = guides.slice(0, 4);
+
+const priorityToolIds = [
+	'srt-to-vtt',
+	'vtt-to-srt',
+	'ass-to-srt',
+	'subtitle-delay-fixer',
+	'subtitle-cleaner',
+	'extract-subtitles-from-video',
+];
+
+const priorityGuideIds = [
+	'how-to-convert-srt-to-vtt-for-html5-video',
+	'how-to-fix-subtitle-delay',
+	'how-to-fix-invalid-webvtt-timestamps',
+	'how-to-clean-subtitle-formatting-before-upload',
+	'best-subtitle-format-for-youtube',
+	'why-subtitles-do-not-show-in-html5-video',
+];
+
+const featuredTools = priorityToolIds
+	.map((id) => catalog.tools.find((tool) => tool.id === id))
+	.filter(Boolean);
+const featuredGuides = priorityGuideIds
+	.map((id) => guides.find((guide) => guide.id === id))
+	.filter(Boolean);
 const guideClusters = guideCategoryOrder
 	.map((category) => ({
 		category,
@@ -109,9 +132,7 @@ const faqSchema = {
 					featuredTools.map((tool) => (
 						<article class="card">
 							<div class="badge-row">
-								<span class="format-badge">{tool.shortTitle.split(' to ')[0]}</span>
-								<span class="format-arrow">&rarr;</span>
-								<span class="format-badge">{tool.shortTitle.split(' to ')[1]}</span>
+								<span class="format-badge">{tool.shortTitle}</span>
 							</div>
 							<h3><a href={`/tools/${tool.id}/`}>{tool.title}</a></h3>
 							<p class="muted">{tool.description}</p>

@@ -10,6 +10,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "verify:seo:ready": "pnpm build && pnpm verify:seo:dist",
+    "verify:seo:dist": "SEO_VERIFY_DIST=1 node scripts/verify-production-seo.mjs",
+    "verify:seo:live": "SEO_VERIFY_RETRIES=10 SEO_VERIFY_RETRY_DELAY_MS=30000 pnpm verify:seo",
+    "verify:seo": "node scripts/verify-production-seo.mjs",
     "astro": "astro"
   },
   "dependencies": {
