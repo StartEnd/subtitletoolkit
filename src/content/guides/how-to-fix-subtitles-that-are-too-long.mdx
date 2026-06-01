@@ -1,0 +1,138 @@
+---
+title: Fix subtitles that are too long
+seoTitle: Fix Subtitles That Are Too Long - Line Length Guide
+seoDescription: Fix subtitles that are too long by checking line length, cue duration, reading speed, and line breaks before upload or playback.
+description: Shorten subtitles that are too long by checking caption line length, cue duration, reading speed, and line breaks before upload or playback.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - subtitle readability
+  - line length
+  - reading speed
+  - clean subtitles
+  - srt
+primaryTool: subtitle-cleaner
+faqs:
+  - question: How long should a subtitle line be?
+    answer: A practical target is about 42 characters per line with no more than two lines per cue. Some platforms allow more, but shorter lines usually read better on mobile.
+  - question: Why are my subtitles too long even if the file is valid?
+    answer: Subtitle validators check syntax first. A file can be valid SRT or VTT and still have captions that are too long to read comfortably during playback.
+  - question: Should I split long subtitles or change timing?
+    answer: Split or rewrite the text when one cue contains too much content. Extend timing only when the caption genuinely stays on screen too briefly and does not overlap the next cue.
+---
+
+Subtitles can be technically valid and still feel too long on screen.
+
+## Quick answer
+
+Aim for short, readable cues: about `42 characters per line`, no more than `2 lines`, and enough screen time for the viewer to read without pausing.
+
+Use [Subtitle Cleaner](/tools/subtitle-cleaner/) to normalize spacing first, then review cues that are too wide, too dense, or too short for the amount of text.
+
+## What "too long" usually means
+
+People use "too long" for a few different subtitle problems:
+
+- one subtitle line runs across the whole screen
+- a cue has three or more lines after wrapping
+- a caption stays on screen for too long after speech ends
+- a caption disappears before the viewer can read it
+- a subtitle file uploads, but captions look cramped on mobile
+
+Before editing, decide which problem you have. Line length, cue duration, and reading speed are related, but they are not the same fix.
+
+## Practical readability targets
+
+Use these as working targets, not hard laws:
+
+- **Characters per line**: around 42 characters
+- **Lines per cue**: 1 or 2 lines
+- **Minimum duration**: around 1 second for very short cues
+- **Maximum duration**: around 6 to 7 seconds for normal captions
+- **Reading speed**: avoid dense text that forces viewers to pause
+
+If the destination is YouTube or a mobile-first player, be stricter. A line that looks acceptable on a desktop preview can wrap badly on a phone.
+
+## Step-by-step workflow
+
+1. Open [Subtitle Cleaner](/tools/subtitle-cleaner/).
+2. Paste or upload the SRT or VTT file.
+3. Clean extra spacing, blank lines, and leftover formatting.
+4. Scan for cues with long single lines or three-line wraps.
+5. Rewrite long sentences into shorter caption text.
+6. Split only when the timing still matches the spoken phrase.
+7. Preview the exported file in the target player.
+
+## How to fix long subtitle lines
+
+### Break the line at a natural phrase
+
+Prefer a split that keeps meaning together:
+
+```text
+We finished the export,
+but the captions still need review.
+```
+
+Avoid breaking between words that belong together:
+
+```text
+We finished the
+export, but the captions still need review.
+```
+
+### Rewrite instead of only wrapping
+
+When the text is still too dense after a two-line split, shorten it:
+
+```text
+Original:
+The reason this file failed is that the subtitle text is too long for the amount of time it appears on screen.
+
+Cleaner:
+The subtitle text is too long
+for its screen time.
+```
+
+### Split the cue when speech has a pause
+
+If the speaker pauses naturally, split one long cue into two shorter cues. Do not split in the middle of a fast sentence unless you can preserve timing.
+
+## When timing is the real problem
+
+Sometimes the text is reasonable, but the cue is too short. In that case, line breaks will not solve the issue.
+
+Check the neighboring cues:
+
+- If there is empty time after the cue, extend it slightly.
+- If the next cue starts immediately, shorten the text instead.
+- If many cues are too dense, the transcript may need editing before subtitle cleanup.
+
+For timing-specific issues, use [Fix subtitles that are too fast or slow](/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/) or [How to fix subtitle line breaks](/guides/how-to-fix-subtitle-line-breaks/) depending on whether the issue is timing or readability.
+
+## Common mistakes
+
+### Trusting only a validator
+
+An SRT file can be valid while still being hard to read. Validation catches broken syntax, not every readability issue.
+
+### Keeping transcript sentences intact
+
+Transcripts are written for reading as a document. Subtitles need shorter chunks because the viewer is also watching the video.
+
+### Fixing desktop preview only
+
+Always check a mobile-sized preview when the video will be watched on phones. Mobile wrapping is where long subtitle lines usually fail.
+
+## Related guides
+
+- [How to fix subtitle line breaks](/guides/how-to-fix-subtitle-line-breaks/)
+- [How to clean subtitle formatting before upload](/guides/how-to-clean-subtitle-formatting-before-upload/)
+- [Best SRT settings for YouTube upload](/guides/best-srt-settings-for-youtube-upload/)
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+
+## Related tools
+
+- [Subtitle Cleaner](/tools/subtitle-cleaner/)
+- [Clean SRT File Online](/tools/clean-srt-file/)
+- [SRT Validator](/tools/srt-validator/)

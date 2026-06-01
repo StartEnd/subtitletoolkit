@@ -90,6 +90,10 @@ const checks = [
 				match: '/guides/how-to-fix-vlc-subtitle-delay/',
 			},
 			{
+				label: 'homepage links to long subtitles guide',
+				match: '/guides/how-to-fix-subtitles-that-are-too-long/',
+			},
+			{
 				label: 'homepage links to Plex subtitle failure guide',
 				match: '/guides/why-plex-subtitles-are-not-showing/',
 			},
@@ -1308,6 +1312,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/how-to-fix-subtitles-that-are-too-long/',
+		expect: [
+			{
+				label: 'long subtitles guide CTR title',
+				match: '<title>Fix Subtitles That Are Too Long - Line Length Guide</title>',
+			},
+			{
+				label: 'long subtitles guide meta description',
+				match: 'Fix subtitles that are too long by checking line length, cue duration, reading speed, and line breaks before upload or playback.',
+			},
+			{
+				label: 'long subtitles guide opens subtitle cleaner tool',
+				match: 'href="/tools/subtitle-cleaner/"',
+			},
+			{
+				label: 'FAQ schema for long subtitle questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How long should a subtitle line be\?/
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/',
 		expect: [
 			{
@@ -2028,6 +2053,10 @@ const checks = [
 				match: '/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/',
 			},
 			{
+				label: 'guides index links to long subtitles guide',
+				match: '/guides/how-to-fix-subtitles-that-are-too-long/',
+			},
+			{
 				label: 'guides index links to VLC subtitle delay guide',
 				match: '/guides/how-to-fix-vlc-subtitle-delay/',
 			},
@@ -2322,6 +2351,10 @@ const checks = [
 			{
 				label: 'llms lists fast or slow subtitles guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/',
+			},
+			{
+				label: 'llms lists long subtitles guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-fix-subtitles-that-are-too-long/',
 			},
 			{
 				label: 'llms lists common subtitle errors guide',
