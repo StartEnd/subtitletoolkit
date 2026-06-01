@@ -102,6 +102,10 @@ const checks = [
 				match: '/guides/why-converted-subtitle-file-is-empty/',
 			},
 			{
+				label: 'homepage links to subtitle drift guide',
+				match: '/guides/why-subtitles-drift-out-of-sync/',
+			},
+			{
 				label: 'homepage links to long subtitles guide',
 				match: '/guides/how-to-fix-subtitles-that-are-too-long/',
 			},
@@ -1387,6 +1391,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/why-subtitles-drift-out-of-sync/',
+		expect: [
+			{
+				label: 'subtitle drift guide CTR title',
+				match: '<title>Subtitle Drift Fix - Frame Rate Sync Guide</title>',
+			},
+			{
+				label: 'subtitle drift guide meta description',
+				match: 'Fix subtitle drift when captions get progressively out of sync by checking frame rate mismatch, video cuts, duration differences, and timing stretch.',
+			},
+			{
+				label: 'subtitle drift guide opens sync tool',
+				match: 'href="/tools/fix-out-of-sync-subtitles/"',
+			},
+			{
+				label: 'FAQ schema for subtitle drift questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why do subtitles get more out of sync over time\?/
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-fix-subtitles-that-are-too-long/',
 		expect: [
 			{
@@ -2152,6 +2177,10 @@ const checks = [
 				match: '/guides/why-converted-subtitle-file-is-empty/',
 			},
 			{
+				label: 'guides index links to subtitle drift guide',
+				match: '/guides/why-subtitles-drift-out-of-sync/',
+			},
+			{
 				label: 'guides index links to out-of-order guide',
 				match: '/guides/how-to-fix-out-of-order-subtitle-cues/',
 			},
@@ -2450,6 +2479,10 @@ const checks = [
 			{
 				label: 'llms lists empty converted subtitle guide',
 				match: 'https://subtitletoolkit.tools/guides/why-converted-subtitle-file-is-empty/',
+			},
+			{
+				label: 'llms lists subtitle drift guide',
+				match: 'https://subtitletoolkit.tools/guides/why-subtitles-drift-out-of-sync/',
 			},
 			{
 				label: 'llms lists long subtitles guide',

@@ -1,0 +1,128 @@
+---
+title: Why subtitles drift out of sync
+seoTitle: Subtitle Drift Fix - Frame Rate Sync Guide
+seoDescription: Fix subtitle drift when captions get progressively out of sync by checking frame rate mismatch, video cuts, duration differences, and timing stretch.
+description: Diagnose subtitle drift when captions start close but get progressively out of sync because of frame rate mismatch, video cuts, or duration differences.
+pubDate: 2026-06-02
+category: sync-fixes
+tags:
+  - subtitle drift
+  - frame rate
+  - subtitle sync
+  - timing
+  - repair
+primaryTool: fix-out-of-sync-subtitles
+faqs:
+  - question: Why do subtitles get more out of sync over time?
+    answer: Progressive subtitle drift usually means the subtitle file was timed for a different frame rate, a different video duration, or a cut of the video with missing or added footage.
+  - question: Can a single delay fix subtitle drift?
+    answer: No. A single delay only fixes a constant offset. If the error grows from the beginning to the end, the subtitle timing needs to be stretched, retimed, or matched to the correct video cut.
+  - question: How do I check if subtitle drift is caused by frame rate?
+    answer: Compare the offset near the start, middle, and end. If the difference grows steadily, check whether the video and subtitle source use different frame rates such as 23.976, 24, 25, or 29.97 fps.
+---
+
+Subtitle drift means captions start close to the speech but get worse as the video plays. The first minute may look fine, the middle may be a second late, and the ending may be several seconds off.
+
+That pattern is different from a simple subtitle delay. A global shift can move every cue earlier or later, but it cannot fix timing that stretches across the full runtime.
+
+## Quick answer
+
+Check sync near the start, middle, and end of the video. If the offset grows steadily, look for a frame rate mismatch, a different video duration, or a subtitle file made for another cut of the video.
+
+Use [Fix Out-of-Sync Subtitles](/tools/fix-out-of-sync-subtitles/) for constant offset checks, then switch to a retiming workflow if the error keeps growing.
+
+## Offset vs drift
+
+A constant offset looks like this:
+
+| Video point | Subtitle error |
+| --- | ---: |
+| 00:01:00 | 1.2s late |
+| 00:20:00 | 1.2s late |
+| 00:40:00 | 1.2s late |
+
+That can usually be fixed with one shift.
+
+Drift looks like this:
+
+| Video point | Subtitle error |
+| --- | ---: |
+| 00:01:00 | 0.2s late |
+| 00:20:00 | 2.4s late |
+| 00:40:00 | 5.1s late |
+
+That usually means the subtitle timeline is not running at the same speed as the video timeline.
+
+## Common causes of subtitle drift
+
+### Frame rate mismatch
+
+Subtitle drift often appears when subtitles were made for a different frame rate than the video you are watching.
+
+Common mismatches include:
+
+- 23.976 fps subtitles used with a 25 fps video
+- 25 fps subtitles used with a 23.976 fps video
+- 24 fps film timing used with a 29.97 fps export
+- subtitles exported from an editor timeline that does not match the final file
+
+Small timing differences become visible over time, especially in long videos.
+
+### Different video cut
+
+The subtitle file may belong to another release of the same video. An intro, recap, ad break, sponsor segment, or removed scene can make the end drift even when the beginning looks close.
+
+If sync changes suddenly after one edit point, use [Fix subtitle sync after a scene cut](/guides/fix-subtitle-sync-after-a-scene-cut/) or [How to shift only part of a subtitle file](/guides/how-to-shift-only-part-of-a-subtitle-file/). If the error grows smoothly, suspect frame rate or duration mismatch.
+
+### Export duration changed
+
+Subtitles can drift after export when the final video duration differs from the editing timeline. This can happen after variable frame rate conversion, speed changes, or a final export preset that changes playback timing.
+
+For export-specific checks, see [Why subtitles are out of sync after export](/guides/why-subtitles-are-out-of-sync-after-export/).
+
+## How to diagnose drift
+
+1. Pick a clear spoken word near the start and measure the subtitle offset.
+2. Repeat the same check near the middle.
+3. Repeat again near the end.
+4. Write down whether the error is stable or growing.
+5. If stable, use a global subtitle shift.
+6. If growing, check frame rate, duration, and video cut match.
+
+Do not judge sync from only the first scene. Drift hides early and becomes obvious later.
+
+## What to fix first
+
+If the error is constant, use [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/) or [Fix Out-of-Sync Subtitles](/tools/fix-out-of-sync-subtitles/).
+
+If only the middle section is wrong, use [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/).
+
+If the error grows across the whole file, find a subtitle file made for the same video release, or retime the subtitles against the exact video duration in a subtitle editor.
+
+## Common mistakes
+
+### Applying the same shift again and again
+
+If the beginning gets fixed but the ending stays wrong, stop applying global delays. The timeline itself does not match.
+
+### Ignoring video duration
+
+Two videos with the same title can have different runtimes. A subtitle file made for a `42:10` cut will drift or break on a `41:52` cut.
+
+### Mixing frame rate and edit problems
+
+Frame rate drift usually grows smoothly. Edit problems usually start at a specific cut point. Measure the pattern before choosing the fix.
+
+## Related guides
+
+- [How to fix subtitles that are too fast or too slow](/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/)
+- [How to fix out-of-sync subtitles](/guides/fix-out-of-sync-subtitles/)
+- [Why subtitles are out of sync after export](/guides/why-subtitles-are-out-of-sync-after-export/)
+- [How to fix subtitle timing after cutting a video](/guides/how-to-fix-subtitle-timing-after-cutting-video/)
+
+## Related tools
+
+- [Fix Out-of-Sync Subtitles](/tools/fix-out-of-sync-subtitles/)
+- [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/)
+- [Subtitle Time Shifter](/tools/subtitle-time-shifter/)
+- [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/)

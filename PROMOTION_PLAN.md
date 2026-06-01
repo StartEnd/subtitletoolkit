@@ -103,7 +103,7 @@ Use cases:
 • Extracting embedded text subtitle tracks from video files
 • Removing styling from ASS files when targeting simple players
 
-The site also includes 77 guides covering common subtitle workflows — format comparisons, conversion how-tos, sync fixes, validation, extraction, and delivery patterns for platforms like YouTube, Plex, JW Player, Video.js, and Vimeo.
+The site also includes 78 guides covering common subtitle workflows — format comparisons, conversion how-tos, sync fixes, validation, extraction, and delivery patterns for platforms like YouTube, Plex, JW Player, Video.js, and Vimeo.
 
 Built with Astro, hosted on Cloudflare Pages. Static, fast, and no backend dependencies.
 
