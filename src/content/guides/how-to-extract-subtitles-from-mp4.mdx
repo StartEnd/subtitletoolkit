@@ -1,0 +1,140 @@
+---
+title: How to extract subtitles from MP4
+seoTitle: Extract Subtitles from MP4 - Free No Upload Guide
+description: Extract embedded text captions from MP4 files locally, check whether the video has a real subtitle track, and save captions without uploading the file.
+seoDescription: Extract subtitles from MP4 files locally. Learn when MP4 captions can be saved as SRT or VTT, why extraction finds no subtitles, and when OCR is required.
+pubDate: 2026-06-02
+updatedDate: 2026-06-02
+category: workflow-guides
+tags:
+  - extract subtitles from mp4
+  - mp4 subtitles
+  - embedded subtitles
+  - video captions
+primaryTool: extract-subtitles-from-video
+faqs:
+  - question: Can I extract subtitles from an MP4 file?
+    answer: Yes, if the MP4 contains an embedded text subtitle track such as mov_text. If the captions are burned into the video image, use OCR instead.
+  - question: Why does my MP4 have no subtitles to extract?
+    answer: Many MP4 files contain only audio and video, or the player may be loading a separate subtitle file from the same folder. In those cases there is no embedded text track to extract.
+  - question: Can MP4 subtitles be saved as SRT?
+    answer: Text-based MP4 captions can often be exported as SRT or VTT, then validated and cleaned before upload or playback.
+  - question: Are MP4 files uploaded during extraction?
+    answer: No. The extractor runs in your browser with FFmpeg, so the MP4 stays on your device.
+---
+
+MP4 subtitle extraction only works when the video contains a real text caption track. If the subtitle words are part of the image, or if the player is loading a sidecar `.srt` file, there is no embedded MP4 subtitle stream to save.
+
+## Quick answer
+
+Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/), choose the MP4 file, and let the browser check for an embedded subtitle stream. If the MP4 contains text captions, you can save them as a separate subtitle file without uploading the video.
+
+Use this workflow before sending private MP4 files to an online converter. It quickly tells you whether the file has extractable captions or whether you need the original subtitle file or OCR instead.
+
+## What MP4 subtitle extraction can find
+
+MP4 containers may include text tracks such as:
+
+```text
+Stream #0:2: Subtitle: mov_text
+Stream #0:3: Subtitle: webvtt
+```
+
+Those can often be exported as editable subtitles. After extraction, check the output and convert it to SRT or VTT depending on where the captions will be used.
+
+Extraction will not recover captions in these cases:
+
+- the subtitles are burned into the video picture
+- the captions come from a separate `.srt`, `.vtt`, or `.ass` file next to the MP4
+- the MP4 has no subtitle stream
+- the file uses a caption format the browser extractor cannot convert cleanly
+
+## Step-by-step workflow
+
+1. Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/).
+2. Choose the `.mp4` file from your device.
+3. Wait for the browser FFmpeg runtime to load.
+4. Check whether the tool finds a subtitle stream.
+5. Preview the extracted captions before downloading.
+6. Validate the downloaded file before using it in a player or upload workflow.
+
+The video stays local during this process. The extractor runs in the browser, so the file does not need to be sent to a server just to check for captions.
+
+## Why an MP4 may play captions but extraction finds none
+
+This is common. A video player can show captions even when the MP4 itself does not contain subtitles.
+
+Check these situations:
+
+- The player is loading a separate subtitle file with the same base name as the MP4.
+- The streaming page uses a remote VTT track that is not inside the downloaded MP4.
+- The subtitles are burned into the picture and cannot be turned off.
+- The captions exist only in the platform player, not in the exported video file.
+
+If the captions can be turned on and off inside a desktop player after opening only the MP4, there is a better chance that a real embedded text track exists.
+
+## After extracting MP4 captions
+
+Do not treat the first exported file as final. Check the extracted captions for:
+
+- wrong language track
+- missing lines near the beginning or end
+- broken accents or replacement characters
+- WebVTT output when your upload target expects SRT
+- timing offset caused by a different video edit
+
+Useful next tools:
+
+| Need | Tool |
+| --- | --- |
+| Check SRT structure | [SRT Validator](/tools/srt-validator/) |
+| Convert SRT to browser WebVTT | [SRT to VTT Converter](/tools/srt-to-vtt/) |
+| Repair broken characters | [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) |
+| Remove messy tags or spacing | [Subtitle Cleaner](/tools/subtitle-cleaner/) |
+| Fix constant timing offset | [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/) |
+
+## Common mistakes
+
+### Expecting burned-in captions to become text
+
+If the words are pixels in the video image, subtitle extraction cannot recover the text. You need OCR and manual review.
+
+### Uploading a private MP4 before checking locally
+
+Use a browser-local extractor first. If there is no embedded subtitle track, uploading the same MP4 to another extractor will usually fail for the same reason.
+
+### Confusing sidecar subtitles with embedded subtitles
+
+If a folder contains `movie.mp4` and `movie.srt`, the player may show captions from the SRT file. Open the subtitle file directly instead of extracting from the MP4.
+
+## Frequently asked questions
+
+### Can I extract subtitles from an MP4 file?
+
+Yes, if the MP4 contains an embedded text subtitle track such as `mov_text`. If the captions are burned into the video image, use OCR instead.
+
+### Why does my MP4 have no subtitles to extract?
+
+Many MP4 files contain only audio and video, or the player may be loading a separate subtitle file from the same folder. In those cases there is no embedded text track to extract.
+
+### Can MP4 subtitles be saved as SRT?
+
+Text-based MP4 captions can often be exported as SRT or VTT, then validated and cleaned before upload or playback.
+
+### Are MP4 files uploaded during extraction?
+
+No. The extractor runs in your browser with FFmpeg, so the MP4 stays on your device.
+
+## Related guides
+
+- [How to extract subtitles from a video](/guides/how-to-extract-subtitles-from-video/)
+- [How to extract subtitles from MKV](/guides/how-to-extract-subtitles-from-mkv/)
+- [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)
+- [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video/)
+
+## Related tools
+
+- [Extract Subtitles from Video](/tools/extract-subtitles-from-video/)
+- [SRT Validator](/tools/srt-validator/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)

@@ -85,7 +85,7 @@ MP4 files often cause confusion because the file can play captions in one app bu
 - The MP4 contains a caption format the browser extractor cannot convert cleanly.
 - The video has multiple streams and the first subtitle stream is not the language you expected.
 
-When you do get a text track out of an MP4, validate it before using it in a player or uploading it elsewhere.
+When you do get a text track out of an MP4, validate it before using it in a player or uploading it elsewhere. For MP4-specific checks, use [How to extract subtitles from MP4](/guides/how-to-extract-subtitles-from-mp4/). It covers `mov_text` captions, sidecar subtitle files, and the common case where an MP4 plays captions in one app but has no embedded subtitle stream.
 
 ## If the video is an MKV
 
@@ -162,6 +162,7 @@ Check the language, validate the timing, fix encoding if characters look wrong, 
 ## Related guides
 
 - [How to extract subtitles from MKV](/guides/how-to-extract-subtitles-from-mkv/)
+- [How to extract subtitles from MP4](/guides/how-to-extract-subtitles-from-mp4/)
 - [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)
 - [How to convert subtitles to UTF-8](/guides/how-to-convert-subtitles-to-utf-8/)
 - [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video/)
