@@ -1,7 +1,10 @@
 ---
 title: How to validate SRT files
+seoTitle: SRT Validator Guide - Check Subtitle Files Before Upload
 description: Validate SRT subtitle files before upload by checking cue structure, timestamp separators, cue order, and parseable subtitle blocks.
+seoDescription: Validate SRT files before YouTube, Vimeo, or editor upload. Check timestamps, cue numbers, blank lines, and subtitle structure with no upload.
 pubDate: 2026-05-26
+updatedDate: 2026-06-01
 category: sync-fixes
 tags:
   - srt
@@ -10,6 +13,15 @@ tags:
   - timestamps
   - upload
 primaryTool: srt-validator
+faqs:
+  - question: Can the SRT validator fix errors automatically?
+    answer: No. The validator reports syntax and structure problems. Use Clean SRT File or Fix SRT Timestamps when you need an automatically repaired output.
+  - question: What if validation passes but YouTube rejects my file?
+    answer: YouTube can apply extra limits beyond basic SRT syntax, such as file size, cue duration, line length, and encoding requirements.
+  - question: Can I validate multiple SRT files at once?
+    answer: The browser validator checks one SRT file at a time. Validate each file individually before uploading a batch.
+  - question: Does the SRT validator work offline?
+    answer: Yes. Validation runs locally in your browser, so subtitle text and local file names are not uploaded to a server.
 ---
 
 Validating an SRT file is a fast way to find obvious format problems before a platform rejects it. This guide shows you how to validate SRT files and fix common issues.

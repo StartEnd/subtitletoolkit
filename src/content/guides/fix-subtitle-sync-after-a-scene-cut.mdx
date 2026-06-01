@@ -1,8 +1,10 @@
 ---
 title: Fix subtitle sync after a scene cut
+seoTitle: Fix Subtitle Sync After a Scene Cut - Shift One Section
 description: Repair subtitle sync after a scene cut by shifting only the affected time range while keeping correctly timed sections unchanged.
+seoDescription: Fix subtitle sync after a scene cut without shifting the whole file. Move only the affected subtitle range online with no upload or signup.
 pubDate: 2026-05-10
-updatedDate: 2026-05-25
+updatedDate: 2026-06-01
 category: sync-fixes
 tags:
   - subtitle scene cut
@@ -10,6 +12,15 @@ tags:
   - subtitle sync fix
   - video edit subtitles
 primaryTool: partial-subtitle-shifter
+faqs:
+  - question: How do I know if I need a partial shift or a full-file shift?
+    answer: Use a partial shift when the beginning of the video is correctly synced but subtitles become wrong after a specific edit point. Use a full-file shift when every subtitle is off by the same amount from the start.
+  - question: Can I fix multiple edits at once?
+    answer: No. Each edit point needs its own partial shift. Work from the beginning of the video to the end so each corrected section becomes the baseline for the next one.
+  - question: What if I do not know the exact shift amount?
+    answer: Watch the first out-of-sync subtitle, estimate how many seconds early or late it appears, apply that millisecond offset, then fine-tune after checking the corrected section.
+  - question: Will this work with all subtitle formats?
+    answer: Yes. Partial shifting works with common subtitle formats including SRT, VTT, ASS, and SSA when the timestamps can be parsed.
 ---
 
 A scene cut often breaks subtitle sync only after the edit point. This is one of the most common subtitle timing issues when working with edited video content.

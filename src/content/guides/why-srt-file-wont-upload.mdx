@@ -1,7 +1,10 @@
 ---
 title: Why your SRT file will not upload
+seoTitle: SRT File Won't Upload - Fix Subtitle Format Errors
 description: Diagnose why an SRT subtitle file fails to upload by checking timestamp format, cue numbering, blank lines, encoding, and file structure.
+seoDescription: Fix an SRT file that will not upload by checking timestamp commas, cue numbers, blank lines, encoding, file structure, and unsupported markup.
 pubDate: 2026-05-26
+updatedDate: 2026-06-01
 category: sync-fixes
 tags:
   - srt
@@ -10,15 +13,24 @@ tags:
   - timestamps
   - repair
 primaryTool: srt-validator
+faqs:
+  - question: Why will my SRT file not upload?
+    answer: The most common causes are malformed timestamps, missing blank lines, duplicate or missing cue numbers, wrong text encoding, unsupported markup, or a file that is not actually SRT.
+  - question: Can I fix an SRT upload error without rewriting captions?
+    answer: Usually yes. Most SRT upload errors are mechanical structure problems, so you can validate, clean, or repair the file while keeping the subtitle text.
+  - question: Why does my SRT file open in a text editor but fail during upload?
+    answer: A text editor only proves the file is readable text. Upload platforms still need valid cue blocks, comma-based timestamps, sequential numbers, and parseable timing.
+  - question: Should I convert VTT to SRT before uploading an SRT file?
+    answer: Yes, if the file starts with WEBVTT or uses dot-based timestamps. Renaming a VTT file to .srt does not convert it.
 ---
 
-An SRT upload can fail even when the file looks readable in a text editor.
+An SRT upload can fail even when the file looks readable in a text editor. Upload platforms parse the file as timed caption data, so small structure problems can make the whole file fail.
 
 ## Quick answer
 
-Run the file through the [SRT Validator](/tools/srt-validator/) first. Most SRT upload failures come from malformed timestamps, missing blank lines, duplicated cue numbers, broken encoding, or a file that is not really SRT.
+Run the file through the [SRT Validator](/tools/srt-validator/) first. Most SRT upload failures come from malformed timestamps, missing blank lines, duplicated cue numbers, broken encoding, unsupported markup, or a file that is not really SRT.
 
-If the issue is mechanical, clean or rebuild the file before uploading again.
+If the issue is mechanical, you usually do not need to rewrite the captions. Validate the file, repair the structure, then upload the cleaned SRT again.
 
 ## Common reasons SRT uploads fail
 
@@ -28,51 +40,220 @@ Check these first:
 - cue blocks are missing blank lines
 - cue numbers are duplicated, missing, or out of order
 - start times are later than end times
+- cues overlap in a way the upload platform rejects
 - the file was saved with the wrong text encoding
-- subtitle text contains unsupported markup
+- subtitle text contains unsupported HTML, ASS, or editor markup
 - the file extension is `.srt`, but the content is actually VTT or another format
 
-## Step-by-step workflow
-
-1. Open the [SRT Validator](/tools/srt-validator/).
-2. Upload or paste the rejected SRT file.
-3. Check whether cues are parsed correctly.
-4. If timestamps are malformed, use [Fix SRT Timestamps](/tools/fix-srt-timestamps/).
-5. If spacing, numbers, or tags are messy, use [Clean SRT File Online](/tools/clean-srt-file/).
-6. Upload the cleaned file again and preview captions in the target platform.
+These problems are easy to miss because the file can still look normal when opened as plain text.
 
 ## What a valid SRT block looks like
+
+A valid SRT cue has a number, a timestamp range, text, and a blank line before the next cue:
 
 ```text
 1
 00:00:01,000 --> 00:00:03,500
 Welcome back to the edit.
+
+2
+00:00:03,500 --> 00:00:06,000
+Now we can check the upload file.
 ```
 
 The timestamp should use commas for milliseconds. Each cue block should be separated by a blank line.
+
+## Check timestamp format
+
+SRT uses this timestamp format:
+
+```text
+00:00:01,000 --> 00:00:03,500
+```
+
+Common invalid variants include:
+
+```text
+00:00:01.000 --> 00:00:03.500  (WebVTT dots)
+00:00:01,000->00:00:03,500    (missing arrow spaces)
+00:00:01 --> 00:00:03          (missing milliseconds)
+00:00:65,000 --> 00:00:67,000  (seconds over 59)
+```
+
+**Fix**: use [Fix SRT Timestamps](/tools/fix-srt-timestamps/) for timestamp formatting problems. If the file came from WebVTT, convert it with the [VTT to SRT Converter](/tools/vtt-to-srt/) instead of editing timestamps by hand.
+
+## Check blank lines and cue numbering
+
+Missing blank lines make cue blocks run together:
+
+```text
+1
+00:00:01,000 --> 00:00:03,500
+First caption
+2
+00:00:03,500 --> 00:00:06,000
+Second caption
+```
+
+Skipped or duplicated cue numbers can also break strict uploaders:
+
+```text
+1
+00:00:01,000 --> 00:00:03,500
+First caption
+
+1
+00:00:03,500 --> 00:00:06,000
+Duplicate number
+```
+
+**Fix**: use [Clean SRT File Online](/tools/clean-srt-file/) to rebuild spacing and renumber cue blocks.
+
+## Check cue order and overlaps
+
+Some upload platforms reject files when cues are out of chronological order or when one cue starts before the previous cue ends.
+
+Problem example:
+
+```text
+1
+00:00:05,000 --> 00:00:07,000
+This appears later.
+
+2
+00:00:03,000 --> 00:00:04,500
+This should have appeared first.
+```
+
+**Fix**: sort cues by start time and validate again. If timestamps were shifted incorrectly, use a timing tool only after the file structure validates.
+
+## Check whether the file is really SRT
+
+Renaming a subtitle file does not convert it.
+
+### If the file starts with `WEBVTT`
+
+It is WebVTT, not SRT. Convert it with the [VTT to SRT Converter](/tools/vtt-to-srt/).
+
+### If the file contains `[Script Info]` or `Dialogue:`
+
+It is ASS or SSA. Convert it with the [ASS to SRT Converter](/tools/ass-to-srt/) before uploading to platforms that expect SRT.
+
+### If the file has timestamp blocks but no cue numbers
+
+It may be a loose transcript or malformed SRT. Use [Clean SRT File Online](/tools/clean-srt-file/) if the timing lines are parseable.
+
+## Check encoding and hidden characters
+
+Encoding problems usually show up as broken accents, squares, or replacement characters like `�`. Upload platforms may also struggle with unusual control characters, byte order marks, or non-breaking spaces copied from word processors.
+
+**Fix**:
+
+1. Save the subtitle file as UTF-8.
+2. Remove hidden formatting from rich text editors.
+3. Run the file through [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) if characters still look wrong.
+4. Validate the cleaned file again before upload.
+
+## Remove unsupported markup
+
+Some platforms accept simple tags such as `<i>`, but many reject or strip advanced markup. ASS override tags are especially risky in an SRT upload file.
+
+Problem examples:
+
+```text
+<font color="red">Caption text</font>
+{\an8}{\bord2}Caption text
+```
+
+**Fix**: use [Clean SRT File Online](/tools/clean-srt-file/) to strip unsafe formatting and keep readable subtitle text.
+
+## Step-by-step repair workflow
+
+### 1. Validate the rejected file
+
+Open the [SRT Validator](/tools/srt-validator/) and paste or upload the rejected SRT file. Check whether the tool can parse the cue count and identify line-level problems.
+
+### 2. Repair the exact issue
+
+Use the smallest repair tool that matches the report:
+
+| Validation problem | Best next tool |
+| --- | --- |
+| Dot timestamps or malformed time ranges | [Fix SRT Timestamps](/tools/fix-srt-timestamps/) |
+| Missing blank lines or duplicate numbers | [Clean SRT File Online](/tools/clean-srt-file/) |
+| VTT content renamed as SRT | [VTT to SRT Converter](/tools/vtt-to-srt/) |
+| ASS or SSA source file | [ASS to SRT Converter](/tools/ass-to-srt/) |
+| Garbled characters | [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) |
+
+### 3. Validate again
+
+After repair, run the output through the [SRT Validator](/tools/srt-validator/) again. The goal is a file with parseable cue blocks, valid timestamps, and no structural errors.
+
+### 4. Upload and preview
+
+Upload the cleaned file to the target platform. Preview the first cue, a middle cue, and a late cue before publishing or delivering the file.
+
+## Platform-specific notes
+
+### YouTube
+
+YouTube usually works best with clean SRT. If your upload fails there, use [Why YouTube subtitle upload failed](/guides/why-youtube-subtitles-upload-failed/) for YouTube-specific checks.
+
+### Vimeo
+
+Vimeo accepts SRT uploads, but VTT is often better for external web playback. If you are hosting captions outside Vimeo, use VTT.
+
+### Video editors
+
+Editors can be stricter than video platforms. Validate timestamps and encoding before importing SRT into an editor timeline.
 
 ## Common mistakes
 
 ### Renaming a VTT file to SRT
 
-Changing the extension does not convert the format. If the file starts with `WEBVTT`, convert it with the [VTT to SRT Converter](/tools/vtt-to-srt/).
+Changing the extension does not convert the format. If the file starts with `WEBVTT`, convert it properly.
 
 ### Fixing cue numbers but ignoring timestamps
 
-Numbering is only one part of SRT structure. Timestamp separators and cue order matter too.
+Numbering is only one part of SRT structure. Timestamp separators, cue order, and blank lines matter too.
 
 ### Uploading a file with garbled characters
 
 If accents, names, or non-English text looks broken, fix encoding before validating again.
+
+### Editing in a word processor
+
+Word processors can introduce smart quotes, non-breaking spaces, and hidden formatting. Use a plain text editor for subtitle files.
+
+## Frequently asked questions
+
+### Why will my SRT file not upload?
+
+The most common causes are malformed timestamps, missing blank lines, duplicate or missing cue numbers, wrong text encoding, unsupported markup, or a file that is not actually SRT.
+
+### Can I fix an SRT upload error without rewriting captions?
+
+Usually yes. Most SRT upload errors are mechanical structure problems, so you can validate, clean, or repair the file while keeping the subtitle text.
+
+### Why does my SRT file open in a text editor but fail during upload?
+
+A text editor only proves the file is readable text. Upload platforms still need valid cue blocks, comma-based timestamps, sequential numbers, and parseable timing.
+
+### Should I convert VTT to SRT before uploading an SRT file?
+
+Yes, if the file starts with `WEBVTT` or uses dot-based timestamps. Renaming a VTT file to `.srt` does not convert it.
 
 ## Related guides
 
 - [How to validate SRT files](/guides/how-to-validate-srt-files/)
 - [How to fix malformed SRT timestamps](/guides/how-to-fix-malformed-srt-timestamps/)
 - [How to clean an SRT file](/guides/how-to-clean-an-srt-file/)
+- [Why YouTube subtitle upload failed](/guides/why-youtube-subtitles-upload-failed/)
 
 ## Related tools
 
 - [SRT Validator](/tools/srt-validator/)
 - [Fix SRT Timestamps](/tools/fix-srt-timestamps/)
 - [Clean SRT File Online](/tools/clean-srt-file/)
+- [VTT to SRT Converter](/tools/vtt-to-srt/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)

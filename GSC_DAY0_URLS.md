@@ -42,12 +42,21 @@ Submit these URLs first. Do not submit every URL in the site on Day 0.
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-srt-for-youtube-uploads/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-subtitle-delay/`
+- [ ] `https://subtitletoolkit.tools/guides/fix-subtitle-sync-after-a-scene-cut/`
 
 Submit these current search-growth batch URLs next. They received FAQ schema, Article topic schema, or corrected tool CTA mapping in the latest SEO batch.
 
 - [ ] `https://subtitletoolkit.tools/guides/best-subtitle-format-for-youtube/`
+- [ ] `https://subtitletoolkit.tools/guides/best-srt-settings-for-youtube-upload/`
+- [ ] `https://subtitletoolkit.tools/guides/srt-vs-ass-for-youtube-captions/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-convert-subtitles-for-youtube/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-prepare-subtitles-for-youtube-upload/`
+- [ ] `https://subtitletoolkit.tools/guides/why-youtube-subtitles-upload-failed/`
+- [ ] `https://subtitletoolkit.tools/guides/why-srt-file-wont-upload/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-clean-subtitle-formatting-before-upload/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-validate-webvtt-files/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-validate-srt-files/`
 - [ ] `https://subtitletoolkit.tools/guides/why-subtitles-do-not-show-in-html5-video/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-remove-subtitle-line-numbers/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-malformed-srt-timestamps/`

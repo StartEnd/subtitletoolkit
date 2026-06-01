@@ -1,7 +1,10 @@
 ---
 title: Why YouTube subtitle upload failed
+seoTitle: YouTube Subtitle Upload Failed - Fix SRT Caption Errors
 description: Diagnose YouTube subtitle upload failures by checking SRT structure, timestamp formatting, encoding, file type, and unsupported styling.
+seoDescription: Fix YouTube subtitle upload failures by checking SRT timestamps, cue numbers, encoding, file type, and unsupported styling before uploading again.
 pubDate: 2026-05-26
+updatedDate: 2026-06-01
 category: workflow-guides
 tags:
   - youtube
@@ -10,69 +13,228 @@ tags:
   - captions
   - repair
 primaryTool: youtube-subtitle-converter
+faqs:
+  - question: Why did my YouTube subtitle upload fail?
+    answer: Most YouTube subtitle upload failures come from malformed SRT structure, wrong timestamp separators, unsupported ASS styling, broken encoding, or a file extension that does not match the real subtitle format.
+  - question: What subtitle format is safest for YouTube upload?
+    answer: SRT is the safest default for YouTube uploads because it is simple, widely supported, and easy to validate before publishing.
+  - question: Can I upload ASS subtitles to YouTube?
+    answer: No. YouTube does not support ASS subtitle uploads. Convert ASS or SSA files to clean SRT before uploading captions.
+  - question: Why does YouTube reject an SRT file that opens in a text editor?
+    answer: A text editor can display a file that still has invalid cue numbers, missing blank lines, bad timestamp format, wrong encoding, or unsupported markup.
 ---
 
-YouTube subtitle upload failures usually come from file structure, not the words in the captions.
+YouTube subtitle upload failures usually come from file structure, not the words in the captions. A subtitle file can look readable in a text editor and still fail because YouTube needs parseable timing, clean cue blocks, and a supported upload format.
 
 ## Quick answer
 
-Use a clean SRT file for most YouTube uploads. If your source is VTT or ASS, convert it with the [YouTube Subtitle Converter](/tools/youtube-subtitle-converter/) first.
+For most YouTube caption uploads, use a clean **SRT** file. If your source file is VTT, ASS, or SSA, convert it with the [YouTube Subtitle Converter](/tools/youtube-subtitle-converter/) first. Then validate the SRT structure before uploading again.
 
-Then validate the SRT structure before uploading again.
+The fastest repair path is:
 
-## Common causes
+1. Convert VTT, ASS, or SSA to SRT.
+2. Validate the SRT file.
+3. Fix timestamp, spacing, numbering, or encoding errors.
+4. Upload the cleaned SRT to YouTube Studio.
+5. Preview the captions before publishing.
+
+## Common reasons YouTube rejects subtitle files
 
 YouTube may reject or misread subtitles when:
 
-- timestamps are malformed
-- SRT milliseconds use dots instead of commas
-- cue numbers are missing or duplicated
-- the file contains unsupported ASS styling
-- the file was saved with broken encoding
-- the extension says `.srt`, but the content is VTT or another format
+- the file is ASS or SSA instead of SRT, VTT, or SBV
+- SRT timestamps use dots instead of commas
+- cue numbers are missing, duplicated, or out of order
+- cue blocks are not separated by blank lines
+- the start timestamp is later than the end timestamp
+- the file contains unsupported ASS positioning or style tags
+- the file was saved with broken text encoding
+- the extension says `.srt`, but the content is really VTT or another format
 
-## Step-by-step workflow
+Most of these issues are mechanical. You do not need to rewrite the captions; you need to repair the delivery copy.
 
-1. Keep the original subtitle source file.
-2. Convert VTT or ASS to YouTube-ready SRT.
-3. Validate the SRT file before upload.
-4. Fix encoding if accents or non-English text looks wrong.
-5. Upload the cleaned SRT to YouTube Studio.
-6. Preview captions in the YouTube player before publishing.
+## Check the file type first
 
-## What to upload
+Before editing timestamps, confirm what kind of subtitle file you actually have.
 
-For a simple upload workflow, SRT is the safest format because it keeps:
+### If the file starts with `WEBVTT`
 
-- cue numbers
-- comma-based timestamps
-- readable caption text
-- no player-specific styling
+It is a WebVTT file, even if the extension says `.srt`.
 
-If your captions need visual styling, uploaded YouTube captions are usually the wrong place for that styling.
+**Fix**: use the [YouTube Subtitle Converter](/tools/youtube-subtitle-converter/) or [VTT to SRT Converter](/tools/vtt-to-srt/) to create a real SRT file. Renaming `captions.vtt` to `captions.srt` does not convert the format.
+
+### If the file contains `[Script Info]`, `[V4+ Styles]`, or `Dialogue:`
+
+It is an ASS or SSA file. YouTube does not preserve ASS styling or upload ASS files directly.
+
+**Fix**: convert ASS to SRT before uploading. For the full workflow, see [how to convert ASS to SRT for YouTube uploads](/guides/how-to-convert-ass-to-srt-for-youtube-uploads/).
+
+### If the file has numbered blocks and comma timestamps
+
+It is probably SRT. Validate it before uploading again.
+
+```text
+1
+00:00:01,000 --> 00:00:03,500
+Welcome back to the edit.
+```
+
+## Fix SRT timestamp errors
+
+SRT uses commas for milliseconds:
+
+```text
+00:00:01,000 --> 00:00:03,500
+```
+
+WebVTT uses dots:
+
+```text
+00:00:01.000 --> 00:00:03.500
+```
+
+If a file has SRT cue numbers but VTT-style dot timestamps, YouTube may reject it or import it incorrectly.
+
+**Fix**: use [Fix SRT Timestamps](/tools/fix-srt-timestamps/) or convert the file from VTT to SRT again. Do not run a blind find-and-replace across the whole file if caption text contains decimal numbers.
+
+## Fix cue numbering and spacing
+
+YouTube needs clear cue blocks. Each block should have:
+
+1. a cue number
+2. a timestamp range
+3. one or more subtitle text lines
+4. a blank line before the next cue
+
+Broken cue spacing looks like this:
+
+```text
+1
+00:00:01,000 --> 00:00:03,500
+First caption
+2
+00:00:03,500 --> 00:00:05,000
+Second caption
+```
+
+Clean SRT spacing looks like this:
+
+```text
+1
+00:00:01,000 --> 00:00:03,500
+First caption
+
+2
+00:00:03,500 --> 00:00:05,000
+Second caption
+```
+
+**Fix**: use [Clean SRT File](/tools/clean-srt-file/) to rebuild spacing, remove empty cues, and renumber blocks.
+
+## Remove unsupported styling
+
+YouTube can preserve some simple text emphasis, but it does not preserve ASS styling, positioning, fonts, colors, karaoke effects, or complex override tags.
+
+Problem examples:
+
+```text
+{\an8}{\c&H00FFFF&}Caption text
+<font color="red">Caption text</font>
+```
+
+If those tags remain in the upload file, YouTube may reject the file, strip the styling, or show unexpected text.
+
+**Fix**: convert styled subtitles to plain SRT and review the result. If the styling is essential to the video, burn it into the video image instead of relying on uploaded YouTube captions.
+
+## Fix encoding before upload
+
+Encoding problems usually appear as broken accents, boxes, or replacement characters like `�`.
+
+Common causes:
+
+- Windows-1252 text saved as UTF-8 incorrectly
+- UTF-8 with a byte order mark that the upload flow misreads
+- subtitle text copied through an editor that changed encoding
+
+**Fix**: use the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) or re-save the file as UTF-8 in a text editor. Then validate again before uploading.
+
+## Step-by-step repair workflow
+
+### 1. Keep the original subtitle file
+
+Do not overwrite the only copy. Keep the source file, then create a separate YouTube upload copy.
+
+### 2. Convert to YouTube-ready SRT
+
+Open the [YouTube Subtitle Converter](/tools/youtube-subtitle-converter/) if your source is VTT, ASS, SSA, or an uncertain format. Download the SRT output.
+
+### 3. Validate the SRT file
+
+Open the [SRT Validator](/tools/srt-validator/) and check whether YouTube can parse the cue structure. For a deeper walkthrough, use [how to validate SRT files](/guides/how-to-validate-srt-files/).
+
+### 4. Repair mechanical errors
+
+Use the right tool for the error:
+
+| Error | Best next tool |
+| --- | --- |
+| Dot timestamps in SRT | [Fix SRT Timestamps](/tools/fix-srt-timestamps/) |
+| Missing blank lines or cue numbers | [Clean SRT File](/tools/clean-srt-file/) |
+| VTT or ASS source format | [YouTube Subtitle Converter](/tools/youtube-subtitle-converter/) |
+| Garbled characters | [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) |
+| Captions are too early or late | [Subtitle Time Shifter](/tools/subtitle-time-shifter/) |
+
+### 5. Upload and preview in YouTube Studio
+
+After the file validates, upload it again in YouTube Studio. Preview the first cue, one middle cue, and one cue near the end before publishing.
 
 ## Common mistakes
 
-### Uploading ASS directly
-
-ASS files can contain styles, positioning, and effects that do not map cleanly to YouTube captions. Convert to SRT for upload.
-
 ### Renaming VTT to SRT
 
-Changing the extension does not convert timestamps or remove the `WEBVTT` header.
+Changing the extension does not convert timestamps or remove the `WEBVTT` header. Convert the file instead.
 
-### Ignoring encoding
+### Uploading ASS directly
 
-If characters look broken after upload, fix the subtitle encoding and upload a fresh UTF-8 copy.
+ASS files contain styling and dialogue metadata that YouTube does not accept as a normal caption upload. Convert ASS to SRT first.
+
+### Fixing cue numbers but ignoring timestamps
+
+Sequential numbers are helpful, but timestamp separators and cue order matter too. Validate the full file, not just the numbering.
+
+### Ignoring the final video cut
+
+If the subtitles were made for a different edit, the file may upload successfully but play out of sync. Fix timing before publishing.
+
+## Frequently asked questions
+
+### Why did my YouTube subtitle upload fail?
+
+Most failures come from malformed SRT structure, wrong timestamp separators, unsupported ASS styling, broken encoding, or a file extension that does not match the real subtitle format.
+
+### What subtitle format is safest for YouTube upload?
+
+SRT is the safest default. It is simple, widely supported, and easy to validate before upload.
+
+### Can I upload ASS subtitles to YouTube?
+
+No. Convert ASS or SSA subtitles to SRT first. YouTube does not preserve advanced ASS styling in uploaded captions.
+
+### Why does YouTube reject an SRT file that opens in a text editor?
+
+A text editor only proves the file is readable as text. YouTube still needs valid cue numbers, timestamp syntax, blank lines, encoding, and parseable cue order.
 
 ## Related guides
 
 - [How to convert subtitles for YouTube](/guides/how-to-convert-subtitles-for-youtube/)
 - [Best subtitle format for YouTube](/guides/best-subtitle-format-for-youtube/)
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
 - [Why your SRT file will not upload](/guides/why-srt-file-wont-upload/)
 
 ## Related tools
 
 - [YouTube Subtitle Converter](/tools/youtube-subtitle-converter/)
 - [SRT Validator](/tools/srt-validator/)
+- [Fix SRT Timestamps](/tools/fix-srt-timestamps/)
+- [Clean SRT File Online](/tools/clean-srt-file/)
 - [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
