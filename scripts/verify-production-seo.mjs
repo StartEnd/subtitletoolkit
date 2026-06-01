@@ -86,6 +86,10 @@ const checks = [
 				match: '/guides/why-chrome-captions-are-not-showing/',
 			},
 			{
+				label: 'homepage links to Firefox caption failure guide',
+				match: '/guides/why-firefox-captions-are-not-showing/',
+			},
+			{
 				label: 'homepage links to Safari caption failure guide',
 				match: '/guides/why-safari-captions-are-not-showing/',
 			},
@@ -750,6 +754,31 @@ const checks = [
 			},
 			{
 				label: 'Chrome captions guide links SRT to VTT converter',
+				match: 'href="/tools/srt-to-vtt/"',
+			},
+		],
+	},
+	{
+		path: '/guides/why-firefox-captions-are-not-showing/',
+		expect: [
+			{
+				label: 'Firefox captions failure guide CTR title',
+				match: '<title>Firefox Captions Not Showing - Fix VTT Track Issues</title>',
+			},
+			{
+				label: 'Firefox captions failure guide meta description',
+				match: 'Fix Firefox captions not showing by checking WebVTT syntax, MIME type, CORS headers, track URLs, HTTPS, and browser caption controls.',
+			},
+			{
+				label: 'FAQ schema for Firefox caption questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why are captions not showing in Firefox\?/
+			},
+			{
+				label: 'Firefox captions guide opens WebVTT validator',
+				match: 'href="/tools/webvtt-validator/"',
+			},
+			{
+				label: 'Firefox captions guide links SRT to VTT converter',
 				match: 'href="/tools/srt-to-vtt/"',
 			},
 		],
@@ -2603,6 +2632,10 @@ const checks = [
 				match: '/guides/why-chrome-captions-are-not-showing/',
 			},
 			{
+				label: 'guides index links to Firefox caption guide from HTML5 section',
+				match: '/guides/why-firefox-captions-are-not-showing/',
+			},
+			{
 				label: 'guides index links to Safari caption guide from HTML5 section',
 				match: '/guides/why-safari-captions-are-not-showing/',
 			},
@@ -2861,6 +2894,10 @@ const checks = [
 			{
 				label: 'llms lists Chrome caption failure guide',
 				match: 'https://subtitletoolkit.tools/guides/why-chrome-captions-are-not-showing/',
+			},
+			{
+				label: 'llms lists Firefox caption failure guide',
+				match: 'https://subtitletoolkit.tools/guides/why-firefox-captions-are-not-showing/',
 			},
 			{
 				label: 'llms lists Safari caption failure guide',

@@ -84,6 +84,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [Why subtitles do not show in HTML5 video](https://subtitletoolkit.tools/guides/why-subtitles-do-not-show-in-html5-video/)
 - [Why VTT captions are not loading](https://subtitletoolkit.tools/guides/why-vtt-captions-are-not-loading/)
 - [Why Chrome captions are not showing](https://subtitletoolkit.tools/guides/why-chrome-captions-are-not-showing/)
+- [Why Firefox captions are not showing](https://subtitletoolkit.tools/guides/why-firefox-captions-are-not-showing/)
 - [Why Safari captions are not showing](https://subtitletoolkit.tools/guides/why-safari-captions-are-not-showing/)
 - [Why Video.js captions are not showing](https://subtitletoolkit.tools/guides/why-videojs-captions-are-not-showing/)
 - [Best subtitle format for Video.js](https://subtitletoolkit.tools/guides/best-subtitle-format-for-videojs/)
