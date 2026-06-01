@@ -1592,11 +1592,23 @@ const checks = [
 		expect: [
 			{
 				label: 'updated MKV extraction guide title',
-				match: '<title>Extract Subtitles from MKV - Free No Upload Guide</title>',
+				match: '<title>Extract Subtitles from MKV Online - Free No Upload</title>',
+			},
+			{
+				label: 'MKV extraction guide no-upload meta description',
+				match: 'Extract subtitles from MKV files online for free. Save embedded text subtitle streams as SRT locally in your browser with no upload.',
 			},
 			{
 				label: 'MKV extraction guide opens extractor tool',
 				match: 'href="/tools/extract-subtitles-from-video/"',
+			},
+			{
+				label: 'FAQ schema for MKV extraction questions',
+				match: 'Can I extract subtitles from an MKV file online for free?',
+			},
+			{
+				label: 'MKV extraction guide explains no-subtitle result',
+				match: 'Why did MKV subtitle extraction find no subtitles?',
 			},
 		],
 	},

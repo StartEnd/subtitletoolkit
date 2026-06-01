@@ -1,16 +1,27 @@
 ---
 title: How to extract subtitles from MKV
-seoTitle: Extract Subtitles from MKV - Free No Upload Guide
+seoTitle: Extract Subtitles from MKV Online - Free No Upload
+seoDescription: Extract subtitles from MKV files online for free. Save embedded text subtitle streams as SRT locally in your browser with no upload.
 description: Extract embedded text subtitles from MKV files locally, check whether the stream is text-based, and save captions as a separate subtitle file.
 pubDate: 2026-05-10
-updatedDate: 2026-05-25
+updatedDate: 2026-06-02
 category: workflow-guides
 tags:
   - extract subtitles from mkv
+  - mkv subtitle extractor
   - mkv subtitles
   - embedded subtitles
   - ffmpeg subtitles
 primaryTool: extract-subtitles-from-video
+faqs:
+  - question: Can I extract subtitles from an MKV file online for free?
+    answer: Yes. Use the browser-local video subtitle extractor to read embedded text subtitle streams from an MKV file and save a separate SRT output without uploading the video.
+  - question: Can this extract burned-in MKV subtitles?
+    answer: No. Burned-in subtitles are part of the video image and need OCR. The extractor works on embedded text subtitle streams that can be separated from the MKV container.
+  - question: Why did MKV subtitle extraction find no subtitles?
+    answer: The MKV may not contain a subtitle stream, the first stream may be image-based such as PGS, or the subtitle track may use a format the browser extractor cannot convert.
+  - question: Are MKV files uploaded during subtitle extraction?
+    answer: No. FFmpeg runs locally in your browser, so the MKV file stays on your device.
 ---
 
 MKV files often contain separate subtitle streams inside the video container.
@@ -19,7 +30,7 @@ That is different from a subtitle file sitting next to the video. In an MKV cont
 
 ## Quick answer
 
-Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/), choose the MKV file, and let the browser extract the first embedded text subtitle stream as SRT.
+Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/), choose the MKV file, and let the browser extract the first embedded text subtitle stream as SRT. The video stays on your device; FFmpeg runs locally in the browser.
 
 ## What this can extract
 
@@ -36,6 +47,8 @@ It usually cannot convert image-based subtitle streams such as:
 Stream #0:4: Subtitle: hdmv_pgs_subtitle
 ```
 
+If extraction returns no subtitle text, the MKV may still have captions, but not in a text stream the browser can save as SRT. PGS, VobSub, and burned-in captions need a different OCR workflow.
+
 ## Embedded, external, and burned-in subtitles
 
 Before extracting, identify what kind of subtitle you have:
@@ -45,6 +58,12 @@ Before extracting, identify what kind of subtitle you have:
 - Burned-in subtitles are part of the video image. They cannot be saved as text without OCR.
 
 If you can turn captions on and off in the player, they are probably embedded or external. If the text is always visible in the picture, it is probably burned in.
+
+## If the MKV has multiple subtitle tracks
+
+Some MKV files include several subtitle streams for different languages or commentary tracks. The browser extractor attempts the first embedded subtitle stream, so check the extracted text before treating it as final.
+
+If the language is wrong, inspect the MKV in a desktop tool such as VLC or MediaInfo to identify the track order, then extract the correct subtitle stream with a dedicated video workflow. Keep the browser output as a quick first check, not proof that every track has been exported.
 
 ## Step-by-step workflow
 
@@ -69,6 +88,24 @@ For a simple delivery file, SRT is often easiest. For browser playback, convert 
 ## Privacy note
 
 The video stays on your device. FFmpeg runs in the browser, so the file does not need to be uploaded to a server.
+
+## Frequently asked questions
+
+### Can I extract subtitles from an MKV file online for free?
+
+Yes. Use the browser-local [Extract Subtitles from Video](/tools/extract-subtitles-from-video/) tool to read embedded text subtitle streams from an MKV file and save a separate SRT output without uploading the video.
+
+### Can this extract burned-in MKV subtitles?
+
+No. Burned-in subtitles are part of the video image and need OCR. The extractor works on embedded text subtitle streams that can be separated from the MKV container.
+
+### Why did MKV subtitle extraction find no subtitles?
+
+The MKV may not contain a subtitle stream, the first stream may be image-based such as PGS, or the subtitle track may use a format the browser extractor cannot convert.
+
+### Are MKV files uploaded during subtitle extraction?
+
+No. FFmpeg runs locally in your browser, so the MKV file stays on your device.
 
 ## Common mistakes
 
