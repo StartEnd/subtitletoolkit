@@ -17,7 +17,7 @@ function usage() {
   pnpm promotion:record -- --channel directory --source AlternativeTo --url https://example.com --status submitted
 
 Required:
-  --channel gsc|directory|reddit|hn|awesome|other
+  --channel gsc|indexnow|directory|reddit|hn|awesome|other
   --source name
 
 Optional:
@@ -36,7 +36,7 @@ if (hasFlag('--help')) {
 	process.exit(0);
 }
 
-const validChannels = ['gsc', 'directory', 'reddit', 'hn', 'awesome', 'other'];
+const validChannels = ['gsc', 'indexnow', 'directory', 'reddit', 'hn', 'awesome', 'other'];
 const validStatuses = ['submitted', 'published', 'rejected', 'commented', 'reviewed', 'other'];
 const date = getArg('--date') || new Date().toISOString().slice(0, 10);
 const channel = getArg('--channel');

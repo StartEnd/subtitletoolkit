@@ -56,7 +56,7 @@ try {
 
 	const invalidChannel = run(['--channel', 'email', '--source', 'List']);
 	assertExit(invalidChannel, 1);
-	assertIncludes(invalidChannel.stderr, '--channel must be one of: gsc, directory, reddit, hn, awesome, other.');
+	assertIncludes(invalidChannel.stderr, '--channel must be one of: gsc, indexnow, directory, reddit, hn, awesome, other.');
 
 	const invalidUrl = run(['--channel', 'directory', '--source', 'AlternativeTo', '--url', 'http://example.com']);
 	assertExit(invalidUrl, 1);

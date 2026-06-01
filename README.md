@@ -87,6 +87,14 @@ After Google starts showing crawl or impression movement for the primary queue, 
 pnpm gsc:day0:list -- --batch current
 ```
 
+To prepare an IndexNow notification for Bing/Yandex-style discovery, print the payload first:
+
+```bash
+pnpm indexnow:submit
+```
+
+This command is a dry run unless `--live` is passed. The public verification key is served from `https://subtitletoolkit.tools/indexnow-key.txt` after deployment.
+
 For copy-ready directory submission text, Reddit/HN drafts, and tracking rows from `PROMOTION_PLAN.md`, print the promotion kit:
 
 ```bash
@@ -101,6 +109,7 @@ After an external action actually happens, append a local evidence row for the w
 ```bash
 pnpm promotion:record -- --channel directory --source AlternativeTo --url https://example.com/subtitle-toolkit --status submitted
 pnpm promotion:record -- --channel gsc --source "Search Console" --status submitted --notes "Sitemap plus 21 primary URL Inspection requests"
+pnpm promotion:record -- --channel indexnow --source IndexNow --status submitted --notes "Submitted primary queue with 21 URLs"
 ```
 
 `PROMOTION_LOG.md` is intentionally local-only and ignored by git. If it does not exist yet, the weekly analyzer treats that as no recorded promotion evidence.
