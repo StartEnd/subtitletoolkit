@@ -70,6 +70,14 @@ const checks = [
 				label: 'homepage links to Vimeo caption failure guide',
 				match: '/guides/why-vimeo-captions-are-not-showing/',
 			},
+			{
+				label: 'homepage links to garbled subtitles guide',
+				match: '/guides/how-to-fix-garbled-subtitles/',
+			},
+			{
+				label: 'homepage links to UTF-8 conversion guide',
+				match: '/guides/how-to-convert-subtitles-to-utf-8/',
+			},
 		],
 	},
 	{
@@ -615,6 +623,26 @@ const checks = [
 			{
 				label: 'guides index links to Vimeo caption failure guide',
 				match: '/guides/why-vimeo-captions-are-not-showing/',
+			},
+			{
+				label: 'guides index includes encoding fixes section',
+				match: 'Encoding fixes',
+			},
+			{
+				label: 'guides index links to UTF-8 conversion guide',
+				match: '/guides/how-to-convert-subtitles-to-utf-8/',
+			},
+			{
+				label: 'guides index links to garbled subtitles guide',
+				match: '/guides/how-to-fix-garbled-subtitles/',
+			},
+			{
+				label: 'guides index links to boxes subtitles guide',
+				match: '/guides/how-to-fix-subtitles-showing-boxes/',
+			},
+			{
+				label: 'guides index links to Windows-1252 vs UTF-8 guide',
+				match: '/guides/subtitle-encoding-windows-1252-vs-utf-8/',
 			},
 		],
 	},
