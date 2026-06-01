@@ -80,7 +80,8 @@ function printDirectoryKit() {
 	console.log('Platform: Online / Web-based');
 
 	printHeader('Submission Assets');
-	console.log('Icon: public/favicon.svg or public/favicon.ico');
+	console.log('Logo PNG: public/logo-512.png');
+	console.log('Fallback icon: public/favicon.svg or public/favicon.ico');
 	console.log('Open graph image: public/og-preview.png');
 	console.log('Screenshot target: https://subtitletoolkit.tools/');
 	console.log('Recommended screenshot crop: homepage hero plus the first row of tool cards.');

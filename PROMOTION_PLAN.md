@@ -135,7 +135,7 @@ URL: <https://alternativeto.net/>
    - 3Play Media
 5. License: Freeware；Pricing: Free
 6. Platform: Online / Web-based
-7. 上传图标（优先用 `public/favicon.svg`，不支持 SVG 时用 `public/favicon.ico`）
+7. 上传图标（优先用 `public/logo-512.png`；如站点要求矢量图再用 `public/favicon.svg`）
 8. 截图：浏览器打开 https://subtitletoolkit.tools → Cmd+Shift+4 截首页主视觉区（hero + 第一排工具卡片）→ 上传；若站点要求社交预览图，使用 `public/og-preview.png`
 
 提交后 1-3 天审核。
