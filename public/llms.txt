@@ -50,6 +50,8 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [Why YouTube subtitle upload failed](https://subtitletoolkit.tools/guides/why-youtube-subtitles-upload-failed/)
 - [Why your SRT file will not upload](https://subtitletoolkit.tools/guides/why-srt-file-wont-upload/)
 - [Best subtitle format for HTML5 video](https://subtitletoolkit.tools/guides/best-subtitle-format-for-html5-video/)
+- [How to convert subtitles for HTML5 video](https://subtitletoolkit.tools/guides/how-to-convert-subtitles-for-html5-video/)
+- [How to add multiple subtitle languages to HTML5 video](https://subtitletoolkit.tools/guides/how-to-add-multiple-subtitle-languages-to-html5-video/)
 - [How to fix subtitle delay](https://subtitletoolkit.tools/guides/how-to-fix-subtitle-delay/)
 - [How to fix out-of-sync subtitles](https://subtitletoolkit.tools/guides/fix-out-of-sync-subtitles/)
 - [How to fix subtitle sync after a scene cut](https://subtitletoolkit.tools/guides/fix-subtitle-sync-after-a-scene-cut/)

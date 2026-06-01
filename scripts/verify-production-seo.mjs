@@ -86,6 +86,10 @@ const checks = [
 				label: 'homepage links to MKV subtitle extraction guide',
 				match: '/guides/how-to-extract-subtitles-from-mkv/',
 			},
+			{
+				label: 'homepage links to HTML5 conversion guide',
+				match: '/guides/how-to-convert-subtitles-for-html5-video/',
+			},
 		],
 	},
 	{
@@ -452,6 +456,57 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/how-to-convert-subtitles-for-html5-video/',
+		expect: [
+			{
+				label: 'HTML5 conversion guide CTR title',
+				match: '<title>Convert Subtitles for HTML5 Video - SRT or ASS to VTT</title>',
+			},
+			{
+				label: 'HTML5 conversion guide meta description',
+				match: 'Convert SRT or ASS subtitles to WebVTT for HTML5 video. Add the WEBVTT header, fix timestamps, and create browser-ready captions with no upload.',
+			},
+			{
+				label: 'HTML5 conversion guide opens converter tool',
+				match: 'href="/tools/html5-video-subtitle-converter/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-add-multiple-subtitle-languages-to-html5-video/',
+		expect: [
+			{
+				label: 'multi-language HTML5 guide CTR title',
+				match: '<title>Add Multiple Subtitle Languages to HTML5 Video</title>',
+			},
+			{
+				label: 'multi-language HTML5 guide meta description',
+				match: 'Add multiple subtitle languages to HTML5 video by preparing separate WebVTT files with language codes, labels, and track elements.',
+			},
+			{
+				label: 'multi-language HTML5 guide opens converter tool',
+				match: 'href="/tools/html5-video-subtitle-converter/"',
+			},
+		],
+	},
+	{
+		path: '/guides/best-subtitle-format-for-html5-video/',
+		expect: [
+			{
+				label: 'HTML5 format guide CTR title',
+				match: '<title>Best Subtitle Format for HTML5 Video - Use WebVTT</title>',
+			},
+			{
+				label: 'HTML5 format guide meta description',
+				match: 'Learn why WebVTT is the best subtitle format for HTML5 video, when to convert SRT or ASS, and how to avoid MIME and CORS caption issues.',
+			},
+			{
+				label: 'HTML5 format guide opens SRT to VTT tool',
+				match: 'href="/tools/srt-to-vtt/"',
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/',
 		expect: [
 			{
@@ -679,6 +734,18 @@ const checks = [
 				match: 'Encoding fixes',
 			},
 			{
+				label: 'guides index includes HTML5 captions section',
+				match: 'HTML5 captions',
+			},
+			{
+				label: 'guides index links to HTML5 conversion guide',
+				match: '/guides/how-to-convert-subtitles-for-html5-video/',
+			},
+			{
+				label: 'guides index links to multiple language HTML5 guide',
+				match: '/guides/how-to-add-multiple-subtitle-languages-to-html5-video/',
+			},
+			{
 				label: 'guides index links to UTF-8 conversion guide',
 				match: '/guides/how-to-convert-subtitles-to-utf-8/',
 			},
@@ -833,6 +900,14 @@ const checks = [
 			{
 				label: 'llms lists WebVTT validation guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-validate-webvtt-files/',
+			},
+			{
+				label: 'llms lists HTML5 subtitle conversion guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-subtitles-for-html5-video/',
+			},
+			{
+				label: 'llms lists HTML5 multi-language guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-add-multiple-subtitle-languages-to-html5-video/',
 			},
 			{
 				label: 'llms lists SRT validation guide',

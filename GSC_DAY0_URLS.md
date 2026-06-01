@@ -84,6 +84,9 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-garbled-subtitles/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-subtitles-showing-boxes/`
 - [ ] `https://subtitletoolkit.tools/guides/subtitle-encoding-windows-1252-vs-utf-8/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-convert-subtitles-for-html5-video/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-add-multiple-subtitle-languages-to-html5-video/`
+- [ ] `https://subtitletoolkit.tools/guides/best-subtitle-format-for-html5-video/`
 
 ## After Submission
 
