@@ -30,10 +30,12 @@ assertIncludes(directory.stdout, 'Section: directory');
 assertIncludes(directory.stdout, 'Name: Subtitle Toolkit');
 assertIncludes(directory.stdout, 'URL: https://subtitletoolkit.tools');
 assertIncludes(directory.stdout, 'AlternativeTo - https://alternativeto.net/');
+assertIncludes(directory.stdout, 'GitHub awesome subtitle list - https://github.com/search?q=awesome+subtitle&type=repositories');
 assertIncludes(directory.stdout, '## Directory Evidence Commands');
 assertIncludes(directory.stdout, 'pnpm promotion:record -- --date 2026-06-01 --channel directory --source "AlternativeTo" --url https://alternativeto.net/ --status submitted --notes "Submitted directory listing for Subtitle Toolkit"');
 assertIncludes(directory.stdout, 'pnpm promotion:record -- --date 2026-06-01 --channel directory --source "tinytools.directory" --url https://tinytools.directory/ --status submitted --notes "Submitted directory listing for Subtitle Toolkit"');
 assertIncludes(directory.stdout, 'pnpm promotion:record -- --date 2026-06-01 --channel directory --source "SaaSHub" --url https://www.saashub.com/ --status submitted --notes "Submitted directory listing for Subtitle Toolkit"');
+assertIncludes(directory.stdout, 'pnpm promotion:record -- --date 2026-06-01 --channel awesome --source "GitHub awesome subtitle list" --url https://github.com/search?q=awesome+subtitle&type=repositories --status submitted --notes "Submitted or opened an awesome-list PR for Subtitle Toolkit"');
 
 const tracking = run(['--submitted-on', '2026-06-01', '--section', 'tracking']);
 assertExit(tracking, 0);

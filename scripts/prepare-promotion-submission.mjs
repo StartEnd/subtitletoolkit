@@ -57,9 +57,10 @@ Built with Astro and hosted on Cloudflare Pages. Static, fast, and no backend su
 const tags = 'subtitle, srt, vtt, webvtt, ass, caption, converter, video, free, privacy, browser-based, no-signup, html5';
 const categories = 'Video & Movies, Online Services, Developer Tools, File Conversion';
 const directoryTargets = [
-	{ name: 'AlternativeTo', url: 'https://alternativeto.net/' },
-	{ name: 'tinytools.directory', url: 'https://tinytools.directory/' },
-	{ name: 'SaaSHub', url: 'https://www.saashub.com/' },
+	{ name: 'AlternativeTo', channel: 'directory', url: 'https://alternativeto.net/', notes: 'Submitted directory listing for Subtitle Toolkit' },
+	{ name: 'tinytools.directory', channel: 'directory', url: 'https://tinytools.directory/', notes: 'Submitted directory listing for Subtitle Toolkit' },
+	{ name: 'SaaSHub', channel: 'directory', url: 'https://www.saashub.com/', notes: 'Submitted directory listing for Subtitle Toolkit' },
+	{ name: 'GitHub awesome subtitle list', channel: 'awesome', url: 'https://github.com/search?q=awesome+subtitle&type=repositories', notes: 'Submitted or opened an awesome-list PR for Subtitle Toolkit' },
 ];
 
 function printHeader(title) {
@@ -82,12 +83,11 @@ function printDirectoryKit() {
 	directoryTargets.forEach((target, index) => {
 		console.log(`${index + 1}. ${target.name} - ${target.url}`);
 	});
-	console.log('4. GitHub awesome list PR - https://github.com/search?q=awesome+subtitle&type=repositories');
 
 	printHeader('Directory Evidence Commands');
-	console.log('Run the matching command only after the external submission actually happens. Replace --url with the published listing URL when one exists.');
+	console.log('Run the matching command only after the external submission actually happens. Replace --url with the published listing or PR URL when one exists.');
 	directoryTargets.forEach((target) => {
-		console.log(`pnpm promotion:record -- --date ${submittedOn} --channel directory --source "${target.name}" --url ${target.url} --status submitted --notes "Submitted directory listing for Subtitle Toolkit"`);
+		console.log(`pnpm promotion:record -- --date ${submittedOn} --channel ${target.channel} --source "${target.name}" --url ${target.url} --status submitted --notes "${target.notes}"`);
 	});
 }
 
