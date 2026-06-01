@@ -46,7 +46,7 @@ const toolMetaDescriptions: Record<string, string> = {
 	'ass-to-vtt':
 		'Convert ASS subtitles to WebVTT for browser playback and HTML5 video delivery while keeping subtitle timing and readable text.',
 	'youtube-subtitle-converter':
-		'Convert VTT or ASS subtitles to YouTube-ready SRT captions online for free. Runs locally in your browser with no upload.',
+		'Convert subtitles to YouTube-ready SRT online for free. Turn VTT, ASS, or SSA captions into upload-safe SRT locally with no signup or upload.',
 	'html5-video-subtitle-converter':
 		'Convert SRT or ASS subtitles to WebVTT for HTML5 video tracks. Create browser-ready VTT captions online for free.',
 	'videojs-subtitle-converter':
@@ -97,7 +97,7 @@ const toolPageTitles: Record<string, string> = {
 	'ass-to-srt': 'ASS to SRT Converter Online - Free, No Upload',
 	'vtt-to-ass': 'VTT to ASS Converter - Convert Captions Online Free',
 	'ass-to-vtt': 'ASS to VTT Converter - Convert Subtitles Online Free',
-	'youtube-subtitle-converter': 'YouTube Subtitle Converter - Convert Captions to SRT',
+	'youtube-subtitle-converter': 'YouTube Subtitle Converter Online - Free No Upload',
 	'html5-video-subtitle-converter': 'HTML5 Video Subtitle Converter - Convert Captions to VTT',
 	'videojs-subtitle-converter': 'Video.js Subtitle Converter - Convert Captions to VTT',
 	'jw-player-subtitle-converter': 'JW Player Subtitle Converter - Convert Captions to VTT',
@@ -139,7 +139,7 @@ const workflowNotes: Record<string, string> = {
 	'ass-to-vtt':
 		'ASS is not the safest final format for browser playback. This converter creates WebVTT output so the same subtitle text can be used in HTML5 video and web player workflows.',
 	'youtube-subtitle-converter':
-		'Use this when the destination is a YouTube caption upload or creator handoff. The tool keeps timing and readable text, then exports a simple SRT copy for upload review.',
+		'Use this when YouTube needs a clean SRT upload but your source captions are VTT, ASS, SSA, or uncertain. The tool keeps timing and readable text, removes unsupported styling, and exports a simple SRT copy locally with no upload.',
 	'html5-video-subtitle-converter':
 		'Use this when captions need to work in an HTML5 video track. The output is WebVTT with a WEBVTT header and browser-friendly timestamp formatting.',
 	'videojs-subtitle-converter':

@@ -1692,6 +1692,31 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/youtube-subtitle-converter/',
+		expect: [
+			{
+				label: 'YouTube converter tool CTR title',
+				match: '<title>YouTube Subtitle Converter Online - Free No Upload</title>',
+			},
+			{
+				label: 'YouTube converter tool no-upload meta description',
+				match: 'Convert subtitles to YouTube-ready SRT online for free. Turn VTT, ASS, or SSA captions into upload-safe SRT locally with no signup or upload.',
+			},
+			{
+				label: 'YouTube converter workflow covers upload-safe SRT',
+				match: 'YouTube needs a clean SRT upload',
+			},
+			{
+				label: 'YouTube converter FAQ covers VTT and ASS conversion',
+				match: 'Can this convert VTT or ASS captions for YouTube?',
+			},
+			{
+				label: 'YouTube converter links conversion guide',
+				match: 'href="/guides/how-to-convert-subtitles-for-youtube/"',
+			},
+		],
+	},
+	{
 		path: '/privacy-policy/',
 		expect: [
 			{

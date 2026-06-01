@@ -647,9 +647,9 @@ const enTools: SubtitleTool[] = [
     title: 'YouTube Subtitle Converter',
     shortTitle: 'YouTube converter',
     description:
-      'Convert VTT or ASS subtitles to YouTube-ready SRT captions directly in your browser.',
+      'Convert VTT, ASS, or SSA subtitles to YouTube-ready SRT captions directly in your browser with no upload.',
     summary:
-      'Use this free YouTube subtitle converter when your source file is VTT or ASS but your upload workflow needs a simple SRT caption file.',
+      'Use this free YouTube subtitle converter when your source file is VTT, ASS, or SSA but your upload workflow needs a clean SRT caption file.',
     buttonLabel: 'Convert for YouTube',
     inputLabel: 'Subtitle input',
     outputLabel: 'YouTube SRT output',
@@ -669,9 +669,9 @@ const enTools: SubtitleTool[] = [
           'SRT is the safest default for most YouTube caption upload workflows because it is simple and easy to inspect.',
       },
       {
-        question: 'Can this convert VTT captions for YouTube?',
+        question: 'Can this convert VTT or ASS captions for YouTube?',
         answer:
-          'Yes. VTT input is converted to comma-based SRT timing with numbered cue blocks.',
+          'Yes. VTT input is converted to comma-based SRT timing with numbered cue blocks, and ASS or SSA input is flattened into readable SRT captions.',
       },
       {
         question: 'What happens to ASS styling?',
