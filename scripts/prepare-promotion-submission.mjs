@@ -79,6 +79,12 @@ function printDirectoryKit() {
 	console.log('Pricing: Free / Freeware');
 	console.log('Platform: Online / Web-based');
 
+	printHeader('Submission Assets');
+	console.log('Icon: public/favicon.svg or public/favicon.ico');
+	console.log('Open graph image: public/og-preview.png');
+	console.log('Screenshot target: https://subtitletoolkit.tools/');
+	console.log('Recommended screenshot crop: homepage hero plus the first row of tool cards.');
+
 	printHeader('Priority Directory Targets');
 	directoryTargets.forEach((target, index) => {
 		console.log(`${index + 1}. ${target.name} - ${target.url}`);
