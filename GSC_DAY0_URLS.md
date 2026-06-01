@@ -73,6 +73,10 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/why-jw-player-captions-are-not-showing/`
 - [ ] `https://subtitletoolkit.tools/guides/why-plex-subtitles-are-not-showing/`
 - [ ] `https://subtitletoolkit.tools/guides/why-vimeo-captions-are-not-showing/`
+- [ ] `https://subtitletoolkit.tools/guides/best-subtitle-format-for-videojs/`
+- [ ] `https://subtitletoolkit.tools/guides/best-subtitle-format-for-jw-player/`
+- [ ] `https://subtitletoolkit.tools/guides/best-subtitle-format-for-plex/`
+- [ ] `https://subtitletoolkit.tools/guides/best-subtitle-format-for-vimeo-embeds/`
 
 ## After Submission
 

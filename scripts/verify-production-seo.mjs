@@ -685,16 +685,32 @@ const checks = [
 				match: 'https://subtitletoolkit.tools/guides/why-videojs-captions-are-not-showing/',
 			},
 			{
+				label: 'llms lists Video.js subtitle format guide',
+				match: 'https://subtitletoolkit.tools/guides/best-subtitle-format-for-videojs/',
+			},
+			{
 				label: 'llms lists JW Player caption failure guide',
 				match: 'https://subtitletoolkit.tools/guides/why-jw-player-captions-are-not-showing/',
+			},
+			{
+				label: 'llms lists JW Player subtitle format guide',
+				match: 'https://subtitletoolkit.tools/guides/best-subtitle-format-for-jw-player/',
 			},
 			{
 				label: 'llms lists Plex subtitle failure guide',
 				match: 'https://subtitletoolkit.tools/guides/why-plex-subtitles-are-not-showing/',
 			},
 			{
+				label: 'llms lists Plex subtitle format guide',
+				match: 'https://subtitletoolkit.tools/guides/best-subtitle-format-for-plex/',
+			},
+			{
 				label: 'llms lists Vimeo caption failure guide',
 				match: 'https://subtitletoolkit.tools/guides/why-vimeo-captions-are-not-showing/',
+			},
+			{
+				label: 'llms lists Vimeo subtitle format guide',
+				match: 'https://subtitletoolkit.tools/guides/best-subtitle-format-for-vimeo-embeds/',
 			},
 			{
 				label: 'llms lists malformed SRT timestamp guide',
