@@ -1,7 +1,7 @@
 # Subtitle Toolkit — Promotion Plan
 
 > 一份可执行的推广操作手册。每天打开这个文件，按清单做。
-> 创建于 2026-05-07。当前版本按 2026-06-01 生产 SEO 验证后的状态执行。
+> 创建于 2026-05-07。当前版本按 2026-06-01 生产 SEO 验证后的状态执行，最新通过生产门禁的提交是 `4653386`。
 
 ---
 
@@ -49,6 +49,12 @@
 
 先完成 GSC Day 0 提交，再做外部推广。这样后续的曝光、点击和 referral 变化能对上时间线。
 
+今天只做三件事：
+
+1. 在 GSC 提交 sitemap：`https://subtitletoolkit.tools/sitemap-index.xml`
+2. 按 `pnpm gsc:day0:list` 输出的 21 个 primary URL 做 URL Inspection
+3. 把提交日期、实际 URL Inspection 数量和 `2026-06-08` 复查日填回 `GSC_DAY0_URLS.md`
+
 | 相对日期 | 任务 | 时长 | 优先级 | 验收 |
 |------|------|------|--------|------|
 | Day 0 | 跑 `pnpm verify:gsc:submit-ready`，提交 GSC sitemap，并按 `GSC_DAY0_URLS.md` 优先级做 URL Inspection | 45 分 | 🔥 | `GSC_DAY0_URLS.md` 填好 Submission Record，包含实际请求数量 |
@@ -62,6 +68,7 @@
 
 - [ ] `pnpm verify:gsc:submit-ready` 通过
 - [ ] `GSC_DAY0_URLS.md` 准备记录提交日期和下次复查日期
+- [ ] `pnpm gsc:day0:list` 输出的 primary queue 是 21 个 URL；提交完成后再勾选和粘贴记录行
 - [ ] Plausible 可以看到当前 traffic sources，便于提交后对比 referral/direct 变化
 - [ ] Plausible 可以看到工具事件，至少包括 `subtitle_tool_edit_input`、`subtitle_tool_adjust_setting`、`subtitle_tool_copy_output`、`subtitle_tool_download_output`
 
@@ -530,5 +537,5 @@ Thanks for taking a look.
 
 ---
 
-**最后更新：** 2026-05-07  
-**下次复盘：** 2026-05-14（一周后）
+**最后更新：** 2026-06-01
+**下次复盘：** 2026-06-08（一周后）
