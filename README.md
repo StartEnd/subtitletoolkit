@@ -78,6 +78,13 @@ After Google starts showing crawl or impression movement for the primary queue, 
 pnpm gsc:day0:list -- --batch current
 ```
 
+For copy-ready directory submission text, Reddit/HN drafts, and tracking rows from `PROMOTION_PLAN.md`, print the promotion kit:
+
+```bash
+pnpm promotion:kit
+pnpm promotion:kit -- --section directory --submitted-on 2026-06-01
+```
+
 ## Weekly Search Review
 
 After Search Console has a few days of data, export same-window GSC Queries and Pages CSVs, then pair them with Plausible organic pageviews and tool events:
