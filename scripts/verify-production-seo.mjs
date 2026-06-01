@@ -929,6 +929,74 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/fix-out-of-sync-subtitles/',
+		expect: [
+			{
+				label: 'out-of-sync guide CTR title',
+				match: '<title>Fix Out-of-Sync Subtitles Online - Shift Timing</title>',
+			},
+			{
+				label: 'out-of-sync guide no-upload meta description',
+				match: 'Fix out-of-sync SRT, VTT, or ASS subtitles by measuring the offset, shifting timing online, and downloading a corrected file with no upload.',
+			},
+			{
+				label: 'out-of-sync guide opens sync tool',
+				match: 'href="/tools/fix-out-of-sync-subtitles/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-fix-subtitle-timing-after-cutting-video/',
+		expect: [
+			{
+				label: 'cutting video timing guide CTR title',
+				match: '<title>Fix Subtitle Timing After Cutting Video - Scene Edits</title>',
+			},
+			{
+				label: 'cutting video timing guide no-upload meta description',
+				match: 'Fix subtitle timing after trimming or cutting a video. Shift the whole file or only cues after a scene edit locally with no upload.',
+			},
+			{
+				label: 'cutting video timing guide opens partial shifter',
+				match: 'href="/tools/partial-subtitle-shifter/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-shift-only-part-of-a-subtitle-file/',
+		expect: [
+			{
+				label: 'partial subtitle shift guide CTR title',
+				match: '<title>Shift Part of a Subtitle File - Partial Timing Fix</title>',
+			},
+			{
+				label: 'partial subtitle shift guide no-upload meta description',
+				match: 'Shift only one time range in an SRT, VTT, or ASS subtitle file while keeping the rest of the captions unchanged. No upload required.',
+			},
+			{
+				label: 'partial subtitle shift guide opens partial shifter',
+				match: 'href="/tools/partial-subtitle-shifter/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-clean-an-srt-file/',
+		expect: [
+			{
+				label: 'clean SRT guide CTR title',
+				match: '<title>Clean SRT File Online - Fix Cue Numbers and Spacing</title>',
+			},
+			{
+				label: 'clean SRT guide no-upload meta description',
+				match: 'Clean an SRT file online by fixing cue numbers, timestamp spacing, blank lines, and leftover tags locally in your browser with no upload.',
+			},
+			{
+				label: 'clean SRT guide opens cleaner tool',
+				match: 'href="/tools/clean-srt-file/"',
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-create-a-transcript-from-subtitles/',
 		expect: [
 			{
