@@ -27,11 +27,11 @@ const checks = [
 		expect: [
 			{
 				label: 'homepage no-upload title promise',
-				match: '<title>Free Subtitle Tools - No Upload | Subtitle Toolkit</title>',
+				match: '<title>Free SRT/VTT Subtitle Tools - No Upload | Subtitle Toolkit</title>',
 			},
 			{
 				label: 'homepage no-upload meta description',
-				match: 'Convert, fix, and clean SRT, VTT, and ASS subtitle files for free. No signup, no upload, and browser-local processing for private caption workflows.',
+				match: 'Convert SRT to VTT, fix subtitle timing, validate, clean, and extract captions for free. No signup or upload; files stay in your browser.',
 			},
 			{
 				label: 'homepage links to priority delay tool',
