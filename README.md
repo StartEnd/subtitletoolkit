@@ -46,6 +46,8 @@ Run the build and generated-output SEO checks before publishing search-facing ch
 pnpm verify:seo:ready
 ```
 
+This includes a SERP metadata audit for generated guide and tool pages, checking for missing, duplicate, or overlong titles and descriptions.
+
 After Cloudflare Pages deploys, verify the live site has the updated titles, structured data, and priority guide links:
 
 ```bash

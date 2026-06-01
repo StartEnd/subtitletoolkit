@@ -44,6 +44,18 @@ const checks = [
 				match: '<title>Fix Subtitle Delay Online - SRT, VTT, ASS Timing Guide</title>',
 			},
 			{
+				label: 'above-content related tool link',
+				match: 'href="/tools/subtitle-time-shifter/"',
+			},
+			{
+				label: 'guide tool CTA analytics event',
+				match: 'guide_tool_cta_click',
+			},
+			{
+				label: 'top guide tool CTA placement',
+				match: 'data-guide-tool-placement="top"',
+			},
+			{
 				label: 'updated guide meta description',
 				match: 'Fix subtitles that appear too early or too late. Measure the offset, shift SRT, VTT, or ASS timing online, and download a corrected file with no upload.',
 			},
@@ -86,6 +98,58 @@ const checks = [
 			{
 				label: 'updated MKV extraction guide title',
 				match: '<title>Extract Subtitles from MKV - Free No Upload Guide</title>',
+			},
+		],
+	},
+	{
+		path: '/tools/srt-to-vtt/',
+		expect: [
+			{
+				label: 'CTR-oriented SRT to VTT tool title',
+				match: '<title>SRT to VTT Converter Online - Free, No Upload</title>',
+			},
+			{
+				label: 'SRT to VTT no-upload meta description',
+				match: 'Convert SRT subtitles to VTT online for free. Create a WebVTT file for HTML5 video locally in your browser with no signup or upload.',
+			},
+		],
+	},
+	{
+		path: '/tools/subtitle-delay-fixer/',
+		expect: [
+			{
+				label: 'CTR-oriented delay fixer tool title',
+				match: '<title>Fix Subtitle Delay Online - Free, No Upload</title>',
+			},
+			{
+				label: 'delay fixer no-upload meta description',
+				match: 'Fix subtitle delay online for SRT, VTT, and ASS files. Shift captions earlier or later locally in your browser with no signup or upload.',
+			},
+		],
+	},
+	{
+		path: '/tools/srt-validator/',
+		expect: [
+			{
+				label: 'CTR-oriented SRT validator tool title',
+				match: '<title>SRT Validator Online - Free Subtitle Checker</title>',
+			},
+			{
+				label: 'SRT validator no-upload meta description',
+				match: 'Validate SRT subtitles online for free. Check timestamp format, cue order, numbering, and upload errors locally with no signup or upload.',
+			},
+		],
+	},
+	{
+		path: '/tools/webvtt-validator/',
+		expect: [
+			{
+				label: 'CTR-oriented WebVTT validator tool title',
+				match: '<title>WebVTT Validator Online - Free VTT Checker</title>',
+			},
+			{
+				label: 'WebVTT validator local meta description',
+				match: 'Validate WebVTT captions online for free. Check the WEBVTT header, timestamp syntax, cue order, and browser caption issues locally.',
 			},
 		],
 	},

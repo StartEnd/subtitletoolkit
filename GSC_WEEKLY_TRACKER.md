@@ -7,14 +7,21 @@ Use this file once per week after the SEO deployment is live. Keep entries short
 1. Open Google Search Console -> Performance -> Search results.
 2. Set the date range to the last 28 days.
 3. Export Queries and Pages.
-4. Fill one weekly row below.
-5. Pick one small batch for the next change; do not edit the same URL again until 7 to 14 days have passed.
+4. Build the current site, then run the local analyzer with the two CSV files:
+
+```bash
+pnpm build
+pnpm gsc:analyze -- --queries path/to/queries.csv --pages path/to/pages.csv
+```
+
+5. Fill one weekly row below.
+6. Pick one small batch for the next change; do not edit the same URL again until 7 to 14 days have passed.
 
 ## Weekly Summary
 
 | Week of | Impressions | Clicks | CTR | Avg position | Pages with impressions | Pages with clicks | Main action shipped | Next review date |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |
-| 2026-06-01 | | | | | | | Initial SEO title, description, internal link, schema, and sitemap update prepared locally. | |
+| 2026-06-01 | | | | | | | Initial SEO title, description, internal link, schema, and sitemap update deployed and production-verified. Submit Day 0 URLs in GSC. | 2026-06-08 |
 
 ## Opportunity Buckets
 
@@ -56,4 +63,4 @@ Record only changes that can plausibly affect search behavior.
 
 | Date | URLs changed | Change type | Reason | Verification |
 | --- | --- | --- | --- | --- |
-| 2026-06-01 | Priority guides, tools, hubs, sitemap | Titles, descriptions, internal links, schema, sitemap lastmod | Improve zero-click impressions and crawl recency signals. | `pnpm build && pnpm verify:seo:dist` |
+| 2026-06-01 | Priority guides, tools, hubs, sitemap | Titles, descriptions, internal links, schema, sitemap lastmod | Improve zero-click impressions and crawl recency signals. | `pnpm verify:seo:live` passed on production for commit `209b053` |

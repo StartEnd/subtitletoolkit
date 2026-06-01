@@ -102,6 +102,24 @@ const articleSchema = {
 			<p><strong>TL;DR</strong> — {description}</p>
 		</div>
 
+		<div class="guide-tool-strip">
+			<div>
+				<p class="guide-tool-strip-label">Related tool</p>
+				<p class="guide-tool-strip-title">
+					{primaryToolData ? primaryToolData.title : 'Free subtitle tools'}
+				</p>
+			</div>
+			<a
+				class="button secondary"
+				href={primaryToolData ? `/tools/${primaryToolData.id}/` : '/tools/'}
+				data-guide-tool-cta
+				data-guide-tool-placement="top"
+				data-guide-tool-id={primaryToolData?.id ?? 'all-tools'}
+			>
+				{primaryToolData ? `Open ${primaryToolData.shortTitle}` : 'Browse tools'} <span aria-hidden="true">&rarr;</span>
+			</a>
+		</div>
+
 		<!-- Content -->
 		<div class="prose">
 			<slot />
@@ -119,7 +137,13 @@ const articleSchema = {
 						: 'Convert, shift, and clean subtitle files directly in your browser. No signup, no upload.'
 				}
 			</p>
-			<a class="button" href={primaryToolData ? `/tools/${primaryToolData.id}/` : '/tools/'}>
+			<a
+				class="button"
+				href={primaryToolData ? `/tools/${primaryToolData.id}/` : '/tools/'}
+				data-guide-tool-cta
+				data-guide-tool-placement="bottom"
+				data-guide-tool-id={primaryToolData?.id ?? 'all-tools'}
+			>
 				{primaryToolData ? `Open ${primaryToolData.shortTitle}` : 'Browse tools'} <span aria-hidden="true">&rarr;</span>
 			</a>
 		</div>
@@ -147,6 +171,20 @@ const articleSchema = {
 			)
 		}
 	</article>
+	<script>
+		document.querySelectorAll('[data-guide-tool-cta]').forEach((link) => {
+			link.addEventListener('click', () => {
+				if (typeof window !== 'undefined' && typeof window.plausible === 'function') {
+					window.plausible('guide_tool_cta_click', {
+						props: {
+							tool: link.getAttribute('data-guide-tool-id') || 'all-tools',
+							placement: link.getAttribute('data-guide-tool-placement') || 'unknown',
+						},
+					});
+				}
+			});
+		});
+	</script>
 </SiteLayout>
 
 <style>
@@ -199,6 +237,36 @@ const articleSchema = {
 
 	.guide-meta hr {
 		margin-top: var(--space-4);
+	}
+
+	.guide-tool-strip {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-4);
+		padding: var(--space-4) var(--space-5);
+		border: 1px solid var(--color-subtle);
+		border-radius: var(--radius-md);
+		background: var(--color-surface);
+		box-shadow: var(--shadow-sm);
+		margin: calc(-1 * var(--space-2)) 0 var(--space-8);
+	}
+
+	.guide-tool-strip-label {
+		margin: 0 0 var(--space-1);
+		color: var(--color-tertiary);
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	.guide-tool-strip-title {
+		margin: 0;
+		color: var(--color-base);
+		font-size: 1rem;
+		font-weight: 700;
+		line-height: 1.35;
 	}
 
 	/* Related tool CTA */
@@ -316,6 +384,15 @@ const articleSchema = {
 	}
 
 	@media (max-width: 768px) {
+		.guide-tool-strip {
+			align-items: stretch;
+			flex-direction: column;
+		}
+
+		.guide-tool-strip .button {
+			width: 100%;
+		}
+
 		.related-guides-head {
 			align-items: start;
 			flex-direction: column;

@@ -70,7 +70,7 @@ Tagline (≤120 字符):
 Free browser-local subtitle converter and repair tool for SRT, VTT, and ASS — files never leave your device.
 
 Long Description:
-Subtitle Toolkit is a free, privacy-first web app for converting, repairing, and cleaning subtitle files. It supports SRT, VTT (WebVTT), and ASS (Advanced SubStation) formats, with six conversion directions and dedicated tools for fixing timing drift and formatting issues.
+Subtitle Toolkit is a free, privacy-first web app for converting, repairing, validating, extracting, and cleaning subtitle files. It supports SRT, VTT (WebVTT), and ASS (Advanced SubStation) formats, with dedicated browser-local tools for format conversion, timing drift, malformed files, validators, transcript extraction, and embedded subtitle extraction.
 
 All processing happens locally in the browser — files are never uploaded to a server. There's no signup, no account, no upload limits, and no paywall.
 
@@ -78,10 +78,12 @@ Use cases:
 • Converting SRT subtitles to VTT for HTML5 video players
 • Converting ASS subtitles to SRT for YouTube uploads
 • Fixing constant-offset subtitle delay (early or late captions)
+• Validating SRT and WebVTT files before upload or browser playback
 • Cleaning up subtitle formatting before delivery to clients
+• Extracting embedded text subtitle tracks from video files
 • Removing styling from ASS files when targeting simple players
 
-The site also includes 28+ guides covering common subtitle workflows — format comparisons, conversion how-tos, sync fixes, and delivery patterns for platforms like YouTube, Plex, JW Player, Video.js, and Vimeo.
+The site also includes 70 guides covering common subtitle workflows — format comparisons, conversion how-tos, sync fixes, validation, extraction, and delivery patterns for platforms like YouTube, Plex, JW Player, Video.js, and Vimeo.
 
 Built with Astro, hosted on Cloudflare Pages. Static, fast, and no backend dependencies.
 

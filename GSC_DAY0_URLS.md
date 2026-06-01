@@ -19,6 +19,8 @@ Submit these URLs first. Do not submit every URL in the site on Day 0.
 - [ ] `https://subtitletoolkit.tools/tools/srt-to-ass/`
 - [ ] `https://subtitletoolkit.tools/tools/subtitle-delay-fixer/`
 - [ ] `https://subtitletoolkit.tools/tools/subtitle-cleaner/`
+- [ ] `https://subtitletoolkit.tools/tools/srt-validator/`
+- [ ] `https://subtitletoolkit.tools/tools/webvtt-validator/`
 - [ ] `https://subtitletoolkit.tools/tools/extract-subtitles-from-video/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-srt-to-vtt-for-html5-video/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/`

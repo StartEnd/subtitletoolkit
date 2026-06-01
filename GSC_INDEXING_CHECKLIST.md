@@ -117,25 +117,27 @@ Do not submit all URLs in one sitting. On deploy day, use `GSC_DAY0_URLS.md`: su
 7. `https://subtitletoolkit.tools/tools/srt-to-ass/`
 8. `https://subtitletoolkit.tools/tools/subtitle-delay-fixer/`
 9. `https://subtitletoolkit.tools/tools/subtitle-cleaner/`
-10. `https://subtitletoolkit.tools/tools/extract-subtitles-from-video/`
+10. `https://subtitletoolkit.tools/tools/srt-validator/`
+11. `https://subtitletoolkit.tools/tools/webvtt-validator/`
+12. `https://subtitletoolkit.tools/tools/extract-subtitles-from-video/`
 
 ### Tier 3: Guide hub pages
 
-11. `https://subtitletoolkit.tools/guides/conversion-guides/`
-12. `https://subtitletoolkit.tools/guides/sync-fixes/`
-13. `https://subtitletoolkit.tools/guides/format-comparisons/`
-14. `https://subtitletoolkit.tools/guides/workflow-guides/`
+13. `https://subtitletoolkit.tools/guides/conversion-guides/`
+14. `https://subtitletoolkit.tools/guides/sync-fixes/`
+15. `https://subtitletoolkit.tools/guides/format-comparisons/`
+16. `https://subtitletoolkit.tools/guides/workflow-guides/`
 
 ### Tier 4: Strongest long-tail action pages
 
-15. `https://subtitletoolkit.tools/guides/how-to-convert-srt-to-vtt-for-html5-video/`
-16. `https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/`
-17. `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-srt-for-youtube-uploads/`
-18. `https://subtitletoolkit.tools/guides/how-to-fix-subtitle-delay/`
-19. `https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/`
-20. `https://subtitletoolkit.tools/guides/how-to-clean-subtitle-formatting-before-upload/`
-21. `https://subtitletoolkit.tools/guides/why-vtt-captions-are-not-loading/`
-22. `https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mkv/`
+17. `https://subtitletoolkit.tools/guides/how-to-convert-srt-to-vtt-for-html5-video/`
+18. `https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/`
+19. `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-srt-for-youtube-uploads/`
+20. `https://subtitletoolkit.tools/guides/how-to-fix-subtitle-delay/`
+21. `https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/`
+22. `https://subtitletoolkit.tools/guides/how-to-clean-subtitle-formatting-before-upload/`
+23. `https://subtitletoolkit.tools/guides/why-vtt-captions-are-not-loading/`
+24. `https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mkv/`
 
 ## Step 4: Secondary URLs To Submit Later
 
@@ -143,18 +145,16 @@ Wait a few days before requesting these unless they are already showing impressi
 
 1. `https://subtitletoolkit.tools/tools/subtitle-time-shifter/`
 2. `https://subtitletoolkit.tools/tools/fix-out-of-sync-subtitles/`
-3. `https://subtitletoolkit.tools/tools/srt-validator/`
-4. `https://subtitletoolkit.tools/tools/webvtt-validator/`
-5. `https://subtitletoolkit.tools/tools/subtitle-encoding-fixer/`
-6. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-youtube/`
-7. `https://subtitletoolkit.tools/guides/why-subtitles-do-not-show-in-html5-video/`
-8. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-videojs/`
-9. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-jw-player/`
-10. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-vimeo-embeds/`
-11. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-plex/`
-12. `https://subtitletoolkit.tools/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/`
-13. `https://subtitletoolkit.tools/guides/how-to-remove-subtitle-line-numbers/`
-14. `https://subtitletoolkit.tools/guides/how-to-fix-malformed-srt-timestamps/`
+3. `https://subtitletoolkit.tools/tools/subtitle-encoding-fixer/`
+4. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-youtube/`
+5. `https://subtitletoolkit.tools/guides/why-subtitles-do-not-show-in-html5-video/`
+6. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-videojs/`
+7. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-jw-player/`
+8. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-vimeo-embeds/`
+9. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-plex/`
+10. `https://subtitletoolkit.tools/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/`
+11. `https://subtitletoolkit.tools/guides/how-to-remove-subtitle-line-numbers/`
+12. `https://subtitletoolkit.tools/guides/how-to-fix-malformed-srt-timestamps/`
 
 ## Step 5: What To Ignore For Now
 
@@ -191,7 +191,7 @@ For the current Search Console state, inspect these buckets first:
 
 Use this pace:
 
-- Day 0: submit sitemap + Tier 1 + Tier 2 + Tier 3
+- Day 0: submit sitemap + Tier 1 + Tier 2 + the first four Tier 4 long-tail pages listed in `GSC_DAY0_URLS.md`
 - Day 5 to Day 7: check impressions and indexing status
 - Day 7+: submit the secondary URLs if needed
 
