@@ -22,9 +22,10 @@ Optional:
   --endpoint https://api.indexnow.org/indexnow
   --key 1c7b9f240dbf4d4ca4d7c569f1b27c3a
   --key-location https://subtitletoolkit.tools/indexnow-key.txt
+  --skip-key-check
   --live
 
-By default this is a dry run. Use --live only after the URL batch should actually be submitted to IndexNow.`);
+By default this is a dry run. Live mode checks the public key URL before submitting unless --skip-key-check is passed.`);
 }
 
 if (hasFlag('--help')) {
@@ -38,13 +39,19 @@ const endpoint = getArg('--endpoint') || 'https://api.indexnow.org/indexnow';
 const key = getArg('--key') || '1c7b9f240dbf4d4ca4d7c569f1b27c3a';
 const keyLocation = getArg('--key-location') || 'https://subtitletoolkit.tools/indexnow-key.txt';
 const live = hasFlag('--live');
+const skipKeyCheck = hasFlag('--skip-key-check');
+const allowLocalTestUrls = hasFlag('--allow-local-test-urls');
 
 if (!['primary', 'current', 'all'].includes(batch)) {
 	console.error('--batch must be one of: primary, current, all.');
 	process.exit(1);
 }
 
-if (!/^https:\/\//.test(endpoint)) {
+function isLocalTestUrl(value) {
+	return /^http:\/\/127\.0\.0\.1(?::\d+)?\//.test(value);
+}
+
+if (!/^https:\/\//.test(endpoint) && !(allowLocalTestUrls && isLocalTestUrl(endpoint))) {
 	console.error('--endpoint must start with https://.');
 	process.exit(1);
 }
@@ -54,8 +61,18 @@ if (!/^[a-zA-Z0-9-]{8,128}$/.test(key)) {
 	process.exit(1);
 }
 
-if (!/^https:\/\/subtitletoolkit\.tools\//.test(keyLocation)) {
+if (!/^https:\/\/subtitletoolkit\.tools\//.test(keyLocation) && !(allowLocalTestUrls && isLocalTestUrl(keyLocation))) {
 	console.error('--key-location must be an https://subtitletoolkit.tools/ URL.');
+	process.exit(1);
+}
+
+if (skipKeyCheck && !live) {
+	console.error('--skip-key-check can only be used with --live.');
+	process.exit(1);
+}
+
+if (allowLocalTestUrls && !live) {
+	console.error('--allow-local-test-urls can only be used with --live.');
 	process.exit(1);
 }
 
@@ -119,6 +136,7 @@ console.log(`Source: ${day0Path}`);
 console.log(`Batch: ${batch}`);
 console.log(`Endpoint: ${endpoint}`);
 console.log(`Mode: ${live ? 'live' : 'dry-run'}`);
+console.log(`Key check: ${live ? (skipKeyCheck ? 'skipped' : 'required') : 'not needed'}`);
 console.log(`URL count: ${urlList.length}\n`);
 console.log('## Payload\n');
 console.log(JSON.stringify(payload, null, 2));
@@ -126,6 +144,24 @@ console.log(JSON.stringify(payload, null, 2));
 if (!live) {
 	console.log('\nDry run only. Add `--live` after the key file is deployed and you want to notify IndexNow.');
 	process.exit(0);
+}
+
+if (!skipKeyCheck) {
+	console.log(`\nChecking public IndexNow key at ${keyLocation}`);
+	const keyResponse = await fetch(keyLocation, { redirect: 'follow' });
+	const deployedKey = (await keyResponse.text()).trim();
+
+	if (!keyResponse.ok) {
+		console.error(`IndexNow key check failed with HTTP ${keyResponse.status}.`);
+		process.exit(1);
+	}
+
+	if (deployedKey !== key) {
+		console.error('IndexNow key check failed: deployed key does not match the submission key.');
+		process.exit(1);
+	}
+
+	console.log('IndexNow key check passed.');
 }
 
 const response = await fetch(endpoint, {
