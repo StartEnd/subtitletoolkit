@@ -1513,7 +1513,23 @@ const checks = [
 		expect: [
 			{
 				label: 'updated VTT to SRT guide title',
-				match: '<title>VTT to SRT Converter Guide - Free WebVTT to SubRip</title>',
+				match: '<title>VTT to SRT Converter Guide - Free No Upload Workflow</title>',
+			},
+			{
+				label: 'VTT to SRT guide no-upload meta description',
+				match: 'Convert VTT to SRT online for free. Turn WebVTT captions into numbered SubRip subtitle blocks for editors, uploads, and archives with no upload.',
+			},
+			{
+				label: 'VTT to SRT guide opens converter tool',
+				match: 'href="/tools/vtt-to-srt/"',
+			},
+			{
+				label: 'FAQ schema for VTT to SRT questions',
+				match: 'Can I convert VTT to SRT online for free?',
+			},
+			{
+				label: 'VTT to SRT guide links SRT validator follow-up',
+				match: 'href="/tools/srt-validator/"',
 			},
 		],
 	},
@@ -1627,6 +1643,23 @@ const checks = [
 			{
 				label: 'tool page does not enable ads before readiness gate',
 				absent: 'data-ads-enabled="true"',
+			},
+		],
+	},
+	{
+		path: '/tools/vtt-to-srt/',
+		expect: [
+			{
+				label: 'VTT to SRT tool title',
+				match: '<title>VTT to SRT Converter Online - Free, No Upload</title>',
+			},
+			{
+				label: 'VTT to SRT tool meta description',
+				match: 'Convert VTT WebVTT captions to SRT online for free. Create a SubRip file for editors and uploads locally with no signup or upload.',
+			},
+			{
+				label: 'VTT to SRT tool links guide',
+				match: 'href="/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/"',
 			},
 		],
 	},

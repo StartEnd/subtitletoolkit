@@ -263,6 +263,10 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['srt-to-vtt', 'vtt-to-ass'],
     relatedGuides: [
+      {
+        href: '/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/',
+        title: 'How to convert VTT to SRT for legacy editors',
+      },
       { href: '/guides/srt-vs-vtt/', title: 'SRT vs VTT' },
       {
         href: '/guides/how-to-convert-subtitle-files-for-web-players/',
