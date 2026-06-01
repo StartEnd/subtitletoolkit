@@ -118,6 +118,12 @@ pnpm gsc:analyze -- --queries gsc-exports/queries.csv --pages gsc-exports/pages.
 
 Use the `Promotion Evidence Window`, `Ad Readiness Gate`, and `Traffic Quality Snapshot` sections before changing titles, internal links, content, or ad placement.
 
+When the analyzer says the ad gate is met, run the final static and engagement guard before adding real ad network scripts:
+
+```bash
+pnpm ads:ready -- --organic-pageviews 1000 --pages-with-impressions 20 --pages-with-clicks 10 --tool-starts 100 --tool-outputs 20
+```
+
 For a Pages preview URL, set the base URL explicitly:
 
 ```bash
