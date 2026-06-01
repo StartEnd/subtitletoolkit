@@ -36,6 +36,10 @@ const encodingGuideIds = [
 	'how-to-fix-subtitles-showing-boxes',
 	'subtitle-encoding-windows-1252-vs-utf-8',
 ];
+const extractionGuideIds = [
+	'how-to-extract-subtitles-from-mkv',
+	'embedded-vs-burned-in-subtitles',
+];
 const priorityGuides = priorityGuideIds
 	.map((id) => guides.find((guide) => guide.id === id))
 	.filter(Boolean);
@@ -43,6 +47,9 @@ const platformGuides = platformGuideIds
 	.map((id) => guides.find((guide) => guide.id === id))
 	.filter(Boolean);
 const encodingGuides = encodingGuideIds
+	.map((id) => guides.find((guide) => guide.id === id))
+	.filter(Boolean);
+const extractionGuides = extractionGuideIds
 	.map((id) => guides.find((guide) => guide.id === id))
 	.filter(Boolean);
 const pageDescription =
@@ -146,6 +153,28 @@ const pageDescription =
 						<h3><a href={`/guides/${guide.id}/`}>{guide.data.title}</a></h3>
 						<p>{guide.data.description}</p>
 						<a class="card-link" href={`/guides/${guide.id}/`}>Fix encoding <span aria-hidden="true">&rarr;</span></a>
+					</article>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="section">
+		<span class="eyebrow">Subtitle extraction</span>
+		<h2>Extract real subtitle tracks before trying OCR.</h2>
+		<p class="lede priority-lede">
+			Start here when a video file might contain selectable captions, embedded text tracks, or burned-in subtitles.
+		</p>
+		<div class="priority-grid extraction-grid">
+			{
+				extractionGuides.map((guide) => (
+					<article class="priority-card">
+						<p class="priority-card-meta">
+							{guideCategoryMeta[guide.data.category].label}
+						</p>
+						<h3><a href={`/guides/${guide.id}/`}>{guide.data.title}</a></h3>
+						<p>{guide.data.description}</p>
+						<a class="card-link" href={`/guides/${guide.id}/`}>Extract subtitles <span aria-hidden="true">&rarr;</span></a>
 					</article>
 				))
 			}

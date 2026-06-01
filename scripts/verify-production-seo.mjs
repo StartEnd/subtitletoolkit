@@ -82,6 +82,10 @@ const checks = [
 				label: 'homepage links to UTF-8 conversion guide',
 				match: '/guides/how-to-convert-subtitles-to-utf-8/',
 			},
+			{
+				label: 'homepage links to MKV subtitle extraction guide',
+				match: '/guides/how-to-extract-subtitles-from-mkv/',
+			},
 		],
 	},
 	{
@@ -463,6 +467,27 @@ const checks = [
 				label: 'updated MKV extraction guide title',
 				match: '<title>Extract Subtitles from MKV - Free No Upload Guide</title>',
 			},
+			{
+				label: 'MKV extraction guide opens extractor tool',
+				match: 'href="/tools/extract-subtitles-from-video/"',
+			},
+		],
+	},
+	{
+		path: '/guides/embedded-vs-burned-in-subtitles/',
+			expect: [
+			{
+				label: 'embedded vs burned-in guide title',
+				match: '<title>Embedded vs Burned-In Subtitles - What You Can Extract</title>',
+			},
+			{
+				label: 'embedded vs burned-in guide extraction meta description',
+				match: 'Compare embedded and burned-in subtitles before extraction. Learn when a video has real text tracks, when OCR is required, and what can be saved.',
+			},
+			{
+				label: 'embedded vs burned-in guide opens extractor tool',
+				match: 'href="/tools/extract-subtitles-from-video/"',
+			},
 		],
 	},
 	{
@@ -669,6 +694,18 @@ const checks = [
 				label: 'guides index links to Windows-1252 vs UTF-8 guide',
 				match: '/guides/subtitle-encoding-windows-1252-vs-utf-8/',
 			},
+			{
+				label: 'guides index includes subtitle extraction section',
+				match: 'Subtitle extraction',
+			},
+			{
+				label: 'guides index links to MKV extraction guide',
+				match: '/guides/how-to-extract-subtitles-from-mkv/',
+			},
+			{
+				label: 'guides index links to embedded vs burned-in guide',
+				match: '/guides/embedded-vs-burned-in-subtitles/',
+			},
 		],
 	},
 	{
@@ -824,6 +861,14 @@ const checks = [
 			{
 				label: 'llms lists SRT upload failure guide',
 				match: 'https://subtitletoolkit.tools/guides/why-srt-file-wont-upload/',
+			},
+			{
+				label: 'llms lists MKV extraction guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mkv/',
+			},
+			{
+				label: 'llms lists embedded vs burned-in guide',
+				match: 'https://subtitletoolkit.tools/guides/embedded-vs-burned-in-subtitles/',
 			},
 		],
 	},
