@@ -49,7 +49,7 @@ Before requesting indexing, confirm Google can fetch the updated page content in
 Check these URLs after deployment:
 
 1. `https://subtitletoolkit.tools/`
-   - expected links: `/tools/subtitle-delay-fixer/`, `/tools/extract-subtitles-from-video/`, and `/guides/why-subtitles-do-not-show-in-html5-video/`
+   - expected links: `/tools/subtitle-delay-fixer/`, `/tools/extract-subtitles-from-video/`, `/guides/why-subtitles-do-not-show-in-html5-video/`, `/guides/why-youtube-subtitles-upload-failed/`, `/guides/how-to-convert-subtitles-for-youtube/`, and `/guides/why-srt-file-wont-upload/`
 2. `https://subtitletoolkit.tools/guides/how-to-fix-subtitle-delay/`
    - expected title: `Fix Subtitle Delay Online - SRT, VTT, ASS Timing Guide`
    - expected description: `Fix subtitles that appear too early or too late.`
@@ -112,71 +112,25 @@ SEO_VERIFY_BASE_URL=https://<preview-host> pnpm verify:seo
 
 ## Step 3: Priority URLs To Request Manually
 
-Use URL Inspection and request indexing for these pages first.
+Use URL Inspection and request indexing for the primary queue in `GSC_DAY0_URLS.md` first.
 
-Do not submit all URLs in one sitting. On deploy day, use `GSC_DAY0_URLS.md`: submit the sitemap, Tier 1, Tier 2, and the first four Tier 4 long-tail pages. Use Tier 3 and the remaining Tier 4 URLs after Google starts showing crawl or impression movement.
+Do not submit all URLs in one sitting. On deploy day, submit the sitemap plus the 21 primary URLs printed by:
 
-### Tier 1: Site entry pages
+```bash
+pnpm gsc:day0:list -- --batch primary
+```
 
-1. `https://subtitletoolkit.tools/`
-2. `https://subtitletoolkit.tools/tools/`
-3. `https://subtitletoolkit.tools/guides/`
-
-### Tier 2: Core tool pages
-
-4. `https://subtitletoolkit.tools/tools/srt-to-vtt/`
-5. `https://subtitletoolkit.tools/tools/vtt-to-srt/`
-6. `https://subtitletoolkit.tools/tools/ass-to-srt/`
-7. `https://subtitletoolkit.tools/tools/srt-to-ass/`
-8. `https://subtitletoolkit.tools/tools/subtitle-delay-fixer/`
-9. `https://subtitletoolkit.tools/tools/subtitle-cleaner/`
-10. `https://subtitletoolkit.tools/tools/srt-validator/`
-11. `https://subtitletoolkit.tools/tools/webvtt-validator/`
-12. `https://subtitletoolkit.tools/tools/extract-subtitles-from-video/`
-
-### Tier 3: Guide hub pages
-
-13. `https://subtitletoolkit.tools/guides/conversion-guides/`
-14. `https://subtitletoolkit.tools/guides/sync-fixes/`
-15. `https://subtitletoolkit.tools/guides/format-comparisons/`
-16. `https://subtitletoolkit.tools/guides/workflow-guides/`
-
-### Tier 4: Strongest long-tail action pages
-
-17. `https://subtitletoolkit.tools/guides/how-to-convert-srt-to-vtt-for-html5-video/`
-18. `https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/`
-19. `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-srt-for-youtube-uploads/`
-20. `https://subtitletoolkit.tools/guides/how-to-fix-subtitle-delay/`
-21. `https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/`
-22. `https://subtitletoolkit.tools/guides/how-to-clean-subtitle-formatting-before-upload/`
-23. `https://subtitletoolkit.tools/guides/why-vtt-captions-are-not-loading/`
-24. `https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mkv/`
+Use the current search-growth batch in `GSC_DAY0_URLS.md` only after Google starts showing crawl or impression movement for the primary queue.
 
 ## Step 4: Secondary URLs To Submit Later
 
-Wait a few days before requesting these unless they are already showing impressions.
+Wait a few days before requesting secondary URLs unless they are already showing impressions.
 
-1. `https://subtitletoolkit.tools/tools/subtitle-time-shifter/`
-2. `https://subtitletoolkit.tools/tools/fix-out-of-sync-subtitles/`
-3. `https://subtitletoolkit.tools/tools/subtitle-encoding-fixer/`
-4. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-youtube/`
-5. `https://subtitletoolkit.tools/guides/why-subtitles-do-not-show-in-html5-video/`
-6. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-videojs/`
-7. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-jw-player/`
-8. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-vimeo-embeds/`
-9. `https://subtitletoolkit.tools/guides/best-subtitle-format-for-plex/`
-10. `https://subtitletoolkit.tools/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/`
-11. `https://subtitletoolkit.tools/guides/how-to-remove-subtitle-line-numbers/`
-12. `https://subtitletoolkit.tools/guides/how-to-fix-malformed-srt-timestamps/`
-13. `https://subtitletoolkit.tools/guides/why-videojs-captions-are-not-showing/`
-14. `https://subtitletoolkit.tools/guides/why-jw-player-captions-are-not-showing/`
-15. `https://subtitletoolkit.tools/guides/why-plex-subtitles-are-not-showing/`
-16. `https://subtitletoolkit.tools/guides/why-vimeo-captions-are-not-showing/`
-17. `https://subtitletoolkit.tools/guides/how-to-convert-subtitles-to-utf-8/`
-18. `https://subtitletoolkit.tools/guides/how-to-fix-garbled-subtitles/`
-19. `https://subtitletoolkit.tools/guides/how-to-fix-subtitles-showing-boxes/`
-20. `https://subtitletoolkit.tools/guides/subtitle-encoding-windows-1252-vs-utf-8/`
-21. `https://subtitletoolkit.tools/guides/how-to-fix-cors-errors-for-vtt-subtitles/`
+Use the current search-growth batch in `GSC_DAY0_URLS.md` as the source of truth. Print it with:
+
+```bash
+pnpm gsc:day0:list -- --batch current
+```
 
 ## Step 5: What To Ignore For Now
 
@@ -213,9 +167,9 @@ For the current Search Console state, inspect these buckets first:
 
 Use this pace:
 
-- Day 0: submit sitemap + Tier 1 + Tier 2 + the first four Tier 4 long-tail pages listed in `GSC_DAY0_URLS.md`
+- Day 0: submit sitemap + the primary queue from `GSC_DAY0_URLS.md`
 - Day 5 to Day 7: check impressions and indexing status
-- Day 7+: submit the secondary URLs if needed
+- Day 7+: submit the current search-growth batch if needed
 
 Do not request indexing for the same page every day.
 

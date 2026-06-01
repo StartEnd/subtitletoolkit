@@ -10,7 +10,7 @@ Record manual Search Console actions here so the next review is based on evidenc
 
 After the production gate passes, run `pnpm gsc:day0:list` to print the primary sitemap and URL Inspection queue plus a paste-ready submission record row. Use `pnpm gsc:day0:list -- --batch current` only after Google starts showing crawl or impression movement for the primary queue.
 
-Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-01 against the live `c28fe59` deployment (`sitemap-0.xml` lastmod `2026-06-01T14:32:30.000Z`) using verifier commit `d4a1d38`. The primary queue below has 21 URL Inspection requests; keep it unchecked until the manual Search Console requests are actually submitted.
+Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-01 against the live `108e6e0` deployment (`sitemap-0.xml` lastmod `2026-06-01T14:55:42.000Z`) using the same local verifier commit. The primary queue below has 21 URL Inspection requests; keep it unchecked until the manual Search Console requests are actually submitted.
 
 ## Submission Record
 
@@ -146,5 +146,5 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] Add the same date to the submission record above.
 - [ ] Set the next review date 5 to 7 days after submission.
 - [ ] If submitting the primary queue on 2026-06-01, use `2026-06-08` as the review date from `pnpm gsc:day0:list`.
-- [ ] Wait 5 to 7 days before submitting the remaining Tier 3 and Tier 4 URLs from `GSC_INDEXING_CHECKLIST.md`.
+- [ ] Wait 5 to 7 days before submitting the current search-growth batch from this file.
 - [ ] At review time, export GSC Queries and Pages, then run `pnpm gsc:analyze`.
