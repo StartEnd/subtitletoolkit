@@ -476,6 +476,74 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/why-videojs-captions-are-not-showing/',
+		expect: [
+			{
+				label: 'Video.js captions failure guide CTR title',
+				match: '<title>Video.js Captions Not Showing - Fix VTT Track Issues</title>',
+			},
+			{
+				label: 'Video.js captions failure guide meta description',
+				match: 'Fix Video.js captions not showing by checking WebVTT format, track paths, MIME type, CORS headers, and player configuration.',
+			},
+			{
+				label: 'Video.js captions failure guide opens converter tool',
+				match: 'href="/tools/videojs-subtitle-converter/"',
+			},
+		],
+	},
+	{
+		path: '/guides/why-jw-player-captions-are-not-showing/',
+		expect: [
+			{
+				label: 'JW Player captions failure guide CTR title',
+				match: '<title>JW Player Captions Not Showing - Fix VTT Setup</title>',
+			},
+			{
+				label: 'JW Player captions failure guide meta description',
+				match: 'Fix JW Player captions not showing by checking WebVTT syntax, track URLs, player config, MIME type, CORS headers, and HTTPS issues.',
+			},
+			{
+				label: 'JW Player captions failure guide opens converter tool',
+				match: 'href="/tools/jw-player-subtitle-converter/"',
+			},
+		],
+	},
+	{
+		path: '/guides/why-plex-subtitles-are-not-showing/',
+		expect: [
+			{
+				label: 'Plex subtitles failure guide CTR title',
+				match: '<title>Plex Subtitles Not Showing - Fix SRT Naming and Format</title>',
+			},
+			{
+				label: 'Plex subtitles failure guide meta description',
+				match: 'Fix Plex subtitles not showing by checking SRT file naming, folder placement, library scanning, encoding, format support, and device compatibility.',
+			},
+			{
+				label: 'Plex subtitles failure guide opens converter tool',
+				match: 'href="/tools/plex-subtitle-converter/"',
+			},
+		],
+	},
+	{
+		path: '/guides/why-vimeo-captions-are-not-showing/',
+		expect: [
+			{
+				label: 'Vimeo captions failure guide CTR title',
+				match: '<title>Vimeo Captions Not Showing - Fix WebVTT Uploads</title>',
+			},
+			{
+				label: 'Vimeo captions failure guide meta description',
+				match: 'Fix Vimeo captions not showing by checking WebVTT format, language track settings, caption upload status, embed controls, and mobile playback.',
+			},
+			{
+				label: 'Vimeo captions failure guide opens converter tool',
+				match: 'href="/tools/vimeo-subtitle-converter/"',
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-convert-subtitles-for-html5-video/',
 		expect: [
 			{
