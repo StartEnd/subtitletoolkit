@@ -16,13 +16,15 @@ Run this loop once per week from Google Search Console.
 1. Open Performance -> Search results.
 2. Set date range to the last 28 days.
 3. Export queries and pages.
-4. Record the week in `GSC_WEEKLY_TRACKER.md`.
-5. Split opportunities into three buckets:
+4. Record organic pageviews from Plausible or another analytics source for the same 28-day window.
+5. Run `pnpm gsc:analyze` with the GSC exports and `--organic-pageviews`.
+6. Record the week in `GSC_WEEKLY_TRACKER.md`.
+7. Split opportunities into three buckets:
    - impressions >= 10 and clicks = 0
    - average position 8 to 30
    - pages indexed but receiving no impressions
-6. Ship one small batch of title, description, internal link, or content changes.
-7. Wait 7 to 14 days before judging the same page again.
+8. Ship one small batch of title, description, internal link, or content changes.
+9. Wait 7 to 14 days before judging the same page again.
 
 ## Bucket A: Impressions But No Clicks
 
@@ -106,6 +108,8 @@ Minimum gate:
 - at least 20 pages receiving organic impressions
 - at least 10 pages receiving organic clicks
 - core tools remain usable on mobile with ad placeholders enabled
+
+Use the `Ad Readiness Gate` section from `pnpm gsc:analyze` for the first three checks. Verify the mobile tool UX separately before placing ads.
 
 When the gate is met, start with one non-intrusive slot below the first tool/workflow block and one slot near the bottom of long guide pages. Do not put ads above the tool workspace.
 

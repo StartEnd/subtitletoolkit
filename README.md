@@ -46,7 +46,7 @@ Run the build and generated-output SEO checks before publishing search-facing ch
 pnpm verify:seo:ready
 ```
 
-This includes a SERP metadata audit for generated guide and tool pages, checking for missing, duplicate, or overlong titles and descriptions.
+This includes a SERP metadata audit for generated guide and tool pages, the GSC analyzer regression checks, the generated-output SEO checks, and the local GSC Day 0 URL readiness check for robots, canonical, noindex, and sitemap coverage.
 
 After Cloudflare Pages deploys, verify the live site has the updated titles, structured data, and priority guide links:
 
@@ -58,6 +58,12 @@ To wait for a deployment to finish propagating, add retries:
 
 ```bash
 pnpm verify:seo:live
+```
+
+Before submitting the Day 0 URL list in Search Console, run the combined production gate. It verifies live SEO output, production `robots.txt`, pages, sitemap, canonical tags, and `www`/`http` redirects:
+
+```bash
+pnpm verify:gsc:submit-ready
 ```
 
 For a Pages preview URL, set the base URL explicitly:

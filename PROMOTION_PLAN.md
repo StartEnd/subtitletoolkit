@@ -1,7 +1,7 @@
 # Subtitle Toolkit — Promotion Plan
 
 > 一份可执行的推广操作手册。每天打开这个文件，按清单做。
-> 创建于 2026-05-07。
+> 创建于 2026-05-07。当前版本按 2026-06-01 生产 SEO 验证后的状态执行。
 
 ---
 
@@ -35,24 +35,34 @@
 | 2-3 个月 | 第一个进前 10 的词，日访问 50-200 UV |
 | 6 个月 | 商业词开始有起色（如果坚持外链 + 内容） |
 
-**成功标准（本周末）：**
+**成功标准（提交后 7 天）：**
 
-- [ ] 至少 4 个 tool 聚合站收录（→ 4 个外链）
-- [ ] 至少 5 条 Reddit 真实回复，karma > 0
-- [ ] HN Show HN 发布完成（无论上不上首页）
+- [ ] GSC Day 0 sitemap + 16 个 URL inspection 请求已完成
+- [ ] 至少 4 个 tool 聚合站完成提交（收录可滞后）
+- [ ] 至少 2 个提交源开始审核或已收录
+- [ ] 至少 5 条 Reddit/HN/社区真实回复或评论，链接比例 < 10%
+- [ ] Plausible 里能看到至少 1 个 referral source 或 direct/brand spike
 
 ---
 
 ## 本周执行表
 
-| 日期 | 任务 | 时长 | 优先级 |
-|------|------|------|--------|
-| 周三（今天） | AlternativeTo + tinytools.directory | 30 分 | 🔥 |
-| 周四 | TheresAnAIForThat + SaaSHub + 1 个 awesome list | 45 分 | 🔥 |
-| 周五 | Reddit 第 1 次：搜 + 回复 1-2 条 | 20 分 | 🟡 |
-| 周六 | 写 HN 文案最终稿 + Reddit 1-2 条 | 60 分 | 🟡 |
-| 周日 | Reddit 1-2 条 + HN 文案最后打磨 | 30 分 | 🟡 |
-| 周二 23:00 | 发 Show HN | 30 分 | 🔥 |
+先完成 GSC Day 0 提交，再做外部推广。这样后续的曝光、点击和 referral 变化能对上时间线。
+
+| 相对日期 | 任务 | 时长 | 优先级 | 验收 |
+|------|------|------|--------|------|
+| Day 0 | 跑 `pnpm verify:gsc:submit-ready`，提交 GSC sitemap 和 16 个 URL | 30 分 | 🔥 | `GSC_DAY0_URLS.md` 填好 Submission Record |
+| Day 0-1 | AlternativeTo + tinytools.directory | 30 分 | 🔥 | 追踪表记录提交日期 |
+| Day 1-2 | SaaSHub + 1 个合适 awesome list PR | 45 分 | 🔥 | 追踪表记录审核/PR URL |
+| Day 2-4 | Reddit 搜索并回复 2-3 条真实问题 | 每次 15-20 分 | 🟡 | 每条都记录帖子 URL、评论 URL、状态 |
+| Day 4-6 | 准备并择时发布 Show HN，或先只做第一轮社区回复 | 60 分 | 🟡 | HN URL 或延后原因记录 |
+| Day 7 | 导出 GSC Queries/Pages + Plausible same-window pageviews，跑 `pnpm gsc:analyze` | 30 分 | 🔥 | `GSC_WEEKLY_TRACKER.md` 填一行 |
+
+### 提交前检查
+
+- [ ] `pnpm verify:gsc:submit-ready` 通过
+- [ ] `GSC_DAY0_URLS.md` 准备记录提交日期和下次复查日期
+- [ ] Plausible 可以看到当前 traffic sources，便于提交后对比 referral/direct 变化
 
 ---
 
@@ -418,26 +428,34 @@ Thanks for taking a look.
 
 ## 追踪表
 
+每个外部动作都要能回到两个问题：有没有带来可见 referral/direct 流量？有没有帮助 GSC 出现更多 impressions 或 clicks？
+
+### 7 天复盘口径
+
+| Review date | GSC impressions | GSC clicks | Plausible referrals | Notable source/query | Next action |
+|-------------|----------------:|-----------:|--------------------:|----------------------|-------------|
+|  |  |  |  |  |  |
+
 ### Tool 聚合站
 
-| 站点 | 提交日期 | 状态 | 收录后 URL |
-|------|----------|------|-----------|
-| AlternativeTo |  |  |  |
-| tinytools.directory |  |  |  |
-| TheresAnAIForThat |  |  |  |
-| SaaSHub |  |  |  |
-| GitHub awesome (1) |  |  |  |
-| GitHub awesome (2) |  |  |  |
+| 站点 | 提交日期 | 状态 | 收录后 URL | 7 天后 referral/direct 迹象 |
+|------|----------|------|-----------|--------------------------|
+| AlternativeTo |  |  |  |  |
+| tinytools.directory |  |  |  |  |
+| TheresAnAIForThat |  |  |  |  |
+| SaaSHub |  |  |  |  |
+| GitHub awesome (1) |  |  |  |  |
+| GitHub awesome (2) |  |  |  |  |
 
 ### Reddit 回复
 
-| 日期 | Subreddit | 帖子 URL | 我的评论 URL | 模板 | karma | 状态 |
-|------|-----------|----------|-------------|------|-------|------|
-|  |  |  |  |  |  |  |
-|  |  |  |  |  |  |  |
-|  |  |  |  |  |  |  |
-|  |  |  |  |  |  |  |
-|  |  |  |  |  |  |  |
+| 日期 | Subreddit | 帖子 URL | 我的评论 URL | 模板 | karma | 状态 | 访问迹象 |
+|------|-----------|----------|-------------|------|-------|------|----------|
+|  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |
 
 ### Hacker News
 

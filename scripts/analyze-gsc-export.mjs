@@ -14,6 +14,7 @@ function usage() {
 
 Optional:
   --min-impressions 10
+  --organic-pageviews 0
   --site https://subtitletoolkit.tools
 
 The script expects Google Search Console CSV exports with columns like:
@@ -24,7 +25,14 @@ The script expects Google Search Console CSV exports with columns like:
 const queriesPath = getArg('--queries');
 const pagesPath = getArg('--pages');
 const minImpressions = Number.parseInt(getArg('--min-impressions') || '10', 10);
+const organicPageviewsArg = getArg('--organic-pageviews');
+const organicPageviews = organicPageviewsArg === null ? null : Number.parseInt(organicPageviewsArg, 10);
 const siteUrl = (getArg('--site') || 'https://subtitletoolkit.tools').replace(/\/$/, '');
+
+if (organicPageviewsArg !== null && (!Number.isFinite(organicPageviews) || organicPageviews < 0)) {
+	console.error('--organic-pageviews must be a non-negative integer.');
+	process.exit(1);
+}
 
 if (args.includes('--help') || (!queriesPath && !pagesPath)) {
 	usage();
@@ -127,12 +135,19 @@ function mdEscape(value) {
 }
 
 function shortPath(urlOrPath) {
-	if (!urlOrPath.startsWith('http')) return urlOrPath;
+	if (!urlOrPath.startsWith('http')) return normalizeSitePath(urlOrPath);
 	try {
-		return new URL(urlOrPath).pathname;
+		return normalizeSitePath(new URL(urlOrPath).pathname);
 	} catch {
-		return urlOrPath;
+		return normalizeSitePath(urlOrPath);
 	}
+}
+
+function normalizeSitePath(path) {
+	if (!path) return '';
+	const cleanPath = path.split('?')[0].split('#')[0] || '/';
+	if (cleanPath === '/') return '/';
+	return cleanPath.endsWith('/') ? cleanPath : `${cleanPath}/`;
 }
 
 function listKnownSitePaths() {
@@ -222,6 +237,42 @@ function pageMetricSummary(path, pageMetricMap) {
 	return `${metrics.clicks}/${metrics.impressions} clicks/impr, pos ${metrics.position.toFixed(1)}`;
 }
 
+function weightedAveragePosition(rows) {
+	const rowsWithImpressions = rows.filter((row) => row.impressions > 0 && row.position > 0);
+	const weightedImpressions = rowsWithImpressions.reduce((total, row) => total + row.impressions, 0);
+	if (weightedImpressions === 0) return 0;
+
+	return rowsWithImpressions.reduce(
+		(total, row) => total + row.position * row.impressions,
+		0,
+	) / weightedImpressions;
+}
+
+function percent(clicks, impressions) {
+	if (impressions === 0) return '0.00%';
+	return `${((clicks / impressions) * 100).toFixed(2)}%`;
+}
+
+function metricSummary(rows) {
+	const impressions = rows.reduce((total, row) => total + row.impressions, 0);
+	const clicks = rows.reduce((total, row) => total + row.clicks, 0);
+
+	return {
+		clicks,
+		impressions,
+		ctr: percent(clicks, impressions),
+		position: weightedAveragePosition(rows),
+	};
+}
+
+function gateStatus(ok) {
+	return ok ? 'yes' : 'no';
+}
+
+function metricOrUnknown(value) {
+	return value === null ? 'unknown' : String(value);
+}
+
 let queryRows = [];
 let pageRows = [];
 
@@ -255,11 +306,38 @@ const indexedNoImpressionCandidates = knownPaths
 	.filter((path) => !seenPagePaths.has(path))
 	.filter((path) => path.startsWith('/tools/') || path.startsWith('/guides/'))
 	.slice(0, 30);
+const querySummary = metricSummary(queryRows);
+const pageSummary = metricSummary(pageRows);
+const pagesWithImpressions = pageRows.filter((row) => row.impressions > 0).length;
+const pagesWithClicks = pageRows.filter((row) => row.clicks > 0).length;
+const adReadiness = {
+	organicPageviews: organicPageviews !== null && organicPageviews >= 1000,
+	pagesWithImpressions: pagesWithImpressions >= 20,
+	pagesWithClicks: pagesWithClicks >= 10,
+};
+const adGateMet = Object.values(adReadiness).every(Boolean);
 
 console.log(`# GSC Opportunity Analysis\n`);
 console.log(`Source: ${[queriesPath, pagesPath].filter(Boolean).map((path) => basename(path)).join(', ')}`);
 console.log(`Minimum impressions for Bucket A: ${minImpressions}`);
 console.log(`Site: ${siteUrl}\n`);
+
+console.log('## Weekly Summary Helper\n');
+console.log('Use the Pages export for page counts. Use the Queries export for top query opportunities.');
+console.log('| Source | Impressions | Clicks | CTR | Avg position | Pages with impressions | Pages with clicks |');
+console.log('| --- | ---: | ---: | ---: | ---: | ---: | ---: |');
+console.log(`| Queries export | ${querySummary.impressions} | ${querySummary.clicks} | ${querySummary.ctr} | ${querySummary.position.toFixed(1)} | | |`);
+console.log(`| Pages export | ${pageSummary.impressions} | ${pageSummary.clicks} | ${pageSummary.ctr} | ${pageSummary.position.toFixed(1)} | ${pagesWithImpressions} | ${pagesWithClicks} |`);
+console.log('');
+
+console.log('## Ad Readiness Gate\n');
+console.log('Use organic pageviews from Plausible or another analytics source for the same 28-day window.');
+console.log('| Gate item | Current | Target | Met? |');
+console.log('| --- | ---: | ---: | --- |');
+console.log(`| Organic pageviews last 28 days | ${metricOrUnknown(organicPageviews)} | 1000 | ${gateStatus(adReadiness.organicPageviews)} |`);
+console.log(`| Pages with organic impressions | ${pagesWithImpressions} | 20 | ${gateStatus(adReadiness.pagesWithImpressions)} |`);
+console.log(`| Pages with organic clicks | ${pagesWithClicks} | 10 | ${gateStatus(adReadiness.pagesWithClicks)} |`);
+console.log(`\nAd gate met: ${adGateMet ? 'yes' : 'no'}\n`);
 
 console.log('## Bucket A: Impressions >= threshold, Clicks = 0\n');
 console.log('| Query | Likely page | Page metrics | Query impressions | Query position | Suggested next change |');

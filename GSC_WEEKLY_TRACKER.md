@@ -7,15 +7,21 @@ Use this file once per week after the SEO deployment is live. Keep entries short
 1. Open Google Search Console -> Performance -> Search results.
 2. Set the date range to the last 28 days.
 3. Export Queries and Pages.
-4. Build the current site, then run the local analyzer with the two CSV files:
+4. In Plausible or your analytics source, record organic pageviews for the same 28-day window.
+5. Save the CSV files under local `gsc-exports/`; this directory is intentionally ignored by git.
+6. Build the current site, then run the local analyzer with the two CSV files:
 
 ```bash
 pnpm build
-pnpm gsc:analyze -- --queries path/to/queries.csv --pages path/to/pages.csv
+pnpm gsc:analyze -- --queries gsc-exports/queries.csv --pages gsc-exports/pages.csv --organic-pageviews 123
 ```
 
-5. Fill one weekly row below.
-6. Pick one small batch for the next change; do not edit the same URL again until 7 to 14 days have passed.
+Replace `123` with the same-window organic pageviews number.
+The analyzer normalizes trailing-slash differences between GSC exports and the built Astro URLs.
+
+7. Fill one weekly row below from the `Weekly Summary Helper` output.
+8. Fill the ad readiness row from the `Ad Readiness Gate` output.
+9. Pick one small batch for the next change; do not edit the same URL again until 7 to 14 days have passed.
 
 ## Weekly Summary
 
@@ -55,7 +61,7 @@ Only consider ad placement after the gate in `SEARCH_GROWTH_PLAYBOOK.md` is met.
 
 | Week of | Organic pageviews last 28 days | Pages with impressions | Pages with clicks | Gate met? | Notes |
 | --- | ---: | ---: | ---: | --- | --- |
-| | | | | No | |
+| 2026-06-01 | | | | No | Waiting for same-window analytics pageviews and GSC clicks after Day 0 submission. |
 
 ## Change Log
 
@@ -63,4 +69,4 @@ Record only changes that can plausibly affect search behavior.
 
 | Date | URLs changed | Change type | Reason | Verification |
 | --- | --- | --- | --- | --- |
-| 2026-06-01 | Priority guides, tools, hubs, sitemap | Titles, descriptions, internal links, schema, sitemap lastmod | Improve zero-click impressions and crawl recency signals. | `pnpm verify:seo:live` passed on production for commit `209b053` |
+| 2026-06-01 | Priority guides, tools, hubs, sitemap | Titles, descriptions, internal links, schema, sitemap lastmod, SERP metadata audit | Improve zero-click impressions, query-title fit, guide-to-tool conversion, and crawl recency signals. | `pnpm verify:seo:live` passed on production for commit `d9e9be8` |

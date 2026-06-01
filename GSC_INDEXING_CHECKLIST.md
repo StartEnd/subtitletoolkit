@@ -85,6 +85,19 @@ pnpm verify:seo:ready
 pnpm verify:seo
 ```
 
+Before using the Day 0 URL list, verify that every listed page is built, self-canonical, indexable, and present in the generated sitemap:
+
+```bash
+pnpm build
+pnpm verify:gsc:day0
+```
+
+After deployment, run the same Day 0 readiness check against production before opening URL Inspection. The live check also verifies `robots.txt`, sitemap coverage, and that `www` and `http` variants redirect to the canonical HTTPS URLs:
+
+```bash
+pnpm verify:gsc:submit-ready
+```
+
 To wait for a just-triggered Cloudflare Pages deployment, retry production verification for up to five minutes:
 
 ```bash

@@ -1,6 +1,18 @@
 # GSC Day 0 Submission URLs
 
-Use this list only after `pnpm verify:seo:live` passes on production.
+Use this list only after the combined production gate passes:
+
+```bash
+pnpm verify:gsc:submit-ready
+```
+
+Record manual Search Console actions here so the next review is based on evidence, not memory.
+
+## Submission Record
+
+| Submitted on | Submitted by | Sitemap submitted? | URL inspection requests | Next review date | Notes |
+| --- | --- | --- | ---: | --- | --- |
+| | | No | 0 | | |
 
 ## Sitemap
 
@@ -30,4 +42,7 @@ Submit these URLs first. Do not submit every URL in the site on Day 0.
 ## After Submission
 
 - [ ] Record the date in `GSC_WEEKLY_TRACKER.md`.
+- [ ] Add the same date to the submission record above.
+- [ ] Set the next review date 5 to 7 days after submission.
 - [ ] Wait 5 to 7 days before submitting the remaining Tier 3 and Tier 4 URLs from `GSC_INDEXING_CHECKLIST.md`.
+- [ ] At review time, export GSC Queries and Pages, then run `pnpm gsc:analyze`.
