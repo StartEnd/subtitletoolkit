@@ -70,7 +70,7 @@ const toolMetaDescriptions: Record<string, string> = {
 	'remove-srt-line-numbers':
 		'Remove and rebuild SRT line numbers online while keeping subtitle timing and text readable. Free browser-based SRT tool.',
 	'fix-srt-timestamps':
-		'Fix SRT timestamp formatting online by exporting clean comma-based SubRip timing, cue numbers, and subtitle text.',
+		'Fix malformed SRT timestamps online for free. Convert dot timestamps to comma timing, repair arrow spacing, and rebuild cue numbers locally.',
 	'srt-validator':
 		'Validate SRT subtitles online for free. Check upload errors, timestamp format, cue order, and numbering locally with no signup or upload.',
 	'webvtt-validator':
@@ -113,7 +113,7 @@ const toolPageTitles: Record<string, string> = {
 	'extract-subtitles-from-video': 'Extract Subtitles from Video Online - Free, No Upload',
 	'clean-srt-file': 'Clean SRT File Online - Free, No Upload',
 	'remove-srt-line-numbers': 'Remove SRT Line Numbers Online',
-	'fix-srt-timestamps': 'Fix SRT Timestamps Online',
+	'fix-srt-timestamps': 'Fix SRT Timestamps Online - Repair SRT Timing',
 	'srt-validator': 'SRT Validator Online - Check Upload Errors Free',
 	'webvtt-validator': 'WebVTT Validator Online - Fix VTT Caption Issues',
 	'subtitle-transcript-generator': 'Subtitle Transcript Generator - Convert Subtitles to Text',
@@ -163,7 +163,7 @@ const workflowNotes: Record<string, string> = {
 	'remove-srt-line-numbers':
 		'Use this when SRT numbering is missing, duplicated, or out of order. The tool finds cue timing lines and exports a clean SRT file with sequential cue numbers.',
 	'fix-srt-timestamps':
-		'Use this when SRT timing lines are parseable but inconsistently formatted. The output rebuilds cue numbers and comma-based timestamps in standard SubRip style.',
+		'Use this when an SRT file has dot timestamps, inconsistent arrow spacing, missing cue numbers, or upload errors caused by malformed timing lines. The output rebuilds cue numbers and comma-based timestamps in standard SubRip style.',
 	'srt-validator':
 		'Use this before upload when YouTube, an editor, or a video platform rejects an SRT file. The validator creates a local report for timestamp format, cue order, numbering, and parse errors, then points you toward cleanup or timestamp repair when the file needs changes.',
 	'webvtt-validator':

@@ -1852,6 +1852,31 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/fix-srt-timestamps/',
+		expect: [
+			{
+				label: 'CTR-oriented SRT timestamp fixer tool title',
+				match: '<title>Fix SRT Timestamps Online - Repair SRT Timing</title>',
+			},
+			{
+				label: 'SRT timestamp fixer malformed timestamp meta description',
+				match: 'Fix malformed SRT timestamps online for free. Convert dot timestamps to comma timing, repair arrow spacing, and rebuild cue numbers locally.',
+			},
+			{
+				label: 'SRT timestamp fixer workflow covers upload errors',
+				match: 'upload errors caused by malformed timing lines',
+			},
+			{
+				label: 'SRT timestamp fixer FAQ covers dot timestamps',
+				match: 'Can it fix dot timestamps in an SRT file?',
+			},
+			{
+				label: 'SRT timestamp fixer links malformed timestamp guide',
+				match: 'href="/guides/how-to-fix-malformed-srt-timestamps/"',
+			},
+		],
+	},
+	{
 		path: '/tools/webvtt-validator/',
 		expect: [
 			{

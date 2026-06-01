@@ -1384,9 +1384,9 @@ const enTools: SubtitleTool[] = [
     title: 'Fix SRT Timestamps',
     shortTitle: 'Fix SRT timestamps',
     description:
-      'Fix SRT timestamp formatting online by parsing cues and exporting clean comma-based SubRip timing.',
+      'Fix malformed SRT timestamps online by parsing cues, converting dot timing to commas, and exporting clean SubRip timing.',
     summary:
-      'Use this free SRT timestamp fixer when timing lines have inconsistent separators, spacing, or numbering before upload.',
+      'Use this free SRT timestamp fixer when an upload fails because timing lines use dots, inconsistent arrows, bad spacing, or broken cue numbers.',
     buttonLabel: 'Fix timestamps',
     inputLabel: 'SRT input',
     outputLabel: 'Fixed SRT output',
@@ -1394,16 +1394,31 @@ const enTools: SubtitleTool[] = [
     acceptedExtensions: ['.srt', '.txt'],
     sampleFileName: 'sample.srt',
     useCases: [
-      'Normalize SRT timestamps before upload.',
+      'Repair malformed SRT timestamp lines before upload.',
       'Convert dot-based milliseconds back to comma-based SRT timing.',
-      'Rebuild a clean SRT file from parseable cue blocks.',
       'Fix spacing around SRT timestamp arrows.',
+      'Rebuild sequential cue numbers from parseable cue blocks.',
     ],
     faqs: [
+      {
+        question: 'Is this SRT timestamp fixer free?',
+        answer:
+          'Yes. You can fix parseable SRT timestamp formatting for free in your browser without signup or upload.',
+      },
       {
         question: 'Can this fix every broken SRT file?',
         answer:
           'No. It can normalize parseable cue blocks. Severely damaged timing lines may still need manual repair.',
+      },
+      {
+        question: 'Can it fix dot timestamps in an SRT file?',
+        answer:
+          'Yes. If the cue line can be parsed, the output converts dot-based milliseconds into comma-based SRT timestamps.',
+      },
+      {
+        question: 'Can this help when an SRT upload fails?',
+        answer:
+          'Yes. It is useful when the upload error comes from malformed timing lines, wrong separators, arrow spacing, or cue numbering.',
       },
       {
         question: 'Does this preserve subtitle text?',
