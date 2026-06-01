@@ -51,9 +51,18 @@ https://subtitletoolkit.tools/tools/srt-to-vtt,0,20,0%,12.5
 https://subtitletoolkit.tools/tools/subtitle-delay-fixer,2,40,5%,7.0
 `);
 
+	write('PROMOTION_LOG.md', `# Promotion Evidence Log
+
+| Date | Channel | Source | Status | URL | Notes |
+| --- | --- | --- | --- | --- | --- |
+| 2026-06-01 | gsc | Search Console | submitted | | Sitemap plus 21 primary URL Inspection requests |
+| 2026-06-01 | directory | AlternativeTo | submitted | https://alternativeto.net/ | Submitted primary listing |
+`);
+
 	const notReady = runAnalyzer([
 		'--queries', 'queries.csv',
 		'--pages', 'pages.csv',
+		'--promotion-log', 'PROMOTION_LOG.md',
 		'--week-of', '2026-06-01',
 		'--organic-pageviews', '900',
 		'--tool-starts', '45',
@@ -61,6 +70,9 @@ https://subtitletoolkit.tools/tools/subtitle-delay-fixer,2,40,5%,7.0
 	]);
 	assertExit(notReady, 0);
 	assertIncludes(notReady.stdout, '| srt to vtt | https://subtitletoolkit.tools/tools/srt-to-vtt/ | 0/20 clicks/impr, pos 12.5 |');
+	assertIncludes(notReady.stdout, '## Promotion Evidence Window');
+	assertIncludes(notReady.stdout, '| 2026-06-01 | gsc | Search Console | submitted |  | Sitemap plus 21 primary URL Inspection requests |');
+	assertIncludes(notReady.stdout, '| 2026-06-01 | directory | AlternativeTo | submitted | https://alternativeto.net/ | Submitted primary listing |');
 	assertIncludes(notReady.stdout, '| Organic pageviews last 28 days | 900 | 1000 | no |');
 	assertIncludes(notReady.stdout, '### GSC_WEEKLY_TRACKER.md row');
 	assertIncludes(notReady.stdout, '| Week of | Impressions | Clicks | CTR | Avg position | Pages with impressions | Pages with clicks | Main action shipped | Next review date |');
@@ -112,6 +124,13 @@ ${Array.from({ length: 20 }, (_, index) => {
 	]);
 	assertExit(invalidWeekOf, 1);
 	assertIncludes(invalidWeekOf.stderr, '--week-of must use YYYY-MM-DD format.');
+
+	const missingPromotionLog = runAnalyzer([
+		'--queries', 'queries.csv',
+		'--promotion-log', 'missing.md',
+	]);
+	assertExit(missingPromotionLog, 1);
+	assertIncludes(missingPromotionLog.stderr, 'Missing promotion log file:');
 
 	console.log('GSC analyzer regression tests passed.');
 } finally {

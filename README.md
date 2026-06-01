@@ -98,12 +98,12 @@ After Search Console has a few days of data, export same-window GSC Queries and 
 
 ```bash
 pnpm build
-pnpm gsc:analyze -- --queries gsc-exports/queries.csv --pages gsc-exports/pages.csv --organic-pageviews 123 --tool-starts 12 --tool-outputs 3
+pnpm gsc:analyze -- --queries gsc-exports/queries.csv --pages gsc-exports/pages.csv --promotion-log PROMOTION_LOG.md --organic-pageviews 123 --tool-starts 12 --tool-outputs 3
 ```
 
 `tool-starts` should combine first-use events such as `subtitle_tool_edit_input`, `subtitle_tool_adjust_setting`, `subtitle_tool_upload_file`, and `subtitle_tool_load_sample`. `tool-outputs` should combine `subtitle_tool_copy_output` and `subtitle_tool_download_output`.
 
-Use the `Ad Readiness Gate` and `Traffic Quality Snapshot` sections before changing titles, internal links, content, or ad placement.
+Use the `Promotion Evidence Window`, `Ad Readiness Gate`, and `Traffic Quality Snapshot` sections before changing titles, internal links, content, or ad placement.
 
 For a Pages preview URL, set the base URL explicitly:
 

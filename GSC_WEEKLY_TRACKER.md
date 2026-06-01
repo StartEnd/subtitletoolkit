@@ -13,7 +13,7 @@ Use this file once per week after the SEO deployment is live. Keep entries short
 
 ```bash
 pnpm build
-pnpm gsc:analyze -- --queries gsc-exports/queries.csv --pages gsc-exports/pages.csv --organic-pageviews 123 --tool-starts 12 --tool-outputs 3
+pnpm gsc:analyze -- --queries gsc-exports/queries.csv --pages gsc-exports/pages.csv --promotion-log PROMOTION_LOG.md --organic-pageviews 123 --tool-starts 12 --tool-outputs 3
 ```
 
 Replace `123`, `12`, and `3` with same-window Plausible numbers.
@@ -21,10 +21,11 @@ Tool starts = `subtitle_tool_edit_input` + `subtitle_tool_adjust_setting` + `sub
 Tool outputs = `subtitle_tool_copy_output` + `subtitle_tool_download_output`.
 The analyzer normalizes trailing-slash differences between GSC exports and the built Astro URLs.
 
-7. Fill one weekly row below from the `Weekly Summary Helper` output.
-8. Fill the ad readiness row from the `Ad Readiness Gate` output.
-9. Fill the traffic quality row from the `Traffic Quality Snapshot` output.
-10. Pick one small batch for the next change; do not edit the same URL again until 7 to 14 days have passed.
+7. Review the `Promotion Evidence Window` output so GSC/Plausible movement is compared against real external actions.
+8. Fill one weekly row below from the `Weekly Summary Helper` output.
+9. Fill the ad readiness row from the `Ad Readiness Gate` output.
+10. Fill the traffic quality row from the `Traffic Quality Snapshot` output.
+11. Pick one small batch for the next change; do not edit the same URL again until 7 to 14 days have passed.
 
 ## Weekly Summary
 

@@ -17,6 +17,7 @@ Optional:
   --organic-pageviews 0
   --tool-starts 0
   --tool-outputs 0
+  --promotion-log PROMOTION_LOG.md
   --week-of YYYY-MM-DD
   --site https://subtitletoolkit.tools
 
@@ -34,6 +35,7 @@ const toolStartsArg = getArg('--tool-starts');
 const toolStarts = toolStartsArg === null ? null : Number.parseInt(toolStartsArg, 10);
 const toolOutputsArg = getArg('--tool-outputs');
 const toolOutputs = toolOutputsArg === null ? null : Number.parseInt(toolOutputsArg, 10);
+const promotionLogPath = getArg('--promotion-log');
 const weekOf = getArg('--week-of') || new Date().toISOString().slice(0, 10);
 const siteUrl = (getArg('--site') || 'https://subtitletoolkit.tools').replace(/\/$/, '');
 
@@ -129,6 +131,55 @@ function readCsvRecords(path) {
 		});
 		return record;
 	});
+}
+
+function parseMarkdownTable(text, expectedHeaders) {
+	const rows = text
+		.split(/\r?\n/)
+		.map((line) => line.trim())
+		.filter((line) => line.startsWith('|') && line.endsWith('|'));
+
+	if (rows.length < 3) return [];
+
+	const headers = rows[0]
+		.split('|')
+		.slice(1, -1)
+		.map(normalizeHeader);
+	const expected = expectedHeaders.map(normalizeHeader);
+	if (!expected.every((header, index) => headers[index] === header)) return [];
+
+	return rows.slice(2).map((line) => {
+		const cells = line.split('|').slice(1, -1).map((cell) => cell.trim());
+		const record = {};
+		headers.forEach((header, index) => {
+			record[header] = cells[index] ?? '';
+		});
+		return record;
+	}).filter((record) => Object.values(record).some((value) => value !== ''));
+}
+
+function readPromotionLog(path) {
+	if (!path) return [];
+	const resolved = resolve(path);
+	if (!existsSync(resolved)) {
+		throw new Error(`Missing promotion log file: ${resolved}`);
+	}
+
+	return parseMarkdownTable(readFileSync(resolved, 'utf8'), [
+		'Date',
+		'Channel',
+		'Source',
+		'Status',
+		'URL',
+		'Notes',
+	]).map((record) => ({
+		date: record.date,
+		channel: record.channel,
+		source: record.source,
+		status: record.status,
+		url: record.url,
+		notes: record.notes,
+	}));
 }
 
 function numberValue(value) {
@@ -337,6 +388,14 @@ try {
 	process.exit(1);
 }
 
+let promotionRows = [];
+try {
+	promotionRows = readPromotionLog(promotionLogPath);
+} catch (error) {
+	console.error(error.message);
+	process.exit(1);
+}
+
 const zeroClickQueries = queryRows
 	.filter((row) => row.impressions >= minImpressions && row.clicks === 0)
 	.sort((a, b) => b.impressions - a.impressions)
@@ -370,6 +429,21 @@ console.log(`# GSC Opportunity Analysis\n`);
 console.log(`Source: ${[queriesPath, pagesPath].filter(Boolean).map((path) => basename(path)).join(', ')}`);
 console.log(`Minimum impressions for Bucket A: ${minImpressions}`);
 console.log(`Site: ${siteUrl}\n`);
+
+console.log('## Promotion Evidence Window\n');
+console.log('Use this to connect external actions with same-window GSC/Plausible movement. Do not treat submissions as wins until referrals, impressions, or clicks move.');
+console.log('| Date | Channel | Source | Status | URL | Notes |');
+console.log('| --- | --- | --- | --- | --- | --- |');
+if (!promotionLogPath) {
+	console.log('| No promotion log provided | | | | | Run `pnpm promotion:record` after external actions, then pass `--promotion-log PROMOTION_LOG.md`. |');
+} else if (promotionRows.length === 0) {
+	console.log('| Promotion log has no rows | | | | | |');
+} else {
+	for (const row of promotionRows.slice(0, 20)) {
+		console.log(`| ${mdEscape(row.date)} | ${mdEscape(row.channel)} | ${mdEscape(row.source)} | ${mdEscape(row.status)} | ${mdEscape(row.url)} | ${mdEscape(row.notes)} |`);
+	}
+}
+	console.log('');
 
 console.log('## Weekly Summary Helper\n');
 console.log('Use the Pages export for page counts. Use the Queries export for top query opportunities.');
