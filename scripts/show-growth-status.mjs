@@ -102,6 +102,11 @@ if (existsSync(promotionLogPath)) {
 }
 const gscEvidenceRows = promotionRows.filter((cells) => cells[1] === 'gsc' && cells[3] === 'submitted');
 const latestGscEvidence = gscEvidenceRows.at(-1) || null;
+const priorityPromotionSources = ['AlternativeTo', 'tinytools.directory', 'SaaSHub', 'GitHub awesome subtitle list'];
+const submittedPromotionRows = promotionRows.filter((cells) => ['directory', 'awesome'].includes(cells[1]) && cells[3] === 'submitted');
+const submittedPromotionSources = new Set(submittedPromotionRows.map((cells) => cells[2]));
+const completedPromotionSources = priorityPromotionSources.filter((source) => submittedPromotionSources.has(source));
+const missingPromotionSources = priorityPromotionSources.filter((source) => !submittedPromotionSources.has(source));
 
 console.log('# Search Growth Status\n');
 console.log(`Today: ${today}`);
@@ -135,6 +140,11 @@ if (latestGscEvidence) {
 	console.log('Latest GSC evidence: promotion log not created yet');
 }
 
+console.log(`Priority external submissions: ${completedPromotionSources.length}/${priorityPromotionSources.length} recorded`);
+if (missingPromotionSources.length > 0) {
+	console.log(`Missing external submissions: ${missingPromotionSources.join(', ')}`);
+}
+
 console.log('\n## Next Action\n');
 if (!latestSubmission) {
 	console.log('1. Run `pnpm verify:gsc:submit-ready`.');
@@ -143,6 +153,8 @@ if (!latestSubmission) {
 	console.log('4. Run the `promotion:record` command printed by `pnpm gsc:day0:list`.');
 } else if (!latestGscEvidence) {
 	console.log('Run the `promotion:record` command from `pnpm gsc:day0:list` so the submission can be attributed during weekly review.');
+} else if (completedPromotionSources.length < priorityPromotionSources.length) {
+	console.log('Run `pnpm promotion:kit -- --section directory --check-assets`, submit the priority directory/awesome targets, then record each external action.');
 } else if (currentStats.total > 0 && currentStats.checked === 0 && primaryStats.checked === primaryStats.total) {
 	console.log('After primary crawl or impression movement appears, run `pnpm gsc:day0:list -- --batch current` and submit the current search-growth queue.');
 } else {
