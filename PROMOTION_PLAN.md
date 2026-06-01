@@ -37,7 +37,7 @@
 
 **成功标准（提交后 7 天）：**
 
-- [ ] GSC Day 0 sitemap + 16 个 URL inspection 请求已完成
+- [ ] GSC Day 0 sitemap + `GSC_DAY0_URLS.md` 当前清单中的 URL inspection 请求已按优先级完成，并记录实际请求数量
 - [ ] 至少 4 个 tool 聚合站完成提交（收录可滞后）
 - [ ] 至少 2 个提交源开始审核或已收录
 - [ ] 至少 5 条 Reddit/HN/社区真实回复或评论，链接比例 < 10%
@@ -51,7 +51,7 @@
 
 | 相对日期 | 任务 | 时长 | 优先级 | 验收 |
 |------|------|------|--------|------|
-| Day 0 | 跑 `pnpm verify:gsc:submit-ready`，提交 GSC sitemap 和 16 个 URL | 30 分 | 🔥 | `GSC_DAY0_URLS.md` 填好 Submission Record |
+| Day 0 | 跑 `pnpm verify:gsc:submit-ready`，提交 GSC sitemap，并按 `GSC_DAY0_URLS.md` 优先级做 URL Inspection | 45 分 | 🔥 | `GSC_DAY0_URLS.md` 填好 Submission Record，包含实际请求数量 |
 | Day 0-1 | AlternativeTo + tinytools.directory | 30 分 | 🔥 | 追踪表记录提交日期 |
 | Day 1-2 | SaaSHub + 1 个合适 awesome list PR | 45 分 | 🔥 | 追踪表记录审核/PR URL |
 | Day 2-4 | Reddit 搜索并回复 2-3 条真实问题 | 每次 15-20 分 | 🟡 | 每条都记录帖子 URL、评论 URL、状态 |

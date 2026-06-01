@@ -83,3 +83,4 @@ Record only changes that can plausibly affect search behavior.
 | Date | URLs changed | Change type | Reason | Verification |
 | --- | --- | --- | --- | --- |
 | 2026-06-01 | Priority guides, tools, hubs, sitemap | Titles, descriptions, internal links, schema, sitemap lastmod, SERP metadata audit | Improve zero-click impressions, query-title fit, guide-to-tool conversion, and crawl recency signals. | `pnpm verify:gsc:submit-ready` passed on production for commit `17ee9a3` |
+| 2026-06-01 | Homepage and guides index | Internal links to YouTube upload failure, YouTube conversion, and SRT upload failure guides | Increase internal discovery and homepage/hub support for the current YouTube/SRT search-growth cluster. | `pnpm verify:gsc:submit-ready` passed on production for commit `e4b82f7` |
