@@ -681,6 +681,22 @@ const checks = [
 				match: 'https://subtitletoolkit.tools/guides/why-vtt-captions-are-not-loading/',
 			},
 			{
+				label: 'llms lists Video.js caption failure guide',
+				match: 'https://subtitletoolkit.tools/guides/why-videojs-captions-are-not-showing/',
+			},
+			{
+				label: 'llms lists JW Player caption failure guide',
+				match: 'https://subtitletoolkit.tools/guides/why-jw-player-captions-are-not-showing/',
+			},
+			{
+				label: 'llms lists Plex subtitle failure guide',
+				match: 'https://subtitletoolkit.tools/guides/why-plex-subtitles-are-not-showing/',
+			},
+			{
+				label: 'llms lists Vimeo caption failure guide',
+				match: 'https://subtitletoolkit.tools/guides/why-vimeo-captions-are-not-showing/',
+			},
+			{
 				label: 'llms lists malformed SRT timestamp guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-fix-malformed-srt-timestamps/',
 			},
