@@ -1638,11 +1638,23 @@ const checks = [
 		expect: [
 			{
 				label: 'CTR-oriented SRT to VTT tool title',
-				match: '<title>SRT to VTT Converter Online - Free, No Upload</title>',
+				match: '<title>SRT to VTT Converter for HTML5 Video - Free</title>',
 			},
 			{
 				label: 'SRT to VTT no-upload meta description',
-				match: 'Convert SRT subtitles to VTT online for free. Create a WebVTT file for HTML5 video locally in your browser with no signup or upload.',
+				match: 'Convert SRT to VTT for HTML5 video online for free. Add the WEBVTT header, change commas to dots, and create browser-ready captions locally.',
+			},
+			{
+				label: 'SRT to VTT workflow covers browser-ready captions',
+				match: 'creates browser-ready captions locally',
+			},
+			{
+				label: 'SRT to VTT FAQ covers WEBVTT header',
+				match: 'Does the output include the WEBVTT header?',
+			},
+			{
+				label: 'SRT to VTT FAQ covers timestamp dots',
+				match: 'Are SRT timestamp commas changed to dots?',
 			},
 			{
 				label: 'HowTo schema for tool workflow',

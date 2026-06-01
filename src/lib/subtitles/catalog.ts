@@ -159,9 +159,9 @@ const enTools: SubtitleTool[] = [
     title: 'SRT to VTT Converter',
     shortTitle: 'SRT to VTT',
     description:
-      'Convert SRT subtitles to VTT WebVTT format online for HTML5 video and browser players.',
+      'Convert SRT subtitles to WebVTT online for HTML5 video, browser players, and track elements.',
     summary:
-      'Use this free SRT to VTT converter when you already have an `.srt` file and need a clean `.vtt` WebVTT file with the `WEBVTT` header and dot-based timestamps.',
+      'Use this free SRT to VTT converter when an HTML5 video player needs a clean `.vtt` file with the `WEBVTT` header, dot-based timestamps, and no SRT cue numbers.',
     buttonLabel: 'Convert to VTT',
     inputLabel: 'SRT input',
     outputLabel: 'VTT output',
@@ -169,10 +169,10 @@ const enTools: SubtitleTool[] = [
     acceptedExtensions: ['.srt', '.txt'],
     sampleFileName: 'sample.srt',
     useCases: [
-      'Prepare subtitles for HTML5 video players.',
-      'Convert SRT to WebVTT before adding captions to a website.',
-      'Convert captions for custom web video components.',
-      'Clean up SRT files before uploading them into browser-based workflows.',
+      'Prepare SRT subtitles for HTML5 video tracks.',
+      'Add the WEBVTT header before using captions on a website.',
+      'Convert comma-based SRT timestamps to dot-based WebVTT timing.',
+      'Create browser-ready VTT captions without uploading subtitle files.',
     ],
     faqs: [
       {
@@ -189,6 +189,16 @@ const enTools: SubtitleTool[] = [
         question: 'Can I use the VTT file with HTML5 video?',
         answer:
           'Yes. The output is WebVTT, the subtitle format commonly used with HTML5 video tracks and browser players.',
+      },
+      {
+        question: 'Does the output include the WEBVTT header?',
+        answer:
+          'Yes. The converter adds the WEBVTT header so the output can be used as a .vtt caption file.',
+      },
+      {
+        question: 'Are SRT timestamp commas changed to dots?',
+        answer:
+          'Yes. SRT comma milliseconds are converted to dot-based WebVTT timestamps.',
       },
       {
         question: 'Will cue text be changed?',

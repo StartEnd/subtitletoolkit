@@ -28,7 +28,7 @@ const relatedTools = currentTool.relatedTools
 
 const toolMetaDescriptions: Record<string, string> = {
 	'srt-to-vtt':
-		'Convert SRT subtitles to VTT online for free. Create a WebVTT file for HTML5 video locally in your browser with no signup or upload.',
+		'Convert SRT to VTT for HTML5 video online for free. Add the WEBVTT header, change commas to dots, and create browser-ready captions locally.',
 	'vtt-to-srt':
 		'Convert VTT WebVTT captions to SRT online for free. Create a SubRip file for editors and uploads locally with no signup or upload.',
 	'srt-to-txt':
@@ -88,7 +88,7 @@ const toolMetaDescriptions: Record<string, string> = {
 };
 
 const toolPageTitles: Record<string, string> = {
-	'srt-to-vtt': 'SRT to VTT Converter Online - Free, No Upload',
+	'srt-to-vtt': 'SRT to VTT Converter for HTML5 Video - Free',
 	'vtt-to-srt': 'VTT to SRT Converter Online - Free, No Upload',
 	'srt-to-txt': 'SRT to TXT Converter - Extract Subtitle Text Online',
 	'vtt-to-txt': 'VTT to TXT Converter - Extract Caption Text Online',
@@ -121,7 +121,7 @@ const toolPageTitles: Record<string, string> = {
 
 const workflowNotes: Record<string, string> = {
 	'srt-to-vtt':
-		'SRT is common for handoff, but browser players usually expect WebVTT. This converter adds the WEBVTT header, changes timestamp commas to dots, and removes SRT cue numbers so the file is ready for HTML5 video.',
+		'SRT is common for handoff, but HTML5 video and browser players usually expect WebVTT. This converter adds the WEBVTT header, changes timestamp commas to dots, removes SRT cue numbers, and creates browser-ready captions locally.',
 	'vtt-to-srt':
 		'WebVTT is ideal for browsers, but many subtitle editors, archive tools, and review workflows still ask for SRT. This converter removes the WEBVTT wrapper and adds numbered cue blocks.',
 	'srt-to-txt':
