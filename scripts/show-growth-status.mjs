@@ -86,8 +86,10 @@ const day0Markdown = readFileSync(day0Path, 'utf8');
 const sitemapSection = sectionBetween(day0Markdown, '## Sitemap', '## URL Inspection Requests');
 const inspectionSection = sectionBetween(day0Markdown, '## URL Inspection Requests', '## After Submission');
 const primarySection = sectionBetween(inspectionSection, '### Primary queue', '### Current search-growth batch') || inspectionSection;
+const currentSection = sectionBetween(inspectionSection, '### Current search-growth batch', '## After Submission') || '';
 const sitemapStats = checklistStats(sitemapSection);
 const primaryStats = checklistStats(primarySection);
+const currentStats = checklistStats(currentSection);
 
 const submissionRows = parseTableRows(day0Markdown, '| Submitted on | Submitted by | Sitemap submitted? |');
 const submittedRows = submissionRows.filter((cells) => cells[0] && cells[2] === 'Yes' && Number.parseInt(cells[3] || '0', 10) > 0);
@@ -109,6 +111,7 @@ console.log(`Promotion log: ${existsSync(promotionLogPath) ? promotionLogPath : 
 console.log('## GSC Day 0\n');
 console.log(`Sitemap checklist: ${sitemapStats.checked}/${sitemapStats.total} checked`);
 console.log(`Primary URL Inspection queue: ${primaryStats.checked}/${primaryStats.total} checked`);
+console.log(`Current URL Inspection queue: ${currentStats.checked}/${currentStats.total} checked`);
 if (latestSubmission) {
 	const [submittedOn, submittedBy, , inspectionCount, reviewDate, notes] = latestSubmission;
 	console.log(`Submission record: submitted on ${submittedOn} by ${submittedBy || 'unknown'} (${inspectionCount} URL Inspection requests)`);
@@ -140,6 +143,8 @@ if (!latestSubmission) {
 	console.log('4. Run the `promotion:record` command printed by `pnpm gsc:day0:list`.');
 } else if (!latestGscEvidence) {
 	console.log('Run the `promotion:record` command from `pnpm gsc:day0:list` so the submission can be attributed during weekly review.');
+} else if (currentStats.total > 0 && currentStats.checked === 0 && primaryStats.checked === primaryStats.total) {
+	console.log('After primary crawl or impression movement appears, run `pnpm gsc:day0:list -- --batch current` and submit the current search-growth queue.');
 } else {
 	console.log('Wait for the review date, export GSC Queries/Pages and same-window analytics, then run `pnpm gsc:analyze`.');
 }

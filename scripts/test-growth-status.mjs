@@ -62,6 +62,7 @@ try {
 	assertExit(pending, 0);
 	assertIncludes(pending.stdout, 'Sitemap checklist: 0/1 checked');
 	assertIncludes(pending.stdout, 'Primary URL Inspection queue: 0/2 checked');
+	assertIncludes(pending.stdout, 'Current URL Inspection queue: 0/1 checked');
 	assertIncludes(pending.stdout, 'Submission record: pending');
 	assertIncludes(pending.stdout, 'If submitted today, next review date: 2026-06-08');
 	assertIncludes(pending.stdout, 'Latest GSC evidence: promotion log not created yet');
@@ -98,6 +99,7 @@ try {
 	const submittedNoEvidence = run(['--today', '2026-06-02']);
 	assertExit(submittedNoEvidence, 0);
 	assertIncludes(submittedNoEvidence.stdout, 'Submission record: submitted on 2026-06-01 by song (2 URL Inspection requests)');
+	assertIncludes(submittedNoEvidence.stdout, 'Current URL Inspection queue: 0/1 checked');
 	assertIncludes(submittedNoEvidence.stdout, 'Review timing: 6 day(s) remaining');
 	assertIncludes(submittedNoEvidence.stdout, 'Latest GSC evidence: promotion log not created yet');
 	assertIncludes(submittedNoEvidence.stdout, 'Run the `promotion:record` command from `pnpm gsc:day0:list`');
@@ -113,7 +115,38 @@ try {
 	assertExit(withEvidence, 0);
 	assertIncludes(withEvidence.stdout, 'Review timing: due now');
 	assertIncludes(withEvidence.stdout, 'Latest GSC evidence: 2026-06-01 - Submitted primary Day 0 sitemap plus 2 URL Inspection requests; next review 2026-06-08');
-	assertIncludes(withEvidence.stdout, 'Wait for the review date, export GSC Queries/Pages and same-window analytics, then run `pnpm gsc:analyze`.');
+	assertIncludes(withEvidence.stdout, 'After primary crawl or impression movement appears, run `pnpm gsc:day0:list -- --batch current` and submit the current search-growth queue.');
+
+	write('GSC_DAY0_URLS.md', `# GSC Day 0 Submission URLs
+
+## Submission Record
+
+| Submitted on | Submitted by | Sitemap submitted? | URL inspection requests | Next review date | Notes |
+| --- | --- | --- | ---: | --- | --- |
+| 2026-06-01 | song | Yes | 3 | 2026-06-08 | Submitted all Day 0 URL Inspection queue after production gate passed. |
+
+## Sitemap
+
+- [x] \`https://subtitletoolkit.tools/sitemap-index.xml\`
+
+## URL Inspection Requests
+
+### Primary queue
+
+- [x] \`https://subtitletoolkit.tools/\`
+- [x] \`https://subtitletoolkit.tools/tools/srt-to-vtt/\`
+
+### Current search-growth batch
+
+- [x] \`https://subtitletoolkit.tools/guides/why-youtube-subtitles-upload-failed/\`
+
+## After Submission
+`);
+
+	const allSubmitted = run(['--today', '2026-06-09']);
+	assertExit(allSubmitted, 0);
+	assertIncludes(allSubmitted.stdout, 'Current URL Inspection queue: 1/1 checked');
+	assertIncludes(allSubmitted.stdout, 'Wait for the review date, export GSC Queries/Pages and same-window analytics, then run `pnpm gsc:analyze`.');
 
 	const invalidDate = run(['--today', '2026/06/01']);
 	assertExit(invalidDate, 1);
