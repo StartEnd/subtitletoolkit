@@ -85,6 +85,13 @@ pnpm promotion:kit
 pnpm promotion:kit -- --section directory --submitted-on 2026-06-01
 ```
 
+After an external action actually happens, append a local evidence row for the weekly attribution review:
+
+```bash
+pnpm promotion:record -- --channel directory --source AlternativeTo --url https://example.com/subtitle-toolkit --status submitted
+pnpm promotion:record -- --channel gsc --source "Search Console" --status submitted --notes "Sitemap plus 21 primary URL Inspection requests"
+```
+
 ## Weekly Search Review
 
 After Search Console has a few days of data, export same-window GSC Queries and Pages CSVs, then pair them with Plausible organic pageviews and tool events:
