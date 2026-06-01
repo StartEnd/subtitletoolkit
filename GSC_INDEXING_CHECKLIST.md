@@ -168,6 +168,10 @@ Wait a few days before requesting these unless they are already showing impressi
 10. `https://subtitletoolkit.tools/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/`
 11. `https://subtitletoolkit.tools/guides/how-to-remove-subtitle-line-numbers/`
 12. `https://subtitletoolkit.tools/guides/how-to-fix-malformed-srt-timestamps/`
+13. `https://subtitletoolkit.tools/guides/why-videojs-captions-are-not-showing/`
+14. `https://subtitletoolkit.tools/guides/why-jw-player-captions-are-not-showing/`
+15. `https://subtitletoolkit.tools/guides/why-plex-subtitles-are-not-showing/`
+16. `https://subtitletoolkit.tools/guides/why-vimeo-captions-are-not-showing/`
 
 ## Step 5: What To Ignore For Now
 
