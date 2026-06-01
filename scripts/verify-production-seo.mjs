@@ -713,6 +713,22 @@ const checks = [
 				match: 'https://subtitletoolkit.tools/guides/best-subtitle-format-for-vimeo-embeds/',
 			},
 			{
+				label: 'llms lists UTF-8 conversion guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-subtitles-to-utf-8/',
+			},
+			{
+				label: 'llms lists garbled subtitles guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-fix-garbled-subtitles/',
+			},
+			{
+				label: 'llms lists boxes subtitles guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-fix-subtitles-showing-boxes/',
+			},
+			{
+				label: 'llms lists Windows-1252 vs UTF-8 guide',
+				match: 'https://subtitletoolkit.tools/guides/subtitle-encoding-windows-1252-vs-utf-8/',
+			},
+			{
 				label: 'llms lists malformed SRT timestamp guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-fix-malformed-srt-timestamps/',
 			},
