@@ -94,6 +94,10 @@ const checks = [
 				label: 'homepage links to Video.js conversion guide',
 				match: '/guides/how-to-convert-subtitles-for-videojs/',
 			},
+			{
+				label: 'homepage links to SRT vs VTT guide',
+				match: '/guides/srt-vs-vtt/',
+			},
 		],
 	},
 	{
@@ -579,6 +583,91 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/srt-vs-vtt/',
+		expect: [
+			{
+				label: 'SRT vs VTT guide CTR title',
+				match: '<title>SRT vs VTT - Which Subtitle Format Should You Use?</title>',
+			},
+			{
+				label: 'SRT vs VTT guide meta description',
+				match: 'Compare SRT vs VTT for browser playback, uploads, cue numbers, timestamps, and when to convert subtitles for HTML5 video.',
+			},
+			{
+				label: 'SRT vs VTT guide opens converter tool',
+				match: 'href="/tools/srt-to-vtt/"',
+			},
+		],
+	},
+	{
+		path: '/guides/ass-vs-srt/',
+		expect: [
+			{
+				label: 'ASS vs SRT guide CTR title',
+				match: '<title>ASS vs SRT - Styling, Uploads, and Delivery</title>',
+			},
+			{
+				label: 'ASS vs SRT guide meta description',
+				match: 'Compare ASS vs SRT for subtitle styling, upload compatibility, editor handoffs, and when to flatten ASS into a simpler SRT file.',
+			},
+			{
+				label: 'ASS vs SRT guide opens converter tool',
+				match: 'href="/tools/srt-to-ass/"',
+			},
+		],
+	},
+	{
+		path: '/guides/ass-vs-vtt/',
+		expect: [
+			{
+				label: 'ASS vs VTT guide CTR title',
+				match: '<title>ASS vs VTT - Best Format for Browser Playback</title>',
+			},
+			{
+				label: 'ASS vs VTT guide meta description',
+				match: 'Compare ASS vs VTT for browser playback. Learn why WebVTT fits HTML5 video, what ASS styling loses, and when to convert.',
+			},
+			{
+				label: 'ASS vs VTT guide opens converter tool',
+				match: 'href="/tools/ass-to-vtt/"',
+			},
+		],
+	},
+	{
+		path: '/guides/when-webvtt-is-better-than-srt/',
+		expect: [
+			{
+				label: 'WebVTT better than SRT guide CTR title',
+				match: '<title>When WebVTT Is Better Than SRT - Browser Captions</title>',
+			},
+			{
+				label: 'WebVTT better than SRT guide meta description',
+				match: 'Learn when WebVTT is better than SRT for HTML5 video, browser players, cue settings, and web caption delivery.',
+			},
+			{
+				label: 'WebVTT better than SRT guide opens converter tool',
+				match: 'href="/tools/srt-to-vtt/"',
+			},
+		],
+	},
+	{
+		path: '/guides/when-to-use-ass-instead-of-srt/',
+		expect: [
+			{
+				label: 'ASS instead of SRT guide CTR title',
+				match: '<title>When to Use ASS Instead of SRT - Styling Guide</title>',
+			},
+			{
+				label: 'ASS instead of SRT guide meta description',
+				match: 'Learn when ASS subtitles are better than SRT for styling, positioning, editing control, and when to export a simpler delivery file.',
+			},
+			{
+				label: 'ASS instead of SRT guide opens converter tool',
+				match: 'href="/tools/srt-to-ass/"',
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/',
 		expect: [
 			{
@@ -784,6 +873,30 @@ const checks = [
 			{
 				label: 'guides index links to SRT upload failure guide',
 				match: '/guides/why-srt-file-wont-upload/',
+			},
+			{
+				label: 'guides index includes format decisions section',
+				match: 'Format decisions',
+			},
+			{
+				label: 'guides index links to SRT vs VTT guide',
+				match: '/guides/srt-vs-vtt/',
+			},
+			{
+				label: 'guides index links to ASS vs SRT guide',
+				match: '/guides/ass-vs-srt/',
+			},
+			{
+				label: 'guides index links to ASS vs VTT guide',
+				match: '/guides/ass-vs-vtt/',
+			},
+			{
+				label: 'guides index links to WebVTT better than SRT guide',
+				match: '/guides/when-webvtt-is-better-than-srt/',
+			},
+			{
+				label: 'guides index links to ASS instead of SRT guide',
+				match: '/guides/when-to-use-ass-instead-of-srt/',
 			},
 			{
 				label: 'guides index links to Video.js caption failure guide',
@@ -1052,6 +1165,26 @@ const checks = [
 			{
 				label: 'llms lists embedded vs burned-in guide',
 				match: 'https://subtitletoolkit.tools/guides/embedded-vs-burned-in-subtitles/',
+			},
+			{
+				label: 'llms lists SRT vs VTT guide',
+				match: 'https://subtitletoolkit.tools/guides/srt-vs-vtt/',
+			},
+			{
+				label: 'llms lists ASS vs SRT guide',
+				match: 'https://subtitletoolkit.tools/guides/ass-vs-srt/',
+			},
+			{
+				label: 'llms lists ASS vs VTT guide',
+				match: 'https://subtitletoolkit.tools/guides/ass-vs-vtt/',
+			},
+			{
+				label: 'llms lists WebVTT better than SRT guide',
+				match: 'https://subtitletoolkit.tools/guides/when-webvtt-is-better-than-srt/',
+			},
+			{
+				label: 'llms lists ASS instead of SRT guide',
+				match: 'https://subtitletoolkit.tools/guides/when-to-use-ass-instead-of-srt/',
 			},
 		],
 	},

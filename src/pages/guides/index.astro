@@ -24,6 +24,13 @@ const priorityGuideIds = [
 	'why-srt-file-wont-upload',
 	'why-subtitles-do-not-show-in-html5-video',
 ];
+const formatDecisionGuideIds = [
+	'srt-vs-vtt',
+	'ass-vs-srt',
+	'ass-vs-vtt',
+	'when-webvtt-is-better-than-srt',
+	'when-to-use-ass-instead-of-srt',
+];
 const platformGuideIds = [
 	'why-videojs-captions-are-not-showing',
 	'why-jw-player-captions-are-not-showing',
@@ -52,6 +59,9 @@ const extractionGuideIds = [
 	'embedded-vs-burned-in-subtitles',
 ];
 const priorityGuides = priorityGuideIds
+	.map((id) => guides.find((guide) => guide.id === id))
+	.filter(Boolean);
+const formatDecisionGuides = formatDecisionGuideIds
 	.map((id) => guides.find((guide) => guide.id === id))
 	.filter(Boolean);
 const platformGuides = platformGuideIds
@@ -126,6 +136,28 @@ const pageDescription =
 						<h3><a href={`/guides/${guide.id}/`}>{guide.data.title}</a></h3>
 						<p>{guide.data.description}</p>
 						<a class="card-link" href={`/guides/${guide.id}/`}>Read guide <span aria-hidden="true">&rarr;</span></a>
+					</article>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="section">
+		<span class="eyebrow">Format decisions</span>
+		<h2>Choose the subtitle format before converting.</h2>
+		<p class="lede priority-lede">
+			Start here when the question is whether SRT, VTT, or ASS fits the destination before opening a converter.
+		</p>
+		<div class="priority-grid">
+			{
+				formatDecisionGuides.map((guide) => (
+					<article class="priority-card">
+						<p class="priority-card-meta">
+							{guideCategoryMeta[guide.data.category].label}
+						</p>
+						<h3><a href={`/guides/${guide.id}/`}>{guide.data.title}</a></h3>
+						<p>{guide.data.description}</p>
+						<a class="card-link" href={`/guides/${guide.id}/`}>Compare formats <span aria-hidden="true">&rarr;</span></a>
 					</article>
 				))
 			}

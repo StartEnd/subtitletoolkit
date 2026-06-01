@@ -91,6 +91,11 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-subtitles-for-jw-player/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-subtitles-for-plex/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-subtitles-for-vimeo/`
+- [ ] `https://subtitletoolkit.tools/guides/srt-vs-vtt/`
+- [ ] `https://subtitletoolkit.tools/guides/ass-vs-srt/`
+- [ ] `https://subtitletoolkit.tools/guides/ass-vs-vtt/`
+- [ ] `https://subtitletoolkit.tools/guides/when-webvtt-is-better-than-srt/`
+- [ ] `https://subtitletoolkit.tools/guides/when-to-use-ass-instead-of-srt/`
 
 ## After Submission
 

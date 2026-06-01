@@ -42,6 +42,9 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 
 - [SRT vs VTT](https://subtitletoolkit.tools/guides/srt-vs-vtt/)
 - [ASS vs SRT](https://subtitletoolkit.tools/guides/ass-vs-srt/)
+- [ASS vs VTT](https://subtitletoolkit.tools/guides/ass-vs-vtt/)
+- [When WebVTT is better than SRT](https://subtitletoolkit.tools/guides/when-webvtt-is-better-than-srt/)
+- [When to use ASS instead of SRT](https://subtitletoolkit.tools/guides/when-to-use-ass-instead-of-srt/)
 - [Best subtitle format for YouTube](https://subtitletoolkit.tools/guides/best-subtitle-format-for-youtube/)
 - [Best SRT settings for YouTube upload](https://subtitletoolkit.tools/guides/best-srt-settings-for-youtube-upload/)
 - [SRT vs ASS for YouTube captions](https://subtitletoolkit.tools/guides/srt-vs-ass-for-youtube-captions/)
