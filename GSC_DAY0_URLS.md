@@ -123,6 +123,7 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-overlapping-subtitles/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-subtitle-line-breaks/`
 - [ ] `https://subtitletoolkit.tools/guides/why-srt-file-is-not-working/`
+- [ ] `https://subtitletoolkit.tools/guides/why-subtitles-are-missing-after-conversion/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-subtitles-that-are-too-long/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/`
 - [ ] `https://subtitletoolkit.tools/guides/why-subtitles-are-out-of-sync-after-export/`

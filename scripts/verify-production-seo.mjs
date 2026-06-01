@@ -94,6 +94,10 @@ const checks = [
 				match: '/guides/why-srt-file-is-not-working/',
 			},
 			{
+				label: 'homepage links to missing subtitles after conversion guide',
+				match: '/guides/why-subtitles-are-missing-after-conversion/',
+			},
+			{
 				label: 'homepage links to long subtitles guide',
 				match: '/guides/how-to-fix-subtitles-that-are-too-long/',
 			},
@@ -1337,6 +1341,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/why-subtitles-are-missing-after-conversion/',
+		expect: [
+			{
+				label: 'missing subtitles after conversion guide CTR title',
+				match: '<title>Subtitles Missing After Conversion - Fix Cue Loss</title>',
+			},
+			{
+				label: 'missing subtitles after conversion guide meta description',
+				match: 'Fix subtitles missing after conversion by checking malformed cues, unsupported styling, empty captions, timestamp order, and format-specific parser limits.',
+			},
+			{
+				label: 'missing subtitles after conversion guide opens validator tool',
+				match: 'href="/tools/srt-validator/"',
+			},
+			{
+				label: 'FAQ schema for missing subtitles after conversion questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why are some subtitles missing after conversion\?/
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-fix-subtitles-that-are-too-long/',
 		expect: [
 			{
@@ -2094,6 +2119,10 @@ const checks = [
 				match: '/guides/why-srt-file-is-not-working/',
 			},
 			{
+				label: 'guides index links to missing subtitles after conversion guide',
+				match: '/guides/why-subtitles-are-missing-after-conversion/',
+			},
+			{
 				label: 'guides index links to out-of-order guide',
 				match: '/guides/how-to-fix-out-of-order-subtitle-cues/',
 			},
@@ -2384,6 +2413,10 @@ const checks = [
 			{
 				label: 'llms lists SRT not working guide',
 				match: 'https://subtitletoolkit.tools/guides/why-srt-file-is-not-working/',
+			},
+			{
+				label: 'llms lists missing subtitles after conversion guide',
+				match: 'https://subtitletoolkit.tools/guides/why-subtitles-are-missing-after-conversion/',
 			},
 			{
 				label: 'llms lists long subtitles guide',
