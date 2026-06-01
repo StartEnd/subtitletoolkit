@@ -9,7 +9,13 @@ Use this file once per week after the SEO deployment is live. Keep entries short
 3. Export Queries and Pages.
 4. In Plausible or your analytics source, record organic pageviews and tool events for the same 28-day window.
 5. Save the CSV files under local `gsc-exports/`; this directory is intentionally ignored by git.
-6. Build the current site, then run the local analyzer with the two CSV files:
+6. Check the local review inputs and print the exact analyzer command:
+
+```bash
+pnpm gsc:review:ready -- --organic-pageviews 123 --tool-starts 12 --tool-outputs 3 --week-of 2026-06-08
+```
+
+7. Build the current site, then run the local analyzer with the two CSV files:
 
 ```bash
 pnpm build
@@ -21,11 +27,11 @@ Tool starts = `subtitle_tool_edit_input` + `subtitle_tool_adjust_setting` + `sub
 Tool outputs = `subtitle_tool_copy_output` + `subtitle_tool_download_output`.
 The analyzer normalizes trailing-slash differences between GSC exports and the built Astro URLs.
 
-7. Review the `Promotion Evidence Window` output so GSC/Plausible movement is compared against real external actions.
-8. Fill one weekly row below from the `Weekly Summary Helper` output.
-9. Fill the ad readiness row from the `Ad Readiness Gate` output.
-10. Fill the traffic quality row from the `Traffic Quality Snapshot` output.
-11. Pick one small batch for the next change; do not edit the same URL again until 7 to 14 days have passed.
+8. Review the `Promotion Evidence Window` output so GSC/Plausible movement is compared against real external actions.
+9. Fill one weekly row below from the `Weekly Summary Helper` output.
+10. Fill the ad readiness row from the `Ad Readiness Gate` output.
+11. Fill the traffic quality row from the `Traffic Quality Snapshot` output.
+12. Pick one small batch for the next change; do not edit the same URL again until 7 to 14 days have passed.
 
 ## Weekly Summary
 

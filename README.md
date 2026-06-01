@@ -110,6 +110,12 @@ pnpm promotion:record -- --channel gsc --source "Search Console" --status submit
 After Search Console has a few days of data, export same-window GSC Queries and Pages CSVs, then pair them with Plausible organic pageviews and tool events:
 
 ```bash
+pnpm gsc:review:ready -- --organic-pageviews 123 --tool-starts 12 --tool-outputs 3 --week-of 2026-06-08
+```
+
+When the review inputs are ready, run the analyzer command printed by the helper:
+
+```bash
 pnpm build
 pnpm gsc:analyze -- --queries gsc-exports/queries.csv --pages gsc-exports/pages.csv --promotion-log PROMOTION_LOG.md --organic-pageviews 123 --tool-starts 12 --tool-outputs 3
 ```
