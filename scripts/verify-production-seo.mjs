@@ -54,6 +54,22 @@ const checks = [
 				label: 'homepage links to SRT upload failure guide',
 				match: '/guides/why-srt-file-wont-upload/',
 			},
+			{
+				label: 'homepage links to Video.js caption failure guide',
+				match: '/guides/why-videojs-captions-are-not-showing/',
+			},
+			{
+				label: 'homepage links to JW Player caption failure guide',
+				match: '/guides/why-jw-player-captions-are-not-showing/',
+			},
+			{
+				label: 'homepage links to Plex subtitle failure guide',
+				match: '/guides/why-plex-subtitles-are-not-showing/',
+			},
+			{
+				label: 'homepage links to Vimeo caption failure guide',
+				match: '/guides/why-vimeo-captions-are-not-showing/',
+			},
 		],
 	},
 	{
