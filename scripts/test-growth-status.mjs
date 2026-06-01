@@ -340,9 +340,25 @@ Latest production gate: \`pnpm verify:gsc:submit-ready\` passed on 2026-06-01 ag
 	assertExit(aheadWithCurrentGate, 0);
 	assertIncludes(aheadWithCurrentGate.stdout, 'Git sync: 2 ahead, 0 behind origin/main');
 	assertIncludes(aheadWithCurrentGate.stdout, 'Worktree: clean');
-	assertIncludes(aheadWithCurrentGate.stdout, 'Deploy status: production gate matches origin/main; local commits are tooling/evidence only');
+	assertIncludes(aheadWithCurrentGate.stdout, 'Deploy status: production gate matches origin/main; local commits do not change site output');
 	assertIncludes(aheadWithCurrentGate.stdout, 'Next IndexNow action: after deployment, run `pnpm indexnow:submit`, then `pnpm indexnow:submit -- --live` if the key URL is live.');
 	assertIncludes(aheadWithCurrentGate.stdout, '1. Run `pnpm gsc:day0:list` and submit the sitemap plus primary URL Inspection queue in Search Console.');
+
+	mkdirSync(join(cloneDir, 'src/content/guides'), { recursive: true });
+	writeFileSync(join(cloneDir, 'src/content/guides/local-only-guide.mdx'), '---\ntitle: Local only guide\n---\n');
+	git(cloneDir, ['add', 'src/content/guides/local-only-guide.mdx']);
+	git(cloneDir, ['commit', '-m', 'Add local-only guide']);
+
+	const aheadWithUndeployedSiteOutput = spawnSync(process.execPath, [scriptPath, '--today', '2026-06-01'], {
+		cwd: cloneDir,
+		encoding: 'utf8',
+	});
+	assertExit(aheadWithUndeployedSiteOutput, 0);
+	assertIncludes(aheadWithUndeployedSiteOutput.stdout, 'Git sync: 3 ahead, 0 behind origin/main');
+	assertIncludes(aheadWithUndeployedSiteOutput.stdout, 'Deploy status: production gate matches origin/main for the primary queue; local site-output commits are not deployed');
+	assertIncludes(aheadWithUndeployedSiteOutput.stdout, 'Next IndexNow action: push and deploy the local commits before live submission.');
+	assertIncludes(aheadWithUndeployedSiteOutput.stdout, '1. Run `pnpm gsc:day0:list` and submit the sitemap plus primary URL Inspection queue in Search Console.');
+	assertIncludes(aheadWithUndeployedSiteOutput.stdout, '4. Push/deploy local site-output commits before using `pnpm gsc:day0:list -- --batch current` or live IndexNow.');
 
 	const invalidDate = run(['--today', '2026/06/01']);
 	assertExit(invalidDate, 1);

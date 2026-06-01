@@ -87,6 +87,19 @@ function git(args) {
 	return result.stdout.trim();
 }
 
+function hasLocalSiteOutputChanges() {
+	const changedFiles = git(['diff', '--name-only', 'origin/main...HEAD']);
+	if (!changedFiles) return false;
+
+	return changedFiles.split(/\r?\n/).some((filePath) => (
+		filePath.startsWith('src/')
+		|| filePath.startsWith('public/')
+		|| filePath === 'astro.config.mjs'
+		|| filePath === 'package.json'
+		|| filePath === 'pnpm-lock.yaml'
+	));
+}
+
 function deploymentStatus() {
 	const counts = git(['rev-list', '--left-right', '--count', 'origin/main...HEAD']);
 	const head = git(['rev-parse', '--short', 'HEAD']);
@@ -119,6 +132,10 @@ function needsDeploymentWarning(deploy, gateCommit) {
 	return false;
 }
 
+function batchNeedsCurrentDeploymentWarning(batch, deploy, hasSiteOutputChanges) {
+	return deploy.available && deploy.ahead > 0 && hasSiteOutputChanges && batch !== 'primary';
+}
+
 const sitemapSection = sectionBetween(markdown, '## Sitemap', '## URL Inspection Requests');
 const inspectionSection = sectionBetween(markdown, '## URL Inspection Requests', '## After Submission');
 const primaryInspectionSection = sectionBetween(
@@ -147,6 +164,7 @@ const nextReviewDate = addDays(submittedOn, nextReviewDays);
 const evidenceNotes = `Submitted ${batch} Day 0 sitemap plus ${inspectionUrls.length} URL Inspection requests; next review ${nextReviewDate}`;
 const deploy = deploymentStatus();
 const gateCommit = liveGateCommit(markdown);
+const hasSiteOutputChanges = hasLocalSiteOutputChanges();
 
 if (sitemapUrls.length === 0) {
 	console.error('No sitemap URL found in the Sitemap section.');
@@ -165,13 +183,17 @@ console.log(`Submitted by: ${submittedBy}`);
 console.log(`Batch: ${batch}`);
 console.log(`Next review date: ${nextReviewDate}\n`);
 
-if (needsDeploymentWarning(deploy, gateCommit)) {
+if (needsDeploymentWarning(deploy, gateCommit) || batchNeedsCurrentDeploymentWarning(batch, deploy, hasSiteOutputChanges)) {
 	console.log('## Deployment Warning\n');
 	console.log(`Local HEAD: ${deploy.head}`);
 	console.log(`origin/main: ${deploy.upstream}`);
 	console.log(`Git sync: ${deploy.ahead} ahead, ${deploy.behind} behind origin/main`);
 	console.log(`Worktree: ${deploy.dirty ? 'uncommitted changes' : 'clean'}`);
-	console.log('Commit or discard local changes, push/pull as needed, deploy, and rerun `pnpm verify:gsc:submit-ready` before using this queue for manual Search Console requests.\n');
+	if (batchNeedsCurrentDeploymentWarning(batch, deploy, hasSiteOutputChanges)) {
+		console.log('The primary queue can use the latest production gate, but this batch includes local site-output changes. Push, deploy, and rerun `pnpm verify:gsc:submit-ready` before submitting the current or all queue.\n');
+	} else {
+		console.log('Commit or discard local changes, push/pull as needed, deploy, and rerun `pnpm verify:gsc:submit-ready` before using this queue for manual Search Console requests.\n');
+	}
 }
 
 console.log('## Sitemap To Submit\n');

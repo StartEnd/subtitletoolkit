@@ -173,6 +173,27 @@ Latest production gate: \`pnpm verify:gsc:submit-ready\` passed on 2026-06-01 ag
 	assertIncludes(aheadWithCurrentGate.stdout, '1. https://subtitletoolkit.tools/sitemap-index.xml');
 	assertIncludes(aheadWithCurrentGate.stdout, '1. https://subtitletoolkit.tools/');
 
+	write('src/content/guides/local-only-guide.mdx', '---\ntitle: Local only guide\n---\n');
+	assertExit(runGit(['add', 'src/content/guides/local-only-guide.mdx']), 0);
+	assertExit(runGit(['commit', '-m', 'Add local only guide']), 0);
+
+	const primaryWithUndeployedContent = run([
+		'--submitted-on', '2026-06-01',
+		'--submitted-by', 'song',
+	]);
+	assertExit(primaryWithUndeployedContent, 0);
+	assertNotIncludes(primaryWithUndeployedContent.stdout, '## Deployment Warning');
+
+	const currentWithUndeployedContent = run([
+		'--submitted-on', '2026-06-01',
+		'--submitted-by', 'song',
+		'--batch', 'current',
+	]);
+	assertExit(currentWithUndeployedContent, 0);
+	assertIncludes(currentWithUndeployedContent.stdout, '## Deployment Warning');
+	assertIncludes(currentWithUndeployedContent.stdout, 'The primary queue can use the latest production gate, but this batch includes local site-output changes.');
+	assertIncludes(currentWithUndeployedContent.stdout, 'Push, deploy, and rerun `pnpm verify:gsc:submit-ready` before submitting the current or all queue.');
+
 	console.log('GSC Day 0 list helper tests passed.');
 } finally {
 	rmSync(tempDir, { recursive: true, force: true });

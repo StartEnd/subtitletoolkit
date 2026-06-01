@@ -92,6 +92,19 @@ function git(args) {
 	return result.stdout.trim();
 }
 
+function hasLocalSiteOutputChanges() {
+	const changedFiles = git(['diff', '--name-only', 'origin/main...HEAD']);
+	if (!changedFiles) return false;
+
+	return changedFiles.split(/\r?\n/).some((filePath) => (
+		filePath.startsWith('src/')
+		|| filePath.startsWith('public/')
+		|| filePath === 'astro.config.mjs'
+		|| filePath === 'package.json'
+		|| filePath === 'pnpm-lock.yaml'
+	));
+}
+
 function deploymentStatus() {
 	const counts = git(['rev-list', '--left-right', '--count', 'origin/main...HEAD']);
 	const head = git(['rev-parse', '--short', 'HEAD']);
@@ -152,7 +165,9 @@ const missingPromotionSources = priorityPromotionSources.filter((source) => !sub
 const deploy = deploymentStatus();
 const gateCommit = liveGateCommit(day0Markdown);
 const productionGateIsCurrent = liveGateCoversProduction(deploy, gateCommit);
+const localSiteOutputChanges = hasLocalSiteOutputChanges();
 const deploymentPending = deploy.available && (deploy.behind > 0 || deploy.dirty || (deploy.ahead > 0 && !productionGateIsCurrent));
+const hasUndeployedSiteOutput = deploy.available && deploy.ahead > 0 && productionGateIsCurrent && localSiteOutputChanges;
 
 console.log('# Search Growth Status\n');
 console.log(`Today: ${today}`);
@@ -168,8 +183,10 @@ if (deploy.available) {
 	console.log(`Worktree: ${deploy.dirty ? 'uncommitted changes' : 'clean'}`);
 	if (deploymentPending) {
 		console.log('Deploy status: pending local sync/deploy\n');
+	} else if (hasUndeployedSiteOutput) {
+		console.log('Deploy status: production gate matches origin/main for the primary queue; local site-output commits are not deployed\n');
 	} else if (deploy.ahead > 0 && productionGateIsCurrent) {
-		console.log('Deploy status: production gate matches origin/main; local commits are tooling/evidence only\n');
+		console.log('Deploy status: production gate matches origin/main; local commits do not change site output\n');
 	} else {
 		console.log('Deploy status: local branch matches origin/main\n');
 	}
@@ -209,7 +226,7 @@ if (latestIndexNowEvidence) {
 if (!existsSync(indexNowKeyPath)) {
 	console.log('Next IndexNow action: deploy a public key file before live submission.');
 } else if (!latestIndexNowEvidence) {
-	if (deploymentPending) {
+	if (deploymentPending || hasUndeployedSiteOutput) {
 		console.log('Next IndexNow action: push and deploy the local commits before live submission.');
 	} else {
 		console.log('Next IndexNow action: after deployment, run `pnpm indexnow:submit`, then `pnpm indexnow:submit -- --live` if the key URL is live.');
@@ -253,6 +270,9 @@ if (deploymentPending) {
 		console.log('1. Run `pnpm gsc:day0:list` and submit the sitemap plus primary URL Inspection queue in Search Console.');
 		console.log('2. Run the `gsc:day0:record` command printed by `pnpm gsc:day0:list`.');
 		console.log('3. Run the `promotion:record` command printed by `pnpm gsc:day0:list`.');
+		if (hasUndeployedSiteOutput) {
+			console.log('4. Push/deploy local site-output commits before using `pnpm gsc:day0:list -- --batch current` or live IndexNow.');
+		}
 	}
 } else if (!latestGscEvidence) {
 	console.log('Run the `promotion:record` command from `pnpm gsc:day0:list` so the submission can be attributed during weekly review.');
