@@ -469,9 +469,9 @@ const enTools: SubtitleTool[] = [
     title: 'SRT to ASS Converter',
     shortTitle: 'SRT to ASS',
     description:
-      'Convert simple SubRip captions into ASS format for workflows that need style-ready subtitle files.',
+      'Convert SRT subtitles to ASS online for Aegisub, styling, karaoke timing, and subtitle editor workflows.',
     summary:
-      'Use this when your source subtitle file is plain SRT, but the next step of the workflow expects ASS subtitles.',
+      'Use this free SRT to ASS converter when a subtitle editor, styling workflow, or karaoke timing pass needs a style-ready `.ass` file instead of plain SubRip captions.',
     buttonLabel: 'Convert to ASS',
     inputLabel: 'SRT input',
     outputLabel: 'ASS output',
@@ -479,15 +479,26 @@ const enTools: SubtitleTool[] = [
     acceptedExtensions: ['.srt', '.txt'],
     sampleFileName: 'sample.srt',
     useCases: [
-      'Move plain subtitles into style-capable workflows.',
-      'Create an ASS starting point before manual styling.',
-      'Prepare subtitles for editors that prefer ASS as an exchange format.',
+      'Convert SRT to ASS before opening captions in Aegisub or another subtitle editor.',
+      'Create a clean ASS starting point with default style definitions before manual styling.',
+      'Prepare SubRip captions for karaoke timing, positioning, or style review workflows.',
+      'Hand off an editable ASS copy while keeping the original SRT timing and text.',
     ],
     faqs: [
       {
         question: 'Will this create advanced styling automatically?',
         answer:
           'No. It creates a clean ASS structure with a default style so you can keep working from there.',
+      },
+      {
+        question: 'Can I convert SRT to ASS for Aegisub?',
+        answer:
+          'Yes. The output is a basic ASS file with events, timing, text, and a default style that can be opened in Aegisub for further styling or timing work.',
+      },
+      {
+        question: 'Does the converter upload my subtitle file?',
+        answer:
+          'No. SRT to ASS conversion runs locally in your browser, so your subtitle text stays on your device.',
       },
       {
         question: 'Does line break information stay intact?',

@@ -1950,8 +1950,24 @@ const checks = [
 		path: '/tools/srt-to-ass/',
 		expect: [
 			{
-				label: 'updated SRT to ASS tool title',
-				match: '<title>SRT to ASS Converter - Convert Subtitles Online Free</title>',
+				label: 'CTR-oriented SRT to ASS tool title',
+				match: '<title>SRT to ASS Converter for Aegisub Styling - Free</title>',
+			},
+			{
+				label: 'SRT to ASS no-upload meta description',
+				match: 'Convert SRT to ASS online for free. Create a style-ready ASS file for Aegisub, karaoke timing, and subtitle editors locally with no upload.',
+			},
+			{
+				label: 'SRT to ASS workflow covers Aegisub styling',
+				match: 'creates a style-ready ASS file locally with no upload',
+			},
+			{
+				label: 'SRT to ASS FAQ covers Aegisub',
+				match: 'Can I convert SRT to ASS for Aegisub?',
+			},
+			{
+				label: 'SRT to ASS FAQ covers local conversion',
+				match: 'Does the converter upload my subtitle file?',
 			},
 			{
 				label: 'free software schema field',
