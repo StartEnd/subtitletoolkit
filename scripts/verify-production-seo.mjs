@@ -1997,6 +1997,26 @@ const checks = [
 		path: '/tools/ass-to-srt/',
 		expect: [
 			{
+				label: 'CTR-oriented ASS to SRT tool title',
+				match: '<title>ASS to SRT Converter for YouTube Uploads - Free</title>',
+			},
+			{
+				label: 'ASS to SRT no-upload meta description',
+				match: 'Convert ASS or SSA to SRT online for free. Remove unsupported styling, keep timing, and create YouTube-ready SubRip captions locally.',
+			},
+			{
+				label: 'ASS to SRT workflow covers YouTube upload copy',
+				match: 'creates a simple SubRip upload copy locally',
+			},
+			{
+				label: 'ASS to SRT FAQ covers YouTube uploads',
+				match: 'Can I convert ASS to SRT for YouTube uploads?',
+			},
+			{
+				label: 'ASS to SRT FAQ covers SSA files',
+				match: 'Does this work with SSA subtitle files?',
+			},
+			{
 				label: 'ASS to SRT tool links to YouTube upload conversion guide',
 				match: 'href="/guides/how-to-convert-ass-to-srt-for-youtube-uploads/"',
 			},

@@ -40,7 +40,7 @@ const toolMetaDescriptions: Record<string, string> = {
 	'srt-to-ass':
 		'Convert SRT subtitles to ASS format with a clean default style, ready for subtitle editors, timing review, and styling workflows.',
 	'ass-to-srt':
-		'Convert ASS subtitles to SRT online for free. Flatten styled captions into simple SubRip files locally with no signup or upload.',
+		'Convert ASS or SSA to SRT online for free. Remove unsupported styling, keep timing, and create YouTube-ready SubRip captions locally.',
 	'vtt-to-ass':
 		'Convert WebVTT captions to ASS format for subtitle editing and style-ready workflows, locally in your browser with no upload.',
 	'ass-to-vtt':
@@ -94,7 +94,7 @@ const toolPageTitles: Record<string, string> = {
 	'vtt-to-txt': 'VTT to TXT Converter - Extract Caption Text Online',
 	'ass-to-txt': 'ASS to TXT Converter - Extract Subtitle Text Online',
 	'srt-to-ass': 'SRT to ASS Converter - Convert Subtitles Online Free',
-	'ass-to-srt': 'ASS to SRT Converter Online - Free, No Upload',
+	'ass-to-srt': 'ASS to SRT Converter for YouTube Uploads - Free',
 	'vtt-to-ass': 'VTT to ASS Converter - Convert Captions Online Free',
 	'ass-to-vtt': 'ASS to VTT Converter - Convert Subtitles Online Free',
 	'youtube-subtitle-converter': 'YouTube Subtitle Converter Online - Free No Upload',
@@ -133,7 +133,7 @@ const workflowNotes: Record<string, string> = {
 	'srt-to-ass':
 		'SRT is plain and portable. ASS is useful when the next step involves subtitle styling, karaoke timing, or an editor that expects an ASS structure. This tool creates a clean default ASS file from simple cue text.',
 	'ass-to-srt':
-		'ASS files can carry styling, position, and dialogue metadata. SRT is better when the destination needs simple timed text. This converter keeps timing and readable dialogue while flattening style-specific markup.',
+		'ASS and SSA files can carry styling, positioning, karaoke effects, and dialogue metadata that YouTube and many upload workflows do not accept. This converter keeps timing and readable dialogue, turns ASS line breaks into SRT text, removes unsupported styling, and creates a simple SubRip upload copy locally.',
 	'vtt-to-ass':
 		'Use this when captions begin in a web player workflow but need to move into an editor that works better with ASS. The output gives you a basic ASS structure that can be styled afterward.',
 	'ass-to-vtt':

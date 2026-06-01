@@ -514,9 +514,9 @@ const enTools: SubtitleTool[] = [
     title: 'ASS to SRT Converter',
     shortTitle: 'ASS to SRT',
     description:
-      'Convert ASS subtitles to SRT online by flattening styled dialogue into simple SubRip captions.',
+      'Convert ASS or SSA subtitles to SRT online for YouTube uploads, editors, and simple caption workflows.',
     summary:
-      'Use this free ASS to SRT converter when you need to move away from styled ASS subtitles and hand a simpler `.srt` file to clients, editors, or upload workflows.',
+      'Use this free ASS to SRT converter when YouTube, a client, or a subtitle editor needs a simple `.srt` delivery copy instead of styled ASS or SSA captions.',
     buttonLabel: 'Convert to SRT',
     inputLabel: 'ASS input',
     outputLabel: 'SRT output',
@@ -524,10 +524,10 @@ const enTools: SubtitleTool[] = [
     acceptedExtensions: ['.ass', '.ssa', '.txt'],
     sampleFileName: 'sample.ass',
     useCases: [
-      'Convert ASS to SRT for platforms that reject styled subtitle files.',
-      'Deliver a simpler subtitle format to clients.',
-      'Prepare styled ASS subtitles for platforms that only want SRT.',
-      'Flatten ASS dialogue into a more portable file format.',
+      'Convert ASS to SRT before uploading captions to YouTube.',
+      'Flatten ASS or SSA styling, positioning, and karaoke tags into simple SubRip text.',
+      'Deliver a clean SRT copy to clients, editors, or review workflows.',
+      'Prepare styled subtitles for platforms that reject ASS files.',
     ],
     faqs: [
       {
@@ -539,6 +539,16 @@ const enTools: SubtitleTool[] = [
         question: 'What happens to styles and positioning?',
         answer:
           'ASS styling and positioning are removed. The converter keeps timing and subtitle text only.',
+      },
+      {
+        question: 'Can I convert ASS to SRT for YouTube uploads?',
+        answer:
+          'Yes. The output is a simple SRT file that keeps timing and readable dialogue while removing ASS styling that YouTube does not use.',
+      },
+      {
+        question: 'Does this work with SSA subtitle files?',
+        answer:
+          'Yes. You can paste or upload ASS or SSA subtitles and export a SubRip SRT delivery copy.',
       },
       {
         question: 'Can this handle `\\N` line breaks?',
