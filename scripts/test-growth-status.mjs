@@ -61,6 +61,7 @@ try {
 	const pending = run(['--today', '2026-06-01']);
 	assertExit(pending, 0);
 	assertIncludes(pending.stdout, 'Sitemap checklist: 0/1 checked');
+	assertIncludes(pending.stdout, 'Latest production gate: not recorded');
 	assertIncludes(pending.stdout, 'Primary URL Inspection queue: 0/2 checked');
 	assertIncludes(pending.stdout, 'Current URL Inspection queue: 0/1 checked');
 	assertIncludes(pending.stdout, 'Submission record: pending');
@@ -71,6 +72,41 @@ try {
 	assertIncludes(pending.stdout, 'Run `pnpm verify:gsc:submit-ready`.');
 	assertIncludes(pending.stdout, 'Run the `gsc:day0:record` command printed by `pnpm gsc:day0:list`.');
 	assertIncludes(pending.stdout, 'Run the `promotion:record` command printed by `pnpm gsc:day0:list`.');
+
+	write('GSC_DAY0_URLS.md', `# GSC Day 0 Submission URLs
+
+Latest production gate: \`pnpm verify:gsc:submit-ready\` passed on 2026-06-01 against the live \`c28fe59\` deployment using verifier commit \`d4a1d38\`.
+
+## Submission Record
+
+| Submitted on | Submitted by | Sitemap submitted? | URL inspection requests | Next review date | Notes |
+| --- | --- | --- | ---: | --- | --- |
+| | | No | 0 | | |
+
+## Sitemap
+
+- [ ] \`https://subtitletoolkit.tools/sitemap-index.xml\`
+
+## URL Inspection Requests
+
+### Primary queue
+
+- [ ] \`https://subtitletoolkit.tools/\`
+- [ ] \`https://subtitletoolkit.tools/tools/srt-to-vtt/\`
+
+### Current search-growth batch
+
+- [ ] \`https://subtitletoolkit.tools/guides/why-youtube-subtitles-upload-failed/\`
+
+## After Submission
+`);
+
+	const pendingAfterGate = run(['--today', '2026-06-01']);
+	assertExit(pendingAfterGate, 0);
+	assertIncludes(pendingAfterGate.stdout, 'Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-01 against the live `c28fe59` deployment using verifier commit `d4a1d38`.');
+	assertIncludes(pendingAfterGate.stdout, '1. Run `pnpm gsc:day0:list` and submit the sitemap plus primary URL Inspection queue in Search Console.');
+	assertIncludes(pendingAfterGate.stdout, '2. Run the `gsc:day0:record` command printed by `pnpm gsc:day0:list`.');
+	assertIncludes(pendingAfterGate.stdout, '3. Run the `promotion:record` command printed by `pnpm gsc:day0:list`.');
 
 	write('GSC_DAY0_URLS.md', `# GSC Day 0 Submission URLs
 
