@@ -86,6 +86,10 @@ const checks = [
 				match: '/guides/why-vlc-subtitles-are-not-showing/',
 			},
 			{
+				label: 'homepage links to VLC subtitle delay guide',
+				match: '/guides/how-to-fix-vlc-subtitle-delay/',
+			},
+			{
 				label: 'homepage links to Plex subtitle failure guide',
 				match: '/guides/why-plex-subtitles-are-not-showing/',
 			},
@@ -1163,6 +1167,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/how-to-fix-vlc-subtitle-delay/',
+		expect: [
+			{
+				label: 'VLC subtitle delay guide CTR title',
+				match: '<title>Fix VLC Subtitle Delay - Sync SRT, VTT, ASS Timing</title>',
+			},
+			{
+				label: 'VLC subtitle delay guide meta description',
+				match: 'Fix VLC subtitle delay by measuring whether captions are early or late, previewing the offset in VLC, and saving a corrected SRT, VTT, or ASS file.',
+			},
+			{
+				label: 'VLC subtitle delay guide opens delay fixer tool',
+				match: 'href="/tools/subtitle-delay-fixer/"',
+			},
+			{
+				label: 'FAQ schema for VLC subtitle delay questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Does VLC save subtitle delay changes\?/
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-fix-subtitle-timing-after-cutting-video/',
 		expect: [
 			{
@@ -2003,6 +2028,10 @@ const checks = [
 				match: '/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/',
 			},
 			{
+				label: 'guides index links to VLC subtitle delay guide',
+				match: '/guides/how-to-fix-vlc-subtitle-delay/',
+			},
+			{
 				label: 'guides index links to common errors guide',
 				match: '/guides/common-subtitle-format-errors-and-fixes/',
 			},
@@ -2177,6 +2206,10 @@ const checks = [
 			{
 				label: 'llms lists scene-cut sync guide',
 				match: 'https://subtitletoolkit.tools/guides/fix-subtitle-sync-after-a-scene-cut/',
+			},
+			{
+				label: 'llms lists VLC subtitle delay guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-fix-vlc-subtitle-delay/',
 			},
 			{
 				label: 'llms lists WebVTT validation guide',

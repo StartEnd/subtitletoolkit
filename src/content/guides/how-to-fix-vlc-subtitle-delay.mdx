@@ -1,0 +1,118 @@
+---
+title: How to fix VLC subtitle delay
+seoTitle: Fix VLC Subtitle Delay - Sync SRT, VTT, ASS Timing
+seoDescription: Fix VLC subtitle delay by measuring whether captions are early or late, previewing the offset in VLC, and saving a corrected SRT, VTT, or ASS file.
+description: Fix VLC subtitles that are out of sync by measuring the offset, previewing the delay, and shifting the subtitle file permanently.
+pubDate: 2026-06-02
+category: sync-fixes
+tags:
+  - vlc
+  - subtitle delay
+  - subtitles out of sync
+  - srt
+  - timing
+primaryTool: subtitle-delay-fixer
+faqs:
+  - question: How do I know if VLC subtitles are early or late?
+    answer: Pick one clear spoken line, compare when the audio starts with when the subtitle appears, then decide whether the subtitle needs to move earlier or later.
+  - question: Does VLC save subtitle delay changes?
+    answer: VLC delay controls are mainly for playback preview. To keep the fix for uploads, devices, or another player, shift the subtitle file and save a corrected copy.
+  - question: Can I fix SRT, VTT, and ASS delay from VLC?
+    answer: Yes. Measure the offset while previewing in VLC, then use a subtitle delay fixer or time shifter to adjust SRT, VTT, or ASS timestamps.
+---
+
+VLC is useful for finding a subtitle delay because you can preview timing changes quickly. The catch is that VLC playback controls do not give you a corrected subtitle file for YouTube, Plex, HTML5 video, or a client handoff.
+
+## Quick answer
+
+If VLC subtitles are late, move the subtitle timestamps earlier with a negative shift. If VLC subtitles are early, move the timestamps later with a positive shift. Use VLC to estimate the offset, then save a corrected subtitle file with the [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/).
+
+## Confirm the problem type
+
+This workflow is for a constant offset:
+
+- every subtitle appears about 1 second late
+- every subtitle appears about 500 ms early
+- the offset feels the same near the beginning, middle, and end
+
+If the offset gets worse over time, the issue is drift rather than simple delay. Start with [How to fix subtitles that are too fast or too slow](/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/) instead.
+
+## Measure the VLC subtitle offset
+
+1. Open the video in VLC.
+2. Load the subtitle file from **Subtitle** > **Add Subtitle File**.
+3. Find a line where speech starts clearly.
+4. Pause when the speaker begins talking.
+5. Compare that moment with when the subtitle appears.
+
+Use milliseconds for the final correction:
+
+```text
+0.5 seconds = 500 ms
+1.2 seconds = 1200 ms
+2 seconds = 2000 ms
+```
+
+## Choose the right sign
+
+The sign is the part people most often get backward.
+
+- subtitles appear late in VLC -> use a negative shift
+- subtitles appear early in VLC -> use a positive shift
+
+Examples:
+
+```text
+Subtitle appears 1.5 seconds late  -> shift by -1500 ms
+Subtitle appears 0.8 seconds early -> shift by +800 ms
+```
+
+## Preview in VLC, then save the file
+
+VLC is good for checking the number, but the corrected subtitle file should be saved outside VLC.
+
+1. Open the [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/).
+2. Paste or upload the SRT, VTT, or ASS file.
+3. Enter the measured offset in milliseconds.
+4. Apply the shift and download the corrected file.
+5. Load the corrected subtitle file back into VLC and test the same dialogue line.
+
+If the result is close but not perfect, apply a smaller second adjustment.
+
+## When only part of the video is out of sync
+
+Do not shift the whole subtitle file if the beginning is already correct and only the section after an edit is wrong.
+
+Use the [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/) when:
+
+- subtitles are correct before a cut
+- subtitles become wrong after a removed intro or trimmed scene
+- only one chapter or segment is affected
+
+See [Fix subtitle sync after a scene cut](/guides/fix-subtitle-sync-after-a-scene-cut/) for that workflow.
+
+## Common mistakes
+
+### Saving only a VLC playback setting
+
+Changing delay during playback does not prepare a corrected file for another app. Save a shifted subtitle file if you need the fix to travel with the video.
+
+### Shifting before checking the middle and end
+
+One line can hide drift. Check at least one line near the beginning and one near the end before assuming a global shift is enough.
+
+### Fixing timing before loading the right subtitle track
+
+If VLC has multiple subtitle tracks, make sure you are measuring the external subtitle file you plan to fix, not an embedded track from the video.
+
+## Related guides
+
+- [Why VLC subtitles are not showing](/guides/why-vlc-subtitles-are-not-showing/)
+- [How to fix subtitle delay](/guides/how-to-fix-subtitle-delay/)
+- [How to fix out-of-sync subtitles](/guides/fix-out-of-sync-subtitles/)
+
+## Related tools
+
+- [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/)
+- [Subtitle Time Shifter](/tools/subtitle-time-shifter/)
+- [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/)

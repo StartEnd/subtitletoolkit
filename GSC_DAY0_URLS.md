@@ -114,6 +114,7 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/how-to-merge-two-srt-files/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-vtt-for-web-players/`
 - [ ] `https://subtitletoolkit.tools/guides/fix-out-of-sync-subtitles/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-fix-vlc-subtitle-delay/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-subtitle-timing-after-cutting-video/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-shift-only-part-of-a-subtitle-file/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-clean-an-srt-file/`
