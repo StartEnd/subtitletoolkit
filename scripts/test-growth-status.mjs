@@ -303,6 +303,47 @@ Latest production gate: \`pnpm verify:gsc:submit-ready\` passed.
 	assertIncludes(pendingDeploy.stdout, '2. Run `pnpm verify:gsc:submit-ready` after deployment finishes.');
 	assertIncludes(pendingDeploy.stdout, '3. Continue with the GSC sitemap plus primary URL Inspection queue only after the live gate passes.');
 
+	const originMain = git(cloneDir, ['rev-parse', '--short', 'origin/main']);
+	writeFileSync(join(cloneDir, 'GSC_DAY0_URLS.md'), `# GSC Day 0 Submission URLs
+
+Latest production gate: \`pnpm verify:gsc:submit-ready\` passed on 2026-06-01 against the live \`${originMain}\` deployment.
+
+## Submission Record
+
+| Submitted on | Submitted by | Sitemap submitted? | URL inspection requests | Next review date | Notes |
+| --- | --- | --- | ---: | --- | --- |
+| | | No | 0 | | |
+
+## Sitemap
+
+- [ ] \`https://subtitletoolkit.tools/sitemap-index.xml\`
+
+## URL Inspection Requests
+
+### Primary queue
+
+- [ ] \`https://subtitletoolkit.tools/\`
+
+### Current search-growth batch
+
+- [ ] \`https://subtitletoolkit.tools/guides/why-youtube-subtitles-upload-failed/\`
+
+## After Submission
+`);
+	git(cloneDir, ['add', 'GSC_DAY0_URLS.md']);
+	git(cloneDir, ['commit', '-m', 'Record current production gate']);
+
+	const aheadWithCurrentGate = spawnSync(process.execPath, [scriptPath, '--today', '2026-06-01'], {
+		cwd: cloneDir,
+		encoding: 'utf8',
+	});
+	assertExit(aheadWithCurrentGate, 0);
+	assertIncludes(aheadWithCurrentGate.stdout, 'Git sync: 2 ahead, 0 behind origin/main');
+	assertIncludes(aheadWithCurrentGate.stdout, 'Worktree: clean');
+	assertIncludes(aheadWithCurrentGate.stdout, 'Deploy status: production gate matches origin/main; local commits are tooling/evidence only');
+	assertIncludes(aheadWithCurrentGate.stdout, 'Next IndexNow action: after deployment, run `pnpm indexnow:submit`, then `pnpm indexnow:submit -- --live` if the key URL is live.');
+	assertIncludes(aheadWithCurrentGate.stdout, '1. Run `pnpm gsc:day0:list` and submit the sitemap plus primary URL Inspection queue in Search Console.');
+
 	const invalidDate = run(['--today', '2026/06/01']);
 	assertExit(invalidDate, 1);
 	assertIncludes(invalidDate.stderr, '--today must use YYYY-MM-DD format.');

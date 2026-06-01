@@ -140,6 +140,39 @@ try {
 	assertIncludes(ahead.stdout, 'Git sync: 1 ahead, 0 behind origin/main');
 	assertIncludes(ahead.stdout, 'Commit or discard local changes, push/pull as needed, deploy, and rerun `pnpm verify:gsc:submit-ready` before using this queue for manual Search Console requests.');
 
+	const originMain = runGit(['rev-parse', '--short', 'origin/main']).stdout.trim();
+	write('GSC_DAY0_URLS.md', `# GSC Day 0 Submission URLs
+
+Latest production gate: \`pnpm verify:gsc:submit-ready\` passed on 2026-06-01 against the live \`${originMain}\` deployment.
+
+## Sitemap
+
+- [ ] \`https://subtitletoolkit.tools/sitemap-index.xml\`
+
+## URL Inspection Requests
+
+### Primary queue
+
+- [ ] \`https://subtitletoolkit.tools/\`
+
+### Current search-growth batch
+
+- [ ] \`https://subtitletoolkit.tools/guides/why-youtube-subtitles-upload-failed/\`
+
+## After Submission
+`);
+	assertExit(runGit(['add', 'GSC_DAY0_URLS.md']), 0);
+	assertExit(runGit(['commit', '-m', 'Record production gate']), 0);
+
+	const aheadWithCurrentGate = run([
+		'--submitted-on', '2026-06-01',
+		'--submitted-by', 'song',
+	]);
+	assertExit(aheadWithCurrentGate, 0);
+	assertNotIncludes(aheadWithCurrentGate.stdout, '## Deployment Warning');
+	assertIncludes(aheadWithCurrentGate.stdout, '1. https://subtitletoolkit.tools/sitemap-index.xml');
+	assertIncludes(aheadWithCurrentGate.stdout, '1. https://subtitletoolkit.tools/');
+
 	console.log('GSC Day 0 list helper tests passed.');
 } finally {
 	rmSync(tempDir, { recursive: true, force: true });

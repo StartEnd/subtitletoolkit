@@ -113,6 +113,14 @@ function deploymentStatus() {
 	};
 }
 
+function liveGateCommit(text) {
+	return text.match(/^Latest production gate:.*live `([0-9a-f]{7,40})` deployment/m)?.[1] || null;
+}
+
+function liveGateCoversProduction(deploy, gateCommit) {
+	return deploy.available && gateCommit === deploy.upstream;
+}
+
 const day0Markdown = readFileSync(day0Path, 'utf8');
 const latestProductionGate = day0Markdown.match(/^Latest production gate:\s*(.+)$/m)?.[1]?.trim() || null;
 const sitemapSection = sectionBetween(day0Markdown, '## Sitemap', '## URL Inspection Requests');
@@ -142,7 +150,9 @@ const submittedPromotionSources = new Set(submittedPromotionRows.map((cells) => 
 const completedPromotionSources = priorityPromotionSources.filter((source) => submittedPromotionSources.has(source));
 const missingPromotionSources = priorityPromotionSources.filter((source) => !submittedPromotionSources.has(source));
 const deploy = deploymentStatus();
-const deploymentPending = deploy.available && (deploy.ahead > 0 || deploy.behind > 0 || deploy.dirty);
+const gateCommit = liveGateCommit(day0Markdown);
+const productionGateIsCurrent = liveGateCoversProduction(deploy, gateCommit);
+const deploymentPending = deploy.available && (deploy.behind > 0 || deploy.dirty || (deploy.ahead > 0 && !productionGateIsCurrent));
 
 console.log('# Search Growth Status\n');
 console.log(`Today: ${today}`);
@@ -156,7 +166,13 @@ if (deploy.available) {
 	console.log(`origin/main: ${deploy.upstream}`);
 	console.log(`Git sync: ${deploy.ahead} ahead, ${deploy.behind} behind origin/main`);
 	console.log(`Worktree: ${deploy.dirty ? 'uncommitted changes' : 'clean'}`);
-	console.log(`Deploy status: ${deploymentPending ? 'pending local sync/deploy' : 'local branch matches origin/main'}\n`);
+	if (deploymentPending) {
+		console.log('Deploy status: pending local sync/deploy\n');
+	} else if (deploy.ahead > 0 && productionGateIsCurrent) {
+		console.log('Deploy status: production gate matches origin/main; local commits are tooling/evidence only\n');
+	} else {
+		console.log('Deploy status: local branch matches origin/main\n');
+	}
 } else {
 	console.log('Deploy status: unavailable outside a git checkout or without origin/main\n');
 }

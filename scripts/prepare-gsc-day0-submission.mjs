@@ -108,6 +108,17 @@ function deploymentStatus() {
 	};
 }
 
+function liveGateCommit(text) {
+	return text.match(/^Latest production gate:.*live `([0-9a-f]{7,40})` deployment/m)?.[1] || null;
+}
+
+function needsDeploymentWarning(deploy, gateCommit) {
+	if (!deploy.available) return false;
+	if (deploy.dirty || deploy.behind > 0) return true;
+	if (deploy.ahead > 0 && gateCommit !== deploy.upstream) return true;
+	return false;
+}
+
 const sitemapSection = sectionBetween(markdown, '## Sitemap', '## URL Inspection Requests');
 const inspectionSection = sectionBetween(markdown, '## URL Inspection Requests', '## After Submission');
 const primaryInspectionSection = sectionBetween(
@@ -135,6 +146,7 @@ const inspectionUrls = {
 const nextReviewDate = addDays(submittedOn, nextReviewDays);
 const evidenceNotes = `Submitted ${batch} Day 0 sitemap plus ${inspectionUrls.length} URL Inspection requests; next review ${nextReviewDate}`;
 const deploy = deploymentStatus();
+const gateCommit = liveGateCommit(markdown);
 
 if (sitemapUrls.length === 0) {
 	console.error('No sitemap URL found in the Sitemap section.');
@@ -153,7 +165,7 @@ console.log(`Submitted by: ${submittedBy}`);
 console.log(`Batch: ${batch}`);
 console.log(`Next review date: ${nextReviewDate}\n`);
 
-if (deploy.available && (deploy.ahead > 0 || deploy.behind > 0 || deploy.dirty)) {
+if (needsDeploymentWarning(deploy, gateCommit)) {
 	console.log('## Deployment Warning\n');
 	console.log(`Local HEAD: ${deploy.head}`);
 	console.log(`origin/main: ${deploy.upstream}`);
