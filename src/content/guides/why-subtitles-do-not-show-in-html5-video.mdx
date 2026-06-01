@@ -3,7 +3,7 @@ title: Why subtitles do not show in HTML5 video
 seoTitle: Subtitles Not Showing in HTML5 Video - VTT Fix Guide
 description: Diagnose and fix the most common reasons subtitle tracks fail to render in HTML5 video players, from wrong file formats to missing WEBVTT headers.
 pubDate: 2026-05-07
-updatedDate: 2026-05-25
+updatedDate: 2026-06-01
 category: workflow-guides
 tags:
   - html5 video
@@ -11,7 +11,16 @@ tags:
   - subtitles not showing
   - troubleshooting
   - web players
-primaryTool: subtitle-cleaner
+primaryTool: webvtt-validator
+faqs:
+  - question: Why are subtitles not showing in HTML5 video?
+    answer: The most common causes are the wrong subtitle format, a missing WEBVTT header, comma-based timestamps, wrong MIME type, CORS blocking, or an incorrect track URL.
+  - question: Can HTML5 video use SRT subtitles directly?
+    answer: Native HTML5 video tracks expect WebVTT. Convert SRT to VTT before using the file in a browser video track.
+  - question: What MIME type should VTT files use?
+    answer: WebVTT files should be served as text/vtt. Some browsers reject captions when the server returns text/plain or another incorrect content type.
+  - question: Should I check the VTT file or player code first?
+    answer: Check the VTT file first with a validator, then debug the track URL, MIME type, CORS headers, and player configuration.
 ---
 
 If subtitles are not showing in your HTML5 video player, the problem is almost always one of a few fixable causes.
@@ -82,6 +91,24 @@ Work through these in order before looking for complex causes:
 5. Is the `<track>` element `src` pointing to the right path?
 
 For file-level validation, use the [WebVTT Validator](/tools/webvtt-validator/) before debugging player code.
+
+## Frequently asked questions
+
+### Why are subtitles not showing in HTML5 video?
+
+The most common causes are the wrong subtitle format, a missing `WEBVTT` header, comma-based timestamps, wrong MIME type, CORS blocking, or an incorrect track URL.
+
+### Can HTML5 video use SRT subtitles directly?
+
+Native HTML5 video tracks expect WebVTT. Convert SRT to VTT before using the file in a browser video track.
+
+### What MIME type should VTT files use?
+
+WebVTT files should be served as `text/vtt`. Some browsers reject captions when the server returns `text/plain` or another incorrect content type.
+
+### Should I check the VTT file or player code first?
+
+Check the VTT file first with a validator, then debug the track URL, MIME type, CORS headers, and player configuration.
 
 ## Related guides
 

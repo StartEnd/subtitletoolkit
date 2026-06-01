@@ -16,6 +16,14 @@ const guides = defineCollection({
 			category: z.enum(guideCategoryOrder),
 			tags: z.array(z.string()).default([]),
 			primaryTool: z.string().optional(),
+			faqs: z
+				.array(
+					z.object({
+						question: z.string(),
+						answer: z.string(),
+					}),
+				)
+				.default([]),
 		}),
 });
 

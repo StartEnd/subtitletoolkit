@@ -3,7 +3,7 @@ title: How to fix invalid WebVTT timestamps
 seoTitle: Fix Invalid WebVTT Timestamps - VTT Timing Guide
 description: Fix WebVTT files with malformed timestamp formatting by converting or normalizing subtitle timing into browser-friendly VTT output.
 pubDate: 2026-05-06
-updatedDate: 2026-05-25
+updatedDate: 2026-06-01
 category: sync-fixes
 tags:
   - webvtt
@@ -11,7 +11,16 @@ tags:
   - timestamps
   - subtitle errors
   - browser playback
-primaryTool: subtitle-cleaner
+primaryTool: webvtt-validator
+faqs:
+  - question: What makes a WebVTT timestamp invalid?
+    answer: A WebVTT timestamp is invalid when it uses the wrong separator, misses required digits, has malformed cue arrows, or appears in a cue block the browser cannot parse.
+  - question: Can I fix VTT timestamps by renaming an SRT file?
+    answer: No. Renaming .srt to .vtt does not change comma-based SRT timestamps into dot-based WebVTT timestamps or add the required WEBVTT header.
+  - question: Should I validate the VTT file before changing player code?
+    answer: Yes. Validate the WebVTT file first, because many caption loading problems come from malformed subtitle timing rather than JavaScript or player configuration.
+  - question: What tool should I use for comma-based timestamps in VTT?
+    answer: If the source is really SRT, use the SRT to VTT Converter. If the file is already VTT, use the WebVTT Validator to find the malformed cue blocks before editing.
 ---
 
 Invalid WebVTT timestamps usually mean the file looks close to `VTT`, but its timing format does not match what browser playback expects.
@@ -73,6 +82,24 @@ If the file came from the wrong source format, normalize the whole file.
 Many playback issues are really subtitle format problems, not player problems.
 
 That is especially true for web player workflows like the one described in [How to convert subtitle files for web players](/guides/how-to-convert-subtitle-files-for-web-players/).
+
+## Frequently asked questions
+
+### What makes a WebVTT timestamp invalid?
+
+A WebVTT timestamp is invalid when it uses the wrong separator, misses required digits, has malformed cue arrows, or appears in a cue block the browser cannot parse.
+
+### Can I fix VTT timestamps by renaming an SRT file?
+
+No. Renaming `.srt` to `.vtt` does not change comma-based SRT timestamps into dot-based WebVTT timestamps or add the required `WEBVTT` header.
+
+### Should I validate the VTT file before changing player code?
+
+Yes. Validate the WebVTT file first, because many caption loading problems come from malformed subtitle timing rather than JavaScript or player configuration.
+
+### What tool should I use for comma-based timestamps in VTT?
+
+If the source is really SRT, use the [SRT to VTT Converter](/tools/srt-to-vtt/). If the file is already VTT, use the [WebVTT Validator](/tools/webvtt-validator/) to find the malformed cue blocks before editing.
 
 ## Related guides
 

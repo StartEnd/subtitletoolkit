@@ -4,7 +4,7 @@ seoTitle: Fix Subtitle Delay Online - SRT, VTT, ASS Timing Guide
 seoDescription: Fix subtitles that appear too early or too late. Measure the offset, shift SRT, VTT, or ASS timing online, and download a corrected file with no upload.
 description: Fix subtitle delay in seconds. Measure the offset and shift all timestamps at once. Free tool works with SRT, VTT, and ASS formats instantly.
 pubDate: 2026-05-06
-updatedDate: 2026-05-25
+updatedDate: 2026-06-01
 category: sync-fixes
 tags:
   - subtitle delay
@@ -13,6 +13,15 @@ tags:
   - repair
   - offset
 primaryTool: subtitle-time-shifter
+faqs:
+  - question: What's the difference between delay and drift?
+    answer: Delay means subtitles are consistently early or late by the same amount throughout the video. Drift means the offset changes over time and usually needs a different fix.
+  - question: How do I know if I have delay or drift?
+    answer: Check subtitle sync near the beginning, middle, and end of the video. If the offset stays the same, it is delay. If the offset grows or shrinks, it is drift.
+  - question: Can I fix delay for VTT and ASS files?
+    answer: Yes. The Subtitle Time Shifter supports SRT, VTT, and ASS files, so you can shift common subtitle formats earlier or later in the browser.
+  - question: Can I shift only part of the subtitle file?
+    answer: Yes. Use the Partial Subtitle Shifter when only one scene or selected time range is out of sync and the rest of the file already matches the video.
 ---
 
 Subtitle delay usually means one simple thing: every cue is offset by roughly the same amount. If subtitles appear 2 seconds late throughout the entire video, or 1 second early from start to finish, you have a delay problem. This guide shows you how to measure the offset and fix it with a global time shift.

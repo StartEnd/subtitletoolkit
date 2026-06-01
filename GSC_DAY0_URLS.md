@@ -31,6 +31,10 @@ Submit these URLs first. Do not submit every URL in the site on Day 0.
 - [ ] `https://subtitletoolkit.tools/tools/srt-to-ass/`
 - [ ] `https://subtitletoolkit.tools/tools/subtitle-delay-fixer/`
 - [ ] `https://subtitletoolkit.tools/tools/subtitle-cleaner/`
+- [ ] `https://subtitletoolkit.tools/tools/youtube-subtitle-converter/`
+- [ ] `https://subtitletoolkit.tools/tools/clean-srt-file/`
+- [ ] `https://subtitletoolkit.tools/tools/remove-srt-line-numbers/`
+- [ ] `https://subtitletoolkit.tools/tools/fix-srt-timestamps/`
 - [ ] `https://subtitletoolkit.tools/tools/srt-validator/`
 - [ ] `https://subtitletoolkit.tools/tools/webvtt-validator/`
 - [ ] `https://subtitletoolkit.tools/tools/extract-subtitles-from-video/`
@@ -38,6 +42,16 @@ Submit these URLs first. Do not submit every URL in the site on Day 0.
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-srt-for-youtube-uploads/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-subtitle-delay/`
+
+Submit these current search-growth batch URLs next. They received FAQ schema, Article topic schema, or corrected tool CTA mapping in the latest SEO batch.
+
+- [ ] `https://subtitletoolkit.tools/guides/best-subtitle-format-for-youtube/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-clean-subtitle-formatting-before-upload/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/`
+- [ ] `https://subtitletoolkit.tools/guides/why-subtitles-do-not-show-in-html5-video/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-remove-subtitle-line-numbers/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-fix-malformed-srt-timestamps/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-fix-vtt-mime-type-for-html5-video/`
 
 ## After Submission
 

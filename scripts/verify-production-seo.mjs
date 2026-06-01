@@ -73,6 +73,18 @@ const checks = [
 				expectedCount: 1,
 			},
 			{
+				label: 'FAQ schema for delay questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*What's the difference between delay and drift\?/
+			},
+			{
+				label: 'guide Article schema includes query tags',
+				match: /"keywords"\s*:\s*"subtitle delay, subtitle sync, timing, repair, offset"/
+			},
+			{
+				label: 'breadcrumb schema includes current guide URL',
+				match: /"name"\s*:\s*"How to fix subtitle delay"[\s\S]*"item"\s*:\s*"https:\/\/subtitletoolkit\.tools\/guides\/how-to-fix-subtitle-delay\/"/
+			},
+			{
 				label: 'guide links to related workflow tools',
 				match: 'Continue with a related subtitle tool',
 			},
@@ -96,6 +108,85 @@ const checks = [
 			{
 				label: 'footer links to priority guide',
 				match: 'SRT to VTT for HTML5',
+			},
+			{
+				label: 'FAQ schema for SRT to VTT questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Can I convert VTT back to SRT\?/
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-fix-invalid-webvtt-timestamps/',
+		expect: [
+			{
+				label: 'FAQ schema for invalid WebVTT timestamps',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*What makes a WebVTT timestamp invalid\?/
+			},
+			{
+				label: 'invalid WebVTT guide opens validator tool',
+				match: 'href="/tools/webvtt-validator/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-clean-subtitle-formatting-before-upload/',
+		expect: [
+			{
+				label: 'FAQ schema for subtitle cleanup questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*What's the difference between cleaning and validating\?/
+			},
+		],
+	},
+	{
+		path: '/guides/best-subtitle-format-for-youtube/',
+		expect: [
+			{
+				label: 'FAQ schema for YouTube subtitle format questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Does YouTube support VTT\?/
+			},
+			{
+				label: 'YouTube format guide opens YouTube converter',
+				match: 'href="/tools/youtube-subtitle-converter/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-remove-subtitle-line-numbers/',
+		expect: [
+			{
+				label: 'line number guide opens line number tool',
+				match: 'href="/tools/remove-srt-line-numbers/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-fix-malformed-srt-timestamps/',
+		expect: [
+			{
+				label: 'malformed SRT timestamp guide opens timestamp fixer',
+				match: 'href="/tools/fix-srt-timestamps/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-fix-vtt-mime-type-for-html5-video/',
+		expect: [
+			{
+				label: 'VTT MIME guide opens validator tool',
+				match: 'href="/tools/webvtt-validator/"',
+			},
+		],
+	},
+	{
+		path: '/guides/why-subtitles-do-not-show-in-html5-video/',
+		expect: [
+			{
+				label: 'FAQ schema for HTML5 subtitle troubleshooting',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why are subtitles not showing in HTML5 video\?/
+			},
+			{
+				label: 'HTML5 troubleshooting guide opens validator tool',
+				match: 'href="/tools/webvtt-validator/"',
 			},
 		],
 	},
@@ -265,6 +356,39 @@ const checks = [
 				match: expectedLastmod
 					? `<lastmod>${expectedLastmod}</lastmod>`
 					: /<lastmod>\d{4}-\d{2}-\d{2}T/,
+			},
+		],
+	},
+	{
+		path: '/llms.txt',
+		expect: [
+			{
+				label: 'llms lists YouTube converter tool',
+				match: 'https://subtitletoolkit.tools/tools/youtube-subtitle-converter/',
+			},
+			{
+				label: 'llms lists SRT validator tool',
+				match: 'https://subtitletoolkit.tools/tools/srt-validator/',
+			},
+			{
+				label: 'llms lists WebVTT validator tool',
+				match: 'https://subtitletoolkit.tools/tools/webvtt-validator/',
+			},
+			{
+				label: 'llms lists SRT timestamp fixer tool',
+				match: 'https://subtitletoolkit.tools/tools/fix-srt-timestamps/',
+			},
+			{
+				label: 'llms lists invalid WebVTT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/',
+			},
+			{
+				label: 'llms lists HTML5 subtitle troubleshooting guide',
+				match: 'https://subtitletoolkit.tools/guides/why-subtitles-do-not-show-in-html5-video/',
+			},
+			{
+				label: 'llms lists malformed SRT timestamp guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-fix-malformed-srt-timestamps/',
 			},
 		],
 	},

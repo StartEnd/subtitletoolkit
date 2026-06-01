@@ -18,9 +18,15 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [ASS to SRT Converter](https://subtitletoolkit.tools/tools/ass-to-srt/): Flatten ASS dialogue into simple SRT subtitles.
 - [VTT to ASS Converter](https://subtitletoolkit.tools/tools/vtt-to-ass/): Convert browser captions to ASS for editing workflows.
 - [ASS to VTT Converter](https://subtitletoolkit.tools/tools/ass-to-vtt/): Convert ASS subtitles to WebVTT for browser playback.
+- [YouTube Subtitle Converter](https://subtitletoolkit.tools/tools/youtube-subtitle-converter/): Convert VTT or ASS subtitles into YouTube-ready SRT captions.
 - [Subtitle Time Shifter](https://subtitletoolkit.tools/tools/subtitle-time-shifter/): Shift SRT, VTT, or ASS timestamps forward or backward.
 - [Partial Subtitle Shifter](https://subtitletoolkit.tools/tools/partial-subtitle-shifter/): Shift only a selected time range inside a subtitle file.
 - [Subtitle Cleaner](https://subtitletoolkit.tools/tools/subtitle-cleaner/): Remove stray tags and normalize subtitle text spacing.
+- [Clean SRT File](https://subtitletoolkit.tools/tools/clean-srt-file/): Normalize SRT cue numbers, timestamps, spacing, and inline tags.
+- [Fix SRT Timestamps](https://subtitletoolkit.tools/tools/fix-srt-timestamps/): Repair parseable SRT timestamp formatting and cue structure.
+- [Remove SRT Line Numbers](https://subtitletoolkit.tools/tools/remove-srt-line-numbers/): Rebuild or remove SRT cue numbering for cleanup workflows.
+- [SRT Validator](https://subtitletoolkit.tools/tools/srt-validator/): Check SRT timestamp format, cue order, numbering, and upload errors.
+- [WebVTT Validator](https://subtitletoolkit.tools/tools/webvtt-validator/): Check WEBVTT headers, timestamp syntax, cue order, and browser caption issues.
 - [Subtitle Encoding Fixer](https://subtitletoolkit.tools/tools/subtitle-encoding-fixer/): Convert subtitle files to UTF-8 and repair garbled characters.
 - [Subtitle Merger](https://subtitletoolkit.tools/tools/subtitle-merger/): Merge two subtitle files into one sorted output.
 - [Extract Subtitles from Video](https://subtitletoolkit.tools/tools/extract-subtitles-from-video/): Extract embedded text subtitle streams from local video files in the browser.
@@ -41,6 +47,12 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [How to fix subtitle delay](https://subtitletoolkit.tools/guides/how-to-fix-subtitle-delay/)
 - [How to fix out-of-sync subtitles](https://subtitletoolkit.tools/guides/fix-out-of-sync-subtitles/)
 - [How to convert SRT to VTT for HTML5 video](https://subtitletoolkit.tools/guides/how-to-convert-srt-to-vtt-for-html5-video/)
+- [How to clean subtitle formatting before upload](https://subtitletoolkit.tools/guides/how-to-clean-subtitle-formatting-before-upload/)
+- [How to fix invalid WebVTT timestamps](https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/)
+- [Why subtitles do not show in HTML5 video](https://subtitletoolkit.tools/guides/why-subtitles-do-not-show-in-html5-video/)
+- [How to remove subtitle line numbers](https://subtitletoolkit.tools/guides/how-to-remove-subtitle-line-numbers/)
+- [How to fix malformed SRT timestamps](https://subtitletoolkit.tools/guides/how-to-fix-malformed-srt-timestamps/)
+- [How to fix VTT MIME type for HTML5 video](https://subtitletoolkit.tools/guides/how-to-fix-vtt-mime-type-for-html5-video/)
 - [Convert VTT to SRT for legacy editors](https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/)
 - [How to extract subtitles from MKV](https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mkv/)
 

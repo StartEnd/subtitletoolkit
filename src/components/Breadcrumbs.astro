@@ -13,6 +13,7 @@ interface Props {
 const { items } = Astro.props;
 
 const baseUrl = `https://${SITE_DOMAIN}`;
+const currentPath = Astro.url.pathname;
 
 const breadcrumbList = {
 	'@context': 'https://schema.org',
@@ -21,7 +22,7 @@ const breadcrumbList = {
 		'@type': 'ListItem',
 		position: idx + 1,
 		name: item.label,
-		...(item.href ? { item: `${baseUrl}${item.href}` } : {}),
+		item: `${baseUrl}${item.href ?? currentPath}`,
 	})),
 };
 ---
