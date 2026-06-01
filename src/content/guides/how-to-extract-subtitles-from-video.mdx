@@ -112,6 +112,12 @@ MOV files often come from Apple, QuickTime, or editing workflows. They can conta
 
 For MOV-specific checks, use [How to extract subtitles from MOV](/guides/how-to-extract-subtitles-from-mov/). It covers embedded text tracks, sidecar captions, and the common case where a captioned editing timeline becomes a MOV with burned-in text.
 
+## If the video is a WebM
+
+WebM captions are often connected to HTML5 playback. Sometimes they are embedded in the WebM file, but often the page loads a separate WebVTT track.
+
+For WebM-specific checks, use [How to extract subtitles from WebM](/guides/how-to-extract-subtitles-from-webm/). It covers embedded WebVTT-style tracks, separate HTML `<track>` captions, and the common case where the downloaded WebM has no subtitle stream.
+
 ## If the video is an MKV
 
 MKV is usually more subtitle-friendly than MP4. It can hold SRT, ASS, SSA, PGS, and multiple language tracks.
@@ -193,6 +199,7 @@ Check the language, validate the timing, fix encoding if characters look wrong, 
 - [How to extract subtitles from MKV](/guides/how-to-extract-subtitles-from-mkv/)
 - [How to extract subtitles from MP4](/guides/how-to-extract-subtitles-from-mp4/)
 - [How to extract subtitles from MOV](/guides/how-to-extract-subtitles-from-mov/)
+- [How to extract subtitles from WebM](/guides/how-to-extract-subtitles-from-webm/)
 - [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)
 - [How to convert subtitles to UTF-8](/guides/how-to-convert-subtitles-to-utf-8/)
 - [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video/)

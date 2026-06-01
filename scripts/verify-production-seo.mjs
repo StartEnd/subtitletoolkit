@@ -1638,6 +1638,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/how-to-extract-subtitles-from-webm/',
+		expect: [
+			{
+				label: 'WebM extraction guide CTR title',
+				match: '<title>Extract Subtitles from WebM - Free No Upload Guide</title>',
+			},
+			{
+				label: 'WebM extraction guide no-upload meta description',
+				match: 'Extract subtitles from WebM files locally. Learn when WebM caption tracks can be saved, why extraction finds no captions, and when OCR is required.',
+			},
+			{
+				label: 'WebM extraction guide opens extractor tool',
+				match: 'href="/tools/extract-subtitles-from-video/"',
+			},
+			{
+				label: 'FAQ schema for WebM extraction questions',
+				match: 'Can I extract subtitles from a WebM file?',
+			},
+		],
+	},
+	{
 		path: '/guides/embedded-vs-burned-in-subtitles/',
 			expect: [
 			{
@@ -2543,6 +2564,10 @@ const checks = [
 				match: '/guides/how-to-extract-subtitles-from-mov/',
 			},
 			{
+				label: 'guides index links to WebM extraction guide',
+				match: '/guides/how-to-extract-subtitles-from-webm/',
+			},
+			{
 				label: 'guides index links to embedded vs burned-in guide',
 				match: '/guides/embedded-vs-burned-in-subtitles/',
 			},
@@ -2749,6 +2774,10 @@ const checks = [
 			{
 				label: 'llms lists MOV extraction guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mov/',
+			},
+			{
+				label: 'llms lists WebM extraction guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-webm/',
 			},
 			{
 				label: 'llms lists embedded vs burned-in guide',
