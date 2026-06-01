@@ -1,0 +1,174 @@
+---
+title: How to extract subtitles from a video
+seoTitle: Extract Subtitles from Video - MP4, MKV, MOV Guide
+description: Extract embedded subtitle tracks from MP4, MKV, MOV, and WebM files locally, then save or clean the captions as a separate subtitle file.
+seoDescription: Extract embedded subtitle tracks from MP4, MKV, MOV, and WebM files locally. Learn when video captions can be saved as SRT and when OCR is required.
+pubDate: 2026-06-01
+updatedDate: 2026-06-01
+category: workflow-guides
+tags:
+  - extract subtitles from video
+  - extract subtitles from mp4
+  - embedded subtitles
+  - video captions
+primaryTool: extract-subtitles-from-video
+faqs:
+  - question: Can I extract subtitles from an MP4 file?
+    answer: Yes, if the MP4 contains an embedded text subtitle track. If the subtitles are burned into the video image, you need OCR instead of subtitle extraction.
+  - question: Are video files uploaded to a server?
+    answer: No. The extractor runs FFmpeg in your browser, so the video stays on your device.
+  - question: Why did subtitle extraction find no captions?
+    answer: The video may have no subtitle stream, may use burned-in subtitles, or may contain an image-based subtitle format that cannot be converted directly to text.
+  - question: What should I do after extracting subtitles?
+    answer: Check the language, validate the timing, fix encoding if characters look wrong, and convert the output if your target player needs another format.
+---
+
+Video files can contain subtitles in three different ways: a real embedded text track, an external subtitle file next to the video, or subtitles burned into the picture. Only the first case can be extracted directly as editable subtitle text.
+
+## Quick answer
+
+Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/), choose the video file, and check whether it contains an embedded subtitle stream. If the stream is text-based, the tool can save the captions as a separate subtitle file without uploading the video.
+
+Use this workflow for MP4, MKV, MOV, WebM, and M4V files when you need the captions as a separate file for editing, translation, cleanup, or web player delivery.
+
+## What can be extracted
+
+Subtitle extraction works when the video contains a separate text subtitle stream, for example:
+
+```text
+Stream #0:2: Subtitle: subrip
+Stream #0:3: Subtitle: mov_text
+Stream #0:4: Subtitle: webvtt
+```
+
+These streams can usually be saved as text-based subtitle files and then cleaned, converted, or validated.
+
+Extraction does not work the same way when subtitles are burned into the video image:
+
+```text
+Video stream: H.264 with subtitle text already visible in the picture
+```
+
+Burned-in subtitles are pixels, not text. To recover those captions, you need OCR, and the result usually needs manual review.
+
+## Check the container before extracting
+
+Different video containers handle subtitles differently:
+
+| Video file | Subtitle extraction notes |
+| --- | --- |
+| MKV | Usually the best container for embedded subtitle tracks and multiple languages. |
+| MP4 | May contain `mov_text` captions, but many MP4 files have no embedded subtitles. |
+| MOV | Can contain text tracks, especially from Apple or editing workflows. |
+| WebM | Often uses WebVTT-style captions when subtitles are present. |
+| M4V | Similar to MP4; extraction depends on whether a real subtitle track exists. |
+
+If you only have a separate `.srt`, `.vtt`, or `.ass` file next to the video, you do not need extraction. Open the subtitle file directly in the relevant converter or validator.
+
+## Step-by-step workflow
+
+1. Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/).
+2. Choose the MP4, MKV, MOV, WebM, or M4V file.
+3. Wait for the browser-based FFmpeg runtime to load.
+4. Let the tool look for an embedded subtitle stream.
+5. Preview the extracted text before downloading.
+6. Save the subtitle file and check the first, middle, and final cues against the video.
+
+The video stays local during this process. The browser does the work on your device.
+
+## If the video is an MP4
+
+MP4 files often cause confusion because the file can play captions in one app but not expose a normal subtitle stream in another. If extraction fails, check these possibilities:
+
+- The captions are a separate sidecar file, not embedded in the MP4.
+- The subtitles are burned into the video image.
+- The MP4 contains a caption format the browser extractor cannot convert cleanly.
+- The video has multiple streams and the first subtitle stream is not the language you expected.
+
+When you do get a text track out of an MP4, validate it before using it in a player or uploading it elsewhere.
+
+## If the video is an MKV
+
+MKV is usually more subtitle-friendly than MP4. It can hold SRT, ASS, SSA, PGS, and multiple language tracks.
+
+For MKV-specific details, use [How to extract subtitles from MKV](/guides/how-to-extract-subtitles-from-mkv/). The main thing to check is whether the subtitle stream is text-based. Image-based streams such as PGS are not editable text after extraction.
+
+## Clean the subtitle file after extraction
+
+An extracted file is not always delivery-ready. Check for:
+
+- wrong language track
+- broken characters or replacement symbols
+- leftover styling tags
+- timing drift from a different video edit
+- extra whitespace or malformed cue blocks
+
+Useful next tools:
+
+| Problem after extraction | Best next tool |
+| --- | --- |
+| Broken accents or boxes | [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) |
+| Extra tags or messy text | [Subtitle Cleaner](/tools/subtitle-cleaner/) |
+| SRT structure errors | [SRT Validator](/tools/srt-validator/) |
+| Need WebVTT for HTML5 video | [SRT to VTT Converter](/tools/srt-to-vtt/) |
+| Captions are early or late | [Subtitle Time Shifter](/tools/subtitle-time-shifter/) |
+
+## Embedded vs burned-in subtitles
+
+If you are not sure what kind of captions the video has, pause on a frame with subtitles visible.
+
+- If the player can turn captions on and off, the video probably has an embedded or external subtitle track.
+- If the text is always visible and cannot be disabled, the subtitles are probably burned in.
+- If captions appear only in one app, the app may be loading a sidecar subtitle file from the same folder.
+
+For a deeper comparison, read [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/) before trying extraction.
+
+## Common mistakes
+
+### Expecting OCR from a subtitle extractor
+
+Subtitle extraction reads existing subtitle streams. It does not recognize text from video frames. Burned-in captions need OCR.
+
+### Assuming every MP4 has subtitles
+
+Many MP4 files have audio and video only. If there is no subtitle stream, there is nothing to extract.
+
+### Skipping language checks
+
+Videos can contain multiple subtitle tracks. Always confirm the extracted text is the right language before editing or delivering it.
+
+### Uploading private video to a conversion site
+
+You do not need to upload the video just to check for embedded text subtitles. Use a browser-local extractor first.
+
+## Frequently asked questions
+
+### Can I extract subtitles from an MP4 file?
+
+Yes, if the MP4 contains an embedded text subtitle track. If the subtitles are burned into the image, you need OCR instead.
+
+### Are video files uploaded to a server?
+
+No. The extraction workflow runs in your browser, so the video file stays on your device.
+
+### Why did subtitle extraction find no captions?
+
+The video may have no subtitle stream, may use burned-in subtitles, or may contain an image-based subtitle format that cannot be converted directly to text.
+
+### What should I do after extracting subtitles?
+
+Check the language, validate the timing, fix encoding if characters look wrong, and convert the output if your target player needs another format.
+
+## Related guides
+
+- [How to extract subtitles from MKV](/guides/how-to-extract-subtitles-from-mkv/)
+- [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)
+- [How to convert subtitles to UTF-8](/guides/how-to-convert-subtitles-to-utf-8/)
+- [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video/)
+
+## Related tools
+
+- [Extract Subtitles from Video](/tools/extract-subtitles-from-video/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
+- [Subtitle Cleaner](/tools/subtitle-cleaner/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)

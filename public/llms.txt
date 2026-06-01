@@ -94,6 +94,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [How to fix VTT MIME type for HTML5 video](https://subtitletoolkit.tools/guides/how-to-fix-vtt-mime-type-for-html5-video/)
 - [How to fix CORS errors for VTT subtitles](https://subtitletoolkit.tools/guides/how-to-fix-cors-errors-for-vtt-subtitles/)
 - [Convert VTT to SRT for legacy editors](https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/)
+- [How to extract subtitles from a video](https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-video/)
 - [How to extract subtitles from MKV](https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mkv/)
 - [Embedded vs burned-in subtitles](https://subtitletoolkit.tools/guides/embedded-vs-burned-in-subtitles/)
 

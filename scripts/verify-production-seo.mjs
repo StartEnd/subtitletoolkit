@@ -98,6 +98,10 @@ const checks = [
 				match: '/guides/how-to-convert-subtitles-to-utf-8/',
 			},
 			{
+				label: 'homepage links to video subtitle extraction guide',
+				match: '/guides/how-to-extract-subtitles-from-video/',
+			},
+			{
 				label: 'homepage links to MKV subtitle extraction guide',
 				match: '/guides/how-to-extract-subtitles-from-mkv/',
 			},
@@ -1331,6 +1335,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/how-to-extract-subtitles-from-video/',
+		expect: [
+			{
+				label: 'video extraction guide CTR title',
+				match: '<title>Extract Subtitles from Video - MP4, MKV, MOV Guide</title>',
+			},
+			{
+				label: 'video extraction guide no-upload meta description',
+				match: 'Extract embedded subtitle tracks from MP4, MKV, MOV, and WebM files locally. Learn when video captions can be saved as SRT and when OCR is required.',
+			},
+			{
+				label: 'video extraction guide opens extractor tool',
+				match: 'href="/tools/extract-subtitles-from-video/"',
+			},
+			{
+				label: 'FAQ schema for video extraction questions',
+				match: 'Can I extract subtitles from an MP4 file?',
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-extract-subtitles-from-mkv/',
 		expect: [
 			{
@@ -1761,6 +1786,15 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/extract-subtitles-from-video/',
+		expect: [
+			{
+				label: 'extractor tool links video extraction guide',
+				match: 'href="/guides/how-to-extract-subtitles-from-video/"',
+			},
+		],
+	},
+	{
 		path: '/guides/',
 		expect: [
 			{
@@ -1976,6 +2010,10 @@ const checks = [
 				match: 'Subtitle extraction',
 			},
 			{
+				label: 'guides index links to video extraction guide',
+				match: '/guides/how-to-extract-subtitles-from-video/',
+			},
+			{
 				label: 'guides index links to MKV extraction guide',
 				match: '/guides/how-to-extract-subtitles-from-mkv/',
 			},
@@ -2162,6 +2200,10 @@ const checks = [
 			{
 				label: 'llms lists SRT upload failure guide',
 				match: 'https://subtitletoolkit.tools/guides/why-srt-file-wont-upload/',
+			},
+			{
+				label: 'llms lists video extraction guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-video/',
 			},
 			{
 				label: 'llms lists MKV extraction guide',

@@ -1803,6 +1803,10 @@ const enTools: SubtitleTool[] = [
     relatedTools: ['subtitle-encoding-fixer', 'subtitle-cleaner'],
     relatedGuides: [
       {
+        href: '/guides/how-to-extract-subtitles-from-video/',
+        title: 'How to extract subtitles from a video',
+      },
+      {
         href: '/guides/how-to-extract-subtitles-from-mkv/',
         title: 'How to extract subtitles from MKV',
       },

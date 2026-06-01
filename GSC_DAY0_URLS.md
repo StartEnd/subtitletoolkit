@@ -84,6 +84,7 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/best-subtitle-format-for-plex/`
 - [ ] `https://subtitletoolkit.tools/guides/best-subtitle-format-for-vimeo-embeds/`
 - [ ] `https://subtitletoolkit.tools/tools/subtitle-encoding-fixer/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-video/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mkv/`
 - [ ] `https://subtitletoolkit.tools/guides/embedded-vs-burned-in-subtitles/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-name-subtitle-files-for-plex/`
