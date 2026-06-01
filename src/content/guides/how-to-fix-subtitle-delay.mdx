@@ -1,14 +1,16 @@
 ---
 title: How to fix subtitle delay
-seoTitle: Fix Subtitle Delay Online - SRT, VTT, ASS Timing Guide
-seoDescription: Fix subtitles that appear too early or too late. Measure the offset, shift SRT, VTT, or ASS timing online, and download a corrected file with no upload.
-description: Fix subtitle delay in seconds. Measure the offset and shift all timestamps at once. Free tool works with SRT, VTT, and ASS formats instantly.
+seoTitle: Subtitles Ahead or Behind Audio? Fix Delay Online
+seoDescription: Fix subtitles ahead of audio or behind speech by measuring the offset and shifting SRT, VTT, or ASS timing online. No upload or signup.
+description: Fix subtitle delay when captions appear ahead of audio or behind speech. Measure the offset and shift SRT, VTT, or ASS timing online.
 pubDate: 2026-05-06
 updatedDate: 2026-06-01
 category: sync-fixes
 tags:
   - subtitle delay
   - subtitle sync
+  - subtitles ahead of audio
+  - subtitles behind audio
   - timing
   - repair
   - offset
@@ -16,6 +18,10 @@ primaryTool: subtitle-time-shifter
 faqs:
   - question: What's the difference between delay and drift?
     answer: Delay means subtitles are consistently early or late by the same amount throughout the video. Drift means the offset changes over time and usually needs a different fix.
+  - question: What does it mean when subtitles are ahead of audio?
+    answer: Subtitles ahead of audio means captions appear before the matching speech. Use a positive delay value to move the subtitle timestamps later.
+  - question: What does it mean when subtitles are behind audio?
+    answer: Subtitles behind audio means captions appear after the matching speech. Use a negative delay value to move the subtitle timestamps earlier.
   - question: How do I know if I have delay or drift?
     answer: Check subtitle sync near the beginning, middle, and end of the video. If the offset stays the same, it is delay. If the offset grows or shrinks, it is drift.
   - question: Can I fix delay for VTT and ASS files?
@@ -24,11 +30,11 @@ faqs:
     answer: Yes. Use the Partial Subtitle Shifter when only one scene or selected time range is out of sync and the rest of the file already matches the video.
 ---
 
-Subtitle delay usually means one simple thing: every cue is offset by roughly the same amount. If subtitles appear 2 seconds late throughout the entire video, or 1 second early from start to finish, you have a delay problem. This guide shows you how to measure the offset and fix it with a global time shift.
+Subtitle delay usually means one simple thing: every cue is offset by roughly the same amount. If subtitles appear 2 seconds behind the audio throughout the entire video, or 1 second ahead of the audio from start to finish, you have a delay problem. This guide shows you how to measure the offset and fix it with a global time shift.
 
 ## Quick answer
 
-If the whole file is late or early by a fixed amount, measure the offset and apply a global shift to every subtitle timestamp. Use the [Subtitle Time Shifter](/tools/subtitle-time-shifter/) to shift all timestamps by a fixed amount (positive to delay, negative to advance).
+If the whole file is behind the audio or ahead of the audio by a fixed amount, measure the offset and apply a global shift to every subtitle timestamp. Use the [Subtitle Time Shifter](/tools/subtitle-time-shifter/) to shift all timestamps by a fixed amount: positive values move captions later, while negative values move captions earlier.
 
 ## Confirm that it's really delay (not drift)
 
@@ -36,6 +42,8 @@ This guide is for the easy case:
 
 - ✅ **Subtitles are late by about the same amount throughout the file**: Every subtitle appears 2 seconds late, from start to finish
 - ✅ **Subtitles are early by about the same amount throughout the file**: Every subtitle appears 1 second early, consistently
+- ✅ **Subtitles are behind the audio**: Captions appear after the matching speech and need to move earlier
+- ✅ **Subtitles are ahead of the audio**: Captions appear before the matching speech and need to move later
 
 If the mismatch gets worse over time (subtitles start in sync but drift further out of sync as the video progresses), that's **drift** rather than simple delay. Drift requires different fixes. For a complete sync troubleshooting guide, see [how to fix out-of-sync subtitles](/guides/fix-out-of-sync-subtitles/).
 
@@ -50,6 +58,20 @@ Subtitle delay occurs when:
 - **Export timing was wrong**: Subtitle editor or transcription tool used the wrong start time
 - **Frame rate mismatch**: Subtitles were created for 23.976 fps but the video is 25 fps (or vice versa)
 - **Audio track was shifted**: Video was re-encoded with audio offset
+
+## If subtitles are ahead of or behind audio
+
+People search for this problem in a few different ways:
+
+- subtitles ahead of audio
+- subtitles behind audio
+- captions appear before speech
+- captions appear after speech
+- subtitle audio delay
+
+Treat those as delay problems only when the gap stays the same from the beginning to the end. If captions are always ahead of the audio by about `700 ms`, move them later with a positive shift. If captions are always behind the audio by about `1200 ms`, move them earlier with a negative shift.
+
+If the beginning is close but the ending is several seconds wrong, go to [Why subtitles drift out of sync](/guides/why-subtitles-drift-out-of-sync/) before applying another global delay.
 
 ## How to measure the offset
 
@@ -197,6 +219,14 @@ Check sync at three points: beginning, middle, and end. If the offset is the sam
 
 Yes. The [Subtitle Time Shifter](/tools/subtitle-time-shifter/) supports SRT, VTT, and ASS formats.
 
+### What does it mean when subtitles are ahead of audio?
+
+Subtitles ahead of audio means captions appear before the matching speech. Move them later with a positive shift value. For example, if captions appear `800 ms` before the speaker starts, shift by `+800 ms`.
+
+### What does it mean when subtitles are behind audio?
+
+Subtitles behind audio means captions appear after the matching speech. Move them earlier with a negative shift value. For example, if captions appear `1200 ms` after the speaker starts, shift by `-1200 ms`.
+
 ### What if I don't know the exact offset?
 
 Make your best estimate, apply the shift, and test. If sync is better but not perfect, measure the remaining offset and apply a smaller adjustment.
@@ -220,6 +250,7 @@ Yes. Apply the opposite shift. If you shifted by -2000 ms, shift by +2000 ms to 
 ## Related guides
 
 - [How to fix out-of-sync subtitles](/guides/fix-out-of-sync-subtitles/)
+- [Why subtitles drift out of sync](/guides/why-subtitles-drift-out-of-sync/)
 - [How to fix subtitles that are too fast or too slow](/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/)
 - [How to fix subtitle sync after a scene cut](/guides/fix-subtitle-sync-after-a-scene-cut/)
 - [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)

@@ -193,7 +193,7 @@ const checks = [
 		expect: [
 			{
 				label: 'updated guide title',
-				match: '<title>Fix Subtitle Delay Online - SRT, VTT, ASS Timing Guide</title>',
+				match: '<title>Subtitles Ahead or Behind Audio? Fix Delay Online</title>',
 			},
 			{
 				label: 'above-content related tool link',
@@ -209,7 +209,15 @@ const checks = [
 			},
 			{
 				label: 'updated guide meta description',
-				match: 'Fix subtitles that appear too early or too late. Measure the offset, shift SRT, VTT, or ASS timing online, and download a corrected file with no upload.',
+				match: 'Fix subtitles ahead of audio or behind speech by measuring the offset and shifting SRT, VTT, or ASS timing online. No upload or signup.',
+			},
+			{
+				label: 'guide covers ahead or behind audio intent',
+				match: 'If subtitles are ahead of or behind audio',
+			},
+			{
+				label: 'guide links subtitle drift follow-up',
+				match: 'href="/guides/why-subtitles-drift-out-of-sync/"',
 			},
 			{
 				label: 'single Article JSON-LD block',
@@ -218,11 +226,11 @@ const checks = [
 			},
 			{
 				label: 'FAQ schema for delay questions',
-				match: /"@type"\s*:\s*"FAQPage"[\s\S]*What's the difference between delay and drift\?/
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*What does it mean when subtitles are ahead of audio\?/
 			},
 			{
 				label: 'guide Article schema includes query tags',
-				match: /"keywords"\s*:\s*"subtitle delay, subtitle sync, timing, repair, offset"/
+				match: /"keywords"\s*:\s*"subtitle delay, subtitle sync, subtitles ahead of audio, subtitles behind audio, timing, repair, offset"/
 			},
 			{
 				label: 'breadcrumb schema includes current guide URL',
