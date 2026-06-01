@@ -17,6 +17,7 @@ Optional:
   --organic-pageviews 0
   --tool-starts 0
   --tool-outputs 0
+  --week-of YYYY-MM-DD
   --site https://subtitletoolkit.tools
 
 The script expects Google Search Console CSV exports with columns like:
@@ -33,7 +34,13 @@ const toolStartsArg = getArg('--tool-starts');
 const toolStarts = toolStartsArg === null ? null : Number.parseInt(toolStartsArg, 10);
 const toolOutputsArg = getArg('--tool-outputs');
 const toolOutputs = toolOutputsArg === null ? null : Number.parseInt(toolOutputsArg, 10);
+const weekOf = getArg('--week-of') || new Date().toISOString().slice(0, 10);
 const siteUrl = (getArg('--site') || 'https://subtitletoolkit.tools').replace(/\/$/, '');
+
+if (!/^\d{4}-\d{2}-\d{2}$/.test(weekOf)) {
+	console.error('--week-of must use YYYY-MM-DD format.');
+	process.exit(1);
+}
 
 if (organicPageviewsArg !== null && (!Number.isFinite(organicPageviews) || organicPageviews < 0)) {
 	console.error('--organic-pageviews must be a non-negative integer.');
@@ -295,6 +302,26 @@ function rateOrUnknown(numerator, denominator) {
 	return `${((numerator / denominator) * 100).toFixed(2)}%`;
 }
 
+function addDays(dateString, days) {
+	const date = new Date(`${dateString}T00:00:00Z`);
+	date.setUTCDate(date.getUTCDate() + days);
+	return date.toISOString().slice(0, 10);
+}
+
+function trackerCell(value) {
+	return value === null || value === undefined ? '' : String(value);
+}
+
+function opportunityAction(bucket) {
+	return bucket === 'A'
+		? 'Rewrite title/meta around the exact query promise.'
+		: 'Add 2-4 related internal links and one exact-answer section.';
+}
+
+function opportunityReviewAfter(bucket) {
+	return bucket === 'A' ? addDays(weekOf, 14) : addDays(weekOf, 21);
+}
+
 let queryRows = [];
 let pageRows = [];
 
@@ -352,6 +379,13 @@ console.log(`| Queries export | ${querySummary.impressions} | ${querySummary.cli
 console.log(`| Pages export | ${pageSummary.impressions} | ${pageSummary.clicks} | ${pageSummary.ctr} | ${pageSummary.position.toFixed(1)} | ${pagesWithImpressions} | ${pagesWithClicks} |`);
 console.log('');
 
+console.log('### GSC_WEEKLY_TRACKER.md row\n');
+console.log('Paste this into the Weekly Summary table, then replace the action/review fields if needed.');
+console.log('| Week of | Impressions | Clicks | CTR | Avg position | Pages with impressions | Pages with clicks | Main action shipped | Next review date |');
+console.log('| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |');
+console.log(`| ${weekOf} | ${pageSummary.impressions} | ${pageSummary.clicks} | ${pageSummary.ctr} | ${pageSummary.position.toFixed(1)} | ${pagesWithImpressions} | ${pagesWithClicks} | Review GSC opportunity buckets and ship one focused batch. | ${addDays(weekOf, 7)} |`);
+console.log('');
+
 console.log('## Ad Readiness Gate\n');
 console.log('Use organic pageviews from Plausible or another analytics source for the same 28-day window.');
 console.log('| Gate item | Current | Target | Met? |');
@@ -368,6 +402,17 @@ console.log('| --- | ---: | ---: |');
 console.log(`| Organic pageviews | ${metricOrUnknown(organicPageviews)} | |`);
 console.log(`| Tool starts | ${metricOrUnknown(toolStarts)} | ${rateOrUnknown(toolStarts, organicPageviews)} of organic pageviews |`);
 console.log(`| Tool outputs | ${metricOrUnknown(toolOutputs)} | ${rateOrUnknown(toolOutputs, toolStarts)} of tool starts |`);
+console.log('');
+
+console.log('### GSC_WEEKLY_TRACKER.md traffic rows\n');
+console.log('Paste these into the Ad Readiness Snapshot and Traffic Quality Snapshot tables.');
+console.log('| Week of | Organic pageviews last 28 days | Pages with impressions | Pages with clicks | Gate met? | Notes |');
+console.log('| --- | ---: | ---: | ---: | --- | --- |');
+console.log(`| ${weekOf} | ${trackerCell(organicPageviews)} | ${pagesWithImpressions} | ${pagesWithClicks} | ${adGateMet ? 'Yes' : 'No'} | ${adGateMet ? 'Ad gate met by GSC and analytics thresholds; verify mobile ad UX before enabling ads.' : 'Continue search growth before enabling ads.'} |`);
+console.log('');
+console.log('| Week of | Tool starts | Starts / organic pageviews | Tool outputs | Outputs / tool starts | Notes |');
+console.log('| --- | ---: | ---: | ---: | ---: | --- |');
+console.log(`| ${weekOf} | ${trackerCell(toolStarts)} | ${rateOrUnknown(toolStarts, organicPageviews)} | ${trackerCell(toolOutputs)} | ${rateOrUnknown(toolOutputs, toolStarts)} | Compare query promise with actual tool starts and outputs. |`);
 console.log('');
 
 console.log('## Bucket A: Impressions >= threshold, Clicks = 0\n');
@@ -407,4 +452,28 @@ if (!pagesPath) {
 	for (const path of indexedNoImpressionCandidates) {
 		console.log(`| ${siteUrl}${path} | Confirm indexed status, sitemap presence, and internal links. |`);
 	}
+}
+
+const nextActionRows = [];
+for (const row of zeroClickQueries.slice(0, 5)) {
+	const likelyPage = likelyPageForQuery(row.entity, pageCandidates);
+	nextActionRows.push({ bucket: 'A', row, likelyPage });
+}
+for (const row of rankingQueries.slice(0, 5)) {
+	const likelyPage = likelyPageForQuery(row.entity, pageCandidates);
+	if (nextActionRows.some((item) => item.row.entity === row.entity)) continue;
+	nextActionRows.push({ bucket: 'B', row, likelyPage });
+}
+
+console.log('\n## Next Batch Queue\n');
+console.log('Use this as the shortlist for one focused edit batch. Prefer Bucket A when clicks are still zero.');
+console.log('| Priority | Bucket | Query | Likely page | Impressions | Position | Next change | Review after |');
+console.log('| ---: | --- | --- | --- | ---: | ---: | --- | --- |');
+if (nextActionRows.length === 0) {
+	console.log('| | No query opportunities found | | | | | | |');
+} else {
+	nextActionRows.slice(0, 8).forEach((item, index) => {
+		const page = item.likelyPage ? `${siteUrl}${item.likelyPage}` : 'Check GSC Pages tab';
+		console.log(`| ${index + 1} | ${item.bucket} | ${mdEscape(item.row.entity)} | ${page} | ${item.row.impressions} | ${item.row.position.toFixed(1)} | ${opportunityAction(item.bucket)} | ${opportunityReviewAfter(item.bucket)} |`);
+	});
 }
