@@ -71,6 +71,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [How to fix out-of-sync subtitles](https://subtitletoolkit.tools/guides/fix-out-of-sync-subtitles/)
 - [How to fix subtitle sync after a scene cut](https://subtitletoolkit.tools/guides/fix-subtitle-sync-after-a-scene-cut/)
 - [How to fix VLC subtitle delay](https://subtitletoolkit.tools/guides/how-to-fix-vlc-subtitle-delay/)
+- [Why your SRT file is not working](https://subtitletoolkit.tools/guides/why-srt-file-is-not-working/)
 - [How to fix subtitles that are too long](https://subtitletoolkit.tools/guides/how-to-fix-subtitles-that-are-too-long/)
 - [How to convert SRT to VTT for HTML5 video](https://subtitletoolkit.tools/guides/how-to-convert-srt-to-vtt-for-html5-video/)
 - [How to clean subtitle formatting before upload](https://subtitletoolkit.tools/guides/how-to-clean-subtitle-formatting-before-upload/)

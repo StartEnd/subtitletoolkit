@@ -1,0 +1,116 @@
+---
+title: Why your SRT file is not working
+seoTitle: SRT File Not Working - Fix Subtitle Playback
+seoDescription: Fix an SRT file that is not working by checking timestamps, cue order, encoding, file naming, and player format support before upload or playback.
+description: Diagnose an SRT file that is not working by checking timestamps, cue order, encoding, file naming, and player support before upload or playback.
+pubDate: 2026-06-02
+category: sync-fixes
+tags:
+  - srt not working
+  - subtitle playback
+  - srt validation
+  - subtitle errors
+  - captions not showing
+primaryTool: srt-validator
+faqs:
+  - question: Why is my SRT file not working?
+    answer: The most common causes are broken timestamp format, overlapping cues, wrong encoding, a filename mismatch, or using SRT in a player that expects WebVTT.
+  - question: Can an SRT file be valid but still not show?
+    answer: Yes. A syntax-valid SRT file can still fail in a player if the video filename does not match, the track is not enabled, the player needs VTT, or the captions use unsupported styling.
+  - question: Should I convert SRT to VTT if subtitles do not show?
+    answer: Convert SRT to VTT when the destination is HTML5 video or a browser player. For local media players, first validate the SRT timestamps and check the subtitle filename.
+---
+
+An SRT file can stop working for several different reasons. The fix depends on whether the file is broken, the player expects a different format, or the video app simply is not loading the track.
+
+## Quick answer
+
+Start with [SRT Validator](/tools/srt-validator/) to check cue numbers, timestamp format, cue order, and overlaps. If the file is valid but still does not show, check the player requirements, filename, encoding, and whether you actually need WebVTT instead of SRT.
+
+## First split the problem into four checks
+
+Do not edit every line at once. Work through these checks in order:
+
+1. **File structure**: SRT cue numbers, blank lines, and timestamps are parseable.
+2. **Timing**: cues are sorted, not overlapping, and not outside the video duration.
+3. **Text encoding**: accents or non-English characters are saved as UTF-8.
+4. **Player support**: the destination accepts SRT, or you need to convert to VTT.
+
+This keeps you from rewriting good subtitle text when the real issue is a filename or format mismatch.
+
+## Check the SRT timestamp format
+
+SRT timestamps should use commas for milliseconds:
+
+```text
+00:01:12,500 --> 00:01:15,200
+```
+
+WebVTT uses dots instead:
+
+```text
+00:01:12.500 --> 00:01:15.200
+```
+
+If your SRT file uses WebVTT-style dots, missing arrows, or malformed time values, many players will ignore the cue. Use [Fix SRT Timestamps](/tools/fix-srt-timestamps/) when the timing lines are the obvious problem.
+
+## Check cue order and overlaps
+
+Players can behave unpredictably when cue times overlap or appear out of order:
+
+```text
+2
+00:00:08,000 --> 00:00:12,000
+Second caption
+
+3
+00:00:10,500 --> 00:00:14,000
+Overlapping caption
+```
+
+For overlap problems, read [How to fix overlapping subtitles](/guides/how-to-fix-overlapping-subtitles/) or use the validator to locate the first bad cue before editing the whole file.
+
+## Check encoding when text looks broken
+
+If the subtitles load but characters look garbled, the SRT file may not be UTF-8. This is common with older exports from desktop editors.
+
+Use [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) or read [How to fix garbled subtitles](/guides/how-to-fix-garbled-subtitles/) before manually replacing characters.
+
+## Check filename and track loading
+
+For local playback, many media apps expect the subtitle file to sit beside the video and use the same base filename:
+
+```text
+movie.mp4
+movie.srt
+```
+
+If the SRT file is named differently, the player may not load it automatically. You can still load it manually in many apps, but automatic detection usually depends on naming.
+
+For Plex-specific naming problems, use [How to name subtitle files for Plex](/guides/how-to-name-subtitle-files-for-plex/).
+
+## Check whether the destination needs VTT
+
+Browser players often prefer or require WebVTT. If you are adding captions to HTML5 video, Video.js, JW Player, or another web embed, convert the SRT file to VTT instead of trying to force SRT into the player.
+
+Start with [How to convert SRT to VTT for HTML5 video](/guides/how-to-convert-srt-to-vtt-for-html5-video/) or open [SRT to VTT Converter](/tools/srt-to-vtt/).
+
+## When upload is the real problem
+
+If the SRT file fails during upload, the issue may be stricter platform validation rather than playback. For that path, use [Why your SRT file will not upload](/guides/why-srt-file-wont-upload/) or [Best SRT settings for YouTube upload](/guides/best-srt-settings-for-youtube-upload/).
+
+## Related guides
+
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+- [Why your SRT file will not upload](/guides/why-srt-file-wont-upload/)
+- [How to fix malformed SRT timestamps](/guides/how-to-fix-malformed-srt-timestamps/)
+- [How to fix garbled subtitles](/guides/how-to-fix-garbled-subtitles/)
+- [How to convert SRT to VTT for HTML5 video](/guides/how-to-convert-srt-to-vtt-for-html5-video/)
+
+## Related tools
+
+- [SRT Validator](/tools/srt-validator/)
+- [Fix SRT Timestamps](/tools/fix-srt-timestamps/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [Subtitle Cleaner](/tools/subtitle-cleaner/)

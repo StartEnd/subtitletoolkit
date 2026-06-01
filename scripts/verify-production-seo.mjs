@@ -90,6 +90,10 @@ const checks = [
 				match: '/guides/how-to-fix-vlc-subtitle-delay/',
 			},
 			{
+				label: 'homepage links to SRT not working guide',
+				match: '/guides/why-srt-file-is-not-working/',
+			},
+			{
 				label: 'homepage links to long subtitles guide',
 				match: '/guides/how-to-fix-subtitles-that-are-too-long/',
 			},
@@ -1312,6 +1316,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/why-srt-file-is-not-working/',
+		expect: [
+			{
+				label: 'SRT not working guide CTR title',
+				match: '<title>SRT File Not Working - Fix Subtitle Playback</title>',
+			},
+			{
+				label: 'SRT not working guide meta description',
+				match: 'Fix an SRT file that is not working by checking timestamps, cue order, encoding, file naming, and player format support before upload or playback.',
+			},
+			{
+				label: 'SRT not working guide opens validator tool',
+				match: 'href="/tools/srt-validator/"',
+			},
+			{
+				label: 'FAQ schema for SRT not working questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why is my SRT file not working\?/
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-fix-subtitles-that-are-too-long/',
 		expect: [
 			{
@@ -2065,6 +2090,10 @@ const checks = [
 				match: '/guides/common-subtitle-format-errors-and-fixes/',
 			},
 			{
+				label: 'guides index links to SRT not working guide',
+				match: '/guides/why-srt-file-is-not-working/',
+			},
+			{
 				label: 'guides index links to out-of-order guide',
 				match: '/guides/how-to-fix-out-of-order-subtitle-cues/',
 			},
@@ -2351,6 +2380,10 @@ const checks = [
 			{
 				label: 'llms lists fast or slow subtitles guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/',
+			},
+			{
+				label: 'llms lists SRT not working guide',
+				match: 'https://subtitletoolkit.tools/guides/why-srt-file-is-not-working/',
 			},
 			{
 				label: 'llms lists long subtitles guide',
