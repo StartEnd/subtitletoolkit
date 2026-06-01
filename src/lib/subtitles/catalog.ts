@@ -1044,6 +1044,10 @@ const enTools: SubtitleTool[] = [
         title: 'How to fix out-of-sync subtitles',
       },
       {
+        href: '/guides/why-subtitles-drift-out-of-sync/',
+        title: 'Why subtitles drift out of sync',
+      },
+      {
         href: '/guides/why-subtitles-are-out-of-sync-after-export/',
         title: 'Why subtitles are out of sync after export',
       },
@@ -1162,6 +1166,10 @@ const enTools: SubtitleTool[] = [
     relatedGuides: [
       { href: '/guides/how-to-fix-subtitle-delay/', title: 'How to fix subtitle delay' },
       {
+        href: '/guides/why-subtitles-drift-out-of-sync/',
+        title: 'Why subtitles drift out of sync',
+      },
+      {
         href: '/guides/why-subtitles-are-out-of-sync-after-export/',
         title: 'Why subtitles are out of sync after export',
       },
@@ -1214,6 +1222,10 @@ const enTools: SubtitleTool[] = [
     relatedTools: ['subtitle-delay-fixer', 'partial-subtitle-shifter'],
     relatedGuides: [
       { href: '/guides/fix-out-of-sync-subtitles/', title: 'How to fix out-of-sync subtitles' },
+      {
+        href: '/guides/why-subtitles-drift-out-of-sync/',
+        title: 'Why subtitles drift out of sync',
+      },
       {
         href: '/guides/why-subtitles-are-out-of-sync-after-export/',
         title: 'Why subtitles are out of sync after export',

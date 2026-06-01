@@ -1621,6 +1621,10 @@ const checks = [
 				label: 'delay fixer no-upload meta description',
 				match: 'Fix subtitle delay online for SRT, VTT, and ASS files. Shift captions earlier or later locally in your browser with no signup or upload.',
 			},
+			{
+				label: 'delay fixer links subtitle drift guide',
+				match: 'href="/guides/why-subtitles-drift-out-of-sync/"',
+			},
 		],
 	},
 	{
@@ -1881,6 +1885,10 @@ const checks = [
 				label: 'time shifter tool links sync guide',
 				match: 'href="/guides/fix-out-of-sync-subtitles/"',
 			},
+			{
+				label: 'time shifter tool links subtitle drift guide',
+				match: 'href="/guides/why-subtitles-drift-out-of-sync/"',
+			},
 		],
 	},
 	{
@@ -1897,6 +1905,10 @@ const checks = [
 			{
 				label: 'fix sync tool links export guide',
 				match: 'href="/guides/why-subtitles-are-out-of-sync-after-export/"',
+			},
+			{
+				label: 'fix sync tool links subtitle drift guide',
+				match: 'href="/guides/why-subtitles-drift-out-of-sync/"',
 			},
 		],
 	},
