@@ -39,6 +39,10 @@ const checks = [
 				match: '/tools/extract-subtitles-from-video/',
 			},
 			{
+				label: 'homepage links to encoding fixer tool',
+				match: '/tools/subtitle-encoding-fixer/',
+			},
+			{
 				label: 'homepage links to priority guide',
 				match: '/guides/why-subtitles-do-not-show-in-html5-video/',
 			},
@@ -547,6 +551,27 @@ const checks = [
 			{
 				label: 'WebVTT validator local meta description',
 				match: 'Validate WebVTT captions online for free. Check the WEBVTT header, timestamp syntax, cue order, and browser caption issues locally.',
+			},
+		],
+	},
+	{
+		path: '/tools/subtitle-encoding-fixer/',
+		expect: [
+			{
+				label: 'CTR-oriented encoding fixer tool title',
+				match: '<title>Subtitle Encoding Fixer - Fix Garbled Subtitles Online</title>',
+			},
+			{
+				label: 'encoding fixer local UTF-8 meta description',
+				match: 'Fix garbled subtitles online by converting SRT, VTT, ASS, SSA, and SMI files to clean UTF-8 text locally in your browser.',
+			},
+			{
+				label: 'encoding fixer links to garbled subtitles guide',
+				match: 'href="/guides/how-to-fix-garbled-subtitles/"',
+			},
+			{
+				label: 'encoding fixer links to UTF-8 conversion guide',
+				match: 'href="/guides/how-to-convert-subtitles-to-utf-8/"',
 			},
 		],
 	},
