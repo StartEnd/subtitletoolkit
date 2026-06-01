@@ -1583,7 +1583,7 @@ const checks = [
 		expect: [
 			{
 				label: 'MP4 extraction guide CTR title',
-				match: '<title>Extract Subtitles from MP4 - Free No Upload Guide</title>',
+				match: '<title>Extract Subtitles from MP4 Online - No Upload</title>',
 			},
 			{
 				label: 'MP4 extraction guide no-upload meta description',
@@ -1629,7 +1629,7 @@ const checks = [
 		expect: [
 			{
 				label: 'MOV extraction guide CTR title',
-				match: '<title>Extract Subtitles from MOV - Free No Upload Guide</title>',
+				match: '<title>Extract Subtitles from MOV Online - No Upload</title>',
 			},
 			{
 				label: 'MOV extraction guide no-upload meta description',
@@ -1650,7 +1650,7 @@ const checks = [
 		expect: [
 			{
 				label: 'M4V extraction guide CTR title',
-				match: '<title>Extract Subtitles from M4V - Free No Upload Guide</title>',
+				match: '<title>Extract Subtitles from M4V Online - No Upload</title>',
 			},
 			{
 				label: 'M4V extraction guide no-upload meta description',
@@ -1671,7 +1671,7 @@ const checks = [
 		expect: [
 			{
 				label: 'WebM extraction guide CTR title',
-				match: '<title>Extract Subtitles from WebM - Free No Upload Guide</title>',
+				match: '<title>Extract Subtitles from WebM Online - No Upload</title>',
 			},
 			{
 				label: 'WebM extraction guide no-upload meta description',
