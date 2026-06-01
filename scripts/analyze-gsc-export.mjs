@@ -15,6 +15,8 @@ function usage() {
 Optional:
   --min-impressions 10
   --organic-pageviews 0
+  --tool-starts 0
+  --tool-outputs 0
   --site https://subtitletoolkit.tools
 
 The script expects Google Search Console CSV exports with columns like:
@@ -27,10 +29,24 @@ const pagesPath = getArg('--pages');
 const minImpressions = Number.parseInt(getArg('--min-impressions') || '10', 10);
 const organicPageviewsArg = getArg('--organic-pageviews');
 const organicPageviews = organicPageviewsArg === null ? null : Number.parseInt(organicPageviewsArg, 10);
+const toolStartsArg = getArg('--tool-starts');
+const toolStarts = toolStartsArg === null ? null : Number.parseInt(toolStartsArg, 10);
+const toolOutputsArg = getArg('--tool-outputs');
+const toolOutputs = toolOutputsArg === null ? null : Number.parseInt(toolOutputsArg, 10);
 const siteUrl = (getArg('--site') || 'https://subtitletoolkit.tools').replace(/\/$/, '');
 
 if (organicPageviewsArg !== null && (!Number.isFinite(organicPageviews) || organicPageviews < 0)) {
 	console.error('--organic-pageviews must be a non-negative integer.');
+	process.exit(1);
+}
+
+if (toolStartsArg !== null && (!Number.isFinite(toolStarts) || toolStarts < 0)) {
+	console.error('--tool-starts must be a non-negative integer.');
+	process.exit(1);
+}
+
+if (toolOutputsArg !== null && (!Number.isFinite(toolOutputs) || toolOutputs < 0)) {
+	console.error('--tool-outputs must be a non-negative integer.');
 	process.exit(1);
 }
 
@@ -273,6 +289,12 @@ function metricOrUnknown(value) {
 	return value === null ? 'unknown' : String(value);
 }
 
+function rateOrUnknown(numerator, denominator) {
+	if (numerator === null || denominator === null) return 'unknown';
+	if (denominator === 0) return '0.00%';
+	return `${((numerator / denominator) * 100).toFixed(2)}%`;
+}
+
 let queryRows = [];
 let pageRows = [];
 
@@ -338,6 +360,15 @@ console.log(`| Organic pageviews last 28 days | ${metricOrUnknown(organicPagevie
 console.log(`| Pages with organic impressions | ${pagesWithImpressions} | 20 | ${gateStatus(adReadiness.pagesWithImpressions)} |`);
 console.log(`| Pages with organic clicks | ${pagesWithClicks} | 10 | ${gateStatus(adReadiness.pagesWithClicks)} |`);
 console.log(`\nAd gate met: ${adGateMet ? 'yes' : 'no'}\n`);
+
+console.log('## Traffic Quality Snapshot\n');
+console.log('Use same-window Plausible custom events. Tool starts = subtitle_tool_edit_input + subtitle_tool_adjust_setting + subtitle_tool_upload_file + subtitle_tool_load_sample. Tool outputs = subtitle_tool_copy_output + subtitle_tool_download_output.');
+console.log('| Metric | Current | Rate |');
+console.log('| --- | ---: | ---: |');
+console.log(`| Organic pageviews | ${metricOrUnknown(organicPageviews)} | |`);
+console.log(`| Tool starts | ${metricOrUnknown(toolStarts)} | ${rateOrUnknown(toolStarts, organicPageviews)} of organic pageviews |`);
+console.log(`| Tool outputs | ${metricOrUnknown(toolOutputs)} | ${rateOrUnknown(toolOutputs, toolStarts)} of tool starts |`);
+console.log('');
 
 console.log('## Bucket A: Impressions >= threshold, Clicks = 0\n');
 console.log('| Query | Likely page | Page metrics | Query impressions | Query position | Suggested next change |');

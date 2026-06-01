@@ -55,10 +55,15 @@ https://subtitletoolkit.tools/tools/subtitle-delay-fixer,2,40,5%,7.0
 		'--queries', 'queries.csv',
 		'--pages', 'pages.csv',
 		'--organic-pageviews', '900',
+		'--tool-starts', '45',
+		'--tool-outputs', '9',
 	]);
 	assertExit(notReady, 0);
 	assertIncludes(notReady.stdout, '| srt to vtt | https://subtitletoolkit.tools/tools/srt-to-vtt/ | 0/20 clicks/impr, pos 12.5 |');
 	assertIncludes(notReady.stdout, '| Organic pageviews last 28 days | 900 | 1000 | no |');
+	assertIncludes(notReady.stdout, '## Traffic Quality Snapshot');
+	assertIncludes(notReady.stdout, '| Tool starts | 45 | 5.00% of organic pageviews |');
+	assertIncludes(notReady.stdout, '| Tool outputs | 9 | 20.00% of tool starts |');
 	assertIncludes(notReady.stdout, 'Ad gate met: no');
 
 	write('pages-ready.csv', `Top pages,Clicks,Impressions,CTR,Position
@@ -85,6 +90,13 @@ ${Array.from({ length: 20 }, (_, index) => {
 	]);
 	assertExit(invalidPageviews, 1);
 	assertIncludes(invalidPageviews.stderr, '--organic-pageviews must be a non-negative integer.');
+
+	const invalidToolStarts = runAnalyzer([
+		'--queries', 'queries.csv',
+		'--tool-starts', 'nope',
+	]);
+	assertExit(invalidToolStarts, 1);
+	assertIncludes(invalidToolStarts.stderr, '--tool-starts must be a non-negative integer.');
 
 	console.log('GSC analyzer regression tests passed.');
 } finally {

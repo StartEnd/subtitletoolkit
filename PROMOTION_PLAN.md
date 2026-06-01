@@ -56,13 +56,14 @@
 | Day 1-2 | SaaSHub + 1 个合适 awesome list PR | 45 分 | 🔥 | 追踪表记录审核/PR URL |
 | Day 2-4 | Reddit 搜索并回复 2-3 条真实问题 | 每次 15-20 分 | 🟡 | 每条都记录帖子 URL、评论 URL、状态 |
 | Day 4-6 | 准备并择时发布 Show HN，或先只做第一轮社区回复 | 60 分 | 🟡 | HN URL 或延后原因记录 |
-| Day 7 | 导出 GSC Queries/Pages + Plausible same-window pageviews，跑 `pnpm gsc:analyze` | 30 分 | 🔥 | `GSC_WEEKLY_TRACKER.md` 填一行 |
+| Day 7 | 导出 GSC Queries/Pages + Plausible same-window pageviews/tool starts/tool outputs，跑 `pnpm gsc:analyze` | 30 分 | 🔥 | `GSC_WEEKLY_TRACKER.md` 填 Weekly Summary + Traffic Quality |
 
 ### 提交前检查
 
 - [ ] `pnpm verify:gsc:submit-ready` 通过
 - [ ] `GSC_DAY0_URLS.md` 准备记录提交日期和下次复查日期
 - [ ] Plausible 可以看到当前 traffic sources，便于提交后对比 referral/direct 变化
+- [ ] Plausible 可以看到工具事件，至少包括 `subtitle_tool_edit_input`、`subtitle_tool_adjust_setting`、`subtitle_tool_copy_output`、`subtitle_tool_download_output`
 
 ---
 

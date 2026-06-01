@@ -18,7 +18,7 @@ import { SITE_TITLE, SUPPORT_EMAIL } from '../consts';
 	<p>We keep data collection intentionally narrow.</p>
 	<ul>
 		<li>Basic analytics data such as page views, referrers, device type, and browser information.</li>
-		<li>Tool interaction events such as loading a sample subtitle, uploading a local file, copying output, or downloading output.</li>
+		<li>Tool interaction events such as loading a sample subtitle, selecting a local file in the browser, editing input, copying output, or downloading output.</li>
 		<li>Contact information you send directly to us, such as your email address if you contact support.</li>
 		<li>Technical logs needed to keep the site secure and reliable.</li>
 	</ul>
@@ -28,6 +28,10 @@ import { SITE_TITLE, SUPPORT_EMAIL } from '../consts';
 		The core subtitle workflows are intended to run locally in your browser. We do not require an account to use
 		these tools, and we do not intentionally store the subtitle content you process unless a feature clearly says
 		otherwise.
+	</p>
+	<p>
+		Analytics events do not intentionally include subtitle text or local file names. File-related events may include
+		coarse details such as a file extension so we can understand which formats are used.
 	</p>
 
 	<h2>Analytics and cookies</h2>

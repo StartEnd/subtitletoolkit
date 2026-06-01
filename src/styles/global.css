@@ -527,6 +527,10 @@ strong, b {
 	background: var(--color-muted);
 }
 
+[data-ads-enabled='true'] .ad-slot {
+	display: block;
+}
+
 /* ─── Utility: Info Grid (tool page bottom) ─── */
 
 .info-grid {

@@ -331,6 +331,20 @@ const mistakeNotes: Record<string, string[]> = {
 const supportedFormatText = currentTool.acceptedExtensions.join(', ');
 const metaDescription = toolMetaDescriptions[currentTool.id] ?? currentTool.description;
 const pageTitle = toolPageTitles[currentTool.id] ?? `${currentTool.title} | ${SITE_TITLE}`;
+const howToSteps = [
+	{
+		name: 'Add a supported subtitle file',
+		text: `Upload or paste a supported subtitle file (${supportedFormatText}), or load the sample input to see the expected structure.`,
+	},
+	{
+		name: `Run the ${currentTool.shortTitle} tool`,
+		text: 'Use the browser-based converter or repair action to process the subtitle file locally on your device.',
+	},
+	{
+		name: 'Review and download the output',
+		text: 'Check the first few cues, the middle of the file, and the final cue before copying or downloading the result.',
+	},
+];
 
 const isConversionTool = ![
 	'youtube-subtitle-converter',
@@ -393,6 +407,15 @@ const breadcrumbItems = [
 				},
 			})),
 		}} />
+		<JsonLd type="howTo" data={{
+			'@type': 'HowTo',
+			name: `How to use the ${currentTool.title}`,
+			description: workflowNotes[currentTool.id],
+			step: howToSteps.map((step) => ({
+				'@type': 'HowToStep',
+				...step,
+			})),
+		}} />
 	<section class="section" style="padding-bottom: 0;">
 		<Breadcrumbs items={breadcrumbItems} />
 	</section>
@@ -422,9 +445,9 @@ const breadcrumbItems = [
 					<h2 id="tool-workflow-title">How to use this {currentTool.shortTitle} tool</h2>
 				</div>
 				<p>{workflowNotes[currentTool.id]}</p>
-				<p>
-					Start by uploading or pasting a supported file ({supportedFormatText}). Check the sample input if you want to see the expected structure first, then run the conversion or repair step and review the output before downloading it. The tool is designed for quick subtitle jobs where opening a full video editor would be unnecessary.
-				</p>
+				<ol>
+					{howToSteps.map((step) => <li><strong>{step.name}.</strong> {step.text}</li>)}
+				</ol>
 				<div class="tool-seo-columns">
 					<div>
 						<h3>Input and output checklist</h3>
@@ -499,7 +522,7 @@ const breadcrumbItems = [
 			</div>
 
 			<!-- Ad slot placeholder -->
-			<div class="ad-slot"></div>
+			<div class="ad-slot" data-ad-slot="tool-below-workflow" aria-hidden="true"></div>
 		</div>
 	</section>
 </SiteLayout>

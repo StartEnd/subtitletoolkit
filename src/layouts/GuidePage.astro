@@ -12,6 +12,7 @@ type GuideEntry = CollectionEntry<'guides'>;
 type Props = GuideEntry['data'] & {
 	relatedGuides?: GuideEntry[];
 	primaryToolData?: SubtitleTool | null;
+	relatedToolData?: SubtitleTool[];
 };
 
 const {
@@ -24,6 +25,7 @@ const {
 	category,
 	relatedGuides = [],
 	primaryToolData = null,
+	relatedToolData = [],
 } = Astro.props as Props;
 
 const pageTitle = seoTitle ?? `${title} | ${SITE_TITLE}`;
@@ -147,6 +149,30 @@ const articleSchema = {
 				{primaryToolData ? `Open ${primaryToolData.shortTitle}` : 'Browse tools'} <span aria-hidden="true">&rarr;</span>
 			</a>
 		</div>
+
+		{
+			relatedToolData.length > 0 && (
+				<section class="guide-related-tools" aria-labelledby="guide-related-tools-title">
+					<p class="guide-related-tools-kicker">More tools for this workflow</p>
+					<h2 id="guide-related-tools-title">Continue with a related subtitle tool</h2>
+					<div class="guide-related-tools-grid">
+						{relatedToolData.map((tool) => (
+							<a
+								class="guide-related-tool-card"
+								href={`/tools/${tool.id}/`}
+								data-guide-tool-cta
+								data-guide-tool-placement="related-tools"
+								data-guide-tool-id={tool.id}
+							>
+								<span>{tool.shortTitle}</span>
+								<strong>{tool.title}</strong>
+								<em>{tool.description}</em>
+							</a>
+						))}
+					</div>
+				</section>
+			)
+		}
 
 		{
 			relatedGuides.length > 0 && (
@@ -303,6 +329,64 @@ const articleSchema = {
 		box-shadow: var(--shadow-md);
 	}
 
+	.guide-related-tools {
+		margin-top: var(--space-16);
+	}
+
+	.guide-related-tools-kicker {
+		margin: 0 0 var(--space-2);
+		color: var(--color-tertiary);
+		font-size: 0.8125rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	.guide-related-tools h2 {
+		margin-bottom: var(--space-5);
+	}
+
+	.guide-related-tools-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--space-4);
+	}
+
+	.guide-related-tool-card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+		padding: var(--space-5);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		background: var(--color-surface);
+		color: var(--color-primary);
+		text-decoration: none;
+	}
+
+	.guide-related-tool-card:hover {
+		border-color: var(--color-accent);
+	}
+
+	.guide-related-tool-card span {
+		color: var(--color-accent);
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	.guide-related-tool-card strong {
+		font-size: 1rem;
+	}
+
+	.guide-related-tool-card em {
+		color: var(--color-secondary);
+		font-size: 0.875rem;
+		font-style: normal;
+		line-height: 1.5;
+	}
+
 	.related-guides {
 		margin-top: var(--space-16);
 		padding-top: var(--space-10);
@@ -399,6 +483,10 @@ const articleSchema = {
 		}
 
 		.related-guides-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.guide-related-tools-grid {
 			grid-template-columns: 1fr;
 		}
 	}

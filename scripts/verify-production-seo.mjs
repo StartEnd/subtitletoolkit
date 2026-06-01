@@ -23,6 +23,14 @@ const checks = [
 		path: '/',
 		expect: [
 			{
+				label: 'homepage no-upload title promise',
+				match: '<title>Free Subtitle Tools - No Upload | Subtitle Toolkit</title>',
+			},
+			{
+				label: 'homepage no-upload meta description',
+				match: 'Convert, fix, and clean SRT, VTT, and ASS subtitle files for free. No signup, no upload, and browser-local processing for private caption workflows.',
+			},
+			{
 				label: 'homepage links to priority delay tool',
 				match: '/tools/subtitle-delay-fixer/',
 			},
@@ -63,6 +71,14 @@ const checks = [
 				label: 'single Article JSON-LD block',
 				count: /"@type"\s*:\s*"Article"/g,
 				expectedCount: 1,
+			},
+			{
+				label: 'guide links to related workflow tools',
+				match: 'Continue with a related subtitle tool',
+			},
+			{
+				label: 'guide related tool click analytics placement',
+				match: 'data-guide-tool-placement="related-tools"',
 			},
 		],
 	},
@@ -111,6 +127,43 @@ const checks = [
 			{
 				label: 'SRT to VTT no-upload meta description',
 				match: 'Convert SRT subtitles to VTT online for free. Create a WebVTT file for HTML5 video locally in your browser with no signup or upload.',
+			},
+			{
+				label: 'HowTo schema for tool workflow',
+				match: /"@type"\s*:\s*"HowTo"/,
+			},
+			{
+				label: 'visible ordered tool workflow steps',
+				match: /<ol\b[\s\S]*Add a supported subtitle file/,
+			},
+			{
+				label: 'tool edit quality analytics event',
+				match: 'subtitle_tool_edit_input',
+			},
+			{
+				label: 'download analytics avoids local filenames',
+				match: 'output_extension',
+			},
+			{
+				label: 'tool ad placeholder stays below workspace',
+				after: ['class="workspace"', 'data-ad-slot="tool-below-workflow"'],
+			},
+			{
+				label: 'tool ad placeholder is hidden from assistive tech',
+				match: 'data-ad-slot="tool-below-workflow" aria-hidden="true"',
+			},
+			{
+				label: 'tool page does not enable ads before readiness gate',
+				absent: 'data-ads-enabled="true"',
+			},
+		],
+	},
+	{
+		path: '/privacy-policy/',
+		expect: [
+			{
+				label: 'privacy policy says analytics avoids local file names',
+				match: 'Analytics events do not intentionally include subtitle text or local file names.',
 			},
 		],
 	},
@@ -250,6 +303,25 @@ function checkExpectation(html, expectation) {
 			ok: count === expectation.expectedCount,
 			actual: String(count),
 			expected: String(expectation.expectedCount),
+		};
+	}
+
+	if (expectation.after) {
+		const [first, second] = expectation.after;
+		const firstIndex = html.indexOf(first);
+		const secondIndex = html.indexOf(second);
+		return {
+			ok: firstIndex >= 0 && secondIndex > firstIndex,
+			actual: `${firstIndex}, ${secondIndex}`,
+			expected: `${first} before ${second}`,
+		};
+	}
+
+	if (expectation.absent) {
+		return {
+			ok: !html.includes(expectation.absent),
+			actual: html.includes(expectation.absent) ? 'present' : 'absent',
+			expected: 'absent',
 		};
 	}
 

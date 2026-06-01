@@ -16,8 +16,8 @@ Run this loop once per week from Google Search Console.
 1. Open Performance -> Search results.
 2. Set date range to the last 28 days.
 3. Export queries and pages.
-4. Record organic pageviews from Plausible or another analytics source for the same 28-day window.
-5. Run `pnpm gsc:analyze` with the GSC exports and `--organic-pageviews`.
+4. Record organic pageviews and tool custom events from Plausible or another analytics source for the same 28-day window.
+5. Run `pnpm gsc:analyze` with the GSC exports, `--organic-pageviews`, `--tool-starts`, and `--tool-outputs`.
 6. Record the week in `GSC_WEEKLY_TRACKER.md`.
 7. Split opportunities into three buckets:
    - impressions >= 10 and clicks = 0
@@ -108,8 +108,13 @@ Minimum gate:
 - at least 20 pages receiving organic impressions
 - at least 10 pages receiving organic clicks
 - core tools remain usable on mobile with ad placeholders enabled
+- `pnpm verify:seo:ready` passes with ad slots below the tool workspace and no ads enabled before the gate
 
 Use the `Ad Readiness Gate` section from `pnpm gsc:analyze` for the first three checks. Verify the mobile tool UX separately before placing ads.
+
+Also review the `Traffic Quality Snapshot` from `pnpm gsc:analyze`. Do not add ads if organic traffic is not starting tools or producing copied/downloaded outputs; fix query-page fit or tool UX first.
+
+Before enabling ads, confirm the static safety checks still pass: ad placeholders must remain below the tool workspace, hidden from assistive tech while inactive, and gated behind an explicit ads-enabled flag.
 
 When the gate is met, start with one non-intrusive slot below the first tool/workflow block and one slot near the bottom of long guide pages. Do not put ads above the tool workspace.
 
@@ -124,4 +129,5 @@ Keep the weekly row in `GSC_WEEKLY_TRACKER.md`:
 - average position
 - top 5 zero-click queries
 - pages changed this week
+- tool starts and outputs from same-window Plausible events
 - next pages to update

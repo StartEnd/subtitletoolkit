@@ -42,8 +42,19 @@ const relatedGuides = allGuides
 const primaryToolData = guide.data.primaryTool
 	? getSubtitleTool('en', guide.data.primaryTool)
 	: null;
+
+const relatedToolData = primaryToolData
+	? primaryToolData.relatedTools
+		.map((toolId) => getSubtitleTool('en', toolId))
+		.filter(Boolean)
+	: [];
 ---
 
-<GuidePage {...guide.data} relatedGuides={relatedGuides} primaryToolData={primaryToolData}>
+<GuidePage
+	{...guide.data}
+	relatedGuides={relatedGuides}
+	primaryToolData={primaryToolData}
+	relatedToolData={relatedToolData}
+>
 	<Content />
 </GuidePage>

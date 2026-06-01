@@ -7,7 +7,12 @@ const { tool, labels } = Astro.props as {
 };
 ---
 
-<section class="workspace" data-tool-id={tool.id}>
+<section
+	class="workspace"
+	data-tool-id={tool.id}
+	data-tool-quality-events="subtitle_tool_edit_input subtitle_tool_adjust_setting"
+	data-tool-analytics-fields="output_extension"
+>
 	<div class="workspace-grid">
 		<div class="workspace-panel">
 			<div class="workspace-head">
@@ -163,6 +168,16 @@ const { tool, labels } = Astro.props as {
 				window.plausible(eventName, { props });
 			}
 		};
+		const trackedOnce = new Set();
+		const trackOnce = (key, eventName, props = {}) => {
+			if (trackedOnce.has(key)) return;
+			trackedOnce.add(key);
+			track(eventName, props);
+		};
+		const outputExtensionForAnalytics = () => {
+			if (!(outputFile instanceof HTMLElement)) return 'unknown';
+			return outputFile.textContent?.split('.').pop()?.toLowerCase() || 'unknown';
+		};
 
 		const triggers = Array.from(root.querySelectorAll('[data-mode-trigger]'));
 		const panels = Array.from(root.querySelectorAll('[data-mode-panel]'));
@@ -275,32 +290,63 @@ const { tool, labels } = Astro.props as {
 			inputArea.addEventListener('input', () => {
 				currentInput = inputArea.value;
 				currentFileName = null;
+				trackOnce('edit-input', 'subtitle_tool_edit_input', {
+					tool: tool.id,
+				});
 				render();
 			});
 		}
 
 		if (shiftInput instanceof HTMLInputElement) {
-			shiftInput.addEventListener('input', render);
+			shiftInput.addEventListener('input', () => {
+				trackOnce('adjust-setting', 'subtitle_tool_adjust_setting', {
+					tool: tool.id,
+					setting: 'shift',
+				});
+				render();
+			});
 		}
 
 		if (partialStartInput instanceof HTMLInputElement) {
-			partialStartInput.addEventListener('input', render);
+			partialStartInput.addEventListener('input', () => {
+				trackOnce('adjust-setting', 'subtitle_tool_adjust_setting', {
+					tool: tool.id,
+					setting: 'partial-range',
+				});
+				render();
+			});
 		}
 
 		if (partialEndInput instanceof HTMLInputElement) {
-			partialEndInput.addEventListener('input', render);
+			partialEndInput.addEventListener('input', () => {
+				trackOnce('adjust-setting', 'subtitle_tool_adjust_setting', {
+					tool: tool.id,
+					setting: 'partial-range',
+				});
+				render();
+			});
 		}
 
 		if (secondaryInputArea instanceof HTMLTextAreaElement) {
 			secondaryInputArea.addEventListener('input', () => {
 				currentSecondaryInput = secondaryInputArea.value;
 				currentSecondaryFileName = null;
+				trackOnce('edit-secondary-input', 'subtitle_tool_edit_input', {
+					tool: tool.id,
+					input: 'secondary',
+				});
 				render();
 			});
 		}
 
 		if (encodingInput instanceof HTMLSelectElement) {
-			encodingInput.addEventListener('change', render);
+			encodingInput.addEventListener('change', () => {
+				trackOnce('adjust-setting', 'subtitle_tool_adjust_setting', {
+					tool: tool.id,
+					setting: 'encoding',
+				});
+				render();
+			});
 		}
 
 		const extractSubtitlesFromVideo = async (file) => {
@@ -508,10 +554,7 @@ const { tool, labels } = Astro.props as {
 			URL.revokeObjectURL(url);
 			track('subtitle_tool_download_output', {
 				tool: tool.id,
-				output_file:
-					outputFile instanceof HTMLElement
-						? outputFile.textContent || 'subtitle-output.txt'
-						: 'subtitle-output.txt',
+				output_extension: outputExtensionForAnalytics(),
 			});
 		});
 

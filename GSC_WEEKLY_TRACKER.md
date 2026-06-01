@@ -7,21 +7,24 @@ Use this file once per week after the SEO deployment is live. Keep entries short
 1. Open Google Search Console -> Performance -> Search results.
 2. Set the date range to the last 28 days.
 3. Export Queries and Pages.
-4. In Plausible or your analytics source, record organic pageviews for the same 28-day window.
+4. In Plausible or your analytics source, record organic pageviews and tool events for the same 28-day window.
 5. Save the CSV files under local `gsc-exports/`; this directory is intentionally ignored by git.
 6. Build the current site, then run the local analyzer with the two CSV files:
 
 ```bash
 pnpm build
-pnpm gsc:analyze -- --queries gsc-exports/queries.csv --pages gsc-exports/pages.csv --organic-pageviews 123
+pnpm gsc:analyze -- --queries gsc-exports/queries.csv --pages gsc-exports/pages.csv --organic-pageviews 123 --tool-starts 12 --tool-outputs 3
 ```
 
-Replace `123` with the same-window organic pageviews number.
+Replace `123`, `12`, and `3` with same-window Plausible numbers.
+Tool starts = `subtitle_tool_edit_input` + `subtitle_tool_adjust_setting` + `subtitle_tool_upload_file` + `subtitle_tool_load_sample`.
+Tool outputs = `subtitle_tool_copy_output` + `subtitle_tool_download_output`.
 The analyzer normalizes trailing-slash differences between GSC exports and the built Astro URLs.
 
 7. Fill one weekly row below from the `Weekly Summary Helper` output.
 8. Fill the ad readiness row from the `Ad Readiness Gate` output.
-9. Pick one small batch for the next change; do not edit the same URL again until 7 to 14 days have passed.
+9. Fill the traffic quality row from the `Traffic Quality Snapshot` output.
+10. Pick one small batch for the next change; do not edit the same URL again until 7 to 14 days have passed.
 
 ## Weekly Summary
 
@@ -62,6 +65,16 @@ Only consider ad placement after the gate in `SEARCH_GROWTH_PLAYBOOK.md` is met.
 | Week of | Organic pageviews last 28 days | Pages with impressions | Pages with clicks | Gate met? | Notes |
 | --- | ---: | ---: | ---: | --- | --- |
 | 2026-06-01 | | | | No | Waiting for same-window analytics pageviews and GSC clicks after Day 0 submission. |
+
+Before changing `Gate met?` to Yes, `pnpm verify:seo:ready` must pass with ad placeholders below the tool workspace, hidden while inactive, and no `data-ads-enabled="true"` present before the gate.
+
+## Traffic Quality Snapshot
+
+Use this to avoid optimizing only for impressions. Low tool starts means the query/page promise may be wrong; low tool outputs means the tool UX or file workflow may need work before ads.
+
+| Week of | Tool starts | Starts / organic pageviews | Tool outputs | Outputs / tool starts | Notes |
+| --- | ---: | ---: | ---: | ---: | --- |
+| 2026-06-01 | | | | | Waiting for same-window Plausible custom events after production deployment. |
 
 ## Change Log
 
