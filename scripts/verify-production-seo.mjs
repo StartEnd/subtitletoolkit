@@ -1549,12 +1549,12 @@ const checks = [
 		path: '/guides/how-to-extract-subtitles-from-video/',
 		expect: [
 			{
-				label: 'video extraction guide CTR title',
-				match: '<title>Extract Subtitles from Video - MP4, MKV, MOV Guide</title>',
+				label: 'updated video extraction guide title',
+				match: '<title>Extract Subtitles from Video Online - Free No Upload</title>',
 			},
 			{
 				label: 'video extraction guide no-upload meta description',
-				match: 'Extract embedded subtitle tracks from MP4, MKV, MOV, and WebM files locally. Learn when video captions can be saved as SRT and when OCR is required.',
+				match: 'Extract subtitles from MP4, MKV, MOV, and WebM videos online for free. Save embedded text tracks locally in your browser with no upload.',
 			},
 			{
 				label: 'video extraction guide opens extractor tool',
@@ -1562,7 +1562,11 @@ const checks = [
 			},
 			{
 				label: 'FAQ schema for video extraction questions',
-				match: 'Can I extract subtitles from an MP4 file?',
+				match: 'Can I extract subtitles from a video online for free?',
+			},
+			{
+				label: 'video extraction guide explains no-subtitle result',
+				match: 'When the extractor finds no subtitle stream',
 			},
 		],
 	},
