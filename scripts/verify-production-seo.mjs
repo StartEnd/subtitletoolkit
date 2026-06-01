@@ -98,6 +98,10 @@ const checks = [
 				label: 'homepage links to SRT vs VTT guide',
 				match: '/guides/srt-vs-vtt/',
 			},
+			{
+				label: 'homepage links to SRT to TXT guide',
+				match: '/guides/how-to-convert-srt-to-txt/',
+			},
 		],
 	},
 	{
@@ -668,6 +672,74 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/how-to-convert-srt-to-txt/',
+		expect: [
+			{
+				label: 'SRT to TXT guide CTR title',
+				match: '<title>Convert SRT to TXT - Remove Timestamps for Transcript</title>',
+			},
+			{
+				label: 'SRT to TXT guide meta description',
+				match: 'Convert SRT to TXT by removing cue numbers, timestamps, and subtitle formatting. Create a clean transcript locally with no upload.',
+			},
+			{
+				label: 'SRT to TXT guide opens converter tool',
+				match: 'href="/tools/srt-to-txt/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-vtt-to-txt/',
+		expect: [
+			{
+				label: 'VTT to TXT guide CTR title',
+				match: '<title>Convert VTT to TXT - Extract Plain Text from WebVTT</title>',
+			},
+			{
+				label: 'VTT to TXT guide meta description',
+				match: 'Convert VTT to TXT by removing WEBVTT headers, timestamps, cue settings, and metadata. Create a clean transcript in your browser.',
+			},
+			{
+				label: 'VTT to TXT guide opens converter tool',
+				match: 'href="/tools/vtt-to-txt/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-ass-to-txt/',
+		expect: [
+			{
+				label: 'ASS to TXT guide CTR title',
+				match: '<title>Convert ASS to TXT - Remove Styling and Timing Codes</title>',
+			},
+			{
+				label: 'ASS to TXT guide meta description',
+				match: 'Convert ASS or SSA subtitles to TXT by removing styling tags, timing fields, and metadata. Extract clean dialogue locally with no upload.',
+			},
+			{
+				label: 'ASS to TXT guide opens converter tool',
+				match: 'href="/tools/ass-to-txt/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-merge-two-srt-files/',
+		expect: [
+			{
+				label: 'merge SRT guide CTR title',
+				match: '<title>Merge Two SRT Files - Combine and Renumber Subtitles</title>',
+			},
+			{
+				label: 'merge SRT guide meta description',
+				match: 'Merge two SRT files into one sorted subtitle file. Combine cues, renumber blocks, preserve timing, and download locally with no upload.',
+			},
+			{
+				label: 'merge SRT guide opens merger tool',
+				match: 'href="/tools/subtitle-merger/"',
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/',
 		expect: [
 			{
@@ -951,6 +1023,26 @@ const checks = [
 				match: '/guides/how-to-convert-subtitles-for-vimeo/',
 			},
 			{
+				label: 'guides index includes transcript workflows section',
+				match: 'Transcript workflows',
+			},
+			{
+				label: 'guides index links to SRT to TXT guide',
+				match: '/guides/how-to-convert-srt-to-txt/',
+			},
+			{
+				label: 'guides index links to VTT to TXT guide',
+				match: '/guides/how-to-convert-vtt-to-txt/',
+			},
+			{
+				label: 'guides index links to ASS to TXT guide',
+				match: '/guides/how-to-convert-ass-to-txt/',
+			},
+			{
+				label: 'guides index links to merge SRT guide',
+				match: '/guides/how-to-merge-two-srt-files/',
+			},
+			{
 				label: 'guides index links to UTF-8 conversion guide',
 				match: '/guides/how-to-convert-subtitles-to-utf-8/',
 			},
@@ -1185,6 +1277,22 @@ const checks = [
 			{
 				label: 'llms lists ASS instead of SRT guide',
 				match: 'https://subtitletoolkit.tools/guides/when-to-use-ass-instead-of-srt/',
+			},
+			{
+				label: 'llms lists SRT to TXT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-srt-to-txt/',
+			},
+			{
+				label: 'llms lists VTT to TXT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-txt/',
+			},
+			{
+				label: 'llms lists ASS to TXT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-ass-to-txt/',
+			},
+			{
+				label: 'llms lists merge SRT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-merge-two-srt-files/',
 			},
 		],
 	},

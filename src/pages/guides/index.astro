@@ -43,6 +43,12 @@ const playerConversionGuideIds = [
 	'how-to-convert-subtitles-for-plex',
 	'how-to-convert-subtitles-for-vimeo',
 ];
+const transcriptWorkflowGuideIds = [
+	'how-to-convert-srt-to-txt',
+	'how-to-convert-vtt-to-txt',
+	'how-to-convert-ass-to-txt',
+	'how-to-merge-two-srt-files',
+];
 const encodingGuideIds = [
 	'how-to-convert-subtitles-to-utf-8',
 	'how-to-fix-garbled-subtitles',
@@ -68,6 +74,9 @@ const platformGuides = platformGuideIds
 	.map((id) => guides.find((guide) => guide.id === id))
 	.filter(Boolean);
 const playerConversionGuides = playerConversionGuideIds
+	.map((id) => guides.find((guide) => guide.id === id))
+	.filter(Boolean);
+const transcriptWorkflowGuides = transcriptWorkflowGuideIds
 	.map((id) => guides.find((guide) => guide.id === id))
 	.filter(Boolean);
 const encodingGuides = encodingGuideIds
@@ -202,6 +211,28 @@ const pageDescription =
 						<h3><a href={`/guides/${guide.id}/`}>{guide.data.title}</a></h3>
 						<p>{guide.data.description}</p>
 						<a class="card-link" href={`/guides/${guide.id}/`}>Convert captions <span aria-hidden="true">&rarr;</span></a>
+					</article>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="section">
+		<span class="eyebrow">Transcript workflows</span>
+		<h2>Extract readable text or combine subtitle files.</h2>
+		<p class="lede priority-lede">
+			Start here when the job is a clean transcript, translation handoff, or one merged subtitle file.
+		</p>
+		<div class="platform-grid">
+			{
+				transcriptWorkflowGuides.map((guide) => (
+					<article class="platform-card">
+						<p class="priority-card-meta">
+							{guideCategoryMeta[guide.data.category].label}
+						</p>
+						<h3><a href={`/guides/${guide.id}/`}>{guide.data.title}</a></h3>
+						<p>{guide.data.description}</p>
+						<a class="card-link" href={`/guides/${guide.id}/`}>Open workflow <span aria-hidden="true">&rarr;</span></a>
 					</article>
 				))
 			}

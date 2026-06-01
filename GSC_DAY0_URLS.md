@@ -96,6 +96,10 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/ass-vs-vtt/`
 - [ ] `https://subtitletoolkit.tools/guides/when-webvtt-is-better-than-srt/`
 - [ ] `https://subtitletoolkit.tools/guides/when-to-use-ass-instead-of-srt/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-convert-srt-to-txt/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-txt/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-txt/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-merge-two-srt-files/`
 
 ## After Submission
 
