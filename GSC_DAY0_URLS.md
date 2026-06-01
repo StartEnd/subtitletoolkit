@@ -8,6 +8,8 @@ pnpm verify:gsc:submit-ready
 
 Record manual Search Console actions here so the next review is based on evidence, not memory.
 
+After the production gate passes, run `pnpm gsc:day0:list` to print the sitemap, the URL Inspection queue, and a paste-ready submission record row.
+
 ## Submission Record
 
 | Submitted on | Submitted by | Sitemap submitted? | URL inspection requests | Next review date | Notes |

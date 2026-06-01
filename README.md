@@ -66,6 +66,12 @@ Before submitting the Day 0 URL list in Search Console, run the combined product
 pnpm verify:gsc:submit-ready
 ```
 
+Then print the manual Search Console queue and a ready-to-paste submission record row:
+
+```bash
+pnpm gsc:day0:list
+```
+
 ## Weekly Search Review
 
 After Search Console has a few days of data, export same-window GSC Queries and Pages CSVs, then pair them with Plausible organic pageviews and tool events:
