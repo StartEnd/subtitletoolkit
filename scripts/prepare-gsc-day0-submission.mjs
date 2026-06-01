@@ -104,6 +104,7 @@ const inspectionUrls = {
 	all: unique([...primaryInspectionUrls, ...currentInspectionUrls]),
 }[batch];
 const nextReviewDate = addDays(submittedOn, nextReviewDays);
+const evidenceNotes = `Submitted ${batch} Day 0 sitemap plus ${inspectionUrls.length} URL Inspection requests; next review ${nextReviewDate}`;
 
 if (sitemapUrls.length === 0) {
 	console.error('No sitemap URL found in the Sitemap section.');
@@ -145,8 +146,13 @@ console.log('| Submitted on | Submitted by | Sitemap submitted? | URL inspection
 console.log('| --- | --- | --- | ---: | --- | --- |');
 console.log(`| ${submittedOn} | ${submittedBy} | Yes | ${inspectionUrls.length} | ${nextReviewDate} | Submitted ${batch} Day 0 URL Inspection queue after production gate passed. |`);
 
+console.log('\n## Evidence Record Command\n');
+console.log('Run this after the manual GSC work is complete so the weekly review can connect GSC/Plausible movement to the submission date.');
+console.log(`pnpm promotion:record -- --date ${submittedOn} --channel gsc --source "Search Console" --status submitted --notes "${evidenceNotes}"`);
+
 console.log('\n## After Manual Submission\n');
 console.log('1. Check off submitted items in GSC_DAY0_URLS.md.');
 console.log('2. Paste the Submission Record row above into GSC_DAY0_URLS.md.');
-console.log('3. Add the same date to GSC_WEEKLY_TRACKER.md if it is not already recorded.');
-console.log('4. Wait 5 to 7 days, export GSC Queries/Pages and same-window Plausible data, then run pnpm gsc:analyze.');
+console.log('3. Run the Evidence Record Command above.');
+console.log('4. Add the same date to GSC_WEEKLY_TRACKER.md if it is not already recorded.');
+console.log('5. Wait 5 to 7 days, export GSC Queries/Pages and same-window Plausible data, then run pnpm gsc:analyze.');

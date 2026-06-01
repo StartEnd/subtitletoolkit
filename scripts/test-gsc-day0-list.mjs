@@ -62,6 +62,8 @@ try {
 	assertIncludes(valid.stdout, '2. https://subtitletoolkit.tools/tools/srt-to-vtt/');
 	assertIncludes(valid.stdout, 'Primary queue only. Use `--batch current` after Google starts showing crawl or impression movement.');
 	assertIncludes(valid.stdout, '| 2026-06-01 | song | Yes | 2 | 2026-06-06 | Submitted primary Day 0 URL Inspection queue after production gate passed. |');
+	assertIncludes(valid.stdout, '## Evidence Record Command');
+	assertIncludes(valid.stdout, 'pnpm promotion:record -- --date 2026-06-01 --channel gsc --source "Search Console" --status submitted --notes "Submitted primary Day 0 sitemap plus 2 URL Inspection requests; next review 2026-06-06"');
 
 	const current = run([
 		'--submitted-on', '2026-06-01',
@@ -71,6 +73,7 @@ try {
 	assertExit(current, 0);
 	assertIncludes(current.stdout, '1. https://subtitletoolkit.tools/guides/why-youtube-subtitles-upload-failed/');
 	assertIncludes(current.stdout, '| 2026-06-01 | song | Yes | 1 | 2026-06-08 | Submitted current Day 0 URL Inspection queue after production gate passed. |');
+	assertIncludes(current.stdout, 'pnpm promotion:record -- --date 2026-06-01 --channel gsc --source "Search Console" --status submitted --notes "Submitted current Day 0 sitemap plus 1 URL Inspection requests; next review 2026-06-08"');
 
 	const all = run([
 		'--submitted-on', '2026-06-01',

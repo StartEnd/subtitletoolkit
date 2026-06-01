@@ -72,6 +72,8 @@ Then print the primary manual Search Console queue and a ready-to-paste submissi
 pnpm gsc:day0:list
 ```
 
+After the manual Search Console submission is complete, run the `promotion:record` command printed by the helper so the submission date appears in the weekly evidence window.
+
 After Google starts showing crawl or impression movement for the primary queue, print the current search-growth batch:
 
 ```bash
