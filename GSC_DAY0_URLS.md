@@ -61,6 +61,10 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/how-to-prepare-subtitles-for-youtube-upload/`
 - [ ] `https://subtitletoolkit.tools/guides/why-youtube-subtitles-upload-failed/`
 - [ ] `https://subtitletoolkit.tools/guides/why-srt-file-wont-upload/`
+- [ ] `https://subtitletoolkit.tools/guides/conversion-guides/`
+- [ ] `https://subtitletoolkit.tools/guides/format-comparisons/`
+- [ ] `https://subtitletoolkit.tools/guides/sync-fixes/`
+- [ ] `https://subtitletoolkit.tools/guides/workflow-guides/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-clean-subtitle-formatting-before-upload/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-validate-webvtt-files/`
@@ -120,6 +124,21 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/common-subtitle-format-errors-and-fixes/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-out-of-order-subtitle-cues/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-remove-html-tags-from-subtitles/`
+- [ ] `https://subtitletoolkit.tools/tools/srt-to-txt/`
+- [ ] `https://subtitletoolkit.tools/tools/vtt-to-txt/`
+- [ ] `https://subtitletoolkit.tools/tools/ass-to-txt/`
+- [ ] `https://subtitletoolkit.tools/tools/vtt-to-ass/`
+- [ ] `https://subtitletoolkit.tools/tools/ass-to-vtt/`
+- [ ] `https://subtitletoolkit.tools/tools/html5-video-subtitle-converter/`
+- [ ] `https://subtitletoolkit.tools/tools/videojs-subtitle-converter/`
+- [ ] `https://subtitletoolkit.tools/tools/jw-player-subtitle-converter/`
+- [ ] `https://subtitletoolkit.tools/tools/plex-subtitle-converter/`
+- [ ] `https://subtitletoolkit.tools/tools/vimeo-subtitle-converter/`
+- [ ] `https://subtitletoolkit.tools/tools/subtitle-time-shifter/`
+- [ ] `https://subtitletoolkit.tools/tools/fix-out-of-sync-subtitles/`
+- [ ] `https://subtitletoolkit.tools/tools/subtitle-transcript-generator/`
+- [ ] `https://subtitletoolkit.tools/tools/subtitle-merger/`
+- [ ] `https://subtitletoolkit.tools/tools/partial-subtitle-shifter/`
 
 ## After Submission
 

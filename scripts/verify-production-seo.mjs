@@ -1409,6 +1409,57 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/srt-to-txt/',
+		expect: [
+			{
+				label: 'SRT to TXT tool title',
+				match: '<title>SRT to TXT Converter - Extract Subtitle Text Online</title>',
+			},
+			{
+				label: 'SRT to TXT tool meta description',
+				match: 'Convert SRT subtitles to plain text online for free. Remove timestamps and cue numbers, then copy or download clean TXT output.',
+			},
+			{
+				label: 'SRT to TXT tool links guide',
+				match: 'href="/guides/how-to-convert-srt-to-txt/"',
+			},
+		],
+	},
+	{
+		path: '/tools/vtt-to-txt/',
+		expect: [
+			{
+				label: 'VTT to TXT tool title',
+				match: '<title>VTT to TXT Converter - Extract Caption Text Online</title>',
+			},
+			{
+				label: 'VTT to TXT tool meta description',
+				match: 'Convert VTT WebVTT captions to plain text online for free. Remove headers, timestamps, and cue settings from a .vtt file.',
+			},
+			{
+				label: 'VTT to TXT tool links guide',
+				match: 'href="/guides/how-to-convert-vtt-to-txt/"',
+			},
+		],
+	},
+	{
+		path: '/tools/ass-to-txt/',
+		expect: [
+			{
+				label: 'ASS to TXT tool title',
+				match: '<title>ASS to TXT Converter - Extract Subtitle Text Online</title>',
+			},
+			{
+				label: 'ASS to TXT tool meta description',
+				match: 'Convert ASS subtitles to plain text online for free. Remove style tags, timing, and dialogue metadata from ASS or SSA files.',
+			},
+			{
+				label: 'ASS to TXT tool links guide',
+				match: 'href="/guides/how-to-convert-ass-to-txt/"',
+			},
+		],
+	},
+	{
 		path: '/tools/srt-validator/',
 		expect: [
 			{
@@ -1469,6 +1520,40 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/vtt-to-ass/',
+		expect: [
+			{
+				label: 'VTT to ASS tool title',
+				match: '<title>VTT to ASS Converter - Convert Captions Online Free</title>',
+			},
+			{
+				label: 'VTT to ASS tool meta description',
+				match: 'Convert WebVTT captions to ASS format for subtitle editing and style-ready workflows, locally in your browser with no upload.',
+			},
+			{
+				label: 'VTT to ASS tool links guide',
+				match: 'href="/guides/how-to-convert-vtt-to-ass/"',
+			},
+		],
+	},
+	{
+		path: '/tools/ass-to-vtt/',
+		expect: [
+			{
+				label: 'ASS to VTT tool title',
+				match: '<title>ASS to VTT Converter - Convert Subtitles Online Free</title>',
+			},
+			{
+				label: 'ASS to VTT tool meta description',
+				match: 'Convert ASS subtitles to WebVTT for browser playback and HTML5 video delivery while keeping subtitle timing and readable text.',
+			},
+			{
+				label: 'ASS to VTT tool links guide',
+				match: 'href="/guides/how-to-convert-ass-to-vtt-for-web-players/"',
+			},
+		],
+	},
+	{
 		path: '/tools/ass-to-srt/',
 		expect: [
 			{
@@ -1478,6 +1563,176 @@ const checks = [
 			{
 				label: 'ASS to SRT tool links to YouTube SRT vs ASS guide',
 				match: 'href="/guides/srt-vs-ass-for-youtube-captions/"',
+			},
+		],
+	},
+	{
+		path: '/tools/html5-video-subtitle-converter/',
+		expect: [
+			{
+				label: 'HTML5 converter tool title',
+				match: '<title>HTML5 Video Subtitle Converter - Convert Captions to VTT</title>',
+			},
+			{
+				label: 'HTML5 converter tool meta description',
+				match: 'Convert SRT or ASS subtitles to WebVTT for HTML5 video tracks. Create browser-ready VTT captions online for free.',
+			},
+			{
+				label: 'HTML5 converter tool links guide',
+				match: 'href="/guides/how-to-convert-subtitles-for-html5-video/"',
+			},
+		],
+	},
+	{
+		path: '/tools/videojs-subtitle-converter/',
+		expect: [
+			{
+				label: 'Video.js converter tool title',
+				match: '<title>Video.js Subtitle Converter - Convert Captions to VTT</title>',
+			},
+			{
+				label: 'Video.js converter tool meta description',
+				match: 'Convert SRT or ASS subtitles to WebVTT captions for Video.js players. Free browser-based subtitle conversion.',
+			},
+			{
+				label: 'Video.js converter tool links guide',
+				match: 'href="/guides/how-to-convert-subtitles-for-videojs/"',
+			},
+		],
+	},
+	{
+		path: '/tools/jw-player-subtitle-converter/',
+		expect: [
+			{
+				label: 'JW Player converter tool title',
+				match: '<title>JW Player Subtitle Converter - Convert Captions to VTT</title>',
+			},
+			{
+				label: 'JW Player converter tool meta description',
+				match: 'Convert SRT or ASS subtitles to WebVTT captions for JW Player and browser video delivery, locally in your browser.',
+			},
+			{
+				label: 'JW Player converter tool links guide',
+				match: 'href="/guides/how-to-convert-subtitles-for-jw-player/"',
+			},
+		],
+	},
+	{
+		path: '/tools/plex-subtitle-converter/',
+		expect: [
+			{
+				label: 'Plex converter tool title',
+				match: '<title>Plex Subtitle Converter - Convert Captions to SRT</title>',
+			},
+			{
+				label: 'Plex converter tool meta description',
+				match: 'Convert VTT or ASS subtitles to SRT for Plex libraries and broad playback compatibility. Free browser-based converter.',
+			},
+			{
+				label: 'Plex converter tool links naming guide',
+				match: 'href="/guides/how-to-name-subtitle-files-for-plex/"',
+			},
+		],
+	},
+	{
+		path: '/tools/vimeo-subtitle-converter/',
+		expect: [
+			{
+				label: 'Vimeo converter tool title',
+				match: '<title>Vimeo Subtitle Converter - Convert Captions to VTT</title>',
+			},
+			{
+				label: 'Vimeo converter tool meta description',
+				match: 'Convert SRT or ASS subtitles to WebVTT for Vimeo embeds and web playback. Free browser-local subtitle converter.',
+			},
+			{
+				label: 'Vimeo converter tool links guide',
+				match: 'href="/guides/how-to-convert-subtitles-for-vimeo/"',
+			},
+		],
+	},
+	{
+		path: '/tools/subtitle-time-shifter/',
+		expect: [
+			{
+				label: 'time shifter tool title',
+				match: '<title>Subtitle Time Shifter - Fix Subtitle Delay Online</title>',
+			},
+			{
+				label: 'time shifter tool meta description',
+				match: 'Shift subtitle timing online for SRT, VTT, and ASS files. Fix subtitles that are too early or too late without signup or upload.',
+			},
+			{
+				label: 'time shifter tool links sync guide',
+				match: 'href="/guides/fix-out-of-sync-subtitles/"',
+			},
+		],
+	},
+	{
+		path: '/tools/fix-out-of-sync-subtitles/',
+		expect: [
+			{
+				label: 'fix sync tool title',
+				match: '<title>Fix Out-of-Sync Subtitles Online</title>',
+			},
+			{
+				label: 'fix sync tool meta description',
+				match: 'Fix out-of-sync subtitles online by shifting SRT, VTT, or ASS cues earlier or later to match the video.',
+			},
+			{
+				label: 'fix sync tool links export guide',
+				match: 'href="/guides/why-subtitles-are-out-of-sync-after-export/"',
+			},
+		],
+	},
+	{
+		path: '/tools/subtitle-transcript-generator/',
+		expect: [
+			{
+				label: 'transcript generator tool title',
+				match: '<title>Subtitle Transcript Generator - Convert Subtitles to Text</title>',
+			},
+			{
+				label: 'transcript generator tool meta description',
+				match: 'Generate a plain text transcript from SRT, VTT, or ASS subtitle files directly in your browser without uploading files.',
+			},
+			{
+				label: 'transcript generator tool links guide',
+				match: 'href="/guides/how-to-create-a-transcript-from-subtitles/"',
+			},
+		],
+	},
+	{
+		path: '/tools/subtitle-merger/',
+		expect: [
+			{
+				label: 'subtitle merger tool title',
+				match: '<title>Subtitle Merger - Merge SRT, VTT, and ASS Online</title>',
+			},
+			{
+				label: 'subtitle merger tool meta description',
+				match: 'Merge two SRT, VTT, or ASS subtitle files into one sorted output file locally in your browser, with no account or server upload.',
+			},
+			{
+				label: 'subtitle merger tool links guide',
+				match: 'href="/guides/how-to-merge-two-srt-files/"',
+			},
+		],
+	},
+	{
+		path: '/tools/partial-subtitle-shifter/',
+		expect: [
+			{
+				label: 'partial shifter tool title',
+				match: '<title>Partial Subtitle Shifter - Shift One Section Online</title>',
+			},
+			{
+				label: 'partial shifter tool meta description',
+				match: 'Shift only a selected time range inside an SRT, VTT, or ASS subtitle file without moving the rest of the captions, locally in your browser.',
+			},
+			{
+				label: 'partial shifter tool links guide',
+				match: 'href="/guides/how-to-shift-only-part-of-a-subtitle-file/"',
 			},
 		],
 	},
