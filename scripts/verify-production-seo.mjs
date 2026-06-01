@@ -1717,6 +1717,31 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/subtitle-cleaner/',
+		expect: [
+			{
+				label: 'Subtitle cleaner tool CTR title',
+				match: '<title>Subtitle Cleaner Online - Remove Tags, Fix Spacing</title>',
+			},
+			{
+				label: 'Subtitle cleaner no-upload meta description',
+				match: 'Clean subtitle files online for free. Remove HTML tags, fix spacing, and prepare SRT, VTT, or ASS captions locally with no signup or upload.',
+			},
+			{
+				label: 'Subtitle cleaner workflow covers remove tags and spacing',
+				match: 'removing leftover HTML tags, fixing spacing, and exporting cleaned SRT, VTT, or ASS text locally with no upload',
+			},
+			{
+				label: 'Subtitle cleaner FAQ covers free no upload cleanup',
+				match: 'Is this subtitle cleaner free?',
+			},
+			{
+				label: 'Subtitle cleaner links clean SRT follow-up',
+				match: 'href="/tools/clean-srt-file/"',
+			},
+		],
+	},
+	{
 		path: '/privacy-policy/',
 		expect: [
 			{

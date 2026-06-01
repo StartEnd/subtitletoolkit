@@ -64,7 +64,7 @@ const toolMetaDescriptions: Record<string, string> = {
 	'fix-out-of-sync-subtitles':
 		'Fix out-of-sync subtitles online by shifting SRT, VTT, or ASS cues earlier or later to match the video.',
 	'subtitle-cleaner':
-		'Clean subtitle files online for free. Remove stray tags, normalize spacing, and prepare SRT, VTT, or ASS files locally with no upload.',
+		'Clean subtitle files online for free. Remove HTML tags, fix spacing, and prepare SRT, VTT, or ASS captions locally with no signup or upload.',
 	'clean-srt-file':
 		'Clean an SRT file online for free. Normalize cue numbers, timestamps, spacing, and subtitle text locally with no signup or upload.',
 	'remove-srt-line-numbers':
@@ -104,7 +104,7 @@ const toolPageTitles: Record<string, string> = {
 	'plex-subtitle-converter': 'Plex Subtitle Converter - Convert Captions to SRT',
 	'vimeo-subtitle-converter': 'Vimeo Subtitle Converter - Convert Captions to VTT',
 	'subtitle-time-shifter': 'Subtitle Time Shifter - Fix Subtitle Delay Online',
-	'subtitle-cleaner': 'Subtitle Cleaner Online - Free, No Upload',
+	'subtitle-cleaner': 'Subtitle Cleaner Online - Remove Tags, Fix Spacing',
 	'subtitle-delay-fixer': 'Subtitle Delay Fixer - Ahead or Behind Audio Tool',
 	'fix-out-of-sync-subtitles': 'Fix Out-of-Sync Subtitles Online',
 	'subtitle-encoding-fixer': 'Subtitle Encoding Fixer - Fix Garbled Subtitles Online',
@@ -157,7 +157,7 @@ const workflowNotes: Record<string, string> = {
 	'fix-out-of-sync-subtitles':
 		'Use this for a constant sync offset across the whole subtitle file. If only one section is out of sync, use the partial shifter instead so the rest of the file stays unchanged.',
 	'subtitle-cleaner':
-		'Cleaning is useful before upload, review, or conversion. The tool keeps cue timing intact while removing stray inline tags and normalizing subtitle text that often breaks player imports.',
+		'Use this when a subtitle file needs a cleaner handoff before upload, review, or conversion. The tool keeps cue timing intact while removing leftover HTML tags, fixing spacing, and exporting cleaned SRT, VTT, or ASS text locally with no upload.',
 	'clean-srt-file':
 		'Use this when an SRT file is readable but messy. The cleaner parses cue blocks, normalizes numbering and timestamps, removes stray inline tags, and exports a cleaner SRT file.',
 	'remove-srt-line-numbers':
@@ -274,7 +274,7 @@ const mistakeNotes: Record<string, string[]> = {
 	'subtitle-cleaner': [
 		'Cleaning text before saving a backup of the original file.',
 		'Assuming cleanup can repair badly timed subtitles.',
-		'Leaving malformed timestamps for the video platform to reject later.',
+		'Leaving malformed SRT or VTT timestamps for the video platform to reject later.',
 	],
 	'clean-srt-file': [
 		'Using cleanup when the source timing lines are too broken to parse.',

@@ -1064,12 +1064,12 @@ const enTools: SubtitleTool[] = [
   },
   {
     id: 'subtitle-cleaner',
-    title: 'Subtitle Cleaner',
+    title: 'Subtitle Cleaner Online',
     shortTitle: 'Cleaner',
     description:
-      'Clean subtitle text by removing leftover HTML tags, normalizing spacing, and keeping the same file format.',
+      'Clean subtitle files online by removing HTML tags, fixing spacing, and keeping SRT, VTT, or ASS timing intact.',
     summary:
-      'Use this when subtitle text is messy, leftover tags slipped in, spacing is inconsistent, or you want a cleaner handoff before the next editing step.',
+      'Use this free subtitle cleaner when SRT, VTT, or ASS text has leftover HTML tags, messy spacing, or formatting that should be cleaned before upload.',
     buttonLabel: 'Clean subtitles',
     inputLabel: 'Subtitle input',
     outputLabel: 'Cleaned subtitle output',
@@ -1077,12 +1077,17 @@ const enTools: SubtitleTool[] = [
     acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.txt'],
     sampleFileName: 'sample.srt',
     useCases: [
-      'Normalize spacing before sending subtitle files to someone else.',
-      'Strip leftover inline HTML tags from imported subtitle text.',
-      'Clean imported subtitle text before doing more edits.',
-      'Standardize line formatting without changing the target format.',
+      'Remove leftover HTML tags from subtitle text before upload.',
+      'Fix messy subtitle spacing without changing cue timing.',
+      'Clean imported SRT, VTT, or ASS text before conversion.',
+      'Prepare a cleaner subtitle file for review, handoff, or platform testing.',
     ],
     faqs: [
+      {
+        question: 'Is this subtitle cleaner free?',
+        answer:
+          'Yes. You can clean subtitle files for free in your browser without signup or upload.',
+      },
       {
         question: 'Does this change timing?',
         answer:
@@ -1098,8 +1103,13 @@ const enTools: SubtitleTool[] = [
         answer:
           'Yes. The cleaner outputs the same detected subtitle format whenever possible.',
       },
+      {
+        question: 'Are my subtitle files uploaded to a server?',
+        answer:
+          'No. Subtitle cleanup runs locally in your browser, so your SRT, VTT, or ASS file stays on your device.',
+      },
     ],
-    relatedTools: ['subtitle-time-shifter', 'ass-to-srt'],
+    relatedTools: ['clean-srt-file', 'srt-validator'],
     relatedGuides: [
       {
         href: '/guides/how-to-remove-html-tags-from-subtitles/',
