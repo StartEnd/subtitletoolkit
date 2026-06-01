@@ -569,6 +569,10 @@ const checks = [
 				match: 'High-intent subtitle problems to fix first.',
 			},
 			{
+				label: 'guides index includes platform caption fixes section',
+				match: 'Platform caption fixes',
+			},
+			{
 				label: 'guides index links to YouTube upload failure guide',
 				match: '/guides/why-youtube-subtitles-upload-failed/',
 			},
@@ -579,6 +583,22 @@ const checks = [
 			{
 				label: 'guides index links to SRT upload failure guide',
 				match: '/guides/why-srt-file-wont-upload/',
+			},
+			{
+				label: 'guides index links to Video.js caption failure guide',
+				match: '/guides/why-videojs-captions-are-not-showing/',
+			},
+			{
+				label: 'guides index links to JW Player caption failure guide',
+				match: '/guides/why-jw-player-captions-are-not-showing/',
+			},
+			{
+				label: 'guides index links to Plex subtitle failure guide',
+				match: '/guides/why-plex-subtitles-are-not-showing/',
+			},
+			{
+				label: 'guides index links to Vimeo caption failure guide',
+				match: '/guides/why-vimeo-captions-are-not-showing/',
 			},
 		],
 	},
