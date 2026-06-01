@@ -1831,11 +1831,23 @@ const checks = [
 		expect: [
 			{
 				label: 'CTR-oriented SRT validator tool title',
-				match: '<title>SRT Validator Online - Free Subtitle Checker</title>',
+				match: '<title>SRT Validator Online - Check Upload Errors Free</title>',
 			},
 			{
 				label: 'SRT validator no-upload meta description',
-				match: 'Validate SRT subtitles online for free. Check timestamp format, cue order, numbering, and upload errors locally with no signup or upload.',
+				match: 'Validate SRT subtitles online for free. Check upload errors, timestamp format, cue order, and numbering locally with no signup or upload.',
+			},
+			{
+				label: 'SRT validator workflow covers upload rejection report',
+				match: 'The validator creates a local report for timestamp format, cue order, numbering, and parse errors',
+			},
+			{
+				label: 'SRT validator FAQ covers upload failure diagnosis',
+				match: 'Can this help when an SRT file will not upload?',
+			},
+			{
+				label: 'SRT validator links timestamp repair follow-up',
+				match: 'href="/tools/fix-srt-timestamps/"',
 			},
 		],
 	},

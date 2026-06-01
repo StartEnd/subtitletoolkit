@@ -1440,12 +1440,12 @@ const enTools: SubtitleTool[] = [
   },
   {
     id: 'srt-validator',
-    title: 'SRT Validator',
+    title: 'SRT Validator Online',
     shortTitle: 'SRT validator',
     description:
-      'Validate SRT subtitles online and check for missing cues, timestamp issues, and format problems.',
+      'Validate SRT subtitles online and check upload errors, timestamp format, cue order, and numbering.',
     summary:
-      'Use this free SRT validator to check whether a SubRip file has parseable cues, comma-based timestamps, and valid cue order.',
+      'Use this free SRT validator before upload to find timestamp errors, out-of-order cues, numbering problems, and parse issues without sending the file to a server.',
     buttonLabel: 'Validate SRT',
     inputLabel: 'SRT input',
     outputLabel: 'Validation report',
@@ -1453,16 +1453,26 @@ const enTools: SubtitleTool[] = [
     acceptedExtensions: ['.srt', '.txt'],
     sampleFileName: 'sample.srt',
     useCases: [
-      'Check SRT files before uploading them.',
-      'Find timestamp separator problems.',
-      'Confirm how many cues can be parsed.',
-      'Diagnose SRT files that a platform rejects.',
+      'Check SRT files before YouTube or platform upload.',
+      'Find comma, arrow, and timestamp separator problems.',
+      'Confirm how many subtitle cues can be parsed.',
+      'Diagnose SRT files that an editor or upload form rejects.',
     ],
     faqs: [
+      {
+        question: 'Is this SRT validator free?',
+        answer:
+          'Yes. You can validate SRT subtitles for free in your browser without signup or upload.',
+      },
       {
         question: 'Does the validator change my subtitle file?',
         answer:
           'No. It outputs a text report. Use the SRT timestamp fixer or cleaner if you want a repaired file.',
+      },
+      {
+        question: 'Can this help when an SRT file will not upload?',
+        answer:
+          'Yes. The report checks common upload blockers such as malformed timestamps, cue order problems, and numbering issues so you know what to fix next.',
       },
       {
         question: 'Can it detect dot-based timestamps?',

@@ -72,7 +72,7 @@ const toolMetaDescriptions: Record<string, string> = {
 	'fix-srt-timestamps':
 		'Fix SRT timestamp formatting online by exporting clean comma-based SubRip timing, cue numbers, and subtitle text.',
 	'srt-validator':
-		'Validate SRT subtitles online for free. Check timestamp format, cue order, numbering, and upload errors locally with no signup or upload.',
+		'Validate SRT subtitles online for free. Check upload errors, timestamp format, cue order, and numbering locally with no signup or upload.',
 	'webvtt-validator':
 		'Validate WebVTT captions online for free. Check the WEBVTT header, timestamp syntax, cue order, and browser caption issues locally.',
 	'subtitle-transcript-generator':
@@ -114,7 +114,7 @@ const toolPageTitles: Record<string, string> = {
 	'clean-srt-file': 'Clean SRT File Online - Free, No Upload',
 	'remove-srt-line-numbers': 'Remove SRT Line Numbers Online',
 	'fix-srt-timestamps': 'Fix SRT Timestamps Online',
-	'srt-validator': 'SRT Validator Online - Free Subtitle Checker',
+	'srt-validator': 'SRT Validator Online - Check Upload Errors Free',
 	'webvtt-validator': 'WebVTT Validator Online - Free VTT Checker',
 	'subtitle-transcript-generator': 'Subtitle Transcript Generator - Convert Subtitles to Text',
 };
@@ -165,7 +165,7 @@ const workflowNotes: Record<string, string> = {
 	'fix-srt-timestamps':
 		'Use this when SRT timing lines are parseable but inconsistently formatted. The output rebuilds cue numbers and comma-based timestamps in standard SubRip style.',
 	'srt-validator':
-		'Use this before upload when you want a quick report instead of a modified file. The validator checks whether SRT cues can be parsed and highlights common timing issues.',
+		'Use this before upload when YouTube, an editor, or a video platform rejects an SRT file. The validator creates a local report for timestamp format, cue order, numbering, and parse errors, then points you toward cleanup or timestamp repair when the file needs changes.',
 	'webvtt-validator':
 		'Use this before publishing captions with HTML5 video. The validator checks for a WEBVTT header, parseable cues, dot-based timestamps, and obvious timing problems.',
 	'subtitle-transcript-generator':
@@ -294,7 +294,7 @@ const mistakeNotes: Record<string, string[]> = {
 	'srt-validator': [
 		'Expecting a validator report to modify the subtitle file.',
 		'Ignoring dot-based timestamps in an SRT upload workflow.',
-		'Assuming one successful parse means the file was tested in the destination platform.',
+		'Skipping cleanup or timestamp repair when the report flags upload-blocking errors.',
 	],
 	'webvtt-validator': [
 		'Publishing a VTT file without the WEBVTT header.',
