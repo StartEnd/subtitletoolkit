@@ -1,0 +1,141 @@
+---
+title: How to extract subtitles from MOV
+seoTitle: Extract Subtitles from MOV - Free No Upload Guide
+description: Extract embedded text captions from MOV files locally, check whether the video has a real subtitle track, and save captions without uploading the file.
+seoDescription: Extract subtitles from MOV files locally. Learn when MOV text tracks can be saved, why extraction finds no captions, and when OCR is required.
+pubDate: 2026-06-02
+updatedDate: 2026-06-02
+category: workflow-guides
+tags:
+  - extract subtitles from mov
+  - mov subtitles
+  - embedded subtitles
+  - video captions
+primaryTool: extract-subtitles-from-video
+faqs:
+  - question: Can I extract subtitles from a MOV file?
+    answer: Yes, if the MOV contains an embedded text subtitle or caption track. If the words are burned into the video image, use OCR instead.
+  - question: Why does my MOV have no subtitles to extract?
+    answer: Many MOV exports contain only audio and video, or the captions may have been rendered into the picture. In those cases there is no separate text track to save.
+  - question: Are MOV files uploaded during extraction?
+    answer: No. The extractor runs FFmpeg in your browser, so the MOV file stays on your device.
+  - question: Can extracted MOV captions be used as SRT?
+    answer: Text-based MOV captions can often be exported, then validated, cleaned, or converted before upload or playback.
+---
+
+MOV subtitle extraction works only when the file contains a separate text caption track. If captions were burned into the video during export, the visible words are pixels and cannot be saved as subtitle text by an extractor.
+
+## Quick answer
+
+Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/), choose the MOV file, and let the browser check for an embedded subtitle stream. If the MOV contains text captions, you can save them as a separate subtitle file without uploading the video.
+
+This is useful for Apple, QuickTime, and video-editing exports where captions may have been kept as a selectable text track instead of being flattened into the picture.
+
+## What MOV subtitle extraction can find
+
+MOV containers can include subtitle or text streams such as:
+
+```text
+Stream #0:2: Subtitle: mov_text
+Stream #0:3: Subtitle: webvtt
+```
+
+Those streams can usually be exported as editable captions. After extraction, check the output before sending it to YouTube, a client, or a web player.
+
+Extraction will not recover captions in these cases:
+
+- the captions were burned into the MOV picture during export
+- the player is loading a separate `.srt`, `.vtt`, or `.ass` file
+- the MOV has no subtitle stream
+- the subtitle stream is image-based or unsupported by the browser extractor
+
+## Step-by-step workflow
+
+1. Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/).
+2. Choose the `.mov` file from your device.
+3. Wait for the browser FFmpeg runtime to load.
+4. Check whether the tool finds an embedded subtitle stream.
+5. Preview the extracted captions before downloading.
+6. Validate or clean the downloaded file before using it elsewhere.
+
+The MOV stays local during this process. The extractor runs in the browser, so the video does not need to be sent to a server just to check for captions.
+
+## Why a MOV may show captions but extraction finds none
+
+A MOV can appear to have subtitles even when there is no separate text stream inside the file.
+
+Check these situations:
+
+- The captions were rendered into the video during export from Final Cut, Premiere, or another editor.
+- The player is loading a sidecar subtitle file from the same folder.
+- The streaming page uses a remote caption track that is not inside the downloaded MOV.
+- The exported MOV is a different version from the captioned timeline.
+
+If you can turn captions on and off after opening only the MOV in a desktop player, there is a better chance that a real embedded text track exists.
+
+## After extracting MOV captions
+
+Do not treat the first exported file as final. Check the extracted captions for:
+
+- wrong language track
+- missing lines near edit points
+- broken accents or replacement characters
+- WebVTT output when the destination expects SRT
+- timing offset caused by a different export or timeline cut
+
+Useful next tools:
+
+| Need | Tool |
+| --- | --- |
+| Check SRT structure | [SRT Validator](/tools/srt-validator/) |
+| Convert SRT to browser WebVTT | [SRT to VTT Converter](/tools/srt-to-vtt/) |
+| Repair broken characters | [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) |
+| Remove messy tags or spacing | [Subtitle Cleaner](/tools/subtitle-cleaner/) |
+| Fix constant timing offset | [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/) |
+
+## Common mistakes
+
+### Expecting burned-in MOV captions to become text
+
+If the words are part of the video image, subtitle extraction cannot recover the text. Use OCR and manually review the result.
+
+### Uploading a private MOV before checking locally
+
+Use a browser-local extractor first. If there is no embedded subtitle track, uploading the same MOV to another extractor will usually fail for the same reason.
+
+### Confusing timeline captions with exported subtitle tracks
+
+An editing timeline can contain captions, but the exported MOV may flatten them into the picture or omit them entirely. Check the exported file, not only the project timeline.
+
+## Frequently asked questions
+
+### Can I extract subtitles from a MOV file?
+
+Yes, if the MOV contains an embedded text subtitle or caption track. If the words are burned into the video image, use OCR instead.
+
+### Why does my MOV have no subtitles to extract?
+
+Many MOV exports contain only audio and video, or the captions may have been rendered into the picture. In those cases there is no separate text track to save.
+
+### Are MOV files uploaded during extraction?
+
+No. The extractor runs FFmpeg in your browser, so the MOV file stays on your device.
+
+### Can extracted MOV captions be used as SRT?
+
+Text-based MOV captions can often be exported, then validated, cleaned, or converted before upload or playback.
+
+## Related guides
+
+- [How to extract subtitles from a video](/guides/how-to-extract-subtitles-from-video/)
+- [How to extract subtitles from MP4](/guides/how-to-extract-subtitles-from-mp4/)
+- [How to extract subtitles from MKV](/guides/how-to-extract-subtitles-from-mkv/)
+- [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)
+- [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video/)
+
+## Related tools
+
+- [Extract Subtitles from Video](/tools/extract-subtitles-from-video/)
+- [SRT Validator](/tools/srt-validator/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)

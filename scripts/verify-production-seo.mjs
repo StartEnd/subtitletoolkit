@@ -1617,6 +1617,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/how-to-extract-subtitles-from-mov/',
+		expect: [
+			{
+				label: 'MOV extraction guide CTR title',
+				match: '<title>Extract Subtitles from MOV - Free No Upload Guide</title>',
+			},
+			{
+				label: 'MOV extraction guide no-upload meta description',
+				match: 'Extract subtitles from MOV files locally. Learn when MOV text tracks can be saved, why extraction finds no captions, and when OCR is required.',
+			},
+			{
+				label: 'MOV extraction guide opens extractor tool',
+				match: 'href="/tools/extract-subtitles-from-video/"',
+			},
+			{
+				label: 'FAQ schema for MOV extraction questions',
+				match: 'Can I extract subtitles from a MOV file?',
+			},
+		],
+	},
+	{
 		path: '/guides/embedded-vs-burned-in-subtitles/',
 			expect: [
 			{
@@ -2518,6 +2539,10 @@ const checks = [
 				match: '/guides/how-to-extract-subtitles-from-mkv/',
 			},
 			{
+				label: 'guides index links to MOV extraction guide',
+				match: '/guides/how-to-extract-subtitles-from-mov/',
+			},
+			{
 				label: 'guides index links to embedded vs burned-in guide',
 				match: '/guides/embedded-vs-burned-in-subtitles/',
 			},
@@ -2720,6 +2745,10 @@ const checks = [
 			{
 				label: 'llms lists MKV extraction guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mkv/',
+			},
+			{
+				label: 'llms lists MOV extraction guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mov/',
 			},
 			{
 				label: 'llms lists embedded vs burned-in guide',

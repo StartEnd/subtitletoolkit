@@ -106,6 +106,12 @@ MP4 files often cause confusion because the file can play captions in one app bu
 
 When you do get a text track out of an MP4, validate it before using it in a player or uploading it elsewhere. For MP4-specific checks, use [How to extract subtitles from MP4](/guides/how-to-extract-subtitles-from-mp4/). It covers `mov_text` captions, sidecar subtitle files, and the common case where an MP4 plays captions in one app but has no embedded subtitle stream.
 
+## If the video is a MOV
+
+MOV files often come from Apple, QuickTime, or editing workflows. They can contain text tracks, but exports may also flatten captions into the picture.
+
+For MOV-specific checks, use [How to extract subtitles from MOV](/guides/how-to-extract-subtitles-from-mov/). It covers embedded text tracks, sidecar captions, and the common case where a captioned editing timeline becomes a MOV with burned-in text.
+
 ## If the video is an MKV
 
 MKV is usually more subtitle-friendly than MP4. It can hold SRT, ASS, SSA, PGS, and multiple language tracks.
@@ -186,6 +192,7 @@ Check the language, validate the timing, fix encoding if characters look wrong, 
 
 - [How to extract subtitles from MKV](/guides/how-to-extract-subtitles-from-mkv/)
 - [How to extract subtitles from MP4](/guides/how-to-extract-subtitles-from-mp4/)
+- [How to extract subtitles from MOV](/guides/how-to-extract-subtitles-from-mov/)
 - [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)
 - [How to convert subtitles to UTF-8](/guides/how-to-convert-subtitles-to-utf-8/)
 - [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video/)
