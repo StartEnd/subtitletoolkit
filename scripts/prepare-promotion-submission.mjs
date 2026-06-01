@@ -1,8 +1,15 @@
+import { existsSync, readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
 const args = process.argv.slice(2);
 
 function getArg(name) {
 	const index = args.indexOf(name);
 	return index >= 0 ? args[index + 1] : null;
+}
+
+function hasFlag(name) {
+	return args.includes(name);
 }
 
 function usage() {
@@ -12,6 +19,7 @@ function usage() {
 Optional:
   --submitted-on YYYY-MM-DD
   --section directory|reddit|hn|tracking|all
+  --check-assets
 
 Prints copy-ready promotion assets and tracking rows for the current search-growth push.`);
 }
@@ -23,6 +31,7 @@ if (args.includes('--help')) {
 
 const submittedOn = getArg('--submitted-on') || new Date().toISOString().slice(0, 10);
 const section = getArg('--section') || 'all';
+const shouldCheckAssets = hasFlag('--check-assets');
 
 if (!/^\d{4}-\d{2}-\d{2}$/.test(submittedOn)) {
 	console.error('--submitted-on must use YYYY-MM-DD format.');
@@ -56,6 +65,12 @@ Built with Astro and hosted on Cloudflare Pages. Static, fast, and no backend su
 
 const tags = 'subtitle, srt, vtt, webvtt, ass, caption, converter, video, free, privacy, browser-based, no-signup, html5';
 const categories = 'Video & Movies, Online Services, Developer Tools, File Conversion';
+const assetPaths = {
+	logoPng: 'public/logo-512.png',
+	faviconSvg: 'public/favicon.svg',
+	faviconIco: 'public/favicon.ico',
+	ogImage: 'public/og-preview.png',
+};
 const directoryTargets = [
 	{ name: 'AlternativeTo', channel: 'directory', url: 'https://alternativeto.net/', notes: 'Submitted directory listing for Subtitle Toolkit' },
 	{ name: 'tinytools.directory', channel: 'directory', url: 'https://tinytools.directory/', notes: 'Submitted directory listing for Subtitle Toolkit' },
@@ -65,6 +80,43 @@ const directoryTargets = [
 
 function printHeader(title) {
 	console.log(`\n## ${title}\n`);
+}
+
+function fail(message) {
+	console.error(message);
+	process.exit(1);
+}
+
+async function checkSubmissionAssets() {
+	const requiredFiles = [assetPaths.logoPng, assetPaths.faviconSvg, assetPaths.faviconIco, assetPaths.ogImage];
+	for (const filePath of requiredFiles) {
+		if (!existsSync(resolve(filePath))) {
+			fail(`Missing promotion asset: ${filePath}`);
+		}
+	}
+
+	const logo = readPngDimensions(assetPaths.logoPng);
+	if (logo.width !== 512 || logo.height !== 512) {
+		fail(`${assetPaths.logoPng} must be a 512x512 PNG.`);
+	}
+
+	const ogImage = readPngDimensions(assetPaths.ogImage);
+	if (ogImage.width !== 1200 || ogImage.height !== 630) {
+		fail(`${assetPaths.ogImage} must be a 1200x630 PNG.`);
+	}
+}
+
+function readPngDimensions(filePath) {
+	const buffer = readFileSync(resolve(filePath));
+	const pngSignature = '89504e470d0a1a0a';
+	if (buffer.length < 24 || buffer.subarray(0, 8).toString('hex') !== pngSignature) {
+		fail(`${filePath} must be a PNG file.`);
+	}
+
+	return {
+		width: buffer.readUInt32BE(16),
+		height: buffer.readUInt32BE(20),
+	};
 }
 
 function printDirectoryKit() {
@@ -80,11 +132,12 @@ function printDirectoryKit() {
 	console.log('Platform: Online / Web-based');
 
 	printHeader('Submission Assets');
-	console.log('Logo PNG: public/logo-512.png');
-	console.log('Fallback icon: public/favicon.svg or public/favicon.ico');
-	console.log('Open graph image: public/og-preview.png');
+	console.log(`Logo PNG: ${assetPaths.logoPng}`);
+	console.log(`Fallback icon: ${assetPaths.faviconSvg} or ${assetPaths.faviconIco}`);
+	console.log(`Open graph image: ${assetPaths.ogImage}`);
 	console.log('Screenshot target: https://subtitletoolkit.tools/');
 	console.log('Recommended screenshot crop: homepage hero plus the first row of tool cards.');
+	console.log('Asset check: pnpm promotion:kit -- --section directory --check-assets');
 
 	printHeader('Priority Directory Targets');
 	directoryTargets.forEach((target, index) => {
@@ -141,6 +194,10 @@ function printTrackingRows() {
 	console.log('\n| Date | Subreddit | Post URL | Comment URL | Template | Karma | Status | Traffic signal |');
 	console.log('| --- | --- | --- | --- | --- | ---: | --- | --- |');
 	console.log(`| ${submittedOn} | | | | | | | |`);
+}
+
+if (shouldCheckAssets) {
+	await checkSubmissionAssets();
 }
 
 console.log('# Promotion Submission Kit');

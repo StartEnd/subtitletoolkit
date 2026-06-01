@@ -1,3 +1,4 @@
+import { renameSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
 
@@ -34,6 +35,7 @@ assertIncludes(directory.stdout, 'Logo PNG: public/logo-512.png');
 assertIncludes(directory.stdout, 'Fallback icon: public/favicon.svg or public/favicon.ico');
 assertIncludes(directory.stdout, 'Open graph image: public/og-preview.png');
 assertIncludes(directory.stdout, 'Recommended screenshot crop: homepage hero plus the first row of tool cards.');
+assertIncludes(directory.stdout, 'Asset check: pnpm promotion:kit -- --section directory --check-assets');
 assertIncludes(directory.stdout, 'AlternativeTo - https://alternativeto.net/');
 assertIncludes(directory.stdout, 'GitHub awesome subtitle list - https://github.com/search?q=awesome+subtitle&type=repositories');
 assertIncludes(directory.stdout, '## Directory Evidence Commands');
@@ -41,6 +43,21 @@ assertIncludes(directory.stdout, 'pnpm promotion:record -- --date 2026-06-01 --c
 assertIncludes(directory.stdout, 'pnpm promotion:record -- --date 2026-06-01 --channel directory --source "tinytools.directory" --url https://tinytools.directory/ --status submitted --notes "Submitted directory listing for Subtitle Toolkit"');
 assertIncludes(directory.stdout, 'pnpm promotion:record -- --date 2026-06-01 --channel directory --source "SaaSHub" --url https://www.saashub.com/ --status submitted --notes "Submitted directory listing for Subtitle Toolkit"');
 assertIncludes(directory.stdout, 'pnpm promotion:record -- --date 2026-06-01 --channel awesome --source "GitHub awesome subtitle list" --url https://github.com/search?q=awesome+subtitle&type=repositories --status submitted --notes "Submitted or opened an awesome-list PR for Subtitle Toolkit"');
+
+const checkedAssets = run(['--submitted-on', '2026-06-01', '--section', 'directory', '--check-assets']);
+assertExit(checkedAssets, 0);
+assertIncludes(checkedAssets.stdout, 'Logo PNG: public/logo-512.png');
+
+const logoPath = join(rootDir, 'public/logo-512.png');
+const movedLogoPath = join(rootDir, 'public/logo-512.png.test-missing');
+try {
+	renameSync(logoPath, movedLogoPath);
+	const missingAssets = run(['--section', 'directory', '--check-assets']);
+	assertExit(missingAssets, 1);
+	assertIncludes(missingAssets.stderr, 'Missing promotion asset: public/logo-512.png');
+} finally {
+	renameSync(movedLogoPath, logoPath);
+}
 
 const tracking = run(['--submitted-on', '2026-06-01', '--section', 'tracking']);
 assertExit(tracking, 0);
