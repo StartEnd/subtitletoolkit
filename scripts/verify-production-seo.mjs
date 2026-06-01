@@ -1254,15 +1254,27 @@ const checks = [
 		expect: [
 			{
 				label: 'clean SRT guide CTR title',
-				match: '<title>Clean SRT File Online - Fix Cue Numbers and Spacing</title>',
+				match: '<title>Clean SRT File Online - Free No Upload Repair</title>',
 			},
 			{
 				label: 'clean SRT guide no-upload meta description',
-				match: 'Clean an SRT file online by fixing cue numbers, timestamp spacing, blank lines, and leftover tags locally in your browser with no upload.',
+				match: 'Clean an SRT file online for free. Rebuild cue numbers, spacing, timestamp formatting, and inline tags locally with no upload or signup.',
 			},
 			{
 				label: 'clean SRT guide opens cleaner tool',
 				match: 'href="/tools/clean-srt-file/"',
+			},
+			{
+				label: 'FAQ schema for clean SRT questions',
+				match: 'Can I clean an SRT file online for free?',
+			},
+			{
+				label: 'clean SRT guide links SRT validator follow-up',
+				match: 'href="/tools/srt-validator/"',
+			},
+			{
+				label: 'clean SRT guide links timestamp repair follow-up',
+				match: 'href="/tools/fix-srt-timestamps/"',
 			},
 		],
 	},
