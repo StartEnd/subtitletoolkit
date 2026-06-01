@@ -10,7 +10,7 @@ Record manual Search Console actions here so the next review is based on evidenc
 
 After the production gate passes, run `pnpm gsc:day0:list` to print the primary sitemap and URL Inspection queue plus a paste-ready submission record row. Use `pnpm gsc:day0:list -- --batch current` only after Google starts showing crawl or impression movement for the primary queue.
 
-Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-01 for commit `a532929`. The primary queue below has 21 URL Inspection requests; keep it unchecked until the manual Search Console requests are actually submitted.
+Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-01 against the live `c28fe59` deployment (`sitemap-0.xml` lastmod `2026-06-01T14:32:30.000Z`) using verifier commit `d4a1d38`. The primary queue below has 21 URL Inspection requests; keep it unchecked until the manual Search Console requests are actually submitted.
 
 ## Submission Record
 
