@@ -66,6 +66,8 @@ try {
 	assertIncludes(pending.stdout, 'If submitted today, next review date: 2026-06-08');
 	assertIncludes(pending.stdout, 'Latest GSC evidence: promotion log not created yet');
 	assertIncludes(pending.stdout, 'Run `pnpm verify:gsc:submit-ready`.');
+	assertIncludes(pending.stdout, 'Run the `gsc:day0:record` command printed by `pnpm gsc:day0:list`.');
+	assertIncludes(pending.stdout, 'Run the `promotion:record` command printed by `pnpm gsc:day0:list`.');
 
 	write('GSC_DAY0_URLS.md', `# GSC Day 0 Submission URLs
 

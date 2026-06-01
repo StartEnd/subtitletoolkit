@@ -136,7 +136,8 @@ console.log('\n## Next Action\n');
 if (!latestSubmission) {
 	console.log('1. Run `pnpm verify:gsc:submit-ready`.');
 	console.log('2. Run `pnpm gsc:day0:list` and submit the sitemap plus primary URL Inspection queue in Search Console.');
-	console.log('3. Run the `promotion:record` command printed by `pnpm gsc:day0:list`.');
+	console.log('3. Run the `gsc:day0:record` command printed by `pnpm gsc:day0:list`.');
+	console.log('4. Run the `promotion:record` command printed by `pnpm gsc:day0:list`.');
 } else if (!latestGscEvidence) {
 	console.log('Run the `promotion:record` command from `pnpm gsc:day0:list` so the submission can be attributed during weekly review.');
 } else {
