@@ -2,6 +2,7 @@ import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { todayInLocalTimeZone } from './lib/local-date.mjs';
 
 const rootDir = process.cwd();
 const scriptPath = join(rootDir, 'scripts/show-growth-status.mjs');
@@ -68,6 +69,11 @@ try {
 
 	const pending = run(['--today', '2026-06-01']);
 	assertExit(pending, 0);
+
+	const defaultToday = run([]);
+	assertExit(defaultToday, 0);
+	assertIncludes(defaultToday.stdout, `Today: ${todayInLocalTimeZone()}`);
+
 	assertIncludes(pending.stdout, 'Sitemap checklist: 0/1 checked');
 	assertIncludes(pending.stdout, 'Deploy status: unavailable outside a git checkout or without origin/main');
 	assertIncludes(pending.stdout, 'IndexNow key file: not found');

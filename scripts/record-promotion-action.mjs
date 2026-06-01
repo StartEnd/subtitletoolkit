@@ -1,5 +1,6 @@
 import { appendFileSync, existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
+import { todayInLocalTimeZone } from './lib/local-date.mjs';
 
 const args = process.argv.slice(2);
 
@@ -38,7 +39,7 @@ if (hasFlag('--help')) {
 
 const validChannels = ['gsc', 'indexnow', 'directory', 'reddit', 'hn', 'awesome', 'other'];
 const validStatuses = ['submitted', 'published', 'rejected', 'commented', 'reviewed', 'other'];
-const date = getArg('--date') || new Date().toISOString().slice(0, 10);
+const date = getArg('--date') || todayInLocalTimeZone();
 const channel = getArg('--channel');
 const source = getArg('--source');
 const status = getArg('--status') || 'submitted';

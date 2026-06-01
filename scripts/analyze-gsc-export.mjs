@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { basename, resolve } from 'node:path';
+import { todayInLocalTimeZone } from './lib/local-date.mjs';
 
 const args = process.argv.slice(2);
 
@@ -37,7 +38,7 @@ const toolOutputsArg = getArg('--tool-outputs');
 const toolOutputs = toolOutputsArg === null ? null : Number.parseInt(toolOutputsArg, 10);
 const promotionLogPath = getArg('--promotion-log');
 const promotionLogExists = promotionLogPath ? existsSync(resolve(promotionLogPath)) : false;
-const weekOf = getArg('--week-of') || new Date().toISOString().slice(0, 10);
+const weekOf = getArg('--week-of') || todayInLocalTimeZone();
 const siteUrl = (getArg('--site') || 'https://subtitletoolkit.tools').replace(/\/$/, '');
 
 if (!/^\d{4}-\d{2}-\d{2}$/.test(weekOf)) {

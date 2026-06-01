@@ -81,6 +81,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [Best subtitle format for Video.js](https://subtitletoolkit.tools/guides/best-subtitle-format-for-videojs/)
 - [Why JW Player captions are not showing](https://subtitletoolkit.tools/guides/why-jw-player-captions-are-not-showing/)
 - [Best subtitle format for JW Player](https://subtitletoolkit.tools/guides/best-subtitle-format-for-jw-player/)
+- [Why VLC subtitles are not showing](https://subtitletoolkit.tools/guides/why-vlc-subtitles-are-not-showing/)
 - [Why Plex subtitles are not showing](https://subtitletoolkit.tools/guides/why-plex-subtitles-are-not-showing/)
 - [Best subtitle format for Plex](https://subtitletoolkit.tools/guides/best-subtitle-format-for-plex/)
 - [Why Vimeo captions are not showing](https://subtitletoolkit.tools/guides/why-vimeo-captions-are-not-showing/)

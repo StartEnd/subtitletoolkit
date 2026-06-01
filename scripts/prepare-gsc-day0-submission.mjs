@@ -2,6 +2,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { resolve } from 'node:path';
 import { userInfo } from 'node:os';
+import { todayInLocalTimeZone } from './lib/local-date.mjs';
 
 const args = process.argv.slice(2);
 
@@ -30,7 +31,7 @@ if (args.includes('--help')) {
 }
 
 const day0Path = resolve(getArg('--file') || 'GSC_DAY0_URLS.md');
-const submittedOn = getArg('--submitted-on') || new Date().toISOString().slice(0, 10);
+const submittedOn = getArg('--submitted-on') || todayInLocalTimeZone();
 const submittedBy = getArg('--submitted-by') || userInfo().username || '';
 const batch = getArg('--batch') || 'primary';
 const nextReviewDays = Number.parseInt(getArg('--next-review-days') || '7', 10);

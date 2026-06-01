@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { resolve } from 'node:path';
+import { todayInLocalTimeZone } from './lib/local-date.mjs';
 
 const args = process.argv.slice(2);
 
@@ -30,7 +31,7 @@ if (args.includes('--help')) {
 const day0Path = resolve(getArg('--day0-file') || 'GSC_DAY0_URLS.md');
 const indexNowKeyPath = resolve(getArg('--indexnow-key-file') || 'public/indexnow-key.txt');
 const promotionLogPath = resolve(getArg('--promotion-log') || 'PROMOTION_LOG.md');
-const today = getArg('--today') || new Date().toISOString().slice(0, 10);
+const today = getArg('--today') || todayInLocalTimeZone();
 
 function fail(message) {
 	console.error(message);

@@ -10,7 +10,7 @@ Record manual Search Console actions here so the next review is based on evidenc
 
 After the production gate passes, run `pnpm gsc:day0:list` to print the primary sitemap and URL Inspection queue plus a paste-ready submission record row. Use `pnpm gsc:day0:list -- --batch current` only after Google starts showing crawl or impression movement for the primary queue.
 
-Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-01 against the live `ded6c98` deployment (`sitemap-0.xml` lastmod `2026-06-01T15:26:56.000Z`) using the same local verifier commit. The primary queue below has 21 URL Inspection requests; keep it unchecked until the manual Search Console requests are actually submitted.
+Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-02 against the live `4bb4279` deployment (`sitemap-0.xml` lastmod `2026-06-01T15:52:53.000Z`) using the same local verifier commit. The primary queue below has 21 URL Inspection requests; keep it unchecked until the manual Search Console requests are actually submitted.
 
 ## Submission Record
 
@@ -77,6 +77,7 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-vtt-mime-type-for-html5-video/`
 - [ ] `https://subtitletoolkit.tools/guides/why-videojs-captions-are-not-showing/`
 - [ ] `https://subtitletoolkit.tools/guides/why-jw-player-captions-are-not-showing/`
+- [ ] `https://subtitletoolkit.tools/guides/why-vlc-subtitles-are-not-showing/`
 - [ ] `https://subtitletoolkit.tools/guides/why-plex-subtitles-are-not-showing/`
 - [ ] `https://subtitletoolkit.tools/guides/why-vimeo-captions-are-not-showing/`
 - [ ] `https://subtitletoolkit.tools/guides/best-subtitle-format-for-videojs/`
@@ -146,6 +147,6 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] Record the date in `GSC_WEEKLY_TRACKER.md`.
 - [ ] Add the same date to the submission record above.
 - [ ] Set the next review date 5 to 7 days after submission.
-- [ ] If submitting the primary queue on 2026-06-01, use `2026-06-08` as the review date from `pnpm gsc:day0:list`.
+- [ ] If submitting the primary queue on 2026-06-02, use `2026-06-09` as the review date from `pnpm gsc:day0:list`.
 - [ ] Wait 5 to 7 days before submitting the current search-growth batch from this file.
 - [ ] At review time, export GSC Queries and Pages, then run `pnpm gsc:analyze`.

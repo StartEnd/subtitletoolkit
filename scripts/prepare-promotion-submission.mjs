@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { todayInLocalTimeZone } from './lib/local-date.mjs';
 
 const args = process.argv.slice(2);
 
@@ -29,7 +30,7 @@ if (args.includes('--help')) {
 	process.exit(0);
 }
 
-const submittedOn = getArg('--submitted-on') || new Date().toISOString().slice(0, 10);
+const submittedOn = getArg('--submitted-on') || todayInLocalTimeZone();
 const section = getArg('--section') || 'all';
 const shouldCheckAssets = hasFlag('--check-assets');
 

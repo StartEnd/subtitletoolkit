@@ -1,0 +1,140 @@
+---
+title: Why VLC subtitles are not showing
+seoTitle: VLC Subtitles Not Showing - Fix SRT, VTT, ASS Captions
+seoDescription: Fix VLC subtitles not showing by checking subtitle loading, file naming, encoding, format support, subtitle track settings, and timing.
+description: Fix VLC subtitles that do not show by checking file loading, subtitle format, encoding, track settings, file naming, and timing.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - vlc
+  - subtitles not showing
+  - srt
+  - subtitle delay
+  - encoding
+primaryTool: subtitle-delay-fixer
+faqs:
+  - question: Can VLC play SRT subtitles?
+    answer: Yes. VLC can play SRT subtitles when the file is loaded, named correctly, encoded as UTF-8, and selected from the subtitle track menu.
+  - question: Why do subtitles work in VLC but not on my TV or Plex?
+    answer: VLC supports more subtitle formats than many devices. If the destination is a TV, Plex, or web player, convert to a simpler SRT or VTT file before delivery.
+  - question: How do I fix subtitles that are delayed in VLC?
+    answer: Use VLC's subtitle delay controls for a quick preview, then shift the subtitle file permanently with a subtitle delay fixer if you need a corrected SRT, VTT, or ASS file.
+---
+
+VLC is forgiving, so when subtitles do not show, the cause is usually a loading, naming, encoding, or track-selection problem rather than a broken video.
+
+## Quick answer
+
+Open the video in VLC, load the subtitle file manually from the Subtitle menu, select the subtitle track, and check whether the text appears. If the text is garbled or delayed, fix the subtitle file before using it elsewhere.
+
+If the timing is consistently early or late, use the [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/) to create a corrected copy.
+
+## What to check first
+
+Check these before changing the video file:
+
+- the subtitle file is actually loaded in VLC
+- the subtitle track is selected and enabled
+- the filename matches the video when you expect auto-loading
+- the subtitle file is SRT, VTT, ASS, or another format VLC can read
+- the text is encoded as UTF-8 when accents or non-English characters appear
+- the subtitle timing overlaps the current video time
+
+## Step-by-step workflow
+
+### 1. Load the subtitle file manually
+
+Do not rely on auto-loading while debugging.
+
+1. Open the video in VLC.
+2. Go to **Subtitle** > **Add Subtitle File**.
+3. Choose the `.srt`, `.vtt`, `.ass`, or `.ssa` file.
+4. Go to **Subtitle** > **Sub Track** and select the loaded track.
+
+If subtitles appear after manual loading, the file is readable and the problem is usually filename matching or folder placement.
+
+### 2. Check subtitle filename matching
+
+VLC auto-loads subtitles more reliably when the subtitle file sits next to the video and shares the same base name.
+
+```text
+lecture-final.mp4
+lecture-final.srt
+lecture-final.en.srt
+```
+
+Avoid names like `captions_final_fixed_2.srt` when the video is named `lecture-final.mp4`. Manual loading may still work, but auto-loading becomes inconsistent.
+
+### 3. Confirm the subtitle format is useful beyond VLC
+
+VLC can display many subtitle formats, including ASS styling. Other players may not.
+
+Use a simpler target format when the file needs to leave VLC:
+
+- use SRT for broad playback and upload compatibility
+- use VTT for HTML5 video and browser players
+- keep ASS only when styled subtitles are required and the destination supports ASS
+
+If you need a simpler copy, use the [ASS to SRT Converter](/tools/ass-to-srt/) or [SRT to VTT Converter](/tools/srt-to-vtt/).
+
+### 4. Fix garbled characters
+
+If subtitles show boxes, question marks, or broken accents, the file probably uses the wrong encoding.
+
+Common symptoms:
+
+- accented letters look broken
+- CJK subtitles show unreadable characters
+- punctuation appears as strange symbols
+
+Convert the subtitle file to UTF-8 with the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/), then reload the corrected file in VLC.
+
+### 5. Check whether subtitles are outside the visible time range
+
+Sometimes subtitles are loaded correctly but timed for a different video cut.
+
+Look for these clues:
+
+- the subtitle track is selected but no captions appear
+- captions start much later than the first spoken line
+- captions appear only after skipping forward
+- every cue is early or late by the same amount
+
+Preview the offset in VLC, then permanently shift the file with the [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/).
+
+### 6. Test with a clean SRT copy
+
+When the source is ASS, SSA, or a heavily styled file, create a simple SRT test copy.
+
+This helps separate two problems:
+
+- VLC display settings or styling issues
+- actual subtitle timing and text problems
+
+If the clean SRT works, keep it as the fallback for devices, uploads, and client review.
+
+## Common mistakes
+
+### Assuming VLC support means every player supports the file
+
+VLC is more tolerant than many web players, TVs, and upload forms. A subtitle can work in VLC and still fail in YouTube, Plex, or HTML5 video.
+
+### Fixing timing only inside VLC
+
+VLC's delay controls are good for previewing an offset, but they do not rewrite the subtitle file. Shift the file itself when you need a corrected copy.
+
+### Ignoring encoding before upload
+
+If characters look wrong in VLC, they will usually look wrong elsewhere too. Fix UTF-8 before uploading or sending the file to someone else.
+
+## Related guides
+
+- [How to fix subtitle delay](/guides/how-to-fix-subtitle-delay/)
+- [How to convert subtitles to UTF-8](/guides/how-to-convert-subtitles-to-utf-8/)
+- [Why Plex subtitles are not showing](/guides/why-plex-subtitles-are-not-showing/)
+
+## Related tools
+
+- [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
+- [ASS to SRT Converter](/tools/ass-to-srt/)

@@ -82,6 +82,10 @@ const checks = [
 				match: '/guides/why-jw-player-captions-are-not-showing/',
 			},
 			{
+				label: 'homepage links to VLC subtitle failure guide',
+				match: '/guides/why-vlc-subtitles-are-not-showing/',
+			},
+			{
 				label: 'homepage links to Plex subtitle failure guide',
 				match: '/guides/why-plex-subtitles-are-not-showing/',
 			},
@@ -667,6 +671,27 @@ const checks = [
 			{
 				label: 'Plex subtitles failure guide opens converter tool',
 				match: 'href="/tools/plex-subtitle-converter/"',
+			},
+		],
+	},
+	{
+		path: '/guides/why-vlc-subtitles-are-not-showing/',
+		expect: [
+			{
+				label: 'VLC subtitles failure guide CTR title',
+				match: '<title>VLC Subtitles Not Showing - Fix SRT, VTT, ASS Captions</title>',
+			},
+			{
+				label: 'VLC subtitles failure guide meta description',
+				match: 'Fix VLC subtitles not showing by checking subtitle loading, file naming, encoding, format support, subtitle track settings, and timing.',
+			},
+			{
+				label: 'VLC subtitles failure guide opens delay fixer tool',
+				match: 'href="/tools/subtitle-delay-fixer/"',
+			},
+			{
+				label: 'FAQ schema for VLC subtitle questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Can VLC play SRT subtitles\?/
 			},
 		],
 	},
@@ -1870,6 +1895,10 @@ const checks = [
 				match: '/guides/why-jw-player-captions-are-not-showing/',
 			},
 			{
+				label: 'guides index links to VLC subtitle failure guide',
+				match: '/guides/why-vlc-subtitles-are-not-showing/',
+			},
+			{
 				label: 'guides index links to Plex subtitle failure guide',
 				match: '/guides/why-plex-subtitles-are-not-showing/',
 			},
@@ -2100,6 +2129,10 @@ const checks = [
 			{
 				label: 'llms lists JW Player subtitle format guide',
 				match: 'https://subtitletoolkit.tools/guides/best-subtitle-format-for-jw-player/',
+			},
+			{
+				label: 'llms lists VLC subtitle failure guide',
+				match: 'https://subtitletoolkit.tools/guides/why-vlc-subtitles-are-not-showing/',
 			},
 			{
 				label: 'llms lists Plex subtitle failure guide',

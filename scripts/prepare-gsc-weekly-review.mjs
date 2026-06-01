@@ -1,5 +1,6 @@
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { todayInLocalTimeZone } from './lib/local-date.mjs';
 
 const args = process.argv.slice(2);
 
@@ -44,7 +45,7 @@ function integerArg(name) {
 const queriesPath = getArg('--queries') || 'gsc-exports/queries.csv';
 const pagesPath = getArg('--pages') || 'gsc-exports/pages.csv';
 const promotionLogPath = getArg('--promotion-log') || 'PROMOTION_LOG.md';
-const weekOf = getArg('--week-of') || new Date().toISOString().slice(0, 10);
+const weekOf = getArg('--week-of') || todayInLocalTimeZone();
 const organicPageviews = integerArg('--organic-pageviews');
 const toolStarts = integerArg('--tool-starts');
 const toolOutputs = integerArg('--tool-outputs');
