@@ -150,6 +150,10 @@ const checks = [
 				match: '/guides/how-to-extract-subtitles-from-vob/',
 			},
 			{
+				label: 'homepage links to WMV subtitle extraction guide',
+				match: '/guides/how-to-extract-subtitles-from-wmv/',
+			},
+			{
 				label: 'homepage links to HTML5 conversion guide',
 				match: '/guides/how-to-convert-subtitles-for-html5-video/',
 			},
@@ -1570,7 +1574,7 @@ const checks = [
 			},
 			{
 				label: 'video extraction guide no-upload meta description',
-				match: 'Extract subtitles from MP4, MKV, MOV, WebM, AVI, VOB, and M4V videos online for free. Save embedded text tracks locally with no upload.',
+				match: 'Extract subtitles from MP4, MKV, MOV, WebM, AVI, VOB, WMV, and M4V videos online. Save text tracks locally with no upload.',
 			},
 			{
 				label: 'video extraction guide opens extractor tool',
@@ -1734,6 +1738,27 @@ const checks = [
 			{
 				label: 'FAQ schema for VOB extraction questions',
 				match: 'Why does VOB subtitle extraction find no text?',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-extract-subtitles-from-wmv/',
+		expect: [
+			{
+				label: 'WMV extraction guide CTR title',
+				match: '<title>Extract Subtitles from WMV Online - No Upload</title>',
+			},
+			{
+				label: 'WMV extraction guide no-upload meta description',
+				match: 'Extract subtitles from WMV files locally. Learn when Windows Media captions can be saved, why extraction finds none, and when OCR is required.',
+			},
+			{
+				label: 'WMV extraction guide opens extractor tool',
+				match: 'href="/tools/extract-subtitles-from-video/"',
+			},
+			{
+				label: 'FAQ schema for WMV extraction questions',
+				match: 'Why does my WMV have no subtitles to extract?',
 			},
 		],
 	},
@@ -2659,6 +2684,10 @@ const checks = [
 				match: '/guides/how-to-extract-subtitles-from-vob/',
 			},
 			{
+				label: 'guides index links to WMV extraction guide',
+				match: '/guides/how-to-extract-subtitles-from-wmv/',
+			},
+			{
 				label: 'guides index links to embedded vs burned-in guide',
 				match: '/guides/embedded-vs-burned-in-subtitles/',
 			},
@@ -2881,6 +2910,10 @@ const checks = [
 			{
 				label: 'llms lists VOB extraction guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-vob/',
+			},
+			{
+				label: 'llms lists WMV extraction guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-wmv/',
 			},
 			{
 				label: 'llms lists embedded vs burned-in guide',

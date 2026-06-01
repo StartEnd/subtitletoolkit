@@ -1,8 +1,8 @@
 ---
 title: How to extract subtitles from a video
 seoTitle: Extract Subtitles from Video Online - Free No Upload
-description: Extract embedded subtitle tracks from MP4, MKV, MOV, WebM, AVI, VOB, and M4V files locally, then save or clean the captions as a separate subtitle file.
-seoDescription: Extract subtitles from MP4, MKV, MOV, WebM, AVI, VOB, and M4V videos online for free. Save embedded text tracks locally with no upload.
+description: Extract embedded subtitle tracks from MP4, MKV, MOV, WebM, AVI, VOB, WMV, and M4V files locally, then save or clean the captions as a separate subtitle file.
+seoDescription: Extract subtitles from MP4, MKV, MOV, WebM, AVI, VOB, WMV, and M4V videos online. Save text tracks locally with no upload.
 pubDate: 2026-06-01
 updatedDate: 2026-06-02
 category: workflow-guides
@@ -15,7 +15,7 @@ tags:
 primaryTool: extract-subtitles-from-video
 faqs:
   - question: Can I extract subtitles from a video online for free?
-    answer: Yes, if the video contains an embedded text subtitle track. The browser-based extractor can check MP4, MKV, MOV, WebM, AVI, VOB, and M4V files without uploading the video.
+    answer: Yes, if the video contains an embedded text subtitle track. The browser-based extractor can check MP4, MKV, MOV, WebM, AVI, VOB, WMV, and M4V files without uploading the video.
   - question: Can I extract subtitles from an MP4 file?
     answer: Yes, if the MP4 contains an embedded text subtitle track. If the subtitles are burned into the video image, you need OCR instead of subtitle extraction.
   - question: Are video files uploaded to a server?
@@ -32,7 +32,7 @@ Video files can contain subtitles in three different ways: a real embedded text 
 
 Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/), choose the video file, and check whether it contains an embedded subtitle stream. If the stream is text-based, the tool can save the captions as a separate subtitle file online for free without uploading the video.
 
-Use this workflow for MP4, MKV, MOV, WebM, AVI, VOB, and M4V files when you need the captions as a separate file for editing, translation, cleanup, or web player delivery.
+Use this workflow for MP4, MKV, MOV, WebM, AVI, VOB, WMV, and M4V files when you need the captions as a separate file for editing, translation, cleanup, or web player delivery.
 
 This is the fastest first check when a video appears to have captions but you do not know whether they are embedded, loaded from a sidecar file, or burned into the picture.
 
@@ -68,6 +68,7 @@ Different video containers handle subtitles differently:
 | WebM | Often uses WebVTT-style captions when subtitles are present. |
 | AVI | Often uses sidecar subtitle files or burned-in captions; embedded text tracks are less predictable. |
 | VOB | DVD subtitles are often image-based VobSub streams, so OCR may be required. |
+| WMV | Older Windows Media files may rely on sidecar captions or player-specific caption data. |
 | M4V | Similar to MP4; extraction depends on whether a real subtitle track exists. |
 
 If you only have a separate `.srt`, `.vtt`, or `.ass` file next to the video, you do not need extraction. Open the subtitle file directly in the relevant converter or validator.
@@ -75,7 +76,7 @@ If you only have a separate `.srt`, `.vtt`, or `.ass` file next to the video, yo
 ## Step-by-step workflow
 
 1. Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/).
-2. Choose the MP4, MKV, MOV, WebM, AVI, VOB, or M4V file.
+2. Choose the MP4, MKV, MOV, WebM, AVI, VOB, WMV, or M4V file.
 3. Wait for the browser-based FFmpeg runtime to load.
 4. Let the tool look for an embedded subtitle stream.
 5. Preview the extracted text before downloading.
@@ -138,6 +139,12 @@ VOB files usually come from DVD rips. They may contain subtitle streams, but DVD
 
 For VOB-specific checks, use [How to extract subtitles from VOB](/guides/how-to-extract-subtitles-from-vob/). It covers `dvd_subtitle` streams, `.idx` and `.sub` VobSub sidecar files, and the common case where OCR is required before you can create SRT text.
 
+## If the video is a WMV
+
+WMV files often come from older Windows Media workflows. They may show captions because a player loaded a sidecar caption file or because the text was burned into the video.
+
+For WMV-specific checks, use [How to extract subtitles from WMV](/guides/how-to-extract-subtitles-from-wmv/). It covers Windows Media captions, `.smi` and `.sami` sidecar files, and the common case where a WMV has no embedded text stream to save.
+
 ## If the video is an MKV
 
 MKV is usually more subtitle-friendly than MP4. It can hold SRT, ASS, SSA, PGS, and multiple language tracks.
@@ -196,7 +203,7 @@ You do not need to upload the video just to check for embedded text subtitles. U
 
 ### Can I extract subtitles from a video online for free?
 
-Yes, if the video contains an embedded text subtitle track. The extractor runs in your browser, so it can check MP4, MKV, MOV, WebM, AVI, VOB, and M4V files without uploading the video.
+Yes, if the video contains an embedded text subtitle track. The extractor runs in your browser, so it can check MP4, MKV, MOV, WebM, AVI, VOB, WMV, and M4V files without uploading the video.
 
 ### Can I extract subtitles from an MP4 file?
 
@@ -223,6 +230,7 @@ Check the language, validate the timing, fix encoding if characters look wrong, 
 - [How to extract subtitles from WebM](/guides/how-to-extract-subtitles-from-webm/)
 - [How to extract subtitles from AVI](/guides/how-to-extract-subtitles-from-avi/)
 - [How to extract subtitles from VOB](/guides/how-to-extract-subtitles-from-vob/)
+- [How to extract subtitles from WMV](/guides/how-to-extract-subtitles-from-wmv/)
 - [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)
 - [How to convert subtitles to UTF-8](/guides/how-to-convert-subtitles-to-utf-8/)
 - [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video/)

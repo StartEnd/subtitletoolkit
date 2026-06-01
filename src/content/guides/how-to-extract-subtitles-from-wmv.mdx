@@ -1,0 +1,149 @@
+---
+title: How to extract subtitles from WMV
+seoTitle: Extract Subtitles from WMV Online - No Upload
+description: Check WMV and Windows Media files for embedded subtitle tracks locally, understand sidecar captions, and know when OCR is required instead.
+seoDescription: Extract subtitles from WMV files locally. Learn when Windows Media captions can be saved, why extraction finds none, and when OCR is required.
+pubDate: 2026-06-02
+updatedDate: 2026-06-02
+category: workflow-guides
+tags:
+  - extract subtitles from wmv
+  - wmv subtitles
+  - windows media captions
+  - embedded subtitles
+  - video captions
+primaryTool: extract-subtitles-from-video
+faqs:
+  - question: Can I extract subtitles from a WMV file?
+    answer: Sometimes. WMV files can contain caption or subtitle streams, but many old Windows Media videos rely on sidecar caption files or burned-in text.
+  - question: Why does my WMV have no subtitles to extract?
+    answer: The WMV may not contain an embedded text subtitle stream. Captions may be burned into the video, stored in a separate file, or loaded by a specific player.
+  - question: Are WMV files uploaded during extraction?
+    answer: No. The extractor runs FFmpeg in your browser, so the WMV file stays on your device.
+  - question: Can extracted WMV captions be used as SRT?
+    answer: If the WMV contains an extractable text caption stream, save it and validate the output before converting or uploading it as SRT.
+---
+
+WMV subtitle extraction is a useful first check for older Windows Media files. The `.wmv` container may contain caption data, but many WMV videos have no embedded text subtitle stream at all.
+
+If a player shows captions, it may be loading a separate subtitle file, using a Windows Media-specific caption workflow, or showing text that was burned into the video image.
+
+## Quick answer
+
+Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/), choose the WMV file, and let the browser check for an embedded subtitle stream. If the WMV contains text captions, you can save them as a separate subtitle file without uploading the video.
+
+Use this before uploading a private WMV to a conversion site. If the local extractor finds no subtitle stream, another generic extractor will usually fail for the same reason.
+
+## What WMV subtitle extraction can find
+
+WMV and ASF-based files can carry metadata and caption-related streams, but they are less predictable than MKV, MP4, MOV, or WebM workflows. When a real text stream exists, FFmpeg may show a subtitle or data stream that can be inspected and exported.
+
+Extraction will not recover captions in these cases:
+
+- the WMV uses a separate caption or subtitle file next to the video
+- the captions are burned into the WMV picture
+- the WMV has no subtitle stream
+- the subtitle data is stored in a format the browser extractor cannot save as text
+- the player is loading captions from a library, playlist, or streaming source instead of the file
+
+## Step-by-step workflow
+
+1. Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/).
+2. Choose the `.wmv` file from your device.
+3. Wait for the browser FFmpeg runtime to load.
+4. Check whether the tool finds an embedded subtitle stream.
+5. Preview the extracted captions before downloading.
+6. Validate or clean the downloaded subtitle file before using it elsewhere.
+
+The WMV stays local during this process. The extractor runs in the browser, so the video does not need to be uploaded just to check whether captions exist.
+
+## Why a WMV may show captions but extraction finds none
+
+Older Windows Media workflows often separate video playback from caption delivery. A desktop player can show captions without those captions being stored as editable text inside the `.wmv` file.
+
+Check these situations:
+
+- The folder contains a matching `.srt`, `.smi`, `.sami`, `.vtt`, or `.txt` caption file.
+- The captions were burned into the video during encoding.
+- The player downloaded, cached, or loaded captions from a separate source.
+- The file came from a streaming workflow where captions were not included in the downloaded WMV.
+- The WMV was moved away from its original sidecar caption file.
+
+If captions disappear when you move only the WMV into a new folder, the captions were probably sidecar subtitles rather than embedded tracks.
+
+## WMV, SMI, and SAMI captions
+
+Some old Windows Media caption workflows use SAMI files, usually with `.smi` or `.sami` extensions. Those files are separate caption documents, not embedded WMV subtitle streams.
+
+If you already have a `.smi` or `.sami` file, open or convert that caption file directly instead of extracting from the WMV. If the captions are visible only in the video image, use OCR and review the result manually.
+
+## After extracting WMV captions
+
+Do not treat the first exported file as final. Check the extracted captions for:
+
+- wrong language track
+- missing lines from old edit points
+- broken accents or replacement characters
+- malformed SRT output before upload
+- timing offset caused by a different encode
+
+Useful next tools:
+
+| Need | Tool |
+| --- | --- |
+| Check SRT structure | [SRT Validator](/tools/srt-validator/) |
+| Convert SRT to browser WebVTT | [SRT to VTT Converter](/tools/srt-to-vtt/) |
+| Repair broken characters | [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) |
+| Remove messy tags or spacing | [Subtitle Cleaner](/tools/subtitle-cleaner/) |
+| Fix constant timing offset | [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/) |
+
+## Common mistakes
+
+### Missing the sidecar caption file
+
+If a player loads `movie.smi` or `movie.srt` next to `movie.wmv`, the subtitle text is already outside the video. Work with the caption file directly.
+
+### Expecting burned-in WMV captions to become text
+
+If the words are part of the video image, subtitle extraction cannot recover editable text. Use OCR and manually review the result.
+
+### Assuming Windows Media captions are portable
+
+Some old caption behavior depends on a specific player or folder structure. A WMV that showed captions in one app may not contain a normal embedded subtitle stream.
+
+## Frequently asked questions
+
+### Can I extract subtitles from a WMV file?
+
+Sometimes. WMV files can contain caption or subtitle streams, but many old Windows Media videos rely on sidecar caption files or burned-in text.
+
+### Why does my WMV have no subtitles to extract?
+
+The WMV may not contain an embedded text subtitle stream. Captions may be burned into the video, stored in a separate file, or loaded by a specific player.
+
+### Are WMV files uploaded during extraction?
+
+No. The extractor runs FFmpeg in your browser, so the WMV file stays on your device.
+
+### Can extracted WMV captions be used as SRT?
+
+If the WMV contains an extractable text caption stream, save it and validate the output before converting or uploading it as SRT.
+
+## Related guides
+
+- [How to extract subtitles from a video](/guides/how-to-extract-subtitles-from-video/)
+- [How to extract subtitles from MP4](/guides/how-to-extract-subtitles-from-mp4/)
+- [How to extract subtitles from MKV](/guides/how-to-extract-subtitles-from-mkv/)
+- [How to extract subtitles from AVI](/guides/how-to-extract-subtitles-from-avi/)
+- [How to extract subtitles from VOB](/guides/how-to-extract-subtitles-from-vob/)
+- [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)
+- [How to convert subtitles to UTF-8](/guides/how-to-convert-subtitles-to-utf-8/)
+- [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video/)
+
+## Related tools
+
+- [Extract Subtitles from Video](/tools/extract-subtitles-from-video/)
+- [SRT Validator](/tools/srt-validator/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
+- [Subtitle Cleaner](/tools/subtitle-cleaner/)
