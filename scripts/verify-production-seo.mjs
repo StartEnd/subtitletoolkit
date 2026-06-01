@@ -686,6 +686,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/how-to-convert-subtitle-files-for-web-players/',
+		expect: [
+			{
+				label: 'web players conversion guide CTR title',
+				match: '<title>Convert Subtitles for Web Players - SRT or ASS to VTT</title>',
+			},
+			{
+				label: 'web players conversion guide meta description',
+				match: 'Convert subtitle files for web players by choosing WebVTT, fixing timestamps, validating captions, and preparing HTML5-ready files.',
+			},
+			{
+				label: 'web players conversion guide opens ASS to VTT tool',
+				match: 'href="/tools/ass-to-vtt/"',
+			},
+			{
+				label: 'web players conversion guide links validator tool',
+				match: 'href="/tools/webvtt-validator/"',
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-add-multiple-subtitle-languages-to-html5-video/',
 		expect: [
 			{
@@ -766,6 +787,23 @@ const checks = [
 			},
 			{
 				label: 'Plex conversion guide opens converter tool',
+				match: 'href="/tools/plex-subtitle-converter/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-name-subtitle-files-for-plex/',
+		expect: [
+			{
+				label: 'Plex subtitle filename guide CTR title',
+				match: '<title>Name Subtitle Files for Plex - SRT Language Codes</title>',
+			},
+			{
+				label: 'Plex subtitle filename guide meta description',
+				match: 'Name Plex subtitle files by matching the video filename, adding language codes, choosing SRT when needed, and refreshing the library.',
+			},
+			{
+				label: 'Plex subtitle filename guide opens converter tool',
 				match: 'href="/tools/plex-subtitle-converter/"',
 			},
 		],
@@ -941,6 +979,40 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/how-to-convert-srt-to-ass/',
+		expect: [
+			{
+				label: 'SRT to ASS guide CTR title',
+				match: '<title>Convert SRT to ASS - Create Style-Ready Subtitles</title>',
+			},
+			{
+				label: 'SRT to ASS guide meta description',
+				match: 'Convert SRT subtitles to ASS for editing or styling. Preserve timing, add a basic ASS structure, and keep a simple delivery copy.',
+			},
+			{
+				label: 'SRT to ASS guide opens converter tool',
+				match: 'href="/tools/srt-to-ass/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-vtt-to-ass/',
+		expect: [
+			{
+				label: 'VTT to ASS guide CTR title',
+				match: '<title>Convert VTT to ASS - WebVTT to Styled Subtitle File</title>',
+			},
+			{
+				label: 'VTT to ASS guide meta description',
+				match: 'Convert WebVTT captions to ASS for subtitle editing. Preserve timing, move cue text into dialogue lines, and prepare a style-ready file.',
+			},
+			{
+				label: 'VTT to ASS guide opens converter tool',
+				match: 'href="/tools/vtt-to-ass/"',
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-convert-srt-to-txt/',
 		expect: [
 			{
@@ -1005,6 +1077,27 @@ const checks = [
 			{
 				label: 'merge SRT guide opens merger tool',
 				match: 'href="/tools/subtitle-merger/"',
+			},
+		],
+	},
+	{
+		path: '/guides/why-subtitles-are-out-of-sync-after-export/',
+		expect: [
+			{
+				label: 'export sync guide CTR title',
+				match: '<title>Subtitles Out of Sync After Export - Fix Timing Drift</title>',
+			},
+			{
+				label: 'export sync guide meta description',
+				match: 'Fix subtitles that go out of sync after export by checking offsets, scene cuts, drift, timeline changes, and subtitle conversion issues.',
+			},
+			{
+				label: 'export sync guide opens sync tool',
+				match: 'href="/tools/fix-out-of-sync-subtitles/"',
+			},
+			{
+				label: 'export sync guide links partial shifter tool',
+				match: 'href="/tools/partial-subtitle-shifter/"',
 			},
 		],
 	},
@@ -1175,6 +1268,23 @@ const checks = [
 			},
 			{
 				label: 'common errors guide opens subtitle cleaner tool',
+				match: 'href="/tools/subtitle-cleaner/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-remove-html-tags-from-subtitles/',
+		expect: [
+			{
+				label: 'HTML tag cleanup guide CTR title',
+				match: '<title>Remove HTML Tags from Subtitles - Clean SRT, VTT, ASS</title>',
+			},
+			{
+				label: 'HTML tag cleanup guide meta description',
+				match: 'Remove HTML tags from subtitles while keeping timing intact. Clean SRT, VTT, or ASS caption text locally before upload.',
+			},
+			{
+				label: 'HTML tag cleanup guide opens cleaner tool',
 				match: 'href="/tools/subtitle-cleaner/"',
 			},
 		],

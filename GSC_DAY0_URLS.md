@@ -82,11 +82,13 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/tools/subtitle-encoding-fixer/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mkv/`
 - [ ] `https://subtitletoolkit.tools/guides/embedded-vs-burned-in-subtitles/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-name-subtitle-files-for-plex/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-subtitles-to-utf-8/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-garbled-subtitles/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-subtitles-showing-boxes/`
 - [ ] `https://subtitletoolkit.tools/guides/subtitle-encoding-windows-1252-vs-utf-8/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-subtitles-for-html5-video/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-convert-subtitle-files-for-web-players/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-add-multiple-subtitle-languages-to-html5-video/`
 - [ ] `https://subtitletoolkit.tools/guides/best-subtitle-format-for-html5-video/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-subtitles-for-videojs/`
@@ -98,6 +100,8 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/ass-vs-vtt/`
 - [ ] `https://subtitletoolkit.tools/guides/when-webvtt-is-better-than-srt/`
 - [ ] `https://subtitletoolkit.tools/guides/when-to-use-ass-instead-of-srt/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-convert-srt-to-ass/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-ass/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-srt-to-txt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-txt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-txt/`
@@ -112,8 +116,10 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-overlapping-subtitles/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-subtitle-line-breaks/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/`
+- [ ] `https://subtitletoolkit.tools/guides/why-subtitles-are-out-of-sync-after-export/`
 - [ ] `https://subtitletoolkit.tools/guides/common-subtitle-format-errors-and-fixes/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-out-of-order-subtitle-cues/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-remove-html-tags-from-subtitles/`
 
 ## After Submission
 
