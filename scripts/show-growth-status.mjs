@@ -14,6 +14,7 @@ function usage() {
 
 Optional:
   --day0-file GSC_DAY0_URLS.md
+  --indexnow-key-file public/indexnow-key.txt
   --promotion-log PROMOTION_LOG.md
   --today YYYY-MM-DD
 
@@ -26,6 +27,7 @@ if (args.includes('--help')) {
 }
 
 const day0Path = resolve(getArg('--day0-file') || 'GSC_DAY0_URLS.md');
+const indexNowKeyPath = resolve(getArg('--indexnow-key-file') || 'public/indexnow-key.txt');
 const promotionLogPath = resolve(getArg('--promotion-log') || 'PROMOTION_LOG.md');
 const today = getArg('--today') || new Date().toISOString().slice(0, 10);
 
@@ -103,6 +105,8 @@ if (existsSync(promotionLogPath)) {
 }
 const gscEvidenceRows = promotionRows.filter((cells) => cells[1] === 'gsc' && cells[3] === 'submitted');
 const latestGscEvidence = gscEvidenceRows.at(-1) || null;
+const indexNowEvidenceRows = promotionRows.filter((cells) => cells[1] === 'indexnow' && cells[3] === 'submitted');
+const latestIndexNowEvidence = indexNowEvidenceRows.at(-1) || null;
 const priorityPromotionSources = ['AlternativeTo', 'tinytools.directory', 'SaaSHub', 'GitHub awesome subtitle list'];
 const submittedPromotionRows = promotionRows.filter((cells) => ['directory', 'awesome'].includes(cells[1]) && cells[3] === 'submitted');
 const submittedPromotionSources = new Set(submittedPromotionRows.map((cells) => cells[2]));
@@ -112,6 +116,7 @@ const missingPromotionSources = priorityPromotionSources.filter((source) => !sub
 console.log('# Search Growth Status\n');
 console.log(`Today: ${today}`);
 console.log(`Day 0 file: ${day0Path}`);
+console.log(`IndexNow key file: ${existsSync(indexNowKeyPath) ? indexNowKeyPath : 'not found'}`);
 console.log(`Promotion log: ${existsSync(promotionLogPath) ? promotionLogPath : 'not found'}\n`);
 
 console.log('## GSC Day 0\n');
@@ -131,6 +136,24 @@ if (latestSubmission) {
 } else {
 	console.log('Submission record: pending');
 	console.log(`If submitted today, next review date: ${addDays(today, 7)}`);
+}
+
+console.log('\n## IndexNow\n');
+console.log(`Public key file: ${existsSync(indexNowKeyPath) ? 'ready' : 'missing'}`);
+if (latestIndexNowEvidence) {
+	console.log(`Latest IndexNow evidence: ${latestIndexNowEvidence[0]} - ${latestIndexNowEvidence[5] || 'no notes'}`);
+} else if (existsSync(promotionLogPath)) {
+	console.log('Latest IndexNow evidence: missing from promotion log');
+} else {
+	console.log('Latest IndexNow evidence: promotion log not created yet');
+}
+
+if (!existsSync(indexNowKeyPath)) {
+	console.log('Next IndexNow action: deploy a public key file before live submission.');
+} else if (!latestIndexNowEvidence) {
+	console.log('Next IndexNow action: after deployment, run `pnpm indexnow:submit`, then `pnpm indexnow:submit -- --live` if the key URL is live.');
+} else {
+	console.log('Next IndexNow action: wait for crawler movement before submitting another batch.');
 }
 
 console.log('\n## Promotion Evidence\n');
@@ -161,6 +184,8 @@ if (!latestSubmission) {
 	}
 } else if (!latestGscEvidence) {
 	console.log('Run the `promotion:record` command from `pnpm gsc:day0:list` so the submission can be attributed during weekly review.');
+} else if (!latestIndexNowEvidence && existsSync(indexNowKeyPath)) {
+	console.log('After deployment, run `pnpm indexnow:submit -- --live`, then record it with `pnpm promotion:record -- --channel indexnow --source IndexNow --status submitted`.');
 } else if (completedPromotionSources.length < priorityPromotionSources.length) {
 	console.log('Run `pnpm promotion:kit -- --section directory --check-assets`, submit the priority directory/awesome targets, then record each external action.');
 } else if (currentStats.total > 0 && currentStats.checked === 0 && primaryStats.checked === primaryStats.total) {

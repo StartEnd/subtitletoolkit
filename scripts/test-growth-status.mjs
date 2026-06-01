@@ -61,12 +61,16 @@ try {
 	const pending = run(['--today', '2026-06-01']);
 	assertExit(pending, 0);
 	assertIncludes(pending.stdout, 'Sitemap checklist: 0/1 checked');
+	assertIncludes(pending.stdout, 'IndexNow key file: not found');
 	assertIncludes(pending.stdout, 'Latest production gate: not recorded');
 	assertIncludes(pending.stdout, 'Primary URL Inspection queue: 0/2 checked');
 	assertIncludes(pending.stdout, 'Current URL Inspection queue: 0/1 checked');
 	assertIncludes(pending.stdout, 'Submission record: pending');
 	assertIncludes(pending.stdout, 'If submitted today, next review date: 2026-06-08');
 	assertIncludes(pending.stdout, 'Latest GSC evidence: promotion log not created yet');
+	assertIncludes(pending.stdout, 'Public key file: missing');
+	assertIncludes(pending.stdout, 'Latest IndexNow evidence: promotion log not created yet');
+	assertIncludes(pending.stdout, 'Next IndexNow action: deploy a public key file before live submission.');
 	assertIncludes(pending.stdout, 'Priority external submissions: 0/4 recorded');
 	assertIncludes(pending.stdout, 'Missing external submissions: AlternativeTo, tinytools.directory, SaaSHub, GitHub awesome subtitle list');
 	assertIncludes(pending.stdout, 'Run `pnpm verify:gsc:submit-ready`.');
@@ -133,13 +137,17 @@ Latest production gate: \`pnpm verify:gsc:submit-ready\` passed on 2026-06-01 ag
 
 ## After Submission
 `);
+	write('public/indexnow-key.txt', '1c7b9f240dbf4d4ca4d7c569f1b27c3a\n');
 
 	const submittedNoEvidence = run(['--today', '2026-06-02']);
 	assertExit(submittedNoEvidence, 0);
 	assertIncludes(submittedNoEvidence.stdout, 'Submission record: submitted on 2026-06-01 by song (2 URL Inspection requests)');
+	assertIncludes(submittedNoEvidence.stdout, 'IndexNow key file:');
 	assertIncludes(submittedNoEvidence.stdout, 'Current URL Inspection queue: 0/1 checked');
 	assertIncludes(submittedNoEvidence.stdout, 'Review timing: 6 day(s) remaining');
 	assertIncludes(submittedNoEvidence.stdout, 'Latest GSC evidence: promotion log not created yet');
+	assertIncludes(submittedNoEvidence.stdout, 'Public key file: ready');
+	assertIncludes(submittedNoEvidence.stdout, 'Next IndexNow action: after deployment, run `pnpm indexnow:submit`, then `pnpm indexnow:submit -- --live` if the key URL is live.');
 	assertIncludes(submittedNoEvidence.stdout, 'Priority external submissions: 0/4 recorded');
 	assertIncludes(submittedNoEvidence.stdout, 'Run the `promotion:record` command from `pnpm gsc:day0:list`');
 
@@ -155,15 +163,17 @@ Latest production gate: \`pnpm verify:gsc:submit-ready\` passed on 2026-06-01 ag
 	assertExit(withEvidence, 0);
 	assertIncludes(withEvidence.stdout, 'Review timing: due now');
 	assertIncludes(withEvidence.stdout, 'Latest GSC evidence: 2026-06-01 - Submitted primary Day 0 sitemap plus 2 URL Inspection requests; next review 2026-06-08');
+	assertIncludes(withEvidence.stdout, 'Latest IndexNow evidence: missing from promotion log');
 	assertIncludes(withEvidence.stdout, 'Priority external submissions: 1/4 recorded');
 	assertIncludes(withEvidence.stdout, 'Missing external submissions: tinytools.directory, SaaSHub, GitHub awesome subtitle list');
-	assertIncludes(withEvidence.stdout, 'Run `pnpm promotion:kit -- --section directory --check-assets`, submit the priority directory/awesome targets, then record each external action.');
+	assertIncludes(withEvidence.stdout, 'After deployment, run `pnpm indexnow:submit -- --live`, then record it with `pnpm promotion:record -- --channel indexnow --source IndexNow --status submitted`.');
 
 	write('PROMOTION_LOG.md', `# Promotion Evidence Log
 
 | Date | Channel | Source | Status | URL | Notes |
 | --- | --- | --- | --- | --- | --- |
 | 2026-06-01 | gsc | Search Console | submitted | | Submitted primary Day 0 sitemap plus 2 URL Inspection requests; next review 2026-06-08 |
+| 2026-06-01 | indexnow | IndexNow | submitted | | Submitted primary queue with 2 URLs |
 | 2026-06-01 | directory | AlternativeTo | submitted | https://alternativeto.net/ | Submitted directory listing for Subtitle Toolkit |
 | 2026-06-01 | directory | tinytools.directory | submitted | https://tinytools.directory/ | Submitted directory listing for Subtitle Toolkit |
 | 2026-06-01 | directory | SaaSHub | submitted | https://www.saashub.com/ | Submitted directory listing for Subtitle Toolkit |
@@ -172,6 +182,7 @@ Latest production gate: \`pnpm verify:gsc:submit-ready\` passed on 2026-06-01 ag
 
 	const withAllPromotion = run(['--today', '2026-06-09']);
 	assertExit(withAllPromotion, 0);
+	assertIncludes(withAllPromotion.stdout, 'Latest IndexNow evidence: 2026-06-01 - Submitted primary queue with 2 URLs');
 	assertIncludes(withAllPromotion.stdout, 'Priority external submissions: 4/4 recorded');
 	assertIncludes(withAllPromotion.stdout, 'After primary crawl or impression movement appears, run `pnpm gsc:day0:list -- --batch current` and submit the current search-growth queue.');
 
