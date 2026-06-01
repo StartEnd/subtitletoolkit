@@ -1,0 +1,161 @@
+---
+title: Why Android captions are not showing
+seoTitle: Android Captions Not Showing - Fix VTT on Chrome Mobile
+seoDescription: Fix Android captions not showing by checking WebVTT syntax, MIME type, CORS headers, HTTPS, track defaults, and Chrome mobile controls.
+description: Diagnose captions that work on desktop but fail on Android phones by checking WebVTT files, delivery headers, mobile browser controls, and HTML5 track setup.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - android
+  - chrome mobile
+  - html5 video
+  - vtt
+  - captions not showing
+  - subtitles not showing
+  - troubleshooting
+primaryTool: webvtt-validator
+faqs:
+  - question: Why are captions not showing on Android?
+    answer: Android browser captions usually fail when the VTT file is invalid, the track URL is blocked, the server sends the wrong MIME type, CORS blocks the request, or the viewer has not enabled the caption track in the mobile controls.
+  - question: Does Android Chrome support SRT subtitles in HTML5 video?
+    answer: No. Android Chrome native video tracks expect WebVTT, not SRT. Convert SRT to VTT before using the file in a track element.
+  - question: What should I check first when captions work on desktop but not Android?
+    answer: Validate the VTT file, open the deployed track URL on the phone, then check HTTPS, Content-Type, CORS, and the track element's src, srclang, label, kind, and default attributes.
+---
+
+Android caption issues often show up after a page works on desktop Chrome. The desktop test passes, but the same HTML5 video has no captions on an Android phone. In most cases, the phone is exposing a basic delivery problem: an invalid WebVTT file, an unreachable track URL, missing HTTPS, wrong response headers, or a caption track that is not selected in the mobile controls.
+
+## Quick answer
+
+Start with the [WebVTT Validator](/tools/webvtt-validator/). Android Chrome expects a real WebVTT file with a `WEBVTT` header, dot-based timestamps, valid cue timing, and blank lines between cues.
+
+Then open the deployed `.vtt` URL directly on the Android phone. If the phone sees a 404 page, login page, HTML response, expired signed URL, or generic download instead of caption text, the video player will not show captions reliably.
+
+If your source captions are SRT, convert them with the [SRT to VTT Converter](/tools/srt-to-vtt/) before attaching them to an HTML5 video track.
+
+## Validate the WebVTT file
+
+Android Chrome does not read SRT syntax from a native HTML5 `<track>` element. A browser-ready VTT file should start like this:
+
+```text
+WEBVTT
+
+00:00:01.000 --> 00:00:03.500
+First caption line.
+
+00:00:04.000 --> 00:00:06.200
+Second caption line.
+```
+
+Check for:
+
+- `WEBVTT` on the first line
+- dot-based timestamps instead of SRT commas
+- blank lines between cues
+- cue start times before cue end times
+- UTF-8 text that renders correctly on mobile
+
+If the file came from SRT, convert it instead of renaming it. For the full workflow, see [how to convert SRT to VTT for HTML5 video](/guides/how-to-convert-srt-to-vtt-for-html5-video/).
+
+## Check the track URL on the phone
+
+Open the `.vtt` URL directly in Android Chrome, not only on your laptop. The mobile request should return the caption text with:
+
+```http
+HTTP/2 200
+Content-Type: text/vtt
+```
+
+Common mobile-only failures include:
+
+- the VTT URL depends on cookies from the desktop browser
+- a signed caption URL expires before mobile playback
+- the CDN blocks the phone's request or redirects to HTML
+- the page is HTTPS but the caption URL is HTTP
+- the file is served as `text/plain` or `application/octet-stream`
+- CORS blocks captions hosted on another domain
+
+For delivery fixes, use [how to fix VTT MIME type for HTML5 video](/guides/how-to-fix-vtt-mime-type-for-html5-video/) and [how to fix CORS errors for VTT subtitles](/guides/how-to-fix-cors-errors-for-vtt-subtitles/).
+
+## Check the HTML track setup
+
+Use a normal HTML5 video track with explicit metadata:
+
+```html
+<video controls crossorigin="anonymous">
+  <source src="/videos/demo.mp4" type="video/mp4" />
+  <track
+    kind="captions"
+    src="/captions/demo.en.vtt"
+    srclang="en"
+    label="English"
+    default
+  />
+</video>
+```
+
+The `default` attribute helps Android Chrome select the expected track when the video loads. Without it, the viewer may need to enable captions from the mobile video controls.
+
+If captions are cross-origin, keep `crossorigin="anonymous"` on the video element and send a matching `Access-Control-Allow-Origin` header from the caption host.
+
+## Check Android playback controls
+
+Mobile browsers can hide caption controls behind a small menu or native player overlay. Test with the same Android device your viewers use and check:
+
+- whether the captions menu appears in the video controls
+- whether the expected language label is visible
+- whether fullscreen mode changes the available controls
+- whether captions become visible after manually selecting the track
+- whether custom CSS is covering or recoloring caption text
+
+If the VTT request succeeds and the track appears in the menu, the issue is usually track selection or styling rather than file delivery.
+
+## Common Android caption mistakes
+
+### Renaming SRT to VTT
+
+Android Chrome expects WebVTT structure, not just a `.vtt` extension.
+
+**Fix:** Convert with the [SRT to VTT Converter](/tools/srt-to-vtt/) and validate the output.
+
+### Testing only on desktop Chrome
+
+Desktop Chrome can hide mobile-only problems with cookies, signed URLs, redirects, or fullscreen controls.
+
+**Fix:** Open the production page and the direct VTT URL on an Android phone before shipping.
+
+### Serving captions over HTTP
+
+If the video page is HTTPS and the caption file is HTTP, mobile browsers may block the track.
+
+**Fix:** Serve the video page, video file, and VTT file over HTTPS.
+
+### Track loads but captions are off
+
+The file can load correctly while no caption track is selected.
+
+**Fix:** Add `default` for the primary track or manually enable captions from the Android video controls.
+
+## Troubleshooting checklist
+
+1. Validate the VTT file with the [WebVTT Validator](/tools/webvtt-validator/).
+2. Convert SRT or ASS captions to WebVTT if needed.
+3. Open the `.vtt` URL directly on the Android phone.
+4. Confirm the request returns `200` and `Content-Type: text/vtt`.
+5. Use HTTPS for the page, video file, and caption file.
+6. Add CORS headers if captions are cross-origin.
+7. Use explicit `kind`, `src`, `srclang`, `label`, and `default` attributes.
+8. Test mobile fullscreen and manually select the caption track.
+
+## Related guides
+
+- [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/)
+- [Why VTT captions are not loading](/guides/why-vtt-captions-are-not-loading/)
+- [Why Chrome captions are not showing](/guides/why-chrome-captions-are-not-showing/)
+- [Why Safari captions are not showing](/guides/why-safari-captions-are-not-showing/)
+
+## Related tools
+
+- [WebVTT Validator](/tools/webvtt-validator/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [HTML5 Video Subtitle Converter](/tools/html5-video-subtitle-converter/)

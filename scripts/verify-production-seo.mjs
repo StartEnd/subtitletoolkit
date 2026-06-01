@@ -82,6 +82,10 @@ const checks = [
 				match: '/guides/why-plyr-captions-are-not-showing/',
 			},
 			{
+				label: 'homepage links to Android caption failure guide',
+				match: '/guides/why-android-captions-are-not-showing/',
+			},
+			{
 				label: 'homepage links to Chrome caption failure guide',
 				match: '/guides/why-chrome-captions-are-not-showing/',
 			},
@@ -734,6 +738,31 @@ const checks = [
 			{
 				label: 'Plyr captions guide links WebVTT validator',
 				match: 'href="/tools/webvtt-validator/"',
+			},
+		],
+	},
+	{
+		path: '/guides/why-android-captions-are-not-showing/',
+		expect: [
+			{
+				label: 'Android captions failure guide CTR title',
+				match: '<title>Android Captions Not Showing - Fix VTT on Chrome Mobile</title>',
+			},
+			{
+				label: 'Android captions failure guide meta description',
+				match: 'Fix Android captions not showing by checking WebVTT syntax, MIME type, CORS headers, HTTPS, track defaults, and Chrome mobile controls.',
+			},
+			{
+				label: 'FAQ schema for Android caption questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why are captions not showing on Android\?/
+			},
+			{
+				label: 'Android captions guide opens WebVTT validator',
+				match: 'href="/tools/webvtt-validator/"',
+			},
+			{
+				label: 'Android captions guide links SRT to VTT converter',
+				match: 'href="/tools/srt-to-vtt/"',
 			},
 		],
 	},
@@ -2657,6 +2686,10 @@ const checks = [
 				match: '/guides/how-to-convert-subtitles-for-html5-video/',
 			},
 			{
+				label: 'guides index links to Android caption guide from HTML5 section',
+				match: '/guides/why-android-captions-are-not-showing/',
+			},
+			{
 				label: 'guides index links to Chrome caption guide from HTML5 section',
 				match: '/guides/why-chrome-captions-are-not-showing/',
 			},
@@ -2923,6 +2956,10 @@ const checks = [
 			{
 				label: 'llms lists VTT captions not loading guide',
 				match: 'https://subtitletoolkit.tools/guides/why-vtt-captions-are-not-loading/',
+			},
+			{
+				label: 'llms lists Android caption failure guide',
+				match: 'https://subtitletoolkit.tools/guides/why-android-captions-are-not-showing/',
 			},
 			{
 				label: 'llms lists Chrome caption failure guide',

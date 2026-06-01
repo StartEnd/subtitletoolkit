@@ -10,7 +10,7 @@ Record manual Search Console actions here so the next review is based on evidenc
 
 After the production gate passes, run `pnpm gsc:day0:list` to print the primary sitemap and URL Inspection queue plus a paste-ready submission record row. Use `pnpm gsc:day0:list -- --batch current` only after Google starts showing crawl or impression movement for the primary queue.
 
-Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-02 against the live `44beb06` deployment (`sitemap-0.xml` lastmod `2026-06-01T23:44:12.000Z`) using the same local verifier commit. The primary queue below has 21 URL Inspection requests; the current queue has 105 URLs. Keep them unchecked until the manual Search Console requests are actually submitted.
+Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-02 against the live `44beb06` deployment (`sitemap-0.xml` lastmod `2026-06-01T23:44:12.000Z`) using the same local verifier commit. The primary queue below has 21 URL Inspection requests; the current queue has 106 URLs. Keep them unchecked until the manual Search Console requests are actually submitted.
 
 ## Submission Record
 
@@ -71,6 +71,7 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/how-to-validate-srt-files/`
 - [ ] `https://subtitletoolkit.tools/guides/why-subtitles-do-not-show-in-html5-video/`
 - [ ] `https://subtitletoolkit.tools/guides/why-vtt-captions-are-not-loading/`
+- [ ] `https://subtitletoolkit.tools/guides/why-android-captions-are-not-showing/`
 - [ ] `https://subtitletoolkit.tools/guides/why-chrome-captions-are-not-showing/`
 - [ ] `https://subtitletoolkit.tools/guides/why-edge-captions-are-not-showing/`
 - [ ] `https://subtitletoolkit.tools/guides/why-firefox-captions-are-not-showing/`
