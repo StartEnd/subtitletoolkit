@@ -1336,6 +1336,14 @@ const checks = [
 				match: '/guides/how-to-convert-ass-to-txt/',
 			},
 			{
+				label: 'guides index links to transcript generator guide',
+				match: '/guides/how-to-create-a-transcript-from-subtitles/',
+			},
+			{
+				label: 'guides index links to dual-language subtitle guide',
+				match: '/guides/how-to-create-dual-language-subtitles/',
+			},
+			{
 				label: 'guides index links to merge SRT guide',
 				match: '/guides/how-to-merge-two-srt-files/',
 			},
@@ -1358,6 +1366,14 @@ const checks = [
 			{
 				label: 'guides index links to out-of-order guide',
 				match: '/guides/how-to-fix-out-of-order-subtitle-cues/',
+			},
+			{
+				label: 'guides index links to overlapping subtitles guide',
+				match: '/guides/how-to-fix-overlapping-subtitles/',
+			},
+			{
+				label: 'guides index links to subtitle line breaks guide',
+				match: '/guides/how-to-fix-subtitle-line-breaks/',
 			},
 			{
 				label: 'guides index links to UTF-8 conversion guide',
