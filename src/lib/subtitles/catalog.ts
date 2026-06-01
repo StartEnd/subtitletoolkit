@@ -533,6 +533,14 @@ const enTools: SubtitleTool[] = [
     ],
     relatedTools: ['srt-to-ass', 'ass-to-vtt'],
     relatedGuides: [
+      {
+        href: '/guides/how-to-convert-ass-to-srt-for-youtube-uploads/',
+        title: 'How to convert ASS to SRT for YouTube uploads',
+      },
+      {
+        href: '/guides/srt-vs-ass-for-youtube-captions/',
+        title: 'SRT vs ASS for YouTube captions',
+      },
       { href: '/guides/ass-vs-srt/', title: 'ASS vs SRT' },
       {
         href: '/guides/common-subtitle-format-errors-and-fixes/',

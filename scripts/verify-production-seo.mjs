@@ -540,6 +540,19 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/ass-to-srt/',
+		expect: [
+			{
+				label: 'ASS to SRT tool links to YouTube upload conversion guide',
+				match: 'href="/guides/how-to-convert-ass-to-srt-for-youtube-uploads/"',
+			},
+			{
+				label: 'ASS to SRT tool links to YouTube SRT vs ASS guide',
+				match: 'href="/guides/srt-vs-ass-for-youtube-captions/"',
+			},
+		],
+	},
+	{
 		path: '/tools/',
 		expect: [
 			{
