@@ -677,8 +677,16 @@ const checks = [
 				match: 'https://subtitletoolkit.tools/guides/why-subtitles-do-not-show-in-html5-video/',
 			},
 			{
+				label: 'llms lists VTT captions not loading guide',
+				match: 'https://subtitletoolkit.tools/guides/why-vtt-captions-are-not-loading/',
+			},
+			{
 				label: 'llms lists malformed SRT timestamp guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-fix-malformed-srt-timestamps/',
+			},
+			{
+				label: 'llms lists VTT CORS troubleshooting guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-fix-cors-errors-for-vtt-subtitles/',
 			},
 			{
 				label: 'llms lists scene-cut sync guide',

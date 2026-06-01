@@ -64,6 +64,8 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/how-to-validate-webvtt-files/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-validate-srt-files/`
 - [ ] `https://subtitletoolkit.tools/guides/why-subtitles-do-not-show-in-html5-video/`
+- [ ] `https://subtitletoolkit.tools/guides/why-vtt-captions-are-not-loading/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-fix-cors-errors-for-vtt-subtitles/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-remove-subtitle-line-numbers/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-malformed-srt-timestamps/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-vtt-mime-type-for-html5-video/`

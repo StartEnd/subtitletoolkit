@@ -59,9 +59,11 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [How to validate WebVTT files](https://subtitletoolkit.tools/guides/how-to-validate-webvtt-files/)
 - [How to validate SRT files](https://subtitletoolkit.tools/guides/how-to-validate-srt-files/)
 - [Why subtitles do not show in HTML5 video](https://subtitletoolkit.tools/guides/why-subtitles-do-not-show-in-html5-video/)
+- [Why VTT captions are not loading](https://subtitletoolkit.tools/guides/why-vtt-captions-are-not-loading/)
 - [How to remove subtitle line numbers](https://subtitletoolkit.tools/guides/how-to-remove-subtitle-line-numbers/)
 - [How to fix malformed SRT timestamps](https://subtitletoolkit.tools/guides/how-to-fix-malformed-srt-timestamps/)
 - [How to fix VTT MIME type for HTML5 video](https://subtitletoolkit.tools/guides/how-to-fix-vtt-mime-type-for-html5-video/)
+- [How to fix CORS errors for VTT subtitles](https://subtitletoolkit.tools/guides/how-to-fix-cors-errors-for-vtt-subtitles/)
 - [Convert VTT to SRT for legacy editors](https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/)
 - [How to extract subtitles from MKV](https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mkv/)
 

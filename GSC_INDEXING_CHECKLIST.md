@@ -172,6 +172,7 @@ Wait a few days before requesting these unless they are already showing impressi
 14. `https://subtitletoolkit.tools/guides/why-jw-player-captions-are-not-showing/`
 15. `https://subtitletoolkit.tools/guides/why-plex-subtitles-are-not-showing/`
 16. `https://subtitletoolkit.tools/guides/why-vimeo-captions-are-not-showing/`
+17. `https://subtitletoolkit.tools/guides/how-to-fix-cors-errors-for-vtt-subtitles/`
 
 ## Step 5: What To Ignore For Now
 
