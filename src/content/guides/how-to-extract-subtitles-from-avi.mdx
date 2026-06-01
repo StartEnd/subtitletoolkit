@@ -1,0 +1,149 @@
+---
+title: How to extract subtitles from AVI
+seoTitle: Extract Subtitles from AVI Online - No Upload
+description: Check AVI files for embedded subtitle tracks locally, understand why most AVI captions are sidecar or burned in, and save text captions without uploading the video.
+seoDescription: Extract subtitles from AVI files locally. Learn when AVI captions can be saved, why extraction finds none, and when to use OCR or a sidecar subtitle file.
+pubDate: 2026-06-02
+updatedDate: 2026-06-02
+category: workflow-guides
+tags:
+  - extract subtitles from avi
+  - avi subtitles
+  - embedded subtitles
+  - sidecar subtitles
+  - video captions
+primaryTool: extract-subtitles-from-video
+faqs:
+  - question: Can I extract subtitles from an AVI file?
+    answer: Yes, but only if the AVI contains a separate text subtitle stream. Many AVI files rely on a sidecar SRT file or have subtitles burned into the video image.
+  - question: Why does my AVI have no subtitles to extract?
+    answer: AVI is an older container and often stores only audio and video. Captions may be in a separate .srt file, rendered into the picture, or stored in a format the browser extractor cannot save as text.
+  - question: Are AVI files uploaded during extraction?
+    answer: No. The extractor runs FFmpeg in your browser, so the AVI file stays on your device.
+  - question: Can extracted AVI captions be used as SRT?
+    answer: Text-based AVI subtitle streams can usually be saved, then validated or converted before upload or playback.
+---
+
+AVI subtitle extraction is mostly a first check. The `.avi` container is common in older downloads, DVD rips, and archive workflows, but many AVI files do not contain embedded text captions at all.
+
+If the captions came from a separate `.srt`, `.sub`, or `.idx` file, there may be nothing inside the AVI to extract. If the words are always visible in the picture, they are burned in and need OCR instead of subtitle extraction.
+
+## Quick answer
+
+Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/), choose the AVI file, and let the browser check for an embedded subtitle stream. If the AVI contains text captions, you can save them as a separate subtitle file without uploading the video.
+
+Use this before sending a private AVI to an online converter. If the browser extractor finds no subtitle stream, another generic extractor will usually fail for the same reason.
+
+## What AVI subtitle extraction can find
+
+AVI files may contain text subtitle streams, but it is less predictable than MKV, MP4, MOV, or WebM workflows. When a real text stream exists, FFmpeg may show something like:
+
+```text
+Stream #0:2: Subtitle: subrip
+Stream #0:3: Subtitle: text
+```
+
+Those streams can usually be saved as editable captions. After extraction, validate the output before using it in a player, uploader, or editing workflow.
+
+Extraction will not recover captions in these cases:
+
+- the AVI uses a separate `.srt`, `.sub`, `.idx`, or `.ass` file next to the video
+- the subtitles are burned into the AVI picture
+- the AVI has no subtitle stream
+- the subtitle stream is image-based or unsupported by the browser extractor
+- the downloaded AVI is different from the version that played with captions elsewhere
+
+## Step-by-step workflow
+
+1. Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/).
+2. Choose the `.avi` file from your device.
+3. Wait for the browser FFmpeg runtime to load.
+4. Check whether the tool finds an embedded subtitle stream.
+5. Preview the extracted captions before downloading.
+6. Validate or clean the downloaded subtitle file before using it elsewhere.
+
+The AVI stays local during this process. The extractor runs in the browser, so the video does not need to be uploaded just to check whether captions exist.
+
+## Why an AVI may show captions but extraction finds none
+
+AVI files often appear to have subtitles because a desktop player automatically loads a separate subtitle file from the same folder.
+
+Check these situations:
+
+- The folder contains a matching `.srt`, `.sub`, `.idx`, or `.ass` file.
+- The captions were burned into the video during encoding.
+- The player downloaded or cached captions separately.
+- The file came from a DVD rip where subtitles were stored as VobSub images, not editable text.
+- The AVI was renamed or moved away from its subtitle sidecar file.
+
+If captions disappear when you move only the AVI into a new folder, the captions were probably sidecar subtitles rather than embedded tracks.
+
+## After extracting AVI captions
+
+Do not treat the first exported file as final. Check the extracted captions for:
+
+- wrong language track
+- missing lines near old edit points
+- broken accents or replacement characters
+- SRT output that needs validation before upload
+- timing offset caused by a different encode or DVD cut
+
+Useful next tools:
+
+| Need | Tool |
+| --- | --- |
+| Check SRT structure | [SRT Validator](/tools/srt-validator/) |
+| Convert SRT to browser WebVTT | [SRT to VTT Converter](/tools/srt-to-vtt/) |
+| Repair broken characters | [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) |
+| Remove messy tags or spacing | [Subtitle Cleaner](/tools/subtitle-cleaner/) |
+| Fix constant timing offset | [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/) |
+
+## Common mistakes
+
+### Missing the sidecar subtitle file
+
+If a player loads `movie.srt` next to `movie.avi`, the subtitle text is already outside the video. Open the subtitle file directly in a converter or validator instead of extracting from the AVI.
+
+### Expecting burned-in AVI captions to become text
+
+If the words are part of the video image, subtitle extraction cannot recover editable text. Use OCR and manually review the result.
+
+### Assuming old AVI rips contain text subtitles
+
+Older rips often use external subtitle files or image-based DVD subtitles. Even when a player can show them, they may not be stored as editable text inside the AVI.
+
+## Frequently asked questions
+
+### Can I extract subtitles from an AVI file?
+
+Yes, but only if the AVI contains a separate text subtitle stream. Many AVI files rely on a sidecar SRT file or have subtitles burned into the video image.
+
+### Why does my AVI have no subtitles to extract?
+
+AVI is an older container and often stores only audio and video. Captions may be in a separate `.srt` file, rendered into the picture, or stored in a format the browser extractor cannot save as text.
+
+### Are AVI files uploaded during extraction?
+
+No. The extractor runs FFmpeg in your browser, so the AVI file stays on your device.
+
+### Can extracted AVI captions be used as SRT?
+
+Text-based AVI subtitle streams can usually be saved, then validated or converted before upload or playback.
+
+## Related guides
+
+- [How to extract subtitles from a video](/guides/how-to-extract-subtitles-from-video/)
+- [How to extract subtitles from MP4](/guides/how-to-extract-subtitles-from-mp4/)
+- [How to extract subtitles from M4V](/guides/how-to-extract-subtitles-from-m4v/)
+- [How to extract subtitles from MKV](/guides/how-to-extract-subtitles-from-mkv/)
+- [How to extract subtitles from MOV](/guides/how-to-extract-subtitles-from-mov/)
+- [How to extract subtitles from WebM](/guides/how-to-extract-subtitles-from-webm/)
+- [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)
+- [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video/)
+
+## Related tools
+
+- [Extract Subtitles from Video](/tools/extract-subtitles-from-video/)
+- [SRT Validator](/tools/srt-validator/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)

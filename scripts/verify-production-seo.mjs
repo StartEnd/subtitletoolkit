@@ -142,6 +142,10 @@ const checks = [
 				match: '/guides/how-to-extract-subtitles-from-mkv/',
 			},
 			{
+				label: 'homepage links to AVI subtitle extraction guide',
+				match: '/guides/how-to-extract-subtitles-from-avi/',
+			},
+			{
 				label: 'homepage links to HTML5 conversion guide',
 				match: '/guides/how-to-convert-subtitles-for-html5-video/',
 			},
@@ -1562,7 +1566,7 @@ const checks = [
 			},
 			{
 				label: 'video extraction guide no-upload meta description',
-				match: 'Extract subtitles from MP4, MKV, MOV, and WebM videos online for free. Save embedded text tracks locally in your browser with no upload.',
+				match: 'Extract subtitles from MP4, MKV, MOV, WebM, AVI, and M4V videos online for free. Save embedded text tracks locally in your browser with no upload.',
 			},
 			{
 				label: 'video extraction guide opens extractor tool',
@@ -1684,6 +1688,27 @@ const checks = [
 			{
 				label: 'FAQ schema for WebM extraction questions',
 				match: 'Can I extract subtitles from a WebM file?',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-extract-subtitles-from-avi/',
+		expect: [
+			{
+				label: 'AVI extraction guide CTR title',
+				match: '<title>Extract Subtitles from AVI Online - No Upload</title>',
+			},
+			{
+				label: 'AVI extraction guide no-upload meta description',
+				match: 'Extract subtitles from AVI files locally. Learn when AVI captions can be saved, why extraction finds none, and when to use OCR or a sidecar subtitle file.',
+			},
+			{
+				label: 'AVI extraction guide opens extractor tool',
+				match: 'href="/tools/extract-subtitles-from-video/"',
+			},
+			{
+				label: 'FAQ schema for AVI extraction questions',
+				match: 'Why does my AVI have no subtitles to extract?',
 			},
 		],
 	},
@@ -2601,6 +2626,10 @@ const checks = [
 				match: '/guides/how-to-extract-subtitles-from-webm/',
 			},
 			{
+				label: 'guides index links to AVI extraction guide',
+				match: '/guides/how-to-extract-subtitles-from-avi/',
+			},
+			{
 				label: 'guides index links to embedded vs burned-in guide',
 				match: '/guides/embedded-vs-burned-in-subtitles/',
 			},
@@ -2815,6 +2844,10 @@ const checks = [
 			{
 				label: 'llms lists WebM extraction guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-webm/',
+			},
+			{
+				label: 'llms lists AVI extraction guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-avi/',
 			},
 			{
 				label: 'llms lists embedded vs burned-in guide',
