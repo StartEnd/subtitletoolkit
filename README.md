@@ -92,6 +92,8 @@ pnpm promotion:record -- --channel directory --source AlternativeTo --url https:
 pnpm promotion:record -- --channel gsc --source "Search Console" --status submitted --notes "Sitemap plus 21 primary URL Inspection requests"
 ```
 
+`PROMOTION_LOG.md` is intentionally local-only and ignored by git. If it does not exist yet, the weekly analyzer treats that as no recorded promotion evidence.
+
 ## Weekly Search Review
 
 After Search Console has a few days of data, export same-window GSC Queries and Pages CSVs, then pair them with Plausible organic pageviews and tool events:

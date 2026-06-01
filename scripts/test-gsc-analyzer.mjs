@@ -129,8 +129,8 @@ ${Array.from({ length: 20 }, (_, index) => {
 		'--queries', 'queries.csv',
 		'--promotion-log', 'missing.md',
 	]);
-	assertExit(missingPromotionLog, 1);
-	assertIncludes(missingPromotionLog.stderr, 'Missing promotion log file:');
+	assertExit(missingPromotionLog, 0);
+	assertIncludes(missingPromotionLog.stdout, '| Promotion log not found | | | | | Missing local log is treated as no promotion evidence until `pnpm promotion:record` creates it. |');
 
 	console.log('GSC analyzer regression tests passed.');
 } finally {

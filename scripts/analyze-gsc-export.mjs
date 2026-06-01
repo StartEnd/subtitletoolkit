@@ -36,6 +36,7 @@ const toolStarts = toolStartsArg === null ? null : Number.parseInt(toolStartsArg
 const toolOutputsArg = getArg('--tool-outputs');
 const toolOutputs = toolOutputsArg === null ? null : Number.parseInt(toolOutputsArg, 10);
 const promotionLogPath = getArg('--promotion-log');
+const promotionLogExists = promotionLogPath ? existsSync(resolve(promotionLogPath)) : false;
 const weekOf = getArg('--week-of') || new Date().toISOString().slice(0, 10);
 const siteUrl = (getArg('--site') || 'https://subtitletoolkit.tools').replace(/\/$/, '');
 
@@ -162,7 +163,7 @@ function readPromotionLog(path) {
 	if (!path) return [];
 	const resolved = resolve(path);
 	if (!existsSync(resolved)) {
-		throw new Error(`Missing promotion log file: ${resolved}`);
+		return [];
 	}
 
 	return parseMarkdownTable(readFileSync(resolved, 'utf8'), [
@@ -172,7 +173,7 @@ function readPromotionLog(path) {
 		'Status',
 		'URL',
 		'Notes',
-	]).map((record) => ({
+	]).filter((record) => record.date !== 'Date').map((record) => ({
 		date: record.date,
 		channel: record.channel,
 		source: record.source,
@@ -436,6 +437,8 @@ console.log('| Date | Channel | Source | Status | URL | Notes |');
 console.log('| --- | --- | --- | --- | --- | --- |');
 if (!promotionLogPath) {
 	console.log('| No promotion log provided | | | | | Run `pnpm promotion:record` after external actions, then pass `--promotion-log PROMOTION_LOG.md`. |');
+} else if (!promotionLogExists) {
+	console.log('| Promotion log not found | | | | | Missing local log is treated as no promotion evidence until `pnpm promotion:record` creates it. |');
 } else if (promotionRows.length === 0) {
 	console.log('| Promotion log has no rows | | | | | |');
 } else {
