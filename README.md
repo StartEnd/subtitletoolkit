@@ -93,6 +93,8 @@ pnpm promotion:kit
 pnpm promotion:kit -- --section directory --submitted-on 2026-06-01
 ```
 
+The directory section also prints `promotion:record` commands. Run one only after that external directory submission actually happens.
+
 After an external action actually happens, append a local evidence row for the weekly attribution review:
 
 ```bash

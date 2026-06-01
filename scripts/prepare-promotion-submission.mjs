@@ -56,6 +56,11 @@ Built with Astro and hosted on Cloudflare Pages. Static, fast, and no backend su
 
 const tags = 'subtitle, srt, vtt, webvtt, ass, caption, converter, video, free, privacy, browser-based, no-signup, html5';
 const categories = 'Video & Movies, Online Services, Developer Tools, File Conversion';
+const directoryTargets = [
+	{ name: 'AlternativeTo', url: 'https://alternativeto.net/' },
+	{ name: 'tinytools.directory', url: 'https://tinytools.directory/' },
+	{ name: 'SaaSHub', url: 'https://www.saashub.com/' },
+];
 
 function printHeader(title) {
 	console.log(`\n## ${title}\n`);
@@ -74,10 +79,16 @@ function printDirectoryKit() {
 	console.log('Platform: Online / Web-based');
 
 	printHeader('Priority Directory Targets');
-	console.log('1. AlternativeTo - https://alternativeto.net/');
-	console.log('2. tinytools.directory - https://tinytools.directory/');
-	console.log('3. SaaSHub - https://www.saashub.com/');
+	directoryTargets.forEach((target, index) => {
+		console.log(`${index + 1}. ${target.name} - ${target.url}`);
+	});
 	console.log('4. GitHub awesome list PR - https://github.com/search?q=awesome+subtitle&type=repositories');
+
+	printHeader('Directory Evidence Commands');
+	console.log('Run the matching command only after the external submission actually happens. Replace --url with the published listing URL when one exists.');
+	directoryTargets.forEach((target) => {
+		console.log(`pnpm promotion:record -- --date ${submittedOn} --channel directory --source "${target.name}" --url ${target.url} --status submitted --notes "Submitted directory listing for Subtitle Toolkit"`);
+	});
 }
 
 function printRedditKit() {
