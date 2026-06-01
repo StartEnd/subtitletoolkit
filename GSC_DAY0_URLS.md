@@ -100,6 +100,10 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-txt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-txt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-merge-two-srt-files/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-vtt-for-web-players/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/`
+- [ ] `https://subtitletoolkit.tools/guides/common-subtitle-format-errors-and-fixes/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-fix-out-of-order-subtitle-cues/`
 
 ## After Submission
 

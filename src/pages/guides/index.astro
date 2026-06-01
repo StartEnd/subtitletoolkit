@@ -49,6 +49,11 @@ const transcriptWorkflowGuideIds = [
 	'how-to-convert-ass-to-txt',
 	'how-to-merge-two-srt-files',
 ];
+const repairTriageGuideIds = [
+	'common-subtitle-format-errors-and-fixes',
+	'how-to-fix-subtitles-that-are-too-fast-or-too-slow',
+	'how-to-fix-out-of-order-subtitle-cues',
+];
 const encodingGuideIds = [
 	'how-to-convert-subtitles-to-utf-8',
 	'how-to-fix-garbled-subtitles',
@@ -58,6 +63,7 @@ const encodingGuideIds = [
 const html5CaptionGuideIds = [
 	'best-subtitle-format-for-html5-video',
 	'how-to-convert-subtitles-for-html5-video',
+	'how-to-convert-ass-to-vtt-for-web-players',
 	'how-to-add-multiple-subtitle-languages-to-html5-video',
 ];
 const extractionGuideIds = [
@@ -77,6 +83,9 @@ const playerConversionGuides = playerConversionGuideIds
 	.map((id) => guides.find((guide) => guide.id === id))
 	.filter(Boolean);
 const transcriptWorkflowGuides = transcriptWorkflowGuideIds
+	.map((id) => guides.find((guide) => guide.id === id))
+	.filter(Boolean);
+const repairTriageGuides = repairTriageGuideIds
 	.map((id) => guides.find((guide) => guide.id === id))
 	.filter(Boolean);
 const encodingGuides = encodingGuideIds
@@ -233,6 +242,28 @@ const pageDescription =
 						<h3><a href={`/guides/${guide.id}/`}>{guide.data.title}</a></h3>
 						<p>{guide.data.description}</p>
 						<a class="card-link" href={`/guides/${guide.id}/`}>Open workflow <span aria-hidden="true">&rarr;</span></a>
+					</article>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="section">
+		<span class="eyebrow">Subtitle repair triage</span>
+		<h2>Diagnose messy files before changing timing.</h2>
+		<p class="lede priority-lede">
+			Start here when the file is broken, cues are out of order, or the timing problem might be drift instead of a simple delay.
+		</p>
+		<div class="platform-grid">
+			{
+				repairTriageGuides.map((guide) => (
+					<article class="platform-card">
+						<p class="priority-card-meta">
+							{guideCategoryMeta[guide.data.category].label}
+						</p>
+						<h3><a href={`/guides/${guide.id}/`}>{guide.data.title}</a></h3>
+						<p>{guide.data.description}</p>
+						<a class="card-link" href={`/guides/${guide.id}/`}>Diagnose issue <span aria-hidden="true">&rarr;</span></a>
 					</article>
 				))
 			}

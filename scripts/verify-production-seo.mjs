@@ -102,6 +102,10 @@ const checks = [
 				label: 'homepage links to SRT to TXT guide',
 				match: '/guides/how-to-convert-srt-to-txt/',
 			},
+			{
+				label: 'homepage links to ASS to VTT guide',
+				match: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
+			},
 		],
 	},
 	{
@@ -740,6 +744,74 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
+		expect: [
+			{
+				label: 'ASS to VTT guide CTR title',
+				match: '<title>Convert ASS to VTT for Web Players - No Upload</title>',
+			},
+			{
+				label: 'ASS to VTT guide meta description',
+				match: 'Convert ASS subtitles to VTT for HTML5 video and web players. Remove ASS styling, keep timing and text, and create browser-ready WebVTT locally.',
+			},
+			{
+				label: 'ASS to VTT guide opens converter tool',
+				match: 'href="/tools/ass-to-vtt/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/',
+		expect: [
+			{
+				label: 'fast or slow guide CTR title',
+				match: '<title>Fix Subtitles Too Fast or Slow - Timing Shift Guide</title>',
+			},
+			{
+				label: 'fast or slow guide meta description',
+				match: 'Fix subtitles that appear too fast or too slow by measuring the offset, shifting SRT, VTT, or ASS timing, and checking drift before export.',
+			},
+			{
+				label: 'fast or slow guide opens time shifter tool',
+				match: 'href="/tools/subtitle-time-shifter/"',
+			},
+		],
+	},
+	{
+		path: '/guides/common-subtitle-format-errors-and-fixes/',
+		expect: [
+			{
+				label: 'common errors guide CTR title',
+				match: '<title>Common Subtitle Format Errors - Fix SRT, VTT, ASS</title>',
+			},
+			{
+				label: 'common errors guide meta description',
+				match: 'Diagnose common subtitle format errors, including wrong file type, garbled text, broken timing, messy spacing, and upload failures.',
+			},
+			{
+				label: 'common errors guide opens subtitle cleaner tool',
+				match: 'href="/tools/subtitle-cleaner/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-fix-out-of-order-subtitle-cues/',
+		expect: [
+			{
+				label: 'out-of-order guide CTR title',
+				match: '<title>Fix Out-of-Order Subtitle Cues - Sort Timing Blocks</title>',
+			},
+			{
+				label: 'out-of-order guide meta description',
+				match: 'Fix out-of-order subtitle cues by sorting timing blocks, checking overlaps, and cleaning SRT, VTT, or ASS files before playback.',
+			},
+			{
+				label: 'out-of-order guide opens subtitle cleaner tool',
+				match: 'href="/tools/subtitle-cleaner/"',
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/',
 		expect: [
 			{
@@ -1043,6 +1115,26 @@ const checks = [
 				match: '/guides/how-to-merge-two-srt-files/',
 			},
 			{
+				label: 'guides index links to ASS to VTT guide',
+				match: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
+			},
+			{
+				label: 'guides index includes subtitle repair triage section',
+				match: 'Subtitle repair triage',
+			},
+			{
+				label: 'guides index links to fast or slow guide',
+				match: '/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/',
+			},
+			{
+				label: 'guides index links to common errors guide',
+				match: '/guides/common-subtitle-format-errors-and-fixes/',
+			},
+			{
+				label: 'guides index links to out-of-order guide',
+				match: '/guides/how-to-fix-out-of-order-subtitle-cues/',
+			},
+			{
 				label: 'guides index links to UTF-8 conversion guide',
 				match: '/guides/how-to-convert-subtitles-to-utf-8/',
 			},
@@ -1293,6 +1385,22 @@ const checks = [
 			{
 				label: 'llms lists merge SRT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-merge-two-srt-files/',
+			},
+			{
+				label: 'llms lists ASS to VTT web players guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-ass-to-vtt-for-web-players/',
+			},
+			{
+				label: 'llms lists fast or slow subtitles guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/',
+			},
+			{
+				label: 'llms lists common subtitle errors guide',
+				match: 'https://subtitletoolkit.tools/guides/common-subtitle-format-errors-and-fixes/',
+			},
+			{
+				label: 'llms lists out-of-order cues guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-fix-out-of-order-subtitle-cues/',
 			},
 		],
 	},
