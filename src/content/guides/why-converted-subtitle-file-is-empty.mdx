@@ -1,0 +1,129 @@
+---
+title: Why converted subtitle file is empty
+seoTitle: Converted Subtitle File Empty - Fix No Text
+seoDescription: Fix an empty subtitle file after conversion by checking wrong file format, empty dialogue rows, unsupported styling, timestamps, and parser errors.
+description: Diagnose an empty subtitle file after conversion by checking wrong file format, empty dialogue rows, unsupported styling, timestamps, and parser errors.
+pubDate: 2026-06-02
+category: sync-fixes
+tags:
+  - empty subtitle file
+  - subtitle conversion
+  - no text
+  - parser errors
+  - srt
+primaryTool: srt-validator
+faqs:
+  - question: Why is my converted subtitle file empty?
+    answer: The source file may not match its extension, may contain only styling or comments, may have empty dialogue rows, or may have timestamp errors that prevent cues from being parsed.
+  - question: Can an ASS file convert to an empty SRT file?
+    answer: Yes. If the ASS file contains styles, comments, drawings, or malformed Dialogue rows but no parseable dialogue text, a simple SRT export can look empty.
+  - question: How do I fix a blank SRT or VTT output?
+    answer: Validate the source file, confirm it contains real caption text, repair malformed timestamps or cue spacing, then convert again from the original file.
+---
+
+An empty subtitle file after conversion usually means the converter could not find parseable caption text. The output may be technically created, but every source cue was skipped, stripped, or interpreted as metadata instead of dialogue.
+
+## Quick answer
+
+Open the original file and confirm it contains real caption lines, not only style metadata, comments, or an empty export shell. Then validate the source with [SRT Validator](/tools/srt-validator/) or [WebVTT Validator](/tools/webvtt-validator/) before converting again.
+
+If the source is ASS or SSA, check for real `Dialogue:` rows with readable text. Use [ASS to SRT](/tools/ass-to-srt/) only after confirming the file has dialogue events to flatten.
+
+## The most common causes
+
+### The file extension does not match the content
+
+A file named `.srt` is not always valid SRT. Some exports are renamed WebVTT, ASS, or plain text files.
+
+SRT should contain numbered cue blocks:
+
+```text
+1
+00:00:04,000 --> 00:00:06,500
+This text should appear in the output.
+```
+
+WebVTT usually starts with a `WEBVTT` header:
+
+```text
+WEBVTT
+
+00:00:04.000 --> 00:00:06.500
+This text should appear in the output.
+```
+
+If the file extension and structure disagree, convert from the real format instead of renaming the file.
+
+### The source contains metadata but no dialogue
+
+ASS files can contain large style sections without any visible captions. A file can look full in a text editor but still have no exportable dialogue.
+
+Look for lines like this:
+
+```text
+Dialogue: 0,0:00:04.00,0:00:06.50,Default,,0,0,0,,Visible subtitle text
+```
+
+If you only see `[Script Info]`, `[V4+ Styles]`, comments, or drawing commands, there may be no caption text to convert.
+
+### Dialogue rows are empty
+
+Some editing tools export timing events with blank text. Those cues may be removed during cleanup or conversion because they would not display.
+
+```text
+42
+00:05:12,000 --> 00:05:13,500
+
+```
+
+If the original file has many empty cues, recover the text from the editing project or transcript source before converting again.
+
+### Timestamp errors make every cue unparseable
+
+Broken timing can make a converter skip the whole file, especially when every cue repeats the same malformed pattern.
+
+Common problems include:
+
+- using dots in an SRT timestamp
+- using commas in a WebVTT timestamp
+- missing the `-->` arrow
+- end times earlier than start times
+- cues sorted backward
+
+For SRT files, use [Fix SRT Timestamps](/tools/fix-srt-timestamps/) or read [How to fix malformed SRT timestamps](/guides/how-to-fix-malformed-srt-timestamps/). For VTT files, start with [How to fix invalid WebVTT timestamps](/guides/how-to-fix-invalid-webvtt-timestamps/).
+
+### Styling removal also removed the visible text
+
+Cleaning tools should strip tags while keeping readable words. But badly nested tags, ASS override blocks, or copied HTML can confuse simple parsers.
+
+Before converting again, run a small sample through [Subtitle Cleaner](/tools/subtitle-cleaner/) and check whether the text remains readable. If only a few lines are broken, repair those lines manually before processing the full file.
+
+## Recovery workflow
+
+1. Keep the original file unchanged.
+2. Open the source in a plain text editor.
+3. Confirm the file format matches the extension.
+4. Confirm there are real caption text lines.
+5. Validate the source file for timestamp and cue errors.
+6. Clean or repair only the broken structure.
+7. Convert again.
+8. Compare the output with the original visible text.
+
+If the output has some captions but not all of them, use [Why subtitles are missing after conversion](/guides/why-subtitles-are-missing-after-conversion/) instead. That guide focuses on cue loss rather than a completely blank output.
+
+## When the converted file is valid but still shows nothing
+
+An output file can contain captions and still fail in a player. If the converted file is not empty in a text editor, switch from conversion debugging to playback debugging:
+
+- [Why your SRT file is not working](/guides/why-srt-file-is-not-working/)
+- [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/)
+- [Why VTT captions are not loading](/guides/why-vtt-captions-are-not-loading/)
+
+## Related tools
+
+- [SRT Validator](/tools/srt-validator/)
+- [WebVTT Validator](/tools/webvtt-validator/)
+- [Fix SRT Timestamps](/tools/fix-srt-timestamps/)
+- [Subtitle Cleaner](/tools/subtitle-cleaner/)
+- [ASS to SRT](/tools/ass-to-srt/)
+- [ASS to VTT](/tools/ass-to-vtt/)

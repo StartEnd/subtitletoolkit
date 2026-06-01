@@ -98,6 +98,10 @@ const checks = [
 				match: '/guides/why-subtitles-are-missing-after-conversion/',
 			},
 			{
+				label: 'homepage links to empty converted subtitle guide',
+				match: '/guides/why-converted-subtitle-file-is-empty/',
+			},
+			{
 				label: 'homepage links to long subtitles guide',
 				match: '/guides/how-to-fix-subtitles-that-are-too-long/',
 			},
@@ -1362,6 +1366,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/why-converted-subtitle-file-is-empty/',
+		expect: [
+			{
+				label: 'empty converted subtitle guide CTR title',
+				match: '<title>Converted Subtitle File Empty - Fix No Text</title>',
+			},
+			{
+				label: 'empty converted subtitle guide meta description',
+				match: 'Fix an empty subtitle file after conversion by checking wrong file format, empty dialogue rows, unsupported styling, timestamps, and parser errors.',
+			},
+			{
+				label: 'empty converted subtitle guide opens validator tool',
+				match: 'href="/tools/srt-validator/"',
+			},
+			{
+				label: 'FAQ schema for empty converted subtitle questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why is my converted subtitle file empty\?/
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-fix-subtitles-that-are-too-long/',
 		expect: [
 			{
@@ -2123,6 +2148,10 @@ const checks = [
 				match: '/guides/why-subtitles-are-missing-after-conversion/',
 			},
 			{
+				label: 'guides index links to empty converted subtitle guide',
+				match: '/guides/why-converted-subtitle-file-is-empty/',
+			},
+			{
 				label: 'guides index links to out-of-order guide',
 				match: '/guides/how-to-fix-out-of-order-subtitle-cues/',
 			},
@@ -2417,6 +2446,10 @@ const checks = [
 			{
 				label: 'llms lists missing subtitles after conversion guide',
 				match: 'https://subtitletoolkit.tools/guides/why-subtitles-are-missing-after-conversion/',
+			},
+			{
+				label: 'llms lists empty converted subtitle guide',
+				match: 'https://subtitletoolkit.tools/guides/why-converted-subtitle-file-is-empty/',
 			},
 			{
 				label: 'llms lists long subtitles guide',
