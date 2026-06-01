@@ -491,8 +491,88 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/how-to-fix-garbled-subtitles/',
+		expect: [
+			{
+				label: 'garbled subtitles guide CTR title',
+				match: '<title>Fix Garbled Subtitles - Convert to UTF-8 Online</title>',
+			},
+			{
+				label: 'garbled subtitles guide meta description',
+				match: 'Fix garbled subtitles by choosing the right source encoding and saving clean UTF-8 text locally in your browser with no upload.',
+			},
+			{
+				label: 'garbled subtitles guide opens encoding fixer tool',
+				match: 'href="/tools/subtitle-encoding-fixer/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-fix-subtitles-showing-boxes/',
+		expect: [
+			{
+				label: 'subtitle boxes guide CTR title',
+				match: '<title>Fix Subtitles Showing Boxes - UTF-8 Encoding Repair</title>',
+			},
+			{
+				label: 'subtitle boxes guide meta description',
+				match: 'Fix subtitle boxes, question marks, and broken characters by converting SRT, VTT, or ASS text to clean UTF-8 with no upload.',
+			},
+			{
+				label: 'subtitle boxes guide opens encoding fixer tool',
+				match: 'href="/tools/subtitle-encoding-fixer/"',
+			},
+		],
+	},
+	{
+		path: '/guides/why-vtt-captions-are-not-loading/',
+		expect: [
+			{
+				label: 'VTT captions loading guide CTR title',
+				match: '<title>VTT Captions Not Loading - WebVTT Fix Guide</title>',
+			},
+			{
+				label: 'VTT captions loading guide meta description',
+				match: 'Fix VTT captions that do not load by checking the WEBVTT header, timestamp dots, track setup, MIME type, and CORS delivery.',
+			},
+			{
+				label: 'VTT captions loading guide opens validator tool',
+				match: 'href="/tools/webvtt-validator/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-fix-cors-errors-for-vtt-subtitles/',
+		expect: [
+			{
+				label: 'VTT CORS guide CTR title',
+				match: '<title>Fix VTT Subtitle CORS Errors - HTML5 Captions</title>',
+			},
+			{
+				label: 'VTT CORS guide meta description',
+				match: 'Fix WebVTT subtitle CORS errors by checking track URLs, response headers, CDN behavior, and browser caption requests.',
+			},
+			{
+				label: 'VTT CORS guide opens HTML5 converter tool',
+				match: 'href="/tools/html5-video-subtitle-converter/"',
+			},
+			{
+				label: 'VTT CORS guide links to validator tool',
+				match: 'href="/tools/webvtt-validator/"',
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-fix-vtt-mime-type-for-html5-video/',
 		expect: [
+			{
+				label: 'VTT MIME guide CTR title',
+				match: '<title>Fix VTT MIME Type - Serve WebVTT as text/vtt</title>',
+			},
+			{
+				label: 'VTT MIME guide meta description',
+				match: 'Fix VTT MIME type issues by checking the Content-Type header, track element, WEBVTT file, and HTML5 video delivery setup.',
+			},
 			{
 				label: 'VTT MIME guide opens validator tool',
 				match: 'href="/tools/webvtt-validator/"',
