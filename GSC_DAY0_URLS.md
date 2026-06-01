@@ -22,6 +22,8 @@ After the production gate passes, run `pnpm gsc:day0:list` to print the primary 
 
 ## URL Inspection Requests
 
+### Primary queue
+
 Submit these URLs first. Do not submit every URL in the site on Day 0.
 
 - [ ] `https://subtitletoolkit.tools/`
@@ -46,7 +48,9 @@ Submit these URLs first. Do not submit every URL in the site on Day 0.
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-subtitle-delay/`
 - [ ] `https://subtitletoolkit.tools/guides/fix-subtitle-sync-after-a-scene-cut/`
 
-Submit these current search-growth batch URLs next. They received FAQ schema, Article topic schema, or corrected tool CTA mapping in the latest SEO batch.
+### Current search-growth batch
+
+Submit these URLs after Google starts showing crawl or impression movement for the primary queue. They received FAQ schema, Article topic schema, or corrected tool CTA mapping in the latest SEO batch.
 
 - [ ] `https://subtitletoolkit.tools/guides/best-subtitle-format-for-youtube/`
 - [ ] `https://subtitletoolkit.tools/guides/best-srt-settings-for-youtube-upload/`

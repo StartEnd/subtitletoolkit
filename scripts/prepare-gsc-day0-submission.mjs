@@ -81,10 +81,20 @@ function unique(values) {
 
 const sitemapSection = sectionBetween(markdown, '## Sitemap', '## URL Inspection Requests');
 const inspectionSection = sectionBetween(markdown, '## URL Inspection Requests', '## After Submission');
-const currentBatchMarker = 'Submit these current search-growth batch URLs next.';
-const markerIndex = inspectionSection.indexOf(currentBatchMarker);
-const primaryInspectionSection = markerIndex >= 0 ? inspectionSection.slice(0, markerIndex) : inspectionSection;
-const currentInspectionSection = markerIndex >= 0 ? inspectionSection.slice(markerIndex) : '';
+const primaryInspectionSection = sectionBetween(
+	inspectionSection,
+	'### Primary queue',
+	'### Current search-growth batch',
+) || inspectionSection;
+const currentInspectionSection = sectionBetween(
+	inspectionSection,
+	'### Current search-growth batch',
+	'__END_OF_URL_INSPECTION_REQUESTS__',
+) || (() => {
+	const legacyMarker = 'Submit these current search-growth batch URLs next.';
+	const markerIndex = inspectionSection.indexOf(legacyMarker);
+	return markerIndex >= 0 ? inspectionSection.slice(markerIndex) : '';
+})();
 const sitemapUrls = unique(checklistUrls(sitemapSection));
 const primaryInspectionUrls = unique(checklistUrls(primaryInspectionSection));
 const currentInspectionUrls = unique(checklistUrls(currentInspectionSection));

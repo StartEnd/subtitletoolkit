@@ -40,10 +40,12 @@ try {
 
 ## URL Inspection Requests
 
+### Primary queue
+
 - [ ] \`https://subtitletoolkit.tools/\`
 - [ ] \`https://subtitletoolkit.tools/tools/srt-to-vtt/\`
 
-Submit these current search-growth batch URLs next.
+### Current search-growth batch
 
 - [ ] \`https://subtitletoolkit.tools/guides/why-youtube-subtitles-upload-failed/\`
 
