@@ -76,6 +76,7 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-malformed-srt-timestamps/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-vtt-mime-type-for-html5-video/`
 - [ ] `https://subtitletoolkit.tools/guides/why-videojs-captions-are-not-showing/`
+- [ ] `https://subtitletoolkit.tools/guides/why-plyr-captions-are-not-showing/`
 - [ ] `https://subtitletoolkit.tools/guides/why-jw-player-captions-are-not-showing/`
 - [ ] `https://subtitletoolkit.tools/guides/why-vlc-subtitles-are-not-showing/`
 - [ ] `https://subtitletoolkit.tools/guides/why-plex-subtitles-are-not-showing/`

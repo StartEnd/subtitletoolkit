@@ -78,6 +78,10 @@ const checks = [
 				match: '/guides/why-videojs-captions-are-not-showing/',
 			},
 			{
+				label: 'homepage links to Plyr caption failure guide',
+				match: '/guides/why-plyr-captions-are-not-showing/',
+			},
+			{
 				label: 'homepage links to JW Player caption failure guide',
 				match: '/guides/why-jw-player-captions-are-not-showing/',
 			},
@@ -689,6 +693,31 @@ const checks = [
 			{
 				label: 'Video.js captions failure guide opens converter tool',
 				match: 'href="/tools/videojs-subtitle-converter/"',
+			},
+		],
+	},
+	{
+		path: '/guides/why-plyr-captions-are-not-showing/',
+		expect: [
+			{
+				label: 'Plyr captions failure guide CTR title',
+				match: '<title>Plyr Captions Not Showing - Fix VTT Track Setup</title>',
+			},
+			{
+				label: 'Plyr captions failure guide meta description',
+				match: 'Fix Plyr captions not showing by checking WebVTT syntax, track URLs, MIME type, CORS headers, default tracks, and Plyr player setup.',
+			},
+			{
+				label: 'FAQ schema for Plyr caption questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why are captions not showing in Plyr\?/
+			},
+			{
+				label: 'Plyr captions guide opens HTML5 converter tool',
+				match: 'href="/tools/html5-video-subtitle-converter/"',
+			},
+			{
+				label: 'Plyr captions guide links WebVTT validator',
+				match: 'href="/tools/webvtt-validator/"',
 			},
 		],
 	},
@@ -2480,6 +2509,10 @@ const checks = [
 				match: '/guides/why-videojs-captions-are-not-showing/',
 			},
 			{
+				label: 'guides index links to Plyr caption failure guide',
+				match: '/guides/why-plyr-captions-are-not-showing/',
+			},
+			{
 				label: 'guides index links to JW Player caption failure guide',
 				match: '/guides/why-jw-player-captions-are-not-showing/',
 			},
@@ -2506,6 +2539,10 @@ const checks = [
 			{
 				label: 'guides index links to HTML5 conversion guide',
 				match: '/guides/how-to-convert-subtitles-for-html5-video/',
+			},
+			{
+				label: 'guides index links to Plyr caption guide from HTML5 section',
+				match: '/guides/why-plyr-captions-are-not-showing/',
 			},
 			{
 				label: 'guides index links to multiple language HTML5 guide',
@@ -2762,6 +2799,10 @@ const checks = [
 			{
 				label: 'llms lists Video.js subtitle format guide',
 				match: 'https://subtitletoolkit.tools/guides/best-subtitle-format-for-videojs/',
+			},
+			{
+				label: 'llms lists Plyr caption failure guide',
+				match: 'https://subtitletoolkit.tools/guides/why-plyr-captions-are-not-showing/',
 			},
 			{
 				label: 'llms lists JW Player caption failure guide',

@@ -1,0 +1,157 @@
+---
+title: Why Plyr captions are not showing
+seoTitle: Plyr Captions Not Showing - Fix VTT Track Setup
+seoDescription: Fix Plyr captions not showing by checking WebVTT syntax, track URLs, MIME type, CORS headers, default tracks, and Plyr player setup.
+description: Diagnose Plyr subtitle and caption problems by checking the VTT file, track element, server headers, and player initialization.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - plyr
+  - html5 video
+  - vtt
+  - captions not showing
+  - web players
+  - troubleshooting
+primaryTool: html5-video-subtitle-converter
+faqs:
+  - question: Why are captions not showing in Plyr?
+    answer: The most common causes are a malformed WebVTT file, a missing WEBVTT header, comma timestamps, a wrong track URL, missing MIME type, CORS blocking, or a Plyr setup that does not expose the captions track.
+  - question: Does Plyr support SRT subtitles?
+    answer: Plyr uses the browser's HTML5 text track support, so WebVTT is the safest caption format. Convert SRT to VTT before using it with Plyr.
+  - question: Should I debug Plyr code or the VTT file first?
+    answer: Validate the VTT file first. If the file is invalid, Plyr cannot display it even when the JavaScript setup is correct.
+---
+
+Plyr captions usually fail for the same reasons native HTML5 video captions fail: the file is not valid WebVTT, the track URL cannot be loaded by the browser, or the player is initialized before the caption track is reachable.
+
+## Quick answer
+
+Use the [HTML5 Video Subtitle Converter](/tools/html5-video-subtitle-converter/) to convert SRT or ASS captions to WebVTT, then validate the output with the [WebVTT Validator](/tools/webvtt-validator/) before changing your Plyr JavaScript. Plyr depends on browser text tracks, so a clean `.vtt` file is the first requirement.
+
+## Check the VTT file first
+
+Before editing the player code, open the caption file itself and confirm:
+
+- The first line is exactly `WEBVTT`
+- Timestamps use dots, such as `00:00:04.200`, not SRT commas
+- Cue blocks are separated by blank lines
+- Cue start times are before end times
+- The text is readable UTF-8, especially for accents or non-Latin subtitles
+
+If the source file is SRT, convert it instead of renaming the extension. A renamed `.srt` file still has SRT timestamp syntax, so the browser can reject it before Plyr ever displays a caption button.
+
+## Use a real HTML5 track element
+
+Plyr reads the underlying `<track>` element. A minimal working setup looks like this:
+
+```html
+<video id="player" controls crossorigin="anonymous">
+  <source src="/video/demo.mp4" type="video/mp4" />
+  <track
+    kind="captions"
+    label="English"
+    srclang="en"
+    src="/captions/demo.en.vtt"
+    default
+  />
+</video>
+```
+
+Then initialize Plyr after the markup is present:
+
+```js
+const player = new Plyr('#player', {
+  captions: {
+    active: true,
+    language: 'en',
+    update: true,
+  },
+});
+```
+
+The `default` attribute is useful because it tells the browser which track should be active first. Plyr can expose available tracks in the UI, but the browser still needs to parse and load the VTT file.
+
+## Verify the track URL
+
+Open the `.vtt` URL directly in the browser. If it returns a 404, a redirect to an HTML page, or a login screen, Plyr will not show captions.
+
+Check the browser Network tab for the VTT request:
+
+- Status should be `200`
+- Response body should be the VTT text, not HTML
+- The URL should match the `src` attribute exactly
+- Cache rules should not serve an older broken file
+
+Relative paths are a common source of mistakes. If the page is nested under `/videos/demo/`, a track path like `captions.en.vtt` resolves relative to that page, not the site root. Use a root-relative path such as `/captions/demo.en.vtt` when in doubt.
+
+## Confirm MIME type and CORS headers
+
+For same-origin captions, serve VTT files with:
+
+```http
+Content-Type: text/vtt
+```
+
+For cross-origin captions, the caption server must also allow the video page origin:
+
+```http
+Access-Control-Allow-Origin: https://example.com
+```
+
+When captions are loaded from a CDN or another domain, add `crossorigin="anonymous"` to the `<video>` element. Without matching CORS headers, the browser can block the text track even though the VTT file opens directly in a tab.
+
+For deeper server checks, see [how to fix VTT MIME type for HTML5 video](/guides/how-to-fix-vtt-mime-type-for-html5-video/) and [how to fix CORS errors for VTT subtitles](/guides/how-to-fix-cors-errors-for-vtt-subtitles/).
+
+## Common Plyr caption mistakes
+
+### Using SRT directly
+
+Plyr is not a subtitle converter. It relies on browser text track support, and browsers expect WebVTT for `<track>` captions.
+
+**Fix:** Convert SRT to VTT with the [SRT to VTT Converter](/tools/srt-to-vtt/) or the broader [HTML5 Video Subtitle Converter](/tools/html5-video-subtitle-converter/).
+
+### Missing `srclang` or `label`
+
+The browser can load a track without perfect metadata, but Plyr's captions menu is easier to reason about when each track has a language and label.
+
+**Fix:** Add both attributes:
+
+```html
+<track kind="captions" srclang="en" label="English" src="/captions/en.vtt" default />
+```
+
+### Initializing before tracks are available
+
+If a framework renders the `<track>` after Plyr initializes, the captions menu may not reflect the final markup.
+
+**Fix:** Initialize Plyr after the video element and tracks exist, or reinitialize/update the player after async data loads.
+
+### Testing only the Plyr UI
+
+The captions button can be hidden or disabled when the browser did not parse any usable text tracks.
+
+**Fix:** Check `video.textTracks.length` in DevTools. If it is `0`, the issue is probably markup, loading, or file parsing. If a track exists but cues are empty, validate the VTT file.
+
+## Troubleshooting checklist
+
+1. Convert the source subtitle to VTT instead of renaming it.
+2. Validate the VTT file with the [WebVTT Validator](/tools/webvtt-validator/).
+3. Open the VTT URL directly and confirm it returns caption text.
+4. Check the Network tab for status, MIME type, CORS, and redirects.
+5. Confirm the `<track>` element has `kind`, `src`, `srclang`, `label`, and usually `default`.
+6. Add `crossorigin="anonymous"` when video or captions are cross-origin.
+7. Initialize Plyr after the video and track markup exists.
+8. Test in Chrome, Firefox, Safari, and mobile Safari if those browsers matter.
+
+## Related guides
+
+- [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/)
+- [Why VTT captions are not loading](/guides/why-vtt-captions-are-not-loading/)
+- [How to convert subtitles for HTML5 video](/guides/how-to-convert-subtitles-for-html5-video/)
+- [How to validate WebVTT files](/guides/how-to-validate-webvtt-files/)
+
+## Related tools
+
+- [HTML5 Video Subtitle Converter](/tools/html5-video-subtitle-converter/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [WebVTT Validator](/tools/webvtt-validator/)

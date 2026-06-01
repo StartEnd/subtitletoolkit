@@ -85,6 +85,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [Why VTT captions are not loading](https://subtitletoolkit.tools/guides/why-vtt-captions-are-not-loading/)
 - [Why Video.js captions are not showing](https://subtitletoolkit.tools/guides/why-videojs-captions-are-not-showing/)
 - [Best subtitle format for Video.js](https://subtitletoolkit.tools/guides/best-subtitle-format-for-videojs/)
+- [Why Plyr captions are not showing](https://subtitletoolkit.tools/guides/why-plyr-captions-are-not-showing/)
 - [Why JW Player captions are not showing](https://subtitletoolkit.tools/guides/why-jw-player-captions-are-not-showing/)
 - [Best subtitle format for JW Player](https://subtitletoolkit.tools/guides/best-subtitle-format-for-jw-player/)
 - [Why VLC subtitles are not showing](https://subtitletoolkit.tools/guides/why-vlc-subtitles-are-not-showing/)
