@@ -82,6 +82,10 @@ const checks = [
 				match: '/guides/why-plyr-captions-are-not-showing/',
 			},
 			{
+				label: 'homepage links to Chrome caption failure guide',
+				match: '/guides/why-chrome-captions-are-not-showing/',
+			},
+			{
 				label: 'homepage links to Safari caption failure guide',
 				match: '/guides/why-safari-captions-are-not-showing/',
 			},
@@ -722,6 +726,31 @@ const checks = [
 			{
 				label: 'Plyr captions guide links WebVTT validator',
 				match: 'href="/tools/webvtt-validator/"',
+			},
+		],
+	},
+	{
+		path: '/guides/why-chrome-captions-are-not-showing/',
+		expect: [
+			{
+				label: 'Chrome captions failure guide CTR title',
+				match: '<title>Chrome Captions Not Showing - Fix VTT Track Issues</title>',
+			},
+			{
+				label: 'Chrome captions failure guide meta description',
+				match: 'Fix Chrome captions not showing by checking WebVTT syntax, MIME type, CORS headers, track paths, HTTPS, and browser caption settings.',
+			},
+			{
+				label: 'FAQ schema for Chrome caption questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why are captions not showing in Chrome\?/
+			},
+			{
+				label: 'Chrome captions guide opens WebVTT validator',
+				match: 'href="/tools/webvtt-validator/"',
+			},
+			{
+				label: 'Chrome captions guide links SRT to VTT converter',
+				match: 'href="/tools/srt-to-vtt/"',
 			},
 		],
 	},
@@ -2570,6 +2599,10 @@ const checks = [
 				match: '/guides/how-to-convert-subtitles-for-html5-video/',
 			},
 			{
+				label: 'guides index links to Chrome caption guide from HTML5 section',
+				match: '/guides/why-chrome-captions-are-not-showing/',
+			},
+			{
 				label: 'guides index links to Safari caption guide from HTML5 section',
 				match: '/guides/why-safari-captions-are-not-showing/',
 			},
@@ -2824,6 +2857,10 @@ const checks = [
 			{
 				label: 'llms lists VTT captions not loading guide',
 				match: 'https://subtitletoolkit.tools/guides/why-vtt-captions-are-not-loading/',
+			},
+			{
+				label: 'llms lists Chrome caption failure guide',
+				match: 'https://subtitletoolkit.tools/guides/why-chrome-captions-are-not-showing/',
 			},
 			{
 				label: 'llms lists Safari caption failure guide',

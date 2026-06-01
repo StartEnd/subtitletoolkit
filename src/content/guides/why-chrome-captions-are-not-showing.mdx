@@ -1,0 +1,161 @@
+---
+title: Why Chrome captions are not showing
+seoTitle: Chrome Captions Not Showing - Fix VTT Track Issues
+seoDescription: Fix Chrome captions not showing by checking WebVTT syntax, MIME type, CORS headers, track paths, HTTPS, and browser caption settings.
+description: Diagnose captions that fail in Chrome by checking WebVTT files, delivery headers, cross-origin access, and HTML5 track markup.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - chrome
+  - html5 video
+  - vtt
+  - captions not showing
+  - subtitles not showing
+  - troubleshooting
+primaryTool: webvtt-validator
+faqs:
+  - question: Why are captions not showing in Chrome?
+    answer: Chrome usually hides captions when the VTT file is invalid, the track URL returns an error, the server sends the wrong MIME type, CORS blocks the request, or the track is not enabled.
+  - question: Does Chrome support SRT files in a video track?
+    answer: No. Chrome HTML5 video tracks expect WebVTT, not SRT. Convert SRT to VTT before using the file in a track element.
+  - question: What should I check first when Chrome captions do not appear?
+    answer: Validate the VTT file, open the track URL directly, then check Content-Type, CORS, HTTPS, and the track element's src, srclang, label, kind, and default attributes.
+---
+
+Chrome caption problems are usually easier to debug than Safari issues because DevTools shows failed track requests clearly. The hard part is knowing whether the browser rejected the caption file, never loaded it, or loaded it but did not enable the track.
+
+## Quick answer
+
+Start with the [WebVTT Validator](/tools/webvtt-validator/). Chrome's HTML5 `<track>` element expects a real WebVTT file with a `WEBVTT` header, dot-based timestamps, and valid cue order.
+
+Then open the deployed `.vtt` URL directly in Chrome. If the URL returns HTML, a 404 page, a login page, or a file served with the wrong headers, the video player will not show captions reliably.
+
+If your source file is SRT, convert it with the [SRT to VTT Converter](/tools/srt-to-vtt/) before attaching it to a browser video player.
+
+## Check the VTT file first
+
+Chrome does not read SRT syntax from an HTML5 track. A valid VTT file starts like this:
+
+```text
+WEBVTT
+
+00:00:01.000 --> 00:00:03.500
+First caption line.
+
+00:00:04.000 --> 00:00:06.200
+Second caption line.
+```
+
+Check for:
+
+- `WEBVTT` on the first line
+- timestamps with dots, not SRT commas
+- blank lines between cues
+- cue start times before cue end times
+- readable UTF-8 text
+
+If the file was exported as SRT, do not rename it to `.vtt`. Convert it. For the full workflow, see [how to convert SRT to VTT for HTML5 video](/guides/how-to-convert-srt-to-vtt-for-html5-video/).
+
+## Check the track request in DevTools
+
+Open Chrome DevTools, reload the page, and look at the Network tab for the `.vtt` request.
+
+The track URL should return:
+
+```http
+HTTP/2 200
+Content-Type: text/vtt
+```
+
+Common failures include:
+
+- `404` because the `src` path is wrong
+- `403` because the caption URL needs authentication
+- `text/html` because the server returned an error page
+- `text/plain` or `application/octet-stream` because the host does not know the VTT MIME type
+- CORS errors when captions are served from another domain
+
+For delivery fixes, use [how to fix VTT MIME type for HTML5 video](/guides/how-to-fix-vtt-mime-type-for-html5-video/) and [how to fix CORS errors for VTT subtitles](/guides/how-to-fix-cors-errors-for-vtt-subtitles/).
+
+## Check the HTML track markup
+
+Use explicit track metadata:
+
+```html
+<video controls crossorigin="anonymous">
+  <source src="/videos/demo.mp4" type="video/mp4" />
+  <track
+    kind="captions"
+    src="/captions/demo.en.vtt"
+    srclang="en"
+    label="English"
+    default
+  />
+</video>
+```
+
+The `default` attribute makes Chrome enable that track automatically. Without it, viewers may need to turn captions on from the player menu.
+
+If the VTT file is cross-origin, keep `crossorigin="anonymous"` on the video element and send the matching CORS header from the caption host.
+
+## Check Chrome caption settings
+
+If the VTT file loads and the track is enabled but captions are still invisible, check browser-level caption styling.
+
+In Chrome, open:
+
+```text
+chrome://settings/accessibility
+```
+
+Then review live caption and caption style settings. This is less common than a broken VTT file or blocked track URL, but it can make captions look hidden or unreadable during testing.
+
+## Common Chrome caption mistakes
+
+### Using SRT in a track element
+
+Chrome does not support SRT directly in native HTML5 text tracks.
+
+**Fix:** Convert SRT to WebVTT with the [SRT to VTT Converter](/tools/srt-to-vtt/).
+
+### Serving captions from a private URL
+
+The page may load for you while the caption file returns a login page, signed URL error, or 403 response.
+
+**Fix:** Open the VTT URL in a private browser window and confirm it returns caption text.
+
+### Forgetting CORS for CDN captions
+
+If the video page and caption file are on different origins, Chrome needs permission to read the VTT file.
+
+**Fix:** Add `Access-Control-Allow-Origin` on the caption response and `crossorigin="anonymous"` on the video element.
+
+### Track exists but is not enabled
+
+The file can be valid and loaded, but no track is selected.
+
+**Fix:** Add `default` for the primary caption track or test by manually enabling captions from the player controls.
+
+## Troubleshooting checklist
+
+1. Validate the file with the [WebVTT Validator](/tools/webvtt-validator/).
+2. Convert SRT or ASS captions to WebVTT if needed.
+3. Open the `.vtt` URL directly in Chrome.
+4. Confirm the request returns `200` and `Content-Type: text/vtt`.
+5. Check the DevTools console for CORS or MIME warnings.
+6. Use explicit `kind`, `src`, `srclang`, `label`, and `default` attributes.
+7. Add CORS headers if the caption file is cross-origin.
+8. Check Chrome accessibility caption settings if the track loads but text is invisible.
+
+## Related guides
+
+- [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/)
+- [Why VTT captions are not loading](/guides/why-vtt-captions-are-not-loading/)
+- [Why Safari captions are not showing](/guides/why-safari-captions-are-not-showing/)
+- [How to fix VTT MIME type for HTML5 video](/guides/how-to-fix-vtt-mime-type-for-html5-video/)
+
+## Related tools
+
+- [WebVTT Validator](/tools/webvtt-validator/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [HTML5 Video Subtitle Converter](/tools/html5-video-subtitle-converter/)
