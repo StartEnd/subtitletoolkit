@@ -82,4 +82,4 @@ Record only changes that can plausibly affect search behavior.
 
 | Date | URLs changed | Change type | Reason | Verification |
 | --- | --- | --- | --- | --- |
-| 2026-06-01 | Priority guides, tools, hubs, sitemap | Titles, descriptions, internal links, schema, sitemap lastmod, SERP metadata audit | Improve zero-click impressions, query-title fit, guide-to-tool conversion, and crawl recency signals. | `pnpm verify:seo:live` passed on production for commit `d9e9be8` |
+| 2026-06-01 | Priority guides, tools, hubs, sitemap | Titles, descriptions, internal links, schema, sitemap lastmod, SERP metadata audit | Improve zero-click impressions, query-title fit, guide-to-tool conversion, and crawl recency signals. | `pnpm verify:gsc:submit-ready` passed on production for commit `17ee9a3` |

@@ -42,6 +42,18 @@ const checks = [
 				label: 'homepage links to priority guide',
 				match: '/guides/why-subtitles-do-not-show-in-html5-video/',
 			},
+			{
+				label: 'homepage links to YouTube upload failure guide',
+				match: '/guides/why-youtube-subtitles-upload-failed/',
+			},
+			{
+				label: 'homepage links to YouTube subtitle conversion guide',
+				match: '/guides/how-to-convert-subtitles-for-youtube/',
+			},
+			{
+				label: 'homepage links to SRT upload failure guide',
+				match: '/guides/why-srt-file-wont-upload/',
+			},
 		],
 	},
 	{
@@ -542,6 +554,18 @@ const checks = [
 			{
 				label: 'high-intent guide section',
 				match: 'High-intent subtitle problems to fix first.',
+			},
+			{
+				label: 'guides index links to YouTube upload failure guide',
+				match: '/guides/why-youtube-subtitles-upload-failed/',
+			},
+			{
+				label: 'guides index links to YouTube subtitle conversion guide',
+				match: '/guides/how-to-convert-subtitles-for-youtube/',
+			},
+			{
+				label: 'guides index links to SRT upload failure guide',
+				match: '/guides/why-srt-file-wont-upload/',
 			},
 		],
 	},
