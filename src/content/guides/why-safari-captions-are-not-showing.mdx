@@ -1,0 +1,173 @@
+---
+title: Why Safari captions are not showing
+seoTitle: Safari Captions Not Showing - Fix VTT on iPhone and Mac
+seoDescription: Fix Safari captions not showing by checking WebVTT syntax, HTTPS, MIME type, CORS, track defaults, and iPhone or iPad video behavior.
+description: Diagnose captions that work in Chrome but fail in Safari, iPhone, or iPad by checking WebVTT files, delivery headers, and HTML track setup.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - safari
+  - iphone
+  - ios
+  - html5 video
+  - vtt
+  - captions not showing
+  - troubleshooting
+primaryTool: webvtt-validator
+faqs:
+  - question: Why do captions work in Chrome but not Safari?
+    answer: Safari can be stricter about WebVTT syntax, HTTPS, MIME type, CORS headers, and track setup. A VTT file that Chrome tolerates can still fail in Safari.
+  - question: Does iPhone Safari support SRT subtitles?
+    answer: Native iPhone Safari video tracks expect WebVTT. Convert SRT to VTT before using captions in an HTML5 video track.
+  - question: What should I check first when Safari captions do not show?
+    answer: Validate the VTT file first, then check the caption URL, Content-Type header, CORS headers, HTTPS, and the HTML track attributes.
+---
+
+Safari caption problems often look confusing because the same video page may show subtitles in Chrome but not in Safari, iPhone, or iPad. In most cases, the issue is still one of the basics: invalid WebVTT, the wrong response headers, a blocked cross-origin request, or a track element Safari does not activate.
+
+## Quick answer
+
+Validate the caption file with the [WebVTT Validator](/tools/webvtt-validator/) first. Then test the deployed `.vtt` URL in Safari and confirm the server sends `Content-Type: text/vtt`, HTTPS, and the right CORS headers if the file is cross-origin.
+
+If your source captions are SRT, convert them to WebVTT with the [SRT to VTT Converter](/tools/srt-to-vtt/) before attaching them to the video.
+
+## Why Safari is stricter
+
+Safari uses the browser's native text track parser. It can reject or ignore caption tracks when:
+
+- the file is SRT renamed to `.vtt`
+- the `WEBVTT` header is missing
+- timestamps use commas instead of dots
+- the server sends `text/plain` or `application/octet-stream`
+- the video page is HTTPS but the caption URL is HTTP
+- the VTT file is on another domain without CORS headers
+- the track has no usable language or label metadata
+
+Chrome may appear more forgiving during local testing, so always test the final deployed caption URL in Safari before shipping.
+
+## Validate the VTT file
+
+Start with the file itself. A Safari-ready VTT file should look like this:
+
+```text
+WEBVTT
+
+00:00:01.000 --> 00:00:03.500
+First caption line.
+
+00:00:04.000 --> 00:00:06.200
+Second caption line.
+```
+
+Check for:
+
+- `WEBVTT` on the first line
+- dot-based timestamps, not SRT commas
+- blank lines between cues
+- cue start times before cue end times
+- readable UTF-8 text
+
+If the file came from an editor as SRT, convert it instead of renaming it. For the full conversion workflow, see [how to convert SRT to VTT for HTML5 video](/guides/how-to-convert-srt-to-vtt-for-html5-video/).
+
+## Check the HTML track setup
+
+Use a normal HTML5 `<track>` element and keep the metadata explicit:
+
+```html
+<video controls crossorigin="anonymous">
+  <source src="/videos/demo.mp4" type="video/mp4" />
+  <track
+    kind="captions"
+    src="/captions/demo.en.vtt"
+    srclang="en"
+    label="English"
+    default
+  />
+</video>
+```
+
+Safari can still let the viewer choose captions manually, but the `default` attribute makes the expected track clear. If you have multiple tracks, give each one a distinct `srclang` and `label`.
+
+## Check HTTPS, MIME type, and CORS
+
+Open the `.vtt` file URL directly in Safari. It should load the caption text, not a download page, login page, or HTML error page.
+
+In the Network tab or with a header check, confirm:
+
+```http
+Content-Type: text/vtt
+```
+
+If captions are hosted on another domain or CDN, the response also needs a matching CORS header:
+
+```http
+Access-Control-Allow-Origin: https://example.com
+```
+
+When the video page is HTTPS, do not load the VTT file over plain HTTP. Safari can block mixed content or treat the track as unavailable.
+
+For deeper delivery fixes, use [how to fix VTT MIME type for HTML5 video](/guides/how-to-fix-vtt-mime-type-for-html5-video/) and [how to fix CORS errors for VTT subtitles](/guides/how-to-fix-cors-errors-for-vtt-subtitles/).
+
+## iPhone and iPad checks
+
+iPhone and iPad testing matters because mobile Safari may use native playback controls and a smaller captions UI.
+
+Check these separately:
+
+- The captions button appears in the native player controls
+- The selected language label is understandable
+- The video and VTT URLs are both HTTPS
+- The track URL is reachable without cookies or a signed session that expires quickly
+- The caption text is not hidden by custom CSS or white-on-white styling
+
+If captions work on macOS Safari but not iPhone, focus on HTTPS, CORS, and whether the file URL remains reachable from the device.
+
+## Common Safari caption mistakes
+
+### Renaming SRT to VTT
+
+Safari expects WebVTT structure, not just a `.vtt` extension.
+
+**Fix:** Convert with the [SRT to VTT Converter](/tools/srt-to-vtt/) and validate the output.
+
+### Serving VTT as plain text
+
+Some static hosts and CDNs serve unknown extensions as `text/plain`.
+
+**Fix:** Configure `.vtt` files as `text/vtt`. Safari is more likely to fail when the response type is wrong.
+
+### Cross-origin captions without CORS
+
+If the page is on `www.example.com` and captions are on `cdn.example.com`, Safari needs permission to read the caption file.
+
+**Fix:** Add CORS headers on the caption host and `crossorigin="anonymous"` on the video element.
+
+### Testing locally but not on the final URL
+
+Local files can behave differently from deployed HTTPS pages.
+
+**Fix:** Test the final production page and the final VTT URL in Safari, not only a local preview.
+
+## Troubleshooting checklist
+
+1. Convert SRT or ASS captions to WebVTT.
+2. Validate the VTT file with the [WebVTT Validator](/tools/webvtt-validator/).
+3. Open the VTT URL directly in Safari.
+4. Confirm `Content-Type: text/vtt`.
+5. Use HTTPS for the video page, video file, and caption file.
+6. Add CORS headers if the caption file is cross-origin.
+7. Include `kind`, `src`, `srclang`, `label`, and usually `default` on the `<track>` element.
+8. Test again on iPhone or iPad if mobile Safari users matter.
+
+## Related guides
+
+- [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/)
+- [Why VTT captions are not loading](/guides/why-vtt-captions-are-not-loading/)
+- [How to fix VTT MIME type for HTML5 video](/guides/how-to-fix-vtt-mime-type-for-html5-video/)
+- [How to fix CORS errors for VTT subtitles](/guides/how-to-fix-cors-errors-for-vtt-subtitles/)
+
+## Related tools
+
+- [WebVTT Validator](/tools/webvtt-validator/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [HTML5 Video Subtitle Converter](/tools/html5-video-subtitle-converter/)
