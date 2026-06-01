@@ -1125,9 +1125,9 @@ const enTools: SubtitleTool[] = [
     title: 'Subtitle Delay Fixer',
     shortTitle: 'Delay fixer',
     description:
-      'Fix subtitle delay online by shifting SRT, VTT, or ASS timestamps earlier or later.',
+      'Fix subtitle delay when captions are ahead of audio or behind speech by shifting SRT, VTT, or ASS timestamps.',
     summary:
-      'Use this free subtitle delay fixer when every caption is consistently too early or too late by the same amount.',
+      'Use this free subtitle delay fixer when every caption is consistently ahead of audio or behind speech by the same amount.',
     buttonLabel: 'Fix delay',
     inputLabel: 'Subtitle input',
     outputLabel: 'Fixed subtitle output',
@@ -1135,7 +1135,7 @@ const enTools: SubtitleTool[] = [
     acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.txt'],
     sampleFileName: 'sample.srt',
     useCases: [
-      'Fix subtitles that appear too early or too late.',
+      'Fix subtitles that appear ahead of audio or behind speech.',
       'Delay captions after a video intro was added.',
       'Move all subtitle cues earlier after trimming a video start.',
       'Repair a constant subtitle offset without opening a video editor.',
@@ -1149,7 +1149,17 @@ const enTools: SubtitleTool[] = [
       {
         question: 'Should I use a positive or negative value?',
         answer:
-          'Use a positive value when subtitles appear too early. Use a negative value when subtitles appear too late.',
+          'Use a positive value when subtitles are ahead of audio. Use a negative value when subtitles are behind speech.',
+      },
+      {
+        question: 'Can this fix subtitles ahead of audio?',
+        answer:
+          'Yes. If every caption appears before the matching speech by the same amount, enter a positive millisecond value to move captions later.',
+      },
+      {
+        question: 'Can this fix subtitles behind audio?',
+        answer:
+          'Yes. If every caption appears after the matching speech by the same amount, enter a negative millisecond value to move captions earlier.',
       },
       {
         question: 'Does this preserve the subtitle format?',
