@@ -54,12 +54,24 @@ const checks = [
 				match: '/guides/why-youtube-subtitles-upload-failed/',
 			},
 			{
+				label: 'footer labels YouTube upload failure guide',
+				match: 'YouTube upload failed',
+			},
+			{
 				label: 'homepage links to YouTube subtitle conversion guide',
 				match: '/guides/how-to-convert-subtitles-for-youtube/',
 			},
 			{
+				label: 'footer labels YouTube conversion guide',
+				match: 'Convert subtitles for YouTube',
+			},
+			{
 				label: 'homepage links to SRT upload failure guide',
 				match: '/guides/why-srt-file-wont-upload/',
+			},
+			{
+				label: 'footer labels SRT upload failure guide',
+				match: 'SRT file will not upload',
 			},
 			{
 				label: 'homepage links to Video.js caption failure guide',
