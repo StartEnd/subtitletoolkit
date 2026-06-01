@@ -6,6 +6,9 @@ const verifyLive = args.includes('--live') || process.env.GSC_DAY0_LIVE === '1';
 const baseUrl = (process.env.GSC_DAY0_BASE_URL || 'https://subtitletoolkit.tools').replace(/\/$/, '');
 const distDir = resolve(process.env.GSC_DAY0_DIST_DIR || 'dist');
 const day0Path = resolve(process.env.GSC_DAY0_FILE || 'GSC_DAY0_URLS.md');
+const fetchRetries = Number.parseInt(process.env.GSC_DAY0_FETCH_RETRIES || '2', 10);
+const fetchRetryDelayMs = Number.parseInt(process.env.GSC_DAY0_FETCH_RETRY_DELAY_MS || '1000', 10);
+const fetchTimeoutMs = Number.parseInt(process.env.GSC_DAY0_FETCH_TIMEOUT_MS || '15000', 10);
 
 function readRequiredFile(path) {
 	if (!existsSync(path)) {
@@ -39,30 +42,62 @@ function expectedCanonical(path) {
 	return `${baseUrl}${path}`;
 }
 
-async function fetchText(url) {
-	const response = await fetch(url, {
-		redirect: 'follow',
-		signal: AbortSignal.timeout(15_000),
-	});
+function sleep(ms) {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
-	if (!response.ok) {
-		throw new Error(`${response.status} ${response.statusText}`);
+async function fetchText(url) {
+	let lastError;
+
+	for (let attempt = 0; attempt <= fetchRetries; attempt += 1) {
+		try {
+			const response = await fetch(url, {
+				redirect: 'follow',
+				signal: AbortSignal.timeout(fetchTimeoutMs),
+			});
+
+			if (!response.ok) {
+				throw new Error(`${response.status} ${response.statusText}`);
+			}
+
+			return response.text();
+		} catch (error) {
+			lastError = error;
+
+			if (attempt < fetchRetries) {
+				await sleep(fetchRetryDelayMs);
+			}
+		}
 	}
 
-	return response.text();
+	throw lastError;
 }
 
 async function fetchRedirect(url) {
-	const response = await fetch(url, {
-		method: 'HEAD',
-		redirect: 'manual',
-		signal: AbortSignal.timeout(15_000),
-	});
+	let lastError;
 
-	return {
-		status: response.status,
-		location: response.headers.get('location') ?? '',
-	};
+	for (let attempt = 0; attempt <= fetchRetries; attempt += 1) {
+		try {
+			const response = await fetch(url, {
+				method: 'HEAD',
+				redirect: 'manual',
+				signal: AbortSignal.timeout(fetchTimeoutMs),
+			});
+
+			return {
+				status: response.status,
+				location: response.headers.get('location') ?? '',
+			};
+		} catch (error) {
+			lastError = error;
+
+			if (attempt < fetchRetries) {
+				await sleep(fetchRetryDelayMs);
+			}
+		}
+	}
+
+	throw lastError;
 }
 
 async function readPageHtml(path) {

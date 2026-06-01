@@ -7,6 +7,9 @@ const baseUrl = (process.env.SEO_VERIFY_BASE_URL || 'https://subtitletoolkit.too
 const distDir = resolve(process.env.SEO_VERIFY_DIST_DIR || 'dist');
 const retries = Number.parseInt(process.env.SEO_VERIFY_RETRIES || '0', 10);
 const retryDelayMs = Number.parseInt(process.env.SEO_VERIFY_RETRY_DELAY_MS || '30000', 10);
+const fetchRetries = Number.parseInt(process.env.SEO_VERIFY_FETCH_RETRIES || '2', 10);
+const fetchRetryDelayMs = Number.parseInt(process.env.SEO_VERIFY_FETCH_RETRY_DELAY_MS || '1000', 10);
+const fetchTimeoutMs = Number.parseInt(process.env.SEO_VERIFY_FETCH_TIMEOUT_MS || '15000', 10);
 
 function getExpectedLastmod() {
 	try {
@@ -2226,16 +2229,30 @@ async function fetchHtml(path) {
 	}
 
 	const url = `${baseUrl}${path}`;
-	const response = await fetch(url, {
-		redirect: 'follow',
-		signal: AbortSignal.timeout(15_000),
-	});
+	let lastError;
 
-	if (!response.ok) {
-		throw new Error(`${response.status} ${response.statusText}`);
+	for (let attempt = 0; attempt <= fetchRetries; attempt += 1) {
+		try {
+			const response = await fetch(url, {
+				redirect: 'follow',
+				signal: AbortSignal.timeout(fetchTimeoutMs),
+			});
+
+			if (!response.ok) {
+				throw new Error(`${response.status} ${response.statusText}`);
+			}
+
+			return response.text();
+		} catch (error) {
+			lastError = error;
+
+			if (attempt < fetchRetries) {
+				await sleep(fetchRetryDelayMs);
+			}
+		}
 	}
 
-	return response.text();
+	throw lastError;
 }
 
 function checkExpectation(html, expectation) {
