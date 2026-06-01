@@ -69,6 +69,8 @@
 - [ ] `pnpm verify:gsc:submit-ready` 通过
 - [ ] `GSC_DAY0_URLS.md` 准备记录提交日期和下次复查日期
 - [ ] `pnpm gsc:day0:list` 输出的 primary queue 是 21 个 URL；提交完成后再勾选和粘贴记录行
+- [ ] `pnpm promotion:kit -- --section directory --submitted-on 2026-06-01` 可打印目录站提交素材
+- [ ] `pnpm promotion:record -- --dry-run --channel gsc --source "Search Console" --status submitted --notes "Sitemap plus 21 primary URL Inspection requests"` 可打印待记录行
 - [ ] Plausible 可以看到当前 traffic sources，便于提交后对比 referral/direct 变化
 - [ ] Plausible 可以看到工具事件，至少包括 `subtitle_tool_edit_input`、`subtitle_tool_adjust_setting`、`subtitle_tool_copy_output`、`subtitle_tool_download_output`
 
@@ -437,6 +439,15 @@ Thanks for taking a look.
 ## 追踪表
 
 每个外部动作都要能回到两个问题：有没有带来可见 referral/direct 流量？有没有帮助 GSC 出现更多 impressions 或 clicks？
+
+优先用命令追加证据行，减少手抄错误：
+
+```bash
+pnpm promotion:record -- --channel gsc --source "Search Console" --status submitted --notes "Sitemap plus 21 primary URL Inspection requests"
+pnpm promotion:record -- --channel directory --source AlternativeTo --url https://example.com/subtitle-toolkit --status submitted
+```
+
+命令会写入 `PROMOTION_LOG.md`。下面这些表仍然保留，供周复盘时汇总到人类可读的计划里。
 
 ### 7 天复盘口径
 
