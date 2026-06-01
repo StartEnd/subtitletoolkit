@@ -151,8 +151,8 @@ console.log('Run this after the manual GSC work is complete so the weekly review
 console.log(`pnpm promotion:record -- --date ${submittedOn} --channel gsc --source "Search Console" --status submitted --notes "${evidenceNotes}"`);
 
 console.log('\n## After Manual Submission\n');
-console.log('1. Check off submitted items in GSC_DAY0_URLS.md.');
-console.log('2. Paste the Submission Record row above into GSC_DAY0_URLS.md.');
-console.log('3. Run the Evidence Record Command above.');
-console.log('4. Add the same date to GSC_WEEKLY_TRACKER.md if it is not already recorded.');
-console.log('5. Wait 5 to 7 days, export GSC Queries/Pages and same-window Plausible data, then run pnpm gsc:analyze.');
+console.log('1. Run this local record command after Search Console confirms the manual work is complete:');
+console.log(`   pnpm gsc:day0:record -- --submitted-on ${submittedOn} --submitted-by "${submittedBy}" --batch ${batch} --next-review-days ${nextReviewDays}`);
+console.log('2. Run the Evidence Record Command above.');
+console.log('3. Add the same date to GSC_WEEKLY_TRACKER.md if it is not already recorded.');
+console.log('4. Wait 5 to 7 days, export GSC Queries/Pages and same-window Plausible data, then run pnpm gsc:analyze.');

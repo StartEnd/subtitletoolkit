@@ -64,6 +64,7 @@ try {
 	assertIncludes(valid.stdout, '| 2026-06-01 | song | Yes | 2 | 2026-06-06 | Submitted primary Day 0 URL Inspection queue after production gate passed. |');
 	assertIncludes(valid.stdout, '## Evidence Record Command');
 	assertIncludes(valid.stdout, 'pnpm promotion:record -- --date 2026-06-01 --channel gsc --source "Search Console" --status submitted --notes "Submitted primary Day 0 sitemap plus 2 URL Inspection requests; next review 2026-06-06"');
+	assertIncludes(valid.stdout, 'pnpm gsc:day0:record -- --submitted-on 2026-06-01 --submitted-by "song" --batch primary --next-review-days 5');
 
 	const current = run([
 		'--submitted-on', '2026-06-01',
