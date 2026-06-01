@@ -43,6 +43,12 @@ const playerConversionGuideIds = [
 	'how-to-convert-subtitles-for-plex',
 	'how-to-convert-subtitles-for-vimeo',
 ];
+const playerFormatGuideIds = [
+	'best-subtitle-format-for-videojs',
+	'best-subtitle-format-for-jw-player',
+	'best-subtitle-format-for-plex',
+	'best-subtitle-format-for-vimeo-embeds',
+];
 const transcriptWorkflowGuideIds = [
 	'how-to-convert-srt-to-txt',
 	'how-to-convert-vtt-to-txt',
@@ -80,6 +86,9 @@ const platformGuides = platformGuideIds
 	.map((id) => guides.find((guide) => guide.id === id))
 	.filter(Boolean);
 const playerConversionGuides = playerConversionGuideIds
+	.map((id) => guides.find((guide) => guide.id === id))
+	.filter(Boolean);
+const playerFormatGuides = playerFormatGuideIds
 	.map((id) => guides.find((guide) => guide.id === id))
 	.filter(Boolean);
 const transcriptWorkflowGuides = transcriptWorkflowGuideIds
@@ -220,6 +229,28 @@ const pageDescription =
 						<h3><a href={`/guides/${guide.id}/`}>{guide.data.title}</a></h3>
 						<p>{guide.data.description}</p>
 						<a class="card-link" href={`/guides/${guide.id}/`}>Convert captions <span aria-hidden="true">&rarr;</span></a>
+					</article>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="section">
+		<span class="eyebrow">Player format choices</span>
+		<h2>Pick the safest subtitle format for each player.</h2>
+		<p class="lede priority-lede">
+			Start here when the question is whether Video.js, JW Player, Plex, or Vimeo needs SRT, VTT, or another delivery file.
+		</p>
+		<div class="platform-grid">
+			{
+				playerFormatGuides.map((guide) => (
+					<article class="platform-card">
+						<p class="priority-card-meta">
+							{guideCategoryMeta[guide.data.category].label}
+						</p>
+						<h3><a href={`/guides/${guide.id}/`}>{guide.data.title}</a></h3>
+						<p>{guide.data.description}</p>
+						<a class="card-link" href={`/guides/${guide.id}/`}>Choose format <span aria-hidden="true">&rarr;</span></a>
 					</article>
 				))
 			}

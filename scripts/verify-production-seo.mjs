@@ -95,6 +95,10 @@ const checks = [
 				match: '/guides/how-to-convert-subtitles-for-videojs/',
 			},
 			{
+				label: 'homepage links to Video.js format guide',
+				match: '/guides/best-subtitle-format-for-videojs/',
+			},
+			{
 				label: 'homepage links to SRT vs VTT guide',
 				match: '/guides/srt-vs-vtt/',
 			},
@@ -587,6 +591,74 @@ const checks = [
 			{
 				label: 'Vimeo conversion guide opens converter tool',
 				match: 'href="/tools/vimeo-subtitle-converter/"',
+			},
+		],
+	},
+	{
+		path: '/guides/best-subtitle-format-for-videojs/',
+		expect: [
+			{
+				label: 'Video.js format guide CTR title',
+				match: '<title>Best Subtitle Format for Video.js - Use WebVTT</title>',
+			},
+			{
+				label: 'Video.js format guide meta description',
+				match: 'Choose the best subtitle format for Video.js. Use WebVTT for browser playback, convert SRT or ASS to VTT, and check MIME and CORS issues.',
+			},
+			{
+				label: 'Video.js format guide opens converter tool',
+				match: 'href="/tools/srt-to-vtt/"',
+			},
+		],
+	},
+	{
+		path: '/guides/best-subtitle-format-for-jw-player/',
+		expect: [
+			{
+				label: 'JW Player format guide CTR title',
+				match: '<title>Best Subtitle Format for JW Player - VTT Guide</title>',
+			},
+			{
+				label: 'JW Player format guide meta description',
+				match: 'Choose the best subtitle format for JW Player. Use WebVTT for reliable browser captions, convert SRT when needed, and avoid MIME or CORS failures.',
+			},
+			{
+				label: 'JW Player format guide opens converter tool',
+				match: 'href="/tools/srt-to-vtt/"',
+			},
+		],
+	},
+	{
+		path: '/guides/best-subtitle-format-for-plex/',
+		expect: [
+			{
+				label: 'Plex format guide CTR title',
+				match: '<title>Best Subtitle Format for Plex - SRT Compatibility Guide</title>',
+			},
+			{
+				label: 'Plex format guide meta description',
+				match: 'Choose the best subtitle format for Plex. Use SRT for broad device compatibility, convert ASS or VTT when needed, and name files correctly.',
+			},
+			{
+				label: 'Plex format guide opens converter tool',
+				match: 'href="/tools/ass-to-srt/"',
+			},
+		],
+	},
+	{
+		path: '/guides/best-subtitle-format-for-vimeo-embeds/',
+		expect: [
+			{
+				label: 'Vimeo format guide CTR title',
+				match: '<title>Best Subtitle Format for Vimeo Embeds - VTT Guide</title>',
+			},
+			{
+				label: 'Vimeo format guide meta description',
+				match: 'Choose the best subtitle format for Vimeo embeds. Use WebVTT for browser playback, convert SRT when needed, and validate captions before upload.',
+			},
+			{
+				label: 'Vimeo format guide opens converter tool',
+				match: 'href="/tools/srt-to-vtt/"',
 			},
 		],
 	},
@@ -1093,6 +1165,26 @@ const checks = [
 			{
 				label: 'guides index links to Vimeo conversion guide',
 				match: '/guides/how-to-convert-subtitles-for-vimeo/',
+			},
+			{
+				label: 'guides index includes player format choices section',
+				match: 'Player format choices',
+			},
+			{
+				label: 'guides index links to Video.js format guide',
+				match: '/guides/best-subtitle-format-for-videojs/',
+			},
+			{
+				label: 'guides index links to JW Player format guide',
+				match: '/guides/best-subtitle-format-for-jw-player/',
+			},
+			{
+				label: 'guides index links to Plex format guide',
+				match: '/guides/best-subtitle-format-for-plex/',
+			},
+			{
+				label: 'guides index links to Vimeo format guide',
+				match: '/guides/best-subtitle-format-for-vimeo-embeds/',
 			},
 			{
 				label: 'guides index includes transcript workflows section',
