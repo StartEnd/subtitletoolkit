@@ -87,6 +87,10 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-subtitles-for-html5-video/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-add-multiple-subtitle-languages-to-html5-video/`
 - [ ] `https://subtitletoolkit.tools/guides/best-subtitle-format-for-html5-video/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-convert-subtitles-for-videojs/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-convert-subtitles-for-jw-player/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-convert-subtitles-for-plex/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-convert-subtitles-for-vimeo/`
 
 ## After Submission
 

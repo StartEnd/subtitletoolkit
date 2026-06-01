@@ -90,6 +90,10 @@ const checks = [
 				label: 'homepage links to HTML5 conversion guide',
 				match: '/guides/how-to-convert-subtitles-for-html5-video/',
 			},
+			{
+				label: 'homepage links to Video.js conversion guide',
+				match: '/guides/how-to-convert-subtitles-for-videojs/',
+			},
 		],
 	},
 	{
@@ -507,6 +511,74 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/how-to-convert-subtitles-for-videojs/',
+		expect: [
+			{
+				label: 'Video.js conversion guide CTR title',
+				match: '<title>Convert Subtitles for Video.js - SRT or ASS to VTT</title>',
+			},
+			{
+				label: 'Video.js conversion guide meta description',
+				match: 'Convert SRT or ASS subtitles to WebVTT for Video.js. Add the WEBVTT header, fix timestamps, and prepare browser captions with no upload.',
+			},
+			{
+				label: 'Video.js conversion guide opens converter tool',
+				match: 'href="/tools/videojs-subtitle-converter/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-subtitles-for-jw-player/',
+		expect: [
+			{
+				label: 'JW Player conversion guide CTR title',
+				match: '<title>Convert Subtitles for JW Player - SRT or ASS to VTT</title>',
+			},
+			{
+				label: 'JW Player conversion guide meta description',
+				match: 'Convert SRT or ASS subtitles to WebVTT for JW Player. Create browser-ready captions, fix timestamp format, and download locally.',
+			},
+			{
+				label: 'JW Player conversion guide opens converter tool',
+				match: 'href="/tools/jw-player-subtitle-converter/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-subtitles-for-plex/',
+		expect: [
+			{
+				label: 'Plex conversion guide CTR title',
+				match: '<title>Convert Subtitles for Plex - VTT or ASS to SRT</title>',
+			},
+			{
+				label: 'Plex conversion guide meta description',
+				match: 'Convert VTT or ASS subtitles to SRT for Plex. Create simple media-library captions, preserve timing, and avoid unsupported styling.',
+			},
+			{
+				label: 'Plex conversion guide opens converter tool',
+				match: 'href="/tools/plex-subtitle-converter/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-subtitles-for-vimeo/',
+		expect: [
+			{
+				label: 'Vimeo conversion guide CTR title',
+				match: '<title>Convert Subtitles for Vimeo - SRT or ASS to VTT</title>',
+			},
+			{
+				label: 'Vimeo conversion guide meta description',
+				match: 'Convert SRT or ASS subtitles to WebVTT for Vimeo embeds. Prepare upload-ready or externally hosted captions locally with no upload.',
+			},
+			{
+				label: 'Vimeo conversion guide opens converter tool',
+				match: 'href="/tools/vimeo-subtitle-converter/"',
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/',
 		expect: [
 			{
@@ -746,6 +818,26 @@ const checks = [
 				match: '/guides/how-to-add-multiple-subtitle-languages-to-html5-video/',
 			},
 			{
+				label: 'guides index includes player conversions section',
+				match: 'Player conversions',
+			},
+			{
+				label: 'guides index links to Video.js conversion guide',
+				match: '/guides/how-to-convert-subtitles-for-videojs/',
+			},
+			{
+				label: 'guides index links to JW Player conversion guide',
+				match: '/guides/how-to-convert-subtitles-for-jw-player/',
+			},
+			{
+				label: 'guides index links to Plex conversion guide',
+				match: '/guides/how-to-convert-subtitles-for-plex/',
+			},
+			{
+				label: 'guides index links to Vimeo conversion guide',
+				match: '/guides/how-to-convert-subtitles-for-vimeo/',
+			},
+			{
 				label: 'guides index links to UTF-8 conversion guide',
 				match: '/guides/how-to-convert-subtitles-to-utf-8/',
 			},
@@ -908,6 +1000,22 @@ const checks = [
 			{
 				label: 'llms lists HTML5 multi-language guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-add-multiple-subtitle-languages-to-html5-video/',
+			},
+			{
+				label: 'llms lists Video.js conversion guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-subtitles-for-videojs/',
+			},
+			{
+				label: 'llms lists JW Player conversion guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-subtitles-for-jw-player/',
+			},
+			{
+				label: 'llms lists Plex conversion guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-subtitles-for-plex/',
+			},
+			{
+				label: 'llms lists Vimeo conversion guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-subtitles-for-vimeo/',
 			},
 			{
 				label: 'llms lists SRT validation guide',
