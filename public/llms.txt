@@ -83,6 +83,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [How to validate SRT files](https://subtitletoolkit.tools/guides/how-to-validate-srt-files/)
 - [Why subtitles do not show in HTML5 video](https://subtitletoolkit.tools/guides/why-subtitles-do-not-show-in-html5-video/)
 - [Why VTT captions are not loading](https://subtitletoolkit.tools/guides/why-vtt-captions-are-not-loading/)
+- [Why iPhone subtitles are not showing](https://subtitletoolkit.tools/guides/why-iphone-subtitles-are-not-showing/)
 - [Why Android captions are not showing](https://subtitletoolkit.tools/guides/why-android-captions-are-not-showing/)
 - [Why Chrome captions are not showing](https://subtitletoolkit.tools/guides/why-chrome-captions-are-not-showing/)
 - [Why Edge captions are not showing](https://subtitletoolkit.tools/guides/why-edge-captions-are-not-showing/)

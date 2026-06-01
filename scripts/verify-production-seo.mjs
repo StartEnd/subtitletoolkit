@@ -82,6 +82,10 @@ const checks = [
 				match: '/guides/why-plyr-captions-are-not-showing/',
 			},
 			{
+				label: 'homepage links to iPhone subtitle failure guide',
+				match: '/guides/why-iphone-subtitles-are-not-showing/',
+			},
+			{
 				label: 'homepage links to Android caption failure guide',
 				match: '/guides/why-android-captions-are-not-showing/',
 			},
@@ -738,6 +742,31 @@ const checks = [
 			{
 				label: 'Plyr captions guide links WebVTT validator',
 				match: 'href="/tools/webvtt-validator/"',
+			},
+		],
+	},
+	{
+		path: '/guides/why-iphone-subtitles-are-not-showing/',
+		expect: [
+			{
+				label: 'iPhone subtitles failure guide CTR title',
+				match: '<title>iPhone Subtitles Not Showing - Fix VTT on iOS Safari</title>',
+			},
+			{
+				label: 'iPhone subtitles failure guide meta description',
+				match: 'Fix iPhone subtitles not showing by checking WebVTT syntax, HTTPS, MIME type, CORS headers, track defaults, and iOS video controls.',
+			},
+			{
+				label: 'FAQ schema for iPhone subtitle questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why are subtitles not showing on iPhone\?/
+			},
+			{
+				label: 'iPhone subtitles guide opens WebVTT validator',
+				match: 'href="/tools/webvtt-validator/"',
+			},
+			{
+				label: 'iPhone subtitles guide links SRT to VTT converter',
+				match: 'href="/tools/srt-to-vtt/"',
 			},
 		],
 	},
@@ -2686,6 +2715,10 @@ const checks = [
 				match: '/guides/how-to-convert-subtitles-for-html5-video/',
 			},
 			{
+				label: 'guides index links to iPhone subtitle guide from HTML5 section',
+				match: '/guides/why-iphone-subtitles-are-not-showing/',
+			},
+			{
 				label: 'guides index links to Android caption guide from HTML5 section',
 				match: '/guides/why-android-captions-are-not-showing/',
 			},
@@ -2956,6 +2989,10 @@ const checks = [
 			{
 				label: 'llms lists VTT captions not loading guide',
 				match: 'https://subtitletoolkit.tools/guides/why-vtt-captions-are-not-loading/',
+			},
+			{
+				label: 'llms lists iPhone subtitle failure guide',
+				match: 'https://subtitletoolkit.tools/guides/why-iphone-subtitles-are-not-showing/',
 			},
 			{
 				label: 'llms lists Android caption failure guide',

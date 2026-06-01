@@ -1,0 +1,163 @@
+---
+title: Why iPhone subtitles are not showing
+seoTitle: iPhone Subtitles Not Showing - Fix VTT on iOS Safari
+seoDescription: Fix iPhone subtitles not showing by checking WebVTT syntax, HTTPS, MIME type, CORS headers, track defaults, and iOS video controls.
+description: Diagnose subtitles that work on desktop but fail on iPhone or iPad by checking WebVTT files, mobile Safari controls, delivery headers, and HTML5 track setup.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - iphone
+  - ipad
+  - ios
+  - safari
+  - html5 video
+  - vtt
+  - subtitles not showing
+  - captions not showing
+  - troubleshooting
+primaryTool: webvtt-validator
+faqs:
+  - question: Why are subtitles not showing on iPhone?
+    answer: iPhone subtitles usually fail when the track is not valid WebVTT, the VTT URL is blocked, the server sends the wrong MIME type, CORS blocks the request, HTTPS is missing, or the viewer has not enabled the subtitle track in iOS video controls.
+  - question: Does iPhone Safari support SRT subtitles in HTML5 video?
+    answer: No. Native iPhone Safari video tracks expect WebVTT, not SRT. Convert SRT to VTT before using subtitles in an HTML5 track element.
+  - question: What should I check first when subtitles work on desktop but not iPhone?
+    answer: Validate the VTT file, open the deployed track URL on the iPhone, then check HTTPS, Content-Type, CORS, and the track element's src, srclang, label, kind, and default attributes.
+---
+
+iPhone subtitle failures are frustrating because the same video can work on desktop Safari or Chrome while showing no subtitles on the phone. In most cases, iOS is revealing a delivery or format problem: the file is not real WebVTT, the track URL is unreachable from the phone, the server sends the wrong headers, or the subtitle track is not selected in the native video controls.
+
+## Quick answer
+
+Start with the [WebVTT Validator](/tools/webvtt-validator/). iPhone Safari expects a real WebVTT file with a `WEBVTT` header, dot-based timestamps, valid cue order, and blank lines between cues.
+
+Then open the deployed `.vtt` URL directly on the iPhone. If the phone sees a 404 page, login page, HTML error, expired signed URL, or generic download instead of caption text, the native video player will not show subtitles reliably.
+
+If your source subtitles are SRT, convert them with the [SRT to VTT Converter](/tools/srt-to-vtt/) before attaching them to an HTML5 video track.
+
+## Validate the WebVTT file
+
+iPhone Safari does not read SRT syntax from a native HTML5 `<track>` element. A phone-ready VTT file should start like this:
+
+```text
+WEBVTT
+
+00:00:01.000 --> 00:00:03.500
+First subtitle line.
+
+00:00:04.000 --> 00:00:06.200
+Second subtitle line.
+```
+
+Check for:
+
+- `WEBVTT` on the first line
+- dot-based timestamps instead of SRT commas
+- blank lines between cues
+- cue start times before cue end times
+- UTF-8 text that renders correctly on iOS
+
+If the file came from SRT, convert it instead of renaming it. For the full workflow, see [how to convert SRT to VTT for HTML5 video](/guides/how-to-convert-srt-to-vtt-for-html5-video/).
+
+## Check the VTT URL on the iPhone
+
+Open the `.vtt` URL directly in iPhone Safari, not only on your laptop. The response should show caption text and return:
+
+```http
+HTTP/2 200
+Content-Type: text/vtt
+```
+
+Common iPhone-only failures include:
+
+- the VTT URL depends on desktop browser cookies
+- a signed caption URL expires before playback starts
+- the CDN redirects mobile requests to an HTML page
+- the video page is HTTPS but the caption URL is HTTP
+- the file is served as `text/plain` or `application/octet-stream`
+- CORS blocks captions hosted on another domain
+
+For delivery fixes, use [how to fix VTT MIME type for HTML5 video](/guides/how-to-fix-vtt-mime-type-for-html5-video/) and [how to fix CORS errors for VTT subtitles](/guides/how-to-fix-cors-errors-for-vtt-subtitles/).
+
+## Check the HTML track setup
+
+Use a normal HTML5 video track with explicit metadata:
+
+```html
+<video controls crossorigin="anonymous" playsinline>
+  <source src="/videos/demo.mp4" type="video/mp4" />
+  <track
+    kind="subtitles"
+    src="/captions/demo.en.vtt"
+    srclang="en"
+    label="English"
+    default
+  />
+</video>
+```
+
+The `default` attribute helps iOS select the expected track when the video loads. Without it, the viewer may need to enable subtitles from the native video controls.
+
+If subtitles are cross-origin, keep `crossorigin="anonymous"` on the video element and send a matching `Access-Control-Allow-Origin` header from the caption host.
+
+## Check iOS video controls
+
+iPhone playback may use native controls, especially in fullscreen. Test on the real device and check:
+
+- whether the subtitles menu appears in the player controls
+- whether the expected language label is visible
+- whether captions appear after manually selecting the track
+- whether fullscreen changes the available subtitle controls
+- whether custom player CSS is hiding or recoloring cue text
+
+If the VTT file loads and the track appears in the menu, the issue is usually track selection, label metadata, or styling rather than file delivery.
+
+## Common iPhone subtitle mistakes
+
+### Renaming SRT to VTT
+
+iPhone Safari expects WebVTT structure, not just a `.vtt` extension.
+
+**Fix:** Convert with the [SRT to VTT Converter](/tools/srt-to-vtt/) and validate the output.
+
+### Testing only on desktop Safari
+
+Desktop Safari can hide mobile-only problems with cookies, signed URLs, redirects, or fullscreen controls.
+
+**Fix:** Open the production page and the direct VTT URL on an iPhone before shipping.
+
+### Serving captions over HTTP
+
+If the video page is HTTPS and the caption file is HTTP, iOS may block the track.
+
+**Fix:** Serve the video page, video file, and VTT file over HTTPS.
+
+### Track loads but subtitles are off
+
+The file can load correctly while no subtitle track is selected.
+
+**Fix:** Add `default` for the primary track or manually enable subtitles from the iOS video controls.
+
+## Troubleshooting checklist
+
+1. Validate the VTT file with the [WebVTT Validator](/tools/webvtt-validator/).
+2. Convert SRT or ASS subtitles to WebVTT if needed.
+3. Open the `.vtt` URL directly on the iPhone.
+4. Confirm the request returns `200` and `Content-Type: text/vtt`.
+5. Use HTTPS for the page, video file, and caption file.
+6. Add CORS headers if subtitles are cross-origin.
+7. Use explicit `kind`, `src`, `srclang`, `label`, and `default` attributes.
+8. Test inline playback and fullscreen playback on the real iPhone.
+
+## Related guides
+
+- [Why Safari captions are not showing](/guides/why-safari-captions-are-not-showing/)
+- [Why Android captions are not showing](/guides/why-android-captions-are-not-showing/)
+- [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/)
+- [Why VTT captions are not loading](/guides/why-vtt-captions-are-not-loading/)
+
+## Related tools
+
+- [WebVTT Validator](/tools/webvtt-validator/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [HTML5 Video Subtitle Converter](/tools/html5-video-subtitle-converter/)
