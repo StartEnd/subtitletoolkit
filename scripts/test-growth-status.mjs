@@ -266,6 +266,20 @@ Latest production gate: \`pnpm verify:gsc:submit-ready\` passed.
 	git(cloneDir, ['commit', '-m', 'Initial growth files']);
 	git(cloneDir, ['push', 'origin', 'HEAD:main']);
 	git(cloneDir, ['branch', '--set-upstream-to=origin/main', 'main']);
+	writeFileSync(join(cloneDir, 'DIRTY.md'), 'uncommitted local growth evidence change\n');
+
+	const dirtyDeploy = spawnSync(process.execPath, [scriptPath, '--today', '2026-06-01'], {
+		cwd: cloneDir,
+		encoding: 'utf8',
+	});
+	assertExit(dirtyDeploy, 0);
+	assertIncludes(dirtyDeploy.stdout, 'Git sync: 0 ahead, 0 behind origin/main');
+	assertIncludes(dirtyDeploy.stdout, 'Worktree: uncommitted changes');
+	assertIncludes(dirtyDeploy.stdout, 'Deploy status: pending local sync/deploy');
+	assertIncludes(dirtyDeploy.stdout, 'Next IndexNow action: push and deploy the local commits before live submission.');
+	assertIncludes(dirtyDeploy.stdout, '1. Commit or discard the local growth changes, then push and deploy so production matches the queue evidence.');
+	rmSync(join(cloneDir, 'DIRTY.md'), { force: true });
+
 	writeFileSync(join(cloneDir, 'README.md'), 'local growth tooling change\n');
 	git(cloneDir, ['add', 'README.md']);
 	git(cloneDir, ['commit', '-m', 'Local growth tooling change']);
@@ -276,7 +290,8 @@ Latest production gate: \`pnpm verify:gsc:submit-ready\` passed.
 	});
 	assertExit(pendingDeploy, 0);
 	assertIncludes(pendingDeploy.stdout, 'Git sync: 1 ahead, 0 behind origin/main');
-	assertIncludes(pendingDeploy.stdout, 'Deploy status: pending push/deploy');
+	assertIncludes(pendingDeploy.stdout, 'Worktree: clean');
+	assertIncludes(pendingDeploy.stdout, 'Deploy status: pending local sync/deploy');
 	assertIncludes(pendingDeploy.stdout, 'Next IndexNow action: push and deploy the local commits before live submission.');
 	assertIncludes(pendingDeploy.stdout, '1. Push and deploy the 1 local commit(s) so production includes the current growth tooling.');
 	assertIncludes(pendingDeploy.stdout, '2. Run `pnpm verify:gsc:submit-ready` after deployment finishes.');

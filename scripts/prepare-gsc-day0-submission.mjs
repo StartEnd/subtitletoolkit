@@ -1,4 +1,5 @@
 import { existsSync, readFileSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
 import { resolve } from 'node:path';
 import { userInfo } from 'node:os';
 
@@ -79,6 +80,33 @@ function unique(values) {
 	return [...new Set(values)];
 }
 
+function git(args) {
+	const result = spawnSync('git', args, { encoding: 'utf8' });
+	if (result.status !== 0) return null;
+	return result.stdout.trim();
+}
+
+function deploymentStatus() {
+	const counts = git(['rev-list', '--left-right', '--count', 'origin/main...HEAD']);
+	const head = git(['rev-parse', '--short', 'HEAD']);
+	const upstream = git(['rev-parse', '--short', 'origin/main']);
+	const worktreeStatus = git(['status', '--porcelain']);
+
+	if (!counts || !head || !upstream) {
+		return { available: false };
+	}
+
+	const [behind, ahead] = counts.split(/\s+/).map((value) => Number.parseInt(value, 10));
+	return {
+		available: true,
+		ahead: Number.isFinite(ahead) ? ahead : 0,
+		behind: Number.isFinite(behind) ? behind : 0,
+		dirty: worktreeStatus !== null && worktreeStatus.length > 0,
+		head,
+		upstream,
+	};
+}
+
 const sitemapSection = sectionBetween(markdown, '## Sitemap', '## URL Inspection Requests');
 const inspectionSection = sectionBetween(markdown, '## URL Inspection Requests', '## After Submission');
 const primaryInspectionSection = sectionBetween(
@@ -105,6 +133,7 @@ const inspectionUrls = {
 }[batch];
 const nextReviewDate = addDays(submittedOn, nextReviewDays);
 const evidenceNotes = `Submitted ${batch} Day 0 sitemap plus ${inspectionUrls.length} URL Inspection requests; next review ${nextReviewDate}`;
+const deploy = deploymentStatus();
 
 if (sitemapUrls.length === 0) {
 	console.error('No sitemap URL found in the Sitemap section.');
@@ -122,6 +151,15 @@ console.log(`Submitted on: ${submittedOn}`);
 console.log(`Submitted by: ${submittedBy}`);
 console.log(`Batch: ${batch}`);
 console.log(`Next review date: ${nextReviewDate}\n`);
+
+if (deploy.available && (deploy.ahead > 0 || deploy.behind > 0 || deploy.dirty)) {
+	console.log('## Deployment Warning\n');
+	console.log(`Local HEAD: ${deploy.head}`);
+	console.log(`origin/main: ${deploy.upstream}`);
+	console.log(`Git sync: ${deploy.ahead} ahead, ${deploy.behind} behind origin/main`);
+	console.log(`Worktree: ${deploy.dirty ? 'uncommitted changes' : 'clean'}`);
+	console.log('Commit or discard local changes, push/pull as needed, deploy, and rerun `pnpm verify:gsc:submit-ready` before using this queue for manual Search Console requests.\n');
+}
 
 console.log('## Sitemap To Submit\n');
 sitemapUrls.forEach((url, index) => {

@@ -19,6 +19,13 @@ function run(args) {
 	});
 }
 
+function runGit(args) {
+	return spawnSync('git', args, {
+		cwd: tempDir,
+		encoding: 'utf8',
+	});
+}
+
 function assertExit(result, code) {
 	if (result.status !== code) {
 		throw new Error(`Expected exit ${code}, got ${result.status}\nSTDOUT:\n${result.stdout}\nSTDERR:\n${result.stderr}`);
@@ -28,6 +35,12 @@ function assertExit(result, code) {
 function assertIncludes(output, expected) {
 	if (!output.includes(expected)) {
 		throw new Error(`Expected output to include ${JSON.stringify(expected)}\n\nOutput:\n${output}`);
+	}
+}
+
+function assertNotIncludes(output, unexpected) {
+	if (output.includes(unexpected)) {
+		throw new Error(`Expected output not to include ${JSON.stringify(unexpected)}\n\nOutput:\n${output}`);
 	}
 }
 
@@ -63,6 +76,7 @@ try {
 	assertIncludes(valid.stdout, 'Primary queue only. Use `--batch current` after Google starts showing crawl or impression movement.');
 	assertIncludes(valid.stdout, '| 2026-06-01 | song | Yes | 2 | 2026-06-06 | Submitted primary Day 0 URL Inspection queue after production gate passed. |');
 	assertIncludes(valid.stdout, '## Evidence Record Command');
+	assertNotIncludes(valid.stdout, '## Deployment Warning');
 	assertIncludes(valid.stdout, 'pnpm promotion:record -- --date 2026-06-01 --channel gsc --source "Search Console" --status submitted --notes "Submitted primary Day 0 sitemap plus 2 URL Inspection requests; next review 2026-06-06"');
 	assertIncludes(valid.stdout, 'pnpm gsc:day0:record -- --submitted-on 2026-06-01 --submitted-by "song" --batch primary --next-review-days 5');
 
@@ -92,6 +106,39 @@ try {
 	const invalidBatch = run(['--batch', 'everything']);
 	assertExit(invalidBatch, 1);
 	assertIncludes(invalidBatch.stderr, '--batch must be one of: primary, current, all.');
+
+	assertExit(runGit(['init', '-b', 'main']), 0);
+	assertExit(runGit(['config', 'user.email', 'test@example.com']), 0);
+	assertExit(runGit(['config', 'user.name', 'Test User']), 0);
+	assertExit(runGit(['add', 'GSC_DAY0_URLS.md']), 0);
+	assertExit(runGit(['commit', '-m', 'Initial queue']), 0);
+	assertExit(runGit(['update-ref', 'refs/remotes/origin/main', 'HEAD']), 0);
+	write('dirty-marker.txt', 'uncommitted local change\n');
+
+	const dirty = run([
+		'--submitted-on', '2026-06-01',
+		'--submitted-by', 'song',
+	]);
+	assertExit(dirty, 0);
+	assertIncludes(dirty.stdout, '## Deployment Warning');
+	assertIncludes(dirty.stdout, 'Git sync: 0 ahead, 0 behind origin/main');
+	assertIncludes(dirty.stdout, 'Worktree: uncommitted changes');
+	assertIncludes(dirty.stdout, 'Commit or discard local changes, push/pull as needed, deploy, and rerun `pnpm verify:gsc:submit-ready` before using this queue for manual Search Console requests.');
+
+	rmSync(join(tempDir, 'dirty-marker.txt'), { force: true });
+	write('deploy-marker.txt', 'local-only change\n');
+	assertExit(runGit(['add', 'deploy-marker.txt']), 0);
+	assertExit(runGit(['commit', '-m', 'Local queue change']), 0);
+
+	const ahead = run([
+		'--submitted-on', '2026-06-01',
+		'--submitted-by', 'song',
+	]);
+	assertExit(ahead, 0);
+	assertIncludes(ahead.stdout, '## Deployment Warning');
+	assertIncludes(ahead.stdout, 'Worktree: clean');
+	assertIncludes(ahead.stdout, 'Git sync: 1 ahead, 0 behind origin/main');
+	assertIncludes(ahead.stdout, 'Commit or discard local changes, push/pull as needed, deploy, and rerun `pnpm verify:gsc:submit-ready` before using this queue for manual Search Console requests.');
 
 	console.log('GSC Day 0 list helper tests passed.');
 } finally {

@@ -95,6 +95,7 @@ function deploymentStatus() {
 	const counts = git(['rev-list', '--left-right', '--count', 'origin/main...HEAD']);
 	const head = git(['rev-parse', '--short', 'HEAD']);
 	const upstream = git(['rev-parse', '--short', 'origin/main']);
+	const worktreeStatus = git(['status', '--porcelain']);
 
 	if (!counts || !head || !upstream) {
 		return { available: false };
@@ -105,6 +106,7 @@ function deploymentStatus() {
 		available: true,
 		ahead: Number.isFinite(ahead) ? ahead : 0,
 		behind: Number.isFinite(behind) ? behind : 0,
+		dirty: worktreeStatus !== null && worktreeStatus.length > 0,
 		head,
 		upstream,
 	};
@@ -139,7 +141,7 @@ const submittedPromotionSources = new Set(submittedPromotionRows.map((cells) => 
 const completedPromotionSources = priorityPromotionSources.filter((source) => submittedPromotionSources.has(source));
 const missingPromotionSources = priorityPromotionSources.filter((source) => !submittedPromotionSources.has(source));
 const deploy = deploymentStatus();
-const deploymentPending = deploy.available && deploy.ahead > 0;
+const deploymentPending = deploy.available && (deploy.ahead > 0 || deploy.behind > 0 || deploy.dirty);
 
 console.log('# Search Growth Status\n');
 console.log(`Today: ${today}`);
@@ -152,7 +154,8 @@ if (deploy.available) {
 	console.log(`Local HEAD: ${deploy.head}`);
 	console.log(`origin/main: ${deploy.upstream}`);
 	console.log(`Git sync: ${deploy.ahead} ahead, ${deploy.behind} behind origin/main`);
-	console.log(`Deploy status: ${deploymentPending ? 'pending push/deploy' : 'local branch matches origin/main'}\n`);
+	console.log(`Worktree: ${deploy.dirty ? 'uncommitted changes' : 'clean'}`);
+	console.log(`Deploy status: ${deploymentPending ? 'pending local sync/deploy' : 'local branch matches origin/main'}\n`);
 } else {
 	console.log('Deploy status: unavailable outside a git checkout or without origin/main\n');
 }
@@ -214,7 +217,13 @@ if (missingPromotionSources.length > 0) {
 
 console.log('\n## Next Action\n');
 if (deploymentPending) {
-	console.log(`1. Push and deploy the ${deploy.ahead} local commit(s) so production includes the current growth tooling.`);
+	if (deploy.dirty) {
+		console.log('1. Commit or discard the local growth changes, then push and deploy so production matches the queue evidence.');
+	} else if (deploy.behind > 0) {
+		console.log('1. Pull origin/main, resolve the local checkout, then rerun the production gate before manual GSC work.');
+	} else {
+		console.log(`1. Push and deploy the ${deploy.ahead} local commit(s) so production includes the current growth tooling.`);
+	}
 	console.log('2. Run `pnpm verify:gsc:submit-ready` after deployment finishes.');
 	console.log('3. Continue with the GSC sitemap plus primary URL Inspection queue only after the live gate passes.');
 } else if (!latestSubmission) {
