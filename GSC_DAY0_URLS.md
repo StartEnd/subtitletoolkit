@@ -10,7 +10,7 @@ Record manual Search Console actions here so the next review is based on evidenc
 
 After the production gate passes, run `pnpm gsc:day0:list` to print the primary sitemap and URL Inspection queue plus a paste-ready submission record row. Use `pnpm gsc:day0:list -- --batch current` only after Google starts showing crawl or impression movement for the primary queue.
 
-Latest production gate: `pnpm verify:seo:live` and `pnpm verify:gsc:day0:live` passed on 2026-06-01 for commit `d0cd286`. The primary queue below has 21 URL Inspection requests; keep it unchecked until the manual Search Console requests are actually submitted.
+Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-01 for commit `c895a62`. The primary queue below has 21 URL Inspection requests; keep it unchecked until the manual Search Console requests are actually submitted.
 
 ## Submission Record
 
@@ -52,7 +52,7 @@ Submit these URLs first. Do not submit every URL in the site on Day 0.
 
 ### Current search-growth batch
 
-Submit these URLs after Google starts showing crawl or impression movement for the primary queue. They received FAQ schema, Article topic schema, or corrected tool CTA mapping in the latest SEO batch.
+Submit these URLs after Google starts showing crawl or impression movement for the primary queue. They received FAQ schema, Article topic schema, corrected tool CTA mapping, stronger guide-index discovery, or CTR-focused SERP copy in the latest SEO batches.
 
 - [ ] `https://subtitletoolkit.tools/guides/best-subtitle-format-for-youtube/`
 - [ ] `https://subtitletoolkit.tools/guides/best-srt-settings-for-youtube-upload/`
@@ -103,6 +103,14 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-txt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-merge-two-srt-files/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-vtt-for-web-players/`
+- [ ] `https://subtitletoolkit.tools/guides/fix-out-of-sync-subtitles/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-fix-subtitle-timing-after-cutting-video/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-shift-only-part-of-a-subtitle-file/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-clean-an-srt-file/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-create-a-transcript-from-subtitles/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-create-dual-language-subtitles/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-fix-overlapping-subtitles/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-fix-subtitle-line-breaks/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/`
 - [ ] `https://subtitletoolkit.tools/guides/common-subtitle-format-errors-and-fixes/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-out-of-order-subtitle-cues/`
