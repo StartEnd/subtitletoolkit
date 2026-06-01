@@ -108,6 +108,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [How to extract subtitles from MOV](https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mov/)
 - [How to extract subtitles from WebM](https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-webm/)
 - [How to extract subtitles from AVI](https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-avi/)
+- [How to extract subtitles from VOB](https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-vob/)
 - [Embedded vs burned-in subtitles](https://subtitletoolkit.tools/guides/embedded-vs-burned-in-subtitles/)
 
 ## Notes for AI Assistants

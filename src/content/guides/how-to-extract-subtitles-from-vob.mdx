@@ -1,0 +1,153 @@
+---
+title: How to extract subtitles from VOB
+seoTitle: Extract Subtitles from VOB Online - No Upload
+description: Check VOB and DVD video files for subtitle streams locally, understand VobSub sidecar files, and know when OCR is required instead.
+seoDescription: Extract subtitles from VOB files locally. Learn when DVD captions are image-based, why extraction finds no text, and when OCR or IDX/SUB files are needed.
+pubDate: 2026-06-02
+updatedDate: 2026-06-02
+category: workflow-guides
+tags:
+  - extract subtitles from vob
+  - dvd subtitles
+  - vobsub subtitles
+  - embedded subtitles
+  - video captions
+primaryTool: extract-subtitles-from-video
+faqs:
+  - question: Can I extract subtitles from a VOB file?
+    answer: Sometimes. VOB files from DVDs often contain image-based subtitle streams, so extraction can find a stream but not editable text. Text output usually requires OCR or a separate subtitle file.
+  - question: Why does VOB subtitle extraction find no text?
+    answer: DVD subtitles are commonly stored as pictures, not SRT text. The browser extractor can check the VOB locally, but image-based captions need OCR before they become editable subtitles.
+  - question: Are VOB files uploaded during extraction?
+    answer: No. The extractor runs FFmpeg in your browser, so the VOB file stays on your device.
+  - question: What are IDX and SUB files next to a VOB?
+    answer: IDX and SUB files are VobSub sidecar subtitles. They usually contain image-based DVD captions and timing data, so they may need OCR instead of normal text extraction.
+---
+
+VOB subtitle extraction is usually a DVD subtitle check, not a guaranteed text export. A `.vob` file may contain DVD subtitle streams, but those streams are often image-based captions instead of editable SRT text.
+
+If you see matching `.idx` and `.sub` files beside the video, the subtitles may already be outside the VOB as VobSub sidecar files. If the words are permanently visible in the picture, they are burned in and need OCR.
+
+## Quick answer
+
+Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/), choose the VOB file, and let the browser check for subtitle streams locally. If the file contains text-based captions, you can save them without uploading the video.
+
+For DVD-style subtitles, the result may be different: the extractor may find a subtitle stream but still not produce editable text, because many DVD captions are stored as small images. In that case, use OCR or look for a separate SRT file.
+
+## What VOB subtitle extraction can find
+
+VOB files come from DVD-Video structures, so subtitle streams often look more like DVD subpictures than normal text tracks. FFmpeg may report something like:
+
+```text
+Stream #0:3: Subtitle: dvd_subtitle
+```
+
+That means the VOB has a subtitle stream, but it does not guarantee editable captions. DVD subtitle streams are commonly image-based, so they must be recognized with OCR before they become SRT or VTT text.
+
+Extraction may not produce text in these cases:
+
+- the VOB subtitle stream is `dvd_subtitle` or another image-based format
+- the captions are stored in separate `.idx` and `.sub` files
+- the subtitles are burned into the video image
+- the VOB has no subtitle stream
+- the DVD rip is split across several VOB files and the chosen segment has no captions
+
+## Step-by-step workflow
+
+1. Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/).
+2. Choose the `.vob` file from your device.
+3. Wait for the browser FFmpeg runtime to load.
+4. Check whether the tool finds a subtitle stream.
+5. If the stream is text-based, preview and download the captions.
+6. If the stream is image-based, switch to an OCR workflow and review the result manually.
+
+The VOB stays local during this process. The extractor runs in the browser, so you can check private DVD material without uploading the video file.
+
+## Why a VOB may show subtitles but extraction finds no text
+
+DVD subtitles often behave differently from MP4, MKV, MOV, or WebM captions. A player can display DVD subtitle images, but a text extractor cannot turn those pictures into editable words by itself.
+
+Check these situations:
+
+- The VOB contains `dvd_subtitle` image streams.
+- The folder has matching `.idx` and `.sub` VobSub sidecar files.
+- The subtitles are burned into the video during the DVD rip.
+- The video is one segment from a larger DVD title set, and captions are in another segment.
+- The player loaded subtitles from the original DVD folder structure instead of the single VOB.
+
+If moving only the VOB into a new folder makes captions disappear, the captions were probably loaded from sidecar files or DVD metadata rather than embedded text.
+
+## VOB, IDX, and SUB files
+
+DVD rips often include files such as `movie.vob`, `movie.idx`, and `movie.sub`. The `.idx` file stores timing and language metadata. The `.sub` file stores the subtitle images.
+
+Those files are useful, but they are not the same as an editable `.srt` file. To create SRT from VobSub subtitles, use OCR and then validate the result carefully.
+
+## After extracting or OCRing VOB captions
+
+Do not treat the first output as final. Check for:
+
+- OCR mistakes in similar-looking letters
+- missing lines across VOB segment boundaries
+- wrong language or forced subtitle track
+- timing drift after joining DVD segments
+- malformed SRT cues before upload or playback
+
+Useful next tools:
+
+| Need | Tool |
+| --- | --- |
+| Check SRT structure | [SRT Validator](/tools/srt-validator/) |
+| Convert SRT to browser WebVTT | [SRT to VTT Converter](/tools/srt-to-vtt/) |
+| Repair broken characters | [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) |
+| Remove OCR cleanup noise | [Subtitle Cleaner](/tools/subtitle-cleaner/) |
+| Fix constant timing offset | [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/) |
+
+## Common mistakes
+
+### Expecting DVD subtitles to be editable text
+
+A DVD player can show image subtitles, but that does not mean the VOB contains SRT text. Image subtitles need OCR.
+
+### Ignoring IDX and SUB sidecar files
+
+If the captions live in `.idx` and `.sub`, extracting from only the VOB may miss the real subtitle source. Keep the sidecar files with the video when diagnosing the workflow.
+
+### Checking only one VOB from a DVD set
+
+DVD titles are often split across multiple VOB files. If one segment has no subtitle stream, check the rest of the title set before assuming the whole DVD has no captions.
+
+## Frequently asked questions
+
+### Can I extract subtitles from a VOB file?
+
+Sometimes. VOB files from DVDs often contain image-based subtitle streams, so extraction can find a stream but not editable text. Text output usually requires OCR or a separate subtitle file.
+
+### Why does VOB subtitle extraction find no text?
+
+DVD subtitles are commonly stored as pictures, not SRT text. The browser extractor can check the VOB locally, but image-based captions need OCR before they become editable subtitles.
+
+### Are VOB files uploaded during extraction?
+
+No. The extractor runs FFmpeg in your browser, so the VOB file stays on your device.
+
+### What are IDX and SUB files next to a VOB?
+
+IDX and SUB files are VobSub sidecar subtitles. They usually contain image-based DVD captions and timing data, so they may need OCR instead of normal text extraction.
+
+## Related guides
+
+- [How to extract subtitles from a video](/guides/how-to-extract-subtitles-from-video/)
+- [How to extract subtitles from MKV](/guides/how-to-extract-subtitles-from-mkv/)
+- [How to extract subtitles from AVI](/guides/how-to-extract-subtitles-from-avi/)
+- [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)
+- [How to convert subtitles to UTF-8](/guides/how-to-convert-subtitles-to-utf-8/)
+- [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video/)
+
+## Related tools
+
+- [Extract Subtitles from Video](/tools/extract-subtitles-from-video/)
+- [SRT Validator](/tools/srt-validator/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
+- [Subtitle Cleaner](/tools/subtitle-cleaner/)

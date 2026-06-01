@@ -92,6 +92,7 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mov/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-webm/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-avi/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-vob/`
 - [ ] `https://subtitletoolkit.tools/guides/embedded-vs-burned-in-subtitles/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-name-subtitle-files-for-plex/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-subtitles-to-utf-8/`
