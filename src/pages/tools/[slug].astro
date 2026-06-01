@@ -84,7 +84,7 @@ const toolMetaDescriptions: Record<string, string> = {
 	'partial-subtitle-shifter':
 		'Shift only a selected time range inside an SRT, VTT, or ASS subtitle file without moving the rest of the captions, locally in your browser.',
 	'extract-subtitles-from-video':
-		'Extract embedded text subtitles from MKV, MP4, MOV, and WebM files locally in your browser for free with no signup or upload.',
+		'Extract embedded subtitles from MKV, MP4, MOV, and WebM files online for free. Save text caption tracks locally with no video upload.',
 };
 
 const toolPageTitles: Record<string, string> = {
@@ -110,7 +110,7 @@ const toolPageTitles: Record<string, string> = {
 	'subtitle-encoding-fixer': 'Subtitle Encoding Fixer - Fix Garbled Subtitles Online',
 	'subtitle-merger': 'Subtitle Merger - Merge SRT, VTT, and ASS Online',
 	'partial-subtitle-shifter': 'Partial Subtitle Shifter - Shift One Section Online',
-	'extract-subtitles-from-video': 'Extract Subtitles from Video Online - Free, No Upload',
+	'extract-subtitles-from-video': 'Extract Subtitles from Video Online - MKV, MP4, No Upload',
 	'clean-srt-file': 'Clean SRT File Online - Free, No Upload',
 	'remove-srt-line-numbers': 'Remove SRT Line Numbers Online',
 	'fix-srt-timestamps': 'Fix SRT Timestamps Online - Repair SRT Timing',
@@ -177,7 +177,7 @@ const workflowNotes: Record<string, string> = {
 	'partial-subtitle-shifter':
 		'Use a partial shift when only a middle section changed after an edit. Cues outside the selected range keep their original timing, which avoids breaking sections that already match the video.',
 	'extract-subtitles-from-video':
-		'This tool is for embedded text subtitle streams, not burned-in subtitles. It runs FFmpeg in the browser and attempts to save the first subtitle stream as a separate subtitle file.',
+		'This tool is for embedded text subtitle streams in MKV, MP4, MOV, or WebM files, not burned-in subtitles that need OCR. It runs FFmpeg in the browser, keeps the video on your device, and attempts to save the first supported text subtitle stream as a separate subtitle file.',
 };
 
 const mistakeNotes: Record<string, string[]> = {

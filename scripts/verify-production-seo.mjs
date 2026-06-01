@@ -2241,6 +2241,22 @@ const checks = [
 		path: '/tools/extract-subtitles-from-video/',
 		expect: [
 			{
+				label: 'CTR-oriented video subtitle extractor title',
+				match: '<title>Extract Subtitles from Video Online - MKV, MP4, No Upload</title>',
+			},
+			{
+				label: 'video extractor no-upload meta description',
+				match: 'Extract embedded subtitles from MKV, MP4, MOV, and WebM files online for free. Save text caption tracks locally with no video upload.',
+			},
+			{
+				label: 'video extractor workflow distinguishes embedded text from burned-in subtitles',
+				match: 'not burned-in subtitles that need OCR',
+			},
+			{
+				label: 'video extractor FAQ covers MKV and MP4 files',
+				match: 'Can I extract subtitles from MKV or MP4 files?',
+			},
+			{
 				label: 'extractor tool links video extraction guide',
 				match: 'href="/guides/how-to-extract-subtitles-from-video/"',
 			},

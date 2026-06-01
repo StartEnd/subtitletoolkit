@@ -1892,9 +1892,9 @@ const enTools: SubtitleTool[] = [
     title: 'Extract Subtitles from Video',
     shortTitle: 'Video extractor',
     description:
-      'Extract embedded text subtitle tracks from MKV, MP4, MOV, and WebM files locally in your browser.',
+      'Extract embedded text subtitle tracks from MKV, MP4, MOV, and WebM files locally with no video upload.',
     summary:
-      'Use this when a video file contains an embedded subtitle stream and you need a separate subtitle file without uploading the video.',
+      'Use this free video subtitle extractor when an MKV, MP4, MOV, or WebM file contains embedded text captions and you need a separate subtitle file without uploading the video.',
     buttonLabel: 'Extract subtitles',
     inputLabel: 'Video input',
     outputLabel: 'Extracted subtitle output',
@@ -1902,15 +1902,21 @@ const enTools: SubtitleTool[] = [
     acceptedExtensions: ['.mkv', '.mp4', '.mov', '.webm', '.m4v'],
     sampleFileName: 'video.mkv',
     useCases: [
-      'Extract a text subtitle track from an MKV file.',
-      'Check whether an MP4 contains an embedded caption stream.',
-      'Create a separate subtitle file before conversion or cleanup.',
+      'Extract an embedded text subtitle track from an MKV file.',
+      'Check whether an MP4, MOV, or WebM file contains a caption stream.',
+      'Create a separate SRT-style subtitle file before conversion, cleanup, or timing repair.',
+      'Confirm whether subtitles are embedded text tracks instead of burned-in video pixels.',
     ],
     faqs: [
       {
         question: 'Can this extract burned-in subtitles?',
         answer:
           'No. Burned-in subtitles are part of the video image and require OCR. This tool extracts embedded text subtitle tracks only.',
+      },
+      {
+        question: 'Can I extract subtitles from MKV or MP4 files?',
+        answer:
+          'Yes, when the video contains an embedded text subtitle stream. MKV files often work best; MP4, MOV, and WebM files work when they include supported text captions.',
       },
       {
         question: 'Does the video upload to a server?',
