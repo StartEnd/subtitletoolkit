@@ -1,0 +1,145 @@
+---
+title: How to extract subtitles from M4V
+seoTitle: Extract Subtitles from M4V - Free No Upload Guide
+description: Extract embedded captions from M4V files locally, check whether the video has a real text track, and save subtitles without uploading the file.
+seoDescription: Extract subtitles from M4V files locally. Learn when Apple or iTunes caption tracks can be saved, why extraction finds no captions, and when OCR is required.
+pubDate: 2026-06-02
+updatedDate: 2026-06-02
+category: workflow-guides
+tags:
+  - extract subtitles from m4v
+  - m4v subtitles
+  - apple captions
+  - embedded subtitles
+  - video captions
+primaryTool: extract-subtitles-from-video
+faqs:
+  - question: Can I extract subtitles from an M4V file?
+    answer: Yes, if the M4V contains an embedded text subtitle or closed-caption track. If the words are burned into the video image, use OCR instead.
+  - question: Why does my M4V have no subtitles to extract?
+    answer: Many M4V files contain only audio and video, or the captions may be loaded from a separate file or store metadata. In those cases there is no separate text track to save.
+  - question: Are M4V files uploaded during extraction?
+    answer: No. The extractor runs FFmpeg in your browser, so the M4V file stays on your device.
+  - question: Can extracted M4V captions be used as SRT?
+    answer: Text-based M4V captions can often be exported, then validated, cleaned, or converted before upload or playback.
+---
+
+M4V subtitle extraction works only when the file contains a separate caption or subtitle track. The `.m4v` extension is common around Apple, iTunes, QuickTime, and exported MP4-style video files, but the extension alone does not prove captions are embedded.
+
+## Quick answer
+
+Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/), choose the M4V file, and let the browser check for an embedded subtitle stream. If the M4V contains text captions, you can save them as a separate subtitle file without uploading the video.
+
+This is useful when an M4V plays with selectable captions in a desktop player, or when an Apple/QuickTime export may have kept captions as a text track instead of burning them into the picture.
+
+## What M4V subtitle extraction can find
+
+M4V containers may include text caption streams such as:
+
+```text
+Stream #0:2: Subtitle: mov_text
+Stream #0:3: Subtitle: webvtt
+```
+
+Those streams can usually be exported as editable captions. After extraction, check the output before sending it to YouTube, a web player, or a client delivery package.
+
+Extraction will not recover captions in these cases:
+
+- the captions were burned into the M4V picture
+- the player is loading a separate `.srt`, `.vtt`, or `.ass` file
+- the M4V has no subtitle stream
+- the subtitles are protected, image-based, or unsupported by the browser extractor
+
+## Step-by-step workflow
+
+1. Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/).
+2. Choose the `.m4v` file from your device.
+3. Wait for the browser FFmpeg runtime to load.
+4. Check whether the tool finds an embedded subtitle stream.
+5. Preview the extracted captions before downloading.
+6. Validate or clean the downloaded file before using it elsewhere.
+
+The M4V stays local during this process. The extractor runs in the browser, so the video does not need to be sent to a server just to check for captions.
+
+## Why an M4V may show captions but extraction finds none
+
+An M4V can appear to have captions even when the video file itself does not contain a separate text stream.
+
+Check these situations:
+
+- The captions were rendered into the video during export.
+- The app or player loads captions from a sidecar subtitle file.
+- Store metadata says captions exist, but the downloaded M4V does not include the track.
+- The exported M4V is a different version from the captioned timeline.
+
+If you can open only the M4V in a desktop player and turn captions on and off, there is a better chance that a real embedded text track exists.
+
+## After extracting M4V captions
+
+Do not treat the first exported file as final. Check the extracted captions for:
+
+- wrong language track
+- missing lines near edit points
+- broken accents or replacement characters
+- WebVTT output when the destination expects SRT
+- timing offset caused by a different export or timeline cut
+
+Useful next tools:
+
+| Need | Tool |
+| --- | --- |
+| Check SRT structure | [SRT Validator](/tools/srt-validator/) |
+| Convert SRT to browser WebVTT | [SRT to VTT Converter](/tools/srt-to-vtt/) |
+| Convert VTT to SRT | [VTT to SRT Converter](/tools/vtt-to-srt/) |
+| Repair broken characters | [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) |
+| Remove messy tags or spacing | [Subtitle Cleaner](/tools/subtitle-cleaner/) |
+
+## Common mistakes
+
+### Expecting burned-in M4V captions to become text
+
+If the words are part of the video image, subtitle extraction cannot recover the text. Use OCR and manually review the result.
+
+### Assuming every Apple video keeps a caption track
+
+M4V files can hold caption tracks, but many exports flatten captions into the picture or leave them out. Check the actual exported file, not only the project or store listing.
+
+### Skipping validation after extraction
+
+Extracted captions may need cleanup before upload. Validate the file and convert it if the destination expects a different subtitle format.
+
+## Frequently asked questions
+
+### Can I extract subtitles from an M4V file?
+
+Yes, if the M4V contains an embedded text subtitle or closed-caption track. If the words are burned into the video image, use OCR instead.
+
+### Why does my M4V have no subtitles to extract?
+
+Many M4V files contain only audio and video, or the captions may be loaded from a separate file or store metadata. In those cases there is no separate text track to save.
+
+### Are M4V files uploaded during extraction?
+
+No. The extractor runs FFmpeg in your browser, so the M4V file stays on your device.
+
+### Can extracted M4V captions be used as SRT?
+
+Text-based M4V captions can often be exported, then validated, cleaned, or converted before upload or playback.
+
+## Related guides
+
+- [How to extract subtitles from a video](/guides/how-to-extract-subtitles-from-video/)
+- [How to extract subtitles from MP4](/guides/how-to-extract-subtitles-from-mp4/)
+- [How to extract subtitles from MOV](/guides/how-to-extract-subtitles-from-mov/)
+- [How to extract subtitles from MKV](/guides/how-to-extract-subtitles-from-mkv/)
+- [How to extract subtitles from WebM](/guides/how-to-extract-subtitles-from-webm/)
+- [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)
+- [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video/)
+
+## Related tools
+
+- [Extract Subtitles from Video](/tools/extract-subtitles-from-video/)
+- [SRT Validator](/tools/srt-validator/)
+- [VTT to SRT Converter](/tools/vtt-to-srt/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)

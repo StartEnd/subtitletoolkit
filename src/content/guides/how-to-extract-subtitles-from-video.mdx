@@ -106,6 +106,12 @@ MP4 files often cause confusion because the file can play captions in one app bu
 
 When you do get a text track out of an MP4, validate it before using it in a player or uploading it elsewhere. For MP4-specific checks, use [How to extract subtitles from MP4](/guides/how-to-extract-subtitles-from-mp4/). It covers `mov_text` captions, sidecar subtitle files, and the common case where an MP4 plays captions in one app but has no embedded subtitle stream.
 
+## If the video is an M4V
+
+M4V files are close to MP4/MOV workflows and often appear around Apple, iTunes, QuickTime, or editor exports. They can contain `mov_text` or WebVTT-style caption tracks, but the extension alone does not mean a separate subtitle stream exists.
+
+For M4V-specific checks, use [How to extract subtitles from M4V](/guides/how-to-extract-subtitles-from-m4v/). It covers embedded caption tracks, sidecar subtitles, and the common case where an M4V plays captions in one app but extraction finds no text stream.
+
 ## If the video is a MOV
 
 MOV files often come from Apple, QuickTime, or editing workflows. They can contain text tracks, but exports may also flatten captions into the picture.
@@ -198,6 +204,7 @@ Check the language, validate the timing, fix encoding if characters look wrong, 
 
 - [How to extract subtitles from MKV](/guides/how-to-extract-subtitles-from-mkv/)
 - [How to extract subtitles from MP4](/guides/how-to-extract-subtitles-from-mp4/)
+- [How to extract subtitles from M4V](/guides/how-to-extract-subtitles-from-m4v/)
 - [How to extract subtitles from MOV](/guides/how-to-extract-subtitles-from-mov/)
 - [How to extract subtitles from WebM](/guides/how-to-extract-subtitles-from-webm/)
 - [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)

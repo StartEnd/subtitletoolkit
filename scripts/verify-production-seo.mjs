@@ -1638,6 +1638,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/how-to-extract-subtitles-from-m4v/',
+		expect: [
+			{
+				label: 'M4V extraction guide CTR title',
+				match: '<title>Extract Subtitles from M4V - Free No Upload Guide</title>',
+			},
+			{
+				label: 'M4V extraction guide no-upload meta description',
+				match: 'Extract subtitles from M4V files locally. Learn when Apple or iTunes caption tracks can be saved, why extraction finds no captions, and when OCR is required.',
+			},
+			{
+				label: 'M4V extraction guide opens extractor tool',
+				match: 'href="/tools/extract-subtitles-from-video/"',
+			},
+			{
+				label: 'FAQ schema for M4V extraction questions',
+				match: 'Can I extract subtitles from an M4V file?',
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-extract-subtitles-from-webm/',
 		expect: [
 			{
@@ -2556,6 +2577,10 @@ const checks = [
 				match: '/guides/how-to-extract-subtitles-from-mp4/',
 			},
 			{
+				label: 'guides index links to M4V extraction guide',
+				match: '/guides/how-to-extract-subtitles-from-m4v/',
+			},
+			{
 				label: 'guides index links to MKV extraction guide',
 				match: '/guides/how-to-extract-subtitles-from-mkv/',
 			},
@@ -2774,6 +2799,10 @@ const checks = [
 			{
 				label: 'llms lists MOV extraction guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mov/',
+			},
+			{
+				label: 'llms lists M4V extraction guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-m4v/',
 			},
 			{
 				label: 'llms lists WebM extraction guide',
