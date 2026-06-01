@@ -72,6 +72,7 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/why-subtitles-do-not-show-in-html5-video/`
 - [ ] `https://subtitletoolkit.tools/guides/why-vtt-captions-are-not-loading/`
 - [ ] `https://subtitletoolkit.tools/guides/why-chrome-captions-are-not-showing/`
+- [ ] `https://subtitletoolkit.tools/guides/why-edge-captions-are-not-showing/`
 - [ ] `https://subtitletoolkit.tools/guides/why-firefox-captions-are-not-showing/`
 - [ ] `https://subtitletoolkit.tools/guides/why-safari-captions-are-not-showing/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-fix-cors-errors-for-vtt-subtitles/`

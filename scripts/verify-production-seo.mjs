@@ -86,6 +86,10 @@ const checks = [
 				match: '/guides/why-chrome-captions-are-not-showing/',
 			},
 			{
+				label: 'homepage links to Edge caption failure guide',
+				match: '/guides/why-edge-captions-are-not-showing/',
+			},
+			{
 				label: 'homepage links to Firefox caption failure guide',
 				match: '/guides/why-firefox-captions-are-not-showing/',
 			},
@@ -754,6 +758,31 @@ const checks = [
 			},
 			{
 				label: 'Chrome captions guide links SRT to VTT converter',
+				match: 'href="/tools/srt-to-vtt/"',
+			},
+		],
+	},
+	{
+		path: '/guides/why-edge-captions-are-not-showing/',
+		expect: [
+			{
+				label: 'Edge captions failure guide CTR title',
+				match: '<title>Edge Captions Not Showing - Fix VTT Track Issues</title>',
+			},
+			{
+				label: 'Edge captions failure guide meta description',
+				match: 'Fix Microsoft Edge captions not showing by checking WebVTT syntax, MIME type, CORS headers, track URLs, HTTPS, and caption settings.',
+			},
+			{
+				label: 'FAQ schema for Edge caption questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why are captions not showing in Microsoft Edge\?/
+			},
+			{
+				label: 'Edge captions guide opens WebVTT validator',
+				match: 'href="/tools/webvtt-validator/"',
+			},
+			{
+				label: 'Edge captions guide links SRT to VTT converter',
 				match: 'href="/tools/srt-to-vtt/"',
 			},
 		],
@@ -2632,6 +2661,10 @@ const checks = [
 				match: '/guides/why-chrome-captions-are-not-showing/',
 			},
 			{
+				label: 'guides index links to Edge caption guide from HTML5 section',
+				match: '/guides/why-edge-captions-are-not-showing/',
+			},
+			{
 				label: 'guides index links to Firefox caption guide from HTML5 section',
 				match: '/guides/why-firefox-captions-are-not-showing/',
 			},
@@ -2894,6 +2927,10 @@ const checks = [
 			{
 				label: 'llms lists Chrome caption failure guide',
 				match: 'https://subtitletoolkit.tools/guides/why-chrome-captions-are-not-showing/',
+			},
+			{
+				label: 'llms lists Edge caption failure guide',
+				match: 'https://subtitletoolkit.tools/guides/why-edge-captions-are-not-showing/',
 			},
 			{
 				label: 'llms lists Firefox caption failure guide',

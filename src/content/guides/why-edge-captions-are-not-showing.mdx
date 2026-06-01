@@ -1,0 +1,162 @@
+---
+title: Why Edge captions are not showing
+seoTitle: Edge Captions Not Showing - Fix VTT Track Issues
+seoDescription: Fix Microsoft Edge captions not showing by checking WebVTT syntax, MIME type, CORS headers, track URLs, HTTPS, and caption settings.
+description: Diagnose captions that fail in Microsoft Edge by checking WebVTT files, delivery headers, cross-origin access, and HTML5 track markup.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - edge
+  - microsoft edge
+  - html5 video
+  - vtt
+  - captions not showing
+  - subtitles not showing
+  - troubleshooting
+primaryTool: webvtt-validator
+faqs:
+  - question: Why are captions not showing in Microsoft Edge?
+    answer: Edge usually hides captions when the VTT file is invalid, the track URL fails, the server sends the wrong MIME type, CORS blocks the request, or the caption track is not selected.
+  - question: Does Edge support SRT subtitles in HTML5 video?
+    answer: No. Microsoft Edge native HTML5 video tracks expect WebVTT, not SRT. Convert SRT to VTT before using the file in a track element.
+  - question: What should I check first when Edge captions do not appear?
+    answer: Validate the VTT file, open the track URL directly, then check Content-Type, CORS, HTTPS, and the track element's src, srclang, label, kind, and default attributes.
+---
+
+Microsoft Edge uses Chromium's native text track handling, so caption failures often look similar to Chrome: the VTT file is invalid, the track URL is wrong, the server sends the wrong response headers, or the track loads but is not enabled.
+
+## Quick answer
+
+Validate the caption file with the [WebVTT Validator](/tools/webvtt-validator/) first. Edge expects a real WebVTT file with a `WEBVTT` header, dot-based timestamps, valid cue timing, and blank lines between cues.
+
+Then open the deployed `.vtt` URL directly in Edge. If it returns a 404 page, login page, HTML error response, or a generic download instead of caption text, the video player will not show captions reliably.
+
+If your source captions are SRT, convert them with the [SRT to VTT Converter](/tools/srt-to-vtt/) before adding them to an HTML5 video track.
+
+## Validate the WebVTT file
+
+Edge does not read SRT syntax from a native HTML5 `<track>` element. A browser-ready VTT file should start like this:
+
+```text
+WEBVTT
+
+00:00:01.000 --> 00:00:03.500
+First caption line.
+
+00:00:04.000 --> 00:00:06.200
+Second caption line.
+```
+
+Check for:
+
+- `WEBVTT` on the first line
+- dot-based timestamps instead of SRT commas
+- blank lines between cues
+- cue start times before cue end times
+- UTF-8 text that renders correctly
+
+If the file came from SRT, convert it instead of renaming it. For the full workflow, see [how to convert SRT to VTT for HTML5 video](/guides/how-to-convert-srt-to-vtt-for-html5-video/).
+
+## Check the track request in Edge DevTools
+
+Open Edge DevTools, reload the page, and check the Network tab for the `.vtt` request.
+
+The track URL should return:
+
+```http
+HTTP/2 200
+Content-Type: text/vtt
+```
+
+Common failures include:
+
+- `404` because the `src` path is wrong
+- `403` because the caption URL needs authentication
+- an HTML error page served from the caption URL
+- `text/plain` or `application/octet-stream` instead of `text/vtt`
+- CORS errors when captions are hosted on another domain or CDN
+
+For server-side fixes, use [how to fix VTT MIME type for HTML5 video](/guides/how-to-fix-vtt-mime-type-for-html5-video/) and [how to fix CORS errors for VTT subtitles](/guides/how-to-fix-cors-errors-for-vtt-subtitles/).
+
+## Check the HTML track markup
+
+Use a normal HTML5 video track with explicit metadata:
+
+```html
+<video controls crossorigin="anonymous">
+  <source src="/videos/demo.mp4" type="video/mp4" />
+  <track
+    kind="captions"
+    src="/captions/demo.en.vtt"
+    srclang="en"
+    label="English"
+    default
+  />
+</video>
+```
+
+The `default` attribute tells Edge which caption track should be active when the video loads. Without it, the viewer may need to enable captions from the player controls.
+
+If captions are cross-origin, keep `crossorigin="anonymous"` on the video element and send a matching `Access-Control-Allow-Origin` header from the caption host.
+
+## Check Edge caption settings
+
+If the VTT file loads and the track is selected but captions still look invisible, check Edge's accessibility caption settings and any custom CSS on the page.
+
+Open:
+
+```text
+edge://settings/accessibility
+```
+
+Caption style settings are less common than broken VTT or blocked track URLs, but they can make text unreadable during testing.
+
+## Common Edge caption mistakes
+
+### Renaming SRT to VTT
+
+Edge expects WebVTT structure, not just a `.vtt` extension.
+
+**Fix:** Convert with the [SRT to VTT Converter](/tools/srt-to-vtt/) and validate the output.
+
+### Wrong MIME type
+
+Some static hosts serve `.vtt` files as `text/plain` or `application/octet-stream`.
+
+**Fix:** Configure `.vtt` files to use `Content-Type: text/vtt`.
+
+### Cross-origin captions without CORS
+
+If the page and captions are on different origins, Edge needs permission to read the track file.
+
+**Fix:** Add CORS headers to the caption response and use `crossorigin="anonymous"` on the video element.
+
+### Track loads but captions are off
+
+The file can load successfully while no caption track is selected.
+
+**Fix:** Add `default` for the primary track or manually enable captions from the browser video controls.
+
+## Troubleshooting checklist
+
+1. Validate the VTT file with the [WebVTT Validator](/tools/webvtt-validator/).
+2. Convert SRT or ASS captions to WebVTT if needed.
+3. Open the `.vtt` URL directly in Edge.
+4. Confirm the request returns `200` and `Content-Type: text/vtt`.
+5. Check Edge DevTools for CORS, MIME, or 404 errors.
+6. Use explicit `kind`, `src`, `srclang`, `label`, and `default` attributes.
+7. Add CORS headers if captions are cross-origin.
+8. Check Edge accessibility caption settings if the track loads but text is invisible.
+
+## Related guides
+
+- [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/)
+- [Why VTT captions are not loading](/guides/why-vtt-captions-are-not-loading/)
+- [Why Chrome captions are not showing](/guides/why-chrome-captions-are-not-showing/)
+- [Why Firefox captions are not showing](/guides/why-firefox-captions-are-not-showing/)
+
+## Related tools
+
+- [WebVTT Validator](/tools/webvtt-validator/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [HTML5 Video Subtitle Converter](/tools/html5-video-subtitle-converter/)
