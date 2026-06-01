@@ -1,7 +1,7 @@
 # Subtitle Toolkit — Promotion Plan
 
 > 一份可执行的推广操作手册。每天打开这个文件，按清单做。
-> 创建于 2026-05-07。当前版本按 2026-06-01 生产 SEO 验证后的状态执行；最新通过生产门禁的是 live `ded6c98` 部署，`sitemap-0.xml` lastmod 为 `2026-06-01T15:26:56.000Z`。
+> 创建于 2026-05-07。当前版本按 2026-06-02 生产 SEO 验证后的状态执行；最新通过生产门禁的是 live `f146901` 部署，`sitemap-0.xml` lastmod 为 `2026-06-01T16:35:45.000Z`。
 
 ---
 
@@ -53,7 +53,7 @@
 
 1. 在 GSC 提交 sitemap：`https://subtitletoolkit.tools/sitemap-index.xml`
 2. 按 `pnpm gsc:day0:list` 输出的 21 个 primary URL 做 URL Inspection
-3. 把提交日期、实际 URL Inspection 数量和 `2026-06-08` 复查日填回 `GSC_DAY0_URLS.md`
+3. 把提交日期、实际 URL Inspection 数量和 `2026-06-09` 复查日填回 `GSC_DAY0_URLS.md`
 
 | 相对日期 | 任务 | 时长 | 优先级 | 验收 |
 |------|------|------|--------|------|
@@ -69,8 +69,8 @@
 - [ ] `pnpm verify:gsc:submit-ready` 通过
 - [ ] `GSC_DAY0_URLS.md` 准备记录提交日期和下次复查日期
 - [ ] `pnpm gsc:day0:list` 输出的 primary queue 是 21 个 URL；提交完成后再勾选和粘贴记录行
-- [ ] `pnpm promotion:kit -- --section directory --submitted-on 2026-06-01` 可打印目录站提交素材
-- [ ] `pnpm promotion:record -- --dry-run --channel gsc --source "Search Console" --status submitted --notes "Sitemap plus 21 primary URL Inspection requests"` 可打印待记录行
+- [ ] `pnpm promotion:kit -- --section directory --submitted-on 2026-06-02 --check-assets` 可打印目录站提交素材并确认图片资源
+- [ ] `pnpm promotion:record -- --dry-run --date 2026-06-02 --channel gsc --source "Search Console" --status submitted --notes "Sitemap plus 21 primary URL Inspection requests"` 可打印待记录行
 - [ ] Plausible 可以看到当前 traffic sources，便于提交后对比 referral/direct 变化
 - [ ] Plausible 可以看到工具事件，至少包括 `subtitle_tool_edit_input`、`subtitle_tool_adjust_setting`、`subtitle_tool_copy_output`、`subtitle_tool_download_output`
 
@@ -103,7 +103,7 @@ Use cases:
 • Extracting embedded text subtitle tracks from video files
 • Removing styling from ASS files when targeting simple players
 
-The site also includes 70 guides covering common subtitle workflows — format comparisons, conversion how-tos, sync fixes, validation, extraction, and delivery patterns for platforms like YouTube, Plex, JW Player, Video.js, and Vimeo.
+The site also includes 73 guides covering common subtitle workflows — format comparisons, conversion how-tos, sync fixes, validation, extraction, and delivery patterns for platforms like YouTube, Plex, JW Player, Video.js, and Vimeo.
 
 Built with Astro, hosted on Cloudflare Pages. Static, fast, and no backend dependencies.
 
@@ -443,7 +443,7 @@ Thanks for taking a look.
 优先用命令追加证据行，减少手抄错误：
 
 ```bash
-pnpm promotion:record -- --channel gsc --source "Search Console" --status submitted --notes "Sitemap plus 21 primary URL Inspection requests"
+pnpm promotion:record -- --date 2026-06-02 --channel gsc --source "Search Console" --status submitted --notes "Sitemap plus 21 primary URL Inspection requests"
 pnpm promotion:record -- --channel directory --source AlternativeTo --url https://example.com/subtitle-toolkit --status submitted
 ```
 
@@ -548,5 +548,5 @@ pnpm promotion:record -- --channel directory --source AlternativeTo --url https:
 
 ---
 
-**最后更新：** 2026-06-01
-**下次复盘：** 2026-06-08（一周后）
+**最后更新：** 2026-06-02
+**下次复盘：** 2026-06-09（一周后）
