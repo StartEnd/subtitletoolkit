@@ -66,6 +66,12 @@ Before submitting the Day 0 URL list in Search Console, run the combined product
 pnpm verify:gsc:submit-ready
 ```
 
+To see the current growth execution state and the next evidence-based action, run:
+
+```bash
+pnpm growth:status
+```
+
 Then print the primary manual Search Console queue and a ready-to-paste submission record row:
 
 ```bash
