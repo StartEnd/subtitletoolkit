@@ -1181,9 +1181,9 @@ const enTools: SubtitleTool[] = [
     title: 'Subtitle Delay Fixer',
     shortTitle: 'Delay fixer',
     description:
-      'Fix subtitle delay when captions are ahead of audio or behind speech by shifting SRT, VTT, or ASS timestamps.',
+      'Fix out-of-sync subtitles by shifting SRT, VTT, or ASS captions earlier or later in milliseconds.',
     summary:
-      'Use this free subtitle delay fixer when every caption is consistently ahead of audio or behind speech by the same amount.',
+      'Use this free subtitle delay fixer when every caption is ahead of audio, behind speech, or out of sync by the same number of milliseconds.',
     buttonLabel: 'Fix delay',
     inputLabel: 'Subtitle input',
     outputLabel: 'Fixed subtitle output',
@@ -1191,10 +1191,10 @@ const enTools: SubtitleTool[] = [
     acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.txt'],
     sampleFileName: 'sample.srt',
     useCases: [
-      'Fix subtitles that appear ahead of audio or behind speech.',
-      'Delay captions after a video intro was added.',
-      'Move all subtitle cues earlier after trimming a video start.',
-      'Repair a constant subtitle offset without opening a video editor.',
+      'Fix subtitles that appear ahead of audio or behind speech by a constant offset.',
+      'Delay captions by entering a positive millisecond value after a video intro was added.',
+      'Move all subtitle cues earlier with a negative millisecond value after trimming a video start.',
+      'Repair out-of-sync SRT, VTT, ASS, or SSA files without opening a video editor.',
     ],
     faqs: [
       {
@@ -1206,6 +1206,16 @@ const enTools: SubtitleTool[] = [
         question: 'Should I use a positive or negative value?',
         answer:
           'Use a positive value when subtitles are ahead of audio. Use a negative value when subtitles are behind speech.',
+      },
+      {
+        question: 'How many milliseconds should I shift subtitles?',
+        answer:
+          'Estimate the offset between the spoken audio and the matching caption. For example, use 1500 to delay subtitles by 1.5 seconds, or -1500 to move them 1.5 seconds earlier.',
+      },
+      {
+        question: 'Can this fix out-of-sync subtitles?',
+        answer:
+          'Yes, when the whole subtitle file is off by a constant amount. If only one section drifts out of sync, use the partial subtitle shifter instead.',
       },
       {
         question: 'Can this fix subtitles ahead of audio?',

@@ -1779,15 +1779,23 @@ const checks = [
 		expect: [
 			{
 				label: 'CTR-oriented delay fixer tool title',
-				match: '<title>Subtitle Delay Fixer - Ahead or Behind Audio Tool</title>',
+				match: '<title>Subtitle Delay Fixer - Shift Subtitles Online Free</title>',
 			},
 			{
 				label: 'delay fixer no-upload meta description',
-				match: 'Fix subtitles ahead of audio or behind speech by shifting SRT, VTT, or ASS timing online. Runs locally with no upload or signup.',
+				match: 'Fix out-of-sync subtitles online by shifting SRT, VTT, or ASS captions earlier or later in milliseconds. Runs locally with no upload.',
 			},
 			{
-				label: 'delay fixer page covers ahead or behind audio intent',
-				match: 'subtitles are consistently ahead of audio or behind speech',
+				label: 'delay fixer page covers out-of-sync milliseconds intent',
+				match: 'Enter positive milliseconds to delay captions, enter negative milliseconds to move captions earlier',
+			},
+			{
+				label: 'delay fixer FAQ covers millisecond shift values',
+				match: 'How many milliseconds should I shift subtitles?',
+			},
+			{
+				label: 'delay fixer FAQ covers out-of-sync subtitles',
+				match: 'Can this fix out-of-sync subtitles?',
 			},
 			{
 				label: 'delay fixer FAQ covers subtitles ahead of audio',

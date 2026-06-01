@@ -60,7 +60,7 @@ const toolMetaDescriptions: Record<string, string> = {
 	'subtitle-time-shifter':
 		'Shift subtitle timing online for SRT, VTT, and ASS files. Fix subtitles that are too early or too late without signup or upload.',
 	'subtitle-delay-fixer':
-		'Fix subtitles ahead of audio or behind speech by shifting SRT, VTT, or ASS timing online. Runs locally with no upload or signup.',
+		'Fix out-of-sync subtitles online by shifting SRT, VTT, or ASS captions earlier or later in milliseconds. Runs locally with no upload.',
 	'fix-out-of-sync-subtitles':
 		'Fix out-of-sync subtitles online by shifting SRT, VTT, or ASS cues earlier or later to match the video.',
 	'subtitle-cleaner':
@@ -105,7 +105,7 @@ const toolPageTitles: Record<string, string> = {
 	'vimeo-subtitle-converter': 'Vimeo Subtitle Converter - Convert Captions to VTT',
 	'subtitle-time-shifter': 'Subtitle Time Shifter - Fix Subtitle Delay Online',
 	'subtitle-cleaner': 'Subtitle Cleaner Online - Remove Tags, Fix Spacing',
-	'subtitle-delay-fixer': 'Subtitle Delay Fixer - Ahead or Behind Audio Tool',
+	'subtitle-delay-fixer': 'Subtitle Delay Fixer - Shift Subtitles Online Free',
 	'fix-out-of-sync-subtitles': 'Fix Out-of-Sync Subtitles Online',
 	'subtitle-encoding-fixer': 'Subtitle Encoding Fixer - Fix Garbled Subtitles Online',
 	'subtitle-merger': 'Subtitle Merger - Merge SRT, VTT, and ASS Online',
@@ -153,7 +153,7 @@ const workflowNotes: Record<string, string> = {
 	'subtitle-time-shifter':
 		'Use a global shift when every subtitle cue is off by the same amount. Positive milliseconds delay captions; negative milliseconds move them earlier. The tool preserves the detected subtitle format.',
 	'subtitle-delay-fixer':
-		'Use this when subtitles are consistently ahead of audio or behind speech. Enter milliseconds to move every cue, then review the first and last few subtitles before replacing the original file.',
+		'Use this when subtitles are consistently ahead of audio, behind speech, or out of sync by the same amount. Enter positive milliseconds to delay captions, enter negative milliseconds to move captions earlier, then review the first and last cues before replacing the original file.',
 	'fix-out-of-sync-subtitles':
 		'Use this for a constant sync offset across the whole subtitle file. If only one section is out of sync, use the partial shifter instead so the rest of the file stays unchanged.',
 	'subtitle-cleaner':
