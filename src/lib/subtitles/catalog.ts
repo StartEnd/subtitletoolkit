@@ -230,9 +230,9 @@ const enTools: SubtitleTool[] = [
     title: 'VTT to SRT Converter',
     shortTitle: 'VTT to SRT',
     description:
-      'Convert VTT WebVTT captions to SRT subtitle files online for editors, uploads, and legacy players.',
+      'Convert VTT captions to SRT online for legacy editors, uploads, and review workflows.',
     summary:
-      'Use this free VTT to SRT converter when a website or player exports `.vtt`, but your editor, archive workflow, or client asks for `.srt`.',
+      'Use this free VTT to SRT converter when a website or player exports `.vtt`, but your subtitle editor, upload workflow, archive, or client asks for `.srt` with numbered cues and comma timestamps.',
     buttonLabel: 'Convert to SRT',
     inputLabel: 'VTT input',
     outputLabel: 'SRT output',
@@ -241,9 +241,10 @@ const enTools: SubtitleTool[] = [
     sampleFileName: 'sample.vtt',
     useCases: [
       'Convert VTT to SRT before uploading captions to a platform that expects SubRip files.',
-      'Move browser captions into legacy editors.',
+      'Move browser captions into legacy subtitle editors that do not support WebVTT.',
+      'Change dot-based WebVTT timestamps into comma-based SRT timing.',
       'Prepare subtitle files for offline review and archive workflows.',
-      'Convert player-ready WebVTT into a format many teams already use.',
+      'Remove WEBVTT headers and cue settings before client handoff.',
     ],
     faqs: [
       {
@@ -257,8 +258,18 @@ const enTools: SubtitleTool[] = [
           'Yes. It preserves the existing order and adds sequence numbers for SRT output.',
       },
       {
+        question: 'Are VTT timestamp dots changed to SRT commas?',
+        answer:
+          'Yes. Dot-based WebVTT milliseconds are converted to comma-based SRT timestamps.',
+      },
+      {
         question: 'What happens to the WEBVTT header?',
         answer: 'It is removed, because SRT files do not use that header.',
+      },
+      {
+        question: 'Can I use the output in legacy subtitle editors?',
+        answer:
+          'Yes. The output is a numbered SubRip SRT file for editors, review workflows, and uploads that do not accept WebVTT.',
       },
       {
         question: 'Are VTT cue settings kept in the SRT file?',

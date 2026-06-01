@@ -1690,12 +1690,24 @@ const checks = [
 		path: '/tools/vtt-to-srt/',
 		expect: [
 			{
-				label: 'VTT to SRT tool title',
-				match: '<title>VTT to SRT Converter Online - Free, No Upload</title>',
+				label: 'CTR-oriented VTT to SRT tool title',
+				match: '<title>VTT to SRT Converter for Subtitle Editors - Free</title>',
 			},
 			{
-				label: 'VTT to SRT tool meta description',
-				match: 'Convert VTT WebVTT captions to SRT online for free. Create a SubRip file for editors and uploads locally with no signup or upload.',
+				label: 'VTT to SRT no-upload meta description',
+				match: 'Convert VTT to SRT online for free. Remove WEBVTT headers, change timestamp dots to commas, and create editor-ready SubRip captions locally.',
+			},
+			{
+				label: 'VTT to SRT workflow covers editor-ready SubRip conversion',
+				match: 'changes dot-based timestamps to comma-based SRT timing',
+			},
+			{
+				label: 'VTT to SRT FAQ covers timestamp commas',
+				match: 'Are VTT timestamp dots changed to SRT commas?',
+			},
+			{
+				label: 'VTT to SRT FAQ covers legacy subtitle editors',
+				match: 'Can I use the output in legacy subtitle editors?',
 			},
 			{
 				label: 'VTT to SRT tool links guide',

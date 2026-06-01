@@ -30,7 +30,7 @@ const toolMetaDescriptions: Record<string, string> = {
 	'srt-to-vtt':
 		'Convert SRT to VTT for HTML5 video online for free. Add the WEBVTT header, change commas to dots, and create browser-ready captions locally.',
 	'vtt-to-srt':
-		'Convert VTT WebVTT captions to SRT online for free. Create a SubRip file for editors and uploads locally with no signup or upload.',
+		'Convert VTT to SRT online for free. Remove WEBVTT headers, change timestamp dots to commas, and create editor-ready SubRip captions locally.',
 	'srt-to-txt':
 		'Convert SRT subtitles to plain text online for free. Remove timestamps and cue numbers, then copy or download clean TXT output.',
 	'vtt-to-txt':
@@ -89,7 +89,7 @@ const toolMetaDescriptions: Record<string, string> = {
 
 const toolPageTitles: Record<string, string> = {
 	'srt-to-vtt': 'SRT to VTT Converter for HTML5 Video - Free',
-	'vtt-to-srt': 'VTT to SRT Converter Online - Free, No Upload',
+	'vtt-to-srt': 'VTT to SRT Converter for Subtitle Editors - Free',
 	'srt-to-txt': 'SRT to TXT Converter - Extract Subtitle Text Online',
 	'vtt-to-txt': 'VTT to TXT Converter - Extract Caption Text Online',
 	'ass-to-txt': 'ASS to TXT Converter - Extract Subtitle Text Online',
@@ -123,7 +123,7 @@ const workflowNotes: Record<string, string> = {
 	'srt-to-vtt':
 		'SRT is common for handoff, but HTML5 video and browser players usually expect WebVTT. This converter adds the WEBVTT header, changes timestamp commas to dots, removes SRT cue numbers, and creates browser-ready captions locally.',
 	'vtt-to-srt':
-		'WebVTT is ideal for browsers, but many subtitle editors, archive tools, and review workflows still ask for SRT. This converter removes the WEBVTT wrapper and adds numbered cue blocks.',
+		'WebVTT is ideal for browsers, but many subtitle editors, upload forms, archive tools, and review workflows still ask for SRT. This converter removes the WEBVTT wrapper, changes dot-based timestamps to comma-based SRT timing, drops unsupported cue settings, and adds numbered cue blocks locally.',
 	'srt-to-txt':
 		'Use SRT to TXT when you need the spoken subtitle text without timing metadata. The converter parses SRT cue blocks, removes cue numbers and timestamps, and exports the readable text for review, translation, or notes.',
 	'vtt-to-txt':
