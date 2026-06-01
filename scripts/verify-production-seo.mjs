@@ -130,6 +130,14 @@ const checks = [
 				match: '/guides/how-to-extract-subtitles-from-video/',
 			},
 			{
+				label: 'homepage links to MP4 subtitle extraction guide',
+				match: '/guides/how-to-extract-subtitles-from-mp4/',
+			},
+			{
+				label: 'homepage links to M4V subtitle extraction guide',
+				match: '/guides/how-to-extract-subtitles-from-m4v/',
+			},
+			{
 				label: 'homepage links to MKV subtitle extraction guide',
 				match: '/guides/how-to-extract-subtitles-from-mkv/',
 			},
