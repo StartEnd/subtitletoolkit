@@ -74,7 +74,7 @@ const toolMetaDescriptions: Record<string, string> = {
 	'srt-validator':
 		'Validate SRT subtitles online for free. Check upload errors, timestamp format, cue order, and numbering locally with no signup or upload.',
 	'webvtt-validator':
-		'Validate WebVTT captions online for free. Check the WEBVTT header, timestamp syntax, cue order, and browser caption issues locally.',
+		'Validate WebVTT captions online for free. Check missing WEBVTT headers, timestamp syntax, cue order, and HTML5 caption issues locally.',
 	'subtitle-transcript-generator':
 		'Generate a plain text transcript from SRT, VTT, or ASS subtitle files directly in your browser without uploading files.',
 	'subtitle-encoding-fixer':
@@ -115,7 +115,7 @@ const toolPageTitles: Record<string, string> = {
 	'remove-srt-line-numbers': 'Remove SRT Line Numbers Online',
 	'fix-srt-timestamps': 'Fix SRT Timestamps Online',
 	'srt-validator': 'SRT Validator Online - Check Upload Errors Free',
-	'webvtt-validator': 'WebVTT Validator Online - Free VTT Checker',
+	'webvtt-validator': 'WebVTT Validator Online - Fix VTT Caption Issues',
 	'subtitle-transcript-generator': 'Subtitle Transcript Generator - Convert Subtitles to Text',
 };
 
@@ -167,7 +167,7 @@ const workflowNotes: Record<string, string> = {
 	'srt-validator':
 		'Use this before upload when YouTube, an editor, or a video platform rejects an SRT file. The validator creates a local report for timestamp format, cue order, numbering, and parse errors, then points you toward cleanup or timestamp repair when the file needs changes.',
 	'webvtt-validator':
-		'Use this before publishing captions with HTML5 video. The validator checks for a WEBVTT header, parseable cues, dot-based timestamps, and obvious timing problems.',
+		'Use this before publishing captions with HTML5 video when VTT captions do not load or a player rejects the file. The validator checks for a missing WEBVTT header, parseable cues, dot-based timestamps, cue order, and common browser caption issues locally with no upload.',
 	'subtitle-transcript-generator':
 		'Use this when the destination is notes, review, or translation instead of a timed caption track. The generator extracts readable text from supported subtitle formats.',
 	'subtitle-encoding-fixer':
@@ -299,7 +299,7 @@ const mistakeNotes: Record<string, string[]> = {
 	'webvtt-validator': [
 		'Publishing a VTT file without the WEBVTT header.',
 		'Using comma-based SRT timestamps in a WebVTT file.',
-		'Assuming validation replaces testing in the actual HTML5 player.',
+		'Ignoring player-side problems such as CORS, MIME type, or an unreachable VTT URL after validation passes.',
 	],
 	'subtitle-transcript-generator': [
 		'Using transcript output when the destination still needs subtitle timing.',

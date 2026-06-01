@@ -1856,11 +1856,23 @@ const checks = [
 		expect: [
 			{
 				label: 'CTR-oriented WebVTT validator tool title',
-				match: '<title>WebVTT Validator Online - Free VTT Checker</title>',
+				match: '<title>WebVTT Validator Online - Fix VTT Caption Issues</title>',
 			},
 			{
 				label: 'WebVTT validator local meta description',
-				match: 'Validate WebVTT captions online for free. Check the WEBVTT header, timestamp syntax, cue order, and browser caption issues locally.',
+				match: 'Validate WebVTT captions online for free. Check missing WEBVTT headers, timestamp syntax, cue order, and HTML5 caption issues locally.',
+			},
+			{
+				label: 'WebVTT validator workflow covers captions not loading',
+				match: 'when VTT captions do not load or a player rejects the file',
+			},
+			{
+				label: 'WebVTT validator FAQ covers captions not showing diagnosis',
+				match: 'Can this help when VTT captions are not showing?',
+			},
+			{
+				label: 'WebVTT validator links VTT loading guide',
+				match: 'href="/guides/why-vtt-captions-are-not-loading/"',
 			},
 		],
 	},

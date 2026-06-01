@@ -1513,12 +1513,12 @@ const enTools: SubtitleTool[] = [
   },
   {
     id: 'webvtt-validator',
-    title: 'WebVTT Validator',
+    title: 'WebVTT Validator Online',
     shortTitle: 'VTT validator',
     description:
-      'Validate WebVTT captions online and check for missing WEBVTT headers, timestamp issues, and cue problems.',
+      'Validate WebVTT captions online and check missing WEBVTT headers, timestamp syntax, cue order, and HTML5 caption issues.',
     summary:
-      'Use this free WebVTT validator to check whether a VTT file has a valid header, dot-based timestamps, and parseable cues.',
+      'Use this free WebVTT validator when captions do not load in HTML5 video or a browser player rejects a VTT file. Check the header, timestamps, cue order, and parseable cues locally.',
     buttonLabel: 'Validate VTT',
     inputLabel: 'VTT input',
     outputLabel: 'Validation report',
@@ -1527,15 +1527,25 @@ const enTools: SubtitleTool[] = [
     sampleFileName: 'sample.vtt',
     useCases: [
       'Check WebVTT files before using them in HTML5 video.',
-      'Find missing WEBVTT headers.',
-      'Detect comma-based timestamps in VTT files.',
-      'Diagnose VTT captions that do not render in a browser.',
+      'Find missing WEBVTT headers that stop captions from loading.',
+      'Detect comma-based SRT timestamps inside VTT files.',
+      'Diagnose VTT captions that do not render in a browser player.',
     ],
     faqs: [
+      {
+        question: 'Is this WebVTT validator free?',
+        answer:
+          'Yes. You can validate WebVTT captions for free in your browser without signup or upload.',
+      },
       {
         question: 'Does the validator repair VTT files?',
         answer:
           'No. It outputs a validation report. Use the SRT to VTT converter or edit the file if repairs are needed.',
+      },
+      {
+        question: 'Can this help when VTT captions are not showing?',
+        answer:
+          'Yes. The report checks file-level blockers such as a missing WEBVTT header, invalid timestamps, cue order problems, and parse errors before you debug the player setup.',
       },
       {
         question: 'Can it detect a missing WEBVTT header?',
