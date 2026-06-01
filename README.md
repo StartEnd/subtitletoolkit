@@ -66,10 +66,16 @@ Before submitting the Day 0 URL list in Search Console, run the combined product
 pnpm verify:gsc:submit-ready
 ```
 
-Then print the manual Search Console queue and a ready-to-paste submission record row:
+Then print the primary manual Search Console queue and a ready-to-paste submission record row:
 
 ```bash
 pnpm gsc:day0:list
+```
+
+After Google starts showing crawl or impression movement for the primary queue, print the current search-growth batch:
+
+```bash
+pnpm gsc:day0:list -- --batch current
 ```
 
 ## Weekly Search Review

@@ -8,7 +8,7 @@ pnpm verify:gsc:submit-ready
 
 Record manual Search Console actions here so the next review is based on evidence, not memory.
 
-After the production gate passes, run `pnpm gsc:day0:list` to print the sitemap, the URL Inspection queue, and a paste-ready submission record row.
+After the production gate passes, run `pnpm gsc:day0:list` to print the primary sitemap and URL Inspection queue plus a paste-ready submission record row. Use `pnpm gsc:day0:list -- --batch current` only after Google starts showing crawl or impression movement for the primary queue.
 
 ## Submission Record
 

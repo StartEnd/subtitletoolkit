@@ -17,6 +17,7 @@ Optional:
   --file GSC_DAY0_URLS.md
   --submitted-on YYYY-MM-DD
   --submitted-by name
+  --batch primary|current|all
   --next-review-days 7
 
 This prints the sitemap, URL Inspection queue, and a Submission Record row to paste into GSC_DAY0_URLS.md after the manual Search Console work is done.`);
@@ -30,7 +31,13 @@ if (args.includes('--help')) {
 const day0Path = resolve(getArg('--file') || 'GSC_DAY0_URLS.md');
 const submittedOn = getArg('--submitted-on') || new Date().toISOString().slice(0, 10);
 const submittedBy = getArg('--submitted-by') || userInfo().username || '';
+const batch = getArg('--batch') || 'primary';
 const nextReviewDays = Number.parseInt(getArg('--next-review-days') || '7', 10);
+
+if (!['primary', 'current', 'all'].includes(batch)) {
+	console.error('--batch must be one of: primary, current, all.');
+	process.exit(1);
+}
 
 if (!/^\d{4}-\d{2}-\d{2}$/.test(submittedOn)) {
 	console.error('--submitted-on must use YYYY-MM-DD format.');
@@ -74,8 +81,18 @@ function unique(values) {
 
 const sitemapSection = sectionBetween(markdown, '## Sitemap', '## URL Inspection Requests');
 const inspectionSection = sectionBetween(markdown, '## URL Inspection Requests', '## After Submission');
+const currentBatchMarker = 'Submit these current search-growth batch URLs next.';
+const markerIndex = inspectionSection.indexOf(currentBatchMarker);
+const primaryInspectionSection = markerIndex >= 0 ? inspectionSection.slice(0, markerIndex) : inspectionSection;
+const currentInspectionSection = markerIndex >= 0 ? inspectionSection.slice(markerIndex) : '';
 const sitemapUrls = unique(checklistUrls(sitemapSection));
-const inspectionUrls = unique(checklistUrls(inspectionSection));
+const primaryInspectionUrls = unique(checklistUrls(primaryInspectionSection));
+const currentInspectionUrls = unique(checklistUrls(currentInspectionSection));
+const inspectionUrls = {
+	primary: primaryInspectionUrls,
+	current: currentInspectionUrls,
+	all: unique([...primaryInspectionUrls, ...currentInspectionUrls]),
+}[batch];
 const nextReviewDate = addDays(submittedOn, nextReviewDays);
 
 if (sitemapUrls.length === 0) {
@@ -92,6 +109,7 @@ console.log('# GSC Day 0 Submission Helper\n');
 console.log(`Source: ${day0Path}`);
 console.log(`Submitted on: ${submittedOn}`);
 console.log(`Submitted by: ${submittedBy}`);
+console.log(`Batch: ${batch}`);
 console.log(`Next review date: ${nextReviewDate}\n`);
 
 console.log('## Sitemap To Submit\n');
@@ -100,6 +118,13 @@ sitemapUrls.forEach((url, index) => {
 });
 
 console.log('\n## URL Inspection Queue\n');
+if (batch === 'primary') {
+	console.log('Primary queue only. Use `--batch current` after Google starts showing crawl or impression movement.\n');
+} else if (batch === 'current') {
+	console.log('Current search-growth batch only. Use this after the primary queue has crawl or impression movement.\n');
+} else {
+	console.log('All queues. Use this only when you intentionally want the full list and understand the GSC request pace.\n');
+}
 inspectionUrls.forEach((url, index) => {
 	console.log(`${index + 1}. ${url}`);
 });
@@ -108,7 +133,7 @@ console.log('\n## Submission Record Row\n');
 console.log('Paste this row into the Submission Record table after the manual GSC work is complete.');
 console.log('| Submitted on | Submitted by | Sitemap submitted? | URL inspection requests | Next review date | Notes |');
 console.log('| --- | --- | --- | ---: | --- | --- |');
-console.log(`| ${submittedOn} | ${submittedBy} | Yes | ${inspectionUrls.length} | ${nextReviewDate} | Submitted sitemap and Day 0 URL Inspection queue after production gate passed. |`);
+console.log(`| ${submittedOn} | ${submittedBy} | Yes | ${inspectionUrls.length} | ${nextReviewDate} | Submitted ${batch} Day 0 URL Inspection queue after production gate passed. |`);
 
 console.log('\n## After Manual Submission\n');
 console.log('1. Check off submitted items in GSC_DAY0_URLS.md.');

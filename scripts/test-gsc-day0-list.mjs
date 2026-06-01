@@ -43,6 +43,10 @@ try {
 - [ ] \`https://subtitletoolkit.tools/\`
 - [ ] \`https://subtitletoolkit.tools/tools/srt-to-vtt/\`
 
+Submit these current search-growth batch URLs next.
+
+- [ ] \`https://subtitletoolkit.tools/guides/why-youtube-subtitles-upload-failed/\`
+
 ## After Submission
 `);
 
@@ -54,11 +58,34 @@ try {
 	assertExit(valid, 0);
 	assertIncludes(valid.stdout, '1. https://subtitletoolkit.tools/sitemap-index.xml');
 	assertIncludes(valid.stdout, '2. https://subtitletoolkit.tools/tools/srt-to-vtt/');
-	assertIncludes(valid.stdout, '| 2026-06-01 | song | Yes | 2 | 2026-06-06 | Submitted sitemap and Day 0 URL Inspection queue after production gate passed. |');
+	assertIncludes(valid.stdout, 'Primary queue only. Use `--batch current` after Google starts showing crawl or impression movement.');
+	assertIncludes(valid.stdout, '| 2026-06-01 | song | Yes | 2 | 2026-06-06 | Submitted primary Day 0 URL Inspection queue after production gate passed. |');
+
+	const current = run([
+		'--submitted-on', '2026-06-01',
+		'--submitted-by', 'song',
+		'--batch', 'current',
+	]);
+	assertExit(current, 0);
+	assertIncludes(current.stdout, '1. https://subtitletoolkit.tools/guides/why-youtube-subtitles-upload-failed/');
+	assertIncludes(current.stdout, '| 2026-06-01 | song | Yes | 1 | 2026-06-08 | Submitted current Day 0 URL Inspection queue after production gate passed. |');
+
+	const all = run([
+		'--submitted-on', '2026-06-01',
+		'--submitted-by', 'song',
+		'--batch', 'all',
+	]);
+	assertExit(all, 0);
+	assertIncludes(all.stdout, '3. https://subtitletoolkit.tools/guides/why-youtube-subtitles-upload-failed/');
+	assertIncludes(all.stdout, '| 2026-06-01 | song | Yes | 3 | 2026-06-08 | Submitted all Day 0 URL Inspection queue after production gate passed. |');
 
 	const invalidDate = run(['--submitted-on', '2026/06/01']);
 	assertExit(invalidDate, 1);
 	assertIncludes(invalidDate.stderr, '--submitted-on must use YYYY-MM-DD format.');
+
+	const invalidBatch = run(['--batch', 'everything']);
+	assertExit(invalidBatch, 1);
+	assertIncludes(invalidBatch.stderr, '--batch must be one of: primary, current, all.');
 
 	console.log('GSC Day 0 list helper tests passed.');
 } finally {
