@@ -929,6 +929,32 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/how-to-create-a-transcript-from-subtitles/',
+		expect: [
+			{
+				label: 'transcript guide CTR title',
+				match: '<title>Create Transcript from Subtitles - Free No Upload</title>',
+			},
+			{
+				label: 'transcript guide no-upload meta description',
+				match: 'Create a readable transcript from SRT, VTT, or ASS subtitles. Remove timestamps and caption metadata locally in your browser with no upload.',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-create-dual-language-subtitles/',
+		expect: [
+			{
+				label: 'dual-language guide CTR title',
+				match: '<title>Create Dual-Language Subtitles - Bilingual SRT Guide</title>',
+			},
+			{
+				label: 'dual-language guide meta description',
+				match: 'Create bilingual subtitles by combining original and translated lines inside one timed file. Check cue timing, overlaps, and readability before export.',
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
 		expect: [
 			{
@@ -942,6 +968,32 @@ const checks = [
 			{
 				label: 'ASS to VTT guide opens converter tool',
 				match: 'href="/tools/ass-to-vtt/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-fix-overlapping-subtitles/',
+		expect: [
+			{
+				label: 'overlapping subtitles guide CTR title',
+				match: '<title>Fix Overlapping Subtitles - Repair Cue Timing</title>',
+			},
+			{
+				label: 'overlapping subtitles guide meta description',
+				match: 'Fix overlapping subtitles by finding cue timing conflicts, sorting caption blocks, and repairing SRT, VTT, or ASS files before playback.',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-fix-subtitle-line-breaks/',
+		expect: [
+			{
+				label: 'line breaks guide CTR title',
+				match: '<title>Fix Subtitle Line Breaks - Clean Caption Text</title>',
+			},
+			{
+				label: 'line breaks guide meta description',
+				match: 'Fix messy subtitle line breaks by cleaning SRT or VTT spacing, preserving readable caption text, and checking output before upload.',
 			},
 		],
 	},
