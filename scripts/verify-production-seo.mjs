@@ -110,6 +110,35 @@ const checks = [
 				label: 'homepage links to ASS to VTT guide',
 				match: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
 			},
+			{
+				label: 'homepage links to ASS to SRT YouTube upload guide',
+				match: '/guides/how-to-convert-ass-to-srt-for-youtube-uploads/',
+			},
+			{
+				label: 'homepage links to subtitle cleanup before upload guide',
+				match: '/guides/how-to-clean-subtitle-formatting-before-upload/',
+			},
+			{
+				label: 'homepage links to SRT validation guide',
+				match: '/guides/how-to-validate-srt-files/',
+			},
+			{
+				label: 'homepage links to WebVTT validation guide',
+				match: '/guides/how-to-validate-webvtt-files/',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-ass-to-srt-for-youtube-uploads/',
+		expect: [
+			{
+				label: 'ASS to SRT YouTube guide CTR title',
+				match: '<title>ASS to SRT for YouTube - Free Caption Upload Guide</title>',
+			},
+			{
+				label: 'ASS to SRT YouTube guide upload meta description',
+				match: 'Convert ASS to SRT for YouTube upload. Remove unsupported styling, keep subtitle timing, and prepare clean SRT captions locally with no upload.',
+			},
 		],
 	},
 	{
@@ -266,6 +295,14 @@ const checks = [
 	{
 		path: '/guides/how-to-clean-subtitle-formatting-before-upload/',
 		expect: [
+			{
+				label: 'subtitle cleanup before upload guide CTR title',
+				match: '<title>Clean Subtitle Formatting Before Upload - Free Checklist</title>',
+			},
+			{
+				label: 'subtitle cleanup before upload guide meta description',
+				match: 'Clean subtitle formatting before upload. Fix cue numbers, spacing, styling tags, and messy SRT structure before YouTube or client delivery.',
+			},
 			{
 				label: 'FAQ schema for subtitle cleanup questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*What's the difference between cleaning and validating\?/
@@ -465,6 +502,14 @@ const checks = [
 	{
 		path: '/guides/why-subtitles-do-not-show-in-html5-video/',
 		expect: [
+			{
+				label: 'HTML5 subtitle troubleshooting CTR title',
+				match: '<title>Subtitles Not Showing in HTML5 Video - VTT Fix Guide</title>',
+			},
+			{
+				label: 'HTML5 subtitle troubleshooting meta description',
+				match: 'Fix subtitles not showing in HTML5 video by checking WebVTT format, WEBVTT headers, timestamp dots, MIME type, CORS, and track URLs.',
+			},
 			{
 				label: 'FAQ schema for HTML5 subtitle troubleshooting',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why are subtitles not showing in HTML5 video\?/
@@ -1181,6 +1226,26 @@ const checks = [
 			{
 				label: 'guides index links to ASS instead of SRT guide',
 				match: '/guides/when-to-use-ass-instead-of-srt/',
+			},
+			{
+				label: 'guides index includes upload prep section',
+				match: 'Upload prep',
+			},
+			{
+				label: 'guides index links to ASS to SRT YouTube guide',
+				match: '/guides/how-to-convert-ass-to-srt-for-youtube-uploads/',
+			},
+			{
+				label: 'guides index links to subtitle cleanup before upload guide',
+				match: '/guides/how-to-clean-subtitle-formatting-before-upload/',
+			},
+			{
+				label: 'guides index links to SRT validation guide',
+				match: '/guides/how-to-validate-srt-files/',
+			},
+			{
+				label: 'guides index links to WebVTT validation guide',
+				match: '/guides/how-to-validate-webvtt-files/',
 			},
 			{
 				label: 'guides index links to Video.js caption failure guide',

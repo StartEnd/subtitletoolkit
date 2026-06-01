@@ -72,6 +72,12 @@ const html5CaptionGuideIds = [
 	'how-to-convert-ass-to-vtt-for-web-players',
 	'how-to-add-multiple-subtitle-languages-to-html5-video',
 ];
+const uploadPrepGuideIds = [
+	'how-to-convert-ass-to-srt-for-youtube-uploads',
+	'how-to-clean-subtitle-formatting-before-upload',
+	'how-to-validate-srt-files',
+	'how-to-validate-webvtt-files',
+];
 const extractionGuideIds = [
 	'how-to-extract-subtitles-from-mkv',
 	'embedded-vs-burned-in-subtitles',
@@ -101,6 +107,9 @@ const encodingGuides = encodingGuideIds
 	.map((id) => guides.find((guide) => guide.id === id))
 	.filter(Boolean);
 const html5CaptionGuides = html5CaptionGuideIds
+	.map((id) => guides.find((guide) => guide.id === id))
+	.filter(Boolean);
+const uploadPrepGuides = uploadPrepGuideIds
 	.map((id) => guides.find((guide) => guide.id === id))
 	.filter(Boolean);
 const extractionGuides = extractionGuideIds
@@ -339,6 +348,28 @@ const pageDescription =
 						<h3><a href={`/guides/${guide.id}/`}>{guide.data.title}</a></h3>
 						<p>{guide.data.description}</p>
 						<a class="card-link" href={`/guides/${guide.id}/`}>Prepare captions <span aria-hidden="true">&rarr;</span></a>
+					</article>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="section">
+		<span class="eyebrow">Upload prep</span>
+		<h2>Clean and validate subtitle files before delivery.</h2>
+		<p class="lede priority-lede">
+			Start here when the file must survive a YouTube upload, client handoff, or player integration without hidden formatting errors.
+		</p>
+		<div class="priority-grid">
+			{
+				uploadPrepGuides.map((guide) => (
+					<article class="priority-card">
+						<p class="priority-card-meta">
+							{guideCategoryMeta[guide.data.category].label}
+						</p>
+						<h3><a href={`/guides/${guide.id}/`}>{guide.data.title}</a></h3>
+						<p>{guide.data.description}</p>
+						<a class="card-link" href={`/guides/${guide.id}/`}>Prepare file <span aria-hidden="true">&rarr;</span></a>
 					</article>
 				))
 			}
