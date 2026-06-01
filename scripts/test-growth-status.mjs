@@ -31,6 +31,14 @@ function assertIncludes(output, expected) {
 	}
 }
 
+function git(cwd, args) {
+	const result = spawnSync('git', args, { cwd, encoding: 'utf8' });
+	if (result.status !== 0) {
+		throw new Error(`git ${args.join(' ')} failed\nSTDOUT:\n${result.stdout}\nSTDERR:\n${result.stderr}`);
+	}
+	return result.stdout.trim();
+}
+
 try {
 	write('GSC_DAY0_URLS.md', `# GSC Day 0 Submission URLs
 
@@ -61,6 +69,7 @@ try {
 	const pending = run(['--today', '2026-06-01']);
 	assertExit(pending, 0);
 	assertIncludes(pending.stdout, 'Sitemap checklist: 0/1 checked');
+	assertIncludes(pending.stdout, 'Deploy status: unavailable outside a git checkout or without origin/main');
 	assertIncludes(pending.stdout, 'IndexNow key file: not found');
 	assertIncludes(pending.stdout, 'Latest production gate: not recorded');
 	assertIncludes(pending.stdout, 'Primary URL Inspection queue: 0/2 checked');
@@ -217,6 +226,61 @@ Latest production gate: \`pnpm verify:gsc:submit-ready\` passed on 2026-06-01 ag
 	assertIncludes(allSubmitted.stdout, 'Current URL Inspection queue: 1/1 checked');
 	assertIncludes(allSubmitted.stdout, 'Priority external submissions: 4/4 recorded');
 	assertIncludes(allSubmitted.stdout, 'Wait for the review date, export GSC Queries/Pages and same-window analytics, then run `pnpm gsc:analyze`.');
+
+	const originDir = join(tempDir, 'origin.git');
+	const cloneDir = join(tempDir, 'repo');
+	git(tempDir, ['init', '--bare', originDir]);
+	git(tempDir, ['clone', originDir, cloneDir]);
+	git(cloneDir, ['config', 'user.email', 'test@example.com']);
+	git(cloneDir, ['config', 'user.name', 'Test User']);
+	git(cloneDir, ['checkout', '-B', 'main']);
+	writeFileSync(join(cloneDir, 'GSC_DAY0_URLS.md'), `# GSC Day 0 Submission URLs
+
+Latest production gate: \`pnpm verify:gsc:submit-ready\` passed.
+
+## Submission Record
+
+| Submitted on | Submitted by | Sitemap submitted? | URL inspection requests | Next review date | Notes |
+| --- | --- | --- | ---: | --- | --- |
+| | | No | 0 | | |
+
+## Sitemap
+
+- [ ] \`https://subtitletoolkit.tools/sitemap-index.xml\`
+
+## URL Inspection Requests
+
+### Primary queue
+
+- [ ] \`https://subtitletoolkit.tools/\`
+
+### Current search-growth batch
+
+- [ ] \`https://subtitletoolkit.tools/guides/why-youtube-subtitles-upload-failed/\`
+
+## After Submission
+`);
+	mkdirSync(join(cloneDir, 'public'), { recursive: true });
+	writeFileSync(join(cloneDir, 'public/indexnow-key.txt'), '1c7b9f240dbf4d4ca4d7c569f1b27c3a\n');
+	git(cloneDir, ['add', 'GSC_DAY0_URLS.md', 'public/indexnow-key.txt']);
+	git(cloneDir, ['commit', '-m', 'Initial growth files']);
+	git(cloneDir, ['push', 'origin', 'HEAD:main']);
+	git(cloneDir, ['branch', '--set-upstream-to=origin/main', 'main']);
+	writeFileSync(join(cloneDir, 'README.md'), 'local growth tooling change\n');
+	git(cloneDir, ['add', 'README.md']);
+	git(cloneDir, ['commit', '-m', 'Local growth tooling change']);
+
+	const pendingDeploy = spawnSync(process.execPath, [scriptPath, '--today', '2026-06-01'], {
+		cwd: cloneDir,
+		encoding: 'utf8',
+	});
+	assertExit(pendingDeploy, 0);
+	assertIncludes(pendingDeploy.stdout, 'Git sync: 1 ahead, 0 behind origin/main');
+	assertIncludes(pendingDeploy.stdout, 'Deploy status: pending push/deploy');
+	assertIncludes(pendingDeploy.stdout, 'Next IndexNow action: push and deploy the local commits before live submission.');
+	assertIncludes(pendingDeploy.stdout, '1. Push and deploy the 1 local commit(s) so production includes the current growth tooling.');
+	assertIncludes(pendingDeploy.stdout, '2. Run `pnpm verify:gsc:submit-ready` after deployment finishes.');
+	assertIncludes(pendingDeploy.stdout, '3. Continue with the GSC sitemap plus primary URL Inspection queue only after the live gate passes.');
 
 	const invalidDate = run(['--today', '2026/06/01']);
 	assertExit(invalidDate, 1);

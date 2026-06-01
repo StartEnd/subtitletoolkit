@@ -1,4 +1,5 @@
 import { existsSync, readFileSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
 import { resolve } from 'node:path';
 
 const args = process.argv.slice(2);
@@ -84,6 +85,31 @@ function parseTableRows(text, expectedHeaderPrefix) {
 		.filter((cells) => cells.some((cell) => cell.length > 0));
 }
 
+function git(args) {
+	const result = spawnSync('git', args, { encoding: 'utf8' });
+	if (result.status !== 0) return null;
+	return result.stdout.trim();
+}
+
+function deploymentStatus() {
+	const counts = git(['rev-list', '--left-right', '--count', 'origin/main...HEAD']);
+	const head = git(['rev-parse', '--short', 'HEAD']);
+	const upstream = git(['rev-parse', '--short', 'origin/main']);
+
+	if (!counts || !head || !upstream) {
+		return { available: false };
+	}
+
+	const [behind, ahead] = counts.split(/\s+/).map((value) => Number.parseInt(value, 10));
+	return {
+		available: true,
+		ahead: Number.isFinite(ahead) ? ahead : 0,
+		behind: Number.isFinite(behind) ? behind : 0,
+		head,
+		upstream,
+	};
+}
+
 const day0Markdown = readFileSync(day0Path, 'utf8');
 const latestProductionGate = day0Markdown.match(/^Latest production gate:\s*(.+)$/m)?.[1]?.trim() || null;
 const sitemapSection = sectionBetween(day0Markdown, '## Sitemap', '## URL Inspection Requests');
@@ -112,12 +138,24 @@ const submittedPromotionRows = promotionRows.filter((cells) => ['directory', 'aw
 const submittedPromotionSources = new Set(submittedPromotionRows.map((cells) => cells[2]));
 const completedPromotionSources = priorityPromotionSources.filter((source) => submittedPromotionSources.has(source));
 const missingPromotionSources = priorityPromotionSources.filter((source) => !submittedPromotionSources.has(source));
+const deploy = deploymentStatus();
+const deploymentPending = deploy.available && deploy.ahead > 0;
 
 console.log('# Search Growth Status\n');
 console.log(`Today: ${today}`);
 console.log(`Day 0 file: ${day0Path}`);
 console.log(`IndexNow key file: ${existsSync(indexNowKeyPath) ? indexNowKeyPath : 'not found'}`);
 console.log(`Promotion log: ${existsSync(promotionLogPath) ? promotionLogPath : 'not found'}\n`);
+
+console.log('## Deployment\n');
+if (deploy.available) {
+	console.log(`Local HEAD: ${deploy.head}`);
+	console.log(`origin/main: ${deploy.upstream}`);
+	console.log(`Git sync: ${deploy.ahead} ahead, ${deploy.behind} behind origin/main`);
+	console.log(`Deploy status: ${deploymentPending ? 'pending push/deploy' : 'local branch matches origin/main'}\n`);
+} else {
+	console.log('Deploy status: unavailable outside a git checkout or without origin/main\n');
+}
 
 console.log('## GSC Day 0\n');
 console.log(`Latest production gate: ${latestProductionGate || 'not recorded'}`);
@@ -151,7 +189,11 @@ if (latestIndexNowEvidence) {
 if (!existsSync(indexNowKeyPath)) {
 	console.log('Next IndexNow action: deploy a public key file before live submission.');
 } else if (!latestIndexNowEvidence) {
-	console.log('Next IndexNow action: after deployment, run `pnpm indexnow:submit`, then `pnpm indexnow:submit -- --live` if the key URL is live.');
+	if (deploymentPending) {
+		console.log('Next IndexNow action: push and deploy the local commits before live submission.');
+	} else {
+		console.log('Next IndexNow action: after deployment, run `pnpm indexnow:submit`, then `pnpm indexnow:submit -- --live` if the key URL is live.');
+	}
 } else {
 	console.log('Next IndexNow action: wait for crawler movement before submitting another batch.');
 }
@@ -171,7 +213,11 @@ if (missingPromotionSources.length > 0) {
 }
 
 console.log('\n## Next Action\n');
-if (!latestSubmission) {
+if (deploymentPending) {
+	console.log(`1. Push and deploy the ${deploy.ahead} local commit(s) so production includes the current growth tooling.`);
+	console.log('2. Run `pnpm verify:gsc:submit-ready` after deployment finishes.');
+	console.log('3. Continue with the GSC sitemap plus primary URL Inspection queue only after the live gate passes.');
+} else if (!latestSubmission) {
 	if (!latestProductionGate) {
 		console.log('1. Run `pnpm verify:gsc:submit-ready`.');
 		console.log('2. Run `pnpm gsc:day0:list` and submit the sitemap plus primary URL Inspection queue in Search Console.');
