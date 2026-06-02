@@ -463,11 +463,35 @@ const checks = [
 		expect: [
 			{
 				label: 'ASS to SRT YouTube guide CTR title',
-				match: '<title>ASS to SRT for YouTube - Free Caption Upload Guide</title>',
+				match: '<title>Convert ASS to SRT for YouTube Upload - Free, No Upload</title>',
 			},
 			{
 				label: 'ASS to SRT YouTube guide upload meta description',
-				match: 'Convert ASS to SRT for YouTube upload. Remove unsupported styling, keep subtitle timing, and prepare clean SRT captions locally with no upload.',
+				match: 'Convert ASS or SSA to YouTube-ready SRT. Flatten styling, keep dialogue timing, validate captions, and create an upload copy locally with no upload.',
+			},
+			{
+				label: 'ASS to SRT YouTube guide opens ASS converter tool',
+				match: 'href="/tools/ass-to-srt/"',
+			},
+			{
+				label: 'ASS to SRT YouTube guide links YouTube converter fallback',
+				match: 'href="/tools/youtube-subtitle-converter/"',
+			},
+			{
+				label: 'ASS to SRT YouTube guide links SRT validator follow-up',
+				match: 'href="/tools/srt-validator/"',
+			},
+			{
+				label: 'ASS to SRT YouTube guide links upload failure follow-up',
+				match: 'href="/guides/why-youtube-subtitles-upload-failed/"',
+			},
+			{
+				label: 'ASS to SRT YouTube guide links SRT settings follow-up',
+				match: 'href="/guides/best-srt-settings-for-youtube-upload/"',
+			},
+			{
+				label: 'FAQ schema for ASS to SRT YouTube questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert ASS to SRT for YouTube upload\?/
 			},
 		],
 	},
