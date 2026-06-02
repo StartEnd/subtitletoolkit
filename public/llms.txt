@@ -23,6 +23,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [TTML to SRT Converter](https://subtitletoolkit.tools/tools/ttml-to-srt/): Convert TTML or DFXP XML captions to standard SRT cues.
 - [SCC to SRT Converter](https://subtitletoolkit.tools/tools/scc-to-srt/): Convert Scenarist closed captions to standard SRT cues.
 - [MicroDVD to SRT Converter](https://subtitletoolkit.tools/tools/microdvd-to-srt/): Convert frame-based MicroDVD SUB captions to standard SRT cues.
+- [LRC to SRT Converter](https://subtitletoolkit.tools/tools/lrc-to-srt/): Convert timestamped lyric files to standard SRT cues.
 - [YouTube Subtitle Converter](https://subtitletoolkit.tools/tools/youtube-subtitle-converter/): Convert VTT or ASS subtitles into YouTube-ready SRT captions.
 - [Subtitle Time Shifter](https://subtitletoolkit.tools/tools/subtitle-time-shifter/): Shift SRT, VTT, or ASS timestamps forward or backward.
 - [Partial Subtitle Shifter](https://subtitletoolkit.tools/tools/partial-subtitle-shifter/): Shift only a selected time range inside a subtitle file.
@@ -67,6 +68,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [How to convert TTML to SRT](https://subtitletoolkit.tools/guides/how-to-convert-ttml-to-srt/)
 - [How to convert SCC to SRT](https://subtitletoolkit.tools/guides/how-to-convert-scc-to-srt/)
 - [How to convert MicroDVD to SRT](https://subtitletoolkit.tools/guides/how-to-convert-microdvd-to-srt/)
+- [How to convert LRC to SRT](https://subtitletoolkit.tools/guides/how-to-convert-lrc-to-srt/)
 - [How to convert ASS to SRT](https://subtitletoolkit.tools/guides/how-to-convert-ass-to-srt/)
 - [How to export SRT from Aegisub](https://subtitletoolkit.tools/guides/how-to-export-srt-from-aegisub/)
 - [How to convert SSA to SRT](https://subtitletoolkit.tools/guides/how-to-convert-ssa-to-srt/)

@@ -298,6 +298,10 @@ const checks = [
 				match: '/guides/how-to-convert-microdvd-to-srt/',
 			},
 			{
+				label: 'homepage links to LRC to SRT guide',
+				match: '/guides/how-to-convert-lrc-to-srt/',
+			},
+			{
 				label: 'homepage links to ASS to VTT guide',
 				match: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
 			},
@@ -560,6 +564,27 @@ const checks = [
 			{
 				label: 'FAQ schema for MicroDVD to SRT questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert a MicroDVD SUB file to SRT\?/
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-lrc-to-srt/',
+		expect: [
+			{
+				label: 'LRC to SRT guide CTR title',
+				match: '<title>Convert LRC to SRT - Free Lyric Subtitle Converter</title>',
+			},
+			{
+				label: 'LRC to SRT guide no-upload meta description',
+				match: 'Convert LRC lyric files to SRT online for free. Turn timestamped lyric lines into numbered SubRip cues locally with no upload.',
+			},
+			{
+				label: 'LRC to SRT guide opens LRC converter tool',
+				match: 'href="/tools/lrc-to-srt/"',
+			},
+			{
+				label: 'FAQ schema for LRC to SRT questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert an LRC lyric file to SRT\?/
 			},
 		],
 	},
@@ -3030,6 +3055,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/lrc-to-srt/',
+		expect: [
+			{
+				label: 'LRC to SRT tool title',
+				match: '<title>LRC to SRT Converter - Convert Lyrics to Captions Free</title>',
+			},
+			{
+				label: 'LRC to SRT tool meta description',
+				match: 'Convert LRC lyrics to SRT subtitles online for free. Turn timestamped lyric lines into numbered SubRip cues locally.',
+			},
+			{
+				label: 'LRC to SRT tool links guide',
+				match: 'href="/guides/how-to-convert-lrc-to-srt/"',
+			},
+			{
+				label: 'LRC to SRT tool FAQ covers cue end times',
+				match: 'How are LRC cue end times created?',
+			},
+		],
+	},
+	{
 		path: '/tools/ass-to-srt/',
 		expect: [
 			{
@@ -3742,6 +3788,10 @@ const checks = [
 				match: 'https://subtitletoolkit.tools/tools/microdvd-to-srt/',
 			},
 			{
+				label: 'llms lists LRC to SRT tool',
+				match: 'https://subtitletoolkit.tools/tools/lrc-to-srt/',
+			},
+			{
 				label: 'llms lists invalid WebVTT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/',
 			},
@@ -4056,6 +4106,10 @@ const checks = [
 			{
 				label: 'llms lists MicroDVD to SRT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-microdvd-to-srt/',
+			},
+			{
+				label: 'llms lists LRC to SRT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-lrc-to-srt/',
 			},
 			{
 				label: 'llms lists ASS to SRT guide',

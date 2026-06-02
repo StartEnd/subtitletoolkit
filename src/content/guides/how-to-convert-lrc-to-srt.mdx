@@ -1,0 +1,134 @@
+---
+title: How to convert LRC to SRT
+seoTitle: Convert LRC to SRT - Free Lyric Subtitle Converter
+seoDescription: Convert LRC lyric files to SRT online for free. Turn timestamped lyric lines into numbered SubRip cues locally with no upload.
+description: Convert timestamped LRC lyric files into standard SRT subtitles for lyric videos, editing, review, and upload workflows.
+pubDate: 2026-06-02
+category: conversion-guides
+tags:
+  - lrc
+  - lyrics
+  - srt
+  - lyric video
+  - conversion
+primaryTool: lrc-to-srt
+faqs:
+  - question: How do I convert an LRC lyric file to SRT?
+    answer: Use the LRC to SRT converter with a .lrc text file. It reads timestamped lyric lines, creates SRT cue timing, and exports numbered SubRip cues.
+  - question: What is an LRC file?
+    answer: LRC is a timestamped lyric format that stores song lines with time tags such as [00:12.34] before each lyric line.
+  - question: Can I convert LRC lyrics without uploading the file?
+    answer: Yes. The converter runs in your browser, so the LRC lyric file stays on your device.
+---
+
+LRC files are timestamped lyric files. Each lyric line usually starts with a time tag like `[00:12.34]`, followed by the words that should appear at that point in the song.
+
+SRT is easier to use in video editors, caption upload forms, and review workflows. It stores cue numbers, start and end timestamps, and readable text blocks.
+
+## Quick answer
+
+Use the [LRC to SRT Converter](/tools/lrc-to-srt/) to convert a `.lrc` lyric file into standard SubRip subtitles. The tool reads LRC time tags, turns each lyric line into an SRT cue, and runs locally in your browser with no upload.
+
+## When to convert LRC to SRT
+
+Convert LRC to SRT when:
+
+- a lyric video editor imports SRT but not LRC
+- timestamped lyrics need a review copy with regular subtitle cues
+- you want to upload lyrics as captions to a video platform
+- a karaoke or music workflow needs a simple SubRip handoff
+- you need to validate or shift lyric timing after conversion
+
+Keep the original LRC file until you confirm the converted timing against the song.
+
+## What changes during conversion
+
+LRC stores timestamped lyric lines like this:
+
+```text
+[00:01.00]Welcome back to the edit
+[00:04.20]Today we are converting LRC lyrics
+[00:07.00]They need SRT caption timing
+```
+
+SRT stores numbered cues like this:
+
+```text
+1
+00:00:01,000 --> 00:00:04,200
+Welcome back to the edit
+
+2
+00:00:04,200 --> 00:00:07,000
+Today we are converting LRC lyrics
+
+3
+00:00:07,000 --> 00:00:10,000
+They need SRT caption timing
+```
+
+During conversion, the tool:
+
+- reads LRC timestamps such as `[00:12.34]`
+- supports one lyric line with multiple timestamps
+- uses the next lyric timestamp as the current cue end time
+- gives the final lyric line a short default duration
+- removes LRC metadata tags that do not contain lyric text
+- generates sequential SRT cue numbers
+
+## Timing warning
+
+LRC files usually store when a lyric line starts, not when it should disappear. The converter uses the next lyric line as the end time for the current SRT cue.
+
+This works well for many lyric-video drafts, but you should review the first, middle, and final cues against the song before upload. The final cue especially may need manual trimming or extension.
+
+## Step-by-step workflow
+
+1. Save a copy of the original `.lrc` file.
+2. Open the [LRC to SRT Converter](/tools/lrc-to-srt/).
+3. Upload or paste the LRC lyric content.
+4. Convert the file to SRT.
+5. Check the first, middle, and final lyric cues against the song.
+6. Run the output through the [SRT Validator](/tools/srt-validator/) before upload.
+
+## Common mistakes
+
+### Using plain lyrics without timestamps
+
+LRC to SRT conversion needs time tags. A plain lyrics file with no `[mm:ss]` timestamps does not contain enough timing information to create useful SRT cues.
+
+### Treating the final cue duration as exact
+
+The final lyric line has no next timestamp, so the converter gives it a short default duration. Adjust the final cue if the line should stay on screen longer or disappear earlier.
+
+### Expecting karaoke word-by-word timing
+
+Basic LRC is usually line-based. If your source uses enhanced per-word timing, review the output because SRT is simpler and may not preserve every karaoke timing detail.
+
+## Frequently asked questions
+
+### How do I convert an LRC lyric file to SRT?
+
+Open the [LRC to SRT Converter](/tools/lrc-to-srt/), upload or paste the `.lrc` file, and export timestamped lyric lines as numbered SRT cues.
+
+### What is an LRC file?
+
+LRC is a timestamped lyric format that stores song lines with time tags such as `[00:12.34]` before each lyric line.
+
+### Can I convert LRC lyrics without uploading the file?
+
+Yes. The converter runs locally in your browser, so the lyric file does not need to be sent to a server.
+
+## Related guides
+
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+- [Why subtitles drift out of sync](/guides/why-subtitles-drift-out-of-sync/)
+- [How to fix subtitle delay](/guides/how-to-fix-subtitle-delay/)
+- [How to convert subtitles to plain text](/guides/how-to-convert-subtitles-to-plain-text/)
+
+## Related tools
+
+- [LRC to SRT Converter](/tools/lrc-to-srt/)
+- [SRT Validator](/tools/srt-validator/)
+- [Subtitle Time Shifter](/tools/subtitle-time-shifter/)
+- [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/)

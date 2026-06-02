@@ -13,6 +13,7 @@ export type SubtitleToolId =
   | 'ttml-to-srt'
   | 'scc-to-srt'
   | 'microdvd-to-srt'
+  | 'lrc-to-srt'
   | 'youtube-subtitle-converter'
   | 'html5-video-subtitle-converter'
   | 'videojs-subtitle-converter'
@@ -170,6 +171,9 @@ Today we are converting SBV captions for upload.`,
   microdvd: `{1}{1}25.000
 {25}{88}Welcome back to the edit
 {105}{150}Today we are converting MicroDVD subtitles|They need SRT output`,
+  lrc: `[00:01.00]Welcome back to the edit
+[00:04.20]Today we are converting LRC lyrics
+[00:07.00]They need SRT caption timing`,
   encodedSrt: `1
 00:00:01,000 --> 00:00:03,500
 Café subtitles should stay readable.
@@ -995,7 +999,7 @@ const enTools: SubtitleTool[] = [
           'No. The MicroDVD to SRT conversion runs locally in your browser, so the subtitle file stays on your device.',
       },
     ],
-    relatedTools: ['srt-validator', 'scc-to-srt'],
+    relatedTools: ['lrc-to-srt', 'srt-validator'],
     relatedGuides: [
       {
         href: '/guides/how-to-convert-microdvd-to-srt/',
@@ -1011,6 +1015,65 @@ const enTools: SubtitleTool[] = [
       },
     ],
     sampleInput: sharedSamples.microdvd,
+  },
+  {
+    id: 'lrc-to-srt',
+    title: 'LRC to SRT Converter',
+    shortTitle: 'LRC to SRT',
+    description:
+      'Convert LRC lyric files to SRT subtitles online for free, locally in your browser with no upload.',
+    summary:
+      'Use this free LRC to SRT converter when timestamped lyrics need a standard SubRip caption file for lyric videos, review, editing, or upload workflows.',
+    buttonLabel: 'Convert to SRT',
+    inputLabel: 'LRC input',
+    outputLabel: 'SRT output',
+    placeholder: 'Paste your LRC lyrics here',
+    acceptedExtensions: ['.lrc', '.txt'],
+    sampleFileName: 'sample.lrc',
+    useCases: [
+      'Convert timestamped LRC lyrics to standard SRT captions.',
+      'Prepare lyric lines for a video editor that imports SubRip files.',
+      'Create a simple caption file for lyric video review.',
+      'Move LRC timing into SRT validation, cleanup, or upload workflows.',
+    ],
+    faqs: [
+      {
+        question: 'How do I convert an LRC lyric file to SRT?',
+        answer:
+          'Open the LRC to SRT converter, paste or upload the .lrc file, and export timestamped lyric lines as numbered SRT cues.',
+      },
+      {
+        question: 'What is an LRC file?',
+        answer:
+          'LRC is a timestamped lyric format that stores song lines with time tags such as [00:12.34] before each lyric line.',
+      },
+      {
+        question: 'How are LRC cue end times created?',
+        answer:
+          'Each SRT cue ends at the next LRC timestamp. The final lyric line gets a short default duration, so review the last cue before upload.',
+      },
+      {
+        question: 'Are LRC files uploaded to a server?',
+        answer:
+          'No. The LRC to SRT conversion runs locally in your browser, so the lyric file stays on your device.',
+      },
+    ],
+    relatedTools: ['srt-validator', 'subtitle-time-shifter'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-convert-lrc-to-srt/',
+        title: 'How to convert LRC to SRT',
+      },
+      {
+        href: '/guides/how-to-validate-srt-files/',
+        title: 'How to validate SRT files',
+      },
+      {
+        href: '/guides/why-subtitles-drift-out-of-sync/',
+        title: 'Why subtitles drift out of sync',
+      },
+    ],
+    sampleInput: sharedSamples.lrc,
   },
   {
     id: 'youtube-subtitle-converter',

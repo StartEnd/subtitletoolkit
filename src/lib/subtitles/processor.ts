@@ -1,6 +1,6 @@
 import type { SubtitleToolId } from './catalog';
 
-export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'smi' | 'sbv' | 'ttml' | 'scc' | 'microdvd' | 'txt' | 'unknown';
+export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'smi' | 'sbv' | 'ttml' | 'scc' | 'microdvd' | 'lrc' | 'txt' | 'unknown';
 
 export interface SubtitleCue {
   start: number;
@@ -53,6 +53,10 @@ export function detectSubtitleFormat(input: string): SubtitleFormat {
 
   if (/^\{\d+\}\{\d+\}.+/m.test(normalized)) {
     return 'microdvd';
+  }
+
+  if (/^(?:\[[a-z]+:[^\]]+\]\s*)*\[\d{1,2}:\d{2}(?:[.:]\d{1,3})?\].+/im.test(normalized)) {
+    return 'lrc';
   }
 
   if (/^(?:\d+:)?\d{1,2}:\d{2}\.\d{3}\s*,\s*(?:\d+:)?\d{1,2}:\d{2}\.\d{3}$/m.test(normalized)) {
@@ -160,6 +164,17 @@ function sccTimestampToMs(timestamp: string) {
 
 function microdvdFrameToMs(frame: number, fps: number) {
   return Math.round((frame / fps) * 1000);
+}
+
+function lrcTimestampToMs(timestamp: string) {
+  const [minutes, secondsPart] = timestamp.replace(',', '.').split(':');
+  const [seconds, fraction = '0'] = secondsPart.split(/[.:]/);
+
+  return (
+    Number(minutes) * 60000 +
+    Number(seconds) * 1000 +
+    Number(fraction.padEnd(3, '0').slice(0, 3))
+  );
 }
 
 function formatSrtTime(totalMs: number) {
@@ -529,6 +544,43 @@ export function parseMicrodvd(input: string): SubtitleCue[] {
     .filter(Boolean) as SubtitleCue[];
 }
 
+export function parseLrc(input: string): SubtitleCue[] {
+  const normalized = normalizeSubtitleInput(input);
+  if (!normalized) {
+    return [];
+  }
+
+  const rows = normalized
+    .split('\n')
+    .flatMap((line) => {
+      const matches = [...line.matchAll(/\[(\d{1,2}:\d{2}(?:[.:]\d{1,3})?)\]/g)];
+      if (!matches.length) {
+        return [];
+      }
+
+      const text = line.replace(/\[[^\]]+\]/g, '').trim();
+      if (!text) {
+        return [];
+      }
+
+      return matches.map((match) => ({
+        start: lrcTimestampToMs(match[1]),
+        text,
+      }));
+    })
+    .sort((a, b) => a.start - b.start);
+
+  return rows.map((row, index) => {
+    const nextStart = rows[index + 1]?.start ?? row.start + 3000;
+
+    return {
+      start: row.start,
+      end: Math.max(row.start + 1, nextStart),
+      text: [cleanSubtitleLine(row.text)],
+    };
+  });
+}
+
 export function parseSubtitleByFormat(
   input: string,
   format: SubtitleFormat
@@ -550,6 +602,8 @@ export function parseSubtitleByFormat(
       return parseScc(input);
     case 'microdvd':
       return parseMicrodvd(input);
+    case 'lrc':
+      return parseLrc(input);
     default:
       return [];
   }
@@ -624,6 +678,7 @@ function serializeByFormat(cues: SubtitleCue[], format: SubtitleFormat) {
     case 'ttml':
     case 'scc':
     case 'microdvd':
+    case 'lrc':
       return serializeSrt(cues);
     case 'txt':
       return serializePlainText(cues);
@@ -839,6 +894,8 @@ export function processSubtitleTool(
       return serializeSrt(parseScc(normalized));
     case 'microdvd-to-srt':
       return serializeSrt(parseMicrodvd(normalized));
+    case 'lrc-to-srt':
+      return serializeSrt(parseLrc(normalized));
     case 'youtube-subtitle-converter':
     case 'plex-subtitle-converter': {
       const format = detectSubtitleFormat(normalized);
@@ -961,6 +1018,7 @@ export function inferOutputFormat(
     case 'ttml-to-srt':
     case 'scc-to-srt':
     case 'microdvd-to-srt':
+    case 'lrc-to-srt':
     case 'youtube-subtitle-converter':
     case 'plex-subtitle-converter':
       return 'srt';
