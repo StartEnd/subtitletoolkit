@@ -1041,6 +1041,22 @@ const checks = [
 				match: 'href="/tools/youtube-subtitle-converter/"',
 			},
 			{
+				label: 'YouTube SRT vs ASS guide links to SRT validator',
+				match: 'href="/tools/srt-validator/"',
+			},
+			{
+				label: 'YouTube SRT vs ASS guide links upload settings follow-up',
+				match: 'href="/guides/best-srt-settings-for-youtube-upload/"',
+			},
+			{
+				label: 'YouTube SRT vs ASS guide links ASS YouTube conversion follow-up',
+				match: 'href="/guides/how-to-convert-ass-to-srt-for-youtube-uploads/"',
+			},
+			{
+				label: 'YouTube SRT vs ASS guide links upload failure follow-up',
+				match: 'href="/guides/why-youtube-subtitles-upload-failed/"',
+			},
+			{
 				label: 'FAQ schema for YouTube SRT vs ASS questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Should I upload SRT or ASS captions to YouTube\?/
 			},
