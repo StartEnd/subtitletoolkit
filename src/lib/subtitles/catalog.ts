@@ -3048,6 +3048,10 @@ const enTools: SubtitleTool[] = [
         title: 'How to extract subtitles from a video',
       },
       {
+        href: '/guides/how-to-extract-srt-from-mkv/',
+        title: 'How to extract SRT from MKV',
+      },
+      {
         href: '/guides/how-to-extract-subtitles-from-mkv/',
         title: 'How to extract subtitles from MKV',
       },

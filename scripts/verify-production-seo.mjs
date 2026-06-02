@@ -206,6 +206,10 @@ const checks = [
 				match: '/guides/how-to-extract-subtitles-from-mkv/',
 			},
 			{
+				label: 'homepage links to MKV to SRT guide',
+				match: '/guides/how-to-extract-srt-from-mkv/',
+			},
+			{
 				label: 'homepage links to AVI subtitle extraction guide',
 				match: '/guides/how-to-extract-subtitles-from-avi/',
 			},
@@ -2609,6 +2613,35 @@ const checks = [
 				label: 'MKV extraction guide explains no-subtitle result',
 				match: 'Why did MKV subtitle extraction find no subtitles?',
 			},
+			{
+				label: 'MKV extraction guide links MKV to SRT guide',
+				match: 'href="/guides/how-to-extract-srt-from-mkv/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-extract-srt-from-mkv/',
+		expect: [
+			{
+				label: 'MKV to SRT guide title',
+				match: '<title>Extract SRT from MKV Online - Free No Upload</title>',
+			},
+			{
+				label: 'MKV to SRT guide meta description',
+				match: 'Extract SRT subtitles from MKV files online for free. Check embedded text tracks, export SRT locally, and avoid burned-in or PGS subtitle traps.',
+			},
+			{
+				label: 'MKV to SRT guide opens extractor tool',
+				match: 'href="/tools/extract-subtitles-from-video/"',
+			},
+			{
+				label: 'FAQ schema for MKV to SRT questions',
+				match: 'Can I extract SRT from an MKV file online?',
+			},
+			{
+				label: 'MKV to SRT guide mentions PGS or VobSub limits',
+				match: 'PGS and VobSub are image-based subtitle streams',
+			},
 		],
 	},
 	{
@@ -2629,6 +2662,10 @@ const checks = [
 			{
 				label: 'FAQ schema for MKV subtitle questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why are subtitles not showing in my MKV file\?/,
+			},
+			{
+				label: 'MKV subtitles failure guide links MKV to SRT guide',
+				match: 'href="/guides/how-to-extract-srt-from-mkv/"',
 			},
 		],
 	},
@@ -3830,6 +3867,10 @@ const checks = [
 				label: 'extractor tool links video extraction guide',
 				match: 'href="/guides/how-to-extract-subtitles-from-video/"',
 			},
+			{
+				label: 'extractor tool links MKV to SRT guide',
+				match: 'href="/guides/how-to-extract-srt-from-mkv/"',
+			},
 		],
 	},
 	{
@@ -4204,6 +4245,10 @@ const checks = [
 				match: '/guides/how-to-extract-subtitles-from-mkv/',
 			},
 			{
+				label: 'guides index links to MKV to SRT guide',
+				match: '/guides/how-to-extract-srt-from-mkv/',
+			},
+			{
 				label: 'guides index links to MKV subtitle failure guide',
 				match: '/guides/why-mkv-subtitles-are-not-showing/',
 			},
@@ -4538,6 +4583,10 @@ const checks = [
 			{
 				label: 'llms lists MKV extraction guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mkv/',
+			},
+			{
+				label: 'llms lists MKV to SRT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-extract-srt-from-mkv/',
 			},
 			{
 				label: 'llms lists MKV subtitle failure guide',

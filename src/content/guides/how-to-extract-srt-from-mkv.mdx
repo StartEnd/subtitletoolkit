@@ -1,0 +1,158 @@
+---
+title: How to extract SRT from MKV
+seoTitle: Extract SRT from MKV Online - Free No Upload
+seoDescription: Extract SRT subtitles from MKV files online for free. Check embedded text tracks, export SRT locally, and avoid burned-in or PGS subtitle traps.
+description: Extract an SRT subtitle file from an MKV video by checking embedded text tracks, language order, image subtitle limits, and cleanup steps.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - extract srt from mkv
+  - mkv to srt
+  - mkv subtitles to srt
+  - embedded subtitles
+  - subtitle extractor
+primaryTool: extract-subtitles-from-video
+faqs:
+  - question: Can I extract SRT from an MKV file online?
+    answer: Yes, if the MKV contains an embedded text subtitle stream such as SubRip, ASS, or SSA. The browser-local extractor can export a separate SRT-style subtitle file without uploading the video.
+  - question: Can PGS or VobSub subtitles in MKV become SRT?
+    answer: Not directly. PGS and VobSub are image-based subtitle streams, so they need OCR before they can become editable SRT text.
+  - question: Why did the MKV to SRT extraction return the wrong language?
+    answer: Some MKV files contain multiple subtitle tracks. The browser extractor attempts the first embedded subtitle stream, so inspect the output language before using it.
+  - question: Are MKV files uploaded when extracting SRT?
+    answer: No. FFmpeg runs locally in your browser, so the MKV file stays on your device.
+---
+
+Use this workflow when the search job is specifically **MKV to SRT**: you have an `.mkv` video and want a separate `.srt` subtitle file for editing, uploading, translation, or player testing.
+
+The important detail is that the MKV must contain an extractable text subtitle stream. If the captions are burned into the picture or stored as image subtitles, normal SRT extraction will not produce editable text.
+
+## Quick answer
+
+Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/), choose the MKV file, and check the extracted preview. If the MKV contains an embedded text subtitle stream, download the SRT output and review the language, timing, and text before using it.
+
+The file stays in your browser during the process. No video upload is required.
+
+## When MKV to SRT works
+
+MKV to SRT extraction works best when the MKV contains a text subtitle stream, for example:
+
+```text
+Stream #0:2: Subtitle: subrip
+Stream #0:3: Subtitle: ass
+Stream #0:4: Subtitle: ssa
+```
+
+Those streams contain subtitle text and timing data that can usually be converted into an SRT-style output.
+
+It usually does not work as direct SRT extraction when the subtitle stream is image-based:
+
+```text
+Stream #0:5: Subtitle: hdmv_pgs_subtitle
+Stream #0:6: Subtitle: dvd_subtitle
+```
+
+PGS, VobSub, and burned-in subtitles are not plain text. They need OCR or a different subtitle recovery workflow before they can become SRT.
+
+## Step-by-step workflow
+
+1. Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/).
+2. Choose your `.mkv` file.
+3. Wait for the browser FFmpeg runtime to load.
+4. Let the tool inspect embedded subtitle streams.
+5. Review the extracted SRT preview.
+6. Confirm the output language if the MKV has multiple tracks.
+7. Download the SRT file.
+8. Run the output through [SRT Validator](/tools/srt-validator/) or [Subtitle Cleaner](/tools/subtitle-cleaner/) before uploading or sharing it.
+
+## If the MKV has multiple subtitle tracks
+
+Many MKV files contain more than one subtitle language. A release might include English, Spanish, forced captions, signs-only captions, and commentary subtitles in the same container.
+
+The browser extractor attempts the first embedded subtitle stream. That is useful for a fast check, but it may not be the final language you wanted.
+
+After downloading the SRT, check:
+
+- whether the text is the correct language
+- whether it is full subtitles or forced captions only
+- whether commentary or SDH labels were included
+- whether the first, middle, and final cues line up with the video
+
+If the wrong track was extracted, inspect the MKV in a desktop media tool to identify track order, then use a dedicated workflow for that specific stream.
+
+## If extraction returns no SRT text
+
+A failed extraction does not always mean the MKV has no subtitles. It means the browser workflow did not find an embedded text stream it could export cleanly.
+
+Common causes:
+
+- the subtitles are burned into the video image
+- the MKV contains PGS or VobSub image subtitles
+- the subtitles were loaded from an external `.srt` or `.ass` file when you watched the video
+- the subtitle track is damaged or not readable as text
+- the MKV contains audio and video only
+
+For a broader diagnosis, use [How to extract subtitles from MKV](/guides/how-to-extract-subtitles-from-mkv/) or [Why MKV subtitles are not showing](/guides/why-mkv-subtitles-are-not-showing/).
+
+## After you get the SRT
+
+Treat the extracted SRT as a draft until you check it.
+
+Use these follow-up tools when needed:
+
+| Problem | Next step |
+| --- | --- |
+| Broken accents or boxes | [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) |
+| Messy tags or spacing | [Subtitle Cleaner](/tools/subtitle-cleaner/) |
+| Broken cue structure | [SRT Validator](/tools/srt-validator/) |
+| Need WebVTT for HTML5 video | [SRT to VTT Converter](/tools/srt-to-vtt/) |
+| Captions are early or late | [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/) |
+
+## Common mistakes
+
+### Expecting PGS subtitles to become SRT automatically
+
+PGS subtitles are images. They may show in VLC, but they are not text subtitles that can be exported as SRT without OCR.
+
+### Trusting the first extracted track
+
+The first subtitle stream is not always the right language. Check the preview before downloading, especially when the MKV includes multiple language tracks.
+
+### Skipping validation
+
+An extracted SRT can still have odd spacing, broken encoding, missing lines, or timing that does not match your cut of the video.
+
+## Frequently asked questions
+
+### Can I extract SRT from an MKV file online?
+
+Yes, if the MKV contains an embedded text subtitle stream such as SubRip, ASS, or SSA. Use [Extract Subtitles from Video](/tools/extract-subtitles-from-video/) to export the first supported text subtitle stream locally in your browser.
+
+### Can PGS or VobSub subtitles in MKV become SRT?
+
+Not directly. PGS and VobSub are image-based subtitle streams, so they need OCR before they can become editable SRT text.
+
+### Why did the MKV to SRT extraction return the wrong language?
+
+Some MKV files contain multiple subtitle tracks. The browser extractor attempts the first embedded subtitle stream, so inspect the output language before using it.
+
+### Are MKV files uploaded when extracting SRT?
+
+No. FFmpeg runs locally in your browser, so the MKV file stays on your device.
+
+## Related guides
+
+- [How to extract subtitles from MKV](/guides/how-to-extract-subtitles-from-mkv/)
+- [How to extract subtitles from a video](/guides/how-to-extract-subtitles-from-video/)
+- [Why MKV subtitles are not showing](/guides/why-mkv-subtitles-are-not-showing/)
+- [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+- [How to convert SRT to VTT for HTML5 video](/guides/how-to-convert-srt-to-vtt-for-html5-video/)
+
+## Related tools
+
+- [Extract Subtitles from Video](/tools/extract-subtitles-from-video/)
+- [SRT Validator](/tools/srt-validator/)
+- [Subtitle Cleaner](/tools/subtitle-cleaner/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)

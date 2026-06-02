@@ -158,6 +158,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [Why MP4 subtitles are not showing](https://subtitletoolkit.tools/guides/why-mp4-subtitles-are-not-showing/)
 - [How to extract subtitles from M4V](https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-m4v/)
 - [How to extract subtitles from MKV](https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mkv/)
+- [How to extract SRT from MKV](https://subtitletoolkit.tools/guides/how-to-extract-srt-from-mkv/)
 - [Why MKV subtitles are not showing](https://subtitletoolkit.tools/guides/why-mkv-subtitles-are-not-showing/)
 - [How to extract subtitles from MOV](https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mov/)
 - [Why MOV subtitles are not showing](https://subtitletoolkit.tools/guides/why-mov-subtitles-are-not-showing/)
