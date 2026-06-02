@@ -995,12 +995,32 @@ const checks = [
 		path: '/guides/best-subtitle-format-for-youtube/',
 		expect: [
 			{
+				label: 'YouTube subtitle format guide CTR title',
+				match: '<title>Best Subtitle Format for YouTube - Use SRT for Uploads</title>',
+			},
+			{
+				label: 'YouTube subtitle format guide meta description',
+				match: 'Choose the best subtitle format for YouTube. Use SRT for reliable uploads, convert VTT or ASS, and validate captions before publishing.',
+			},
+			{
 				label: 'FAQ schema for YouTube subtitle format questions',
-				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Does YouTube support VTT\?/
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*What is the best subtitle format for YouTube\?/
 			},
 			{
 				label: 'YouTube format guide opens YouTube converter',
 				match: 'href="/tools/youtube-subtitle-converter/"',
+			},
+			{
+				label: 'YouTube format guide links SRT validator follow-up',
+				match: 'href="/tools/srt-validator/"',
+			},
+			{
+				label: 'YouTube format guide links VTT to SRT path',
+				match: 'href="/tools/vtt-to-srt/"',
+			},
+			{
+				label: 'YouTube format guide links ASS to SRT path',
+				match: 'href="/tools/ass-to-srt/"',
 			},
 		],
 	},
