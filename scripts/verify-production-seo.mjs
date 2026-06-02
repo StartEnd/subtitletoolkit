@@ -3026,6 +3026,35 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/how-to-extract-hardcoded-subtitles-from-video/',
+		expect: [
+			{
+				label: 'hardcoded subtitle extraction guide CTR title',
+				match: '<title>Extract Hardcoded Subtitles - OCR or Text Track?</title>',
+			},
+			{
+				label: 'hardcoded subtitle extraction guide meta description',
+				match: 'Extract hardcoded subtitles from video only with OCR. First check for embedded text tracks locally, then choose OCR, cleanup, or subtitle extraction.',
+			},
+			{
+				label: 'hardcoded subtitle extraction guide opens extractor tool',
+				match: 'href="/tools/extract-subtitles-from-video/"',
+			},
+			{
+				label: 'FAQ schema for hardcoded subtitle extraction questions',
+				match: 'Can hardcoded subtitles be extracted as SRT?',
+			},
+			{
+				label: 'hardcoded subtitle extraction guide links embedded comparison',
+				match: 'href="/guides/embedded-vs-burned-in-subtitles/"',
+			},
+			{
+				label: 'hardcoded subtitle extraction guide links SRT validator follow-up',
+				match: 'href="/tools/srt-validator/"',
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-extract-subtitles-from-mp4/',
 		expect: [
 			{
@@ -4487,6 +4516,10 @@ const checks = [
 				match: 'href="/guides/how-to-extract-subtitles-from-video/"',
 			},
 			{
+				label: 'extractor tool links hardcoded subtitle extraction guide',
+				match: 'href="/guides/how-to-extract-hardcoded-subtitles-from-video/"',
+			},
+			{
 				label: 'extractor tool links MKV to SRT guide',
 				match: 'href="/guides/how-to-extract-srt-from-mkv/"',
 			},
@@ -4848,6 +4881,10 @@ const checks = [
 				match: '/guides/how-to-extract-subtitles-from-video/',
 			},
 			{
+				label: 'guides index links to hardcoded subtitle extraction guide',
+				match: '/guides/how-to-extract-hardcoded-subtitles-from-video/',
+			},
+			{
 				label: 'guides index links to downloaded video missing subtitles guide',
 				match: '/guides/why-downloaded-video-has-no-subtitles/',
 			},
@@ -5190,6 +5227,10 @@ const checks = [
 			{
 				label: 'llms lists video extraction guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-video/',
+			},
+			{
+				label: 'llms lists hardcoded subtitle extraction guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-extract-hardcoded-subtitles-from-video/',
 			},
 			{
 				label: 'llms lists downloaded video missing subtitles guide',

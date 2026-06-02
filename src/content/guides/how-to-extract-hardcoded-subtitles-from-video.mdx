@@ -1,0 +1,145 @@
+---
+title: How to extract hardcoded subtitles from video
+seoTitle: Extract Hardcoded Subtitles - OCR or Text Track?
+description: Learn whether hardcoded or burned-in video subtitles can be extracted, when OCR is required, and how to check for an embedded text track before uploading video.
+seoDescription: Extract hardcoded subtitles from video only with OCR. First check for embedded text tracks locally, then choose OCR, cleanup, or subtitle extraction.
+pubDate: 2026-06-02
+updatedDate: 2026-06-02
+category: workflow-guides
+tags:
+  - hardcoded subtitles
+  - burned in subtitles
+  - extract subtitles
+  - ocr subtitles
+  - embedded subtitles
+primaryTool: extract-subtitles-from-video
+faqs:
+  - question: Can hardcoded subtitles be extracted as SRT?
+    answer: Not directly. Hardcoded subtitles are pixels in the video image, so you need OCR to recreate editable SRT text. A subtitle extractor can only save an existing embedded text track.
+  - question: Should I try subtitle extraction before OCR?
+    answer: Yes. Check the file locally first. If the video contains an embedded text subtitle stream, extraction is faster and cleaner than OCR. If no text track exists, use OCR.
+  - question: Why does an extractor find no subtitles when text is visible?
+    answer: Visible text may be burned into the video frames, loaded from a separate sidecar file, or stored as image-based subtitles such as PGS or VobSub. None of those are direct editable text tracks.
+  - question: What should I do after OCR creates an SRT file?
+    answer: Review misread words, fix timing, remove OCR artifacts, and validate the SRT before uploading or converting it.
+---
+
+Hardcoded subtitles are visible in the video picture itself. They look like captions, but they are not a separate subtitle file that a normal extractor can save.
+
+## Quick answer
+
+You cannot extract hardcoded subtitles as clean SRT text with a normal subtitle extractor. Hardcoded, burned-in, or hardsubbed captions require OCR because the words are stored as pixels in the video frames.
+
+Before you start OCR, open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/) and check whether the video has an embedded text subtitle track. If the tool finds SRT, ASS, SSA, WebVTT, or another supported text stream, extract that instead of doing OCR.
+
+## Extractor or OCR?
+
+Use this decision table before spending time on OCR or uploading a private video to another service:
+
+| What you see | What it means | Best next step |
+| --- | --- | --- |
+| Captions can be turned off in the player | Embedded or external subtitle track | Try [Extract Subtitles from Video](/tools/extract-subtitles-from-video/) first. |
+| The extractor lists a text subtitle stream | Editable subtitles already exist | Extract the track, then clean or validate it. |
+| Captions are always visible and cannot be disabled | Hardcoded or burned-in subtitles | Use OCR; extraction cannot read video pixels as text. |
+| FFmpeg lists PGS, VobSub, or DVD subtitle streams | Image-based subtitles | OCR is usually required before creating SRT text. |
+| The website showed captions but the downloaded file has none | Separate streaming caption file | Look for the original VTT or SRT from the page or export source. |
+
+If the video contains an extractable text track, extraction is usually more accurate than OCR. OCR is the fallback when the captions are only part of the image.
+
+## Why hardcoded subtitles cannot be extracted directly
+
+A subtitle extractor reads subtitle streams inside the container:
+
+```text
+MKV file
+├── Video stream
+├── Audio stream
+└── Subtitle stream: SRT or ASS
+```
+
+Hardcoded subtitles are different:
+
+```text
+MP4 file
+├── Video stream with subtitle text already painted into each frame
+└── Audio stream
+```
+
+There is no separate caption data to export. OCR has to inspect the video image, recognize the letters, and rebuild timing by looking at when each caption appears and disappears.
+
+## Step-by-step workflow
+
+1. Play the video and try to disable captions in the subtitle or CC menu.
+2. If captions can be disabled, use [Extract Subtitles from Video](/tools/extract-subtitles-from-video/) to check for an embedded text track.
+3. If the extractor finds a text track, save it and review the first, middle, and last cues.
+4. If the extractor finds no text track, assume OCR may be required.
+5. After OCR, run the output through cleanup and validation before using it in YouTube, Plex, or a web player.
+
+This keeps the private-video check local first and avoids uploading a file when there may already be a clean embedded subtitle stream.
+
+## Common hardcoded subtitle cases
+
+### Social video exports
+
+TikTok, Instagram, Shorts, and other social exports often burn captions into the video. They are designed to be always visible, so there is usually no subtitle stream to extract.
+
+### Anime hardsubs
+
+Fansubbed videos may include stylized captions, signs, karaoke lines, and translation notes. OCR can recover plain text, but styling and positioning usually need manual reconstruction.
+
+### DVD or Blu-ray image subtitles
+
+PGS, VobSub, and DVD subtitle streams are not normal text even when they are separate streams. Extracting them may give image subtitle data, but OCR is still needed to create editable SRT.
+
+### Downloaded videos with missing captions
+
+Some websites load captions separately through VTT, SRT, or JSON files. The downloaded video may have no caption stream even though the web player showed subtitles. See [Why downloaded video has no subtitles](/guides/why-downloaded-video-has-no-subtitles/) for that case.
+
+## Clean up the OCR output
+
+OCR subtitle output usually needs review before delivery:
+
+| OCR problem | Fix |
+| --- | --- |
+| Misread letters or punctuation | Manually review captions against the video. |
+| Long lines from merged captions | Use [Clean SRT File](/tools/clean-srt-file/) or [Subtitle Cleaner](/tools/subtitle-cleaner/). |
+| Invalid cue numbers or blank lines | Run [SRT Validator](/tools/srt-validator/). |
+| Captions appear early or late | Use [Subtitle Time Shifter](/tools/subtitle-time-shifter/). |
+| Bad accents or replacement symbols | Try [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/). |
+
+For a broader distinction between embedded and burned-in captions, read [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/).
+
+## Frequently asked questions
+
+### Can hardcoded subtitles be extracted as SRT?
+
+Not directly. Hardcoded subtitles are pixels in the video image, so you need OCR to recreate editable SRT text. A normal subtitle extractor can only save an existing embedded text track.
+
+### Should I try subtitle extraction before OCR?
+
+Yes. A local extraction check is faster and more accurate when a text stream exists. If the tool finds no embedded text captions, then OCR is the realistic next step.
+
+### Why does an extractor find no subtitles when text is visible?
+
+The text may be burned into the video frames, loaded from a separate sidecar caption file, or stored as image-based subtitles such as PGS or VobSub. Those are not direct editable text tracks.
+
+### What should I do after OCR creates an SRT file?
+
+Review misread words, fix timing, remove OCR artifacts, and validate the SRT before uploading or converting it.
+
+## Related guides
+
+- [How to extract subtitles from a video](/guides/how-to-extract-subtitles-from-video/)
+- [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)
+- [Why downloaded video has no subtitles](/guides/why-downloaded-video-has-no-subtitles/)
+- [How to extract subtitles from MKV](/guides/how-to-extract-subtitles-from-mkv/)
+- [How to extract subtitles from VOB](/guides/how-to-extract-subtitles-from-vob/)
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+
+## Related tools
+
+- [Extract Subtitles from Video](/tools/extract-subtitles-from-video/)
+- [Clean SRT File](/tools/clean-srt-file/)
+- [Subtitle Cleaner](/tools/subtitle-cleaner/)
+- [SRT Validator](/tools/srt-validator/)
+- [Subtitle Time Shifter](/tools/subtitle-time-shifter/)

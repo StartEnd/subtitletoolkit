@@ -153,6 +153,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [How to fix CORS errors for VTT subtitles](https://subtitletoolkit.tools/guides/how-to-fix-cors-errors-for-vtt-subtitles/)
 - [Convert VTT to SRT for legacy editors](https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/)
 - [How to extract subtitles from a video](https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-video/)
+- [How to extract hardcoded subtitles from video](https://subtitletoolkit.tools/guides/how-to-extract-hardcoded-subtitles-from-video/)
 - [Why downloaded video has no subtitles](https://subtitletoolkit.tools/guides/why-downloaded-video-has-no-subtitles/)
 - [How to extract subtitles from MP4](https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mp4/)
 - [Why MP4 subtitles are not showing](https://subtitletoolkit.tools/guides/why-mp4-subtitles-are-not-showing/)

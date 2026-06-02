@@ -94,6 +94,7 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/best-subtitle-format-for-vimeo-embeds/`
 - [ ] `https://subtitletoolkit.tools/tools/subtitle-encoding-fixer/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-video/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-extract-hardcoded-subtitles-from-video/`
 - [ ] `https://subtitletoolkit.tools/guides/why-downloaded-video-has-no-subtitles/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mp4/`
 - [ ] `https://subtitletoolkit.tools/guides/why-mp4-subtitles-are-not-showing/`
