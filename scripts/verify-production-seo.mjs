@@ -894,12 +894,32 @@ const checks = [
 		path: '/guides/how-to-convert-srt-to-vtt-for-html5-video/',
 		expect: [
 			{
-				label: 'updated SRT to VTT guide title',
-				match: '<title>SRT to VTT for HTML5 Video - Free Converter Guide</title>',
+				label: 'SRT to VTT guide CTR title',
+				match: '<title>Convert SRT to VTT for HTML5 Video - Free, No Upload</title>',
 			},
 			{
-				label: 'updated SRT to VTT meta description',
-				match: 'Convert SRT subtitles to WebVTT for HTML5 video. Add the WEBVTT header, fix timestamp syntax, and create a browser-ready VTT file locally.',
+				label: 'SRT to VTT guide no-upload meta description',
+				match: 'Convert SRT to VTT for HTML5 video. Add the WEBVTT header, change comma timestamps to dots, and create browser captions locally with no upload.',
+			},
+			{
+				label: 'SRT to VTT guide opens converter tool',
+				match: 'href="/tools/srt-to-vtt/"',
+			},
+			{
+				label: 'SRT to VTT guide links SRT validator follow-up',
+				match: 'href="/tools/srt-validator/"',
+			},
+			{
+				label: 'SRT to VTT guide links WebVTT validator follow-up',
+				match: 'href="/tools/webvtt-validator/"',
+			},
+			{
+				label: 'SRT to VTT guide links VTT to SRT fallback',
+				match: 'href="/tools/vtt-to-srt/"',
+			},
+			{
+				label: 'SRT to VTT guide links SRT to TXT alternative',
+				match: 'href="/tools/srt-to-txt/"',
 			},
 			{
 				label: 'footer links to priority guide',
@@ -907,7 +927,7 @@ const checks = [
 			},
 			{
 				label: 'FAQ schema for SRT to VTT questions',
-				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Can I convert VTT back to SRT\?/
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert SRT to VTT for HTML5 video\?/
 			},
 		],
 	},
