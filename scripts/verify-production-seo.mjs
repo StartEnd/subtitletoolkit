@@ -2821,15 +2821,43 @@ const checks = [
 		expect: [
 			{
 				label: 'common errors guide CTR title',
-				match: '<title>Common Subtitle Format Errors - Fix SRT, VTT, ASS</title>',
+				match: '<title>Common Subtitle Format Errors - Fix SRT/VTT/ASS</title>',
 			},
 			{
 				label: 'common errors guide meta description',
-				match: 'Diagnose common subtitle format errors, including wrong file type, garbled text, broken timing, messy spacing, and upload failures.',
+				match: 'Diagnose common subtitle format errors. Fix wrong file types, broken timestamps, garbled text, messy cues, upload failures, and playback issues.',
 			},
 			{
 				label: 'common errors guide opens subtitle cleaner tool',
 				match: 'href="/tools/subtitle-cleaner/"',
+			},
+			{
+				label: 'common errors guide opens SRT validator tool',
+				match: 'href="/tools/srt-validator/"',
+			},
+			{
+				label: 'common errors guide opens WebVTT validator tool',
+				match: 'href="/tools/webvtt-validator/"',
+			},
+			{
+				label: 'common errors guide opens encoding fixer tool',
+				match: 'href="/tools/subtitle-encoding-fixer/"',
+			},
+			{
+				label: 'common errors guide opens sync tool',
+				match: 'href="/tools/fix-out-of-sync-subtitles/"',
+			},
+			{
+				label: 'common errors guide links empty conversion failure guide',
+				match: 'href="/guides/why-converted-subtitle-file-is-empty/"',
+			},
+			{
+				label: 'FAQ schema for common subtitle format errors',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*What are the most common subtitle format errors\?/
+			},
+			{
+				label: 'common errors Article schema includes query tags',
+				match: /"keywords"\s*:\s*"subtitle errors, cleanup, malformed files, delivery, subtitle format, srt errors, vtt errors"/
 			},
 		],
 	},

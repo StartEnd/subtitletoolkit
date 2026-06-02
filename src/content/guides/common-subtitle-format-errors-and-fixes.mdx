@@ -1,26 +1,82 @@
 ---
 title: Common subtitle format errors and fixes
-seoTitle: Common Subtitle Format Errors - Fix SRT, VTT, ASS
-seoDescription: Diagnose common subtitle format errors, including wrong file type, garbled text, broken timing, messy spacing, and upload failures.
-description: Diagnose common subtitle format errors, including wrong file types, garbled text, messy spacing, broken timing, and upload failures.
+seoTitle: Common Subtitle Format Errors - Fix SRT/VTT/ASS
+seoDescription: Diagnose common subtitle format errors. Fix wrong file types, broken timestamps, garbled text, messy cues, upload failures, and playback issues.
+description: Diagnose common subtitle format errors by checking file type, timestamps, encoding, cue order, styling, upload rules, and player support.
 pubDate: 2026-04-21
-updatedDate: 2026-05-10
+updatedDate: 2026-06-02
 category: sync-fixes
 tags:
   - subtitle errors
   - cleanup
   - malformed files
   - delivery
+  - subtitle format
+  - srt errors
+  - vtt errors
 primaryTool: subtitle-cleaner
+faqs:
+  - question: What are the most common subtitle format errors?
+    answer: The most common errors are wrong destination format, malformed timestamps, missing blank lines, overlapping cues, garbled text encoding, unsupported styling, and upload-specific validation rules.
+  - question: How do I know whether to validate, clean, convert, or shift subtitles?
+    answer: Validate when the file structure is broken, clean when text or spacing is messy, convert when the destination needs another format, and shift timing only when the file plays but cues are early or late.
+  - question: Why does a subtitle file work in one player but fail in another?
+    answer: Different players enforce different formats, MIME types, filename rules, encoding support, and styling support. A file can be valid in one app and still fail in a browser, upload form, or media server.
+  - question: Can I fix subtitle format errors locally?
+    answer: Yes. Use local browser tools to validate SRT or VTT, clean formatting, repair timestamps, convert formats, fix encoding, or shift timing without uploading the subtitle file.
 ---
 
 Subtitle files often break for boring reasons rather than complicated ones.
+
+## Quick answer
+
+Start by identifying what kind of failure you have. A format mismatch needs conversion, broken timestamps need validation or timestamp repair, garbled text needs encoding repair, and a file that plays but appears early or late needs a timing shift.
+
+Use [Subtitle Cleaner](/tools/subtitle-cleaner/) or [Clean SRT File Online](/tools/clean-srt-file/) for messy files. Use [SRT Validator](/tools/srt-validator/) or [WebVTT Validator](/tools/webvtt-validator/) when the structure is broken. Use [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) when the text looks corrupted.
+
+## Choose the right fix
+
+| Symptom | Likely cause | Best first tool or guide |
+| --- | --- | --- |
+| Upload says the subtitle file is invalid | Timestamp, cue order, blank line, or format rule problem | [SRT Validator](/tools/srt-validator/) or [WebVTT Validator](/tools/webvtt-validator/) |
+| Browser captions do not load | HTML5 video expects WebVTT, correct MIME type, and reachable track URL | [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/) |
+| Captions show broken accents or unreadable characters | Encoding mismatch such as Windows-1252 vs UTF-8 | [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) |
+| Captions are early, late, or drift over time | Timing offset, scene cut, or frame-rate mismatch | [Fix Out-of-Sync Subtitles](/tools/fix-out-of-sync-subtitles/) |
+| ASS styling disappears after conversion | Destination only supports plain SRT or VTT text | [ASS vs SRT](/guides/ass-vs-srt/) |
+| Output file is blank or missing cues | Unsupported source structure or parser skipped invalid cues | [Why converted subtitle file is empty](/guides/why-converted-subtitle-file-is-empty/) |
 
 ## Common problems
 
 ### Wrong format for the destination
 
 You may have `SRT` when the player wants `VTT`, or `ASS` when a client only wants `SRT`. For the browser side of that decision, start with [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video/).
+
+Format errors are often destination-specific:
+
+- HTML5 video usually expects WebVTT, not raw SRT.
+- YouTube accepts SRT, but rejects malformed timing and some exports.
+- Simple players may ignore ASS styling and only keep plain text.
+- Media servers can require exact subtitle filenames or language codes.
+
+If the destination is the problem, convert the subtitle file before editing the text. Use [SRT to VTT](/tools/srt-to-vtt/), [VTT to SRT](/tools/vtt-to-srt/), or [ASS to SRT](/tools/ass-to-srt/) depending on the target.
+
+### Timestamp lines are malformed
+
+Broken timing syntax can make a whole file fail even if the text looks fine. Common examples include:
+
+```text
+00:01:12.500 --> 00:01:15.200
+00:01:12,500 -> 00:01:15,200
+1:12,500 --> 1:15,200
+```
+
+SRT needs comma milliseconds and the full arrow. WebVTT usually uses dot milliseconds and a `WEBVTT` header. If the timing lines look suspicious, use [Fix SRT Timestamps](/tools/fix-srt-timestamps/) or read [How to fix malformed SRT timestamps](/guides/how-to-fix-malformed-srt-timestamps/).
+
+### Cue order or overlaps are broken
+
+Some players tolerate messy cue order, while upload forms often reject it. Watch for cues that start before the previous cue ends, duplicate numbers, or blocks that are missing blank lines.
+
+Use [How to fix out-of-order subtitle cues](/guides/how-to-fix-out-of-order-subtitle-cues/), [How to fix overlapping subtitles](/guides/how-to-fix-overlapping-subtitles/), or [Remove SRT Line Numbers](/tools/remove-srt-line-numbers/) depending on what the validator reports.
 
 ### Timing is fine, but the file is messy
 
@@ -44,6 +100,18 @@ If the start of the video is correct but a later edited scene is off, do not shi
 
 If the captions are embedded as a text track, extract them first, then clean or convert the subtitle file. If the subtitles are burned into the video image, read [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/) before trying an extractor.
 
+## Validate before guessing
+
+When you are not sure what failed, run the subtitle file through a validator first. A validator can tell you whether the file has broken syntax, cue order problems, overlap problems, or missing timing structure.
+
+After validation:
+
+1. Fix structural errors before changing content.
+2. Convert formats only after the source file is parseable.
+3. Repair encoding before manually rewriting garbled text.
+4. Shift timing only after the file loads correctly.
+5. Re-test in the same destination that originally failed.
+
 ## Simple fixes
 
 - Convert formats before upload
@@ -53,6 +121,24 @@ If the captions are embedded as a text track, extract them first, then clean or 
 - Extract embedded text subtitles before trying to edit them
 
 If the issue is a broken timing line rather than general mess, jump to [How to fix malformed SRT timestamps](/guides/how-to-fix-malformed-srt-timestamps/) or [How to fix invalid WebVTT timestamps](/guides/how-to-fix-invalid-webvtt-timestamps/). You can also check files directly with the [SRT Validator](/tools/srt-validator/) or [WebVTT Validator](/tools/webvtt-validator/). If the player simply refuses to render captions at all, [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/) covers the most common causes.
+
+## Frequently asked questions
+
+### What are the most common subtitle format errors?
+
+The most common errors are wrong destination format, malformed timestamps, missing blank lines, overlapping cues, garbled text encoding, unsupported styling, and upload-specific validation rules.
+
+### How do I know whether to validate, clean, convert, or shift subtitles?
+
+Validate when the file structure is broken, clean when text or spacing is messy, convert when the destination needs another format, and shift timing only when the file plays but cues are early or late.
+
+### Why does a subtitle file work in one player but fail in another?
+
+Different players enforce different formats, MIME types, filename rules, encoding support, and styling support. A file can be valid in one app and still fail in a browser, upload form, or media server.
+
+### Can I fix subtitle format errors locally?
+
+Yes. Use local browser tools to validate SRT or VTT, clean formatting, repair timestamps, convert formats, fix encoding, or shift timing without uploading the subtitle file.
 
 ## Browse the cluster
 
