@@ -92,7 +92,7 @@ const toolMetaDescriptions: Record<string, string> = {
 	'vimeo-subtitle-converter':
 		'Convert SRT or ASS subtitles to WebVTT for Vimeo embeds and web playback. Free browser-local subtitle converter.',
 	'subtitle-time-shifter':
-		'Shift subtitle timing online for SRT, VTT, and ASS files. Fix subtitles that are too early or too late without signup or upload.',
+		'Shift subtitle timing online for SRT, VTT, and ASS files. Move captions earlier or later in milliseconds locally with no upload.',
 	'subtitle-delay-fixer':
 		'Fix out-of-sync subtitles online by shifting SRT, VTT, or ASS captions earlier or later in milliseconds. Runs locally with no upload.',
 	'fix-out-of-sync-subtitles':
@@ -154,7 +154,7 @@ const toolPageTitles: Record<string, string> = {
 	'jw-player-subtitle-converter': 'JW Player Subtitle Converter - Convert Captions to VTT',
 	'plex-subtitle-converter': 'Plex Subtitle Converter - Convert Captions to SRT',
 	'vimeo-subtitle-converter': 'Vimeo Subtitle Converter - Convert Captions to VTT',
-	'subtitle-time-shifter': 'Subtitle Time Shifter - Fix Subtitle Delay Online',
+	'subtitle-time-shifter': 'Subtitle Time Shifter Online - Shift SRT, VTT, ASS',
 	'subtitle-cleaner': 'Subtitle Cleaner Online - Remove Tags, Fix Spacing',
 	'subtitle-delay-fixer': 'Subtitle Delay Fixer - Shift Subtitles Online Free',
 	'fix-out-of-sync-subtitles': 'Fix Out-of-Sync Subtitles Online',
@@ -236,7 +236,7 @@ const workflowNotes: Record<string, string> = {
 	'vimeo-subtitle-converter':
 		'Use this when a Vimeo or embed workflow needs web-ready captions. The converter creates VTT output while preserving parsed subtitle timing and text.',
 	'subtitle-time-shifter':
-		'Use a global shift when every subtitle cue is off by the same amount. Positive milliseconds delay captions; negative milliseconds move them earlier. The tool preserves the detected subtitle format.',
+		'Use a global time shift when every subtitle cue is early or late by the same amount. Enter a millisecond offset, use positive values to delay captions, use negative values to move subtitles earlier, and export the shifted SRT, VTT, or ASS file locally with no upload.',
 	'subtitle-delay-fixer':
 		'Use this when subtitles are consistently ahead of audio, behind speech, or out of sync by the same amount. Enter positive milliseconds to delay captions, enter negative milliseconds to move captions earlier, then review the first and last cues before replacing the original file.',
 	'fix-out-of-sync-subtitles':

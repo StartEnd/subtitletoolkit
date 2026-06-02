@@ -4069,16 +4069,40 @@ const checks = [
 		path: '/tools/subtitle-time-shifter/',
 		expect: [
 			{
-				label: 'time shifter tool title',
-				match: '<title>Subtitle Time Shifter - Fix Subtitle Delay Online</title>',
+				label: 'time shifter tool CTR title',
+				match: '<title>Subtitle Time Shifter Online - Shift SRT, VTT, ASS</title>',
 			},
 			{
-				label: 'time shifter tool meta description',
-				match: 'Shift subtitle timing online for SRT, VTT, and ASS files. Fix subtitles that are too early or too late without signup or upload.',
+				label: 'time shifter tool no-upload meta description',
+				match: 'Shift subtitle timing online for SRT, VTT, and ASS files. Move captions earlier or later in milliseconds locally with no upload.',
+			},
+			{
+				label: 'time shifter workflow covers millisecond offsets',
+				match: 'Enter a millisecond offset, use positive values to delay captions, use negative values to move subtitles earlier',
+			},
+			{
+				label: 'time shifter FAQ covers free local shifting',
+				match: 'Can I shift subtitle timing online for free?',
+			},
+			{
+				label: 'time shifter FAQ covers positive and negative milliseconds',
+				match: 'Should I use positive or negative milliseconds?',
+			},
+			{
+				label: 'time shifter FAQ points partial section fixes to partial shifter',
+				match: 'If only one section is wrong after an edit, use the partial subtitle shifter instead.',
 			},
 			{
 				label: 'time shifter tool links sync guide',
 				match: 'href="/guides/fix-out-of-sync-subtitles/"',
+			},
+			{
+				label: 'time shifter tool links delay fixer',
+				match: 'href="/tools/subtitle-delay-fixer/"',
+			},
+			{
+				label: 'time shifter tool links partial shifter',
+				match: 'href="/tools/partial-subtitle-shifter/"',
 			},
 			{
 				label: 'time shifter tool links subtitle drift guide',

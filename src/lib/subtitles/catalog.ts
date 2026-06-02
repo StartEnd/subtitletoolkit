@@ -2149,9 +2149,9 @@ const enTools: SubtitleTool[] = [
     title: 'Subtitle Time Shifter',
     shortTitle: 'Time shifter',
     description:
-      'Shift subtitle timing online for SRT, VTT, and ASS files when captions are too early or too late.',
+      'Shift subtitle timing online for SRT, VTT, and ASS files. Move captions earlier or later in milliseconds locally with no upload.',
     summary:
-      'Use this free subtitle time shifter when subtitles start too early or too late, but the cue order is otherwise correct.',
+      'Use this free subtitle time shifter when every cue is too early or too late by the same offset and you need a local SRT, VTT, or ASS timing fix.',
     buttonLabel: 'Shift timestamps',
     inputLabel: 'Subtitle input',
     outputLabel: 'Shifted subtitle output',
@@ -2159,31 +2159,32 @@ const enTools: SubtitleTool[] = [
     acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.txt'],
     sampleFileName: 'sample.srt',
     useCases: [
+      'Shift a whole subtitle file earlier or later in milliseconds.',
       'Fix subtitle delay without opening a video editor.',
       'Fix subtitles that lag behind the speaker.',
       'Repair captions after editing the intro of a video.',
-      'Quickly offset a whole subtitle file without opening a timeline editor.',
+      'Create a shifted SRT, VTT, or ASS copy while keeping the original format.',
     ],
     faqs: [
       {
-        question: 'Is this subtitle time shifter free?',
+        question: 'Can I shift subtitle timing online for free?',
         answer:
-          'Yes. You can shift subtitle timing for free in your browser without signup.',
+          'Yes. You can shift SRT, VTT, and ASS subtitle timing for free in your browser without signup or upload.',
       },
       {
-        question: 'Can I use negative numbers?',
+        question: 'Should I use positive or negative milliseconds?',
         answer:
-          'Yes. Negative values move subtitles earlier and positive values delay them.',
+          'Use positive milliseconds when subtitles appear too early and need to be delayed. Use negative milliseconds when subtitles appear too late and need to move earlier.',
       },
       {
-        question: 'Will this preserve the original format?',
+        question: 'Will this preserve SRT, VTT, or ASS format?',
         answer:
           'Yes. SRT stays SRT, VTT stays VTT, and ASS stays ASS after the shift.',
       },
       {
-        question: 'Should I shift subtitles forward or backward?',
+        question: 'Should I use this for one bad section?',
         answer:
-          'If subtitles appear too early, use a positive value to delay them. If they appear too late, use a negative value to move them earlier.',
+          'Use this tool when the whole subtitle file has the same timing offset. If only one section is wrong after an edit, use the partial subtitle shifter instead.',
       },
       {
         question: 'Are my subtitle files uploaded to a server?',
@@ -2191,7 +2192,7 @@ const enTools: SubtitleTool[] = [
           'No. Timing changes run locally in your browser, so your subtitle file stays on your device.',
       },
     ],
-    relatedTools: ['subtitle-cleaner', 'vtt-to-srt'],
+    relatedTools: ['subtitle-delay-fixer', 'fix-out-of-sync-subtitles', 'partial-subtitle-shifter', 'subtitle-cleaner'],
     relatedGuides: [
       {
         href: '/guides/fix-out-of-sync-subtitles/',
