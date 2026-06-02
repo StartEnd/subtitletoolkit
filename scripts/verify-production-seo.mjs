@@ -294,6 +294,10 @@ const checks = [
 				match: '/guides/how-to-convert-dfxp-to-srt/',
 			},
 			{
+				label: 'homepage links to XML subtitles to SRT guide',
+				match: '/guides/how-to-convert-xml-subtitles-to-srt/',
+			},
+			{
 				label: 'homepage links to SCC to SRT guide',
 				match: '/guides/how-to-convert-scc-to-srt/',
 			},
@@ -563,6 +567,27 @@ const checks = [
 			{
 				label: 'FAQ schema for DFXP to SRT questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert a DFXP subtitle file to SRT\?/
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-xml-subtitles-to-srt/',
+		expect: [
+			{
+				label: 'XML subtitles to SRT guide CTR title',
+				match: '<title>Convert XML Subtitles to SRT - Free Timed Text Converter</title>',
+			},
+			{
+				label: 'XML subtitles to SRT guide no-upload meta description',
+				match: 'Convert timed-text XML subtitles to SRT online for free. Parse TTML or DFXP cues, remove XML styling metadata, and create SubRip locally.',
+			},
+			{
+				label: 'XML subtitles to SRT guide opens XML converter tool',
+				match: 'href="/tools/xml-to-srt/"',
+			},
+			{
+				label: 'FAQ schema for XML subtitles to SRT questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert XML subtitles to SRT\?/
 			},
 		],
 	},
@@ -3159,6 +3184,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/xml-to-srt/',
+		expect: [
+			{
+				label: 'XML to SRT tool title',
+				match: '<title>XML to SRT Converter - Convert Timed Text Free</title>',
+			},
+			{
+				label: 'XML to SRT tool meta description',
+				match: 'Convert timed-text XML subtitles to SRT online for free. Parse TTML or DFXP XML cues and create numbered SubRip captions locally.',
+			},
+			{
+				label: 'XML to SRT tool links guide',
+				match: 'href="/guides/how-to-convert-xml-subtitles-to-srt/"',
+			},
+			{
+				label: 'XML to SRT tool FAQ covers timed XML scope',
+				match: 'What kind of XML subtitle file is supported?',
+			},
+		],
+	},
+	{
 		path: '/tools/scc-to-srt/',
 		expect: [
 			{
@@ -4014,6 +4060,10 @@ const checks = [
 				match: 'https://subtitletoolkit.tools/tools/dfxp-to-srt/',
 			},
 			{
+				label: 'llms lists XML to SRT tool',
+				match: 'https://subtitletoolkit.tools/tools/xml-to-srt/',
+			},
+			{
 				label: 'llms lists SCC to SRT tool',
 				match: 'https://subtitletoolkit.tools/tools/scc-to-srt/',
 			},
@@ -4352,6 +4402,10 @@ const checks = [
 			{
 				label: 'llms lists DFXP to SRT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-dfxp-to-srt/',
+			},
+			{
+				label: 'llms lists XML subtitles to SRT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-xml-subtitles-to-srt/',
 			},
 			{
 				label: 'llms lists SCC to SRT guide',

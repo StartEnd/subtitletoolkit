@@ -12,6 +12,7 @@ export type SubtitleToolId =
   | 'sbv-to-srt'
   | 'ttml-to-srt'
   | 'dfxp-to-srt'
+  | 'xml-to-srt'
   | 'scc-to-srt'
   | 'microdvd-to-srt'
   | 'lrc-to-srt'
@@ -175,6 +176,15 @@ Today we are converting SBV captions for upload.`,
     <div>
       <p begin="00:00:01.000" end="00:00:03.500">Welcome back to the edit.</p>
       <p begin="00:00:04.200" end="00:00:06.000">Today we are converting DFXP captions.<br/>They need SRT output.</p>
+    </div>
+  </body>
+</tt>`,
+  xml: `<?xml version="1.0" encoding="UTF-8"?>
+<tt xmlns="http://www.w3.org/ns/ttml">
+  <body>
+    <div>
+      <p begin="00:00:01.000" end="00:00:03.500">Welcome back to the edit.</p>
+      <p begin="00:00:04.200" end="00:00:06.000">Today we are converting XML subtitles.<br/>They need SRT output.</p>
     </div>
   </body>
 </tt>`,
@@ -919,7 +929,7 @@ const enTools: SubtitleTool[] = [
           'No. The TTML to SRT conversion runs locally in your browser, so the subtitle file stays on your device.',
       },
     ],
-    relatedTools: ['dfxp-to-srt', 'srt-validator'],
+    relatedTools: ['dfxp-to-srt', 'xml-to-srt'],
     relatedGuides: [
       {
         href: '/guides/how-to-convert-ttml-to-srt/',
@@ -928,6 +938,10 @@ const enTools: SubtitleTool[] = [
       {
         href: '/guides/how-to-convert-dfxp-to-srt/',
         title: 'How to convert DFXP to SRT',
+      },
+      {
+        href: '/guides/how-to-convert-xml-subtitles-to-srt/',
+        title: 'How to convert XML subtitles to SRT',
       },
       {
         href: '/guides/how-to-convert-subtitles-for-html5-video/',
@@ -982,7 +996,7 @@ const enTools: SubtitleTool[] = [
           'No. The DFXP to SRT conversion runs locally in your browser, so the subtitle file stays on your device.',
       },
     ],
-    relatedTools: ['ttml-to-srt', 'srt-validator'],
+    relatedTools: ['ttml-to-srt', 'xml-to-srt'],
     relatedGuides: [
       {
         href: '/guides/how-to-convert-dfxp-to-srt/',
@@ -993,11 +1007,74 @@ const enTools: SubtitleTool[] = [
         title: 'How to convert TTML to SRT',
       },
       {
+        href: '/guides/how-to-convert-xml-subtitles-to-srt/',
+        title: 'How to convert XML subtitles to SRT',
+      },
+      {
         href: '/guides/how-to-validate-srt-files/',
         title: 'How to validate SRT files',
       },
     ],
     sampleInput: sharedSamples.dfxp,
+  },
+  {
+    id: 'xml-to-srt',
+    title: 'XML to SRT Converter',
+    shortTitle: 'XML to SRT',
+    description:
+      'Convert timed-text XML subtitles to SRT online for free, locally in your browser with no upload.',
+    summary:
+      'Use this free XML to SRT converter when a TTML, DFXP, or timed-text XML caption file needs a standard SubRip copy for editing, upload, or review.',
+    buttonLabel: 'Convert to SRT',
+    inputLabel: 'XML subtitle input',
+    outputLabel: 'SRT output',
+    placeholder: 'Paste timed-text XML subtitles here',
+    acceptedExtensions: ['.xml', '.ttml', '.dfxp', '.txt'],
+    sampleFileName: 'captions.xml',
+    useCases: [
+      'Convert timed-text XML subtitle files to standard SRT.',
+      'Move XML caption exports into editors that expect SubRip files.',
+      'Create a readable review copy from TTML or DFXP-style caption data.',
+      'Prepare parsed XML subtitle cues for SRT validation, cleanup, or upload workflows.',
+    ],
+    faqs: [
+      {
+        question: 'How do I convert XML subtitles to SRT?',
+        answer:
+          'Open the XML to SRT converter, paste or upload a timed-text XML caption file such as TTML or DFXP, and export the timed paragraphs as numbered SRT cues.',
+      },
+      {
+        question: 'What kind of XML subtitle file is supported?',
+        answer:
+          'The converter supports TTML or DFXP-style XML captions with timed paragraph cues. It is not meant for arbitrary XML documents without subtitle timing.',
+      },
+      {
+        question: 'Does XML styling survive in SRT?',
+        answer:
+          'No. SRT keeps timing and readable text, but it does not preserve XML regions, styles, positioning, or metadata.',
+      },
+      {
+        question: 'Are XML subtitle files uploaded to a server?',
+        answer:
+          'No. The XML to SRT conversion runs locally in your browser, so the subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['ttml-to-srt', 'dfxp-to-srt'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-convert-xml-subtitles-to-srt/',
+        title: 'How to convert XML subtitles to SRT',
+      },
+      {
+        href: '/guides/how-to-convert-ttml-to-srt/',
+        title: 'How to convert TTML to SRT',
+      },
+      {
+        href: '/guides/how-to-convert-dfxp-to-srt/',
+        title: 'How to convert DFXP to SRT',
+      },
+    ],
+    sampleInput: sharedSamples.xml,
   },
   {
     id: 'scc-to-srt',

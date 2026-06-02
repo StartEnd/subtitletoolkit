@@ -22,6 +22,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [SBV to SRT Converter](https://subtitletoolkit.tools/tools/sbv-to-srt/): Convert YouTube-style SBV captions to standard SRT cues.
 - [TTML to SRT Converter](https://subtitletoolkit.tools/tools/ttml-to-srt/): Convert TTML or DFXP XML captions to standard SRT cues.
 - [DFXP to SRT Converter](https://subtitletoolkit.tools/tools/dfxp-to-srt/): Convert DFXP timed-text XML captions to standard SRT cues.
+- [XML to SRT Converter](https://subtitletoolkit.tools/tools/xml-to-srt/): Convert timed-text XML subtitles to standard SRT cues.
 - [SCC to SRT Converter](https://subtitletoolkit.tools/tools/scc-to-srt/): Convert Scenarist closed captions to standard SRT cues.
 - [MicroDVD to SRT Converter](https://subtitletoolkit.tools/tools/microdvd-to-srt/): Convert frame-based MicroDVD SUB captions to standard SRT cues.
 - [LRC to SRT Converter](https://subtitletoolkit.tools/tools/lrc-to-srt/): Convert timestamped lyric files to standard SRT cues.
@@ -72,6 +73,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [How to convert SBV to SRT](https://subtitletoolkit.tools/guides/how-to-convert-sbv-to-srt/)
 - [How to convert TTML to SRT](https://subtitletoolkit.tools/guides/how-to-convert-ttml-to-srt/)
 - [How to convert DFXP to SRT](https://subtitletoolkit.tools/guides/how-to-convert-dfxp-to-srt/)
+- [How to convert XML subtitles to SRT](https://subtitletoolkit.tools/guides/how-to-convert-xml-subtitles-to-srt/)
 - [How to convert SCC to SRT](https://subtitletoolkit.tools/guides/how-to-convert-scc-to-srt/)
 - [How to convert MicroDVD to SRT](https://subtitletoolkit.tools/guides/how-to-convert-microdvd-to-srt/)
 - [How to convert LRC to SRT](https://subtitletoolkit.tools/guides/how-to-convert-lrc-to-srt/)

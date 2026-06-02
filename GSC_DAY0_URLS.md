@@ -10,7 +10,7 @@ Record manual Search Console actions here so the next review is based on evidenc
 
 After the production gate passes, run `pnpm gsc:day0:list` to print the primary sitemap and URL Inspection queue plus a paste-ready submission record row. Use `pnpm gsc:day0:list -- --batch current` only after Google starts showing crawl or impression movement for the primary queue.
 
-Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-02 against the live `452bf1a` deployment (`sitemap-0.xml` lastmod `2026-06-02T05:10:03.000Z`) using the same local verifier commit. The primary queue below has 21 URL Inspection requests; the current queue has 146 URLs. Keep them unchecked until the manual Search Console requests are actually submitted.
+Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-02 against the live `452bf1a` deployment (`sitemap-0.xml` lastmod `2026-06-02T05:10:03.000Z`) using the same local verifier commit. The primary queue below has 21 URL Inspection requests; the current queue has 148 URLs. Keep them unchecked until the manual Search Console requests are actually submitted.
 
 ## Submission Record
 
@@ -138,6 +138,7 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-sbv-to-srt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-ttml-to-srt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-dfxp-to-srt/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-convert-xml-subtitles-to-srt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-scc-to-srt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-microdvd-to-srt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-lrc-to-srt/`
@@ -183,6 +184,7 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/tools/sbv-to-srt/`
 - [ ] `https://subtitletoolkit.tools/tools/ttml-to-srt/`
 - [ ] `https://subtitletoolkit.tools/tools/dfxp-to-srt/`
+- [ ] `https://subtitletoolkit.tools/tools/xml-to-srt/`
 - [ ] `https://subtitletoolkit.tools/tools/scc-to-srt/`
 - [ ] `https://subtitletoolkit.tools/tools/microdvd-to-srt/`
 - [ ] `https://subtitletoolkit.tools/tools/lrc-to-srt/`

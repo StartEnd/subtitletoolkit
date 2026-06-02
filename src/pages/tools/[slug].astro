@@ -53,6 +53,8 @@ const toolMetaDescriptions: Record<string, string> = {
 		'Convert TTML or DFXP subtitles to SRT online for free. Parse timed-text XML paragraphs and create numbered SubRip captions locally.',
 	'dfxp-to-srt':
 		'Convert DFXP subtitles to SRT online for free. Parse timed-text XML captions and create numbered SubRip cues locally.',
+	'xml-to-srt':
+		'Convert timed-text XML subtitles to SRT online for free. Parse TTML or DFXP XML cues and create numbered SubRip captions locally.',
 	'scc-to-srt':
 		'Convert SCC closed captions to SRT online for free. Extract readable Scenarist caption rows into numbered SubRip cues locally.',
 	'microdvd-to-srt':
@@ -123,6 +125,7 @@ const toolPageTitles: Record<string, string> = {
 	'sbv-to-srt': 'SBV to SRT Converter - Convert YouTube Captions Free',
 	'ttml-to-srt': 'TTML to SRT Converter - Convert DFXP Captions Free',
 	'dfxp-to-srt': 'DFXP to SRT Converter - Convert Timed Text Free',
+	'xml-to-srt': 'XML to SRT Converter - Convert Timed Text Free',
 	'scc-to-srt': 'SCC to SRT Converter - Convert Closed Captions Free',
 	'microdvd-to-srt': 'MicroDVD to SRT Converter - Convert SUB Captions Free',
 	'lrc-to-srt': 'LRC to SRT Converter - Convert Lyrics to Captions Free',
@@ -179,6 +182,8 @@ const workflowNotes: Record<string, string> = {
 		'TTML and DFXP files often come from streaming, broadcast, or archive caption workflows. This converter reads timed text paragraph cues, removes XML wrapper and styling metadata, keeps readable caption text, and exports numbered SRT cues for editing, upload, and review.',
 	'dfxp-to-srt':
 		'DFXP files are timed-text XML captions, often from older streaming, archive, or platform exports. This converter reads timed paragraph cues, removes XML wrapper and styling metadata, keeps readable caption text, and exports numbered SRT cues locally with no upload.',
+	'xml-to-srt':
+		'Timed-text XML subtitle files often appear as TTML or DFXP exports from streaming, archive, or caption platforms. This converter reads timed paragraph cues, removes XML wrapper and styling metadata, keeps readable caption text, and exports numbered SRT cues locally with no upload.',
 	'scc-to-srt':
 		'SCC files often come from broadcast, DVD, and post-production closed caption workflows. This converter reads Scenarist timecode rows, extracts readable caption text from common SCC word codes, and exports a simple numbered SRT copy for review, editing, and upload workflows.',
 	'microdvd-to-srt':
@@ -299,6 +304,11 @@ const mistakeNotes: Record<string, string[]> = {
 	'dfxp-to-srt': [
 		'Using the converter on a video file instead of a separate .dfxp, .ttml, or XML caption file.',
 		'Expecting SRT output to preserve DFXP regions, positioning, colors, or styling metadata.',
+		'Uploading the SRT output before validating timing and reviewing stripped XML text.',
+	],
+	'xml-to-srt': [
+		'Using the converter on arbitrary XML that has no timed subtitle paragraph cues.',
+		'Expecting SRT output to preserve XML regions, positioning, colors, or styling metadata.',
 		'Uploading the SRT output before validating timing and reviewing stripped XML text.',
 	],
 	'scc-to-srt': [
