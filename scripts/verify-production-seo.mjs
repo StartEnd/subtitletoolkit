@@ -250,6 +250,14 @@ const checks = [
 				match: '/guides/how-to-remove-timestamps-from-vtt/',
 			},
 			{
+				label: 'homepage links to remove ASS timestamps guide',
+				match: '/guides/how-to-remove-timestamps-from-ass/',
+			},
+			{
+				label: 'homepage links to remove SSA timestamps guide',
+				match: '/guides/how-to-remove-timestamps-from-ssa/',
+			},
+			{
 				label: 'homepage links to SRT to TXT guide',
 				match: '/guides/how-to-convert-srt-to-txt/',
 			},
@@ -1964,6 +1972,48 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/how-to-remove-timestamps-from-ass/',
+		expect: [
+			{
+				label: 'remove ASS timestamps guide CTR title',
+				match: '<title>Remove Timestamps from ASS - Extract Plain Text</title>',
+			},
+			{
+				label: 'remove ASS timestamps guide meta description',
+				match: 'Remove timestamps from ASS subtitles, including dialogue timing fields, styles, override tags, and metadata. Extract clean text locally with no upload.',
+			},
+			{
+				label: 'remove ASS timestamps guide opens converter tool',
+				match: 'href="/tools/ass-to-txt/"',
+			},
+			{
+				label: 'FAQ schema for remove ASS timestamps questions',
+				match: new RegExp('"@type"\\s*:\\s*"FAQPage"[\\s\\S]*How do I remove timestamps from an ASS file\\?'),
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-remove-timestamps-from-ssa/',
+		expect: [
+			{
+				label: 'remove SSA timestamps guide CTR title',
+				match: '<title>Remove Timestamps from SSA - Extract Plain Text</title>',
+			},
+			{
+				label: 'remove SSA timestamps guide meta description',
+				match: 'Remove timestamps from SSA subtitles, including dialogue timing fields, V4 style sections, and metadata. Extract clean text locally with no upload.',
+			},
+			{
+				label: 'remove SSA timestamps guide opens converter tool',
+				match: 'href="/tools/ssa-to-txt/"',
+			},
+			{
+				label: 'FAQ schema for remove SSA timestamps questions',
+				match: new RegExp('"@type"\\s*:\\s*"FAQPage"[\\s\\S]*How do I remove timestamps from an SSA file\\?'),
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-convert-ass-to-txt/',
 		expect: [
 			{
@@ -2175,6 +2225,14 @@ const checks = [
 			{
 				label: 'remove subtitle timestamps guide links SSA to TXT tool',
 				match: 'href="/tools/ssa-to-txt/"',
+			},
+			{
+				label: 'remove subtitle timestamps guide links ASS timestamp removal guide',
+				match: 'href="/guides/how-to-remove-timestamps-from-ass/"',
+			},
+			{
+				label: 'remove subtitle timestamps guide links SSA timestamp removal guide',
+				match: 'href="/guides/how-to-remove-timestamps-from-ssa/"',
 			},
 			{
 				label: 'FAQ schema for remove subtitle timestamps questions',
@@ -3981,6 +4039,14 @@ const checks = [
 				match: '/guides/how-to-remove-timestamps-from-vtt/',
 			},
 			{
+				label: 'guides index links to remove ASS timestamps guide',
+				match: '/guides/how-to-remove-timestamps-from-ass/',
+			},
+			{
+				label: 'guides index links to remove SSA timestamps guide',
+				match: '/guides/how-to-remove-timestamps-from-ssa/',
+			},
+			{
 				label: 'guides index links to SRT to TXT guide',
 				match: '/guides/how-to-convert-srt-to-txt/',
 			},
@@ -4515,6 +4581,14 @@ const checks = [
 			{
 				label: 'llms lists remove VTT timestamps guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-vtt/',
+			},
+			{
+				label: 'llms lists remove ASS timestamps guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-ass/',
+			},
+			{
+				label: 'llms lists remove SSA timestamps guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-ssa/',
 			},
 			{
 				label: 'llms lists SRT to TXT guide',

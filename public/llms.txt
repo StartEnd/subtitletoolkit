@@ -64,6 +64,8 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [How to remove timestamps from subtitles](https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-subtitles/)
 - [How to remove timestamps from SRT](https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-srt/)
 - [How to remove timestamps from VTT](https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-vtt/)
+- [How to remove timestamps from ASS subtitles](https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-ass/)
+- [How to remove timestamps from SSA subtitles](https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-ssa/)
 - [How to convert SRT to TXT](https://subtitletoolkit.tools/guides/how-to-convert-srt-to-txt/)
 - [How to convert SRT to ASS](https://subtitletoolkit.tools/guides/how-to-convert-srt-to-ass/)
 - [How to convert SRT to SSA](https://subtitletoolkit.tools/guides/how-to-convert-srt-to-ssa/)

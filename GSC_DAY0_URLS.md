@@ -10,7 +10,7 @@ Record manual Search Console actions here so the next review is based on evidenc
 
 After the production gate passes, run `pnpm gsc:day0:list` to print the primary sitemap and URL Inspection queue plus a paste-ready submission record row. Use `pnpm gsc:day0:list -- --batch current` only after Google starts showing crawl or impression movement for the primary queue.
 
-Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-02 against the live `cb05894` deployment (`sitemap-0.xml` lastmod `2026-06-02T06:31:54.000Z`) using the same local verifier commit. The primary queue below has 21 URL Inspection requests; the current queue has 153 URLs. Keep them unchecked until the manual Search Console requests are actually submitted.
+Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-02 against the live `cb05894` deployment (`sitemap-0.xml` lastmod `2026-06-02T06:31:54.000Z`) using the same local verifier commit. The primary queue below has 21 URL Inspection requests; the current queue has 155 URLs. Keep them unchecked until the manual Search Console requests are actually submitted.
 
 ## Submission Record
 
@@ -150,6 +150,8 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-subtitles/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-srt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-vtt/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-ass/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-ssa/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-srt-to-txt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-txt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-txt/`

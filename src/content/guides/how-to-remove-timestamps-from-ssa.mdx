@@ -1,0 +1,131 @@
+---
+title: How to remove timestamps from SSA subtitles
+seoTitle: Remove Timestamps from SSA - Extract Plain Text
+seoDescription: Remove timestamps from SSA subtitles, including dialogue timing fields, V4 style sections, and metadata. Extract clean text locally with no upload.
+description: Remove old SSA subtitle timestamps, dialogue fields, style sections, and metadata to create clean plain text for review or translation.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - ssa
+  - remove timestamps
+  - plain text
+  - transcript
+  - subtitle cleanup
+primaryTool: ssa-to-txt
+faqs:
+  - question: How do I remove timestamps from an SSA file?
+    answer: Use the SSA to TXT converter. It parses SSA Dialogue rows, removes start and end timing fields, strips V4 style metadata and override tags, and keeps the readable subtitle text.
+  - question: Will TXT keep SSA timing or styling?
+    answer: No. TXT keeps only readable text. Keep the original SSA file if you still need timing, styles, positioning, or subtitle playback.
+  - question: Is SSA different from ASS when removing timestamps?
+    answer: SSA is the older SubStation Alpha format. The cleanup goal is similar, but SSA uses classic V4 style sections and dialogue fields that should be removed before exporting plain text.
+---
+
+SSA files are older SubStation Alpha subtitle files. They can contain useful dialogue, but the raw file mixes that text with script metadata, V4 style definitions, timestamps, margins, effects, and field names.
+
+Removing timestamps from SSA creates a plain text copy that is easier to read, translate, quote, or archive separately from the timed subtitle source.
+
+## Quick answer
+
+Use the [SSA to TXT Converter](/tools/ssa-to-txt/) to remove SSA timestamps and metadata. The tool extracts readable `Dialogue:` text, removes timing fields and style sections, converts SSA line breaks, and runs locally in your browser.
+
+Keep the original `.ssa` file if you still need timed subtitles or legacy SubStation Alpha editing.
+
+## What gets removed
+
+SSA timestamp removal usually strips:
+
+- `[Script Info]`, `[V4 Styles]`, and `[Events]` section headers
+- `Format:` rows that define SSA field order
+- `Dialogue:` timing fields such as start and end time
+- marked fields, style name, actor name, margins, and effects
+- old style definitions for fonts, colors, borders, shadows, and alignment
+- common SSA override tags such as `{\an8}`, `{\pos(x,y)}`, or `{\c&H...&}`
+- hard line break markers such as `\N`
+
+The output should keep the spoken words or readable caption text.
+
+## Before and after
+
+### SSA before
+
+```text
+[Script Info]
+Title: Sample SSA file
+ScriptType: v4.00
+
+[V4 Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, TertiaryColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, AlphaLevel, Encoding
+Style: Default,Arial,20,16777215,65535,65535,0,0,0,1,2,2,2,10,10,10,0,1
+
+[Events]
+Format: Marked, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: Marked=0,0:00:01.00,0:00:03.50,Default,,0,0,0,,Welcome to the archive.
+Dialogue: Marked=0,0:00:04.20,0:00:06.00,Default,,0,0,0,,This old SSA file needs text.
+```
+
+### Plain text after
+
+```text
+Welcome to the archive.
+
+This old SSA file needs text.
+```
+
+## Step-by-step workflow
+
+1. Save a copy of the original `.ssa` file.
+2. Open the [SSA to TXT Converter](/tools/ssa-to-txt/).
+3. Upload or paste the SSA subtitle content.
+4. Convert the file to TXT.
+5. Review the output for missing dialogue, old encoding issues, and line break quality.
+6. Copy or download the plain text result.
+
+If the output looks garbled, fix the subtitle encoding before using the transcript. Older SSA files may use Shift-JIS, Windows-1252, Big5, GB18030, or another legacy encoding.
+
+## Common mistakes
+
+### Renaming SSA to TXT
+
+Changing `captions.ssa` to `captions.txt` does not remove timestamps, V4 styles, dialogue fields, or metadata.
+
+### Deleting columns manually
+
+SSA dialogue rows are structured around a `Format:` row. Manual column deletion can break lines or leave style fields in the output.
+
+### Expecting TXT to remain timed
+
+Plain text has no start or end times. If you need timed captions, convert [SSA to SRT](/guides/how-to-convert-ssa-to-srt/) or [SSA to VTT](/guides/how-to-convert-ssa-to-vtt/) instead.
+
+### Ignoring legacy encodings
+
+If names, accents, or CJK text look broken, repair encoding first with the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/).
+
+## Frequently asked questions
+
+### How do I remove timestamps from an SSA file?
+
+Open the [SSA to TXT Converter](/tools/ssa-to-txt/) with your `.ssa` file. It extracts dialogue text and removes SSA timing, style, and metadata fields.
+
+### Will TXT keep SSA timing or styling?
+
+No. TXT output keeps only readable dialogue. It removes timing, style sections, positioning, fonts, colors, and effects.
+
+### Is SSA different from ASS when removing timestamps?
+
+Yes, SSA is older and uses classic V4 style sections, but the cleanup goal is the same: remove subtitle structure and keep readable dialogue text.
+
+## Related guides
+
+- [How to convert SSA to TXT](/guides/how-to-convert-ssa-to-txt/)
+- [How to remove timestamps from subtitles](/guides/how-to-remove-timestamps-from-subtitles/)
+- [How to convert subtitles to plain text](/guides/how-to-convert-subtitles-to-plain-text/)
+- [How to convert SSA to SRT](/guides/how-to-convert-ssa-to-srt/)
+- [How to fix garbled subtitles](/guides/how-to-fix-garbled-subtitles/)
+
+## Related tools
+
+- [SSA to TXT Converter](/tools/ssa-to-txt/)
+- [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
+- [SSA to SRT Converter](/tools/ssa-to-srt/)

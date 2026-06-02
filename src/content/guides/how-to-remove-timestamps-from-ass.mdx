@@ -1,0 +1,130 @@
+---
+title: How to remove timestamps from ASS subtitles
+seoTitle: Remove Timestamps from ASS - Extract Plain Text
+seoDescription: Remove timestamps from ASS subtitles, including dialogue timing fields, styles, override tags, and metadata. Extract clean text locally with no upload.
+description: Remove ASS subtitle timestamps, dialogue fields, styling metadata, and override tags to create clean plain text for review or translation.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - ass
+  - remove timestamps
+  - plain text
+  - transcript
+  - subtitle cleanup
+primaryTool: ass-to-txt
+faqs:
+  - question: How do I remove timestamps from an ASS file?
+    answer: Use the ASS to TXT converter. It parses Dialogue rows, removes start and end timing fields, strips style metadata and override tags, and keeps the readable subtitle text.
+  - question: Will the output still work as subtitles?
+    answer: No. Removing timestamps creates plain text for reading, editing, translation, or notes. Keep the original ASS file if you still need timed or styled subtitles.
+  - question: Does removing ASS timestamps also remove styling tags?
+    answer: Yes. The plain text workflow removes ASS timing fields, style sections, margins, effects, and common inline override tags.
+---
+
+ASS subtitles store each caption as a `Dialogue:` row with timing, style, margins, effects, and text in the same line. That is useful for styled playback, but it is noisy when you only need the words.
+
+Removing timestamps from ASS turns the file into readable plain text for review, translation, quoting, notes, or transcript cleanup.
+
+## Quick answer
+
+Use the [ASS to TXT Converter](/tools/ass-to-txt/) to remove ASS timestamps and styling metadata. The tool keeps dialogue text, converts ASS line breaks, strips override tags, and runs locally in your browser.
+
+Keep the original `.ass` file if you still need timed subtitles, karaoke effects, positioning, or styled playback.
+
+## What gets removed
+
+ASS timestamp removal usually strips:
+
+- `[Script Info]`, `[V4+ Styles]`, and `[Events]` section headers
+- `Format:` rows that define dialogue fields
+- `Dialogue:` start and end timing fields
+- layer, style name, actor name, margins, and effects fields
+- inline override tags such as `{\an8}`, `{\pos(x,y)}`, `{\c&H...&}`, or `{\fad(...)}`
+- ASS hard line break markers such as `\N`
+
+The output keeps the readable caption text only.
+
+## Before and after
+
+### ASS before
+
+```text
+[Script Info]
+ScriptType: v4.00+
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Arial,36,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,2,0,2,10,10,10,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:01.00,0:00:03.50,Default,,0,0,0,,Welcome to the edit.
+Dialogue: 0,0:00:04.20,0:00:06.00,Default,,0,0,0,,{\an8}Review this line\Nwithout timing.
+```
+
+### Plain text after
+
+```text
+Welcome to the edit.
+
+Review this line
+without timing.
+```
+
+## Step-by-step workflow
+
+1. Save a copy of the original `.ass` file.
+2. Open the [ASS to TXT Converter](/tools/ass-to-txt/).
+3. Upload or paste the ASS subtitle content.
+4. Convert the file to TXT.
+5. Review the output for missing dialogue, line breaks, and leftover override tags.
+6. Copy or download the plain text result.
+
+If important dialogue is missing, check whether the source used `Comment:` rows instead of `Dialogue:` rows, or whether the file has a custom field order.
+
+## Common mistakes
+
+### Deleting timing fields by hand
+
+ASS dialogue rows contain many comma-separated fields. Manual deletion can leave style names, margins, effects, or broken text behind.
+
+### Renaming ASS to TXT
+
+Renaming `captions.ass` to `captions.txt` does not remove timestamps. It only changes the filename extension.
+
+### Using plain text for playback
+
+TXT has no timing. If the destination still needs timed captions, convert [ASS to SRT](/guides/how-to-convert-ass-to-srt/) or [ASS to VTT](/guides/how-to-convert-ass-to-vtt-for-web-players/) instead.
+
+### Ignoring styled line breaks
+
+ASS uses `\N` for hard line breaks. Review the TXT output because screen-positioned line breaks may not be ideal for a transcript.
+
+## Frequently asked questions
+
+### How do I remove timestamps from an ASS file?
+
+Open the [ASS to TXT Converter](/tools/ass-to-txt/) with your `.ass` file. It removes dialogue timing fields and keeps the readable subtitle text.
+
+### Will the output still work as subtitles?
+
+No. The output is plain text without cue timing. Keep the original ASS file or convert to SRT/VTT if you need subtitles for playback.
+
+### Does removing ASS timestamps also remove styling tags?
+
+Yes. The converter removes common ASS override tags, style metadata, timing fields, margins, and effects so the output is easier to read.
+
+## Related guides
+
+- [How to convert ASS to TXT](/guides/how-to-convert-ass-to-txt/)
+- [How to remove timestamps from subtitles](/guides/how-to-remove-timestamps-from-subtitles/)
+- [How to convert subtitles to plain text](/guides/how-to-convert-subtitles-to-plain-text/)
+- [How to convert ASS to SRT](/guides/how-to-convert-ass-to-srt/)
+- [ASS vs SRT](/guides/ass-vs-srt/)
+
+## Related tools
+
+- [ASS to TXT Converter](/tools/ass-to-txt/)
+- [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/)
+- [ASS to SRT Converter](/tools/ass-to-srt/)
+- [ASS to VTT Converter](/tools/ass-to-vtt/)
