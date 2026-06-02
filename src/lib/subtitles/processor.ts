@@ -1,6 +1,6 @@
 import type { SubtitleToolId } from './catalog';
 
-export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'smi' | 'sbv' | 'ttml' | 'scc' | 'microdvd' | 'lrc' | 'subviewer' | 'mpl2' | 'csv' | 'json' | 'txt' | 'unknown';
+export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'ssa' | 'smi' | 'sbv' | 'ttml' | 'scc' | 'microdvd' | 'lrc' | 'subviewer' | 'mpl2' | 'csv' | 'json' | 'txt' | 'unknown';
 
 export interface SubtitleCue {
   start: number;
@@ -36,6 +36,10 @@ export function detectSubtitleFormat(input: string): SubtitleFormat {
     /^\[Events\]/im.test(normalized) ||
     /^Dialogue:/m.test(normalized)
   ) {
+    if (/^ScriptType:\s*v4\.00\s*$/im.test(normalized) || /^\[V4 Styles\]/im.test(normalized)) {
+      return 'ssa';
+    }
+
     return 'ass';
   }
 
@@ -899,6 +903,7 @@ export function parseSubtitleByFormat(
     case 'vtt':
       return parseVtt(input);
     case 'ass':
+    case 'ssa':
       return parseAss(input);
     case 'smi':
       return parseSmi(input);
@@ -964,6 +969,17 @@ Style: Default,Arial,36,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,0,0,0,0,100,
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text`;
 
+const ssaHeader = `[Script Info]
+ScriptType: v4.00
+WrapStyle: 0
+
+[V4 Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, TertiaryColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, AlphaLevel, Encoding
+Style: Default,Arial,20,16777215,65535,65535,0,0,0,1,2,2,2,10,10,10,0,1
+
+[Events]
+Format: Marked, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text`;
+
 export function serializeAss(cues: SubtitleCue[]) {
   const dialogue = cues
     .map((cue) => {
@@ -981,6 +997,23 @@ export function serializeAss(cues: SubtitleCue[]) {
   return [assHeader, dialogue].join('\n').trim();
 }
 
+export function serializeSsa(cues: SubtitleCue[]) {
+  const dialogue = cues
+    .map((cue) => {
+      const text = cue.text
+        .map((line) => line.trimEnd())
+        .join('\\N')
+        .replace(/\n/g, '\\N');
+
+      return `Dialogue: Marked=0,${formatAssTime(cue.start)},${formatAssTime(
+        cue.end
+      )},Default,,0,0,0,,${text}`;
+    })
+    .join('\n');
+
+  return [ssaHeader, dialogue].join('\n').trim();
+}
+
 function serializeByFormat(cues: SubtitleCue[], format: SubtitleFormat) {
   switch (format) {
     case 'srt':
@@ -989,6 +1022,8 @@ function serializeByFormat(cues: SubtitleCue[], format: SubtitleFormat) {
       return serializeVtt(cues);
     case 'ass':
       return serializeAss(cues);
+    case 'ssa':
+      return serializeSsa(cues);
     case 'smi':
     case 'sbv':
     case 'ttml':
@@ -1197,11 +1232,15 @@ export function processSubtitleTool(
       return serializePlainText(parseAss(normalized));
     case 'srt-to-ass':
       return serializeAss(parseSrt(normalized));
+    case 'srt-to-ssa':
+      return serializeSsa(parseSrt(normalized));
     case 'ass-to-srt':
     case 'ssa-to-srt':
       return serializeSrt(parseAss(normalized));
     case 'vtt-to-ass':
       return serializeAss(parseVtt(normalized));
+    case 'vtt-to-ssa':
+      return serializeSsa(parseVtt(normalized));
     case 'ass-to-vtt':
     case 'ssa-to-vtt':
       return serializeVtt(parseAss(normalized));
@@ -1373,6 +1412,9 @@ export function inferOutputFormat(
     case 'srt-to-ass':
     case 'vtt-to-ass':
       return 'ass';
+    case 'srt-to-ssa':
+    case 'vtt-to-ssa':
+      return 'ssa';
     case 'subtitle-time-shifter':
     case 'subtitle-delay-fixer':
     case 'fix-out-of-sync-subtitles':

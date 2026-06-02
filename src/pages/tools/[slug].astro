@@ -41,6 +41,8 @@ const toolMetaDescriptions: Record<string, string> = {
 		'Convert SSA subtitles to TXT online for free. Remove timing fields, style sections, and metadata from SubStation Alpha files locally.',
 	'srt-to-ass':
 		'Convert SRT to ASS online for free. Create a style-ready ASS file for Aegisub, karaoke timing, and subtitle editors locally with no upload.',
+	'srt-to-ssa':
+		'Convert SRT subtitles to SSA online for free. Create a real SubStation Alpha .ssa file locally for older editing and archive workflows.',
 	'ass-to-srt':
 		'Convert ASS or SSA to SRT online for free. Remove unsupported styling, keep timing, and create YouTube-ready SubRip captions locally.',
 	'ssa-to-srt':
@@ -49,6 +51,8 @@ const toolMetaDescriptions: Record<string, string> = {
 		'Convert SSA subtitles to WebVTT online for free. Flatten SubStation Alpha styling, keep timing, and create browser-ready VTT captions locally.',
 	'vtt-to-ass':
 		'Convert WebVTT captions to ASS format for subtitle editing and style-ready workflows, locally in your browser with no upload.',
+	'vtt-to-ssa':
+		'Convert WebVTT captions to SSA online for free. Create a real SubStation Alpha .ssa file locally for legacy subtitle workflows.',
 	'ass-to-vtt':
 		'Convert ASS subtitles to WebVTT for browser playback and HTML5 video delivery while keeping subtitle timing and readable text.',
 	'smi-to-srt':
@@ -125,10 +129,12 @@ const toolPageTitles: Record<string, string> = {
 	'ass-to-txt': 'ASS to TXT Converter - Extract Subtitle Text Online',
 	'ssa-to-txt': 'SSA to TXT Converter - Extract Plain Text Online',
 	'srt-to-ass': 'SRT to ASS Converter for Aegisub Styling - Free',
+	'srt-to-ssa': 'SRT to SSA Converter - Convert SubStation Alpha Free',
 	'ass-to-srt': 'ASS to SRT Converter for YouTube Uploads - Free',
 	'ssa-to-srt': 'SSA to SRT Converter - Convert SubStation Alpha Free',
 	'ssa-to-vtt': 'SSA to VTT Converter - Convert SubStation Alpha Free',
 	'vtt-to-ass': 'VTT to ASS Converter - Convert Captions Online Free',
+	'vtt-to-ssa': 'VTT to SSA Converter - Convert Captions Online Free',
 	'ass-to-vtt': 'ASS to VTT Converter - Convert Subtitles Online Free',
 	'smi-to-srt': 'SMI to SRT Converter - Convert SAMI Captions Free',
 	'sbv-to-srt': 'SBV to SRT Converter - Convert YouTube Captions Free',
@@ -179,6 +185,8 @@ const workflowNotes: Record<string, string> = {
 		'Use SSA to TXT when an older SubStation Alpha subtitle file needs to become readable text. The converter parses SSA dialogue rows, removes timing fields, style sections, override tags, and editor metadata, then exports plain text locally with no upload.',
 	'srt-to-ass':
 		'SRT is plain and portable, but Aegisub and other subtitle styling workflows often need ASS. This converter keeps SRT timing and readable text, turns multi-line cues into ASS line breaks, adds a clean default style, and creates a style-ready ASS file locally with no upload.',
+	'srt-to-ssa':
+		'Use this when a legacy subtitle workflow explicitly asks for `.ssa` output instead of ASS. The converter keeps SRT timing and readable text, adds classic SubStation Alpha headers and styles, and exports a real SSA file locally with no upload.',
 	'ass-to-srt':
 		'ASS and SSA files can carry styling, positioning, karaoke effects, and dialogue metadata that YouTube and many upload workflows do not accept. This converter keeps timing and readable dialogue, turns ASS line breaks into SRT text, removes unsupported styling, and creates a simple SubRip upload copy locally.',
 	'ssa-to-srt':
@@ -187,6 +195,8 @@ const workflowNotes: Record<string, string> = {
 		'SSA files are not a native browser caption format. This converter keeps dialogue timing and readable text, turns SSA line breaks into WebVTT cue text, adds the WEBVTT header, and creates a browser-ready VTT delivery copy locally with no upload.',
 	'vtt-to-ass':
 		'Use this when captions begin in a web player workflow but need to move into an editor that works better with ASS. The output gives you a basic ASS structure that can be styled afterward.',
+	'vtt-to-ssa':
+		'Use this when browser captions must move into an older subtitle pipeline that explicitly expects `.ssa` files. The converter keeps VTT timing and readable text, adds classic SubStation Alpha headers and styles, and exports a real SSA file locally with no upload.',
 	'ass-to-vtt':
 		'ASS is not the safest final format for browser playback. This converter creates WebVTT output so the same subtitle text can be used in HTML5 video and web player workflows.',
 	'smi-to-srt':
@@ -291,6 +301,11 @@ const mistakeNotes: Record<string, string[]> = {
 		'Forgetting to review line breaks after conversion.',
 		'Delivering ASS to a platform that only wants SRT or VTT.',
 	],
+	'srt-to-ssa': [
+		'Using SSA when the destination accepts newer ASS output.',
+		'Expecting finished styling to appear automatically from a plain SRT source.',
+		'Delivering SSA to a platform that only wants SRT or VTT.',
+	],
 	'ass-to-srt': [
 		'Expecting ASS positioning, colors, or effects to survive in SRT.',
 		'Not reviewing dialogue lines that used complex override tags.',
@@ -310,6 +325,11 @@ const mistakeNotes: Record<string, string[]> = {
 		'Expecting VTT cue settings to become styled ASS rules automatically.',
 		'Forgetting to review the default ASS style before final delivery.',
 		'Using ASS as the final file for a browser player that expects VTT.',
+	],
+	'vtt-to-ssa': [
+		'Expecting WebVTT cue settings to map perfectly to legacy SSA styling.',
+		'Using SSA when the destination accepts newer ASS output.',
+		'Delivering SSA back to a browser player that expects VTT.',
 	],
 	'ass-to-vtt': [
 		'Expecting ASS styling and positioning to render in WebVTT.',

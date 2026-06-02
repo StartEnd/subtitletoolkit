@@ -12,21 +12,21 @@ tags:
   - ass
   - conversion
   - subtitle editing
-primaryTool: vtt-to-ass
+primaryTool: vtt-to-ssa
 faqs:
   - question: How do I convert VTT to SSA?
-    answer: Use a VTT to ASS converter to turn WebVTT cues into a SubStation Alpha-style file. ASS is the newer SSA-compatible format used by most current subtitle editors.
+    answer: Use the VTT to SSA converter to turn WebVTT cues into a real SubStation Alpha `.ssa` file with classic styles and dialogue events.
   - question: Can I use ASS output if I searched for SSA?
     answer: Usually yes. SSA is the older SubStation Alpha format, while ASS is the newer Advanced SubStation Alpha format. Most modern SSA workflows also accept ASS files.
   - question: Are WebVTT cue settings preserved in SSA?
     answer: Basic timing and text are preserved, but browser-specific WebVTT cue settings do not map perfectly to SSA or ASS styling. Review positioning and styles in your editor.
 ---
 
-WebVTT is a browser caption format. SSA is an older SubStation Alpha editing format, and ASS is the newer format that most current editors use for the same style-capable workflow. If a project asks for SSA, a clean ASS-style output is often the practical bridge from VTT.
+WebVTT is a browser caption format. SSA is an older SubStation Alpha editing format that some legacy subtitle tools still require. If a project explicitly asks for `.ssa`, it helps to create a real SSA file instead of only an ASS-style substitute.
 
 ## Quick answer
 
-Use the [VTT to ASS Converter](/tools/vtt-to-ass/) to convert WebVTT captions into a SubStation Alpha-style editing file. The output keeps cue timing and text, then creates the script, style, and dialogue sections expected by ASS and SSA-family editors.
+Use the [VTT to SSA Converter](/tools/vtt-to-ssa/) to convert WebVTT captions into a real SubStation Alpha file. The output keeps cue timing and text, then creates the classic script, style, and dialogue sections expected by older SSA workflows.
 
 Keep the original `.vtt` file if the final destination is still an HTML5 player. Use the converted file only when you need subtitle editing, styling, Aegisub review, or legacy SSA workflow compatibility.
 
@@ -60,9 +60,9 @@ The converter creates a style-ready base file. It does not invent a finished vis
 ## Step-by-step workflow
 
 1. Start with a clean `.vtt` file.
-2. Open the [VTT to ASS Converter](/tools/vtt-to-ass/).
+2. Open the [VTT to SSA Converter](/tools/vtt-to-ssa/).
 3. Upload or paste the WebVTT caption content.
-4. Convert the file to an ASS-style output.
+4. Convert the file to SSA output.
 5. Open the result in Aegisub or another SSA-family editor.
 6. Review any positioning or line break changes.
 7. Keep the original VTT file for browser delivery.
@@ -81,21 +81,21 @@ Welcome to the lesson.
 This VTT file needs an editing format.
 ```
 
-### SSA or ASS-style after
+### SSA after
 
 ```text
 [Script Info]
 Title: Converted subtitles
-ScriptType: v4.00+
+ScriptType: v4.00
 
-[V4+ Styles]
-Format: Name, Fontname, Fontsize, PrimaryColour, Alignment
-Style: Default,Arial,36,&H00FFFFFF,2
+[V4 Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, TertiaryColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, AlphaLevel, Encoding
+Style: Default,Arial,20,16777215,65535,65535,0,0,0,1,2,2,2,10,10,10,0,1
 
 [Events]
-Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:01.00,0:00:03.50,Default,,0,0,0,,Welcome to the lesson.
-Dialogue: 0,0:00:04.00,0:00:06.00,Default,,0,0,0,,This VTT file needs an editing format.
+Format: Marked, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: Marked=0,0:00:01.00,0:00:03.50,Default,,0,0,0,,Welcome to the lesson.
+Dialogue: Marked=0,0:00:04.00,0:00:06.00,Default,,0,0,0,,This VTT file needs an editing format.
 ```
 
 ## Common mistakes
@@ -120,7 +120,7 @@ If the `WEBVTT` header, timestamps, or blank lines are broken, repair the VTT be
 
 ### How do I convert VTT to SSA?
 
-Open the [VTT to ASS Converter](/tools/vtt-to-ass/) and convert the `.vtt` file into an ASS-style output. ASS is the modern SSA-family format and is usually the better editing target.
+Open the [VTT to SSA Converter](/tools/vtt-to-ssa/) and convert the `.vtt` file into a real `.ssa` output when the workflow explicitly asks for SubStation Alpha.
 
 ### Can I use ASS output if I searched for SSA?
 
@@ -140,7 +140,7 @@ Basic timing and text are preserved. Browser-specific cue settings may need manu
 
 ## Related tools
 
+- [VTT to SSA Converter](/tools/vtt-to-ssa/)
 - [VTT to ASS Converter](/tools/vtt-to-ass/)
 - [ASS to VTT Converter](/tools/ass-to-vtt/)
 - [WebVTT Validator](/tools/webvtt-validator/)
-

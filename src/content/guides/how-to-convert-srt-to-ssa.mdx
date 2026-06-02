@@ -11,21 +11,21 @@ tags:
   - ass
   - conversion
   - subtitle editing
-primaryTool: srt-to-ass
+primaryTool: srt-to-ssa
 faqs:
   - question: How do I convert SRT to SSA?
-    answer: Use an SRT to ASS converter to create a SubStation Alpha-style file with script info, styles, and dialogue events. ASS is the newer SSA-compatible format used by most current subtitle editors.
+    answer: Use the SRT to SSA converter to create a real SubStation Alpha `.ssa` file with script info, classic styles, and dialogue events.
   - question: Is ASS acceptable if I searched for SSA?
     answer: Usually yes. SSA is the older SubStation Alpha format, while ASS is the newer Advanced SubStation Alpha format. Most modern editors that handle SSA workflows also accept ASS files.
   - question: Does converting SRT to SSA add real styling?
     answer: No. Conversion preserves timing and text and adds a basic style-ready structure. You still need to edit fonts, colors, positions, or karaoke effects in a subtitle editor.
 ---
 
-SRT is a simple delivery format. SSA is an older SubStation Alpha editing format, and ASS is its newer, more common successor. If an old workflow says it needs SSA, a clean ASS-style file is often the practical starting point.
+SRT is a simple delivery format. SSA is an older SubStation Alpha editing format that some legacy subtitle tools and archive workflows still expect. If a workflow explicitly asks for `.ssa`, it helps to generate a real SSA file instead of only an ASS-compatible substitute.
 
 ## Quick answer
 
-Use the [SRT to ASS Converter](/tools/srt-to-ass/) to convert SRT into a SubStation Alpha-style editing file. The output keeps SRT timing and text, then adds the script, style, and dialogue sections expected by ASS and SSA-family editors.
+Use the [SRT to SSA Converter](/tools/srt-to-ssa/) to convert SRT into a real SubStation Alpha file. The output keeps SRT timing and text, then adds the classic script, style, and dialogue sections expected by older SSA workflows.
 
 Keep the original `.srt` file as your simple delivery copy. Use the converted file only when you need styling, Aegisub editing, typesetting, or legacy subtitle workflow compatibility.
 
@@ -59,9 +59,9 @@ The converter does not invent finished visual design. It creates a style-ready b
 ## Step-by-step workflow
 
 1. Start with a clean `.srt` file.
-2. Open the [SRT to ASS Converter](/tools/srt-to-ass/).
+2. Open the [SRT to SSA Converter](/tools/srt-to-ssa/).
 3. Upload or paste the SRT subtitle content.
-4. Convert the file to an ASS-style output.
+4. Convert the file to SSA output.
 5. Open the result in Aegisub or another SSA-family editor.
 6. Add styles, positions, or effects only if the workflow needs them.
 7. Keep the original SRT file for simple upload or delivery.
@@ -80,21 +80,21 @@ Welcome to the lesson.
 This SRT file needs an editing format.
 ```
 
-### SSA or ASS-style after
+### SSA after
 
 ```text
 [Script Info]
 Title: Converted subtitles
-ScriptType: v4.00+
+ScriptType: v4.00
 
-[V4+ Styles]
-Format: Name, Fontname, Fontsize, PrimaryColour, Alignment
-Style: Default,Arial,36,&H00FFFFFF,2
+[V4 Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, TertiaryColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, AlphaLevel, Encoding
+Style: Default,Arial,20,16777215,65535,65535,0,0,0,1,2,2,2,10,10,10,0,1
 
 [Events]
-Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:01.00,0:00:03.50,Default,,0,0,0,,Welcome to the lesson.
-Dialogue: 0,0:00:04.00,0:00:06.00,Default,,0,0,0,,This SRT file needs an editing format.
+Format: Marked, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: Marked=0,0:00:01.00,0:00:03.50,Default,,0,0,0,,Welcome to the lesson.
+Dialogue: Marked=0,0:00:04.00,0:00:06.00,Default,,0,0,0,,This SRT file needs an editing format.
 ```
 
 ## Common mistakes
@@ -119,7 +119,7 @@ If cue numbers, timestamps, or blank lines are broken, clean or validate the SRT
 
 ### How do I convert SRT to SSA?
 
-Open the [SRT to ASS Converter](/tools/srt-to-ass/) and convert the `.srt` file into an ASS-style output. ASS is the modern SSA-family format and is usually the better editing target.
+Open the [SRT to SSA Converter](/tools/srt-to-ssa/) and convert the `.srt` file into a real `.ssa` output when the workflow explicitly asks for SubStation Alpha.
 
 ### Is ASS acceptable if I searched for SSA?
 
@@ -139,7 +139,7 @@ No. The conversion creates a basic style-ready file. It preserves timing and tex
 
 ## Related tools
 
+- [SRT to SSA Converter](/tools/srt-to-ssa/)
 - [SRT to ASS Converter](/tools/srt-to-ass/)
 - [ASS to SRT Converter](/tools/ass-to-srt/)
 - [SRT Validator](/tools/srt-validator/)
-

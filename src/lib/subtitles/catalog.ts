@@ -6,10 +6,12 @@ export type SubtitleToolId =
   | 'ass-to-txt'
   | 'ssa-to-txt'
   | 'srt-to-ass'
+  | 'srt-to-ssa'
   | 'ass-to-srt'
   | 'ssa-to-srt'
   | 'ssa-to-vtt'
   | 'vtt-to-ass'
+  | 'vtt-to-ssa'
   | 'ass-to-vtt'
   | 'smi-to-srt'
   | 'sbv-to-srt'
@@ -680,6 +682,62 @@ const enTools: SubtitleTool[] = [
     sampleInput: sharedSamples.srt,
   },
   {
+    id: 'srt-to-ssa',
+    title: 'SRT to SSA Converter',
+    shortTitle: 'SRT to SSA',
+    description:
+      'Convert SRT subtitles to SSA online for legacy SubStation Alpha editing workflows and older subtitle tools.',
+    summary:
+      'Use this free SRT to SSA converter when an older subtitle workflow needs a real `.ssa` file instead of SRT or newer ASS output.',
+    buttonLabel: 'Convert to SSA',
+    inputLabel: 'SRT input',
+    outputLabel: 'SSA output',
+    placeholder: 'Paste your SRT subtitles here',
+    acceptedExtensions: ['.srt', '.txt'],
+    sampleFileName: 'sample.srt',
+    useCases: [
+      'Convert SRT to a real SSA file for older subtitle editors or archive workflows.',
+      'Create a legacy SubStation Alpha copy while keeping the original SRT delivery file.',
+      'Prepare basic timed dialogue for systems that specifically ask for `.ssa` output.',
+      'Hand off an older SSA-compatible subtitle file before later styling or review work.',
+    ],
+    faqs: [
+      {
+        question: 'Does this create a real SSA file instead of ASS?',
+        answer:
+          'Yes. The converter exports an `.ssa` file with `ScriptType: v4.00`, classic `[V4 Styles]`, and SSA dialogue events.',
+      },
+      {
+        question: 'Will this add finished styling automatically?',
+        answer:
+          'No. It creates a clean SSA structure with a default style so you can keep editing from there.',
+      },
+      {
+        question: 'When should I use SSA instead of ASS?',
+        answer:
+          'Use SSA only when a legacy workflow explicitly requires it. If the editor or team accepts ASS, ASS is usually the more modern choice.',
+      },
+      {
+        question: 'Does the converter upload my subtitle file?',
+        answer:
+          'No. SRT to SSA conversion runs locally in your browser, so your subtitle text stays on your device.',
+      },
+    ],
+    relatedTools: ['srt-to-ass', 'ssa-to-srt', 'vtt-to-ssa'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-convert-srt-to-ssa/',
+        title: 'How to convert SRT to SSA',
+      },
+      {
+        href: '/guides/how-to-convert-srt-to-ass/',
+        title: 'How to convert SRT to ASS',
+      },
+      { href: '/guides/ass-vs-srt/', title: 'ASS vs SRT' },
+    ],
+    sampleInput: sharedSamples.srt,
+  },
+  {
     id: 'ass-to-srt',
     title: 'ASS to SRT Converter',
     shortTitle: 'ASS to SRT',
@@ -914,6 +972,62 @@ const enTools: SubtitleTool[] = [
         href: '/guides/when-to-use-ass-instead-of-srt/',
         title: 'When to use ASS instead of SRT',
       },
+    ],
+    sampleInput: sharedSamples.vtt,
+  },
+  {
+    id: 'vtt-to-ssa',
+    title: 'VTT to SSA Converter',
+    shortTitle: 'VTT to SSA',
+    description:
+      'Convert WebVTT captions into SSA format for legacy SubStation Alpha editing workflows and older subtitle tools.',
+    summary:
+      'Use this free VTT to SSA converter when browser captions need to become a real `.ssa` file for an older subtitle pipeline.',
+    buttonLabel: 'Convert to SSA',
+    inputLabel: 'VTT input',
+    outputLabel: 'SSA output',
+    placeholder: 'Paste your VTT subtitles here',
+    acceptedExtensions: ['.vtt', '.txt'],
+    sampleFileName: 'sample.vtt',
+    useCases: [
+      'Move WebVTT captions into legacy SSA subtitle workflows.',
+      'Create a real `.ssa` file from browser-first captions for older editors.',
+      'Prepare timed dialogue for archive systems that still expect SubStation Alpha output.',
+      'Keep the original VTT file for web delivery while generating an SSA editing copy.',
+    ],
+    faqs: [
+      {
+        question: 'Does this create a real SSA file instead of ASS?',
+        answer:
+          'Yes. The converter exports an `.ssa` file with `ScriptType: v4.00`, classic `[V4 Styles]`, and SSA dialogue events.',
+      },
+      {
+        question: 'Will WebVTT cue settings survive in SSA?',
+        answer:
+          'Basic timing and text are preserved, but browser-specific WebVTT cue settings do not map perfectly to legacy SSA styling fields.',
+      },
+      {
+        question: 'Should I use SSA or ASS for new projects?',
+        answer:
+          'ASS is usually the better choice for modern subtitle editors. Use SSA only when an older workflow explicitly requires `.ssa` files.',
+      },
+      {
+        question: 'Are WebVTT files uploaded to a server?',
+        answer:
+          'No. VTT to SSA conversion runs locally in your browser, so the subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['vtt-to-ass', 'ssa-to-vtt', 'srt-to-ssa'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-convert-vtt-to-ssa/',
+        title: 'How to convert VTT to SSA',
+      },
+      {
+        href: '/guides/how-to-convert-vtt-to-ass/',
+        title: 'How to convert VTT to ASS',
+      },
+      { href: '/guides/ass-vs-vtt/', title: 'ASS vs VTT' },
     ],
     sampleInput: sharedSamples.vtt,
   },

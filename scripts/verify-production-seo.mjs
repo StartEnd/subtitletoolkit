@@ -70,6 +70,14 @@ const checks = [
 				match: 'href="/tools/ssa-to-txt/"',
 			},
 			{
+				label: 'footer links SRT to SSA tool',
+				match: 'href="/tools/srt-to-ssa/"',
+			},
+			{
+				label: 'footer links VTT to SSA tool',
+				match: 'href="/tools/vtt-to-ssa/"',
+			},
+			{
 				label: 'homepage links to SRT upload failure guide',
 				match: '/guides/why-srt-file-wont-upload/',
 			},
@@ -254,12 +262,20 @@ const checks = [
 				match: '/guides/how-to-convert-srt-to-ssa/',
 			},
 			{
+				label: 'homepage links to SRT to SSA tool',
+				match: '/tools/srt-to-ssa/',
+			},
+			{
 				label: 'homepage links to VTT to ASS guide',
 				match: '/guides/how-to-convert-vtt-to-ass/',
 			},
 			{
 				label: 'homepage links to VTT to SSA guide',
 				match: '/guides/how-to-convert-vtt-to-ssa/',
+			},
+			{
+				label: 'homepage links to VTT to SSA tool',
+				match: '/tools/vtt-to-ssa/',
 			},
 			{
 				label: 'homepage links to ASS to SRT guide',
@@ -375,8 +391,8 @@ const checks = [
 				match: 'Convert SRT subtitles to SSA-style editing subtitles for free. Preserve timing, create a style-ready structure, and keep processing local.',
 			},
 			{
-				label: 'SRT to SSA guide opens SRT to ASS converter tool',
-				match: 'href="/tools/srt-to-ass/"',
+				label: 'SRT to SSA guide opens SRT to SSA converter tool',
+				match: 'href="/tools/srt-to-ssa/"',
 			},
 			{
 				label: 'FAQ schema for SRT to SSA questions',
@@ -396,8 +412,8 @@ const checks = [
 				match: 'Convert WebVTT captions to SSA-style editing subtitles for free. Preserve timing, create dialogue events, and keep processing local.',
 			},
 			{
-				label: 'VTT to SSA guide opens VTT to ASS converter tool',
-				match: 'href="/tools/vtt-to-ass/"',
+				label: 'VTT to SSA guide opens VTT to SSA converter tool',
+				match: 'href="/tools/vtt-to-ssa/"',
 			},
 			{
 				label: 'FAQ schema for VTT to SSA questions',
@@ -3111,6 +3127,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/srt-to-ssa/',
+		expect: [
+			{
+				label: 'SRT to SSA tool title',
+				match: '<title>SRT to SSA Converter - Convert SubStation Alpha Free</title>',
+			},
+			{
+				label: 'SRT to SSA tool meta description',
+				match: 'Convert SRT subtitles to SSA online for free. Create a real SubStation Alpha .ssa file locally for older editing and archive workflows.',
+			},
+			{
+				label: 'SRT to SSA tool links guide',
+				match: 'href="/guides/how-to-convert-srt-to-ssa/"',
+			},
+			{
+				label: 'SRT to SSA FAQ covers real SSA output',
+				match: 'Does this create a real SSA file instead of ASS?',
+			},
+		],
+	},
+	{
 		path: '/tools/vtt-to-ass/',
 		expect: [
 			{
@@ -3124,6 +3161,27 @@ const checks = [
 			{
 				label: 'VTT to ASS tool links guide',
 				match: 'href="/guides/how-to-convert-vtt-to-ass/"',
+			},
+		],
+	},
+	{
+		path: '/tools/vtt-to-ssa/',
+		expect: [
+			{
+				label: 'VTT to SSA tool title',
+				match: '<title>VTT to SSA Converter - Convert Captions Online Free</title>',
+			},
+			{
+				label: 'VTT to SSA tool meta description',
+				match: 'Convert WebVTT captions to SSA online for free. Create a real SubStation Alpha .ssa file locally for legacy subtitle workflows.',
+			},
+			{
+				label: 'VTT to SSA tool links guide',
+				match: 'href="/guides/how-to-convert-vtt-to-ssa/"',
+			},
+			{
+				label: 'VTT to SSA FAQ covers real SSA output',
+				match: 'Does this create a real SSA file instead of ASS?',
 			},
 		],
 	},
