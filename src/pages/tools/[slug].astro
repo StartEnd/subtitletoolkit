@@ -100,7 +100,7 @@ const toolMetaDescriptions: Record<string, string> = {
 	'subtitle-cleaner':
 		'Clean subtitle files online for free. Remove HTML tags, fix spacing, and prepare SRT, VTT, or ASS captions locally with no signup or upload.',
 	'clean-srt-file':
-		'Clean an SRT file online for free. Normalize cue numbers, timestamps, spacing, and subtitle text locally with no signup or upload.',
+		'Clean SRT files online for free. Rebuild cue numbers, fix spacing, remove stray tags, and prepare upload-ready subtitles locally with no upload.',
 	'remove-srt-line-numbers':
 		'Remove bad SRT line numbers and rebuild cue numbers online for free. Fix missing, duplicate, or out-of-order numbering locally with no upload.',
 	'fix-srt-timestamps':
@@ -162,7 +162,7 @@ const toolPageTitles: Record<string, string> = {
 	'subtitle-merger': 'Subtitle Merger - Merge SRT, VTT, and ASS Online',
 	'partial-subtitle-shifter': 'Partial Subtitle Shifter - Shift One Section Online',
 	'extract-subtitles-from-video': 'Extract Subtitles from Video Online - MKV, MP4, No Upload',
-	'clean-srt-file': 'Clean SRT File Online - Free, No Upload',
+	'clean-srt-file': 'Clean SRT File Online - Fix Spacing and Cue Numbers',
 	'remove-srt-line-numbers': 'Remove SRT Line Numbers - Rebuild Cue Numbers Free',
 	'fix-srt-timestamps': 'Fix SRT Timestamps Online - Repair SRT Timing',
 	'srt-validator': 'SRT Validator Online - Check Upload Errors Free',
@@ -244,7 +244,7 @@ const workflowNotes: Record<string, string> = {
 	'subtitle-cleaner':
 		'Use this when a subtitle file needs a cleaner handoff before upload, review, or conversion. The tool keeps cue timing intact while removing leftover HTML tags, fixing spacing, and exporting cleaned SRT, VTT, or ASS text locally with no upload.',
 	'clean-srt-file':
-		'Use this when an SRT file is readable but messy. The cleaner parses cue blocks, normalizes numbering and timestamps, removes stray inline tags, and exports a cleaner SRT file.',
+		'Use this when an SRT file is readable but messy before upload, review, or client handoff. The cleaner parses cue blocks, rebuilds sequential cue numbers, normalizes blank lines and timestamp spacing, removes stray inline tags, and exports an upload-ready SRT copy locally with no server upload.',
 	'remove-srt-line-numbers':
 		'Use this when SRT numbering is missing, duplicated, out of order, or copied from an editor with broken cue labels. The tool finds cue timing lines, ignores the old number lines, and exports a clean SRT file with sequential cue numbers while keeping timing and subtitle text.',
 	'fix-srt-timestamps':

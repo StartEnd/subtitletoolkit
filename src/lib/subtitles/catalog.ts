@@ -2426,9 +2426,9 @@ const enTools: SubtitleTool[] = [
     title: 'Clean SRT File Online',
     shortTitle: 'Clean SRT',
     description:
-      'Clean an SRT file online by normalizing cue numbers, timestamps, spacing, and subtitle text.',
+      'Clean an SRT file online by rebuilding cue numbers, fixing spacing, removing stray tags, and preparing upload-ready subtitle output.',
     summary:
-      'Use this free SRT cleaner when a SubRip file has messy spacing, stray inline tags, or inconsistent cue numbering before upload.',
+      'Use this free SRT cleaner when a SubRip file has messy spacing, stray inline tags, inconsistent cue numbering, or upload-risk formatting.',
     buttonLabel: 'Clean SRT',
     inputLabel: 'SRT input',
     outputLabel: 'Clean SRT output',
@@ -2439,9 +2439,15 @@ const enTools: SubtitleTool[] = [
       'Clean messy SRT files before upload.',
       'Remove stray inline HTML tags from subtitle text.',
       'Normalize SRT cue numbering and timestamp formatting.',
+      'Fix missing blank lines between SRT cue blocks.',
       'Prepare a cleaner SRT file for review or handoff.',
     ],
     faqs: [
+      {
+        question: 'Can I clean an SRT file online for free?',
+        answer:
+          'Yes. Paste or upload the SRT file, clean it locally in your browser, and download an upload-ready SRT copy without sending the subtitle file to a server.',
+      },
       {
         question: 'Does this change subtitle timing?',
         answer:
@@ -2458,12 +2464,17 @@ const enTools: SubtitleTool[] = [
           'Yes. The output is serialized as clean SRT with sequential cue numbers.',
       },
       {
+        question: 'Should I validate the cleaned SRT before upload?',
+        answer:
+          'Yes when the destination rejected the original file or when timing lines looked suspicious. Clean the SRT first, then run the output through the SRT Validator before uploading again.',
+      },
+      {
         question: 'Are my SRT files uploaded to a server?',
         answer:
           'No. SRT cleaning runs locally in your browser, so your subtitle file stays on your device.',
       },
     ],
-    relatedTools: ['subtitle-cleaner', 'remove-srt-line-numbers'],
+    relatedTools: ['srt-validator', 'fix-srt-timestamps', 'subtitle-cleaner', 'remove-srt-line-numbers'],
     relatedGuides: [
       {
         href: '/guides/how-to-clean-an-srt-file/',

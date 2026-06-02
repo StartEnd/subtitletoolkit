@@ -3273,6 +3273,43 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/clean-srt-file/',
+		expect: [
+			{
+				label: 'Clean SRT tool CTR title',
+				match: '<title>Clean SRT File Online - Fix Spacing and Cue Numbers</title>',
+			},
+			{
+				label: 'Clean SRT tool no-upload meta description',
+				match: 'Clean SRT files online for free. Rebuild cue numbers, fix spacing, remove stray tags, and prepare upload-ready subtitles locally with no upload.',
+			},
+			{
+				label: 'Clean SRT workflow covers upload-ready cleanup',
+				match: 'rebuilds sequential cue numbers, normalizes blank lines and timestamp spacing, removes stray inline tags, and exports an upload-ready SRT copy locally with no server upload',
+			},
+			{
+				label: 'Clean SRT FAQ covers free local cleanup',
+				match: 'Can I clean an SRT file online for free?',
+			},
+			{
+				label: 'Clean SRT FAQ covers validation after cleanup',
+				match: 'Should I validate the cleaned SRT before upload?',
+			},
+			{
+				label: 'Clean SRT tool links SRT validator',
+				match: 'href="/tools/srt-validator/"',
+			},
+			{
+				label: 'Clean SRT tool links timestamp repair',
+				match: 'href="/tools/fix-srt-timestamps/"',
+			},
+			{
+				label: 'Clean SRT tool links guide',
+				match: 'href="/guides/how-to-clean-an-srt-file/"',
+			},
+		],
+	},
+	{
 		path: '/tools/remove-srt-line-numbers/',
 		expect: [
 			{
