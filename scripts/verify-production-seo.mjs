@@ -1223,8 +1223,28 @@ const checks = [
 		path: '/guides/how-to-fix-malformed-srt-timestamps/',
 		expect: [
 			{
+				label: 'malformed SRT timestamp guide CTR title',
+				match: '<title>Fix Malformed SRT Timestamps - Free Repair Guide</title>',
+			},
+			{
+				label: 'malformed SRT timestamp guide meta description',
+				match: 'Fix malformed SRT timestamps before upload. Repair dot timestamps, arrow spacing, missing milliseconds, cue order, and broken SubRip timing locally.',
+			},
+			{
 				label: 'malformed SRT timestamp guide opens timestamp fixer',
 				match: 'href="/tools/fix-srt-timestamps/"',
+			},
+			{
+				label: 'malformed SRT timestamp guide links SRT validator follow-up',
+				match: 'href="/tools/srt-validator/"',
+			},
+			{
+				label: 'malformed SRT timestamp guide links upload failure follow-up',
+				match: 'href="/guides/why-srt-file-wont-upload/"',
+			},
+			{
+				label: 'FAQ schema for malformed SRT timestamp questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*What makes an SRT timestamp malformed\?/
 			},
 		],
 	},

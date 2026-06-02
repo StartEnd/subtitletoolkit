@@ -1,16 +1,28 @@
 ---
 title: How to fix malformed SRT timestamps
+seoTitle: Fix Malformed SRT Timestamps - Free Repair Guide
 description: Repair malformed SRT timestamp lines, comma formatting, arrow spacing, cue blocks, and structure issues before upload or conversion.
+seoDescription: Fix malformed SRT timestamps before upload. Repair dot timestamps, arrow spacing, missing milliseconds, cue order, and broken SubRip timing locally.
 pubDate: 2026-05-06
-updatedDate: 2026-06-01
+updatedDate: 2026-06-02
 category: sync-fixes
 tags:
   - srt
   - timestamps
+  - fix srt timestamps
   - malformed subtitles
   - subtitle errors
   - cleanup
 primaryTool: fix-srt-timestamps
+faqs:
+  - question: What makes an SRT timestamp malformed?
+    answer: An SRT timestamp is malformed when it uses dot milliseconds, missing milliseconds, invalid seconds or minutes, a broken arrow separator, reversed start and end times, or timing syntax copied from another subtitle format.
+  - question: Can malformed SRT timestamps make an upload fail?
+    answer: Yes. YouTube, Vimeo, editors, and converters may reject an SRT file when timing lines cannot be parsed as standard SubRip cue ranges.
+  - question: Should I validate or repair SRT timestamps first?
+    answer: Validate first when you need a report. Use a timestamp repair tool first when the error is clearly mechanical, such as dot timestamps, arrow spacing, or missing cue numbers.
+  - question: Does fixing timestamp format also fix subtitle sync?
+    answer: No. Timestamp repair fixes structure. If captions are valid but early, late, or drifting, use a sync or delay tool instead.
 ---
 
 Malformed `SRT` timestamps usually mean the subtitle file structure has drifted away from normal SRT formatting.
@@ -22,6 +34,20 @@ SRT is simple, but it is strict about its timing line. A small change such as us
 If the file still contains subtitle text and timing blocks but the formatting is inconsistent, clean the structure first before trying to deliver or convert it.
 
 The [Fix SRT Timestamps](/tools/fix-srt-timestamps/) tool is the right first step for parseable timing blocks. If you only want a report before changing the file, use the [SRT Validator](/tools/srt-validator/).
+
+## Choose the right timestamp fix
+
+Start with the exact timing error instead of rewriting the whole subtitle file.
+
+| Timing problem | Example | Best fix |
+| --- | --- | --- |
+| WebVTT-style dots in an SRT file | `00:00:01.000 --> 00:00:03.500` | Use [Fix SRT Timestamps](/tools/fix-srt-timestamps/) if the rest is SRT, or [VTT to SRT](/tools/vtt-to-srt/) if the file starts with `WEBVTT` |
+| Missing spaces around the arrow | `00:00:01,000->00:00:03,500` | Normalize arrow spacing with [Fix SRT Timestamps](/tools/fix-srt-timestamps/) |
+| Missing milliseconds | `00:00:01 --> 00:00:03` | Rebuild full `HH:MM:SS,mmm` timing before upload |
+| Invalid minute or second values | `00:00:65,000 --> 00:00:67,000` | Correct the time values, then validate again |
+| Start time after end time | `00:00:05,000 --> 00:00:03,000` | Swap or repair the cue range, then test sync separately |
+
+If the validation report shows cue numbers, blank lines, or mixed file-format problems too, use [how to validate SRT files](/guides/how-to-validate-srt-files/) before uploading again.
 
 ## What valid SRT timestamps look like
 
@@ -71,6 +97,26 @@ Even when the subtitle text itself is fine, malformed timing lines can break:
 
 Malformed timestamps also make later conversion less reliable. If you convert a broken SRT file to VTT, the conversion step may preserve the problem or create output that looks valid but fails during playback.
 
+## What timestamp repair can and cannot fix
+
+Timestamp repair is for file structure, not for every subtitle timing problem.
+
+It can usually help when:
+
+- timestamp dots need to become SRT commas
+- arrow spacing is inconsistent
+- cue numbers are missing but timing lines are parseable
+- timestamps need a consistent `HH:MM:SS,mmm` shape
+
+It will not automatically solve:
+
+- subtitles that are consistently early or late
+- gradual drift caused by frame-rate or edit differences
+- a file that contains no timing lines at all
+- a file that is actually VTT, ASS, SSA, or a transcript renamed to `.srt`
+
+If the file is accepted but the captions are out of sync, switch to [fix out-of-sync subtitles](/guides/fix-out-of-sync-subtitles/) instead of repeatedly repairing the same timestamp format.
+
 ## Step-by-step workflow
 
 1. Open [Fix SRT Timestamps](/tools/fix-srt-timestamps/) or run the file through the [SRT Validator](/tools/srt-validator/) first.
@@ -89,6 +135,19 @@ If you are reviewing the file by hand, check these points:
 - Cue start time is earlier than cue end time.
 - Blank lines separate subtitle blocks.
 - The file does not mix `WEBVTT` headers or VTT cue settings into SRT output.
+
+## Upload-safe checklist after repair
+
+Before sending the repaired file to YouTube, Vimeo, a client portal, or an editor, confirm:
+
+1. Every timing line uses comma milliseconds.
+2. Every timing line has one ` --> ` arrow with spaces.
+3. No seconds or minutes are above `59`.
+4. Cue start times come before cue end times.
+5. Cue blocks are separated by blank lines.
+6. The repaired file passes [SRT Validator](/tools/srt-validator/) before upload.
+
+For platform-specific upload issues after a clean repair, use [SRT file will not upload](/guides/why-srt-file-wont-upload/) or [best SRT settings for YouTube upload](/guides/best-srt-settings-for-youtube-upload/).
 
 ## Common mistakes
 
@@ -114,6 +173,9 @@ If the file has valid-looking timestamps but captions appear too early or too la
 
 ## Related guides
 
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+- [SRT file will not upload](/guides/why-srt-file-wont-upload/)
+- [How to clean subtitle formatting before upload](/guides/how-to-clean-subtitle-formatting-before-upload/)
 - [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)
 - [How to remove subtitle line numbers](/guides/how-to-remove-subtitle-line-numbers/)
 - [How to fix invalid WebVTT timestamps](/guides/how-to-fix-invalid-webvtt-timestamps/)
