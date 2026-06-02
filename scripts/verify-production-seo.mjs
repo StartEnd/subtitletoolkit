@@ -242,6 +242,10 @@ const checks = [
 				match: '/guides/how-to-convert-srt-to-txt/',
 			},
 			{
+				label: 'homepage links to ASS to SRT guide',
+				match: '/guides/how-to-convert-ass-to-srt/',
+			},
+			{
 				label: 'homepage links to Aegisub SRT export guide',
 				match: '/guides/how-to-export-srt-from-aegisub/',
 			},
@@ -268,6 +272,27 @@ const checks = [
 			{
 				label: 'homepage links to WebVTT validation guide',
 				match: '/guides/how-to-validate-webvtt-files/',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-ass-to-srt/',
+		expect: [
+			{
+				label: 'ASS to SRT guide CTR title',
+				match: '<title>Convert ASS to SRT - Free Subtitle Converter</title>',
+			},
+			{
+				label: 'ASS to SRT guide no-upload meta description',
+				match: 'Convert ASS subtitles to SRT online for free. Remove styling, keep dialogue timing, and create a simple SubRip file locally with no upload.',
+			},
+			{
+				label: 'ASS to SRT guide opens ASS converter tool',
+				match: 'href="/tools/ass-to-srt/"',
+			},
+			{
+				label: 'FAQ schema for ASS to SRT questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert an ASS subtitle file to SRT\?/
 			},
 		],
 	},
@@ -2963,6 +2988,10 @@ const checks = [
 				match: 'Upload prep',
 			},
 			{
+				label: 'guides index links to ASS to SRT guide',
+				match: '/guides/how-to-convert-ass-to-srt/',
+			},
+			{
 				label: 'guides index links to ASS to SRT YouTube guide',
 				match: '/guides/how-to-convert-ass-to-srt-for-youtube-uploads/',
 			},
@@ -3601,6 +3630,10 @@ const checks = [
 			{
 				label: 'llms lists ASS to TXT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-ass-to-txt/',
+			},
+			{
+				label: 'llms lists ASS to SRT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-ass-to-srt/',
 			},
 			{
 				label: 'llms lists Aegisub SRT export guide',

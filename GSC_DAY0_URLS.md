@@ -128,6 +128,7 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/when-to-use-ass-instead-of-srt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-srt-to-ass/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-ass/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-srt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-export-srt-from-aegisub/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-ssa-to-srt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-subtitles-to-plain-text/`

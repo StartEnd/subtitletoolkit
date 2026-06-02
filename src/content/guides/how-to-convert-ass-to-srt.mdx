@@ -1,0 +1,148 @@
+---
+title: How to convert ASS to SRT
+seoTitle: Convert ASS to SRT - Free Subtitle Converter
+seoDescription: Convert ASS subtitles to SRT online for free. Remove styling, keep dialogue timing, and create a simple SubRip file locally with no upload.
+description: Convert styled ASS subtitle files into simple SRT captions for upload, review, or playback while preserving dialogue timing.
+pubDate: 2026-06-02
+category: conversion-guides
+tags:
+  - ass
+  - srt
+  - conversion
+  - subtitle editing
+primaryTool: ass-to-srt
+faqs:
+  - question: How do I convert an ASS subtitle file to SRT?
+    answer: Use an ASS to SRT converter. It reads ASS dialogue events, converts the timestamps to SubRip format, removes styling metadata, and outputs numbered SRT cues.
+  - question: Will ASS styling work in SRT?
+    answer: No. SRT does not support ASS style definitions, positioning, colors, karaoke effects, or most override tags. Conversion keeps timing and readable text.
+  - question: Can I convert ASS to SRT without uploading the file?
+    answer: Yes. Subtitle Toolkit converts ASS to SRT locally in your browser, so the subtitle text does not need to be sent to a server.
+---
+
+ASS subtitle files are useful for styled editing, fansub workflows, karaoke timing, and Aegisub projects. They are not always accepted by upload forms, review tools, or simple video players. SRT is the safer delivery copy when styling is not required.
+
+## Quick answer
+
+Use the [ASS to SRT Converter](/tools/ass-to-srt/) to turn an `.ass` subtitle file into a simple `.srt` file. The converter keeps dialogue timing, flattens readable text, removes ASS styling data, and runs locally in your browser.
+
+Keep the original ASS file as your editable source. Treat the SRT output as the compatibility version for upload, review, or simple playback.
+
+## When to convert ASS to SRT
+
+Convert ASS to SRT when:
+
+- a platform asks for an `.srt` file
+- YouTube, Plex, Vimeo, or a review tool rejects the styled file
+- the viewer only needs readable captions, not exact styling
+- you need a plain file for translators, editors, or clients
+- the destination player does not support ASS rendering
+- validation or upload debugging is easier with a simple SubRip file
+
+Do not convert your only copy if the style design matters. Keep ASS for editing and export SRT only for the delivery step.
+
+## What changes during conversion
+
+ASS can store styles, layers, margins, positions, font choices, colors, effects, comments, and override tags. SRT stores only cue number, start time, end time, and subtitle text.
+
+During ASS to SRT conversion:
+
+- `Dialogue:` rows become numbered SRT cues
+- ASS timestamps become `00:00:00,000` SubRip timestamps
+- `\N` line breaks become normal SRT line breaks
+- style sections and script metadata are removed
+- positioning, colors, fonts, and karaoke effects are flattened
+- comments and non-dialogue rows are skipped
+
+## Before and after
+
+### ASS before
+
+```text
+[Script Info]
+Title: Example ASS file
+ScriptType: v4.00+
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, Alignment
+Style: Default,Arial,36,&H00FFFFFF,2
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:01.20,0:00:03.40,Default,,0,0,0,,{\an8}First styled line
+Dialogue: 0,0:00:04.00,0:00:06.50,Default,,0,0,0,,Second line\Nwith a break
+```
+
+### SRT after
+
+```text
+1
+00:00:01,200 --> 00:00:03,400
+First styled line
+
+2
+00:00:04,000 --> 00:00:06,500
+Second line
+with a break
+```
+
+## Step-by-step workflow
+
+1. Save a copy of the original `.ass` file.
+2. Open the [ASS to SRT Converter](/tools/ass-to-srt/).
+3. Upload or paste the ASS subtitle content.
+4. Convert the file to SRT.
+5. Review the output for missing dialogue, broken line breaks, and encoding problems.
+6. Run the result through the [SRT Validator](/tools/srt-validator/) if an upload form rejects it.
+7. Download the `.srt` file and test it in the destination player.
+
+## Common mistakes
+
+### Expecting styles to survive
+
+SRT cannot preserve ASS layout. If the subtitles must keep fonts, colors, top alignment, or karaoke effects, use an ASS-compatible player or burn the styled subtitles into the video.
+
+### Converting the wrong source copy
+
+Some projects contain both an editing file and an export file. Convert the final dialogue version, not an old draft or a file that still contains placeholder lines.
+
+### Missing dialogue after conversion
+
+ASS files can include `Comment:` rows. Converters normally skip comments because they are not delivery captions. If important lines are missing, check whether they were marked as comments in the source file.
+
+### Ignoring encoding problems
+
+If accented characters, CJK text, or punctuation look broken after conversion, repair the source encoding with the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) and convert again.
+
+### Uploading without validation
+
+After conversion, validate the SRT file if the destination rejects it. Look for out-of-order cues, empty captions, malformed timestamps, and extra blank lines.
+
+## Frequently asked questions
+
+### How do I convert an ASS subtitle file to SRT?
+
+Open the [ASS to SRT Converter](/tools/ass-to-srt/), paste or upload the `.ass` file, and convert it. The output is a numbered SubRip file with SRT timestamps and plain caption text.
+
+### Will ASS styling work in SRT?
+
+No. SRT is a plain subtitle format. It keeps timing and readable dialogue, but it does not keep ASS style definitions, screen positions, colors, fonts, or karaoke effects.
+
+### Can I convert ASS to SRT without uploading the file?
+
+Yes. The converter runs locally in your browser, so your subtitle text stays on your device.
+
+## Related guides
+
+- [ASS to SRT for YouTube uploads](/guides/how-to-convert-ass-to-srt-for-youtube-uploads/)
+- [How to export SRT from Aegisub](/guides/how-to-export-srt-from-aegisub/)
+- [How to convert SSA to SRT](/guides/how-to-convert-ssa-to-srt/)
+- [ASS vs SRT](/guides/ass-vs-srt/)
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+
+## Related tools
+
+- [ASS to SRT Converter](/tools/ass-to-srt/)
+- [SRT Validator](/tools/srt-validator/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
+
