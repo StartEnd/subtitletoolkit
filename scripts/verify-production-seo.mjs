@@ -2112,6 +2112,18 @@ const checks = [
 				label: 'out-of-sync guide opens sync tool',
 				match: 'href="/tools/fix-out-of-sync-subtitles/"',
 			},
+			{
+				label: 'out-of-sync guide links scene-cut workflow',
+				match: 'href="/guides/fix-subtitle-sync-after-a-scene-cut/"',
+			},
+			{
+				label: 'out-of-sync guide links drift workflow',
+				match: 'href="/guides/why-subtitles-drift-out-of-sync/"',
+			},
+			{
+				label: 'FAQ schema for out-of-sync questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I fix subtitles that are out of sync\?/,
+			},
 		],
 	},
 	{
