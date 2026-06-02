@@ -1,0 +1,144 @@
+---
+title: How to convert SSA to TXT
+seoTitle: Convert SSA to TXT - Extract Plain Text
+seoDescription: Convert SSA subtitles to TXT by removing timing fields, style sections, and metadata. Extract clean dialogue locally with no upload.
+description: Convert old SubStation Alpha SSA subtitle files into clean plain text transcripts for review, translation, notes, or reuse.
+pubDate: 2026-06-02
+category: conversion-guides
+tags:
+  - ssa
+  - txt
+  - transcript
+  - plain text
+  - conversion
+primaryTool: ass-to-txt
+faqs:
+  - question: How do I convert SSA subtitles to TXT?
+    answer: Use an ASS to TXT converter that accepts SSA files. It reads SSA dialogue events, removes timing and style metadata, strips override tags, and exports the readable subtitle text.
+  - question: Will TXT keep SSA timing or styling?
+    answer: No. TXT is only plain readable text. It removes SSA timestamps, style sections, positions, fonts, colors, and effects.
+  - question: Can I upload TXT as subtitles?
+    answer: No. Plain text has no timing. Keep the SSA file, or convert SSA to SRT or VTT if you need timed captions for playback or upload.
+---
+
+SSA files are useful as old SubStation Alpha subtitle projects, but they are noisy when you only need the words. A raw `.ssa` file mixes dialogue with script metadata, style definitions, timing fields, margins, effects, and sometimes override tags.
+
+Converting SSA to TXT creates a readable transcript copy for review, translation, quoting, notes, or content reuse.
+
+## Quick answer
+
+Use the [ASS to TXT Converter](/tools/ass-to-txt/) to convert SSA subtitles to plain text. The tool accepts `.ssa` files, extracts `Dialogue:` text, removes timing and styling metadata, converts SSA line breaks, and keeps processing local in your browser.
+
+Keep the original SSA file if you still need timed subtitles. The TXT output is for reading and editing, not playback.
+
+## When to convert SSA to TXT
+
+Convert SSA to TXT when:
+
+- a translator only needs dialogue text
+- a reviewer should not see timing fields or style syntax
+- an old SSA file needs a transcript draft
+- you want quotes or notes from a subtitle file
+- you need searchable text from a styled subtitle project
+- the original file has SSA style sections that make manual copying slow
+
+If the destination still needs timed captions, use [SSA to SRT](/guides/how-to-convert-ssa-to-srt/) or [SSA to VTT](/guides/how-to-convert-ssa-to-vtt/) instead.
+
+## What gets removed
+
+SSA to TXT conversion removes the subtitle structure and keeps the readable dialogue:
+
+- `[Script Info]`, `[V4 Styles]`, and `[Events]` section headers
+- `Format:` rows that define SSA field order
+- `Dialogue:` timing, style, margin, name, and effect fields
+- `Comment:` rows that are not delivery captions
+- style definitions for fonts, colors, borders, shadows, and alignment
+- SSA override tags such as `{\an8}`, `{\pos(x,y)}`, or `{\c&H...&}`
+- hard line break codes such as `\N`
+
+The result is plain text, usually with blank lines between subtitle events.
+
+## Step-by-step workflow
+
+1. Save a copy of the original `.ssa` file.
+2. Open the [ASS to TXT Converter](/tools/ass-to-txt/).
+3. Upload or paste the SSA subtitle content.
+4. Convert the file to TXT.
+5. Review the output for missing dialogue, excessive line breaks, and garbled characters.
+6. Copy or download the plain text result.
+
+If important text is missing, inspect the source SSA file for `Comment:` rows, malformed `Dialogue:` rows, or unusual field order.
+
+## Before and after
+
+### SSA before
+
+```text
+[Script Info]
+Title: Sample SSA file
+ScriptType: v4.00
+
+[V4 Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, TertiaryColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, AlphaLevel, Encoding
+Style: Default,Arial,20,16777215,65535,65535,0,0,0,1,2,2,2,10,10,10,0,1
+
+[Events]
+Format: Marked, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: Marked=0,0:00:01.00,0:00:03.50,Default,,0,0,0,,Welcome to the archive.
+Dialogue: Marked=0,0:00:04.00,0:00:06.00,Default,,0,0,0,,This old SSA file needs readable text.
+```
+
+### TXT after
+
+```text
+Welcome to the archive.
+
+This old SSA file needs readable text.
+```
+
+## Common mistakes
+
+### Renaming SSA to TXT
+
+Changing `captions.ssa` to `captions.txt` only changes the filename. It does not remove SSA metadata, timings, style definitions, or dialogue fields.
+
+### Expecting timing to remain
+
+TXT has no cue timing. If you need timed subtitles, convert SSA to SRT for uploads and editors, or convert SSA to VTT for browser players.
+
+### Sending raw SSA to a translator
+
+Raw SSA files bury the words inside dialogue rows and style syntax. Convert to TXT first when the task is translation, proofreading, or editorial review.
+
+### Ignoring old encodings
+
+Older SSA files may use Shift-JIS, Windows-1252, Big5, GB18030, or another legacy encoding. If names or CJK text look broken, fix the encoding before using the transcript.
+
+## Frequently asked questions
+
+### How do I convert SSA subtitles to TXT?
+
+Open the [ASS to TXT Converter](/tools/ass-to-txt/) with your `.ssa` file. It extracts readable dialogue text and removes SSA timing, style, and metadata fields.
+
+### Will TXT keep SSA timing or styling?
+
+No. Plain text keeps only readable dialogue. It removes timing, style sections, positions, fonts, colors, and effects.
+
+### Can I upload TXT as subtitles?
+
+No. TXT has no timing. Use [ASS to SRT Converter](/tools/ass-to-srt/) or [ASS to VTT Converter](/tools/ass-to-vtt/) when the output still needs to work as subtitles.
+
+## Related guides
+
+- [How to convert ASS to TXT](/guides/how-to-convert-ass-to-txt/)
+- [How to convert subtitles to plain text](/guides/how-to-convert-subtitles-to-plain-text/)
+- [How to convert SSA to SRT](/guides/how-to-convert-ssa-to-srt/)
+- [How to convert SSA to VTT](/guides/how-to-convert-ssa-to-vtt/)
+- [How to fix garbled subtitles](/guides/how-to-fix-garbled-subtitles/)
+
+## Related tools
+
+- [ASS to TXT Converter](/tools/ass-to-txt/)
+- [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/)
+- [ASS to SRT Converter](/tools/ass-to-srt/)
+- [ASS to VTT Converter](/tools/ass-to-vtt/)

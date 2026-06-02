@@ -266,6 +266,10 @@ const checks = [
 				match: '/guides/how-to-convert-ssa-to-vtt/',
 			},
 			{
+				label: 'homepage links to SSA to TXT guide',
+				match: '/guides/how-to-convert-ssa-to-txt/',
+			},
+			{
 				label: 'homepage links to ASS to VTT guide',
 				match: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
 			},
@@ -402,6 +406,27 @@ const checks = [
 			{
 				label: 'FAQ schema for SSA to VTT questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert SSA to VTT\?/
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-ssa-to-txt/',
+		expect: [
+			{
+				label: 'SSA to TXT guide CTR title',
+				match: '<title>Convert SSA to TXT - Extract Plain Text</title>',
+			},
+			{
+				label: 'SSA to TXT guide no-upload meta description',
+				match: 'Convert SSA subtitles to TXT by removing timing fields, style sections, and metadata. Extract clean dialogue locally with no upload.',
+			},
+			{
+				label: 'SSA to TXT guide opens ASS to TXT converter tool',
+				match: 'href="/tools/ass-to-txt/"',
+			},
+			{
+				label: 'FAQ schema for SSA to TXT questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert SSA subtitles to TXT\?/
 			},
 		],
 	},
@@ -3247,6 +3272,10 @@ const checks = [
 				match: '/guides/how-to-convert-ass-to-txt/',
 			},
 			{
+				label: 'guides index links to SSA to TXT guide',
+				match: '/guides/how-to-convert-ssa-to-txt/',
+			},
+			{
 				label: 'guides index links to transcript generator guide',
 				match: '/guides/how-to-create-a-transcript-from-subtitles/',
 			},
@@ -3725,6 +3754,10 @@ const checks = [
 			{
 				label: 'llms lists ASS to TXT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-ass-to-txt/',
+			},
+			{
+				label: 'llms lists SSA to TXT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-ssa-to-txt/',
 			},
 			{
 				label: 'llms lists ASS to SRT guide',
