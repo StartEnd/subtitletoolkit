@@ -1148,6 +1148,18 @@ const checks = [
 				match: 'href="/tools/srt-validator/"',
 			},
 			{
+				label: 'YouTube upload failure guide links to YouTube SRT settings',
+				match: 'href="/guides/best-srt-settings-for-youtube-upload/"',
+			},
+			{
+				label: 'YouTube upload failure guide links to upload preparation',
+				match: 'href="/guides/how-to-prepare-subtitles-for-youtube-upload/"',
+			},
+			{
+				label: 'YouTube upload failure guide links to YouTube SRT vs ASS guide',
+				match: 'href="/guides/srt-vs-ass-for-youtube-captions/"',
+			},
+			{
 				label: 'FAQ schema for YouTube upload failure questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why did my YouTube subtitle upload fail\?/
 			},
