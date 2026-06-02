@@ -1284,6 +1284,22 @@ const checks = [
 				label: 'HTML5 troubleshooting guide opens validator tool',
 				match: 'href="/tools/webvtt-validator/"',
 			},
+			{
+				label: 'HTML5 troubleshooting guide links VTT loading follow-up',
+				match: 'href="/guides/why-vtt-captions-are-not-loading/"',
+			},
+			{
+				label: 'HTML5 troubleshooting guide links VTT MIME follow-up',
+				match: 'href="/guides/how-to-fix-vtt-mime-type-for-html5-video/"',
+			},
+			{
+				label: 'HTML5 troubleshooting guide links VTT CORS follow-up',
+				match: 'href="/guides/how-to-fix-cors-errors-for-vtt-subtitles/"',
+			},
+			{
+				label: 'HTML5 troubleshooting guide links SRT to VTT converter',
+				match: 'href="/tools/srt-to-vtt/"',
+			},
 		],
 	},
 	{
