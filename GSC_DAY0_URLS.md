@@ -129,6 +129,7 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-srt-to-ass/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-ass/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-subtitles/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-vtt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-srt-to-txt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-txt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-txt/`

@@ -1,0 +1,124 @@
+---
+title: How to remove timestamps from VTT
+seoTitle: Remove Timestamps from VTT - WebVTT to Plain Text
+seoDescription: Remove timestamps from VTT captions, including WEBVTT headers, cue settings, notes, and metadata. Create plain text locally with no upload.
+description: Remove WebVTT timestamps and cue settings to turn VTT captions into a clean plain text transcript.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - remove vtt timestamps
+  - webvtt to text
+  - vtt to txt
+  - transcript
+primaryTool: vtt-to-txt
+faqs:
+  - question: How do I remove timestamps from a VTT file?
+    answer: Use a VTT to TXT converter that understands WebVTT syntax. It removes the WEBVTT header, timestamp lines, cue settings, NOTE blocks, and cue identifiers while keeping the readable caption text.
+  - question: Can I delete VTT timestamp lines by hand?
+    answer: You can for a tiny file, but manual cleanup often leaves WEBVTT headers, cue settings, NOTE blocks, or broken paragraphs. A parser is safer for real caption files.
+  - question: Will the cleaned text still work as WebVTT captions?
+    answer: No. Removing timestamps creates plain text for reading, editing, translation, or notes. Keep the original VTT file if you still need timed captions for video playback.
+---
+
+Removing timestamps from a VTT file turns browser-ready captions into readable plain text. The goal is not to make a smaller subtitle file; it is to extract the words from WebVTT so they can be reviewed, quoted, translated, or published as a transcript.
+
+## Quick answer
+
+Use the [VTT to TXT Converter](/tools/vtt-to-txt/) to remove WebVTT timestamps locally in your browser. It strips the `WEBVTT` header, timestamp lines, cue settings, note blocks, metadata, and cue labels while keeping the caption text.
+
+If you are not sure whether the file is VTT, SRT, ASS, or SSA, use the broader [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/) instead.
+
+## What VTT timestamp cleanup removes
+
+A WebVTT file can include more than simple timing lines. Clean transcript output should remove:
+
+- The `WEBVTT` file header
+- Timestamp lines such as `00:00:04.000 --> 00:00:06.500`
+- Cue settings such as `align:start`, `position:10%`, or `line:90%`
+- Optional cue identifiers above timestamp lines
+- `NOTE` blocks and other WebVTT metadata
+- Blank cue separators used only by video players
+
+The output should keep only the readable caption text.
+
+## Before and after
+
+### VTT before
+
+```text
+WEBVTT
+
+NOTE exported from a web player
+
+intro-1
+00:00:04.000 --> 00:00:06.500 align:start position:10%
+Welcome to the product demo.
+
+00:00:07.000 --> 00:00:09.200
+Today we will clean WebVTT captions.
+```
+
+### Plain text after
+
+```text
+Welcome to the product demo.
+
+Today we will clean WebVTT captions.
+```
+
+## Step-by-step workflow
+
+1. Keep a copy of the original `.vtt` file for playback.
+2. Open [VTT to TXT Converter](/tools/vtt-to-txt/).
+3. Paste the WebVTT content or choose the VTT file.
+4. Convert the captions to TXT.
+5. Review the output for paragraph breaks, repeated captions, speaker labels, and missing text.
+6. Copy or download the plain text transcript.
+
+If the output still contains timing fragments, validate the source file first with [WebVTT Validator](/tools/webvtt-validator/). Malformed timestamp lines can be treated as text if they do not match WebVTT syntax.
+
+## When this workflow is useful
+
+Use VTT timestamp removal when you need:
+
+- A transcript from captions exported by a web video player
+- Text for translation without timing codes
+- Searchable notes from a training video or webinar
+- Pull quotes from a caption file
+- A clean text version for documentation or editing
+
+Do not use the cleaned TXT file as a `<track>` source. Web players need timed VTT, not plain text.
+
+## Common mistakes
+
+### Removing only the timestamp lines
+
+WebVTT often includes cue settings, labels, and notes. If those remain in the text, the transcript still looks technical and messy.
+
+### Keeping TXT for video playback
+
+Plain text has no timing information. Keep the original `.vtt` file when you still need captions in HTML5 video, Video.js, Plyr, Vimeo, or another web player.
+
+### Using an SRT cleanup pattern on VTT
+
+SRT timestamps use commas, while VTT timestamps use dots. A cleanup pattern built only for SRT can miss WebVTT timing lines and cue settings. Use [VTT to TXT](/tools/vtt-to-txt/) for `.vtt` files.
+
+### Ignoring invalid WebVTT syntax
+
+If a file is missing the `WEBVTT` header or has broken cue separators, the transcript can be incomplete. Validate the file before converting if the output looks wrong.
+
+## Related guides
+
+- [How to convert VTT to TXT](/guides/how-to-convert-vtt-to-txt/)
+- [How to remove timestamps from subtitles](/guides/how-to-remove-timestamps-from-subtitles/)
+- [How to create a transcript from subtitles](/guides/how-to-create-a-transcript-from-subtitles/)
+- [How to validate WebVTT files](/guides/how-to-validate-webvtt-files/)
+- [SRT vs VTT](/guides/srt-vs-vtt/)
+
+## Related tools
+
+- [VTT to TXT Converter](/tools/vtt-to-txt/)
+- [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/)
+- [WebVTT Validator](/tools/webvtt-validator/)
+- [SRT to TXT Converter](/tools/srt-to-txt/)
+

@@ -226,6 +226,10 @@ const checks = [
 				match: '/guides/how-to-remove-timestamps-from-subtitles/',
 			},
 			{
+				label: 'homepage links to remove VTT timestamps guide',
+				match: '/guides/how-to-remove-timestamps-from-vtt/',
+			},
+			{
 				label: 'homepage links to SRT to TXT guide',
 				match: '/guides/how-to-convert-srt-to-txt/',
 			},
@@ -1391,6 +1395,27 @@ const checks = [
 			{
 				label: 'VTT to TXT guide opens converter tool',
 				match: 'href="/tools/vtt-to-txt/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-remove-timestamps-from-vtt/',
+		expect: [
+			{
+				label: 'remove VTT timestamps guide CTR title',
+				match: '<title>Remove Timestamps from VTT - WebVTT to Plain Text</title>',
+			},
+			{
+				label: 'remove VTT timestamps guide meta description',
+				match: 'Remove timestamps from VTT captions, including WEBVTT headers, cue settings, notes, and metadata. Create plain text locally with no upload.',
+			},
+			{
+				label: 'remove VTT timestamps guide opens converter tool',
+				match: 'href="/tools/vtt-to-txt/"',
+			},
+			{
+				label: 'FAQ schema for remove VTT timestamps questions',
+				match: new RegExp('"@type"\\s*:\\s*"FAQPage"[\\s\\S]*How do I remove timestamps from a VTT file\\?'),
 			},
 		],
 	},
@@ -2974,6 +2999,10 @@ const checks = [
 				match: '/guides/how-to-remove-timestamps-from-subtitles/',
 			},
 			{
+				label: 'guides index links to remove VTT timestamps guide',
+				match: '/guides/how-to-remove-timestamps-from-vtt/',
+			},
+			{
 				label: 'guides index links to SRT to TXT guide',
 				match: '/guides/how-to-convert-srt-to-txt/',
 			},
@@ -3432,6 +3461,10 @@ const checks = [
 			{
 				label: 'llms lists remove subtitle timestamps guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-subtitles/',
+			},
+			{
+				label: 'llms lists remove VTT timestamps guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-vtt/',
 			},
 			{
 				label: 'llms lists SRT to TXT guide',
