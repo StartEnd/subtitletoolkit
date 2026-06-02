@@ -242,6 +242,10 @@ const checks = [
 				match: '/guides/how-to-convert-srt-to-txt/',
 			},
 			{
+				label: 'homepage links to Aegisub SRT export guide',
+				match: '/guides/how-to-export-srt-from-aegisub/',
+			},
+			{
 				label: 'homepage links to SSA to SRT guide',
 				match: '/guides/how-to-convert-ssa-to-srt/',
 			},
@@ -298,6 +302,27 @@ const checks = [
 			{
 				label: 'FAQ schema for SSA to SRT questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert an SSA subtitle file to SRT\?/
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-export-srt-from-aegisub/',
+		expect: [
+			{
+				label: 'Aegisub SRT export guide CTR title',
+				match: '<title>Export SRT from Aegisub - Convert ASS to SRT</title>',
+			},
+			{
+				label: 'Aegisub SRT export guide meta description',
+				match: 'Export SRT from Aegisub by converting an ASS or SSA subtitle file to SubRip. Keep timing, flatten styling, and create SRT locally with no upload.',
+			},
+			{
+				label: 'Aegisub SRT export guide opens ASS converter tool',
+				match: 'href="/tools/ass-to-srt/"',
+			},
+			{
+				label: 'FAQ schema for Aegisub SRT export questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I export SRT from Aegisub\?/
 			},
 		],
 	},
@@ -2942,6 +2967,10 @@ const checks = [
 				match: '/guides/how-to-convert-ass-to-srt-for-youtube-uploads/',
 			},
 			{
+				label: 'guides index links to Aegisub SRT export guide',
+				match: '/guides/how-to-export-srt-from-aegisub/',
+			},
+			{
 				label: 'guides index links to SSA to SRT guide',
 				match: '/guides/how-to-convert-ssa-to-srt/',
 			},
@@ -3572,6 +3601,10 @@ const checks = [
 			{
 				label: 'llms lists ASS to TXT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-ass-to-txt/',
+			},
+			{
+				label: 'llms lists Aegisub SRT export guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-export-srt-from-aegisub/',
 			},
 			{
 				label: 'llms lists SSA to SRT guide',

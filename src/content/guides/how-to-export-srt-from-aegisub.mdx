@@ -1,0 +1,134 @@
+---
+title: How to export SRT from Aegisub
+seoTitle: Export SRT from Aegisub - Convert ASS to SRT
+seoDescription: Export SRT from Aegisub by converting an ASS or SSA subtitle file to SubRip. Keep timing, flatten styling, and create SRT locally with no upload.
+description: Turn an Aegisub ASS or SSA subtitle project into a simple SRT delivery file while preserving timing and readable dialogue text.
+pubDate: 2026-06-02
+category: conversion-guides
+tags:
+  - aegisub
+  - ass
+  - ssa
+  - srt
+  - conversion
+primaryTool: ass-to-srt
+faqs:
+  - question: How do I export SRT from Aegisub?
+    answer: Save or copy the Aegisub subtitle project as ASS or SSA, then use an ASS to SRT converter to flatten the dialogue events into numbered SubRip cues while preserving timing.
+  - question: Does SRT keep Aegisub styling?
+    answer: No. SRT keeps timing and readable caption text, but it does not preserve Aegisub style definitions, positioning, colors, karaoke effects, or most override tags.
+  - question: Should I keep the original Aegisub file?
+    answer: Yes. Keep the original ASS or SSA file as the editable Aegisub source. Use the SRT output only as a delivery copy for upload, review, or simple playback.
+---
+
+Aegisub is built around styled subtitle editing, usually in ASS or SSA format. That is useful while editing, but many upload forms, review systems, and players ask for a simple `.srt` file.
+
+## Quick answer
+
+Use the [ASS to SRT Converter](/tools/ass-to-srt/) when your Aegisub subtitle file needs an SRT delivery copy. Paste or upload the `.ass` or `.ssa` content, convert it to SRT, then review the output before upload.
+
+This does not replace the Aegisub project. Keep the ASS or SSA file for future edits and styling.
+
+## When this workflow fits
+
+Export or convert Aegisub subtitles to SRT when:
+
+- YouTube, Vimeo, Plex, or another platform asks for SRT
+- a client or reviewer wants plain timed captions
+- ASS styling is not needed in the delivery file
+- you need a simpler subtitle file for validation
+- the destination player does not support Aegisub styling
+
+If the final video must show exact fonts, colors, positions, or karaoke effects, render those subtitles into the video or keep an ASS-compatible playback workflow.
+
+## What changes from Aegisub to SRT
+
+Aegisub ASS or SSA files can contain style definitions, layers, margins, effects, and override tags. SRT is simpler.
+
+During conversion:
+
+- dialogue start and end times are preserved
+- readable subtitle text is preserved
+- ASS `\N` line breaks become normal SRT line breaks
+- style sections and script metadata are removed
+- font, color, position, and karaoke effects are flattened
+- numbered SRT cues are generated
+
+## Step-by-step workflow
+
+1. Save the original Aegisub `.ass` or `.ssa` file.
+2. Open the [ASS to SRT Converter](/tools/ass-to-srt/).
+3. Upload or paste the Aegisub subtitle content.
+4. Convert the file to SRT.
+5. Scan the output for missing dialogue, odd line breaks, and broken characters.
+6. Validate the SRT if the upload platform rejects it.
+7. Upload or hand off the `.srt` delivery copy.
+
+## Before and after
+
+### Aegisub ASS before
+
+```text
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:01.00,0:00:03.50,Default,,0,0,0,,{\an8}Opening line
+Dialogue: 0,0:00:04.00,0:00:06.20,Default,,0,0,0,,Second line from Aegisub
+```
+
+### SRT after
+
+```text
+1
+00:00:01,000 --> 00:00:03,500
+Opening line
+
+2
+00:00:04,000 --> 00:00:06,200
+Second line from Aegisub
+```
+
+## Common mistakes
+
+### Deleting the Aegisub source file
+
+The SRT output is a compatibility copy. Keep the original `.ass` or `.ssa` file if you may need to adjust styles, positions, or timing later.
+
+### Expecting exact layout to survive
+
+SRT cannot reproduce Aegisub positioning or karaoke effects. If exact visual styling matters, burn the subtitles into the video or use a player that supports ASS.
+
+### Missing dialogue after conversion
+
+Check whether important lines are marked as `Comment:` instead of `Dialogue:` in the Aegisub file. Converters normally skip comments.
+
+### Uploading without checking encoding
+
+If non-English characters look wrong, use the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) before final delivery.
+
+## Frequently asked questions
+
+### How do I export SRT from Aegisub?
+
+Save or copy your Aegisub subtitle file as ASS or SSA, then convert it with the [ASS to SRT Converter](/tools/ass-to-srt/). The result is a simple SubRip file with numbered cues and SRT timestamps.
+
+### Does SRT keep Aegisub styling?
+
+No. SRT keeps the dialogue text and timing. Aegisub styling, positioning, colors, karaoke effects, and most override tags are removed.
+
+### Should I keep the original Aegisub file?
+
+Yes. Keep the original `.ass` or `.ssa` file as the editable source. Use the exported `.srt` file as a delivery copy.
+
+## Related guides
+
+- [ASS to SRT for YouTube uploads](/guides/how-to-convert-ass-to-srt-for-youtube-uploads/)
+- [How to convert SSA to SRT](/guides/how-to-convert-ssa-to-srt/)
+- [When to use ASS instead of SRT](/guides/when-to-use-ass-instead-of-srt/)
+- [SRT vs ASS for YouTube captions](/guides/srt-vs-ass-for-youtube-captions/)
+
+## Related tools
+
+- [ASS to SRT Converter](/tools/ass-to-srt/)
+- [SRT Validator](/tools/srt-validator/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
+
