@@ -1,0 +1,126 @@
+---
+title: How to convert SCC to SRT
+seoTitle: Convert SCC to SRT - Free Closed Caption Converter
+seoDescription: Convert SCC closed captions to SRT online for free. Extract readable Scenarist caption rows, flatten control codes, and create SubRip locally.
+description: Convert Scenarist SCC closed caption files into standard SRT subtitles for review, editing, upload, and archive workflows.
+pubDate: 2026-06-02
+category: conversion-guides
+tags:
+  - scc
+  - closed captions
+  - srt
+  - cea-608
+  - conversion
+primaryTool: scc-to-srt
+faqs:
+  - question: How do I convert an SCC caption file to SRT?
+    answer: Use the SCC to SRT converter with a .scc text caption file. It reads Scenarist timecode rows, extracts readable caption text, and exports numbered SRT cues.
+  - question: What is an SCC subtitle file?
+    answer: SCC is a Scenarist closed caption format often used for CEA-608 broadcast, DVD, and post-production caption workflows.
+  - question: Can I convert SCC captions without uploading the file?
+    answer: Yes. The converter runs in your browser, so the SCC caption file stays on your device.
+---
+
+SCC caption files are Scenarist closed caption files. They often appear in broadcast, DVD, post-production, and CEA-608 caption workflows. The file stores timecodes and encoded caption data rather than simple text blocks.
+
+SRT is easier to inspect and share. It keeps cue numbers, timestamps, and readable text, which is useful when you need a quick review copy or a format that more upload forms understand.
+
+## Quick answer
+
+Use the [SCC to SRT Converter](/tools/scc-to-srt/) to convert a `.scc` closed caption file into standard SubRip subtitles. The tool reads Scenarist timecode rows, extracts readable caption text from common SCC word codes, and creates numbered SRT output locally in your browser.
+
+## When to convert SCC to SRT
+
+Convert SCC to SRT when:
+
+- a caption file needs to be reviewed by someone who does not work with SCC
+- an editor or upload form accepts SRT but not SCC
+- you need a simple text copy of closed captions for QA
+- a client asks for SubRip captions after a broadcast caption handoff
+- you want to validate, clean, or shift caption timing with SRT tools
+
+Keep the original SCC file if the destination needs CEA-608 behavior, roll-up captions, positioning, or broadcast-specific control codes.
+
+## What changes during conversion
+
+SCC stores caption rows like this:
+
+```text
+Scenarist_SCC V1.0
+
+00:00:01:00 5765 6c63 6f6d 6520 6261 636b
+00:00:04:06 546f 6461 7920 7765 2061 7265 2063 6f6e 7665 7274 696e 67
+```
+
+SRT stores readable cues like this:
+
+```text
+1
+00:00:01,000 --> 00:00:04,200
+Welcome back
+
+2
+00:00:04,200 --> 00:00:06,200
+Today we are converting
+```
+
+During conversion, the tool:
+
+- reads SCC timecode rows
+- converts frame-based SCC timecodes into SRT timestamps
+- extracts readable characters from common SCC word data
+- skips control codes that do not map cleanly to SRT text
+- generates sequential SRT cue numbers
+
+The output is a practical review and upload copy. It does not preserve CEA-608 positioning, colors, roll-up behavior, pop-on timing semantics, or advanced closed-caption control codes.
+
+## Step-by-step workflow
+
+1. Save a copy of the original `.scc` file.
+2. Open the [SCC to SRT Converter](/tools/scc-to-srt/).
+3. Upload or paste the SCC caption content.
+4. Convert the file to SRT.
+5. Review the first, middle, and final cues for flattened text quality.
+6. Run the output through the [SRT Validator](/tools/srt-validator/) before upload.
+
+## Common mistakes
+
+### Using a video file instead of the SCC file
+
+SCC to SRT conversion works on a separate `.scc` caption file. It does not extract captions from a video container and it cannot recover burned-in text.
+
+### Expecting closed-caption behavior to survive
+
+SRT cannot preserve CEA-608 roll-up behavior, positioning, colors, speaker cues encoded as control codes, or other broadcast caption instructions. Keep the SCC file when those details matter.
+
+### Skipping manual review
+
+SCC files can contain control codes and special caption behavior. After conversion, review the flattened SRT text before sending it to an upload form or client.
+
+## Frequently asked questions
+
+### How do I convert an SCC caption file to SRT?
+
+Open the [SCC to SRT Converter](/tools/scc-to-srt/), upload or paste the `.scc` file, and export the parsed caption rows as numbered SRT cues.
+
+### What is an SCC subtitle file?
+
+SCC is a Scenarist closed caption format often used for CEA-608 broadcast, DVD, and post-production caption workflows.
+
+### Can I convert SCC captions without uploading the file?
+
+Yes. The converter runs locally in your browser, so the caption file does not need to be sent to a server.
+
+## Related guides
+
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+- [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)
+- [How to clean subtitle formatting before upload](/guides/how-to-clean-subtitle-formatting-before-upload/)
+- [How to fix malformed SRT timestamps](/guides/how-to-fix-malformed-srt-timestamps/)
+
+## Related tools
+
+- [SCC to SRT Converter](/tools/scc-to-srt/)
+- [SRT Validator](/tools/srt-validator/)
+- [Clean SRT File](/tools/clean-srt-file/)
+- [Subtitle Cleaner](/tools/subtitle-cleaner/)

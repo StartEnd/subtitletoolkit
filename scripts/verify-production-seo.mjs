@@ -290,6 +290,10 @@ const checks = [
 				match: '/guides/how-to-convert-ttml-to-srt/',
 			},
 			{
+				label: 'homepage links to SCC to SRT guide',
+				match: '/guides/how-to-convert-scc-to-srt/',
+			},
+			{
 				label: 'homepage links to ASS to VTT guide',
 				match: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
 			},
@@ -510,6 +514,27 @@ const checks = [
 			{
 				label: 'FAQ schema for TTML to SRT questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert a TTML subtitle file to SRT\?/
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-scc-to-srt/',
+		expect: [
+			{
+				label: 'SCC to SRT guide CTR title',
+				match: '<title>Convert SCC to SRT - Free Closed Caption Converter</title>',
+			},
+			{
+				label: 'SCC to SRT guide no-upload meta description',
+				match: 'Convert SCC closed captions to SRT online for free. Extract readable Scenarist caption rows, flatten control codes, and create SubRip locally.',
+			},
+			{
+				label: 'SCC to SRT guide opens SCC converter tool',
+				match: 'href="/tools/scc-to-srt/"',
+			},
+			{
+				label: 'FAQ schema for SCC to SRT questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert an SCC caption file to SRT\?/
 			},
 		],
 	},
@@ -2938,6 +2963,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/scc-to-srt/',
+		expect: [
+			{
+				label: 'SCC to SRT tool title',
+				match: '<title>SCC to SRT Converter - Convert Closed Captions Free</title>',
+			},
+			{
+				label: 'SCC to SRT tool meta description',
+				match: 'Convert SCC closed captions to SRT online for free. Extract readable Scenarist caption rows into numbered SubRip cues locally.',
+			},
+			{
+				label: 'SCC to SRT tool links guide',
+				match: 'href="/guides/how-to-convert-scc-to-srt/"',
+			},
+			{
+				label: 'SCC to SRT tool FAQ covers SCC files',
+				match: 'What is an SCC subtitle file?',
+			},
+		],
+	},
+	{
 		path: '/tools/ass-to-srt/',
 		expect: [
 			{
@@ -3642,6 +3688,10 @@ const checks = [
 				match: 'https://subtitletoolkit.tools/tools/ttml-to-srt/',
 			},
 			{
+				label: 'llms lists SCC to SRT tool',
+				match: 'https://subtitletoolkit.tools/tools/scc-to-srt/',
+			},
+			{
 				label: 'llms lists invalid WebVTT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/',
 			},
@@ -3948,6 +3998,10 @@ const checks = [
 			{
 				label: 'llms lists TTML to SRT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-ttml-to-srt/',
+			},
+			{
+				label: 'llms lists SCC to SRT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-scc-to-srt/',
 			},
 			{
 				label: 'llms lists ASS to SRT guide',

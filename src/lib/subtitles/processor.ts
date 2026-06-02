@@ -1,6 +1,6 @@
 import type { SubtitleToolId } from './catalog';
 
-export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'smi' | 'sbv' | 'ttml' | 'txt' | 'unknown';
+export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'smi' | 'sbv' | 'ttml' | 'scc' | 'txt' | 'unknown';
 
 export interface SubtitleCue {
   start: number;
@@ -45,6 +45,10 @@ export function detectSubtitleFormat(input: string): SubtitleFormat {
 
   if (/<tt\b/i.test(normalized) && /<p\b[^>]*(?:begin|end|dur)=/i.test(normalized)) {
     return 'ttml';
+  }
+
+  if (/^Scenarist_SCC\s+V\d/i.test(normalized) || /^\d{2}:\d{2}:\d{2}[:;]\d{2}\s+(?:[0-9a-f]{4}\s*)+$/im.test(normalized)) {
+    return 'scc';
   }
 
   if (/^(?:\d+:)?\d{1,2}:\d{2}\.\d{3}\s*,\s*(?:\d+:)?\d{1,2}:\d{2}\.\d{3}$/m.test(normalized)) {
@@ -136,6 +140,18 @@ function ttmlTimestampToMs(timestamp: string) {
   }
 
   return timestampInputToMs(normalized);
+}
+
+function sccTimestampToMs(timestamp: string) {
+  const normalized = timestamp.replace(';', ':');
+  const [hours, minutes, seconds, frames = '0'] = normalized.split(':');
+
+  return (
+    Number(hours) * 3600000 +
+    Number(minutes) * 60000 +
+    Number(seconds) * 1000 +
+    Math.round((Number(frames) / 30) * 1000)
+  );
 }
 
 function formatSrtTime(totalMs: number) {
@@ -408,6 +424,53 @@ export function parseTtml(input: string): SubtitleCue[] {
     .filter(Boolean) as SubtitleCue[];
 }
 
+function decodeSccWords(words: string[]) {
+  const text = words
+    .flatMap((word) => [word.slice(0, 2), word.slice(2, 4)])
+    .map((byte) => Number.parseInt(byte, 16) & 0x7f)
+    .filter((value) => value >= 0x20 && value <= 0x7e)
+    .map((value) => String.fromCharCode(value))
+    .join('')
+    .replace(/[\u00a0\u200b-\u200d\u2060]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  return text;
+}
+
+export function parseScc(input: string): SubtitleCue[] {
+  const normalized = normalizeSubtitleInput(input);
+  if (!normalized) {
+    return [];
+  }
+
+  const rows = normalized
+    .split('\n')
+    .map((line) => line.trim())
+    .map((line) => line.match(/^(\d{2}:\d{2}:\d{2}[:;]\d{2})\s+((?:[0-9a-f]{4}\s*)+)$/i))
+    .filter(Boolean) as RegExpMatchArray[];
+
+  return rows
+    .map((match, index) => {
+      const start = sccTimestampToMs(match[1]);
+      const nextStart = rows[index + 1]
+        ? sccTimestampToMs(rows[index + 1][1])
+        : start + 2000;
+      const text = decodeSccWords(match[2].trim().split(/\s+/));
+
+      if (!text) {
+        return null;
+      }
+
+      return {
+        start,
+        end: Math.max(start + 1, nextStart),
+        text: [text],
+      };
+    })
+    .filter(Boolean) as SubtitleCue[];
+}
+
 export function parseSubtitleByFormat(
   input: string,
   format: SubtitleFormat
@@ -425,6 +488,8 @@ export function parseSubtitleByFormat(
       return parseSbv(input);
     case 'ttml':
       return parseTtml(input);
+    case 'scc':
+      return parseScc(input);
     default:
       return [];
   }
@@ -497,6 +562,7 @@ function serializeByFormat(cues: SubtitleCue[], format: SubtitleFormat) {
     case 'smi':
     case 'sbv':
     case 'ttml':
+    case 'scc':
       return serializeSrt(cues);
     case 'txt':
       return serializePlainText(cues);
@@ -708,6 +774,8 @@ export function processSubtitleTool(
       return serializeSrt(parseSbv(normalized));
     case 'ttml-to-srt':
       return serializeSrt(parseTtml(normalized));
+    case 'scc-to-srt':
+      return serializeSrt(parseScc(normalized));
     case 'youtube-subtitle-converter':
     case 'plex-subtitle-converter': {
       const format = detectSubtitleFormat(normalized);
@@ -828,6 +896,7 @@ export function inferOutputFormat(
     case 'smi-to-srt':
     case 'sbv-to-srt':
     case 'ttml-to-srt':
+    case 'scc-to-srt':
     case 'youtube-subtitle-converter':
     case 'plex-subtitle-converter':
       return 'srt';

@@ -11,6 +11,7 @@ export type SubtitleToolId =
   | 'smi-to-srt'
   | 'sbv-to-srt'
   | 'ttml-to-srt'
+  | 'scc-to-srt'
   | 'youtube-subtitle-converter'
   | 'html5-video-subtitle-converter'
   | 'videojs-subtitle-converter'
@@ -161,6 +162,10 @@ Today we are converting SBV captions for upload.`,
     </div>
   </body>
 </tt>`,
+  scc: `Scenarist_SCC V1.0
+
+00:00:01:00 5765 6c63 6f6d 6520 6261 636b 2074 6f20 7468 6520 6564 6974
+00:00:04:06 546f 6461 7920 7765 2061 7265 2063 6f6e 7665 7274 696e 6720 5343 4320 6361 7074 696f 6e73`,
   encodedSrt: `1
 00:00:01,000 --> 00:00:03,500
 Café subtitles should stay readable.
@@ -809,7 +814,7 @@ const enTools: SubtitleTool[] = [
           'The timing values are preserved, but the output uses standard SRT timestamp formatting and numbered cue blocks.',
       },
     ],
-    relatedTools: ['ttml-to-srt', 'smi-to-srt'],
+    relatedTools: ['ttml-to-srt', 'scc-to-srt'],
     relatedGuides: [
       {
         href: '/guides/how-to-convert-sbv-to-srt/',
@@ -868,7 +873,7 @@ const enTools: SubtitleTool[] = [
           'No. The TTML to SRT conversion runs locally in your browser, so the subtitle file stays on your device.',
       },
     ],
-    relatedTools: ['srt-validator', 'sbv-to-srt'],
+    relatedTools: ['scc-to-srt', 'srt-validator'],
     relatedGuides: [
       {
         href: '/guides/how-to-convert-ttml-to-srt/',
@@ -884,6 +889,65 @@ const enTools: SubtitleTool[] = [
       },
     ],
     sampleInput: sharedSamples.ttml,
+  },
+  {
+    id: 'scc-to-srt',
+    title: 'SCC to SRT Converter',
+    shortTitle: 'SCC to SRT',
+    description:
+      'Convert SCC closed caption files to SRT online for free, locally in your browser with no upload.',
+    summary:
+      'Use this free SCC to SRT converter when a Scenarist closed caption file needs a simple SubRip copy for review, editing, upload, or archive handoff.',
+    buttonLabel: 'Convert to SRT',
+    inputLabel: 'SCC input',
+    outputLabel: 'SRT output',
+    placeholder: 'Paste your SCC closed captions here',
+    acceptedExtensions: ['.scc', '.txt'],
+    sampleFileName: 'sample.scc',
+    useCases: [
+      'Convert Scenarist SCC closed captions to standard SRT.',
+      'Create a readable review copy from a broadcast caption file.',
+      'Move SCC caption timing into editors that expect SubRip files.',
+      'Prepare extracted SCC text for SRT validation, cleanup, or upload workflows.',
+    ],
+    faqs: [
+      {
+        question: 'How do I convert an SCC caption file to SRT?',
+        answer:
+          'Open the SCC to SRT converter, paste or upload the .scc file, and export readable caption rows as numbered SRT cues.',
+      },
+      {
+        question: 'What is an SCC subtitle file?',
+        answer:
+          'SCC is a Scenarist closed caption format often used for CEA-608 broadcast and post-production caption workflows.',
+      },
+      {
+        question: 'Does SCC styling survive in SRT?',
+        answer:
+          'No. SRT keeps readable timing and text, but it does not preserve CEA-608 control codes, roll-up behavior, positioning, or styling.',
+      },
+      {
+        question: 'Are SCC files uploaded to a server?',
+        answer:
+          'No. The SCC to SRT conversion runs locally in your browser, so the caption file stays on your device.',
+      },
+    ],
+    relatedTools: ['srt-validator', 'ttml-to-srt'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-convert-scc-to-srt/',
+        title: 'How to convert SCC to SRT',
+      },
+      {
+        href: '/guides/how-to-validate-srt-files/',
+        title: 'How to validate SRT files',
+      },
+      {
+        href: '/guides/common-subtitle-format-errors-and-fixes/',
+        title: 'Common subtitle format errors and fixes',
+      },
+    ],
+    sampleInput: sharedSamples.scc,
   },
   {
     id: 'youtube-subtitle-converter',
