@@ -222,6 +222,10 @@ const checks = [
 				match: '/guides/srt-vs-vtt/',
 			},
 			{
+				label: 'homepage links to subtitles to plain text guide',
+				match: '/guides/how-to-convert-subtitles-to-plain-text/',
+			},
+			{
 				label: 'homepage links to remove subtitle timestamps guide',
 				match: '/guides/how-to-remove-timestamps-from-subtitles/',
 			},
@@ -1610,6 +1614,27 @@ const checks = [
 			{
 				label: 'transcript guide no-upload meta description',
 				match: 'Create a readable transcript from SRT, VTT, or ASS subtitles. Remove timestamps and caption metadata locally in your browser with no upload.',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-subtitles-to-plain-text/',
+		expect: [
+			{
+				label: 'subtitles to plain text guide CTR title',
+				match: '<title>Convert Subtitles to Plain Text - SRT VTT ASS</title>',
+			},
+			{
+				label: 'subtitles to plain text guide meta description',
+				match: 'Convert subtitles to plain text from SRT, VTT, ASS, or SSA. Remove timestamps, cue numbers, styling, and metadata locally with no upload.',
+			},
+			{
+				label: 'subtitles to plain text guide opens transcript tool',
+				match: 'href="/tools/subtitle-transcript-generator/"',
+			},
+			{
+				label: 'FAQ schema for subtitles to plain text questions',
+				match: new RegExp('"@type"\\s*:\\s*"FAQPage"[\\s\\S]*How do I convert subtitles to plain text\\?'),
 			},
 		],
 	},
@@ -3020,6 +3045,10 @@ const checks = [
 				match: 'Transcript workflows',
 			},
 			{
+				label: 'guides index links to subtitles to plain text guide',
+				match: '/guides/how-to-convert-subtitles-to-plain-text/',
+			},
+			{
 				label: 'guides index links to remove subtitle timestamps guide',
 				match: '/guides/how-to-remove-timestamps-from-subtitles/',
 			},
@@ -3486,6 +3515,10 @@ const checks = [
 			{
 				label: 'llms lists ASS instead of SRT guide',
 				match: 'https://subtitletoolkit.tools/guides/when-to-use-ass-instead-of-srt/',
+			},
+			{
+				label: 'llms lists subtitles to plain text guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-subtitles-to-plain-text/',
 			},
 			{
 				label: 'llms lists remove subtitle timestamps guide',

@@ -1,0 +1,126 @@
+---
+title: How to convert subtitles to plain text
+seoTitle: Convert Subtitles to Plain Text - SRT VTT ASS
+seoDescription: Convert subtitles to plain text from SRT, VTT, ASS, or SSA. Remove timestamps, cue numbers, styling, and metadata locally with no upload.
+description: Convert subtitle files into plain text transcripts by removing timing, cue numbers, WebVTT metadata, and ASS styling.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - subtitle to plain text
+  - subtitle to text
+  - transcript
+  - remove timestamps
+primaryTool: subtitle-transcript-generator
+faqs:
+  - question: How do I convert subtitles to plain text?
+    answer: Use a subtitle transcript tool that parses SRT, VTT, ASS, or SSA and keeps only the readable caption text while removing timestamps, cue numbers, headers, metadata, and style fields.
+  - question: Which subtitle formats can be converted to plain text?
+    answer: Subtitle Toolkit can create plain text from common text subtitle formats such as SRT, VTT, ASS, and SSA. Use a format-specific TXT converter when you already know the source format.
+  - question: Can I use the plain text output as subtitles?
+    answer: No. Plain text has no timing information. Keep the original subtitle file if you still need captions for playback, upload, or player integration.
+---
+
+Converting subtitles to plain text extracts the words from a timed caption file. The result is useful for transcripts, translation prep, editing notes, quotes, documentation, or content repurposing.
+
+## Quick answer
+
+Use the [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/) when you want to convert subtitles to plain text and the source file might be SRT, VTT, ASS, or SSA. It removes timing and format metadata locally in your browser.
+
+If you already know the source format, use a format-specific converter:
+
+- [SRT to TXT Converter](/tools/srt-to-txt/) for `.srt` files
+- [VTT to TXT Converter](/tools/vtt-to-txt/) for `.vtt` files
+- [ASS to TXT Converter](/tools/ass-to-txt/) for `.ass` or `.ssa` files
+
+## What gets removed
+
+Plain text conversion removes the subtitle structure that video players need but readers do not:
+
+- SRT cue numbers such as `1`, `2`, `3`
+- SRT timestamps such as `00:00:04,000 --> 00:00:06,500`
+- WebVTT headers such as `WEBVTT`
+- VTT cue settings such as `align:start` or `position:10%`
+- VTT `NOTE` blocks and metadata
+- ASS dialogue timing fields, style sections, and override tags
+- Empty cue separators used only for timed playback
+
+The output should keep the readable subtitle text.
+
+## Before and after
+
+### Subtitle file before
+
+```text
+1
+00:00:04,000 --> 00:00:06,500
+Welcome to the lesson.
+
+2
+00:00:07,000 --> 00:00:09,200
+Today we will convert subtitles to text.
+```
+
+### Plain text after
+
+```text
+Welcome to the lesson.
+
+Today we will convert subtitles to text.
+```
+
+## Step-by-step workflow
+
+1. Keep the original subtitle file unchanged.
+2. Open [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/).
+3. Paste the subtitle content or choose the subtitle file.
+4. Generate the plain text transcript.
+5. Review the output for paragraph breaks, repeated captions, speaker labels, and missing text.
+6. Copy or download the plain text result.
+
+If the output looks incomplete, validate or clean the source file before converting. Broken timestamps, missing cue separators, or garbled encoding can make caption text harder to extract.
+
+## Pick the right converter
+
+Use the general transcript tool when the file type is uncertain or mixed:
+
+- [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/) for SRT, VTT, ASS, or SSA
+
+Use a format-specific tool when you know the file type and want tighter cleanup:
+
+- [SRT to TXT](/tools/srt-to-txt/) removes SubRip cue numbers and comma timestamps
+- [VTT to TXT](/tools/vtt-to-txt/) removes WebVTT headers, dot timestamps, cue settings, and notes
+- [ASS to TXT](/tools/ass-to-txt/) removes Advanced SubStation Alpha timing and styling fields
+
+## Common mistakes
+
+### Renaming the file to TXT
+
+Renaming `captions.srt` to `captions.txt` does not remove timestamps or metadata. It only changes the extension. Convert the content instead.
+
+### Deleting timestamp lines manually
+
+Manual cleanup can leave cue numbers, VTT settings, ASS style tags, or broken spacing. A parser is safer for real subtitle files.
+
+### Replacing subtitles with plain text
+
+Plain text cannot be used as a timed caption file. Keep the original `.srt`, `.vtt`, `.ass`, or `.ssa` file for playback, upload, and player integration.
+
+### Ignoring malformed files
+
+If a subtitle file has invalid timestamps, broken cue order, or encoding problems, convert after validation or cleanup. Otherwise the output can miss lines or keep fragments of timing syntax.
+
+## Related guides
+
+- [How to remove timestamps from subtitles](/guides/how-to-remove-timestamps-from-subtitles/)
+- [How to create a transcript from subtitles](/guides/how-to-create-a-transcript-from-subtitles/)
+- [How to convert SRT to TXT](/guides/how-to-convert-srt-to-txt/)
+- [How to convert VTT to TXT](/guides/how-to-convert-vtt-to-txt/)
+- [How to convert ASS to TXT](/guides/how-to-convert-ass-to-txt/)
+
+## Related tools
+
+- [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/)
+- [SRT to TXT Converter](/tools/srt-to-txt/)
+- [VTT to TXT Converter](/tools/vtt-to-txt/)
+- [ASS to TXT Converter](/tools/ass-to-txt/)
+

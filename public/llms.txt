@@ -45,6 +45,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [ASS vs VTT](https://subtitletoolkit.tools/guides/ass-vs-vtt/)
 - [When WebVTT is better than SRT](https://subtitletoolkit.tools/guides/when-webvtt-is-better-than-srt/)
 - [When to use ASS instead of SRT](https://subtitletoolkit.tools/guides/when-to-use-ass-instead-of-srt/)
+- [How to convert subtitles to plain text](https://subtitletoolkit.tools/guides/how-to-convert-subtitles-to-plain-text/)
 - [How to remove timestamps from subtitles](https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-subtitles/)
 - [How to remove timestamps from SRT](https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-srt/)
 - [How to remove timestamps from VTT](https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-vtt/)
