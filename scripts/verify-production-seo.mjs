@@ -162,6 +162,10 @@ const checks = [
 				match: '/guides/how-to-extract-subtitles-from-video/',
 			},
 			{
+				label: 'homepage links to downloaded video missing subtitles guide',
+				match: '/guides/why-downloaded-video-has-no-subtitles/',
+			},
+			{
 				label: 'homepage links to MP4 subtitle extraction guide',
 				match: '/guides/how-to-extract-subtitles-from-mp4/',
 			},
@@ -2007,6 +2011,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/why-downloaded-video-has-no-subtitles/',
+		expect: [
+			{
+				label: 'downloaded video missing subtitles guide CTR title',
+				match: '<title>Downloaded Video Has No Subtitles - Fix Missing Captions</title>',
+			},
+			{
+				label: 'downloaded video missing subtitles guide meta description',
+				match: 'Fix a downloaded video with no subtitles by checking sidecar VTT or SRT files, embedded caption tracks, burned-in captions, and extraction limits.',
+			},
+			{
+				label: 'downloaded video missing subtitles guide opens extractor tool',
+				match: 'href="/tools/extract-subtitles-from-video/"',
+			},
+			{
+				label: 'FAQ schema for downloaded video subtitle questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why does my downloaded video have no subtitles\?/,
+			},
+		],
+	},
+	{
 		path: '/guides/why-webm-subtitles-are-not-showing/',
 		expect: [
 			{
@@ -3020,6 +3045,10 @@ const checks = [
 				match: '/guides/how-to-extract-subtitles-from-video/',
 			},
 			{
+				label: 'guides index links to downloaded video missing subtitles guide',
+				match: '/guides/why-downloaded-video-has-no-subtitles/',
+			},
+			{
 				label: 'guides index links to MP4 extraction guide',
 				match: '/guides/how-to-extract-subtitles-from-mp4/',
 			},
@@ -3294,6 +3323,10 @@ const checks = [
 			{
 				label: 'llms lists video extraction guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-video/',
+			},
+			{
+				label: 'llms lists downloaded video missing subtitles guide',
+				match: 'https://subtitletoolkit.tools/guides/why-downloaded-video-has-no-subtitles/',
 			},
 			{
 				label: 'llms lists MP4 extraction guide',

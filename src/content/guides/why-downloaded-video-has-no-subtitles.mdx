@@ -1,0 +1,121 @@
+---
+title: Why downloaded video has no subtitles
+seoTitle: Downloaded Video Has No Subtitles - Fix Missing Captions
+seoDescription: Fix a downloaded video with no subtitles by checking sidecar VTT or SRT files, embedded caption tracks, burned-in captions, and extraction limits.
+description: Diagnose why a downloaded video has no subtitles by checking whether captions were separate files, embedded tracks, or burned-in video text.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - downloaded video subtitles
+  - missing captions
+  - embedded subtitles
+  - sidecar subtitles
+  - extract subtitles
+primaryTool: extract-subtitles-from-video
+faqs:
+  - question: Why does my downloaded video have no subtitles?
+    answer: The website or player may have loaded captions from a separate SRT or VTT file, while the downloaded video contains only audio and video streams.
+  - question: Can subtitles disappear when I download a video?
+    answer: Yes. If captions were external sidecar files or web player tracks, downloading only the video file will not include them.
+  - question: How do I get subtitles from a downloaded video?
+    answer: Inspect the video for embedded subtitle tracks first. If none exist, look for a separate caption file or transcript source; burned-in captions require OCR rather than normal extraction.
+---
+
+When a downloaded video has no subtitles, the captions were often never inside the video file. Many websites show captions by loading a separate `.vtt` or `.srt` file next to the video. If you download only the video, that caption file is left behind.
+
+## Quick answer
+
+Check whether the downloaded file contains an embedded subtitle track. Use [Extract Subtitles from Video](/tools/extract-subtitles-from-video/) to inspect the file locally in your browser. If no text track is found, look for a separate caption file from the original page or export source.
+
+If subtitles were permanently visible in the video image, they may be burned in. Burned-in subtitles cannot be extracted as clean text without OCR.
+
+## Why subtitles are missing after download
+
+### The captions were loaded as a separate file
+
+HTML5 video pages often attach captions like this:
+
+```html
+<video controls src="lesson.mp4">
+  <track kind="subtitles" src="lesson.en.vtt" srclang="en" label="English" default />
+</video>
+```
+
+In that setup, `lesson.mp4` and `lesson.en.vtt` are separate files. Downloading only the video gets the picture and sound, but not the subtitles.
+
+This is common with:
+
+- course videos
+- product demos
+- HTML5 video embeds
+- WebM pages with external WebVTT tracks
+- players that let you switch caption languages
+
+If the original page still works, inspect the page or download options for a `.vtt`, `.srt`, transcript, or captions link.
+
+### The video has no embedded subtitle stream
+
+Some video containers can store subtitles inside the file. MKV usually supports this well. MP4, MOV, M4V, and WebM can contain caption tracks too, but many exports do not include them.
+
+Use the extractor to check:
+
+1. Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/).
+2. Choose the downloaded video file.
+3. Check whether the tool finds a text subtitle stream.
+4. Export the track if one exists.
+
+If no subtitle stream appears, the file probably contains only video and audio. The subtitles must come from a separate file, the original project, or OCR.
+
+### The visible subtitles were burned into the video
+
+If subtitles are always visible and there is no captions menu, they may be burned into the video image. In that case, the text is part of the pixels, not a separate subtitle track.
+
+Burned-in captions can be watched, but they cannot be extracted as normal SRT or VTT. You need OCR or a transcript source to rebuild editable captions.
+
+Read [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/) when you are not sure which kind you have.
+
+### The subtitle language was not included in the download
+
+Some platforms offer multiple caption languages in the player but only package one language, or none, into the downloadable video.
+
+Check whether the download menu has a separate caption option. If you need subtitles for YouTube, HTML5 video, Plex, or a course platform, keep the video and the subtitle file together instead of expecting one file to contain everything.
+
+## Recovery workflow
+
+1. Play the downloaded video and look for a captions or subtitles menu.
+2. Inspect the file with [Extract Subtitles from Video](/tools/extract-subtitles-from-video/).
+3. If an embedded text track exists, export it.
+4. If no track exists, return to the source page and look for `.srt`, `.vtt`, transcript, or captions download links.
+5. If captions were burned in, use OCR or rebuild captions from a transcript.
+6. Convert the recovered subtitle file to the format your player needs.
+
+For browser playback, convert SRT captions to WebVTT with [SRT to VTT](/tools/srt-to-vtt/). For older editors, convert VTT back to SRT with [VTT to SRT](/tools/vtt-to-srt/).
+
+## Common mistakes
+
+### Assuming a player menu means subtitles are embedded
+
+A captions menu only proves the player can show captions. It does not prove the captions are stored inside the downloaded video.
+
+### Downloading only the video URL
+
+Direct video URLs usually point to video streams only. The caption track can live at a different URL.
+
+### Expecting burned-in captions to export as text
+
+Burned-in captions are visible, but they are not subtitle data. Use OCR or a transcript source when the extractor finds no text track.
+
+## Related guides
+
+- [How to extract subtitles from video](/guides/how-to-extract-subtitles-from-video/)
+- [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)
+- [Why WebM subtitles are not showing](/guides/why-webm-subtitles-are-not-showing/)
+- [Why subtitles are missing after conversion](/guides/why-subtitles-are-missing-after-conversion/)
+- [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/)
+
+## Related tools
+
+- [Extract Subtitles from Video](/tools/extract-subtitles-from-video/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [VTT to SRT Converter](/tools/vtt-to-srt/)
+- [WebVTT Validator](/tools/webvtt-validator/)
