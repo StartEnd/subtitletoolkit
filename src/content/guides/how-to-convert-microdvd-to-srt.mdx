@@ -1,0 +1,131 @@
+---
+title: How to convert MicroDVD to SRT
+seoTitle: Convert MicroDVD to SRT - Free SUB Subtitle Converter
+seoDescription: Convert MicroDVD SUB subtitles to SRT online for free. Turn frame-based .sub subtitle rows into numbered SubRip cues locally.
+description: Convert MicroDVD .sub subtitle files into standard SRT subtitles for editing, upload, review, and archive workflows.
+pubDate: 2026-06-02
+category: conversion-guides
+tags:
+  - microdvd
+  - sub
+  - srt
+  - frame rate
+  - conversion
+primaryTool: microdvd-to-srt
+faqs:
+  - question: How do I convert a MicroDVD SUB file to SRT?
+    answer: Use the MicroDVD to SRT converter with a .sub text subtitle file. It reads frame-based cue rows, converts frames into timestamps, and exports numbered SRT cues.
+  - question: What is a MicroDVD subtitle file?
+    answer: MicroDVD is a frame-based subtitle format that usually stores cues as {start frame}{end frame}text lines in a .sub file.
+  - question: Can I convert MicroDVD subtitles without uploading the file?
+    answer: Yes. The converter runs in your browser, so the MicroDVD subtitle file stays on your device.
+---
+
+MicroDVD subtitle files are frame-based `.sub` text files. Instead of storing clock timestamps, each cue usually stores a start frame, an end frame, and subtitle text.
+
+SRT is easier to upload, validate, and edit. It stores cue numbers, clock timestamps, and readable text blocks, so it works better with modern subtitle editors and platform upload forms.
+
+## Quick answer
+
+Use the [MicroDVD to SRT Converter](/tools/microdvd-to-srt/) to convert a MicroDVD `.sub` subtitle file into standard SubRip subtitles. The tool reads `{start}{end}` frame rows, uses a declared frame rate when the file includes one, and creates numbered SRT output locally in your browser.
+
+## When to convert MicroDVD to SRT
+
+Convert MicroDVD to SRT when:
+
+- an old `.sub` subtitle file needs to work in a modern editor
+- a platform accepts SRT but not MicroDVD SUB
+- you need a readable review copy with clock timestamps
+- a DVD-rip or archive subtitle handoff needs a simpler format
+- you want to validate, clean, or shift the subtitle after conversion
+
+Keep the original MicroDVD file until you confirm the converted timing against the video, especially when the file does not declare a frame rate.
+
+## What changes during conversion
+
+MicroDVD stores frame-based rows like this:
+
+```text
+{1}{1}25.000
+{25}{88}Welcome back to the edit
+{105}{150}Today we are converting MicroDVD subtitles|They need SRT output
+```
+
+SRT stores clock-based cues like this:
+
+```text
+1
+00:00:01,000 --> 00:00:03,520
+Welcome back to the edit
+
+2
+00:00:04,200 --> 00:00:06,000
+Today we are converting MicroDVD subtitles
+They need SRT output
+```
+
+During conversion, the tool:
+
+- reads MicroDVD `{start frame}{end frame}` cue rows
+- uses a first-row frame rate declaration such as `{1}{1}25.000` when present
+- assumes 25 fps when no frame rate row is available
+- turns pipe separators into SRT line breaks
+- removes simple MicroDVD styling markers that do not belong in SRT
+- generates sequential SRT cue numbers
+
+## Frame rate warning
+
+MicroDVD timing depends on frame rate. A cue that starts at frame 250 begins at 10 seconds in a 25 fps file, but at a different time in a 23.976 fps or 29.97 fps file.
+
+If the source file declares a frame rate, the converter uses it. If not, the converter assumes 25 fps. Review the first, middle, and final cues against the video before delivering or uploading the SRT file.
+
+## Step-by-step workflow
+
+1. Save a copy of the original MicroDVD `.sub` file.
+2. Open the [MicroDVD to SRT Converter](/tools/microdvd-to-srt/).
+3. Upload or paste the MicroDVD subtitle content.
+4. Convert the file to SRT.
+5. Check timing against the video, especially if the source did not declare a frame rate.
+6. Run the output through the [SRT Validator](/tools/srt-validator/) before upload.
+
+## Common mistakes
+
+### Using a video file instead of the subtitle file
+
+MicroDVD to SRT conversion works on a separate `.sub` subtitle file. It does not extract subtitle streams from a video container and it cannot recover burned-in text.
+
+### Ignoring the frame rate
+
+If the `.sub` file does not include a frame rate row, any converter has to assume one. A wrong frame rate can make subtitles drift or land at the wrong times.
+
+### Confusing MicroDVD SUB with image subtitles
+
+Some subtitle files also use the `.sub` extension, including VobSub-style image subtitles. This converter is for text MicroDVD rows such as `{25}{88}Subtitle text`, not image-based subtitle pairs.
+
+## Frequently asked questions
+
+### How do I convert a MicroDVD SUB file to SRT?
+
+Open the [MicroDVD to SRT Converter](/tools/microdvd-to-srt/), upload or paste the `.sub` file, and export the frame-based subtitle rows as numbered SRT cues.
+
+### What is a MicroDVD subtitle file?
+
+MicroDVD is a frame-based subtitle format that usually stores cues as `{start frame}{end frame}text` lines in a `.sub` file.
+
+### Can I convert MicroDVD subtitles without uploading the file?
+
+Yes. The converter runs locally in your browser, so the subtitle file does not need to be sent to a server.
+
+## Related guides
+
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+- [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)
+- [Why subtitles drift out of sync](/guides/why-subtitles-drift-out-of-sync/)
+- [How to fix malformed SRT timestamps](/guides/how-to-fix-malformed-srt-timestamps/)
+
+## Related tools
+
+- [MicroDVD to SRT Converter](/tools/microdvd-to-srt/)
+- [SRT Validator](/tools/srt-validator/)
+- [Subtitle Time Shifter](/tools/subtitle-time-shifter/)
+- [Clean SRT File](/tools/clean-srt-file/)

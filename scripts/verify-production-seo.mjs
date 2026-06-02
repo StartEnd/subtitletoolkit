@@ -294,6 +294,10 @@ const checks = [
 				match: '/guides/how-to-convert-scc-to-srt/',
 			},
 			{
+				label: 'homepage links to MicroDVD to SRT guide',
+				match: '/guides/how-to-convert-microdvd-to-srt/',
+			},
+			{
 				label: 'homepage links to ASS to VTT guide',
 				match: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
 			},
@@ -535,6 +539,27 @@ const checks = [
 			{
 				label: 'FAQ schema for SCC to SRT questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert an SCC caption file to SRT\?/
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-microdvd-to-srt/',
+		expect: [
+			{
+				label: 'MicroDVD to SRT guide CTR title',
+				match: '<title>Convert MicroDVD to SRT - Free SUB Subtitle Converter</title>',
+			},
+			{
+				label: 'MicroDVD to SRT guide no-upload meta description',
+				match: 'Convert MicroDVD SUB subtitles to SRT online for free. Turn frame-based .sub subtitle rows into numbered SubRip cues locally.',
+			},
+			{
+				label: 'MicroDVD to SRT guide opens MicroDVD converter tool',
+				match: 'href="/tools/microdvd-to-srt/"',
+			},
+			{
+				label: 'FAQ schema for MicroDVD to SRT questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert a MicroDVD SUB file to SRT\?/
 			},
 		],
 	},
@@ -2984,6 +3009,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/microdvd-to-srt/',
+		expect: [
+			{
+				label: 'MicroDVD to SRT tool title',
+				match: '<title>MicroDVD to SRT Converter - Convert SUB Captions Free</title>',
+			},
+			{
+				label: 'MicroDVD to SRT tool meta description',
+				match: 'Convert MicroDVD SUB subtitles to SRT online for free. Turn frame-based .sub rows into numbered SubRip cues locally.',
+			},
+			{
+				label: 'MicroDVD to SRT tool links guide',
+				match: 'href="/guides/how-to-convert-microdvd-to-srt/"',
+			},
+			{
+				label: 'MicroDVD to SRT tool FAQ covers frame rate',
+				match: 'Does MicroDVD to SRT conversion need a frame rate?',
+			},
+		],
+	},
+	{
 		path: '/tools/ass-to-srt/',
 		expect: [
 			{
@@ -3692,6 +3738,10 @@ const checks = [
 				match: 'https://subtitletoolkit.tools/tools/scc-to-srt/',
 			},
 			{
+				label: 'llms lists MicroDVD to SRT tool',
+				match: 'https://subtitletoolkit.tools/tools/microdvd-to-srt/',
+			},
+			{
 				label: 'llms lists invalid WebVTT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/',
 			},
@@ -4002,6 +4052,10 @@ const checks = [
 			{
 				label: 'llms lists SCC to SRT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-scc-to-srt/',
+			},
+			{
+				label: 'llms lists MicroDVD to SRT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-microdvd-to-srt/',
 			},
 			{
 				label: 'llms lists ASS to SRT guide',

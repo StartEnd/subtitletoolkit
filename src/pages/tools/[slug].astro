@@ -53,6 +53,8 @@ const toolMetaDescriptions: Record<string, string> = {
 		'Convert TTML or DFXP subtitles to SRT online for free. Parse timed-text XML paragraphs and create numbered SubRip captions locally.',
 	'scc-to-srt':
 		'Convert SCC closed captions to SRT online for free. Extract readable Scenarist caption rows into numbered SubRip cues locally.',
+	'microdvd-to-srt':
+		'Convert MicroDVD SUB subtitles to SRT online for free. Turn frame-based .sub rows into numbered SubRip cues locally.',
 	'youtube-subtitle-converter':
 		'Convert subtitles to YouTube-ready SRT online for free. Turn VTT, ASS, or SSA captions into upload-safe SRT locally with no signup or upload.',
 	'html5-video-subtitle-converter':
@@ -109,6 +111,7 @@ const toolPageTitles: Record<string, string> = {
 	'sbv-to-srt': 'SBV to SRT Converter - Convert YouTube Captions Free',
 	'ttml-to-srt': 'TTML to SRT Converter - Convert DFXP Captions Free',
 	'scc-to-srt': 'SCC to SRT Converter - Convert Closed Captions Free',
+	'microdvd-to-srt': 'MicroDVD to SRT Converter - Convert SUB Captions Free',
 	'youtube-subtitle-converter': 'YouTube Subtitle Converter Online - Free No Upload',
 	'html5-video-subtitle-converter': 'HTML5 Video Subtitle Converter - Convert Captions to VTT',
 	'videojs-subtitle-converter': 'Video.js Subtitle Converter - Convert Captions to VTT',
@@ -158,6 +161,8 @@ const workflowNotes: Record<string, string> = {
 		'TTML and DFXP files often come from streaming, broadcast, or archive caption workflows. This converter reads timed text paragraph cues, removes XML wrapper and styling metadata, keeps readable caption text, and exports numbered SRT cues for editing, upload, and review.',
 	'scc-to-srt':
 		'SCC files often come from broadcast, DVD, and post-production closed caption workflows. This converter reads Scenarist timecode rows, extracts readable caption text from common SCC word codes, and exports a simple numbered SRT copy for review, editing, and upload workflows.',
+	'microdvd-to-srt':
+		'MicroDVD .sub files often come from older DVD-rip and archive subtitle workflows. This converter reads frame-number cue rows, uses a declared frame rate when available, assumes 25 fps otherwise, and exports numbered SRT cues for editing, upload, and review.',
 	'youtube-subtitle-converter':
 		'Use this when YouTube needs a clean SRT upload but your source captions are VTT, ASS, SSA, or uncertain. The tool keeps timing and readable text, removes unsupported styling, and exports a simple SRT copy locally with no upload.',
 	'html5-video-subtitle-converter':
@@ -265,6 +270,11 @@ const mistakeNotes: Record<string, string[]> = {
 		'Using the converter on a video file instead of a separate .scc closed caption file.',
 		'Expecting SRT output to preserve CEA-608 positioning, roll-up behavior, or styling codes.',
 		'Uploading the SRT output before reviewing the flattened caption text and timing.',
+	],
+	'microdvd-to-srt': [
+		'Using the converter on a video file instead of a separate MicroDVD .sub subtitle file.',
+		'Ignoring frame rate when the source file does not declare one.',
+		'Uploading the SRT output before checking cue timing against the video.',
 	],
 	'youtube-subtitle-converter': [
 		'Expecting ASS styling or positioning to survive in YouTube captions.',

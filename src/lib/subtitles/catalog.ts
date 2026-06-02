@@ -12,6 +12,7 @@ export type SubtitleToolId =
   | 'sbv-to-srt'
   | 'ttml-to-srt'
   | 'scc-to-srt'
+  | 'microdvd-to-srt'
   | 'youtube-subtitle-converter'
   | 'html5-video-subtitle-converter'
   | 'videojs-subtitle-converter'
@@ -166,6 +167,9 @@ Today we are converting SBV captions for upload.`,
 
 00:00:01:00 5765 6c63 6f6d 6520 6261 636b 2074 6f20 7468 6520 6564 6974
 00:00:04:06 546f 6461 7920 7765 2061 7265 2063 6f6e 7665 7274 696e 6720 5343 4320 6361 7074 696f 6e73`,
+  microdvd: `{1}{1}25.000
+{25}{88}Welcome back to the edit
+{105}{150}Today we are converting MicroDVD subtitles|They need SRT output`,
   encodedSrt: `1
 00:00:01,000 --> 00:00:03,500
 Café subtitles should stay readable.
@@ -932,7 +936,7 @@ const enTools: SubtitleTool[] = [
           'No. The SCC to SRT conversion runs locally in your browser, so the caption file stays on your device.',
       },
     ],
-    relatedTools: ['srt-validator', 'ttml-to-srt'],
+    relatedTools: ['microdvd-to-srt', 'ttml-to-srt'],
     relatedGuides: [
       {
         href: '/guides/how-to-convert-scc-to-srt/',
@@ -948,6 +952,65 @@ const enTools: SubtitleTool[] = [
       },
     ],
     sampleInput: sharedSamples.scc,
+  },
+  {
+    id: 'microdvd-to-srt',
+    title: 'MicroDVD to SRT Converter',
+    shortTitle: 'MicroDVD to SRT',
+    description:
+      'Convert MicroDVD SUB subtitles to SRT online for free, locally in your browser with no upload.',
+    summary:
+      'Use this free MicroDVD to SRT converter when a frame-based .sub subtitle file needs standard SubRip timestamps for editing, upload, review, or archive handoff.',
+    buttonLabel: 'Convert to SRT',
+    inputLabel: 'MicroDVD SUB input',
+    outputLabel: 'SRT output',
+    placeholder: 'Paste your MicroDVD .sub subtitles here',
+    acceptedExtensions: ['.sub', '.txt'],
+    sampleFileName: 'sample.sub',
+    useCases: [
+      'Convert frame-based MicroDVD .sub subtitles to standard SRT.',
+      'Move older DVD-rip subtitle files into editors that expect SubRip timing.',
+      'Create an upload-ready copy from a MicroDVD subtitle file.',
+      'Prepare MicroDVD captions for SRT validation, cleanup, or timing review workflows.',
+    ],
+    faqs: [
+      {
+        question: 'How do I convert a MicroDVD SUB file to SRT?',
+        answer:
+          'Open the MicroDVD to SRT converter, paste or upload the .sub file, and export frame-based subtitle rows as numbered SRT cues.',
+      },
+      {
+        question: 'What is a MicroDVD subtitle file?',
+        answer:
+          'MicroDVD is a frame-based subtitle format that usually stores cues as {start frame}{end frame}text lines in a .sub file.',
+      },
+      {
+        question: 'Does MicroDVD to SRT conversion need a frame rate?',
+        answer:
+          'Yes. If the file declares a frame rate in the first row, the converter uses it. Otherwise it assumes 25 fps, so review timing before upload.',
+      },
+      {
+        question: 'Are MicroDVD files uploaded to a server?',
+        answer:
+          'No. The MicroDVD to SRT conversion runs locally in your browser, so the subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['srt-validator', 'scc-to-srt'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-convert-microdvd-to-srt/',
+        title: 'How to convert MicroDVD to SRT',
+      },
+      {
+        href: '/guides/how-to-validate-srt-files/',
+        title: 'How to validate SRT files',
+      },
+      {
+        href: '/guides/common-subtitle-format-errors-and-fixes/',
+        title: 'Common subtitle format errors and fixes',
+      },
+    ],
+    sampleInput: sharedSamples.microdvd,
   },
   {
     id: 'youtube-subtitle-converter',
