@@ -278,6 +278,10 @@ const checks = [
 				match: '/guides/how-to-convert-ssa-to-vtt/',
 			},
 			{
+				label: 'homepage links to SSA to VTT tool',
+				match: '/tools/ssa-to-vtt/',
+			},
+			{
 				label: 'homepage links to SSA to TXT guide',
 				match: '/guides/how-to-convert-ssa-to-txt/',
 			},
@@ -460,8 +464,8 @@ const checks = [
 				match: 'Convert SSA subtitles to VTT for HTML5 video and web players. Flatten styling, keep timing and text, and process locally with no upload.',
 			},
 			{
-				label: 'SSA to VTT guide opens ASS to VTT converter tool',
-				match: 'href="/tools/ass-to-vtt/"',
+				label: 'SSA to VTT guide opens SSA converter tool',
+				match: 'href="/tools/ssa-to-vtt/"',
 			},
 			{
 				label: 'FAQ schema for SSA to VTT questions',
@@ -3410,6 +3414,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/ssa-to-vtt/',
+		expect: [
+			{
+				label: 'SSA to VTT tool title',
+				match: '<title>SSA to VTT Converter - Convert SubStation Alpha Free</title>',
+			},
+			{
+				label: 'SSA to VTT tool meta description',
+				match: 'Convert SSA subtitles to WebVTT online for free. Flatten SubStation Alpha styling, keep timing, and create browser-ready VTT captions locally.',
+			},
+			{
+				label: 'SSA to VTT tool links guide',
+				match: 'href="/guides/how-to-convert-ssa-to-vtt/"',
+			},
+			{
+				label: 'SSA to VTT tool FAQ covers HTML5 video',
+				match: 'Can HTML5 video use SSA subtitle files directly?',
+			},
+		],
+	},
+	{
 		path: '/tools/html5-video-subtitle-converter/',
 		expect: [
 			{
@@ -4071,6 +4096,10 @@ const checks = [
 			{
 				label: 'llms lists SSA to SRT tool',
 				match: 'https://subtitletoolkit.tools/tools/ssa-to-srt/',
+			},
+			{
+				label: 'llms lists SSA to VTT tool',
+				match: 'https://subtitletoolkit.tools/tools/ssa-to-vtt/',
 			},
 			{
 				label: 'llms lists SMI to SRT tool',

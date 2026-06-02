@@ -12,10 +12,10 @@ tags:
   - ass
   - conversion
   - web players
-primaryTool: ass-to-vtt
+primaryTool: ssa-to-vtt
 faqs:
   - question: How do I convert SSA to VTT?
-    answer: Use an ASS to VTT converter that also accepts SSA files. It reads SSA dialogue events, converts timing to WebVTT format, removes unsupported styling, and adds the WEBVTT header.
+    answer: Use the SSA to VTT converter. It reads SSA dialogue events, converts timing to WebVTT format, removes unsupported styling, and adds the WEBVTT header.
   - question: Can browser players use SSA files directly?
     answer: Usually no. HTML5 video and most browser players expect WebVTT, so convert SSA to VTT before using the captions in a web page or JavaScript player.
   - question: Will SSA styling survive in VTT?
@@ -26,7 +26,7 @@ SSA is an older SubStation Alpha subtitle format. It can store styling and dialo
 
 ## Quick answer
 
-Use the [ASS to VTT Converter](/tools/ass-to-vtt/) to convert SSA subtitles to WebVTT. The tool accepts `.ssa` input, keeps dialogue timing and readable text, removes unsupported styling metadata, and adds the `WEBVTT` header needed by browser players.
+Use the [SSA to VTT Converter](/tools/ssa-to-vtt/) to convert SSA subtitles to WebVTT. The tool accepts `.ssa` input, keeps dialogue timing and readable text, removes unsupported styling metadata, and adds the `WEBVTT` header needed by browser players.
 
 Keep the original SSA file as the editable source if styles or positions still matter. Use the VTT output as the browser playback copy.
 
@@ -61,7 +61,7 @@ The result is built for browser playback, not for preserving a styled SSA layout
 ## Step-by-step workflow
 
 1. Save a copy of the original `.ssa` file.
-2. Open the [ASS to VTT Converter](/tools/ass-to-vtt/).
+2. Open the [SSA to VTT Converter](/tools/ssa-to-vtt/).
 3. Upload or paste the SSA subtitle content.
 4. Convert the file to VTT.
 5. Review the output for missing dialogue, line breaks, and garbled characters.
@@ -125,7 +125,7 @@ After conversion, test the VTT in the real player. MIME type, CORS headers, file
 
 ### How do I convert SSA to VTT?
 
-Open the [ASS to VTT Converter](/tools/ass-to-vtt/) with your `.ssa` file. The converter reads SSA dialogue events and exports WebVTT cues with browser-friendly timestamps.
+Open the [SSA to VTT Converter](/tools/ssa-to-vtt/) with your `.ssa` file. The converter reads SSA dialogue events and exports WebVTT cues with browser-friendly timestamps.
 
 ### Can browser players use SSA files directly?
 
@@ -145,7 +145,7 @@ No. Conversion keeps timing and readable text, but SSA fonts, colors, positions,
 
 ## Related tools
 
+- [SSA to VTT Converter](/tools/ssa-to-vtt/)
 - [ASS to VTT Converter](/tools/ass-to-vtt/)
 - [WebVTT Validator](/tools/webvtt-validator/)
 - [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
-

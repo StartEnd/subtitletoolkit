@@ -7,6 +7,7 @@ export type SubtitleToolId =
   | 'srt-to-ass'
   | 'ass-to-srt'
   | 'ssa-to-srt'
+  | 'ssa-to-vtt'
   | 'vtt-to-ass'
   | 'ass-to-vtt'
   | 'smi-to-srt'
@@ -735,7 +736,7 @@ const enTools: SubtitleTool[] = [
           'No. The SSA to SRT conversion runs locally in your browser, so the subtitle file stays on your device.',
       },
     ],
-    relatedTools: ['ass-to-srt', 'srt-validator', 'subtitle-encoding-fixer'],
+    relatedTools: ['ssa-to-vtt', 'ass-to-srt', 'srt-validator'],
     relatedGuides: [
       {
         href: '/guides/how-to-convert-ssa-to-srt/',
@@ -745,6 +746,65 @@ const enTools: SubtitleTool[] = [
       {
         href: '/guides/how-to-validate-srt-files/',
         title: 'How to validate SRT files',
+      },
+    ],
+    sampleInput: sharedSamples.ssa,
+  },
+  {
+    id: 'ssa-to-vtt',
+    title: 'SSA to VTT Converter',
+    shortTitle: 'SSA to VTT',
+    description:
+      'Convert SSA subtitles to WebVTT online for free, locally in your browser with no upload.',
+    summary:
+      'Use this free SSA to VTT converter when an older SubStation Alpha subtitle file needs a browser-ready WebVTT copy for HTML5 video, Video.js, JW Player, or web embeds.',
+    buttonLabel: 'Convert to VTT',
+    inputLabel: 'SSA input',
+    outputLabel: 'VTT output',
+    placeholder: 'Paste your SSA subtitles here',
+    acceptedExtensions: ['.ssa', '.ass', '.txt'],
+    sampleFileName: 'sample.ssa',
+    useCases: [
+      'Convert older SSA subtitles to WebVTT for browser playback.',
+      'Prepare SubStation Alpha captions for HTML5 video track elements.',
+      'Flatten SSA styling into readable VTT cue text for web players.',
+      'Create a browser delivery copy while keeping the original SSA file for editing.',
+    ],
+    faqs: [
+      {
+        question: 'How do I convert SSA subtitles to VTT?',
+        answer:
+          'Open the SSA to VTT converter, paste or upload the .ssa file, and export the dialogue events as WebVTT cues with a WEBVTT header.',
+      },
+      {
+        question: 'Can HTML5 video use SSA subtitle files directly?',
+        answer:
+          'Usually no. Native HTML5 video tracks and most browser players expect WebVTT, so SSA files should be converted to VTT for web playback.',
+      },
+      {
+        question: 'Will SSA styling survive in VTT?',
+        answer:
+          'No. WebVTT keeps timing and readable dialogue text, but it does not preserve full SSA fonts, colors, positioning, effects, or style definitions.',
+      },
+      {
+        question: 'Are SSA files uploaded to a server?',
+        answer:
+          'No. The SSA to VTT conversion runs locally in your browser, so the subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['ass-to-vtt', 'webvtt-validator', 'html5-video-subtitle-converter'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-convert-ssa-to-vtt/',
+        title: 'How to convert SSA to VTT',
+      },
+      {
+        href: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
+        title: 'How to convert ASS to VTT for web players',
+      },
+      {
+        href: '/guides/how-to-validate-webvtt-files/',
+        title: 'How to validate WebVTT files',
       },
     ],
     sampleInput: sharedSamples.ssa,

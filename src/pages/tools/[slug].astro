@@ -43,6 +43,8 @@ const toolMetaDescriptions: Record<string, string> = {
 		'Convert ASS or SSA to SRT online for free. Remove unsupported styling, keep timing, and create YouTube-ready SubRip captions locally.',
 	'ssa-to-srt':
 		'Convert SSA subtitles to SRT online for free. Flatten SubStation Alpha styling, keep dialogue timing, and create SubRip captions locally.',
+	'ssa-to-vtt':
+		'Convert SSA subtitles to WebVTT online for free. Flatten SubStation Alpha styling, keep timing, and create browser-ready VTT captions locally.',
 	'vtt-to-ass':
 		'Convert WebVTT captions to ASS format for subtitle editing and style-ready workflows, locally in your browser with no upload.',
 	'ass-to-vtt':
@@ -122,6 +124,7 @@ const toolPageTitles: Record<string, string> = {
 	'srt-to-ass': 'SRT to ASS Converter for Aegisub Styling - Free',
 	'ass-to-srt': 'ASS to SRT Converter for YouTube Uploads - Free',
 	'ssa-to-srt': 'SSA to SRT Converter - Convert SubStation Alpha Free',
+	'ssa-to-vtt': 'SSA to VTT Converter - Convert SubStation Alpha Free',
 	'vtt-to-ass': 'VTT to ASS Converter - Convert Captions Online Free',
 	'ass-to-vtt': 'ASS to VTT Converter - Convert Subtitles Online Free',
 	'smi-to-srt': 'SMI to SRT Converter - Convert SAMI Captions Free',
@@ -175,6 +178,8 @@ const workflowNotes: Record<string, string> = {
 		'ASS and SSA files can carry styling, positioning, karaoke effects, and dialogue metadata that YouTube and many upload workflows do not accept. This converter keeps timing and readable dialogue, turns ASS line breaks into SRT text, removes unsupported styling, and creates a simple SubRip upload copy locally.',
 	'ssa-to-srt':
 		'SSA files are older SubStation Alpha subtitle files with dialogue timing, style sections, and editor metadata. This converter keeps timing and readable dialogue, turns SSA line breaks into SRT text, removes unsupported styling, and creates a simple SubRip copy locally with no upload.',
+	'ssa-to-vtt':
+		'SSA files are not a native browser caption format. This converter keeps dialogue timing and readable text, turns SSA line breaks into WebVTT cue text, adds the WEBVTT header, and creates a browser-ready VTT delivery copy locally with no upload.',
 	'vtt-to-ass':
 		'Use this when captions begin in a web player workflow but need to move into an editor that works better with ASS. The output gives you a basic ASS structure that can be styled afterward.',
 	'ass-to-vtt':
@@ -285,6 +290,11 @@ const mistakeNotes: Record<string, string[]> = {
 		'Expecting SSA fonts, colors, or screen positions to survive in SRT.',
 		'Not reviewing older SSA files for encoding problems before delivery.',
 		'Deleting the original SSA file when the styled source is still needed for editing.',
+	],
+	'ssa-to-vtt': [
+		'Uploading SSA directly to an HTML5 video track instead of converting to VTT.',
+		'Expecting SSA fonts, colors, or screen positions to survive in WebVTT.',
+		'Skipping playback validation after creating the VTT file.',
 	],
 	'vtt-to-ass': [
 		'Expecting VTT cue settings to become styled ASS rules automatically.',

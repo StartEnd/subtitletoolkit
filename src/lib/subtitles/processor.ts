@@ -1202,6 +1202,7 @@ export function processSubtitleTool(
     case 'vtt-to-ass':
       return serializeAss(parseVtt(normalized));
     case 'ass-to-vtt':
+    case 'ssa-to-vtt':
       return serializeVtt(parseAss(normalized));
     case 'smi-to-srt':
       return serializeSrt(parseSmi(normalized));
@@ -1335,6 +1336,7 @@ export function inferOutputFormat(
   switch (toolId) {
     case 'srt-to-vtt':
     case 'ass-to-vtt':
+    case 'ssa-to-vtt':
     case 'html5-video-subtitle-converter':
     case 'videojs-subtitle-converter':
     case 'jw-player-subtitle-converter':
