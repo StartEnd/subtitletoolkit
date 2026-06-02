@@ -1207,6 +1207,7 @@ export function processSubtitleTool(
     case 'sbv-to-srt':
       return serializeSrt(parseSbv(normalized));
     case 'ttml-to-srt':
+    case 'dfxp-to-srt':
       return serializeSrt(parseTtml(normalized));
     case 'scc-to-srt':
       return serializeSrt(parseScc(normalized));
@@ -1342,6 +1343,7 @@ export function inferOutputFormat(
     case 'smi-to-srt':
     case 'sbv-to-srt':
     case 'ttml-to-srt':
+    case 'dfxp-to-srt':
     case 'scc-to-srt':
     case 'microdvd-to-srt':
     case 'lrc-to-srt':

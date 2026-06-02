@@ -1,0 +1,124 @@
+---
+title: How to convert DFXP to SRT
+seoTitle: Convert DFXP to SRT - Free Timed Text Converter
+seoDescription: Convert DFXP subtitles to SRT online for free. Parse timed-text XML captions, remove styling metadata, and create SubRip locally.
+description: Convert DFXP timed-text caption files into standard SRT subtitles for upload, editing, review, and archive workflows.
+pubDate: 2026-06-02
+category: conversion-guides
+tags:
+  - dfxp
+  - ttml
+  - xml subtitles
+  - srt
+  - conversion
+primaryTool: dfxp-to-srt
+faqs:
+  - question: How do I convert a DFXP subtitle file to SRT?
+    answer: Use the DFXP to SRT converter with a .dfxp, .ttml, or XML caption file. It reads timed paragraph cues, removes XML wrapper markup, and exports numbered SRT cues.
+  - question: Is DFXP the same as TTML?
+    answer: DFXP is an older name often used for TTML-style timed text. In subtitle workflows, both usually mean XML captions with timed paragraph cues.
+  - question: Can I convert DFXP subtitles without uploading the file?
+    answer: Yes. The converter runs in your browser, so the DFXP subtitle text stays on your device.
+---
+
+DFXP subtitle files are XML timed text captions. You may see them in older streaming exports, caption archives, or platform workflows that also use the TTML name.
+
+SRT is simpler and more portable. It keeps numbered cues, timestamps, and readable subtitle text, which makes it easier to upload, validate, edit, and send for review.
+
+## Quick answer
+
+Use the [DFXP to SRT Converter](/tools/dfxp-to-srt/) to convert `.dfxp`, `.ttml`, or XML timed text captions into standard SubRip subtitles. The tool reads timed `<p>` cues, strips XML wrapper and styling metadata, and creates SRT output locally in your browser with no upload.
+
+## When to convert DFXP to SRT
+
+Convert DFXP to SRT when:
+
+- a caption export uses timed-text XML but your editor expects SRT
+- an upload form accepts SubRip but not DFXP or TTML
+- a client wants a readable review copy without XML styling metadata
+- you need to validate, clean, shift, or merge the captions with SRT tools
+- an archive workflow needs a simple fallback subtitle file
+
+Keep the original DFXP file if you still need regions, styles, language metadata, or broadcast-specific caption details. SRT is a practical copy, not a full replacement for every DFXP feature.
+
+## What changes during conversion
+
+DFXP stores timing and text inside XML paragraph elements:
+
+```xml
+<p begin="00:00:01.000" end="00:00:03.500">Welcome back to the edit.</p>
+<p begin="00:00:04.200" end="00:00:06.000">This DFXP cue needs SRT output.<br/>Keep the line break.</p>
+```
+
+SRT stores the same captions like this:
+
+```text
+1
+00:00:01,000 --> 00:00:03,500
+Welcome back to the edit.
+
+2
+00:00:04,200 --> 00:00:06,000
+This DFXP cue needs SRT output.
+Keep the line break.
+```
+
+During conversion, the tool:
+
+- reads DFXP paragraph cues with `begin` and `end` timing
+- supports common duration timing when a cue uses `begin` plus `dur`
+- converts XML line breaks into subtitle line breaks
+- removes regions, styles, spans, and wrapper tags
+- decodes common HTML/XML entities
+- generates sequential SRT cue numbers
+
+The output keeps readable timing and text. It does not preserve DFXP styling, positioning, regions, speaker metadata, or advanced broadcast semantics.
+
+## Step-by-step workflow
+
+1. Save a copy of the original `.dfxp`, `.ttml`, or XML caption file.
+2. Open the [DFXP to SRT Converter](/tools/dfxp-to-srt/).
+3. Upload or paste the DFXP subtitle content.
+4. Convert the file to SRT.
+5. Review cues that used nested `<span>` or `<br>` markup.
+6. Run the output through the [SRT Validator](/tools/srt-validator/) before upload.
+
+## Common mistakes
+
+### Using a video file instead of a DFXP caption file
+
+DFXP to SRT conversion works on a separate text caption file. It does not extract captions from a video container and it cannot recover burned-in text from the image.
+
+### Expecting SRT to preserve XML styling
+
+SRT does not support DFXP regions, style definitions, positioning, or XML metadata. If those details matter, keep the DFXP file as the source of truth and use SRT only as a simple delivery or review copy.
+
+### Skipping validation after conversion
+
+DFXP exports can contain nested spans, empty paragraph cues, or timing values from a specific workflow. After conversion, validate the SRT file and scan the first, middle, and final cues before upload.
+
+## Related guides
+
+- [How to convert TTML to SRT](/guides/how-to-convert-ttml-to-srt/)
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+- [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)
+
+## Related tools
+
+- [DFXP to SRT Converter](/tools/dfxp-to-srt/)
+- [TTML to SRT Converter](/tools/ttml-to-srt/)
+- [SRT Validator](/tools/srt-validator/)
+
+## FAQ
+
+### How do I convert a DFXP subtitle file to SRT?
+
+Open the [DFXP to SRT Converter](/tools/dfxp-to-srt/), paste or upload the `.dfxp`, `.ttml`, or XML caption file, and export the timed paragraphs as numbered SRT cues.
+
+### Is DFXP the same as TTML?
+
+DFXP is an older name often used for TTML-style timed text. In practical subtitle workflows, both usually mean XML captions with timed paragraph cues.
+
+### Can I convert DFXP subtitles without uploading the file?
+
+Yes. The converter runs locally in your browser, so the DFXP subtitle text stays on your device.

@@ -11,6 +11,7 @@ export type SubtitleToolId =
   | 'smi-to-srt'
   | 'sbv-to-srt'
   | 'ttml-to-srt'
+  | 'dfxp-to-srt'
   | 'scc-to-srt'
   | 'microdvd-to-srt'
   | 'lrc-to-srt'
@@ -165,6 +166,15 @@ Today we are converting SBV captions for upload.`,
     <div>
       <p begin="00:00:01.000" end="00:00:03.500">Welcome back to the edit.</p>
       <p begin="00:00:04.200" end="00:00:06.000">Today we are converting TTML captions.<br/>They need SRT output.</p>
+    </div>
+  </body>
+</tt>`,
+  dfxp: `<?xml version="1.0" encoding="UTF-8"?>
+<tt xmlns="http://www.w3.org/ns/ttml">
+  <body>
+    <div>
+      <p begin="00:00:01.000" end="00:00:03.500">Welcome back to the edit.</p>
+      <p begin="00:00:04.200" end="00:00:06.000">Today we are converting DFXP captions.<br/>They need SRT output.</p>
     </div>
   </body>
 </tt>`,
@@ -909,11 +919,15 @@ const enTools: SubtitleTool[] = [
           'No. The TTML to SRT conversion runs locally in your browser, so the subtitle file stays on your device.',
       },
     ],
-    relatedTools: ['scc-to-srt', 'srt-validator'],
+    relatedTools: ['dfxp-to-srt', 'srt-validator'],
     relatedGuides: [
       {
         href: '/guides/how-to-convert-ttml-to-srt/',
         title: 'How to convert TTML to SRT',
+      },
+      {
+        href: '/guides/how-to-convert-dfxp-to-srt/',
+        title: 'How to convert DFXP to SRT',
       },
       {
         href: '/guides/how-to-convert-subtitles-for-html5-video/',
@@ -925,6 +939,65 @@ const enTools: SubtitleTool[] = [
       },
     ],
     sampleInput: sharedSamples.ttml,
+  },
+  {
+    id: 'dfxp-to-srt',
+    title: 'DFXP to SRT Converter',
+    shortTitle: 'DFXP to SRT',
+    description:
+      'Convert DFXP subtitles to SRT online for free, locally in your browser with no upload.',
+    summary:
+      'Use this free DFXP to SRT converter when an older timed-text XML caption export needs a standard SubRip copy for editing, upload, or review.',
+    buttonLabel: 'Convert to SRT',
+    inputLabel: 'DFXP input',
+    outputLabel: 'SRT output',
+    placeholder: 'Paste your DFXP or TTML subtitles here',
+    acceptedExtensions: ['.dfxp', '.ttml', '.xml', '.txt'],
+    sampleFileName: 'sample.dfxp',
+    useCases: [
+      'Convert DFXP timed-text XML captions to standard SRT.',
+      'Move DFXP subtitle exports into editors that expect SubRip files.',
+      'Create a simple review copy from streaming or archive caption data.',
+      'Prepare parsed DFXP cues for SRT validation, cleanup, or upload workflows.',
+    ],
+    faqs: [
+      {
+        question: 'How do I convert a DFXP subtitle file to SRT?',
+        answer:
+          'Open the DFXP to SRT converter, paste or upload the .dfxp, .ttml, or XML caption file, and export the timed paragraphs as numbered SRT cues.',
+      },
+      {
+        question: 'Is DFXP different from TTML?',
+        answer:
+          'DFXP is an older name used for TTML-style timed text. In most subtitle workflows, both mean XML captions with timed paragraph cues.',
+      },
+      {
+        question: 'Does DFXP styling survive in SRT?',
+        answer:
+          'No. SRT keeps timing and readable text, but it does not preserve DFXP regions, styling, positioning, or XML metadata.',
+      },
+      {
+        question: 'Are DFXP files uploaded to a server?',
+        answer:
+          'No. The DFXP to SRT conversion runs locally in your browser, so the subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['ttml-to-srt', 'srt-validator'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-convert-dfxp-to-srt/',
+        title: 'How to convert DFXP to SRT',
+      },
+      {
+        href: '/guides/how-to-convert-ttml-to-srt/',
+        title: 'How to convert TTML to SRT',
+      },
+      {
+        href: '/guides/how-to-validate-srt-files/',
+        title: 'How to validate SRT files',
+      },
+    ],
+    sampleInput: sharedSamples.dfxp,
   },
   {
     id: 'scc-to-srt',
