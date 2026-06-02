@@ -2696,19 +2696,39 @@ const checks = [
 		expect: [
 			{
 				label: 'missing subtitles after conversion guide CTR title',
-				match: '<title>Subtitles Missing After Conversion - Fix Cue Loss</title>',
+				match: '<title>Subtitles Missing After Conversion - Recover Cues</title>',
 			},
 			{
 				label: 'missing subtitles after conversion guide meta description',
-				match: 'Fix subtitles missing after conversion by checking malformed cues, unsupported styling, empty captions, timestamp order, and format-specific parser limits.',
+				match: 'Fix missing subtitles after conversion. Compare cue counts, validate SRT/VTT timing, check ASS dialogue rows, and recover skipped captions locally.',
 			},
 			{
 				label: 'missing subtitles after conversion guide opens validator tool',
 				match: 'href="/tools/srt-validator/"',
 			},
 			{
+				label: 'missing subtitles guide opens WebVTT validator tool',
+				match: 'href="/tools/webvtt-validator/"',
+			},
+			{
+				label: 'missing subtitles guide opens ASS to SRT tool',
+				match: 'href="/tools/ass-to-srt/"',
+			},
+			{
+				label: 'missing subtitles guide opens cleaner tool',
+				match: 'href="/tools/subtitle-cleaner/"',
+			},
+			{
+				label: 'missing subtitles guide links empty-output troubleshooting',
+				match: 'href="/guides/why-converted-subtitle-file-is-empty/"',
+			},
+			{
 				label: 'FAQ schema for missing subtitles after conversion questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why are some subtitles missing after conversion\?/
+			},
+			{
+				label: 'missing subtitles Article schema includes query tags',
+				match: /"keywords"\s*:\s*"missing subtitles, subtitle conversion, cue loss, malformed cues, srt, ass conversion, skipped cues"/
 			},
 		],
 	},

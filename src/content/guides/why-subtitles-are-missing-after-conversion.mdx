@@ -1,9 +1,10 @@
 ---
 title: Why subtitles are missing after conversion
-seoTitle: Subtitles Missing After Conversion - Fix Cue Loss
-seoDescription: Fix subtitles missing after conversion by checking malformed cues, unsupported styling, empty captions, timestamp order, and format-specific parser limits.
-description: Diagnose missing subtitles after conversion by checking malformed cues, unsupported styling, empty captions, timestamp order, and format-specific parser limits.
+seoTitle: Subtitles Missing After Conversion - Recover Cues
+seoDescription: Fix missing subtitles after conversion. Compare cue counts, validate SRT/VTT timing, check ASS dialogue rows, and recover skipped captions locally.
+description: Diagnose missing subtitles after conversion by comparing cue counts, validating timing, checking ASS dialogue rows, and repairing skipped captions.
 pubDate: 2026-06-02
+updatedDate: 2026-06-02
 category: sync-fixes
 tags:
   - missing subtitles
@@ -11,6 +12,8 @@ tags:
   - cue loss
   - malformed cues
   - srt
+  - ass conversion
+  - skipped cues
 primaryTool: srt-validator
 faqs:
   - question: Why are some subtitles missing after conversion?
@@ -19,6 +22,8 @@ faqs:
     answer: Format conversion can remove styling, but it should keep dialogue text. If lines disappear, check whether they were comments, effects, empty events, or malformed dialogue rows.
   - question: How do I recover missing subtitle cues?
     answer: Validate the source file first, repair broken timestamps or cue spacing, then convert again. Keep the original file so you can compare cue counts before and after conversion.
+  - question: What if the converted subtitle file has no cues at all?
+    answer: A completely empty output usually means the source format was misread, contained no parseable dialogue text, or had repeated timestamp errors. Diagnose that separately before checking partial cue loss.
 ---
 
 If subtitles are missing after conversion, do not assume the text was deleted on purpose. Most cue loss comes from source blocks that were already malformed, empty, unsupported, or impossible to map into the target format.
@@ -26,6 +31,20 @@ If subtitles are missing after conversion, do not assume the text was deleted on
 ## Quick answer
 
 Compare the cue count before and after conversion. Then validate the source file with [SRT Validator](/tools/srt-validator/) or [WebVTT Validator](/tools/webvtt-validator/) before converting again. If the source file is ASS, check whether missing lines were comments, effects, or dialogue rows with unsupported timing.
+
+If the converted file has no captions at all, start with [Why converted subtitle file is empty](/guides/why-converted-subtitle-file-is-empty/). This guide is for the case where some captions survive but others disappear.
+
+## First check how much is missing
+
+| What changed after conversion | What it usually means | Best next step |
+| --- | --- | --- |
+| A few cues are missing | Broken cue blocks, empty captions, or unsupported styling in those rows | Validate the source and inspect the skipped range. |
+| Every cue after one point is missing | Malformed timestamp, bad blank line, or parser failure at one block | Repair the first bad cue, then convert again. |
+| Styled signs or karaoke effects vanished | ASS effects could not become plain SRT or VTT captions | Confirm whether the missing rows were real dialogue. |
+| The output is completely blank | Wrong source format, no dialogue text, or repeated parser failure | Use the empty-output troubleshooting guide first. |
+| Captions exist but do not show in the player | Playback or delivery issue, not conversion cue loss | Check SRT/VTT playback troubleshooting. |
+
+Do not judge only by file size. Count visible captions or compare the first missing line in the original file against the converted output.
 
 ## Common causes
 
@@ -43,6 +62,8 @@ This line should survive conversion.
 
 If the cue number, timestamp line, or text line is missing, repair the source first. Use [Fix SRT Timestamps](/tools/fix-srt-timestamps/) when timing lines are the obvious problem.
 
+For repeated timestamp mistakes, run the file through [How to fix malformed SRT timestamps](/guides/how-to-fix-malformed-srt-timestamps/) before converting again.
+
 ### Empty captions were removed
 
 Some subtitle files contain cues with no useful text. Cleaners and converters may remove those blocks because they do not render anything.
@@ -55,6 +76,8 @@ Some subtitle files contain cues with no useful text. Cleaners and converters ma
 
 That is usually safe, but it can make cue counts look different. Compare visible text, not only cue numbers.
 
+If you need to remove empty rows intentionally, clean a copy with [Subtitle Cleaner](/tools/subtitle-cleaner/) and keep the original for comparison.
+
 ### ASS styling or effects did not convert
 
 ASS files can contain comments, karaoke effects, positioning, and style metadata. When converting ASS to SRT or VTT, only dialogue text can be preserved reliably.
@@ -62,6 +85,8 @@ ASS files can contain comments, karaoke effects, positioning, and style metadata
 If lines are missing after ASS conversion, check whether they are real `Dialogue:` rows. Effects, comments, or drawing commands may not become captions in simpler formats.
 
 For YouTube uploads, start with [How to convert ASS to SRT for YouTube uploads](/guides/how-to-convert-ass-to-srt-for-youtube-uploads/). For browser players, use [How to convert ASS to VTT for web players](/guides/how-to-convert-ass-to-vtt-for-web-players/).
+
+Use [ASS to SRT](/tools/ass-to-srt/) or [ASS to VTT](/tools/ass-to-vtt/) only after confirming that the missing lines are dialogue rows, not comments or drawing commands.
 
 ### Timestamps are out of order or overlapping
 
@@ -75,6 +100,27 @@ SRT is simple timed text. WebVTT supports browser cues and basic settings. ASS s
 
 That is normal. Missing visible dialogue is not normal. If actual spoken lines disappear, validate and clean the source file before converting again.
 
+## Compare source and output safely
+
+Use this quick audit before editing the source file:
+
+1. Save the original subtitle file unchanged.
+2. Count source cue blocks or dialogue rows.
+3. Count converted output cues.
+4. Find the first missing visible line.
+5. Inspect the source block immediately before that line.
+6. Validate or repair that area, then convert a copy again.
+
+For SRT, cue blocks are usually separated by blank lines. For WebVTT, look for timestamp lines. For ASS or SSA, count `Dialogue:` rows that contain readable text.
+
+## Pick the right recovery path
+
+- Use [SRT Validator](/tools/srt-validator/) when SRT cues disappear after conversion.
+- Use [WebVTT Validator](/tools/webvtt-validator/) when VTT captions disappear or fail after conversion.
+- Use [Fix SRT Timestamps](/tools/fix-srt-timestamps/) when malformed timing lines cause skipped cues.
+- Use [Subtitle Cleaner](/tools/subtitle-cleaner/) when tags, odd spacing, or empty rows confuse conversion.
+- Use [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/) when you cannot tell whether the issue is format, timing, encoding, or playback.
+
 ## Recovery workflow
 
 1. Keep a copy of the original subtitle file.
@@ -87,6 +133,24 @@ That is normal. Missing visible dialogue is not normal. If actual spoken lines d
 
 If the converted file is valid but does not display, use [Why your SRT file is not working](/guides/why-srt-file-is-not-working/) or [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/) depending on the destination.
 
+## Frequently asked questions
+
+### Why are some subtitles missing after conversion?
+
+Missing subtitles usually mean the converter skipped malformed cues, empty captions, unsupported ASS events, or timing blocks that could not be parsed safely.
+
+### Can subtitle conversion delete styled text?
+
+Format conversion can remove styling, but it should keep dialogue text. If lines disappear, check whether they were comments, effects, empty events, or malformed dialogue rows.
+
+### How do I recover missing subtitle cues?
+
+Validate the source file first, repair broken timestamps or cue spacing, then convert again. Keep the original file so you can compare cue counts before and after conversion.
+
+### What if the converted subtitle file has no cues at all?
+
+A completely empty output usually means the source format was misread, contained no parseable dialogue text, or had repeated timestamp errors. Start with [Why converted subtitle file is empty](/guides/why-converted-subtitle-file-is-empty/) before checking partial cue loss.
+
 ## Related guides
 
 - [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)
@@ -94,6 +158,8 @@ If the converted file is valid but does not display, use [Why your SRT file is n
 - [How to fix out-of-order subtitle cues](/guides/how-to-fix-out-of-order-subtitle-cues/)
 - [How to fix overlapping subtitles](/guides/how-to-fix-overlapping-subtitles/)
 - [Why your SRT file is not working](/guides/why-srt-file-is-not-working/)
+- [Why converted subtitle file is empty](/guides/why-converted-subtitle-file-is-empty/)
+- [How to convert ASS to SRT for YouTube uploads](/guides/how-to-convert-ass-to-srt-for-youtube-uploads/)
 
 ## Related tools
 
