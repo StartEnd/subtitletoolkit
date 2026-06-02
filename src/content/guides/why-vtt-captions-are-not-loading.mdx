@@ -2,55 +2,143 @@
 title: Why VTT captions are not loading
 seoTitle: VTT Captions Not Loading - WebVTT Fix Guide
 seoDescription: Fix VTT captions that do not load by checking the WEBVTT header, timestamp dots, track setup, MIME type, and CORS delivery.
-description: Fix WebVTT captions that do not load in HTML5 video by checking the WEBVTT header, timestamp format, track setup, and file delivery.
+description: Fix WebVTT captions that do not load in HTML5 video by checking the file format, track element, MIME type, CORS, and player setup.
 pubDate: 2026-05-26
+updatedDate: 2026-06-02
 category: sync-fixes
 tags:
+  - vtt captions not loading
   - webvtt
   - vtt
   - html5 video
   - captions not loading
   - validator
 primaryTool: webvtt-validator
+faqs:
+  - question: Why are my VTT captions not loading?
+    answer: The most common causes are a missing WEBVTT header, SRT-style comma timestamps, an unreachable track URL, the wrong MIME type, CORS blocking, or a track element that is not configured correctly.
+  - question: How do I check whether a VTT file is valid?
+    answer: Use a WebVTT validator first. A valid file should start with WEBVTT, use dot-based timestamps, separate cue blocks with blank lines, and contain parseable caption text.
+  - question: What MIME type should a VTT file use?
+    answer: WebVTT files should be served as text/vtt. If a server returns text/plain, application/octet-stream, or an HTML error page, some browsers and players may refuse to load captions.
+  - question: Can I rename an SRT file to VTT?
+    answer: No. SRT uses comma timestamps and does not include the required WEBVTT header. Convert SRT to VTT instead of only changing the file extension.
 ---
 
-When VTT captions do not load, the problem is usually either the file format or the way the file is attached to the player.
+When VTT captions do not load, the problem is usually either the WebVTT file itself or the way the browser is fetching it.
+
+The useful move is to separate those two problems quickly. First prove the `.vtt` file is valid. Then check the HTML `track` element, file URL, MIME type, CORS headers, and player settings.
 
 ## Quick answer
 
-Validate the caption file with the [WebVTT Validator](/tools/webvtt-validator/) first. A missing `WEBVTT` header, comma-based timestamps, or malformed cue blocks can stop captions from rendering.
+Validate the caption file with the [WebVTT Validator](/tools/webvtt-validator/) first. A missing `WEBVTT` header, comma-based timestamps, malformed cue blocks, or invalid timing can stop captions from rendering.
 
-If the file validates, check the HTML `track` element, file URL, CORS, and content type.
+If validation passes, debug delivery: open the VTT URL directly, confirm it returns `200`, check that the response is served as `text/vtt`, then inspect the HTML `track` element and CORS headers.
+
+If your source file is SRT, use the [SRT to VTT Converter](/tools/srt-to-vtt/) instead of renaming the extension.
 
 ## File problems to check first
 
 Your VTT file should have:
 
-- `WEBVTT` at the top
+- `WEBVTT` at the top of the file
 - dot-based timestamps such as `00:00:01.000`
 - cue blocks separated by blank lines
-- a real `.vtt` file served from a reachable URL
+- start times before end times
+- readable caption text after each timing line
+- a real `.vtt` file, not an HTML error page saved with a VTT name
 
-If the file contains SRT-style commas, convert it properly instead of renaming it.
+A minimal valid VTT file looks like this:
 
-## Player setup problems
+```text
+WEBVTT
 
-If the file itself is valid, check the page:
+00:00:01.000 --> 00:00:03.500
+First caption line.
 
-- the `src` path points to the real VTT file
-- the `kind` value is correct, usually `subtitles` or `captions`
-- the `srclang` matches the caption language
-- the server allows the browser to fetch the file
-- the video player actually enables the track
+00:00:04.000 --> 00:00:06.000
+Second caption line.
+```
+
+If the file contains SRT-style commas, convert it properly. This is wrong for WebVTT:
+
+```text
+00:00:01,000 --> 00:00:03,500
+```
+
+WebVTT needs dots:
+
+```text
+00:00:01.000 --> 00:00:03.500
+```
+
+For a deeper file-level checklist, use [How to validate WebVTT files](/guides/how-to-validate-webvtt-files/).
+
+## Delivery problems after the file validates
+
+If the file is valid but captions still do not appear, the browser may not be receiving the file correctly.
+
+### Track URL returns the wrong response
+
+Open the VTT URL directly in the browser. It should show the VTT text, not a login page, redirect loop, 404 page, CDN error, or compressed download prompt.
+
+If the URL does not open cleanly, fix the path before changing player code.
+
+### Server uses the wrong MIME type
+
+VTT files should be served as:
+
+```text
+text/vtt
+```
+
+Some browsers reject captions when the server returns `text/plain`, `application/octet-stream`, or an HTML error response. If the caption file is hosted on a static site, CDN, storage bucket, or custom backend, check the response headers.
+
+### CORS blocks the caption request
+
+If the video page and VTT file live on different domains, the subtitle request can be blocked by CORS. This often happens when the video is on one host and captions are on another CDN or storage bucket.
+
+Use [How to fix CORS errors for VTT subtitles](/guides/how-to-fix-cors-errors-for-vtt-subtitles/) when the browser console shows CORS errors or the caption URL works directly but fails inside the player.
+
+### HTML track setup is incomplete
+
+The browser needs a usable `track` element:
+
+```html
+<video controls>
+  <source src="/video/demo.mp4" type="video/mp4" />
+  <track
+    src="/captions/demo.en.vtt"
+    kind="subtitles"
+    srclang="en"
+    label="English"
+    default
+  />
+</video>
+```
+
+Check that:
+
+- `src` points to the real VTT file
+- `kind` is `subtitles` or `captions`
+- `srclang` is present and matches the language
+- `label` is readable in the player menu
+- the track is selected or marked `default` when you expect captions to appear automatically
+
+For broader browser-video troubleshooting, use [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/).
 
 ## Step-by-step workflow
 
 1. Open the [WebVTT Validator](/tools/webvtt-validator/).
 2. Validate the VTT file.
-3. Fix missing headers or timestamp separators.
-4. Confirm the VTT file URL opens directly in the browser.
-5. Check the HTML `track` element or player configuration.
-6. Test captions in the same browser where users will watch the video.
+3. Fix missing headers, comma timestamps, broken cue blocks, or invalid timing.
+4. Open the VTT URL directly in the browser.
+5. Confirm the response is `200` and served as `text/vtt`.
+6. Check CORS if the captions are hosted on another domain.
+7. Inspect the HTML `track` element or player configuration.
+8. Test captions in the same browser where users reported the issue.
+
+This order matters because it keeps file syntax, delivery, and player configuration separate.
 
 ## Common mistakes
 
@@ -62,15 +150,43 @@ VTT needs a header and dot-based timestamps. Use the [SRT to VTT Converter](/too
 
 Validate the VTT file first. It is faster than guessing inside player configuration.
 
-### Forgetting that validation is not delivery testing
+### Ignoring the response headers
 
-A valid VTT file can still fail if the URL is blocked, missing, or served with the wrong setup.
+A valid VTT file can still fail if the server sends the wrong MIME type or an HTML error page.
+
+### Forgetting cross-origin rules
+
+Captions can be blocked even when the file opens directly in your browser. Check the console and network tab when the VTT file is hosted on a different origin.
+
+### Expecting captions to show without selecting a track
+
+Some players do not show captions by default unless the track has `default`, the user selects it, or the player API enables it.
+
+## Frequently asked questions
+
+### Why are my VTT captions not loading?
+
+The most common causes are a missing `WEBVTT` header, SRT-style comma timestamps, an unreachable track URL, the wrong MIME type, CORS blocking, or a track element that is not configured correctly.
+
+### How do I check whether a VTT file is valid?
+
+Use the [WebVTT Validator](/tools/webvtt-validator/) first. A valid file should start with `WEBVTT`, use dot-based timestamps, separate cue blocks with blank lines, and contain parseable caption text.
+
+### What MIME type should a VTT file use?
+
+WebVTT files should be served as `text/vtt`. If a server returns `text/plain`, `application/octet-stream`, or an HTML error page, some browsers and players may refuse to load captions.
+
+### Can I rename an SRT file to VTT?
+
+No. SRT uses comma timestamps and does not include the required `WEBVTT` header. Convert SRT to VTT instead of only changing the file extension.
 
 ## Related guides
 
 - [How to validate WebVTT files](/guides/how-to-validate-webvtt-files/)
 - [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/)
+- [How to fix CORS errors for VTT subtitles](/guides/how-to-fix-cors-errors-for-vtt-subtitles/)
 - [How to fix invalid WebVTT timestamps](/guides/how-to-fix-invalid-webvtt-timestamps/)
+- [How to convert SRT to VTT for HTML5 video](/guides/how-to-convert-srt-to-vtt-for-html5-video/)
 
 ## Related tools
 

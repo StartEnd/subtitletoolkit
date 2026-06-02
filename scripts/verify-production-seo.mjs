@@ -1213,6 +1213,18 @@ const checks = [
 				label: 'VTT captions loading guide opens validator tool',
 				match: 'href="/tools/webvtt-validator/"',
 			},
+			{
+				label: 'VTT captions loading guide links CORS follow-up',
+				match: 'href="/guides/how-to-fix-cors-errors-for-vtt-subtitles/"',
+			},
+			{
+				label: 'VTT captions loading guide links SRT to VTT converter',
+				match: 'href="/tools/srt-to-vtt/"',
+			},
+			{
+				label: 'FAQ schema for VTT captions loading questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why are my VTT captions not loading\?/,
+			},
 		],
 	},
 	{
