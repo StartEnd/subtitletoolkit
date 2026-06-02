@@ -222,6 +222,10 @@ const checks = [
 				match: '/guides/srt-vs-vtt/',
 			},
 			{
+				label: 'homepage links to remove subtitle timestamps guide',
+				match: '/guides/how-to-remove-timestamps-from-subtitles/',
+			},
+			{
 				label: 'homepage links to SRT to TXT guide',
 				match: '/guides/how-to-convert-srt-to-txt/',
 			},
@@ -1556,6 +1560,27 @@ const checks = [
 			{
 				label: 'transcript guide no-upload meta description',
 				match: 'Create a readable transcript from SRT, VTT, or ASS subtitles. Remove timestamps and caption metadata locally in your browser with no upload.',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-remove-timestamps-from-subtitles/',
+		expect: [
+			{
+				label: 'remove subtitle timestamps guide CTR title',
+				match: '<title>Remove Timestamps from Subtitles - SRT VTT to Text</title>',
+			},
+			{
+				label: 'remove subtitle timestamps guide meta description',
+				match: 'Remove timestamps from SRT, VTT, or ASS subtitles and turn caption files into readable plain text locally with no upload.',
+			},
+			{
+				label: 'remove subtitle timestamps guide opens transcript tool',
+				match: 'href="/tools/subtitle-transcript-generator/"',
+			},
+			{
+				label: 'FAQ schema for remove subtitle timestamps questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I remove timestamps from subtitles\?/,
 			},
 		],
 	},
@@ -2945,6 +2970,10 @@ const checks = [
 				match: 'Transcript workflows',
 			},
 			{
+				label: 'guides index links to remove subtitle timestamps guide',
+				match: '/guides/how-to-remove-timestamps-from-subtitles/',
+			},
+			{
 				label: 'guides index links to SRT to TXT guide',
 				match: '/guides/how-to-convert-srt-to-txt/',
 			},
@@ -3399,6 +3428,10 @@ const checks = [
 			{
 				label: 'llms lists ASS instead of SRT guide',
 				match: 'https://subtitletoolkit.tools/guides/when-to-use-ass-instead-of-srt/',
+			},
+			{
+				label: 'llms lists remove subtitle timestamps guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-subtitles/',
 			},
 			{
 				label: 'llms lists SRT to TXT guide',
