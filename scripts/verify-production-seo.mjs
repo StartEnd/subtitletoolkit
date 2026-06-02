@@ -2314,19 +2314,43 @@ const checks = [
 		expect: [
 			{
 				label: 'export sync guide CTR title',
-				match: '<title>Subtitles Out of Sync After Export - Fix Timing Drift</title>',
+				match: '<title>Subtitles Out of Sync After Export - Fix Timing</title>',
 			},
 			{
 				label: 'export sync guide meta description',
-				match: 'Fix subtitles that go out of sync after export by checking offsets, scene cuts, drift, timeline changes, and subtitle conversion issues.',
+				match: 'Fix subtitles out of sync after export. Check video trims, scene cuts, drift, frame-rate changes, and shift SRT or VTT timing locally.',
 			},
 			{
 				label: 'export sync guide opens sync tool',
 				match: 'href="/tools/fix-out-of-sync-subtitles/"',
 			},
 			{
+				label: 'export sync guide opens delay fixer',
+				match: 'href="/tools/subtitle-delay-fixer/"',
+			},
+			{
 				label: 'export sync guide links partial shifter tool',
 				match: 'href="/tools/partial-subtitle-shifter/"',
+			},
+			{
+				label: 'export sync guide links time shifter tool',
+				match: 'href="/tools/subtitle-time-shifter/"',
+			},
+			{
+				label: 'export sync guide links drift follow-up',
+				match: 'href="/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/"',
+			},
+			{
+				label: 'export sync guide links partial shift guide',
+				match: 'href="/guides/how-to-shift-only-part-of-a-subtitle-file/"',
+			},
+			{
+				label: 'FAQ schema for export sync questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why are subtitles out of sync after export\?/
+			},
+			{
+				label: 'export sync Article schema includes query tags',
+				match: /"keywords"\s*:\s*"subtitle sync, export, timing, delay, drift, scene cut"/
 			},
 		],
 	},
