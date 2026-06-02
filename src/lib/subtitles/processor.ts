@@ -1,6 +1,6 @@
 import type { SubtitleToolId } from './catalog';
 
-export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'txt' | 'unknown';
+export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'smi' | 'txt' | 'unknown';
 
 export interface SubtitleCue {
   start: number;
@@ -37,6 +37,10 @@ export function detectSubtitleFormat(input: string): SubtitleFormat {
     /^Dialogue:/m.test(normalized)
   ) {
     return 'ass';
+  }
+
+  if (/<SAMI\b/i.test(normalized) || /<SYNC\s+Start\s*=/i.test(normalized)) {
+    return 'smi';
   }
 
   if (/^\d+\s*\n\d{2}:\d{2}:\d{2}[,.]\d{3}\s-->/m.test(normalized)) {
@@ -255,6 +259,46 @@ export function parseAss(input: string): SubtitleCue[] {
     .filter(Boolean) as SubtitleCue[];
 }
 
+function smiTimestampToMs(timestamp: string) {
+  return Number.parseInt(timestamp, 10);
+}
+
+export function parseSmi(input: string): SubtitleCue[] {
+  const normalized = normalizeSubtitleInput(input);
+  if (!normalized) {
+    return [];
+  }
+
+  const syncMatches = [
+    ...normalized.matchAll(/<SYNC\s+Start\s*=\s*["']?(\d+)["']?[^>]*>([\s\S]*?)(?=<SYNC\s+Start\s*=|<\/BODY>|<\/SAMI>|$)/gi),
+  ];
+
+  return syncMatches
+    .map((match, index) => {
+      const start = smiTimestampToMs(match[1]);
+      const nextStart = syncMatches[index + 1]
+        ? smiTimestampToMs(syncMatches[index + 1][1])
+        : start + 2000;
+      const text = match[2]
+        .replace(/<br\s*\/?\s*>/gi, '\n')
+        .replace(/<[^>]+>/g, ' ')
+        .split('\n')
+        .map((line) => cleanSubtitleLine(line))
+        .filter(Boolean);
+
+      if (!text.length || text.every((line) => /^&nbsp;$/i.test(line))) {
+        return null;
+      }
+
+      return {
+        start,
+        end: Math.max(start + 1, nextStart),
+        text,
+      };
+    })
+    .filter(Boolean) as SubtitleCue[];
+}
+
 export function parseSubtitleByFormat(
   input: string,
   format: SubtitleFormat
@@ -266,6 +310,8 @@ export function parseSubtitleByFormat(
       return parseVtt(input);
     case 'ass':
       return parseAss(input);
+    case 'smi':
+      return parseSmi(input);
     default:
       return [];
   }
@@ -335,6 +381,8 @@ function serializeByFormat(cues: SubtitleCue[], format: SubtitleFormat) {
       return serializeVtt(cues);
     case 'ass':
       return serializeAss(cues);
+    case 'smi':
+      return serializeSrt(cues);
     case 'txt':
       return serializePlainText(cues);
     default:
@@ -539,6 +587,8 @@ export function processSubtitleTool(
       return serializeAss(parseVtt(normalized));
     case 'ass-to-vtt':
       return serializeVtt(parseAss(normalized));
+    case 'smi-to-srt':
+      return serializeSrt(parseSmi(normalized));
     case 'youtube-subtitle-converter':
     case 'plex-subtitle-converter': {
       const format = detectSubtitleFormat(normalized);
@@ -656,6 +706,7 @@ export function inferOutputFormat(
       return 'vtt';
     case 'vtt-to-srt':
     case 'ass-to-srt':
+    case 'smi-to-srt':
     case 'youtube-subtitle-converter':
     case 'plex-subtitle-converter':
       return 'srt';

@@ -8,6 +8,7 @@ export type SubtitleToolId =
   | 'ass-to-srt'
   | 'vtt-to-ass'
   | 'ass-to-vtt'
+  | 'smi-to-srt'
   | 'youtube-subtitle-converter'
   | 'html5-video-subtitle-converter'
   | 'videojs-subtitle-converter'
@@ -137,6 +138,13 @@ Style: Default,Arial,36,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,0,0,0,0,100,
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 0,0:00:01.00,0:00:03.50,Default,,0,0,0,,Welcome back to the edit.
 Dialogue: 0,0:00:04.20,0:00:06.00,Default,,0,0,0,,Today we are fixing captions locally.`,
+  smi: `<SAMI>
+<BODY>
+<SYNC Start=1000><P Class=ENCC>Welcome back to the edit.
+<SYNC Start=4200><P Class=ENCC>Today we are converting SAMI captions.<br>They need SRT output.
+<SYNC Start=7000><P Class=ENCC>&nbsp;
+</BODY>
+</SAMI>`,
   encodedSrt: `1
 00:00:01,000 --> 00:00:03,500
 Café subtitles should stay readable.
@@ -683,6 +691,65 @@ const enTools: SubtitleTool[] = [
       { href: '/guides/ass-vs-vtt/', title: 'ASS vs VTT for browser playback' },
     ],
     sampleInput: sharedSamples.ass,
+  },
+  {
+    id: 'smi-to-srt',
+    title: 'SMI to SRT Converter',
+    shortTitle: 'SMI to SRT',
+    description:
+      'Convert SAMI or SMI subtitle files to SRT online for free, locally in your browser with no upload.',
+    summary:
+      'Use this free SMI to SRT converter when an old Windows Media SAMI caption file needs a standard SubRip subtitle file for upload, editing, or archive workflows.',
+    buttonLabel: 'Convert to SRT',
+    inputLabel: 'SMI input',
+    outputLabel: 'SRT output',
+    placeholder: 'Paste your SAMI or SMI subtitles here',
+    acceptedExtensions: ['.smi', '.sami', '.txt'],
+    sampleFileName: 'sample.smi',
+    useCases: [
+      'Convert old Windows Media SAMI captions to standard SRT.',
+      'Turn .smi or .sami sidecar subtitle files into editable SubRip cues.',
+      'Prepare legacy caption files for upload forms that only accept SRT.',
+      'Review SAMI captions locally before cleaning, validating, or converting them again.',
+    ],
+    faqs: [
+      {
+        question: 'How do I convert an SMI subtitle file to SRT?',
+        answer:
+          'Open the SMI to SRT converter, paste or upload the SAMI caption file, and export the parsed SYNC blocks as numbered SRT cues.',
+      },
+      {
+        question: 'Is SMI the same as SAMI?',
+        answer:
+          'In subtitle workflows, .smi usually refers to a SAMI caption file used by older Windows Media players. .sami is another extension for the same style of file.',
+      },
+      {
+        question: 'Does this work with burned-in subtitles?',
+        answer:
+          'No. SMI to SRT conversion works on a text SAMI subtitle file. Burned-in video text needs OCR instead.',
+      },
+      {
+        question: 'Are SMI files uploaded to a server?',
+        answer:
+          'No. The SAMI to SRT conversion runs locally in your browser, so the subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['srt-validator', 'subtitle-encoding-fixer'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-convert-smi-to-srt/',
+        title: 'How to convert SMI to SRT',
+      },
+      {
+        href: '/guides/how-to-extract-subtitles-from-wmv/',
+        title: 'How to extract subtitles from WMV',
+      },
+      {
+        href: '/guides/how-to-convert-subtitles-to-utf-8/',
+        title: 'How to convert subtitles to UTF-8',
+      },
+    ],
+    sampleInput: sharedSamples.smi,
   },
   {
     id: 'youtube-subtitle-converter',

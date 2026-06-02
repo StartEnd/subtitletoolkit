@@ -45,6 +45,8 @@ const toolMetaDescriptions: Record<string, string> = {
 		'Convert WebVTT captions to ASS format for subtitle editing and style-ready workflows, locally in your browser with no upload.',
 	'ass-to-vtt':
 		'Convert ASS subtitles to WebVTT for browser playback and HTML5 video delivery while keeping subtitle timing and readable text.',
+	'smi-to-srt':
+		'Convert SMI or SAMI subtitles to SRT online for free. Parse Windows Media SYNC captions and create numbered SubRip output locally.',
 	'youtube-subtitle-converter':
 		'Convert subtitles to YouTube-ready SRT online for free. Turn VTT, ASS, or SSA captions into upload-safe SRT locally with no signup or upload.',
 	'html5-video-subtitle-converter':
@@ -97,6 +99,7 @@ const toolPageTitles: Record<string, string> = {
 	'ass-to-srt': 'ASS to SRT Converter for YouTube Uploads - Free',
 	'vtt-to-ass': 'VTT to ASS Converter - Convert Captions Online Free',
 	'ass-to-vtt': 'ASS to VTT Converter - Convert Subtitles Online Free',
+	'smi-to-srt': 'SMI to SRT Converter - Convert SAMI Captions Free',
 	'youtube-subtitle-converter': 'YouTube Subtitle Converter Online - Free No Upload',
 	'html5-video-subtitle-converter': 'HTML5 Video Subtitle Converter - Convert Captions to VTT',
 	'videojs-subtitle-converter': 'Video.js Subtitle Converter - Convert Captions to VTT',
@@ -138,6 +141,8 @@ const workflowNotes: Record<string, string> = {
 		'Use this when captions begin in a web player workflow but need to move into an editor that works better with ASS. The output gives you a basic ASS structure that can be styled afterward.',
 	'ass-to-vtt':
 		'ASS is not the safest final format for browser playback. This converter creates WebVTT output so the same subtitle text can be used in HTML5 video and web player workflows.',
+	'smi-to-srt':
+		'SMI and SAMI files often come from older Windows Media caption workflows. This converter reads SAMI SYNC timing blocks, removes HTML-style wrapper tags, keeps readable caption text, and exports a numbered SRT file for modern editors, uploads, and archive handoff.',
 	'youtube-subtitle-converter':
 		'Use this when YouTube needs a clean SRT upload but your source captions are VTT, ASS, SSA, or uncertain. The tool keeps timing and readable text, removes unsupported styling, and exports a simple SRT copy locally with no upload.',
 	'html5-video-subtitle-converter':
@@ -225,6 +230,11 @@ const mistakeNotes: Record<string, string[]> = {
 		'Expecting ASS styling and positioning to render in WebVTT.',
 		'Forgetting to test the output in the actual web player.',
 		'Leaving complex styled dialogue unreviewed after flattening.',
+	],
+	'smi-to-srt': [
+		'Using the converter on a video file instead of a separate .smi or .sami caption file.',
+		'Expecting burned-in Windows Media captions to become text without OCR.',
+		'Uploading the SRT output before validating cue timing and legacy encoding.',
 	],
 	'youtube-subtitle-converter': [
 		'Expecting ASS styling or positioning to survive in YouTube captions.',

@@ -1,0 +1,139 @@
+---
+title: How to convert SMI to SRT
+seoTitle: Convert SMI to SRT - Free SAMI Subtitle Converter
+seoDescription: Convert SMI or SAMI subtitles to SRT online for free. Parse Windows Media SYNC captions, remove HTML tags, and create SubRip locally.
+description: Convert old Windows Media SAMI or SMI caption files into standard SRT subtitles for editing, upload, and archive workflows.
+pubDate: 2026-06-02
+category: conversion-guides
+tags:
+  - smi
+  - sami
+  - srt
+  - windows media captions
+  - conversion
+primaryTool: smi-to-srt
+faqs:
+  - question: How do I convert an SMI subtitle file to SRT?
+    answer: Use the SMI to SRT converter with a .smi or .sami text caption file. It reads SAMI SYNC timing blocks, removes wrapper tags, and exports numbered SRT cues.
+  - question: Is SMI the same as SAMI?
+    answer: In subtitle workflows, .smi usually means a SAMI caption file from older Windows Media workflows. Some files use the .sami extension for the same caption format.
+  - question: Can I convert SMI subtitles without uploading the file?
+    answer: Yes. The converter runs in your browser, so the SAMI subtitle text stays on your device.
+---
+
+SMI subtitle files usually come from older Windows Media caption workflows. The file is a text document with SAMI markup, timing stored in `<SYNC Start=...>` blocks, and caption text wrapped in HTML-like tags.
+
+Modern editors, upload forms, and review tools usually expect SRT instead.
+
+## Quick answer
+
+Use the [SMI to SRT Converter](/tools/smi-to-srt/) to convert `.smi` or `.sami` captions into standard SubRip subtitles. The tool reads SAMI timing blocks, removes wrapper tags, decodes common HTML entities, and creates numbered SRT cues locally in your browser.
+
+If the captions are burned into a WMV video image, SMI conversion will not recover them. You need OCR for burned-in text.
+
+## When to convert SMI to SRT
+
+Convert SMI or SAMI to SRT when:
+
+- a Windows Media caption file needs to open in a modern subtitle editor
+- a platform accepts SRT but not SAMI captions
+- a `.wmv` file was paired with a sidecar `.smi` caption file
+- you want a simpler archive copy with numbered cues
+- you need to validate, clean, or convert the captions again later
+
+Keep the original SMI file if you still need to inspect the old SAMI classes, language styling, or player-specific markup.
+
+## What changes during conversion
+
+SAMI stores timing and text differently from SRT. During SMI to SRT conversion:
+
+- each `<SYNC Start=...>` value becomes an SRT start timestamp
+- the next sync block usually becomes the cue end timestamp
+- HTML-like tags such as `<P>` and `<BR>` are removed or converted to line breaks
+- common entities such as `&amp;`, `&lt;`, and `&nbsp;` are decoded or cleaned
+- empty SAMI blocks are skipped
+- SRT cue numbers are generated sequentially
+
+The converter creates a practical delivery copy. It does not preserve old SAMI CSS classes or Windows Media styling.
+
+## Before and after
+
+### SMI before
+
+```html
+<SAMI>
+<BODY>
+<SYNC Start=1000><P Class=ENCC>Welcome to the archive.
+<SYNC Start=4200><P Class=ENCC>This SAMI caption needs SRT output.<br>Keep the line break.
+<SYNC Start=7200><P Class=ENCC>&nbsp;
+</BODY>
+</SAMI>
+```
+
+### SRT after
+
+```text
+1
+00:00:01,000 --> 00:00:04,200
+Welcome to the archive.
+
+2
+00:00:04,200 --> 00:00:07,200
+This SAMI caption needs SRT output.
+Keep the line break.
+```
+
+## Step-by-step workflow
+
+1. Save a copy of the original `.smi` or `.sami` file.
+2. Open the [SMI to SRT Converter](/tools/smi-to-srt/).
+3. Upload or paste the SAMI subtitle content.
+4. Convert the file to SRT.
+5. Review the first, middle, and final cues for timing and text cleanup.
+6. Run the output through the [SRT Validator](/tools/srt-validator/) before upload.
+
+## Common mistakes
+
+### Using a WMV video file instead of the SMI caption file
+
+SMI to SRT conversion works on a text caption file, not the video container. If you only have a `.wmv` file, start with [how to extract subtitles from WMV](/guides/how-to-extract-subtitles-from-wmv/) to check whether captions are embedded, sidecar, or burned in.
+
+### Expecting burned-in captions to convert
+
+If the words are part of the video image, there is no SAMI text to parse. Use OCR and manual review instead.
+
+### Ignoring legacy encoding
+
+Old SMI files may use Windows encodings. If accents or non-English text look broken, use the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) before delivering the SRT.
+
+### Keeping old SAMI styling assumptions
+
+SRT does not preserve SAMI classes, CSS, colors, or player-specific layout. Check readability in the final player or upload form.
+
+## Frequently asked questions
+
+### How do I convert an SMI subtitle file to SRT?
+
+Open the [SMI to SRT Converter](/tools/smi-to-srt/), upload or paste the `.smi` file, and export the parsed SAMI captions as numbered SRT cues.
+
+### Is SMI the same as SAMI?
+
+In subtitle workflows, `.smi` usually means a SAMI caption file used by older Windows Media players. `.sami` is another extension for the same style of caption file.
+
+### Can I convert SMI subtitles without uploading the file?
+
+Yes. The converter runs locally in your browser, so the subtitle text does not need to be sent to a server.
+
+## Related guides
+
+- [How to extract subtitles from WMV](/guides/how-to-extract-subtitles-from-wmv/)
+- [How to convert subtitles to UTF-8](/guides/how-to-convert-subtitles-to-utf-8/)
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+- [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)
+
+## Related tools
+
+- [SMI to SRT Converter](/tools/smi-to-srt/)
+- [SRT Validator](/tools/srt-validator/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
+- [Subtitle Cleaner](/tools/subtitle-cleaner/)

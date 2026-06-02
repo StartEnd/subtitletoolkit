@@ -278,6 +278,10 @@ const checks = [
 				match: '/guides/how-to-convert-ssa-to-txt/',
 			},
 			{
+				label: 'homepage links to SMI to SRT guide',
+				match: '/guides/how-to-convert-smi-to-srt/',
+			},
+			{
 				label: 'homepage links to ASS to VTT guide',
 				match: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
 			},
@@ -435,6 +439,27 @@ const checks = [
 			{
 				label: 'FAQ schema for SSA to TXT questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert SSA subtitles to TXT\?/
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-smi-to-srt/',
+		expect: [
+			{
+				label: 'SMI to SRT guide CTR title',
+				match: '<title>Convert SMI to SRT - Free SAMI Subtitle Converter</title>',
+			},
+			{
+				label: 'SMI to SRT guide no-upload meta description',
+				match: 'Convert SMI or SAMI subtitles to SRT online for free. Parse Windows Media SYNC captions, remove HTML tags, and create SubRip locally.',
+			},
+			{
+				label: 'SMI to SRT guide opens SMI converter tool',
+				match: 'href="/tools/smi-to-srt/"',
+			},
+			{
+				label: 'FAQ schema for SMI to SRT questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert an SMI subtitle file to SRT\?/
 			},
 		],
 	},
@@ -2800,6 +2825,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/smi-to-srt/',
+		expect: [
+			{
+				label: 'SMI to SRT tool title',
+				match: '<title>SMI to SRT Converter - Convert SAMI Captions Free</title>',
+			},
+			{
+				label: 'SMI to SRT tool meta description',
+				match: 'Convert SMI or SAMI subtitles to SRT online for free. Parse Windows Media SYNC captions and create numbered SubRip output locally.',
+			},
+			{
+				label: 'SMI to SRT tool links guide',
+				match: 'href="/guides/how-to-convert-smi-to-srt/"',
+			},
+			{
+				label: 'SMI to SRT tool FAQ covers SAMI files',
+				match: 'Is SMI the same as SAMI?',
+			},
+		],
+	},
+	{
 		path: '/tools/ass-to-srt/',
 		expect: [
 			{
@@ -3130,6 +3176,10 @@ const checks = [
 			{
 				label: 'guides index links to SSA to VTT guide',
 				match: '/guides/how-to-convert-ssa-to-vtt/',
+			},
+			{
+				label: 'guides index links to SMI to SRT guide',
+				match: '/guides/how-to-convert-smi-to-srt/',
 			},
 			{
 				label: 'guides index links to subtitle cleanup before upload guide',
@@ -3488,6 +3538,10 @@ const checks = [
 				match: 'https://subtitletoolkit.tools/tools/fix-srt-timestamps/',
 			},
 			{
+				label: 'llms lists SMI to SRT tool',
+				match: 'https://subtitletoolkit.tools/tools/smi-to-srt/',
+			},
+			{
 				label: 'llms lists invalid WebVTT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/',
 			},
@@ -3782,6 +3836,10 @@ const checks = [
 			{
 				label: 'llms lists SSA to TXT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-ssa-to-txt/',
+			},
+			{
+				label: 'llms lists SMI to SRT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-smi-to-srt/',
 			},
 			{
 				label: 'llms lists ASS to SRT guide',
