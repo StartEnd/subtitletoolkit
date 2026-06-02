@@ -226,6 +226,10 @@ const checks = [
 				match: '/guides/how-to-remove-timestamps-from-subtitles/',
 			},
 			{
+				label: 'homepage links to remove SRT timestamps guide',
+				match: '/guides/how-to-remove-timestamps-from-srt/',
+			},
+			{
 				label: 'homepage links to remove VTT timestamps guide',
 				match: '/guides/how-to-remove-timestamps-from-vtt/',
 			},
@@ -1395,6 +1399,27 @@ const checks = [
 			{
 				label: 'VTT to TXT guide opens converter tool',
 				match: 'href="/tools/vtt-to-txt/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-remove-timestamps-from-srt/',
+		expect: [
+			{
+				label: 'remove SRT timestamps guide CTR title',
+				match: '<title>Remove Timestamps from SRT - Clean Subtitle Text</title>',
+			},
+			{
+				label: 'remove SRT timestamps guide meta description',
+				match: 'Remove timestamps from SRT subtitles, including cue numbers and timing lines. Create a clean plain text transcript locally with no upload.',
+			},
+			{
+				label: 'remove SRT timestamps guide opens converter tool',
+				match: 'href="/tools/srt-to-txt/"',
+			},
+			{
+				label: 'FAQ schema for remove SRT timestamps questions',
+				match: new RegExp('"@type"\\s*:\\s*"FAQPage"[\\s\\S]*How do I remove timestamps from an SRT file\\?'),
 			},
 		],
 	},
@@ -2999,6 +3024,10 @@ const checks = [
 				match: '/guides/how-to-remove-timestamps-from-subtitles/',
 			},
 			{
+				label: 'guides index links to remove SRT timestamps guide',
+				match: '/guides/how-to-remove-timestamps-from-srt/',
+			},
+			{
 				label: 'guides index links to remove VTT timestamps guide',
 				match: '/guides/how-to-remove-timestamps-from-vtt/',
 			},
@@ -3461,6 +3490,10 @@ const checks = [
 			{
 				label: 'llms lists remove subtitle timestamps guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-subtitles/',
+			},
+			{
+				label: 'llms lists remove SRT timestamps guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-srt/',
 			},
 			{
 				label: 'llms lists remove VTT timestamps guide',

@@ -1,0 +1,120 @@
+---
+title: How to remove timestamps from SRT
+seoTitle: Remove Timestamps from SRT - Clean Subtitle Text
+seoDescription: Remove timestamps from SRT subtitles, including cue numbers and timing lines. Create a clean plain text transcript locally with no upload.
+description: Remove SRT timestamps and cue numbers to turn SubRip subtitles into clean plain text for transcripts, notes, or translation.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - remove srt timestamps
+  - srt to text
+  - srt to txt
+  - transcript
+primaryTool: srt-to-txt
+faqs:
+  - question: How do I remove timestamps from an SRT file?
+    answer: Use an SRT to TXT converter that understands SubRip structure. It removes cue numbers, timestamp lines, and subtitle separators while keeping the readable caption text.
+  - question: Can I remove SRT timestamps manually?
+    answer: You can for a very short file, but manual cleanup is slow and can leave cue numbers, broken spacing, or timestamp fragments. A parser is safer for real subtitle files.
+  - question: Will the text still work as subtitles after removing timestamps?
+    answer: No. Removing SRT timestamps creates plain text for reading, editing, translation, or notes. Keep the original SRT file if you still need timed captions for playback or upload.
+---
+
+Removing timestamps from an SRT file turns timed subtitles into readable plain text. This is useful when you already have captions and need a transcript, translation handoff, editing draft, or searchable notes instead of a playback file.
+
+## Quick answer
+
+Use the [SRT to TXT Converter](/tools/srt-to-txt/) to remove SRT cue numbers and timestamp lines locally in your browser. It keeps the caption text and strips the SubRip structure that only matters for video playback.
+
+If the file might be VTT, ASS, or SSA instead of SRT, use the broader [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/) or pick the matching format-specific converter.
+
+## What SRT timestamp cleanup removes
+
+A standard SRT file has repeated cue blocks. Clean transcript output should remove:
+
+- Cue numbers such as `1`, `2`, `3`
+- Timestamp lines such as `00:00:04,000 --> 00:00:06,500`
+- Blank separators between subtitle cues
+- Timing-only structure used by video players
+- Optional formatting tags if you choose to clean them after conversion
+
+The output should keep the spoken text or readable caption lines.
+
+## Before and after
+
+### SRT before
+
+```text
+1
+00:00:04,000 --> 00:00:06,500
+Welcome to the editing tutorial.
+
+2
+00:00:07,000 --> 00:00:09,200
+Today we will remove SRT timestamps.
+```
+
+### Plain text after
+
+```text
+Welcome to the editing tutorial.
+
+Today we will remove SRT timestamps.
+```
+
+## Step-by-step workflow
+
+1. Keep the original `.srt` file unchanged.
+2. Open [SRT to TXT Converter](/tools/srt-to-txt/).
+3. Paste the SRT content or choose the subtitle file.
+4. Convert the subtitles to TXT.
+5. Review the output for paragraph breaks, repeated lines, speaker labels, and missing text.
+6. Copy or download the plain text transcript.
+
+If the result still contains cue numbers or timestamp fragments, validate the source file with [SRT Validator](/tools/srt-validator/). Broken cue separators or malformed timestamps can prevent clean extraction.
+
+## When this workflow is useful
+
+Use SRT timestamp removal when you need:
+
+- A readable transcript from subtitles
+- Text for translation without timing codes
+- Dialogue notes from a lecture, webinar, or tutorial
+- Pull quotes from a caption file
+- Clean text for documentation, editing, or content repurposing
+
+Do not use the cleaned TXT file as a subtitle source. Video players and upload platforms need timed SRT, not plain text.
+
+## Common mistakes
+
+### Deleting only timestamp lines
+
+If you remove only the timing lines, the cue numbers and broken spacing usually remain. A transcript should remove the whole SRT structure, not just the arrows.
+
+### Replacing the SRT file with TXT
+
+Plain text has no cue timing. Keep the original `.srt` file when you still need subtitles for YouTube, VLC, web players, or client delivery.
+
+### Using VTT cleanup rules on SRT
+
+SRT timestamps use commas, while VTT timestamps use dots. Use [SRT to TXT](/tools/srt-to-txt/) for `.srt` files and [VTT to TXT](/tools/vtt-to-txt/) for `.vtt` files.
+
+### Ignoring malformed timestamps
+
+If an SRT file has invalid timing lines or missing blank separators, text extraction can skip cues or leave timing fragments behind. Validate first when the output looks wrong.
+
+## Related guides
+
+- [How to convert SRT to TXT](/guides/how-to-convert-srt-to-txt/)
+- [How to remove timestamps from subtitles](/guides/how-to-remove-timestamps-from-subtitles/)
+- [How to create a transcript from subtitles](/guides/how-to-create-a-transcript-from-subtitles/)
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+- [SRT vs VTT](/guides/srt-vs-vtt/)
+
+## Related tools
+
+- [SRT to TXT Converter](/tools/srt-to-txt/)
+- [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/)
+- [SRT Validator](/tools/srt-validator/)
+- [VTT to TXT Converter](/tools/vtt-to-txt/)
+
