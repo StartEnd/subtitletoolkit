@@ -102,7 +102,7 @@ const toolMetaDescriptions: Record<string, string> = {
 	'clean-srt-file':
 		'Clean an SRT file online for free. Normalize cue numbers, timestamps, spacing, and subtitle text locally with no signup or upload.',
 	'remove-srt-line-numbers':
-		'Remove and rebuild SRT line numbers online while keeping subtitle timing and text readable. Free browser-based SRT tool.',
+		'Remove bad SRT line numbers and rebuild cue numbers online for free. Fix missing, duplicate, or out-of-order numbering locally with no upload.',
 	'fix-srt-timestamps':
 		'Fix malformed SRT timestamps online for free. Convert dot timestamps to comma timing, repair arrow spacing, and rebuild cue numbers locally.',
 	'srt-validator':
@@ -163,7 +163,7 @@ const toolPageTitles: Record<string, string> = {
 	'partial-subtitle-shifter': 'Partial Subtitle Shifter - Shift One Section Online',
 	'extract-subtitles-from-video': 'Extract Subtitles from Video Online - MKV, MP4, No Upload',
 	'clean-srt-file': 'Clean SRT File Online - Free, No Upload',
-	'remove-srt-line-numbers': 'Remove SRT Line Numbers Online',
+	'remove-srt-line-numbers': 'Remove SRT Line Numbers - Rebuild Cue Numbers Free',
 	'fix-srt-timestamps': 'Fix SRT Timestamps Online - Repair SRT Timing',
 	'srt-validator': 'SRT Validator Online - Check Upload Errors Free',
 	'webvtt-validator': 'WebVTT Validator Online - Fix VTT Caption Issues',
@@ -246,7 +246,7 @@ const workflowNotes: Record<string, string> = {
 	'clean-srt-file':
 		'Use this when an SRT file is readable but messy. The cleaner parses cue blocks, normalizes numbering and timestamps, removes stray inline tags, and exports a cleaner SRT file.',
 	'remove-srt-line-numbers':
-		'Use this when SRT numbering is missing, duplicated, or out of order. The tool finds cue timing lines and exports a clean SRT file with sequential cue numbers.',
+		'Use this when SRT numbering is missing, duplicated, out of order, or copied from an editor with broken cue labels. The tool finds cue timing lines, ignores the old number lines, and exports a clean SRT file with sequential cue numbers while keeping timing and subtitle text.',
 	'fix-srt-timestamps':
 		'Use this when an SRT file has dot timestamps, inconsistent arrow spacing, missing cue numbers, or upload errors caused by malformed timing lines. The output rebuilds cue numbers and comma-based timestamps in standard SubRip style.',
 	'srt-validator':

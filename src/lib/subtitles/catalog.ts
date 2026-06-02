@@ -2489,9 +2489,9 @@ const enTools: SubtitleTool[] = [
     title: 'Remove SRT Line Numbers',
     shortTitle: 'Remove SRT numbers',
     description:
-      'Remove and rebuild SRT line numbers online while keeping subtitle timing and text readable.',
+      'Remove bad SRT line numbers and rebuild sequential cue numbers locally with no upload.',
     summary:
-      'Use this when SRT cue numbers are missing, duplicated, out of order, or need to be regenerated before upload.',
+      'Use this when SRT cue numbers are missing, duplicated, out of order, or copied from an editor with broken numbering before upload.',
     buttonLabel: 'Renumber SRT',
     inputLabel: 'SRT input',
     outputLabel: 'Renumbered SRT output',
@@ -2502,16 +2502,22 @@ const enTools: SubtitleTool[] = [
       'Fix duplicated SRT cue numbers.',
       'Rebuild missing or out-of-order SRT numbering.',
       'Normalize line numbers before uploading subtitles.',
+      'Repair cue numbering while keeping SRT timestamps and text.',
       'Create a clean SRT file from readable cue blocks.',
     ],
     faqs: [
       {
-        question: 'Does this remove subtitle text?',
+        question: 'Can I remove SRT line numbers online for free?',
         answer:
-          'No. It keeps subtitle text and timing, then rebuilds sequential SRT cue numbers.',
+          'Yes. Paste or upload the SRT file, and the tool rebuilds cue numbers locally in your browser without sending the subtitle file to a server.',
       },
       {
-        question: 'Can I use it when line numbers are missing?',
+        question: 'Does this remove subtitle text or timestamps?',
+        answer:
+          'No. It keeps subtitle text and timing, then removes old number lines and rebuilds sequential SRT cue numbers.',
+      },
+      {
+        question: 'Can I use it when SRT cue numbers are missing or duplicated?',
         answer:
           'Yes. The parser looks for timing lines and outputs a clean numbered SRT file.',
       },
@@ -2535,6 +2541,10 @@ const enTools: SubtitleTool[] = [
       {
         href: '/guides/how-to-fix-malformed-srt-timestamps/',
         title: 'How to fix malformed SRT timestamps',
+      },
+      {
+        href: '/guides/how-to-validate-srt-files/',
+        title: 'How to validate SRT files',
       },
     ],
     sampleInput: sharedSamples.srt,

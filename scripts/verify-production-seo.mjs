@@ -1214,8 +1214,28 @@ const checks = [
 		path: '/guides/how-to-remove-subtitle-line-numbers/',
 		expect: [
 			{
+				label: 'line number guide CTR title',
+				match: '<title>Remove SRT Line Numbers - Rebuild Cue Numbers Free</title>',
+			},
+			{
+				label: 'line number guide meta description',
+				match: 'Remove bad SRT line numbers, rebuild cue numbers, or convert subtitles to TXT/VTT. Learn when to keep SRT numbering and when to strip it locally.',
+			},
+			{
 				label: 'line number guide opens line number tool',
 				match: 'href="/tools/remove-srt-line-numbers/"',
+			},
+			{
+				label: 'line number guide links SRT to TXT follow-up',
+				match: 'href="/tools/srt-to-txt/"',
+			},
+			{
+				label: 'line number guide links SRT validator follow-up',
+				match: 'href="/tools/srt-validator/"',
+			},
+			{
+				label: 'FAQ schema for line number cleanup questions',
+				match: 'Can I remove SRT line numbers without deleting subtitle text?',
 			},
 		],
 	},
@@ -3140,6 +3160,35 @@ const checks = [
 			{
 				label: 'Subtitle cleaner links clean SRT follow-up',
 				match: 'href="/tools/clean-srt-file/"',
+			},
+		],
+	},
+	{
+		path: '/tools/remove-srt-line-numbers/',
+		expect: [
+			{
+				label: 'remove SRT line numbers tool CTR title',
+				match: '<title>Remove SRT Line Numbers - Rebuild Cue Numbers Free</title>',
+			},
+			{
+				label: 'remove SRT line numbers tool meta description',
+				match: 'Remove bad SRT line numbers and rebuild cue numbers online for free. Fix missing, duplicate, or out-of-order numbering locally with no upload.',
+			},
+			{
+				label: 'remove SRT line numbers workflow covers broken cue labels',
+				match: 'ignores the old number lines, and exports a clean SRT file with sequential cue numbers',
+			},
+			{
+				label: 'remove SRT line numbers FAQ covers free local renumbering',
+				match: 'Can I remove SRT line numbers online for free?',
+			},
+			{
+				label: 'remove SRT line numbers tool links guide',
+				match: 'href="/guides/how-to-remove-subtitle-line-numbers/"',
+			},
+			{
+				label: 'remove SRT line numbers tool links validator guide',
+				match: 'href="/guides/how-to-validate-srt-files/"',
 			},
 		],
 	},

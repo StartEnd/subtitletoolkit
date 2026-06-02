@@ -1,16 +1,29 @@
 ---
 title: How to remove subtitle line numbers
-description: Remove subtitle cue numbering when converting SRT files for workflows that do not need sequence numbers, especially browser-focused VTT output.
+seoTitle: Remove SRT Line Numbers - Rebuild Cue Numbers Free
+seoDescription: Remove bad SRT line numbers, rebuild cue numbers, or convert subtitles to TXT/VTT. Learn when to keep SRT numbering and when to strip it locally.
+description: Remove bad SRT line numbers, rebuild cue numbering, or convert subtitles for workflows that do not need sequence numbers.
 pubDate: 2026-05-06
-updatedDate: 2026-06-01
+updatedDate: 2026-06-02
 category: sync-fixes
 tags:
   - subtitle cleanup
   - line numbers
+  - remove srt line numbers
+  - srt cue numbers
   - srt
   - vtt
   - formatting
 primaryTool: remove-srt-line-numbers
+faqs:
+  - question: Can I remove SRT line numbers without deleting subtitle text?
+    answer: Yes. Use a parser-based SRT tool that recognizes timing lines and cue blocks. It can ignore old cue number lines while keeping subtitle timing and text.
+  - question: Should I remove SRT cue numbers or rebuild them?
+    answer: Rebuild cue numbers when the output should remain SRT. Remove them only when the next format does not need SRT numbering, such as TXT transcripts or many WebVTT workflows.
+  - question: Why are my SRT line numbers duplicated or out of order?
+    answer: This usually happens after manual edits, merging files, copying from an editor, or deleting cues without renumbering. Rebuilding the SRT from timing lines is safer than hand-editing every number.
+  - question: Can I remove SRT line numbers online without uploading the file?
+    answer: Yes. Browser-local subtitle tools can parse and rebuild the SRT on your device, so the subtitle file does not need to be uploaded to a server.
 ---
 
 Subtitle line numbers are normal in `SRT`, but they are not always useful in the next step of the workflow.
@@ -22,6 +35,20 @@ The important point is that line numbers are not random clutter. In SRT, they ar
 If you need a subtitle file without SRT cue numbering, the cleanest fix is often to convert the file into the right target format rather than manually deleting numbers.
 
 For browser playback, that usually means using the [SRT to VTT Converter](/tools/srt-to-vtt/).
+
+If the file should stay as SRT, do not leave it without cue numbers. Use [Remove SRT Line Numbers](/tools/remove-srt-line-numbers/) to discard broken numbering and rebuild sequential cue numbers while keeping the subtitle timing and text.
+
+## Remove numbers, rebuild numbers, or convert?
+
+Pick the path based on the file you need at the end:
+
+| Final file needed | What to do | Best tool |
+| --- | --- | --- |
+| Clean `.srt` for upload or editing | Remove old number lines and rebuild sequential cue numbers | [Remove SRT Line Numbers](/tools/remove-srt-line-numbers/) |
+| Plain transcript without timestamps | Remove cue numbers, timestamps, and blank SRT structure | [SRT to TXT Converter](/tools/srt-to-txt/) |
+| Browser caption file | Convert SRT timing and remove cue numbering as part of WebVTT output | [SRT to VTT Converter](/tools/srt-to-vtt/) |
+| Messy SRT with spacing or tags too | Clean the whole SRT structure, not just number lines | [Clean SRT File Online](/tools/clean-srt-file/) |
+| Upload still fails after renumbering | Validate timestamps, blank lines, cue order, and structure | [SRT Validator](/tools/srt-validator/) |
 
 ## Why line numbers appear
 
@@ -70,6 +97,17 @@ Manual deletion only removes the visible cue number lines. It does not add a VTT
 
 Use manual cleanup only when you know the target system wants a numberless text structure but does not require a full VTT file. If the file should remain SRT, use [Remove SRT Line Numbers](/tools/remove-srt-line-numbers/) to rebuild cue numbering instead of deleting lines by hand.
 
+## When SRT numbering is broken
+
+Broken SRT numbering usually looks like one of these problems:
+
+- duplicate cue numbers after copying blocks from another file
+- skipped numbers after deleting cues by hand
+- missing numbers when a transcript was pasted above timing lines
+- numbers that no longer match the cue order after sorting or merging
+
+In those cases, the goal is not to permanently remove the cue numbers. The goal is to ignore the old labels, read the timestamp blocks, and export a fresh SRT with `1`, `2`, `3` in order. After rebuilding, run [SRT Validator](/tools/srt-validator/) before upload if the file came from a strict platform workflow.
+
 ## Common mistakes
 
 ### Deleting numbers by hand
@@ -95,6 +133,8 @@ After removing line numbers or converting to VTT, check the first few cues and o
 ## Related guides
 
 - [How to convert SRT to VTT for HTML5 video](/guides/how-to-convert-srt-to-vtt-for-html5-video/)
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+- [How to clean an SRT file](/guides/how-to-clean-an-srt-file/)
 - [SRT vs VTT](/guides/srt-vs-vtt/)
 - [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video/)
 
@@ -103,3 +143,5 @@ After removing line numbers or converting to VTT, check the first few cues and o
 - [Remove SRT Line Numbers](/tools/remove-srt-line-numbers/)
 - [SRT to TXT Converter](/tools/srt-to-txt/)
 - [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [Clean SRT File Online](/tools/clean-srt-file/)
+- [SRT Validator](/tools/srt-validator/)
