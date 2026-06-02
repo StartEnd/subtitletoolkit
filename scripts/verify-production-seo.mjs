@@ -302,6 +302,10 @@ const checks = [
 				match: '/guides/how-to-convert-lrc-to-srt/',
 			},
 			{
+				label: 'homepage links to SubViewer to SRT guide',
+				match: '/guides/how-to-convert-subviewer-to-srt/',
+			},
+			{
 				label: 'homepage links to ASS to VTT guide',
 				match: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
 			},
@@ -585,6 +589,27 @@ const checks = [
 			{
 				label: 'FAQ schema for LRC to SRT questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert an LRC lyric file to SRT\?/
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-subviewer-to-srt/',
+		expect: [
+			{
+				label: 'SubViewer to SRT guide CTR title',
+				match: '<title>Convert SubViewer to SRT - Free SUB Subtitle Converter</title>',
+			},
+			{
+				label: 'SubViewer to SRT guide no-upload meta description',
+				match: 'Convert SubViewer SUB subtitles to SRT online for free. Turn time-based .sub blocks into numbered SubRip cues locally with no upload.',
+			},
+			{
+				label: 'SubViewer to SRT guide opens SubViewer converter tool',
+				match: 'href="/tools/subviewer-to-srt/"',
+			},
+			{
+				label: 'FAQ schema for SubViewer to SRT questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert a SubViewer SUB file to SRT\?/
 			},
 		],
 	},
@@ -3076,6 +3101,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/subviewer-to-srt/',
+		expect: [
+			{
+				label: 'SubViewer to SRT tool title',
+				match: '<title>SubViewer to SRT Converter - Convert SUB Captions Free</title>',
+			},
+			{
+				label: 'SubViewer to SRT tool meta description',
+				match: 'Convert SubViewer SUB subtitles to SRT online for free. Turn time-based .sub blocks into numbered SubRip cues locally.',
+			},
+			{
+				label: 'SubViewer to SRT tool links guide',
+				match: 'href="/guides/how-to-convert-subviewer-to-srt/"',
+			},
+			{
+				label: 'SubViewer to SRT tool FAQ covers line breaks',
+				match: 'Does SubViewer to SRT preserve line breaks?',
+			},
+		],
+	},
+	{
 		path: '/tools/ass-to-srt/',
 		expect: [
 			{
@@ -3792,6 +3838,10 @@ const checks = [
 				match: 'https://subtitletoolkit.tools/tools/lrc-to-srt/',
 			},
 			{
+				label: 'llms lists SubViewer to SRT tool',
+				match: 'https://subtitletoolkit.tools/tools/subviewer-to-srt/',
+			},
+			{
 				label: 'llms lists invalid WebVTT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/',
 			},
@@ -4110,6 +4160,10 @@ const checks = [
 			{
 				label: 'llms lists LRC to SRT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-lrc-to-srt/',
+			},
+			{
+				label: 'llms lists SubViewer to SRT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-subviewer-to-srt/',
 			},
 			{
 				label: 'llms lists ASS to SRT guide',

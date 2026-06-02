@@ -14,6 +14,7 @@ export type SubtitleToolId =
   | 'scc-to-srt'
   | 'microdvd-to-srt'
   | 'lrc-to-srt'
+  | 'subviewer-to-srt'
   | 'youtube-subtitle-converter'
   | 'html5-video-subtitle-converter'
   | 'videojs-subtitle-converter'
@@ -174,6 +175,11 @@ Today we are converting SBV captions for upload.`,
   lrc: `[00:01.00]Welcome back to the edit
 [00:04.20]Today we are converting LRC lyrics
 [00:07.00]They need SRT caption timing`,
+  subviewer: `00:00:01.00,00:00:03.50
+Welcome back to the edit
+
+00:00:04.20,00:00:06.00
+Today we are converting SubViewer captions[br]They need SRT output`,
   encodedSrt: `1
 00:00:01,000 --> 00:00:03,500
 Café subtitles should stay readable.
@@ -1074,6 +1080,65 @@ const enTools: SubtitleTool[] = [
       },
     ],
     sampleInput: sharedSamples.lrc,
+  },
+  {
+    id: 'subviewer-to-srt',
+    title: 'SubViewer to SRT Converter',
+    shortTitle: 'SubViewer to SRT',
+    description:
+      'Convert SubViewer SUB subtitles to SRT online for free, locally in your browser with no upload.',
+    summary:
+      'Use this free SubViewer to SRT converter when an older .sub caption file needs standard SubRip timing for editing, upload, review, or archive handoff.',
+    buttonLabel: 'Convert to SRT',
+    inputLabel: 'SubViewer SUB input',
+    outputLabel: 'SRT output',
+    placeholder: 'Paste your SubViewer .sub subtitles here',
+    acceptedExtensions: ['.sub', '.txt'],
+    sampleFileName: 'sample.sub',
+    useCases: [
+      'Convert time-based SubViewer .sub subtitles to standard SRT.',
+      'Move older SubViewer caption files into editors that expect SubRip timing.',
+      'Create an upload-ready copy from a SubViewer subtitle file.',
+      'Prepare SubViewer captions for SRT validation, cleanup, or archive workflows.',
+    ],
+    faqs: [
+      {
+        question: 'How do I convert a SubViewer SUB file to SRT?',
+        answer:
+          'Open the SubViewer to SRT converter, paste or upload the .sub file, and export time-based subtitle blocks as numbered SRT cues.',
+      },
+      {
+        question: 'What is a SubViewer subtitle file?',
+        answer:
+          'SubViewer is an older time-based subtitle format that usually stores cues as start and end timestamps followed by caption text in a .sub file.',
+      },
+      {
+        question: 'Does SubViewer to SRT preserve line breaks?',
+        answer:
+          'Yes. The converter turns SubViewer [br] markers into regular SRT line breaks and keeps readable caption text.',
+      },
+      {
+        question: 'Are SubViewer files uploaded to a server?',
+        answer:
+          'No. The SubViewer to SRT conversion runs locally in your browser, so the subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['microdvd-to-srt', 'srt-validator'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-convert-subviewer-to-srt/',
+        title: 'How to convert SubViewer to SRT',
+      },
+      {
+        href: '/guides/how-to-validate-srt-files/',
+        title: 'How to validate SRT files',
+      },
+      {
+        href: '/guides/common-subtitle-format-errors-and-fixes/',
+        title: 'Common subtitle format errors and fixes',
+      },
+    ],
+    sampleInput: sharedSamples.subviewer,
   },
   {
     id: 'youtube-subtitle-converter',

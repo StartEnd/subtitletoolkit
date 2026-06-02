@@ -1,0 +1,145 @@
+---
+title: How to convert SubViewer to SRT
+seoTitle: Convert SubViewer to SRT - Free SUB Subtitle Converter
+seoDescription: Convert SubViewer SUB subtitles to SRT online for free. Turn time-based .sub blocks into numbered SubRip cues locally with no upload.
+description: Convert time-based SubViewer .sub subtitle files into standard SRT captions for editing, upload, review, and archive workflows.
+pubDate: 2026-06-02
+category: conversion-guides
+tags:
+  - subviewer
+  - sub
+  - srt
+  - conversion
+  - legacy subtitles
+primaryTool: subviewer-to-srt
+faqs:
+  - question: How do I convert a SubViewer SUB file to SRT?
+    answer: Use the SubViewer to SRT converter with a time-based .sub subtitle file. It reads start and end timestamp rows, keeps readable caption text, and exports numbered SubRip cues.
+  - question: Is SubViewer the same as MicroDVD?
+    answer: No. Both formats can use the .sub extension, but SubViewer uses time-based rows such as 00:00:01.00,00:00:03.50, while MicroDVD uses frame rows such as {25}{88}text.
+  - question: Can I convert SubViewer subtitles without uploading the file?
+    answer: Yes. The converter runs in your browser, so the SubViewer subtitle file stays on your device.
+---
+
+SubViewer files are older `.sub` subtitle files that store each cue as a start and end timestamp followed by caption text. They are different from MicroDVD `.sub` files, which use frame numbers instead of clock time.
+
+SRT is easier to use in editors, upload forms, validators, and review workflows. It stores cue numbers, comma-based timestamps, and readable text blocks.
+
+## Quick answer
+
+Use the [SubViewer to SRT Converter](/tools/subviewer-to-srt/) to convert a time-based `.sub` subtitle file into standard SubRip subtitles. The tool reads SubViewer timestamp rows, converts `[br]` markers into line breaks, and runs locally in your browser with no upload.
+
+## When to convert SubViewer to SRT
+
+Convert SubViewer to SRT when:
+
+- an older subtitle archive contains `.sub` files with clock timestamps
+- a video editor or upload form rejects SubViewer format
+- you need a readable review copy with numbered subtitle cues
+- you want to validate timing before publishing or handoff
+- a workflow needs SRT instead of a legacy desktop-player format
+
+Keep the original `.sub` file until the converted SRT has been checked against the video.
+
+## What changes during conversion
+
+SubViewer usually stores cues like this:
+
+```text
+00:00:01.00,00:00:03.50
+Welcome back to the edit
+
+00:00:04.20,00:00:06.00
+Today we are converting SubViewer captions[br]They need SRT output
+```
+
+SRT stores numbered cues like this:
+
+```text
+1
+00:00:01,000 --> 00:00:03,500
+Welcome back to the edit
+
+2
+00:00:04,200 --> 00:00:06,000
+Today we are converting SubViewer captions
+They need SRT output
+```
+
+During conversion, the tool:
+
+- reads SubViewer timestamp pairs such as `00:00:01.00,00:00:03.50`
+- changes dot-based centisecond timing into SRT millisecond timing
+- turns `[br]` markers into normal SRT line breaks
+- removes simple inline markup from caption text
+- generates sequential SRT cue numbers
+
+## Important .sub warning
+
+The `.sub` extension is ambiguous. A file can be SubViewer, MicroDVD, or another legacy subtitle format.
+
+Use SubViewer to SRT when the rows look like this:
+
+```text
+00:00:01.00,00:00:03.50
+Caption text
+```
+
+Use [MicroDVD to SRT](/tools/microdvd-to-srt/) when the rows look like this:
+
+```text
+{25}{88}Caption text
+```
+
+If the output timing looks wrong, check whether the source `.sub` file is actually MicroDVD or another frame-based format.
+
+## Step-by-step workflow
+
+1. Save a copy of the original `.sub` file.
+2. Confirm the file uses SubViewer time rows, not MicroDVD frame rows.
+3. Open the [SubViewer to SRT Converter](/tools/subviewer-to-srt/).
+4. Upload or paste the SubViewer subtitle content.
+5. Convert the file to SRT.
+6. Run the output through the [SRT Validator](/tools/srt-validator/) before upload.
+
+## Common mistakes
+
+### Using the wrong .sub converter
+
+SubViewer and MicroDVD both use `.sub`. If the source rows use `{start}{end}` frame numbers, use the [MicroDVD to SRT Converter](/tools/microdvd-to-srt/) instead.
+
+### Expecting styling to survive
+
+SRT keeps timing and readable text. It does not preserve legacy player styling, positioning, or format-specific metadata.
+
+### Skipping validation after conversion
+
+Old subtitle files may contain unusual spacing, encoding problems, or malformed rows. Validate the SRT output before uploading it to a platform.
+
+## Frequently asked questions
+
+### How do I convert a SubViewer SUB file to SRT?
+
+Open the [SubViewer to SRT Converter](/tools/subviewer-to-srt/), upload or paste the time-based `.sub` file, and export the parsed subtitle blocks as numbered SRT cues.
+
+### Is SubViewer the same as MicroDVD?
+
+No. Both can use `.sub`, but SubViewer uses clock timestamps while MicroDVD uses frame numbers. Choose the converter based on the row format, not only the file extension.
+
+### Can I convert SubViewer subtitles without uploading the file?
+
+Yes. The converter runs locally in your browser, so the subtitle file does not need to be sent to a server.
+
+## Related guides
+
+- [How to convert MicroDVD to SRT](/guides/how-to-convert-microdvd-to-srt/)
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+- [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)
+- [How to clean subtitle formatting before upload](/guides/how-to-clean-subtitle-formatting-before-upload/)
+
+## Related tools
+
+- [SubViewer to SRT Converter](/tools/subviewer-to-srt/)
+- [MicroDVD to SRT Converter](/tools/microdvd-to-srt/)
+- [SRT Validator](/tools/srt-validator/)
+- [Clean SRT File](/tools/clean-srt-file/)
