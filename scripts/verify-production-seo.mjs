@@ -242,6 +242,10 @@ const checks = [
 				match: '/guides/how-to-convert-srt-to-txt/',
 			},
 			{
+				label: 'homepage links to SRT to SSA guide',
+				match: '/guides/how-to-convert-srt-to-ssa/',
+			},
+			{
 				label: 'homepage links to ASS to SRT guide',
 				match: '/guides/how-to-convert-ass-to-srt/',
 			},
@@ -272,6 +276,27 @@ const checks = [
 			{
 				label: 'homepage links to WebVTT validation guide',
 				match: '/guides/how-to-validate-webvtt-files/',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-srt-to-ssa/',
+		expect: [
+			{
+				label: 'SRT to SSA guide CTR title',
+				match: '<title>Convert SRT to SSA - Free Subtitle Converter</title>',
+			},
+			{
+				label: 'SRT to SSA guide no-upload meta description',
+				match: 'Convert SRT subtitles to SSA-style editing subtitles for free. Preserve timing, create a style-ready structure, and keep processing local.',
+			},
+			{
+				label: 'SRT to SSA guide opens SRT to ASS converter tool',
+				match: 'href="/tools/srt-to-ass/"',
+			},
+			{
+				label: 'FAQ schema for SRT to SSA questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert SRT to SSA\?/
 			},
 		],
 	},
@@ -2988,6 +3013,10 @@ const checks = [
 				match: 'Upload prep',
 			},
 			{
+				label: 'guides index links to SRT to SSA guide',
+				match: '/guides/how-to-convert-srt-to-ssa/',
+			},
+			{
 				label: 'guides index links to ASS to SRT guide',
 				match: '/guides/how-to-convert-ass-to-srt/',
 			},
@@ -3622,6 +3651,10 @@ const checks = [
 			{
 				label: 'llms lists SRT to TXT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-srt-to-txt/',
+			},
+			{
+				label: 'llms lists SRT to SSA guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-srt-to-ssa/',
 			},
 			{
 				label: 'llms lists VTT to TXT guide',
