@@ -111,6 +111,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [Convert VTT to SRT for legacy editors](https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/)
 - [How to extract subtitles from a video](https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-video/)
 - [How to extract subtitles from MP4](https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mp4/)
+- [Why MP4 subtitles are not showing](https://subtitletoolkit.tools/guides/why-mp4-subtitles-are-not-showing/)
 - [How to extract subtitles from M4V](https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-m4v/)
 - [How to extract subtitles from MKV](https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mkv/)
 - [How to extract subtitles from MOV](https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mov/)

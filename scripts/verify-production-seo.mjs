@@ -166,6 +166,10 @@ const checks = [
 				match: '/guides/how-to-extract-subtitles-from-mp4/',
 			},
 			{
+				label: 'homepage links to MP4 subtitle failure guide',
+				match: '/guides/why-mp4-subtitles-are-not-showing/',
+			},
+			{
 				label: 'homepage links to M4V subtitle extraction guide',
 				match: '/guides/how-to-extract-subtitles-from-m4v/',
 			},
@@ -1840,6 +1844,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/why-mp4-subtitles-are-not-showing/',
+		expect: [
+			{
+				label: 'MP4 subtitles failure guide CTR title',
+				match: '<title>MP4 Subtitles Not Showing - Fix SRT and Embedded Captions</title>',
+			},
+			{
+				label: 'MP4 subtitles failure guide meta description',
+				match: 'Fix MP4 subtitles not showing by checking embedded caption tracks, external SRT filenames, player support, subtitle menus, encoding, and timing.',
+			},
+			{
+				label: 'MP4 subtitles failure guide opens extractor tool',
+				match: 'href="/tools/extract-subtitles-from-video/"',
+			},
+			{
+				label: 'FAQ schema for MP4 subtitle questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why are subtitles not showing in my MP4 file\?/,
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-extract-subtitles-from-mkv/',
 		expect: [
 			{
@@ -2924,6 +2949,10 @@ const checks = [
 				match: '/guides/how-to-extract-subtitles-from-mp4/',
 			},
 			{
+				label: 'guides index links to MP4 subtitle failure guide',
+				match: '/guides/why-mp4-subtitles-are-not-showing/',
+			},
+			{
 				label: 'guides index links to M4V extraction guide',
 				match: '/guides/how-to-extract-subtitles-from-m4v/',
 			},
@@ -3182,6 +3211,10 @@ const checks = [
 			{
 				label: 'llms lists MP4 extraction guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mp4/',
+			},
+			{
+				label: 'llms lists MP4 subtitle failure guide',
+				match: 'https://subtitletoolkit.tools/guides/why-mp4-subtitles-are-not-showing/',
 			},
 			{
 				label: 'llms lists MKV extraction guide',

@@ -1,0 +1,152 @@
+---
+title: Why MP4 subtitles are not showing
+seoTitle: MP4 Subtitles Not Showing - Fix SRT and Embedded Captions
+seoDescription: Fix MP4 subtitles not showing by checking embedded caption tracks, external SRT filenames, player support, subtitle menus, encoding, and timing.
+description: Fix subtitles that do not show with an MP4 by checking embedded tracks, external SRT naming, player support, encoding, and timing.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - mp4 subtitles
+  - subtitles not showing
+  - srt
+  - embedded subtitles
+  - video captions
+primaryTool: extract-subtitles-from-video
+faqs:
+  - question: Why are subtitles not showing in my MP4 file?
+    answer: The MP4 may not contain an embedded subtitle track, the player may not support the embedded caption format, or the external SRT file may not match the video filename.
+  - question: Can MP4 files have embedded subtitles?
+    answer: Yes, MP4 can contain embedded text captions such as mov_text or WebVTT, but support varies by player and device.
+  - question: Why does VLC show MP4 subtitles but my TV does not?
+    answer: VLC supports more subtitle formats than many TVs. For TV playback, create a simple UTF-8 SRT file with the same base filename as the MP4.
+---
+
+When subtitles do not show with an MP4, first find out whether the captions are embedded inside the video, loaded from a separate subtitle file, or burned into the picture.
+
+## Quick answer
+
+Open the MP4 in a player, check the subtitle menu, and test whether the captions are embedded or external. If you have a separate subtitle file, use a simple UTF-8 SRT file with the same base filename as the MP4.
+
+If you are not sure whether the MP4 contains a real caption track, use [Extract Subtitles from Video](/tools/extract-subtitles-from-video/) to check the file locally in your browser.
+
+## What to check first
+
+Check these before re-encoding the video:
+
+- the MP4 actually contains an embedded subtitle track
+- the player subtitle menu has the right track selected
+- an external SRT file sits next to the MP4 when you expect sidecar subtitles
+- the SRT filename matches the MP4 filename
+- the subtitle text is encoded as UTF-8
+- the player or device supports the embedded MP4 caption format
+- the subtitle timing overlaps the part of the video you are playing
+
+## Step-by-step workflow
+
+### 1. Check whether the MP4 has embedded captions
+
+Some MP4 files contain caption tracks such as `mov_text` or WebVTT. Others contain only video and audio.
+
+Use the extractor when you need to inspect the file:
+
+1. Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/).
+2. Choose the `.mp4` file.
+3. Check whether a text subtitle stream is found.
+4. If a stream exists, export it and test the subtitle file separately.
+
+If no subtitle stream is found, the player may have been using a separate subtitle file or remote caption track.
+
+### 2. Check for an external subtitle file
+
+MP4 playback often uses a sidecar subtitle file next to the video.
+
+```text
+lesson-final.mp4
+lesson-final.srt
+lesson-final.en.srt
+```
+
+Avoid mismatched names while debugging:
+
+```text
+lesson-final.mp4
+captions_fixed_v3.srt
+```
+
+If the subtitle file has a different base name, many TVs, media players, and library apps will not auto-load it.
+
+### 3. Use SRT for broad playback support
+
+MP4 embedded captions can work in one player and fail in another. For the safest test, create a separate SRT file.
+
+Use SRT when:
+
+- the MP4 plays on a TV or USB media player
+- the file goes into Plex or another media library
+- QuickTime or a mobile player ignores embedded captions
+- you need a simple fallback that can be validated and repaired
+
+If the source is VTT or ASS, convert it to SRT before testing the MP4 again.
+
+### 4. Open the subtitle menu manually
+
+Do not assume captions will turn on automatically.
+
+Look for menu labels such as:
+
+- Subtitles
+- Captions
+- CC
+- Audio and subtitles
+- Text tracks
+
+If the track appears in the menu but no text shows, the issue is usually timing, encoding, or unsupported subtitle formatting.
+
+### 5. Fix encoding and broken characters
+
+If subtitles show boxes, question marks, or broken accents, convert the subtitle file to UTF-8.
+
+Use the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) to create a clean UTF-8 copy, then reload that copy next to the MP4.
+
+### 6. Check timing before assuming the file failed
+
+A subtitle file can be loaded correctly but timed for another edit of the video.
+
+Look for these clues:
+
+- no captions appear near the beginning, but they appear after skipping forward
+- captions are consistently early or late
+- the subtitle file came from a different video release
+- the MP4 was trimmed after subtitles were created
+
+Use the [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/) if every caption is offset by the same amount.
+
+## Common mistakes
+
+### Assuming the MP4 contains subtitles because a player showed them
+
+The player may have loaded a separate `.srt` or remote `.vtt` file. The MP4 itself may not contain any subtitle track.
+
+### Expecting burned-in subtitles to be selectable
+
+Burned-in subtitles are part of the image. They cannot be turned on, turned off, or extracted as text without OCR.
+
+### Trusting one player as proof of compatibility
+
+VLC is more forgiving than QuickTime, TVs, mobile players, and media-library apps. Test the same SRT fallback in the actual destination player.
+
+## Related guides
+
+- [How to extract subtitles from MP4](/guides/how-to-extract-subtitles-from-mp4/)
+- [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)
+- [Why TV subtitles are not showing](/guides/why-tv-subtitles-are-not-showing/)
+- [Why VLC subtitles are not showing](/guides/why-vlc-subtitles-are-not-showing/)
+- [How to convert subtitles to UTF-8](/guides/how-to-convert-subtitles-to-utf-8/)
+
+## Related tools
+
+- [Extract Subtitles from Video](/tools/extract-subtitles-from-video/)
+- [VTT to SRT Converter](/tools/vtt-to-srt/)
+- [ASS to SRT Converter](/tools/ass-to-srt/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
+- [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/)
