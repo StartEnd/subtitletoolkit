@@ -1,8 +1,8 @@
 ---
 title: Fix subtitle sync after a scene cut
-seoTitle: Fix Subtitle Sync After a Scene Cut - Shift One Section
-description: Repair subtitle sync after a scene cut by shifting only the affected time range while keeping correctly timed sections unchanged.
-seoDescription: Fix subtitle sync after a scene cut without shifting the whole file. Move only the affected subtitle range online with no upload or signup.
+seoTitle: Fix Subtitle Sync After a Cut - Shift One Section
+description: Repair subtitle sync after a scene cut by shifting only the affected SRT, VTT, ASS, or SSA time range while synced sections stay unchanged.
+seoDescription: Fix subtitles after a scene cut online. Shift only the affected SRT, VTT, or ASS range locally with no upload while synced sections stay unchanged.
 pubDate: 2026-05-10
 updatedDate: 2026-06-01
 category: sync-fixes
@@ -11,6 +11,8 @@ tags:
   - partial subtitle shifter
   - subtitle sync fix
   - video edit subtitles
+  - shift subtitles after cut
+  - fix subtitles after trimming video
 primaryTool: partial-subtitle-shifter
 faqs:
   - question: How do I know if I need a partial shift or a full-file shift?
@@ -27,11 +29,13 @@ A scene cut often breaks subtitle sync only after the edit point. This is one of
 
 ## Quick answer
 
-If the beginning is correct but the subtitles drift after a cut, use the [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/) on the affected section instead of shifting the whole file. This preserves the correctly timed sections while fixing only the problematic range.
+If the beginning is correct but subtitles go wrong after a cut, use the [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/) on the affected section instead of shifting the whole file. This preserves the synced intro and ending while fixing only the problematic range.
+
+Use this workflow for SRT, VTT, ASS, or SSA files after a trimmed intro, deleted scene, inserted sponsor segment, or edited middle section. If every cue is off from the start, use a whole-file timing shifter instead.
 
 ## Why scene cuts break subtitle sync
 
-When video editors remove or add footage, they change the video's timeline. If subtitles were timed to the original video, any content after the edit point will be out of sync by exactly the duration of the removed or added footage.
+When video editors remove or add footage, they change the video's timeline. If subtitles were timed to the original video, any content after the edit point will be out of sync by exactly the duration of the removed or added footage. The visible symptom is usually abrupt: subtitles are correct before one timestamp, then consistently early or late after that point.
 
 For example:
 - **Removing 2 seconds** at 01:00 means all subtitles after that point appear 2 seconds too late
@@ -85,6 +89,8 @@ Open the [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/) and enter:
 - **Range end**: Last affected subtitle timestamp  
 - **Shift amount**: The millisecond offset (negative for late, positive for early)
 
+The tool runs locally in your browser. It only shifts cues whose start time falls inside the selected range, so captions before the edit point keep their original timing.
+
 ### 5. Verify the fix
 
 After applying the shift:
@@ -98,6 +104,8 @@ After applying the shift:
 Use the [Subtitle Time Shifter](/tools/subtitle-time-shifter/) if every cue is wrong by the same amount from the start of the video.
 
 Use a partial shift only when the sync error begins after a specific point.
+
+If the amount keeps changing gradually after the cut, read [why subtitles drift out of sync](/guides/why-subtitles-drift-out-of-sync/) before applying a fixed offset. Progressive drift usually needs a different correction than a single scene-cut shift.
 
 ## Common mistakes
 
@@ -195,5 +203,12 @@ Yes. Partial shifting works with SRT, VTT, ASS, and SSA formats. The [Partial Su
 ## Related guides
 
 - [How to shift only part of a subtitle file](/guides/how-to-shift-only-part-of-a-subtitle-file/)
+- [Why subtitles drift out of sync](/guides/why-subtitles-drift-out-of-sync/)
 - [How to fix subtitles that are too fast or too slow](/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/)
 - [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)
+
+## Related tools
+
+- [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/)
+- [Subtitle Time Shifter](/tools/subtitle-time-shifter/)
+- [Fix Out-of-Sync Subtitles](/tools/fix-out-of-sync-subtitles/)

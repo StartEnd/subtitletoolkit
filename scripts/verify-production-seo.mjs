@@ -891,18 +891,26 @@ const checks = [
 	},
 	{
 		path: '/guides/fix-subtitle-sync-after-a-scene-cut/',
-		expect: [
+			expect: [
 			{
 				label: 'scene-cut sync guide CTR title',
-				match: '<title>Fix Subtitle Sync After a Scene Cut - Shift One Section</title>',
+				match: '<title>Fix Subtitle Sync After a Cut - Shift One Section</title>',
 			},
 			{
 				label: 'scene-cut sync guide no-upload meta description',
-				match: 'Fix subtitle sync after a scene cut without shifting the whole file. Move only the affected subtitle range online with no upload or signup.',
+				match: 'Fix subtitles after a scene cut online. Shift only the affected SRT, VTT, or ASS range locally with no upload while synced sections stay unchanged.',
 			},
 			{
 				label: 'scene-cut sync guide opens partial shifter',
 				match: 'href="/tools/partial-subtitle-shifter/"',
+			},
+			{
+				label: 'scene-cut sync guide links drift boundary',
+				match: 'href="/guides/why-subtitles-drift-out-of-sync/"',
+			},
+			{
+				label: 'scene-cut sync guide links whole-file shift fallback',
+				match: 'href="/tools/fix-out-of-sync-subtitles/"',
 			},
 			{
 				label: 'FAQ schema for scene-cut sync questions',
@@ -910,7 +918,7 @@ const checks = [
 			},
 			{
 				label: 'scene-cut Article schema includes query tags',
-				match: /"keywords"\s*:\s*"subtitle scene cut, partial subtitle shifter, subtitle sync fix, video edit subtitles"/
+				match: /"keywords"\s*:\s*"subtitle scene cut, partial subtitle shifter, subtitle sync fix, video edit subtitles, shift subtitles after cut, fix subtitles after trimming video"/
 			},
 		],
 	},
@@ -2391,18 +2399,26 @@ const checks = [
 	},
 	{
 		path: '/guides/how-to-shift-only-part-of-a-subtitle-file/',
-		expect: [
+			expect: [
 			{
 				label: 'partial subtitle shift guide CTR title',
-				match: '<title>Shift Part of a Subtitle File - Partial Timing Fix</title>',
+				match: '<title>Shift Part of a Subtitle File - SRT, VTT, ASS Online</title>',
 			},
 			{
 				label: 'partial subtitle shift guide no-upload meta description',
-				match: 'Shift only one time range in an SRT, VTT, or ASS subtitle file while keeping the rest of the captions unchanged. No upload required.',
+				match: 'Shift one section of an SRT, VTT, ASS, or SSA subtitle file online. Move only the selected time range locally while the rest stays unchanged.',
 			},
 			{
 				label: 'partial subtitle shift guide opens partial shifter',
 				match: 'href="/tools/partial-subtitle-shifter/"',
+			},
+			{
+				label: 'partial subtitle shift guide links scene-cut workflow',
+				match: 'href="/guides/fix-subtitle-sync-after-a-scene-cut/"',
+			},
+			{
+				label: 'FAQ schema for partial subtitle shift questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Can I shift only one section of an SRT file\?/
 			},
 		],
 	},
@@ -4207,18 +4223,26 @@ const checks = [
 	},
 	{
 		path: '/tools/partial-subtitle-shifter/',
-		expect: [
+			expect: [
 			{
 				label: 'partial shifter tool title',
-				match: '<title>Partial Subtitle Shifter - Shift One Section Online</title>',
+				match: '<title>Partial Subtitle Shifter Online - Shift One Section</title>',
 			},
 			{
 				label: 'partial shifter tool meta description',
-				match: 'Shift only a selected time range inside an SRT, VTT, or ASS subtitle file without moving the rest of the captions, locally in your browser.',
+				match: 'Shift one selected SRT, VTT, ASS, or SSA subtitle range online for free. Fix a scene cut or middle-section timing issue locally with no upload.',
 			},
 			{
 				label: 'partial shifter tool links guide',
 				match: 'href="/guides/how-to-shift-only-part-of-a-subtitle-file/"',
+			},
+			{
+				label: 'partial shifter tool links scene-cut guide',
+				match: 'href="/guides/fix-subtitle-sync-after-a-scene-cut/"',
+			},
+			{
+				label: 'partial shifter tool links whole-file sync fallback',
+				match: 'href="/tools/fix-out-of-sync-subtitles/"',
 			},
 		],
 	},

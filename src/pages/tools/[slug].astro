@@ -116,7 +116,7 @@ const toolMetaDescriptions: Record<string, string> = {
 	'subtitle-merger':
 		'Merge two SRT, VTT, or ASS subtitle files into one sorted output file locally in your browser, with no account or server upload.',
 	'partial-subtitle-shifter':
-		'Shift only a selected time range inside an SRT, VTT, or ASS subtitle file without moving the rest of the captions, locally in your browser.',
+		'Shift one selected SRT, VTT, ASS, or SSA subtitle range online for free. Fix a scene cut or middle-section timing issue locally with no upload.',
 	'extract-subtitles-from-video':
 		'Extract embedded subtitles from MKV, MP4, MOV, and WebM files online for free. Save text caption tracks locally with no video upload.',
 };
@@ -160,7 +160,7 @@ const toolPageTitles: Record<string, string> = {
 	'fix-out-of-sync-subtitles': 'Fix Out-of-Sync Subtitles Online - Shift SRT, VTT, ASS',
 	'subtitle-encoding-fixer': 'Subtitle Encoding Fixer - Fix Garbled Subtitles Online',
 	'subtitle-merger': 'Subtitle Merger - Merge SRT, VTT, and ASS Online',
-	'partial-subtitle-shifter': 'Partial Subtitle Shifter - Shift One Section Online',
+	'partial-subtitle-shifter': 'Partial Subtitle Shifter Online - Shift One Section',
 	'extract-subtitles-from-video': 'Extract Subtitles from Video Online - MKV, MP4, No Upload',
 	'clean-srt-file': 'Clean SRT File Online - Fix Spacing and Cue Numbers',
 	'remove-srt-line-numbers': 'Remove SRT Line Numbers - Rebuild Cue Numbers Free',
@@ -260,7 +260,7 @@ const workflowNotes: Record<string, string> = {
 	'subtitle-merger':
 		'Merging helps when subtitles were exported in parts or when two timed text files need one final delivery file. The output is sorted by start time, and SRT output is renumbered.',
 	'partial-subtitle-shifter':
-		'Use a partial shift when only a middle section changed after an edit. Cues outside the selected range keep their original timing, which avoids breaking sections that already match the video.',
+		'Use a partial shift when only one scene, cut, or middle section changed after an edit. Choose the affected start and end timestamps, enter the millisecond offset, and keep every cue outside that selected range unchanged.',
 	'extract-subtitles-from-video':
 		'This tool is for embedded text subtitle streams in MKV, MP4, MOV, or WebM files, not burned-in subtitles that need OCR. It runs FFmpeg in the browser, keeps the video on your device, and attempts to save the first supported text subtitle stream as a separate subtitle file.',
 };

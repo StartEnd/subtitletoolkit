@@ -1,8 +1,8 @@
 ---
 title: How to shift only part of a subtitle file
-seoTitle: Shift Part of a Subtitle File - Partial Timing Fix
-seoDescription: Shift only one time range in an SRT, VTT, or ASS subtitle file while keeping the rest of the captions unchanged. No upload required.
-description: Shift one selected time range inside an SRT, VTT, or ASS subtitle file while keeping the rest of the captions unchanged.
+seoTitle: Shift Part of a Subtitle File - SRT, VTT, ASS Online
+seoDescription: Shift one section of an SRT, VTT, ASS, or SSA subtitle file online. Move only the selected time range locally while the rest stays unchanged.
+description: Shift one selected time range inside an SRT, VTT, ASS, or SSA subtitle file while keeping the rest of the captions unchanged.
 pubDate: 2026-05-10
 updatedDate: 2026-05-25
 category: sync-fixes
@@ -11,14 +11,25 @@ tags:
   - subtitle sync
   - shift subtitle range
   - subtitle delay
+  - shift one section subtitles
+  - selected range subtitle timing
 primaryTool: partial-subtitle-shifter
+faqs:
+  - question: Can I shift only one section of an SRT file?
+    answer: Yes. Use a partial subtitle shifter, set the start and end timestamps for the affected section, then apply the millisecond offset only to cues in that range.
+  - question: What happens to subtitles outside the selected range?
+    answer: Subtitles outside the selected range keep their original timing. This is safer when the intro, ending, or other scenes are already synced.
+  - question: Should I use a partial shift after a scene cut?
+    answer: Yes, if sync is correct before the cut and wrong afterward. Use the first out-of-sync cue as the range start and shift the affected section earlier or later.
+  - question: Can I use negative milliseconds for a partial shift?
+    answer: Yes. Negative milliseconds move the selected cues earlier, while positive milliseconds delay the selected cues.
 ---
 
-Use a partial shift when only one section is wrong and the rest of the subtitle file is already synced.
+Use a partial shift when only one section is wrong and the rest of the subtitle file is already synced. This is common after a scene cut, trimmed intro, inserted ad break, or edited middle section.
 
 ## Quick answer
 
-Open the [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/), enter the start and end time of the bad section, enter the offset in milliseconds, then download the updated file.
+Open the [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/), enter the start and end time of the bad section, enter the offset in milliseconds, then download the updated file. The tool runs locally in your browser and supports SRT, VTT, ASS, and SSA input.
 
 ## Example
 
@@ -49,11 +60,15 @@ Cues outside that range stay unchanged.
 5. Enter a positive offset to delay captions or a negative offset to move them earlier.
 6. Check the output around the range boundary.
 
+If the subtitle issue starts right after a video edit, use the same workflow from [fix subtitle sync after a scene cut](/guides/fix-subtitle-sync-after-a-scene-cut/) to choose the range start and direction.
+
 ## How the range works
 
 The tool shifts cues whose start time falls inside the selected range. A cue that starts before the range but ends inside it is left unchanged.
 
 This behavior is useful because it avoids moving long captions that begin before the edited section.
+
+For example, if your range starts at `00:05:00,000`, a cue that starts at `00:04:58,000` and ends at `00:05:02,000` stays unchanged. Start the range at the first cue that should actually move.
 
 ## Common mistakes
 
@@ -69,8 +84,32 @@ If you include already-correct cues, they will move too. Start with a tight rang
 
 Always inspect the cue before the shifted section and the cue after it. Those two points reveal most partial-shift errors.
 
+## Frequently asked questions
+
+### Can I shift only one section of an SRT file?
+
+Yes. Set the start and end timestamps for the affected section, then apply the offset only to that range. Captions outside the range keep their original timing.
+
+### What happens to subtitles outside the selected range?
+
+They stay unchanged. That is the main reason to use a partial shift instead of a full-file timing shift.
+
+### Should I use a partial shift after a scene cut?
+
+Yes, when sync is correct before the cut and wrong afterward. Use the first out-of-sync cue as the range start.
+
+### Can I use negative milliseconds for a partial shift?
+
+Yes. Negative values move selected cues earlier; positive values delay selected cues.
+
 ## Related guides
 
 - [Fix subtitle sync after a scene cut](/guides/fix-subtitle-sync-after-a-scene-cut/)
 - [How to fix subtitle delay](/guides/how-to-fix-subtitle-delay/)
 - [Fix out-of-sync subtitles](/guides/fix-out-of-sync-subtitles/)
+
+## Related tools
+
+- [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/)
+- [Subtitle Time Shifter](/tools/subtitle-time-shifter/)
+- [Fix Out-of-Sync Subtitles](/tools/fix-out-of-sync-subtitles/)

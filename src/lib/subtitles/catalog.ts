@@ -2984,9 +2984,9 @@ const enTools: SubtitleTool[] = [
     title: 'Partial Subtitle Shifter',
     shortTitle: 'Partial shifter',
     description:
-      'Shift only a selected time range inside an SRT, VTT, or ASS subtitle file.',
+      'Shift one selected SRT, VTT, ASS, or SSA subtitle range without moving the rest of the captions.',
     summary:
-      'Use this when only one scene or one edited segment is out of sync, while the rest of the subtitle file already matches the video.',
+      'Use this when only one scene, cut, or edited segment is out of sync, while the rest of the subtitle file already matches the video.',
     buttonLabel: 'Shift selected range',
     inputLabel: 'Subtitle input',
     outputLabel: 'Partially shifted subtitle output',
@@ -2996,7 +2996,7 @@ const enTools: SubtitleTool[] = [
     useCases: [
       'Fix sync after a scene cut without moving the whole file.',
       'Repair a middle section that drifts while the intro and ending are correct.',
-      'Move a selected subtitle range earlier or later before final review.',
+      'Move a selected SRT, VTT, ASS, or SSA subtitle range earlier or later before final review.',
     ],
     faqs: [
       {
@@ -3014,8 +3014,13 @@ const enTools: SubtitleTool[] = [
         answer:
           'No. Cues outside the selected range keep their original timing.',
       },
+      {
+        question: 'Should I use this after a scene cut?',
+        answer:
+          'Yes, use a partial shift when subtitles are synced before a cut but become early or late after that edit point.',
+      },
     ],
-    relatedTools: ['subtitle-time-shifter', 'subtitle-merger'],
+    relatedTools: ['subtitle-time-shifter', 'fix-out-of-sync-subtitles', 'subtitle-delay-fixer', 'subtitle-merger'],
     relatedGuides: [
       {
         href: '/guides/how-to-fix-subtitle-timing-after-cutting-video/',
