@@ -10,6 +10,7 @@ export type SubtitleToolId =
   | 'ass-to-vtt'
   | 'smi-to-srt'
   | 'sbv-to-srt'
+  | 'ttml-to-srt'
   | 'youtube-subtitle-converter'
   | 'html5-video-subtitle-converter'
   | 'videojs-subtitle-converter'
@@ -151,6 +152,15 @@ Welcome back to the edit.
 
 0:00:04.200,0:00:06.000
 Today we are converting SBV captions for upload.`,
+  ttml: `<?xml version="1.0" encoding="UTF-8"?>
+<tt xmlns="http://www.w3.org/ns/ttml">
+  <body>
+    <div>
+      <p begin="00:00:01.000" end="00:00:03.500">Welcome back to the edit.</p>
+      <p begin="00:00:04.200" end="00:00:06.000">Today we are converting TTML captions.<br/>They need SRT output.</p>
+    </div>
+  </body>
+</tt>`,
   encodedSrt: `1
 00:00:01,000 --> 00:00:03,500
 Café subtitles should stay readable.
@@ -740,7 +750,7 @@ const enTools: SubtitleTool[] = [
           'No. The SAMI to SRT conversion runs locally in your browser, so the subtitle file stays on your device.',
       },
     ],
-    relatedTools: ['sbv-to-srt', 'srt-validator'],
+    relatedTools: ['sbv-to-srt', 'ttml-to-srt'],
     relatedGuides: [
       {
         href: '/guides/how-to-convert-smi-to-srt/',
@@ -799,7 +809,7 @@ const enTools: SubtitleTool[] = [
           'The timing values are preserved, but the output uses standard SRT timestamp formatting and numbered cue blocks.',
       },
     ],
-    relatedTools: ['srt-validator', 'smi-to-srt'],
+    relatedTools: ['ttml-to-srt', 'smi-to-srt'],
     relatedGuides: [
       {
         href: '/guides/how-to-convert-sbv-to-srt/',
@@ -815,6 +825,65 @@ const enTools: SubtitleTool[] = [
       },
     ],
     sampleInput: sharedSamples.sbv,
+  },
+  {
+    id: 'ttml-to-srt',
+    title: 'TTML to SRT Converter',
+    shortTitle: 'TTML to SRT',
+    description:
+      'Convert TTML, DFXP, or XML subtitle files to SRT online for free, locally in your browser with no upload.',
+    summary:
+      'Use this free TTML to SRT converter when a timed-text XML subtitle file from a streaming, broadcast, or archive workflow needs a standard SubRip copy for editing, upload, or review.',
+    buttonLabel: 'Convert to SRT',
+    inputLabel: 'TTML input',
+    outputLabel: 'SRT output',
+    placeholder: 'Paste your TTML or DFXP subtitles here',
+    acceptedExtensions: ['.ttml', '.dfxp', '.xml', '.txt'],
+    sampleFileName: 'sample.ttml',
+    useCases: [
+      'Convert TTML or DFXP captions to standard SRT.',
+      'Move XML timed text into subtitle editors that expect SubRip files.',
+      'Create a simpler review copy from streaming or broadcast caption exports.',
+      'Prepare parsed TTML cues for SRT validation, cleanup, or upload workflows.',
+    ],
+    faqs: [
+      {
+        question: 'How do I convert a TTML subtitle file to SRT?',
+        answer:
+          'Open the TTML to SRT converter, paste or upload the .ttml, .dfxp, or XML caption file, and export the timed text paragraphs as numbered SRT cues.',
+      },
+      {
+        question: 'Is DFXP the same as TTML?',
+        answer:
+          'DFXP is an older name often used for TTML-based timed text. In practical subtitle workflows, both usually mean XML captions with timed paragraph cues.',
+      },
+      {
+        question: 'Does TTML styling survive in SRT?',
+        answer:
+          'No. SRT keeps timing and readable text, but it does not preserve TTML regions, styles, positioning, or XML metadata.',
+      },
+      {
+        question: 'Are TTML files uploaded to a server?',
+        answer:
+          'No. The TTML to SRT conversion runs locally in your browser, so the subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['srt-validator', 'sbv-to-srt'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-convert-ttml-to-srt/',
+        title: 'How to convert TTML to SRT',
+      },
+      {
+        href: '/guides/how-to-convert-subtitles-for-html5-video/',
+        title: 'How to convert subtitles for HTML5 video',
+      },
+      {
+        href: '/guides/how-to-validate-srt-files/',
+        title: 'How to validate SRT files',
+      },
+    ],
+    sampleInput: sharedSamples.ttml,
   },
   {
     id: 'youtube-subtitle-converter',

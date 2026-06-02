@@ -286,6 +286,10 @@ const checks = [
 				match: '/guides/how-to-convert-sbv-to-srt/',
 			},
 			{
+				label: 'homepage links to TTML to SRT guide',
+				match: '/guides/how-to-convert-ttml-to-srt/',
+			},
+			{
 				label: 'homepage links to ASS to VTT guide',
 				match: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
 			},
@@ -485,6 +489,27 @@ const checks = [
 			{
 				label: 'FAQ schema for SBV to SRT questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert an SBV subtitle file to SRT\?/
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-ttml-to-srt/',
+		expect: [
+			{
+				label: 'TTML to SRT guide CTR title',
+				match: '<title>Convert TTML to SRT - Free DFXP Subtitle Converter</title>',
+			},
+			{
+				label: 'TTML to SRT guide no-upload meta description',
+				match: 'Convert TTML or DFXP subtitles to SRT online for free. Parse timed-text XML captions, remove styling metadata, and create SubRip locally.',
+			},
+			{
+				label: 'TTML to SRT guide opens TTML converter tool',
+				match: 'href="/tools/ttml-to-srt/"',
+			},
+			{
+				label: 'FAQ schema for TTML to SRT questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert a TTML subtitle file to SRT\?/
 			},
 		],
 	},
@@ -2892,6 +2917,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/ttml-to-srt/',
+		expect: [
+			{
+				label: 'TTML to SRT tool title',
+				match: '<title>TTML to SRT Converter - Convert DFXP Captions Free</title>',
+			},
+			{
+				label: 'TTML to SRT tool meta description',
+				match: 'Convert TTML or DFXP subtitles to SRT online for free. Parse timed-text XML paragraphs and create numbered SubRip captions locally.',
+			},
+			{
+				label: 'TTML to SRT tool links guide',
+				match: 'href="/guides/how-to-convert-ttml-to-srt/"',
+			},
+			{
+				label: 'TTML to SRT tool FAQ covers DFXP files',
+				match: 'Is DFXP the same as TTML?',
+			},
+		],
+	},
+	{
 		path: '/tools/ass-to-srt/',
 		expect: [
 			{
@@ -3592,6 +3638,10 @@ const checks = [
 				match: 'https://subtitletoolkit.tools/tools/sbv-to-srt/',
 			},
 			{
+				label: 'llms lists TTML to SRT tool',
+				match: 'https://subtitletoolkit.tools/tools/ttml-to-srt/',
+			},
+			{
 				label: 'llms lists invalid WebVTT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/',
 			},
@@ -3894,6 +3944,10 @@ const checks = [
 			{
 				label: 'llms lists SBV to SRT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-sbv-to-srt/',
+			},
+			{
+				label: 'llms lists TTML to SRT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-ttml-to-srt/',
 			},
 			{
 				label: 'llms lists ASS to SRT guide',

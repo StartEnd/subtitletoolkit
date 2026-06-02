@@ -1,6 +1,6 @@
 import type { SubtitleToolId } from './catalog';
 
-export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'smi' | 'sbv' | 'txt' | 'unknown';
+export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'smi' | 'sbv' | 'ttml' | 'txt' | 'unknown';
 
 export interface SubtitleCue {
   start: number;
@@ -41,6 +41,10 @@ export function detectSubtitleFormat(input: string): SubtitleFormat {
 
   if (/<SAMI\b/i.test(normalized) || /<SYNC\s+Start\s*=/i.test(normalized)) {
     return 'smi';
+  }
+
+  if (/<tt\b/i.test(normalized) && /<p\b[^>]*(?:begin|end|dur)=/i.test(normalized)) {
+    return 'ttml';
   }
 
   if (/^(?:\d+:)?\d{1,2}:\d{2}\.\d{3}\s*,\s*(?:\d+:)?\d{1,2}:\d{2}\.\d{3}$/m.test(normalized)) {
@@ -118,6 +122,20 @@ function assTimestampToMs(timestamp: string) {
     Number(seconds) * 1000 +
     Number(centiseconds.padEnd(2, '0').slice(0, 2)) * 10
   );
+}
+
+function ttmlTimestampToMs(timestamp: string) {
+  const normalized = timestamp.trim();
+
+  if (/^\d+(?:\.\d+)?ms$/i.test(normalized)) {
+    return Math.round(Number.parseFloat(normalized) || 0);
+  }
+
+  if (/^\d+(?:\.\d+)?s$/i.test(normalized)) {
+    return Math.round((Number.parseFloat(normalized) || 0) * 1000);
+  }
+
+  return timestampInputToMs(normalized);
 }
 
 function formatSrtTime(totalMs: number) {
@@ -346,6 +364,50 @@ export function parseSbv(input: string): SubtitleCue[] {
     .filter(Boolean) as SubtitleCue[];
 }
 
+export function parseTtml(input: string): SubtitleCue[] {
+  const normalized = normalizeSubtitleInput(input);
+  if (!normalized) {
+    return [];
+  }
+
+  const cueMatches = [...normalized.matchAll(/<p\b([^>]*)>([\s\S]*?)<\/p>/gi)];
+
+  return cueMatches
+    .map((match) => {
+      const attrs = match[1];
+      const body = match[2];
+      const begin = attrs.match(/\bbegin\s*=\s*["']([^"']+)["']/i)?.[1];
+      const end = attrs.match(/\bend\s*=\s*["']([^"']+)["']/i)?.[1];
+      const dur = attrs.match(/\bdur\s*=\s*["']([^"']+)["']/i)?.[1];
+
+      if (!begin || (!end && !dur)) {
+        return null;
+      }
+
+      const start = ttmlTimestampToMs(begin);
+      const cueEnd = end
+        ? ttmlTimestampToMs(end)
+        : start + ttmlTimestampToMs(dur || '0');
+      const text = body
+        .replace(/<br\s*\/?\s*>/gi, '\n')
+        .replace(/<[^>]+>/g, ' ')
+        .split('\n')
+        .map((line) => cleanSubtitleLine(line))
+        .filter(Boolean);
+
+      if (!text.length) {
+        return null;
+      }
+
+      return {
+        start,
+        end: Math.max(start + 1, cueEnd),
+        text,
+      };
+    })
+    .filter(Boolean) as SubtitleCue[];
+}
+
 export function parseSubtitleByFormat(
   input: string,
   format: SubtitleFormat
@@ -361,6 +423,8 @@ export function parseSubtitleByFormat(
       return parseSmi(input);
     case 'sbv':
       return parseSbv(input);
+    case 'ttml':
+      return parseTtml(input);
     default:
       return [];
   }
@@ -432,6 +496,7 @@ function serializeByFormat(cues: SubtitleCue[], format: SubtitleFormat) {
       return serializeAss(cues);
     case 'smi':
     case 'sbv':
+    case 'ttml':
       return serializeSrt(cues);
     case 'txt':
       return serializePlainText(cues);
@@ -641,6 +706,8 @@ export function processSubtitleTool(
       return serializeSrt(parseSmi(normalized));
     case 'sbv-to-srt':
       return serializeSrt(parseSbv(normalized));
+    case 'ttml-to-srt':
+      return serializeSrt(parseTtml(normalized));
     case 'youtube-subtitle-converter':
     case 'plex-subtitle-converter': {
       const format = detectSubtitleFormat(normalized);
@@ -760,6 +827,7 @@ export function inferOutputFormat(
     case 'ass-to-srt':
     case 'smi-to-srt':
     case 'sbv-to-srt':
+    case 'ttml-to-srt':
     case 'youtube-subtitle-converter':
     case 'plex-subtitle-converter':
       return 'srt';

@@ -1,0 +1,126 @@
+---
+title: How to convert TTML to SRT
+seoTitle: Convert TTML to SRT - Free DFXP Subtitle Converter
+seoDescription: Convert TTML or DFXP subtitles to SRT online for free. Parse timed-text XML captions, remove styling metadata, and create SubRip locally.
+description: Convert TTML, DFXP, or XML timed text caption files into standard SRT subtitles for editing, upload, review, and archive workflows.
+pubDate: 2026-06-02
+category: conversion-guides
+tags:
+  - ttml
+  - dfxp
+  - xml subtitles
+  - srt
+  - conversion
+primaryTool: ttml-to-srt
+faqs:
+  - question: How do I convert a TTML subtitle file to SRT?
+    answer: Use the TTML to SRT converter with a .ttml, .dfxp, or XML caption file. It reads timed paragraph cues, removes XML wrapper markup, and exports numbered SRT cues.
+  - question: Is DFXP the same as TTML?
+    answer: DFXP is an older name often used for TTML-based timed text. In subtitle workflows, both usually refer to XML captions with timed paragraph cues.
+  - question: Can I convert TTML subtitles without uploading the file?
+    answer: Yes. The converter runs in your browser, so the TTML or DFXP subtitle text stays on your device.
+---
+
+TTML subtitle files are XML timed text files used in streaming, broadcast, and caption archive workflows. You may also see the same kind of caption file called DFXP. The file can include regions, styles, metadata, and timed paragraph cues.
+
+SRT is much simpler. It keeps numbered cues, timestamps, and readable subtitle text, which makes it easier to edit, upload, validate, and review.
+
+## Quick answer
+
+Use the [TTML to SRT Converter](/tools/ttml-to-srt/) to convert `.ttml`, `.dfxp`, or XML timed text captions into standard SubRip subtitles. The tool reads timed `<p>` cues, removes XML wrapper and styling markup, and creates numbered SRT output locally in your browser.
+
+## When to convert TTML or DFXP to SRT
+
+Convert TTML to SRT when:
+
+- a streaming caption export needs to open in a simpler subtitle editor
+- a review workflow asks for SRT instead of XML timed text
+- an upload form accepts SubRip but not TTML or DFXP
+- a client wants a readable handoff copy without styling metadata
+- you need to validate, clean, shift, or merge the captions with SRT tools
+
+Keep the original TTML file if you still need regions, styles, language metadata, or broadcast-specific caption details. SRT is a practical delivery copy, not a full TTML replacement.
+
+## What changes during conversion
+
+TTML stores timing and text inside XML paragraph elements:
+
+```xml
+<p begin="00:00:01.000" end="00:00:03.500">Welcome back to the edit.</p>
+<p begin="00:00:04.200" end="00:00:06.000">This TTML cue needs SRT output.<br/>Keep the line break.</p>
+```
+
+SRT stores the same captions like this:
+
+```text
+1
+00:00:01,000 --> 00:00:03,500
+Welcome back to the edit.
+
+2
+00:00:04,200 --> 00:00:06,000
+This TTML cue needs SRT output.
+Keep the line break.
+```
+
+During conversion, the tool:
+
+- reads TTML paragraph cues with `begin` and `end` timing
+- supports common duration timing when a cue uses `begin` plus `dur`
+- converts XML line breaks into subtitle line breaks
+- removes TTML regions, styles, spans, and wrapper tags
+- decodes common HTML/XML entities
+- generates sequential SRT cue numbers
+
+The output keeps readable timing and text. It does not preserve TTML styling, positioning, regions, speaker metadata, or advanced broadcast semantics.
+
+## Step-by-step workflow
+
+1. Save a copy of the original `.ttml`, `.dfxp`, or XML caption file.
+2. Open the [TTML to SRT Converter](/tools/ttml-to-srt/).
+3. Upload or paste the TTML subtitle content.
+4. Convert the file to SRT.
+5. Review cues that used nested `<span>` or `<br>` markup.
+6. Run the output through the [SRT Validator](/tools/srt-validator/) before upload.
+
+## Common mistakes
+
+### Using a video file instead of a TTML caption file
+
+TTML to SRT conversion works on a separate text caption file. It does not extract captions from a video container and it cannot recover burned-in text from the image.
+
+### Expecting TTML styling to survive
+
+SRT cannot preserve regions, colors, positioning, XML styles, or advanced timed text metadata. Keep the original TTML if the destination requires those details.
+
+### Ignoring nested text cleanup
+
+Some TTML files use nested spans or styling tags inside a cue. After conversion, review the first, middle, and final cues to confirm the flattened text is readable.
+
+## Frequently asked questions
+
+### How do I convert a TTML subtitle file to SRT?
+
+Open the [TTML to SRT Converter](/tools/ttml-to-srt/), upload or paste the `.ttml`, `.dfxp`, or XML caption file, and export the timed paragraphs as numbered SRT cues.
+
+### Is DFXP the same as TTML?
+
+DFXP is an older name often used for TTML-based timed text. In practical subtitle workflows, both usually mean XML captions with timed paragraph cues.
+
+### Can I convert TTML subtitles without uploading the file?
+
+Yes. The converter runs locally in your browser, so the subtitle text does not need to be sent to a server.
+
+## Related guides
+
+- [How to convert subtitles for HTML5 video](/guides/how-to-convert-subtitles-for-html5-video/)
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+- [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)
+- [How to convert subtitles to UTF-8](/guides/how-to-convert-subtitles-to-utf-8/)
+
+## Related tools
+
+- [TTML to SRT Converter](/tools/ttml-to-srt/)
+- [SRT Validator](/tools/srt-validator/)
+- [Subtitle Cleaner](/tools/subtitle-cleaner/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
