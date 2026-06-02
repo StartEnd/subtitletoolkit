@@ -1,0 +1,139 @@
+---
+title: Why WebM subtitles are not showing
+seoTitle: WebM Subtitles Not Showing - Fix VTT and HTML5 Captions
+seoDescription: Fix WebM subtitles not showing by checking embedded WebVTT tracks, HTML track files, VTT format, MIME type, CORS, and timing.
+description: Fix subtitles that do not show with a WebM video by checking embedded tracks, external VTT files, HTML5 player setup, delivery, and timing.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - webm subtitles
+  - webvtt captions
+  - subtitles not showing
+  - html5 video
+  - vtt
+primaryTool: webvtt-validator
+faqs:
+  - question: Why are subtitles not showing in my WebM file?
+    answer: The WebM may not contain an embedded caption track, the page may load captions from a separate VTT file, or the player may be rejecting the VTT because of format, MIME type, CORS, or timing issues.
+  - question: Can WebM files have embedded subtitles?
+    answer: Yes, WebM can contain text caption streams such as WebVTT, but many web players use a separate HTML track file instead of embedding captions in the video.
+  - question: Why do WebM captions show on a website but not in the downloaded file?
+    answer: The website may load captions from a separate .vtt URL. When you download only the WebM file, that sidecar caption file is not included.
+---
+
+When subtitles do not show with a WebM video, first find out whether the captions are embedded in the WebM, loaded from an HTML `<track>` file, or burned into the video image.
+
+## Quick answer
+
+Open the WebM in the destination player and check whether a subtitle or captions menu exists. If the WebM is used on a web page, inspect the HTML track setup and validate the `.vtt` file before changing the video.
+
+If you are not sure whether the WebM contains a real embedded caption track, use [Extract Subtitles from Video](/tools/extract-subtitles-from-video/) to inspect the file locally in your browser.
+
+## What to check first
+
+Check these before re-exporting the video:
+
+- the WebM contains an embedded text caption stream, not only audio and video
+- the web page is not relying on a separate `.vtt` file you forgot to copy
+- the VTT file starts with a `WEBVTT` header
+- VTT timestamps use dots, not SRT-style commas
+- the VTT URL opens directly in the browser
+- the server returns `text/vtt` and does not block the file with CORS
+- the subtitle timing overlaps the part of the WebM you are playing
+
+## Step-by-step workflow
+
+### 1. Check whether captions are embedded in the WebM
+
+Some WebM files contain text caption streams such as WebVTT. Many contain only audio and video.
+
+Use the extractor when you need to inspect the file:
+
+1. Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/).
+2. Choose the `.webm` file.
+3. Check whether a text subtitle stream is found.
+4. If a stream exists, export it and test the subtitle file separately.
+
+If no text stream is found, the captions may be loaded from the web page instead of being stored inside the WebM.
+
+### 2. Check the HTML track file
+
+HTML5 players commonly attach captions like this:
+
+```html
+<video controls src="lesson.webm">
+  <track kind="subtitles" src="lesson.en.vtt" srclang="en" label="English" default />
+</video>
+```
+
+If you copy or download only `lesson.webm`, the caption file is not included. Keep the video and the `.vtt` file together when you move the page or test playback.
+
+### 3. Validate the VTT file
+
+If the WebM uses an external VTT file, validate the file before debugging player code.
+
+Use the [WebVTT Validator](/tools/webvtt-validator/) to check for:
+
+- missing `WEBVTT` header
+- comma timestamps copied from SRT
+- malformed cue timing
+- missing blank lines between cues
+- unsupported styling or broken text
+
+If the source file is SRT, convert it to VTT instead of renaming the extension.
+
+### 4. Check MIME type, CORS, and URL paths
+
+A valid VTT file can still fail when the browser cannot fetch it correctly.
+
+Open the VTT URL directly and check:
+
+- the URL returns the subtitle file, not a 404 page
+- the content type is `text/vtt`
+- the video and VTT file are on the same origin, or CORS is configured
+- the `<track>` `src`, `kind`, and `srclang` values are correct
+
+For static sites and CDNs, these delivery details are often the real reason captions fail.
+
+### 5. Check timing and language tracks
+
+If the captions load but no text appears during playback, the file may be timed for another export or language.
+
+Look for these clues:
+
+- captions appear only after skipping forward
+- every caption is consistently early or late
+- the wrong language file is selected
+- the WebM was trimmed after captions were created
+
+Use the [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/) if every caption is offset by the same amount.
+
+## Common mistakes
+
+### Assuming captions are inside the downloaded WebM
+
+A web page can show captions from a separate `.vtt` URL while the WebM itself has no embedded subtitle stream.
+
+### Renaming SRT to VTT
+
+Browsers expect real WebVTT. A renamed SRT file can fail because it lacks the `WEBVTT` header and uses comma timestamps.
+
+### Ignoring CORS and MIME type
+
+The VTT file can be valid and still fail when the server sends the wrong content type or blocks cross-origin access.
+
+## Related guides
+
+- [How to extract subtitles from WebM](/guides/how-to-extract-subtitles-from-webm/)
+- [Why VTT captions are not loading](/guides/why-vtt-captions-are-not-loading/)
+- [Why subtitles do not show in HTML5 video](/guides/why-subtitles-do-not-show-in-html5-video/)
+- [Best subtitle format for HTML5 video](/guides/best-subtitle-format-for-html5-video/)
+- [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)
+
+## Related tools
+
+- [WebVTT Validator](/tools/webvtt-validator/)
+- [Extract Subtitles from Video](/tools/extract-subtitles-from-video/)
+- [SRT to VTT Converter](/tools/srt-to-vtt/)
+- [VTT to SRT Converter](/tools/vtt-to-srt/)
+- [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/)

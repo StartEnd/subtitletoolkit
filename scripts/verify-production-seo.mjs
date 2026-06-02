@@ -178,6 +178,10 @@ const checks = [
 				match: '/guides/why-mov-subtitles-are-not-showing/',
 			},
 			{
+				label: 'homepage links to WebM subtitle failure guide',
+				match: '/guides/why-webm-subtitles-are-not-showing/',
+			},
+			{
 				label: 'homepage links to M4V subtitle extraction guide',
 				match: '/guides/how-to-extract-subtitles-from-m4v/',
 			},
@@ -2003,6 +2007,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/why-webm-subtitles-are-not-showing/',
+		expect: [
+			{
+				label: 'WebM subtitles failure guide CTR title',
+				match: '<title>WebM Subtitles Not Showing - Fix VTT and HTML5 Captions</title>',
+			},
+			{
+				label: 'WebM subtitles failure guide meta description',
+				match: 'Fix WebM subtitles not showing by checking embedded WebVTT tracks, HTML track files, VTT format, MIME type, CORS, and timing.',
+			},
+			{
+				label: 'WebM subtitles failure guide opens validator tool',
+				match: 'href="/tools/webvtt-validator/"',
+			},
+			{
+				label: 'FAQ schema for WebM subtitle questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why are subtitles not showing in my WebM file\?/,
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-extract-subtitles-from-avi/',
 		expect: [
 			{
@@ -3027,6 +3052,10 @@ const checks = [
 				match: '/guides/how-to-extract-subtitles-from-webm/',
 			},
 			{
+				label: 'guides index links to WebM subtitle failure guide',
+				match: '/guides/why-webm-subtitles-are-not-showing/',
+			},
+			{
 				label: 'guides index links to AVI extraction guide',
 				match: '/guides/how-to-extract-subtitles-from-avi/',
 			},
@@ -3297,6 +3326,10 @@ const checks = [
 			{
 				label: 'llms lists WebM extraction guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-webm/',
+			},
+			{
+				label: 'llms lists WebM subtitle failure guide',
+				match: 'https://subtitletoolkit.tools/guides/why-webm-subtitles-are-not-showing/',
 			},
 			{
 				label: 'llms lists AVI extraction guide',
