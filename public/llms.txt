@@ -26,6 +26,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [LRC to SRT Converter](https://subtitletoolkit.tools/tools/lrc-to-srt/): Convert timestamped lyric files to standard SRT cues.
 - [SubViewer to SRT Converter](https://subtitletoolkit.tools/tools/subviewer-to-srt/): Convert time-based SubViewer SUB captions to standard SRT cues.
 - [MPL2 to SRT Converter](https://subtitletoolkit.tools/tools/mpl2-to-srt/): Convert bracket-timed MPL2 captions to standard SRT cues.
+- [CSV to SRT Converter](https://subtitletoolkit.tools/tools/csv-to-srt/): Convert CSV caption rows to standard SRT cues.
 - [YouTube Subtitle Converter](https://subtitletoolkit.tools/tools/youtube-subtitle-converter/): Convert VTT or ASS subtitles into YouTube-ready SRT captions.
 - [Subtitle Time Shifter](https://subtitletoolkit.tools/tools/subtitle-time-shifter/): Shift SRT, VTT, or ASS timestamps forward or backward.
 - [Partial Subtitle Shifter](https://subtitletoolkit.tools/tools/partial-subtitle-shifter/): Shift only a selected time range inside a subtitle file.
@@ -73,6 +74,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [How to convert LRC to SRT](https://subtitletoolkit.tools/guides/how-to-convert-lrc-to-srt/)
 - [How to convert SubViewer to SRT](https://subtitletoolkit.tools/guides/how-to-convert-subviewer-to-srt/)
 - [How to convert MPL2 to SRT](https://subtitletoolkit.tools/guides/how-to-convert-mpl2-to-srt/)
+- [How to convert CSV to SRT](https://subtitletoolkit.tools/guides/how-to-convert-csv-to-srt/)
 - [How to convert ASS to SRT](https://subtitletoolkit.tools/guides/how-to-convert-ass-to-srt/)
 - [How to export SRT from Aegisub](https://subtitletoolkit.tools/guides/how-to-export-srt-from-aegisub/)
 - [How to convert SSA to SRT](https://subtitletoolkit.tools/guides/how-to-convert-ssa-to-srt/)

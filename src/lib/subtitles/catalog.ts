@@ -16,6 +16,7 @@ export type SubtitleToolId =
   | 'lrc-to-srt'
   | 'subviewer-to-srt'
   | 'mpl2-to-srt'
+  | 'csv-to-srt'
   | 'youtube-subtitle-converter'
   | 'html5-video-subtitle-converter'
   | 'videojs-subtitle-converter'
@@ -183,6 +184,9 @@ Welcome back to the edit
 Today we are converting SubViewer captions[br]They need SRT output`,
   mpl2: `[10][35]Welcome back to the edit
 [42][60]Today we are converting MPL2 subtitles|They need SRT output`,
+  csv: `start,end,text
+00:00:01.000,00:00:03.500,Welcome back to the edit
+00:00:04.200,00:00:06.000,"Today we are converting CSV captions\nThey need SRT output"`,
   encodedSrt: `1
 00:00:01,000 --> 00:00:03,500
 Café subtitles should stay readable.
@@ -1201,6 +1205,65 @@ const enTools: SubtitleTool[] = [
       },
     ],
     sampleInput: sharedSamples.mpl2,
+  },
+  {
+    id: 'csv-to-srt',
+    title: 'CSV to SRT Converter',
+    shortTitle: 'CSV to SRT',
+    description:
+      'Convert CSV subtitle rows to SRT online for free, locally in your browser with no upload.',
+    summary:
+      'Use this free CSV to SRT converter when transcript exports, spreadsheet rows, or caption QA files need standard numbered SubRip output.',
+    buttonLabel: 'Convert to SRT',
+    inputLabel: 'CSV input',
+    outputLabel: 'SRT output',
+    placeholder: 'Paste CSV rows with start, end, and text columns here',
+    acceptedExtensions: ['.csv', '.txt'],
+    sampleFileName: 'captions.csv',
+    useCases: [
+      'Convert transcript exports with start, end, and text columns into SRT.',
+      'Move spreadsheet-edited caption rows back into subtitle timing format.',
+      'Create upload-ready SRT from CSV files exported by caption tools.',
+      'Prepare CSV caption data for SRT validation, cleanup, or review workflows.',
+    ],
+    faqs: [
+      {
+        question: 'How do I convert a CSV subtitle file to SRT?',
+        answer:
+          'Open the CSV to SRT converter, paste or upload rows with start, end, and text columns, and export them as numbered SRT cues.',
+      },
+      {
+        question: 'What CSV columns are supported?',
+        answer:
+          'The converter supports header columns such as start, end, and text. Without a header, it reads the first three columns as start time, end time, and caption text.',
+      },
+      {
+        question: 'Can CSV captions contain commas or line breaks?',
+        answer:
+          'Yes. Put text that contains commas inside quotes, and use escaped line breaks such as \\n inside a text cell for multi-line SRT cues.',
+      },
+      {
+        question: 'Are CSV subtitle files uploaded to a server?',
+        answer:
+          'No. The CSV to SRT conversion runs locally in your browser, so the subtitle rows stay on your device.',
+      },
+    ],
+    relatedTools: ['srt-validator', 'subtitle-transcript-generator'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-convert-csv-to-srt/',
+        title: 'How to convert CSV to SRT',
+      },
+      {
+        href: '/guides/how-to-validate-srt-files/',
+        title: 'How to validate SRT files',
+      },
+      {
+        href: '/guides/common-subtitle-format-errors-and-fixes/',
+        title: 'Common subtitle format errors and fixes',
+      },
+    ],
+    sampleInput: sharedSamples.csv,
   },
   {
     id: 'youtube-subtitle-converter',

@@ -310,6 +310,10 @@ const checks = [
 				match: '/guides/how-to-convert-mpl2-to-srt/',
 			},
 			{
+				label: 'homepage links to CSV to SRT guide',
+				match: '/guides/how-to-convert-csv-to-srt/',
+			},
+			{
 				label: 'homepage links to ASS to VTT guide',
 				match: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
 			},
@@ -635,6 +639,27 @@ const checks = [
 			{
 				label: 'FAQ schema for MPL2 to SRT questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert an MPL2 subtitle file to SRT\?/
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-csv-to-srt/',
+		expect: [
+			{
+				label: 'CSV to SRT guide CTR title',
+				match: '<title>Convert CSV to SRT - Free Caption Row Converter</title>',
+			},
+			{
+				label: 'CSV to SRT guide no-upload meta description',
+				match: 'Convert CSV subtitle rows to SRT online for free. Turn start, end, and text columns into numbered SubRip cues locally with no upload.',
+			},
+			{
+				label: 'CSV to SRT guide opens CSV converter tool',
+				match: 'href="/tools/csv-to-srt/"',
+			},
+			{
+				label: 'FAQ schema for CSV to SRT questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert a CSV subtitle file to SRT\?/
 			},
 		],
 	},
@@ -3168,6 +3193,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/csv-to-srt/',
+		expect: [
+			{
+				label: 'CSV to SRT tool title',
+				match: '<title>CSV to SRT Converter - Convert Caption Rows Free</title>',
+			},
+			{
+				label: 'CSV to SRT tool meta description',
+				match: 'Convert CSV subtitle rows to SRT online for free. Turn start, end, and text columns into numbered SubRip cues locally.',
+			},
+			{
+				label: 'CSV to SRT tool links guide',
+				match: 'href="/guides/how-to-convert-csv-to-srt/"',
+			},
+			{
+				label: 'CSV to SRT tool FAQ covers columns',
+				match: 'What CSV columns are supported?',
+			},
+		],
+	},
+	{
 		path: '/tools/ass-to-srt/',
 		expect: [
 			{
@@ -3892,6 +3938,10 @@ const checks = [
 				match: 'https://subtitletoolkit.tools/tools/mpl2-to-srt/',
 			},
 			{
+				label: 'llms lists CSV to SRT tool',
+				match: 'https://subtitletoolkit.tools/tools/csv-to-srt/',
+			},
+			{
 				label: 'llms lists invalid WebVTT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/',
 			},
@@ -4218,6 +4268,10 @@ const checks = [
 			{
 				label: 'llms lists MPL2 to SRT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-mpl2-to-srt/',
+			},
+			{
+				label: 'llms lists CSV to SRT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-csv-to-srt/',
 			},
 			{
 				label: 'llms lists ASS to SRT guide',

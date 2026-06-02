@@ -1,6 +1,6 @@
 import type { SubtitleToolId } from './catalog';
 
-export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'smi' | 'sbv' | 'ttml' | 'scc' | 'microdvd' | 'lrc' | 'subviewer' | 'mpl2' | 'txt' | 'unknown';
+export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'smi' | 'sbv' | 'ttml' | 'scc' | 'microdvd' | 'lrc' | 'subviewer' | 'mpl2' | 'csv' | 'txt' | 'unknown';
 
 export interface SubtitleCue {
   start: number;
@@ -65,6 +65,10 @@ export function detectSubtitleFormat(input: string): SubtitleFormat {
 
   if (/^\[\d+\]\[\d+\].+/m.test(normalized)) {
     return 'mpl2';
+  }
+
+  if (/^(?:start|begin|in)\s*,\s*(?:end|out)\s*,\s*(?:text|caption|subtitle)/im.test(normalized)) {
+    return 'csv';
   }
 
   if (/^(?:\d+:)?\d{1,2}:\d{2}\.\d{3}\s*,\s*(?:\d+:)?\d{1,2}:\d{2}\.\d{3}$/m.test(normalized)) {
@@ -679,6 +683,108 @@ export function parseMpl2(input: string): SubtitleCue[] {
     .filter(Boolean) as SubtitleCue[];
 }
 
+function parseCsvRows(input: string) {
+  const rows: string[][] = [];
+  let row: string[] = [];
+  let field = '';
+  let inQuotes = false;
+
+  for (let index = 0; index < input.length; index += 1) {
+    const char = input[index];
+    const next = input[index + 1];
+
+    if (char === '"') {
+      if (inQuotes && next === '"') {
+        field += '"';
+        index += 1;
+      } else {
+        inQuotes = !inQuotes;
+      }
+      continue;
+    }
+
+    if (char === ',' && !inQuotes) {
+      row.push(field);
+      field = '';
+      continue;
+    }
+
+    if ((char === '\n' || char === '\r') && !inQuotes) {
+      if (char === '\r' && next === '\n') {
+        index += 1;
+      }
+      row.push(field);
+      if (row.some((cell) => cell.trim())) {
+        rows.push(row);
+      }
+      row = [];
+      field = '';
+      continue;
+    }
+
+    field += char;
+  }
+
+  row.push(field);
+  if (row.some((cell) => cell.trim())) {
+    rows.push(row);
+  }
+
+  return rows;
+}
+
+function normalizeCsvHeader(header: string) {
+  return header.trim().toLowerCase().replace(/[^a-z0-9]+/g, '');
+}
+
+export function parseCsv(input: string): SubtitleCue[] {
+  const normalized = normalizeSubtitleInput(input);
+  if (!normalized) {
+    return [];
+  }
+
+  const rows = parseCsvRows(normalized);
+  if (!rows.length) {
+    return [];
+  }
+
+  const firstRowHeaders = rows[0].map(normalizeCsvHeader);
+  const startIndex = firstRowHeaders.findIndex((header) => ['start', 'starttime', 'begin', 'intime', 'in'].includes(header));
+  const endIndex = firstRowHeaders.findIndex((header) => ['end', 'endtime', 'outtime', 'out'].includes(header));
+  const textIndex = firstRowHeaders.findIndex((header) => ['text', 'caption', 'subtitle', 'content', 'line'].includes(header));
+  const hasHeader = startIndex !== -1 && endIndex !== -1 && textIndex !== -1;
+
+  return (hasHeader ? rows.slice(1) : rows)
+    .map((row) => {
+      const startCell = row[hasHeader ? startIndex : 0]?.trim();
+      const endCell = row[hasHeader ? endIndex : 1]?.trim();
+      const textCell = row[hasHeader ? textIndex : 2]?.trim();
+
+      if (!startCell || !endCell || !textCell) {
+        return null;
+      }
+
+      const start = timestampInputToMs(startCell);
+      const end = timestampInputToMs(endCell);
+      const text = textCell
+        .replace(/\\n/g, '\n')
+        .split('\n')
+        .map((line) => cleanSubtitleLine(line))
+        .filter(Boolean);
+
+      if (!text.length) {
+        return null;
+      }
+
+      return {
+        start,
+        end: Math.max(start + 1, end),
+        text,
+      };
+    })
+    .filter(Boolean) as SubtitleCue[];
+}
+
 export function parseSubtitleByFormat(
   input: string,
   format: SubtitleFormat
@@ -706,6 +812,8 @@ export function parseSubtitleByFormat(
       return parseSubViewer(input);
     case 'mpl2':
       return parseMpl2(input);
+    case 'csv':
+      return parseCsv(input);
     default:
       return [];
   }
@@ -1004,6 +1112,8 @@ export function processSubtitleTool(
       return serializeSrt(parseSubViewer(normalized));
     case 'mpl2-to-srt':
       return serializeSrt(parseMpl2(normalized));
+    case 'csv-to-srt':
+      return serializeSrt(parseCsv(normalized));
     case 'youtube-subtitle-converter':
     case 'plex-subtitle-converter': {
       const format = detectSubtitleFormat(normalized);
@@ -1129,6 +1239,7 @@ export function inferOutputFormat(
     case 'lrc-to-srt':
     case 'subviewer-to-srt':
     case 'mpl2-to-srt':
+    case 'csv-to-srt':
     case 'youtube-subtitle-converter':
     case 'plex-subtitle-converter':
       return 'srt';

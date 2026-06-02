@@ -1,0 +1,131 @@
+---
+title: How to convert CSV to SRT
+seoTitle: Convert CSV to SRT - Free Caption Row Converter
+seoDescription: Convert CSV subtitle rows to SRT online for free. Turn start, end, and text columns into numbered SubRip cues locally with no upload.
+description: Convert spreadsheet-style CSV caption rows into standard SRT subtitles for upload, editing, review, and validation workflows.
+pubDate: 2026-06-02
+category: conversion-guides
+tags:
+  - csv
+  - srt
+  - conversion
+  - transcript export
+primaryTool: csv-to-srt
+faqs:
+  - question: How do I convert a CSV subtitle file to SRT?
+    answer: Use the CSV to SRT converter with rows that contain start time, end time, and caption text. It reads the timing columns and exports numbered SubRip cues.
+  - question: What columns does CSV to SRT need?
+    answer: Use start, end, and text columns. Without a header row, the converter reads the first three columns as start time, end time, and subtitle text.
+  - question: Can I convert CSV captions without uploading the file?
+    answer: Yes. The converter runs in your browser, so the CSV subtitle file stays on your device.
+---
+
+CSV subtitle files are often created by transcript tools, spreadsheets, caption QA exports, or internal review systems. A row usually contains a start time, an end time, and the caption text.
+
+SRT is easier to upload, validate, and preview because it stores numbered cues with standard comma-based timestamps.
+
+## Quick answer
+
+Use the [CSV to SRT Converter](/tools/csv-to-srt/) to convert rows with `start`, `end`, and `text` columns into standard SubRip subtitles. The tool reads quoted CSV cells, supports text with commas, turns escaped `\n` markers into SRT line breaks, and runs locally in your browser with no upload.
+
+## When to convert CSV to SRT
+
+Convert CSV to SRT when:
+
+- a transcript service exports timed caption rows instead of an SRT file
+- subtitles were edited in a spreadsheet and need to become upload-ready captions
+- a review system stores timing and text in separate columns
+- you need a readable SRT copy before sending captions to a client or platform
+- you want to run the result through an SRT validator before publishing
+
+Keep the original CSV until the converted SRT has been checked against the video.
+
+## Supported CSV layout
+
+The safest layout uses a header row:
+
+```text
+start,end,text
+00:00:01.000,00:00:03.500,Welcome back to the edit
+00:00:04.200,00:00:06.000,"Today we are converting CSV captions\nThey need SRT output"
+```
+
+Without a header row, the converter reads the first three columns as start time, end time, and text:
+
+```text
+00:00:01.000,00:00:03.500,Welcome back to the edit
+00:00:04.200,00:00:06.000,Today we are converting CSV captions
+```
+
+## What changes during conversion
+
+The CSV rows above become SRT cues like this:
+
+```text
+1
+00:00:01,000 --> 00:00:03,500
+Welcome back to the edit
+
+2
+00:00:04,200 --> 00:00:06,000
+Today we are converting CSV captions
+They need SRT output
+```
+
+During conversion, the tool:
+
+- reads header columns such as `start`, `end`, and `text`
+- treats no-header CSV as first column start, second column end, third column text
+- converts dot or comma timestamp fractions into SRT comma timing
+- preserves text inside quoted cells, including commas
+- turns escaped `\n` markers into normal SRT line breaks
+- generates sequential SRT cue numbers
+
+## Step-by-step workflow
+
+1. Save a copy of the original CSV file.
+2. Confirm each subtitle row has start time, end time, and caption text.
+3. Open the [CSV to SRT Converter](/tools/csv-to-srt/).
+4. Upload or paste the CSV subtitle rows.
+5. Convert the file to SRT.
+6. Run the output through the [SRT Validator](/tools/srt-validator/) before upload.
+
+## Common mistakes
+
+### Leaving commas unquoted in caption text
+
+If a caption contains a comma, wrap the text cell in quotes. Otherwise the comma can split one caption into multiple CSV columns.
+
+### Exporting only text without timing
+
+SRT needs both start and end timestamps. A transcript-only CSV cannot become timed subtitles unless timing columns are added first.
+
+### Mixing timestamp formats in one file
+
+Use one clear timing style throughout the CSV. For example, keep every row in `00:00:04.200` or `00:00:04,200` style instead of mixing formats unpredictably.
+
+## Frequently asked questions
+
+### How do I convert a CSV subtitle file to SRT?
+
+Open the [CSV to SRT Converter](/tools/csv-to-srt/), upload or paste rows with start, end, and text columns, and export the parsed rows as numbered SRT cues.
+
+### What columns does CSV to SRT need?
+
+Use `start`, `end`, and `text` columns. Without a header row, the converter reads the first three columns as start time, end time, and subtitle text.
+
+### Can I convert CSV captions without uploading the file?
+
+Yes. The converter runs locally in your browser, so the CSV file does not need to be sent to a server.
+
+## Related guides
+
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+- [How to create a transcript from subtitles](/guides/how-to-create-a-transcript-from-subtitles/)
+- [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)
+
+## Related tools
+
+- [CSV to SRT Converter](/tools/csv-to-srt/)
+- [SRT Validator](/tools/srt-validator/)
+- [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/)
