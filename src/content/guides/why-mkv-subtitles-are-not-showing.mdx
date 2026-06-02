@@ -1,0 +1,152 @@
+---
+title: Why MKV subtitles are not showing
+seoTitle: MKV Subtitles Not Showing - Fix SRT and Embedded Tracks
+seoDescription: Fix MKV subtitles not showing by checking embedded text tracks, external SRT filenames, player support, subtitle menus, encoding, and timing.
+description: Fix subtitles that do not show with an MKV file by checking embedded tracks, external SRT naming, player support, encoding, and timing.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - mkv subtitles
+  - subtitles not showing
+  - embedded subtitles
+  - srt
+  - video captions
+primaryTool: extract-subtitles-from-video
+faqs:
+  - question: Why are subtitles not showing in my MKV file?
+    answer: The MKV may not contain a usable subtitle track, the player may not support the embedded format, or an external SRT file may not match the video filename.
+  - question: Can MKV files have embedded subtitles?
+    answer: Yes. MKV files often contain embedded subtitle streams, including SRT, ASS, PGS, or VobSub, but player support varies by subtitle format.
+  - question: Why does VLC show MKV subtitles but my TV does not?
+    answer: VLC supports more embedded subtitle formats than many TVs. For broad playback, test with a simple UTF-8 SRT file using the same base filename as the MKV.
+---
+
+When subtitles do not show with an MKV file, first check whether the captions are embedded inside the MKV, loaded from a separate subtitle file, or burned into the video picture.
+
+## Quick answer
+
+Open the MKV in the destination player, check the subtitle menu, and confirm whether the captions are embedded or external. If you have a separate subtitle file, use a simple UTF-8 SRT file with the same base filename as the MKV.
+
+If you are not sure whether the MKV contains a real subtitle stream, use [Extract Subtitles from Video](/tools/extract-subtitles-from-video/) to inspect the file locally in your browser.
+
+## What to check first
+
+Check these before re-encoding the video:
+
+- the MKV contains a subtitle stream, not only audio and video
+- the player subtitle menu has the correct track selected
+- the embedded subtitle format is supported by the target player
+- an external SRT file sits next to the MKV when you expect sidecar subtitles
+- the SRT filename matches the MKV filename
+- the subtitle text is encoded as UTF-8
+- the subtitle timing overlaps the part of the video you are playing
+
+## Step-by-step workflow
+
+### 1. Check whether the MKV has embedded subtitles
+
+MKV containers can hold text subtitles such as SRT or ASS, and image-based subtitle streams such as PGS or VobSub.
+
+Use the extractor when you need to inspect the file:
+
+1. Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/).
+2. Choose the `.mkv` file.
+3. Check whether a text subtitle stream is found.
+4. If a stream exists, export it and test the subtitle file separately.
+
+If no text subtitle stream is found, the MKV may still contain image-based subtitles or burned-in captions that the browser extractor cannot save as SRT.
+
+### 2. Check for an external subtitle file
+
+Some players load subtitles from a sidecar file next to the MKV.
+
+```text
+movie-final.mkv
+movie-final.srt
+movie-final.en.srt
+```
+
+Avoid mismatched names while debugging:
+
+```text
+movie-final.mkv
+captions_export_fixed.srt
+```
+
+If the subtitle file has a different base name, TVs, Plex libraries, and media players may ignore it.
+
+### 3. Use SRT when a device ignores embedded MKV subtitles
+
+Embedded MKV subtitles can work in VLC and fail on a TV, mobile player, or media server. For the safest test, create a separate SRT file.
+
+Use SRT when:
+
+- VLC shows subtitles but a TV does not
+- the MKV is played from USB or a media-library app
+- the embedded track is ASS, PGS, or VobSub
+- you need a simple subtitle file that can be validated and repaired
+
+If the source is ASS or VTT, convert it to SRT before testing the MKV again.
+
+### 4. Open the subtitle menu manually
+
+Do not assume subtitles are enabled automatically.
+
+Look for menu labels such as:
+
+- Subtitles
+- Captions
+- CC
+- Audio and subtitles
+- Text tracks
+
+If the track appears in the menu but no text shows, the issue is usually unsupported formatting, timing, or encoding.
+
+### 5. Fix encoding and broken characters
+
+If subtitles show boxes, question marks, or broken accents, convert the subtitle file to UTF-8.
+
+Use the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) to create a clean UTF-8 copy, then reload that copy next to the MKV.
+
+### 6. Check timing before replacing the file
+
+A subtitle file can be loaded correctly but timed for another release or edit of the video.
+
+Look for these clues:
+
+- captions appear only after skipping forward
+- every caption is consistently early or late
+- the subtitle file came from a different video release
+- the MKV was trimmed after subtitles were created
+
+Use the [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/) if every caption is offset by the same amount.
+
+## Common mistakes
+
+### Assuming every MKV subtitle format works everywhere
+
+MKV is flexible, but the player still has to support the subtitle stream. VLC can show formats that TVs, phones, and web players ignore.
+
+### Confusing image-based subtitles with text subtitles
+
+PGS and VobSub subtitles are images, not plain text. They may be visible in a player but fail in tools or devices that expect SRT text.
+
+### Expecting burned-in subtitles to be selectable
+
+Burned-in subtitles are part of the picture. They cannot be turned on, turned off, or extracted as text without OCR.
+
+## Related guides
+
+- [How to extract subtitles from MKV](/guides/how-to-extract-subtitles-from-mkv/)
+- [Why MP4 subtitles are not showing](/guides/why-mp4-subtitles-are-not-showing/)
+- [Why MOV subtitles are not showing](/guides/why-mov-subtitles-are-not-showing/)
+- [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)
+- [Why TV subtitles are not showing](/guides/why-tv-subtitles-are-not-showing/)
+
+## Related tools
+
+- [Extract Subtitles from Video](/tools/extract-subtitles-from-video/)
+- [ASS to SRT Converter](/tools/ass-to-srt/)
+- [VTT to SRT Converter](/tools/vtt-to-srt/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
+- [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/)

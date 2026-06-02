@@ -170,6 +170,10 @@ const checks = [
 				match: '/guides/why-mp4-subtitles-are-not-showing/',
 			},
 			{
+				label: 'homepage links to MKV subtitle failure guide',
+				match: '/guides/why-mkv-subtitles-are-not-showing/',
+			},
+			{
 				label: 'homepage links to MOV subtitle failure guide',
 				match: '/guides/why-mov-subtitles-are-not-showing/',
 			},
@@ -1894,6 +1898,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/why-mkv-subtitles-are-not-showing/',
+		expect: [
+			{
+				label: 'MKV subtitles failure guide CTR title',
+				match: '<title>MKV Subtitles Not Showing - Fix SRT and Embedded Tracks</title>',
+			},
+			{
+				label: 'MKV subtitles failure guide meta description',
+				match: 'Fix MKV subtitles not showing by checking embedded text tracks, external SRT filenames, player support, subtitle menus, encoding, and timing.',
+			},
+			{
+				label: 'MKV subtitles failure guide opens extractor tool',
+				match: 'href="/tools/extract-subtitles-from-video/"',
+			},
+			{
+				label: 'FAQ schema for MKV subtitle questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why are subtitles not showing in my MKV file\?/,
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-extract-subtitles-from-mov/',
 		expect: [
 			{
@@ -2986,6 +3011,10 @@ const checks = [
 				match: '/guides/how-to-extract-subtitles-from-mkv/',
 			},
 			{
+				label: 'guides index links to MKV subtitle failure guide',
+				match: '/guides/why-mkv-subtitles-are-not-showing/',
+			},
+			{
 				label: 'guides index links to MOV extraction guide',
 				match: '/guides/how-to-extract-subtitles-from-mov/',
 			},
@@ -3248,6 +3277,10 @@ const checks = [
 			{
 				label: 'llms lists MKV extraction guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mkv/',
+			},
+			{
+				label: 'llms lists MKV subtitle failure guide',
+				match: 'https://subtitletoolkit.tools/guides/why-mkv-subtitles-are-not-showing/',
 			},
 			{
 				label: 'llms lists MOV extraction guide',
