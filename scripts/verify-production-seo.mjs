@@ -2738,15 +2738,31 @@ const checks = [
 		expect: [
 			{
 				label: 'HTML tag cleanup guide CTR title',
-				match: '<title>Remove HTML Tags from Subtitles - Clean SRT, VTT, ASS</title>',
+				match: '<title>Remove HTML Tags from Subtitles - Clean SRT/VTT/ASS</title>',
 			},
 			{
 				label: 'HTML tag cleanup guide meta description',
-				match: 'Remove HTML tags from subtitles while keeping timing intact. Clean SRT, VTT, or ASS caption text locally before upload.',
+				match: 'Remove HTML tags from subtitles online. Clean SRT, VTT, or ASS caption text, strip font/span tags, and keep timing intact locally before upload.',
 			},
 			{
 				label: 'HTML tag cleanup guide opens cleaner tool',
 				match: 'href="/tools/subtitle-cleaner/"',
+			},
+			{
+				label: 'HTML tag cleanup guide links SRT validator',
+				match: 'href="/tools/srt-validator/"',
+			},
+			{
+				label: 'HTML tag cleanup guide links WebVTT validator',
+				match: 'href="/tools/webvtt-validator/"',
+			},
+			{
+				label: 'FAQ schema for HTML tag cleanup questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I remove HTML tags from subtitles\?/
+			},
+			{
+				label: 'HTML tag cleanup Article schema includes query tags',
+				match: /"keywords"\s*:\s*"clean subtitles, remove html tags, html tags, srt, vtt, formatting"/
 			},
 		],
 	},
@@ -4630,6 +4646,10 @@ const checks = [
 			{
 				label: 'guides index links to subtitle line breaks guide',
 				match: '/guides/how-to-fix-subtitle-line-breaks/',
+			},
+			{
+				label: 'guides index links to HTML tag cleanup guide',
+				match: '/guides/how-to-remove-html-tags-from-subtitles/',
 			},
 			{
 				label: 'guides index links to UTF-8 conversion guide',
