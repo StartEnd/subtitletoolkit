@@ -16,11 +16,11 @@ Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-02 agai
 
 | Submitted on | Submitted by | Sitemap submitted? | URL inspection requests | Next review date | Notes |
 | --- | --- | --- | ---: | --- | --- |
-| | | No | 0 | | |
+| 2026-06-02 | song | Yes | 21 | 2026-06-09 | Submitted primary Day 0 URL Inspection queue after production gate passed. |
 
 ## Sitemap
 
-- [ ] `https://subtitletoolkit.tools/sitemap-index.xml`
+- [x] `https://subtitletoolkit.tools/sitemap-index.xml`
 
 ## URL Inspection Requests
 
@@ -28,27 +28,27 @@ Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-02 agai
 
 Submit these URLs first. Do not submit every URL in the site on Day 0.
 
-- [ ] `https://subtitletoolkit.tools/`
-- [ ] `https://subtitletoolkit.tools/tools/`
-- [ ] `https://subtitletoolkit.tools/guides/`
-- [ ] `https://subtitletoolkit.tools/tools/srt-to-vtt/`
-- [ ] `https://subtitletoolkit.tools/tools/vtt-to-srt/`
-- [ ] `https://subtitletoolkit.tools/tools/ass-to-srt/`
-- [ ] `https://subtitletoolkit.tools/tools/srt-to-ass/`
-- [ ] `https://subtitletoolkit.tools/tools/subtitle-delay-fixer/`
-- [ ] `https://subtitletoolkit.tools/tools/subtitle-cleaner/`
-- [ ] `https://subtitletoolkit.tools/tools/youtube-subtitle-converter/`
-- [ ] `https://subtitletoolkit.tools/tools/clean-srt-file/`
-- [ ] `https://subtitletoolkit.tools/tools/remove-srt-line-numbers/`
-- [ ] `https://subtitletoolkit.tools/tools/fix-srt-timestamps/`
-- [ ] `https://subtitletoolkit.tools/tools/srt-validator/`
-- [ ] `https://subtitletoolkit.tools/tools/webvtt-validator/`
-- [ ] `https://subtitletoolkit.tools/tools/extract-subtitles-from-video/`
-- [ ] `https://subtitletoolkit.tools/guides/how-to-convert-srt-to-vtt-for-html5-video/`
-- [ ] `https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/`
-- [ ] `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-srt-for-youtube-uploads/`
-- [ ] `https://subtitletoolkit.tools/guides/how-to-fix-subtitle-delay/`
-- [ ] `https://subtitletoolkit.tools/guides/fix-subtitle-sync-after-a-scene-cut/`
+- [x] `https://subtitletoolkit.tools/`
+- [x] `https://subtitletoolkit.tools/tools/`
+- [x] `https://subtitletoolkit.tools/guides/`
+- [x] `https://subtitletoolkit.tools/tools/srt-to-vtt/`
+- [x] `https://subtitletoolkit.tools/tools/vtt-to-srt/`
+- [x] `https://subtitletoolkit.tools/tools/ass-to-srt/`
+- [x] `https://subtitletoolkit.tools/tools/srt-to-ass/`
+- [x] `https://subtitletoolkit.tools/tools/subtitle-delay-fixer/`
+- [x] `https://subtitletoolkit.tools/tools/subtitle-cleaner/`
+- [x] `https://subtitletoolkit.tools/tools/youtube-subtitle-converter/`
+- [x] `https://subtitletoolkit.tools/tools/clean-srt-file/`
+- [x] `https://subtitletoolkit.tools/tools/remove-srt-line-numbers/`
+- [x] `https://subtitletoolkit.tools/tools/fix-srt-timestamps/`
+- [x] `https://subtitletoolkit.tools/tools/srt-validator/`
+- [x] `https://subtitletoolkit.tools/tools/webvtt-validator/`
+- [x] `https://subtitletoolkit.tools/tools/extract-subtitles-from-video/`
+- [x] `https://subtitletoolkit.tools/guides/how-to-convert-srt-to-vtt-for-html5-video/`
+- [x] `https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-srt-for-legacy-subtitle-editors/`
+- [x] `https://subtitletoolkit.tools/guides/how-to-convert-ass-to-srt-for-youtube-uploads/`
+- [x] `https://subtitletoolkit.tools/guides/how-to-fix-subtitle-delay/`
+- [x] `https://subtitletoolkit.tools/guides/fix-subtitle-sync-after-a-scene-cut/`
 
 ### Current search-growth batch
 

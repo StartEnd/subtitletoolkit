@@ -37,7 +37,7 @@ The analyzer normalizes trailing-slash differences between GSC exports and the b
 
 | Week of | Impressions | Clicks | CTR | Avg position | Pages with impressions | Pages with clicks | Main action shipped | Next review date |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |
-| 2026-06-01 | | | | | | | Initial SEO title, description, internal link, schema, and sitemap update deployed and production-verified. Submit Day 0 URLs in GSC. | 2026-06-08 |
+| 2026-06-01 | | | | | | | Initial SEO title, description, internal link, schema, and sitemap update deployed and production-verified. Submitted Day 0 sitemap plus 21 primary URL Inspection requests in GSC on 2026-06-02. | 2026-06-09 |
 
 ## Opportunity Buckets
 
@@ -71,7 +71,7 @@ Only consider ad placement after the gate in `SEARCH_GROWTH_PLAYBOOK.md` is met.
 
 | Week of | Organic pageviews last 28 days | Pages with impressions | Pages with clicks | Gate met? | Notes |
 | --- | ---: | ---: | ---: | --- | --- |
-| 2026-06-01 | | | | No | Waiting for same-window analytics pageviews and GSC clicks after Day 0 submission. |
+| 2026-06-01 | | | | No | Waiting for same-window analytics pageviews and GSC clicks after 2026-06-02 Day 0 submission. |
 
 Before changing `Gate met?` to Yes, `pnpm verify:seo:ready` must pass with ad placeholders below the tool workspace, hidden while inactive, and no `data-ads-enabled="true"` present before the gate.
 
