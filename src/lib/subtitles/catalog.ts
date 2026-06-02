@@ -2778,9 +2778,9 @@ const enTools: SubtitleTool[] = [
     title: 'Subtitle Transcript Generator',
     shortTitle: 'Transcript generator',
     description:
-      'Generate a plain text transcript from SRT, VTT, ASS, or SSA subtitle files directly in your browser.',
+      'Generate a plain text transcript from SRT, VTT, ASS, or SSA subtitles locally with no upload.',
     summary:
-      'Use this free subtitle transcript generator when you want readable dialogue text from a timed subtitle file without timestamps.',
+      'Use this free subtitle transcript generator when you want readable dialogue text from a timed subtitle file without timestamps, cue numbers, WebVTT headers, or styling metadata.',
     buttonLabel: 'Generate transcript',
     inputLabel: 'Subtitle input',
     outputLabel: 'Transcript output',
@@ -2788,16 +2788,16 @@ const enTools: SubtitleTool[] = [
     acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.txt'],
     sampleFileName: 'sample.srt',
     useCases: [
-      'Create a transcript draft from subtitle files.',
-      'Extract readable dialogue for review or notes.',
+      'Create a transcript draft from SRT, VTT, ASS, or SSA subtitle files.',
+      'Extract readable dialogue for review, notes, quotes, or translation prep.',
       'Remove timing metadata before translation.',
       'Turn captions into plain text without uploading files.',
     ],
     faqs: [
       {
-        question: 'Is this subtitle transcript generator free?',
+        question: 'Can I create a transcript from subtitles online for free?',
         answer:
-          'Yes. You can generate plain text transcripts from subtitle files for free in your browser.',
+          'Yes. You can generate a plain text transcript from subtitle files for free in your browser.',
       },
       {
         question: 'Does it support SRT and VTT?',
@@ -2805,9 +2805,14 @@ const enTools: SubtitleTool[] = [
           'Yes. It supports SRT, VTT, ASS, and SSA subtitle input when the cues can be parsed.',
       },
       {
-        question: 'Will timestamps be included?',
+        question: 'Will timestamps or cue numbers be included?',
         answer:
-          'No. The transcript output keeps readable subtitle text and removes timing metadata.',
+          'No. The transcript output keeps readable subtitle text and removes timestamps, cue numbers, WebVTT headers, and subtitle metadata.',
+      },
+      {
+        question: 'Can I use the transcript as subtitles again?',
+        answer:
+          'No. Transcript output is plain text. Keep the original subtitle file if you still need timed captions for video playback or upload.',
       },
       {
         question: 'Are my subtitle files uploaded to a server?',
@@ -2815,7 +2820,7 @@ const enTools: SubtitleTool[] = [
           'No. Transcript generation runs locally in your browser, so your subtitle file stays on your device.',
       },
     ],
-    relatedTools: ['srt-to-txt', 'vtt-to-txt', 'ssa-to-txt'],
+    relatedTools: ['srt-to-txt', 'vtt-to-txt', 'ass-to-txt', 'ssa-to-txt', 'subtitle-encoding-fixer'],
     relatedGuides: [
       {
         href: '/guides/how-to-create-a-transcript-from-subtitles/',
@@ -2824,6 +2829,10 @@ const enTools: SubtitleTool[] = [
       {
         href: '/guides/how-to-convert-subtitle-files-for-web-players/',
         title: 'How to convert subtitle files for web players',
+      },
+      {
+        href: '/guides/how-to-convert-subtitles-to-plain-text/',
+        title: 'How to convert subtitles to plain text',
       },
       {
         href: '/guides/common-subtitle-format-errors-and-fixes/',

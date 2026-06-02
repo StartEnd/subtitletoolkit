@@ -2382,6 +2382,22 @@ const checks = [
 				label: 'transcript guide no-upload meta description',
 				match: 'Create a readable transcript from SRT, VTT, or ASS subtitles. Remove timestamps and caption metadata locally in your browser with no upload.',
 			},
+			{
+				label: 'transcript guide opens transcript generator tool',
+				match: 'href="/tools/subtitle-transcript-generator/"',
+			},
+			{
+				label: 'transcript guide links SRT to TXT follow-up',
+				match: 'href="/tools/srt-to-txt/"',
+			},
+			{
+				label: 'transcript guide links encoding follow-up',
+				match: 'href="/tools/subtitle-encoding-fixer/"',
+			},
+			{
+				label: 'FAQ schema for transcript creation questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I create a transcript from subtitles\?/
+			},
 		],
 	},
 	{
@@ -3995,19 +4011,23 @@ const checks = [
 		expect: [
 			{
 				label: 'transcript generator tool title',
-				match: '<title>Subtitle Transcript Generator - Convert Subtitles to Text</title>',
+				match: '<title>Subtitle Transcript Generator - Create Plain Text Online</title>',
 			},
 			{
 				label: 'transcript generator tool meta description',
-				match: 'Generate a plain text transcript from SRT, VTT, ASS, or SSA subtitle files directly in your browser without uploading files.',
+				match: 'Create a plain text transcript from SRT, VTT, ASS, or SSA subtitles. Remove timestamps, cue numbers, and caption metadata locally with no upload.',
 			},
 			{
 				label: 'transcript generator tool links guide',
 				match: 'href="/guides/how-to-create-a-transcript-from-subtitles/"',
 			},
 			{
-				label: 'transcript generator links SSA to TXT tool',
-				match: 'href="/tools/ssa-to-txt/"',
+				label: 'transcript generator links ASS to TXT tool',
+				match: 'href="/tools/ass-to-txt/"',
+			},
+			{
+				label: 'transcript generator FAQ covers transcript vs subtitles',
+				match: 'Can I use the transcript as subtitles again?',
 			},
 		],
 	},

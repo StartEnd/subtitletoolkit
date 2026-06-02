@@ -110,7 +110,7 @@ const toolMetaDescriptions: Record<string, string> = {
 	'webvtt-validator':
 		'Validate WebVTT captions online for free. Check missing WEBVTT headers, timestamp syntax, cue order, and HTML5 caption issues locally.',
 	'subtitle-transcript-generator':
-		'Generate a plain text transcript from SRT, VTT, ASS, or SSA subtitle files directly in your browser without uploading files.',
+		'Create a plain text transcript from SRT, VTT, ASS, or SSA subtitles. Remove timestamps, cue numbers, and caption metadata locally with no upload.',
 	'subtitle-encoding-fixer':
 		'Fix garbled subtitles online by converting SRT, VTT, ASS, SSA, and SMI files to clean UTF-8 text locally in your browser.',
 	'subtitle-merger':
@@ -167,7 +167,7 @@ const toolPageTitles: Record<string, string> = {
 	'fix-srt-timestamps': 'Fix SRT Timestamps Online - Repair SRT Timing',
 	'srt-validator': 'SRT Validator Online - Check Upload Errors Free',
 	'webvtt-validator': 'WebVTT Validator Online - Fix VTT Caption Issues',
-	'subtitle-transcript-generator': 'Subtitle Transcript Generator - Convert Subtitles to Text',
+	'subtitle-transcript-generator': 'Subtitle Transcript Generator - Create Plain Text Online',
 };
 
 const workflowNotes: Record<string, string> = {
@@ -254,7 +254,7 @@ const workflowNotes: Record<string, string> = {
 	'webvtt-validator':
 		'Use this before publishing captions with HTML5 video when VTT captions do not load or a player rejects the file. The validator checks for a missing WEBVTT header, parseable cues, dot-based timestamps, cue order, and common browser caption issues locally with no upload.',
 	'subtitle-transcript-generator':
-		'Use this when the destination is notes, review, or translation instead of a timed caption track. The generator extracts readable text from supported subtitle formats.',
+		'Use this when the destination is notes, review, quoting, or translation instead of a timed caption track. The generator extracts readable text from SRT, VTT, ASS, or SSA files and removes timestamps, cue numbers, WebVTT headers, and styling metadata locally.',
 	'subtitle-encoding-fixer':
 		'Encoding problems usually show up as mojibake, broken accents, or unreadable non-English text. Choose the likely source encoding, then export a UTF-8 file for modern editors and video platforms.',
 	'subtitle-merger':

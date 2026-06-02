@@ -4,6 +4,7 @@ seoTitle: Create Transcript from Subtitles - Free No Upload
 seoDescription: Create a readable transcript from SRT, VTT, or ASS subtitles. Remove timestamps and caption metadata locally in your browser with no upload.
 description: Create a readable transcript from SRT, VTT, or ASS subtitle files by extracting caption text and removing timing metadata.
 pubDate: 2026-05-26
+updatedDate: 2026-06-02
 category: workflow-guides
 tags:
   - transcript
@@ -11,7 +12,15 @@ tags:
   - vtt
   - ass
   - plain text
+  - subtitles to transcript
 primaryTool: subtitle-transcript-generator
+faqs:
+  - question: How do I create a transcript from subtitles?
+    answer: Use a subtitle transcript tool to parse the SRT, VTT, ASS, or SSA file, remove timestamps and metadata, and keep only the readable caption text.
+  - question: Can I turn SRT or VTT subtitles into a transcript?
+    answer: Yes. SRT and VTT files already contain the spoken text, so a transcript generator can remove timing lines, cue numbers, WebVTT headers, and cue settings.
+  - question: Does a transcript still work as subtitles?
+    answer: No. Transcript output is plain text for reading, review, translation, or notes. Keep the original subtitle file when you still need timed captions.
 ---
 
 Subtitle files already contain the words spoken in a video. A transcript workflow extracts those words and removes playback timing.
@@ -21,6 +30,19 @@ Subtitle files already contain the words spoken in a video. A transcript workflo
 Use the [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/) to create plain text from SRT, VTT, or ASS subtitles.
 
 The tool removes timing metadata and keeps readable caption text.
+
+## Pick the right transcript path
+
+Use the source file format to choose the most direct tool. The goal is to remove playback structure while keeping the words readable.
+
+| Source file | Best first tool | What gets removed |
+| --- | --- | --- |
+| Mixed or unknown subtitle format | [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/) | Timestamps, cue numbers, WebVTT headers, ASS/SSA metadata, and styling fields |
+| SRT subtitles | [SRT to TXT Converter](/tools/srt-to-txt/) | SRT cue numbers, timestamp lines, and blank cue structure |
+| VTT captions | [VTT to TXT Converter](/tools/vtt-to-txt/) | `WEBVTT` header, cue timing, cue settings, and notes |
+| ASS or SSA subtitles | [ASS to TXT Converter](/tools/ass-to-txt/) or [SSA to TXT Converter](/tools/ssa-to-txt/) | Dialogue metadata, style sections, override tags, and timing fields |
+
+If the text looks garbled, fix encoding first with the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) so the transcript does not preserve broken characters.
 
 ## When this is useful
 
@@ -52,6 +74,12 @@ After extracting text, check for:
 - hard subtitle line breaks that should become paragraphs
 - leftover formatting tags from styled subtitles
 
+## Transcript or timed captions?
+
+Transcript output is best for reading, editing, quoting, translation prep, searchable notes, or publishing text below a video.
+
+Keep a timed subtitle file when the next step is YouTube upload, HTML5 playback, subtitle review, or player testing. Plain text has no cue timing, so it cannot be uploaded as captions without rebuilding timestamps.
+
 ## Common mistakes
 
 ### Treating subtitle text as a finished transcript
@@ -66,13 +94,19 @@ Transcript output has no timestamps. Keep the original subtitle file for video p
 
 If the source file has malformed timestamps or encoding problems, fix those first so the transcript extraction is cleaner.
 
+Use [SRT Validator](/tools/srt-validator/) when an SRT transcript output looks incomplete, and use [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) when names, accents, or non-English lines look wrong.
+
 ## Related guides
 
 - [How to convert SRT to TXT](/guides/how-to-convert-srt-to-txt/)
 - [How to convert VTT to TXT](/guides/how-to-convert-vtt-to-txt/)
+- [How to convert subtitles to plain text](/guides/how-to-convert-subtitles-to-plain-text/)
+- [How to convert subtitles to UTF-8](/guides/how-to-convert-subtitles-to-utf-8/)
 
 ## Related tools
 
 - [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/)
 - [SRT to TXT Converter](/tools/srt-to-txt/)
 - [VTT to TXT Converter](/tools/vtt-to-txt/)
+- [ASS to TXT Converter](/tools/ass-to-txt/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
