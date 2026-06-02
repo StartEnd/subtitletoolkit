@@ -66,6 +66,10 @@ const checks = [
 				match: 'Convert subtitles for YouTube',
 			},
 			{
+				label: 'footer links SSA to TXT tool',
+				match: 'href="/tools/ssa-to-txt/"',
+			},
+			{
 				label: 'homepage links to SRT upload failure guide',
 				match: '/guides/why-srt-file-wont-upload/',
 			},
@@ -2128,6 +2132,10 @@ const checks = [
 				match: 'href="/tools/subtitle-transcript-generator/"',
 			},
 			{
+				label: 'subtitles to plain text guide links SSA to TXT tool',
+				match: 'href="/tools/ssa-to-txt/"',
+			},
+			{
 				label: 'FAQ schema for subtitles to plain text questions',
 				match: new RegExp('"@type"\\s*:\\s*"FAQPage"[\\s\\S]*How do I convert subtitles to plain text\\?'),
 			},
@@ -2147,6 +2155,10 @@ const checks = [
 			{
 				label: 'remove subtitle timestamps guide opens transcript tool',
 				match: 'href="/tools/subtitle-transcript-generator/"',
+			},
+			{
+				label: 'remove subtitle timestamps guide links SSA to TXT tool',
+				match: 'href="/tools/ssa-to-txt/"',
 			},
 			{
 				label: 'FAQ schema for remove subtitle timestamps questions',
@@ -3595,11 +3607,15 @@ const checks = [
 			},
 			{
 				label: 'transcript generator tool meta description',
-				match: 'Generate a plain text transcript from SRT, VTT, or ASS subtitle files directly in your browser without uploading files.',
+				match: 'Generate a plain text transcript from SRT, VTT, ASS, or SSA subtitle files directly in your browser without uploading files.',
 			},
 			{
 				label: 'transcript generator tool links guide',
 				match: 'href="/guides/how-to-create-a-transcript-from-subtitles/"',
+			},
+			{
+				label: 'transcript generator links SSA to TXT tool',
+				match: 'href="/tools/ssa-to-txt/"',
 			},
 		],
 	},

@@ -2654,13 +2654,13 @@ const enTools: SubtitleTool[] = [
     title: 'Subtitle Transcript Generator',
     shortTitle: 'Transcript generator',
     description:
-      'Generate a plain text transcript from SRT, VTT, or ASS subtitle files directly in your browser.',
+      'Generate a plain text transcript from SRT, VTT, ASS, or SSA subtitle files directly in your browser.',
     summary:
       'Use this free subtitle transcript generator when you want readable dialogue text from a timed subtitle file without timestamps.',
     buttonLabel: 'Generate transcript',
     inputLabel: 'Subtitle input',
     outputLabel: 'Transcript output',
-    placeholder: 'Paste SRT, VTT, or ASS subtitles here',
+    placeholder: 'Paste SRT, VTT, ASS, or SSA subtitles here',
     acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.txt'],
     sampleFileName: 'sample.srt',
     useCases: [
@@ -2678,7 +2678,7 @@ const enTools: SubtitleTool[] = [
       {
         question: 'Does it support SRT and VTT?',
         answer:
-          'Yes. It supports SRT, VTT, and ASS subtitle input when the cues can be parsed.',
+          'Yes. It supports SRT, VTT, ASS, and SSA subtitle input when the cues can be parsed.',
       },
       {
         question: 'Will timestamps be included?',
@@ -2691,7 +2691,7 @@ const enTools: SubtitleTool[] = [
           'No. Transcript generation runs locally in your browser, so your subtitle file stays on your device.',
       },
     ],
-    relatedTools: ['srt-to-txt', 'vtt-to-txt'],
+    relatedTools: ['srt-to-txt', 'vtt-to-txt', 'ssa-to-txt'],
     relatedGuides: [
       {
         href: '/guides/how-to-create-a-transcript-from-subtitles/',
