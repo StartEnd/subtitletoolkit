@@ -242,8 +242,16 @@ const checks = [
 				match: '/guides/how-to-convert-srt-to-txt/',
 			},
 			{
+				label: 'homepage links to SRT to ASS guide',
+				match: '/guides/how-to-convert-srt-to-ass/',
+			},
+			{
 				label: 'homepage links to SRT to SSA guide',
 				match: '/guides/how-to-convert-srt-to-ssa/',
+			},
+			{
+				label: 'homepage links to VTT to ASS guide',
+				match: '/guides/how-to-convert-vtt-to-ass/',
 			},
 			{
 				label: 'homepage links to VTT to SSA guide',
@@ -3092,8 +3100,16 @@ const checks = [
 				match: '/guides/how-to-convert-srt-to-ssa/',
 			},
 			{
+				label: 'guides index links to SRT to ASS guide',
+				match: '/guides/how-to-convert-srt-to-ass/',
+			},
+			{
 				label: 'guides index links to VTT to SSA guide',
 				match: '/guides/how-to-convert-vtt-to-ssa/',
+			},
+			{
+				label: 'guides index links to VTT to ASS guide',
+				match: '/guides/how-to-convert-vtt-to-ass/',
 			},
 			{
 				label: 'guides index links to ASS to SRT guide',
@@ -3740,8 +3756,16 @@ const checks = [
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-srt-to-txt/',
 			},
 			{
+				label: 'llms lists SRT to ASS guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-srt-to-ass/',
+			},
+			{
 				label: 'llms lists SRT to SSA guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-srt-to-ssa/',
+			},
+			{
+				label: 'llms lists VTT to ASS guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-ass/',
 			},
 			{
 				label: 'llms lists VTT to SSA guide',
