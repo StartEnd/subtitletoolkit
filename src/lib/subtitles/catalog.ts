@@ -2367,9 +2367,9 @@ const enTools: SubtitleTool[] = [
     title: 'Fix Out-of-Sync Subtitles',
     shortTitle: 'Fix sync',
     description:
-      'Fix out-of-sync subtitles online by shifting SRT, VTT, or ASS cues to match the video.',
+      'Fix out-of-sync subtitles online for free. Shift SRT, VTT, or ASS captions earlier or later in milliseconds locally with no upload.',
     summary:
-      'Use this when subtitles are consistently ahead of or behind the audio and need a global timing correction.',
+      'Use this free sync fixer when every subtitle cue is ahead of audio or behind speech by the same offset and you need a local whole-file timing correction.',
     buttonLabel: 'Fix sync',
     inputLabel: 'Subtitle input',
     outputLabel: 'Synced subtitle output',
@@ -2377,26 +2377,32 @@ const enTools: SubtitleTool[] = [
     acceptedExtensions: ['.srt', '.vtt', '.ass', '.ssa', '.txt'],
     sampleFileName: 'sample.srt',
     useCases: [
-      'Move out-of-sync subtitles earlier or later.',
+      'Move out-of-sync subtitles earlier or later in milliseconds.',
+      'Fix captions that are consistently ahead of audio or behind speech.',
       'Repair captions after a video export changed timing.',
       'Fix a constant timing offset across the whole file.',
-      'Create a corrected subtitle file for review or upload.',
+      'Create a synced SRT, VTT, or ASS copy for review or upload.',
     ],
     faqs: [
       {
-        question: 'Can this fix drifting subtitles?',
+        question: 'Can I fix out-of-sync subtitles online for free?',
         answer:
-          'This tool fixes a constant offset. If subtitles drift more over time, the file may need a more advanced retiming workflow.',
+          'Yes. You can shift SRT, VTT, and ASS subtitle timing for free in your browser without signup or upload.',
       },
       {
-        question: 'Can I move subtitles earlier?',
+        question: 'Can this fix subtitles that drift over time?',
         answer:
-          'Yes. Enter a negative millisecond value to move subtitles earlier.',
+          'This tool fixes a constant whole-file offset. If subtitles drift more over time, compare the first and last cues and use a drift retiming workflow instead.',
       },
       {
-        question: 'Can I move subtitles later?',
+        question: 'Should I move subtitles earlier or later?',
         answer:
-          'Yes. Enter a positive millisecond value to delay subtitles.',
+          'Use a negative millisecond value when subtitles appear too late and need to move earlier. Use a positive value when subtitles appear too early and need to be delayed.',
+      },
+      {
+        question: 'Should I use this for one out-of-sync scene?',
+        answer:
+          'Use this tool only when the whole file has the same offset. If one scene or middle section is wrong after an edit, use the partial subtitle shifter so the rest stays in sync.',
       },
       {
         question: 'Are my subtitle files uploaded to a server?',
@@ -2404,7 +2410,7 @@ const enTools: SubtitleTool[] = [
           'No. Sync fixes run locally in your browser, so your subtitle file stays on your device.',
       },
     ],
-    relatedTools: ['subtitle-delay-fixer', 'partial-subtitle-shifter'],
+    relatedTools: ['subtitle-delay-fixer', 'subtitle-time-shifter', 'partial-subtitle-shifter', 'srt-validator'],
     relatedGuides: [
       { href: '/guides/fix-out-of-sync-subtitles/', title: 'How to fix out-of-sync subtitles' },
       {

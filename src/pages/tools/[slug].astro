@@ -96,7 +96,7 @@ const toolMetaDescriptions: Record<string, string> = {
 	'subtitle-delay-fixer':
 		'Fix out-of-sync subtitles online by shifting SRT, VTT, or ASS captions earlier or later in milliseconds. Runs locally with no upload.',
 	'fix-out-of-sync-subtitles':
-		'Fix out-of-sync subtitles online by shifting SRT, VTT, or ASS cues earlier or later to match the video.',
+		'Fix out-of-sync subtitles online for free. Shift SRT, VTT, or ASS captions earlier or later in milliseconds locally with no upload.',
 	'subtitle-cleaner':
 		'Clean subtitle files online for free. Remove HTML tags, fix spacing, and prepare SRT, VTT, or ASS captions locally with no signup or upload.',
 	'clean-srt-file':
@@ -157,7 +157,7 @@ const toolPageTitles: Record<string, string> = {
 	'subtitle-time-shifter': 'Subtitle Time Shifter Online - Shift SRT, VTT, ASS',
 	'subtitle-cleaner': 'Subtitle Cleaner Online - Remove Tags, Fix Spacing',
 	'subtitle-delay-fixer': 'Subtitle Delay Fixer - Shift Subtitles Online Free',
-	'fix-out-of-sync-subtitles': 'Fix Out-of-Sync Subtitles Online',
+	'fix-out-of-sync-subtitles': 'Fix Out-of-Sync Subtitles Online - Shift SRT, VTT, ASS',
 	'subtitle-encoding-fixer': 'Subtitle Encoding Fixer - Fix Garbled Subtitles Online',
 	'subtitle-merger': 'Subtitle Merger - Merge SRT, VTT, and ASS Online',
 	'partial-subtitle-shifter': 'Partial Subtitle Shifter - Shift One Section Online',
@@ -240,7 +240,7 @@ const workflowNotes: Record<string, string> = {
 	'subtitle-delay-fixer':
 		'Use this when subtitles are consistently ahead of audio, behind speech, or out of sync by the same amount. Enter positive milliseconds to delay captions, enter negative milliseconds to move captions earlier, then review the first and last cues before replacing the original file.',
 	'fix-out-of-sync-subtitles':
-		'Use this for a constant sync offset across the whole subtitle file. If only one section is out of sync, use the partial shifter instead so the rest of the file stays unchanged.',
+		'Use this when every subtitle cue is consistently ahead of audio or behind speech by the same amount. Enter a millisecond offset, shift the whole SRT, VTT, or ASS file earlier or later, and export a synced copy locally with no upload. If only one section is out of sync, use the partial shifter instead.',
 	'subtitle-cleaner':
 		'Use this when a subtitle file needs a cleaner handoff before upload, review, or conversion. The tool keeps cue timing intact while removing leftover HTML tags, fixing spacing, and exporting cleaned SRT, VTT, or ASS text locally with no upload.',
 	'clean-srt-file':

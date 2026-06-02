@@ -4114,16 +4114,44 @@ const checks = [
 		path: '/tools/fix-out-of-sync-subtitles/',
 		expect: [
 			{
-				label: 'fix sync tool title',
-				match: '<title>Fix Out-of-Sync Subtitles Online</title>',
+				label: 'fix sync tool CTR title',
+				match: '<title>Fix Out-of-Sync Subtitles Online - Shift SRT, VTT, ASS</title>',
 			},
 			{
-				label: 'fix sync tool meta description',
-				match: 'Fix out-of-sync subtitles online by shifting SRT, VTT, or ASS cues earlier or later to match the video.',
+				label: 'fix sync tool no-upload meta description',
+				match: 'Fix out-of-sync subtitles online for free. Shift SRT, VTT, or ASS captions earlier or later in milliseconds locally with no upload.',
+			},
+			{
+				label: 'fix sync workflow covers ahead and behind audio',
+				match: 'every subtitle cue is consistently ahead of audio or behind speech by the same amount',
+			},
+			{
+				label: 'fix sync FAQ covers free local sync fixes',
+				match: 'Can I fix out-of-sync subtitles online for free?',
+			},
+			{
+				label: 'fix sync FAQ covers drift boundary',
+				match: 'If subtitles drift more over time, compare the first and last cues',
+			},
+			{
+				label: 'fix sync FAQ covers one-scene boundary',
+				match: 'If one scene or middle section is wrong after an edit, use the partial subtitle shifter',
 			},
 			{
 				label: 'fix sync tool links export guide',
 				match: 'href="/guides/why-subtitles-are-out-of-sync-after-export/"',
+			},
+			{
+				label: 'fix sync tool links time shifter',
+				match: 'href="/tools/subtitle-time-shifter/"',
+			},
+			{
+				label: 'fix sync tool links partial shifter',
+				match: 'href="/tools/partial-subtitle-shifter/"',
+			},
+			{
+				label: 'fix sync tool links SRT validator',
+				match: 'href="/tools/srt-validator/"',
 			},
 			{
 				label: 'fix sync tool links subtitle drift guide',
