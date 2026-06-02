@@ -19,6 +19,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [VTT to ASS Converter](https://subtitletoolkit.tools/tools/vtt-to-ass/): Convert browser captions to ASS for editing workflows.
 - [ASS to VTT Converter](https://subtitletoolkit.tools/tools/ass-to-vtt/): Convert ASS subtitles to WebVTT for browser playback.
 - [SMI to SRT Converter](https://subtitletoolkit.tools/tools/smi-to-srt/): Convert SAMI or SMI captions to standard SRT cues.
+- [SBV to SRT Converter](https://subtitletoolkit.tools/tools/sbv-to-srt/): Convert YouTube-style SBV captions to standard SRT cues.
 - [YouTube Subtitle Converter](https://subtitletoolkit.tools/tools/youtube-subtitle-converter/): Convert VTT or ASS subtitles into YouTube-ready SRT captions.
 - [Subtitle Time Shifter](https://subtitletoolkit.tools/tools/subtitle-time-shifter/): Shift SRT, VTT, or ASS timestamps forward or backward.
 - [Partial Subtitle Shifter](https://subtitletoolkit.tools/tools/partial-subtitle-shifter/): Shift only a selected time range inside a subtitle file.
@@ -59,6 +60,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [How to convert ASS to TXT](https://subtitletoolkit.tools/guides/how-to-convert-ass-to-txt/)
 - [How to convert SSA to TXT](https://subtitletoolkit.tools/guides/how-to-convert-ssa-to-txt/)
 - [How to convert SMI to SRT](https://subtitletoolkit.tools/guides/how-to-convert-smi-to-srt/)
+- [How to convert SBV to SRT](https://subtitletoolkit.tools/guides/how-to-convert-sbv-to-srt/)
 - [How to convert ASS to SRT](https://subtitletoolkit.tools/guides/how-to-convert-ass-to-srt/)
 - [How to export SRT from Aegisub](https://subtitletoolkit.tools/guides/how-to-export-srt-from-aegisub/)
 - [How to convert SSA to SRT](https://subtitletoolkit.tools/guides/how-to-convert-ssa-to-srt/)

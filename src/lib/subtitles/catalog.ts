@@ -9,6 +9,7 @@ export type SubtitleToolId =
   | 'vtt-to-ass'
   | 'ass-to-vtt'
   | 'smi-to-srt'
+  | 'sbv-to-srt'
   | 'youtube-subtitle-converter'
   | 'html5-video-subtitle-converter'
   | 'videojs-subtitle-converter'
@@ -145,6 +146,11 @@ Dialogue: 0,0:00:04.20,0:00:06.00,Default,,0,0,0,,Today we are fixing captions l
 <SYNC Start=7000><P Class=ENCC>&nbsp;
 </BODY>
 </SAMI>`,
+  sbv: `0:00:01.000,0:00:03.500
+Welcome back to the edit.
+
+0:00:04.200,0:00:06.000
+Today we are converting SBV captions for upload.`,
   encodedSrt: `1
 00:00:01,000 --> 00:00:03,500
 Café subtitles should stay readable.
@@ -734,7 +740,7 @@ const enTools: SubtitleTool[] = [
           'No. The SAMI to SRT conversion runs locally in your browser, so the subtitle file stays on your device.',
       },
     ],
-    relatedTools: ['srt-validator', 'subtitle-encoding-fixer'],
+    relatedTools: ['sbv-to-srt', 'srt-validator'],
     relatedGuides: [
       {
         href: '/guides/how-to-convert-smi-to-srt/',
@@ -750,6 +756,65 @@ const enTools: SubtitleTool[] = [
       },
     ],
     sampleInput: sharedSamples.smi,
+  },
+  {
+    id: 'sbv-to-srt',
+    title: 'SBV to SRT Converter',
+    shortTitle: 'SBV to SRT',
+    description:
+      'Convert YouTube SBV subtitle files to SRT online for free, locally in your browser with no upload.',
+    summary:
+      'Use this free SBV to SRT converter when an old YouTube or Amara-style .sbv caption file needs a standard SubRip subtitle file for editing, upload, or archive workflows.',
+    buttonLabel: 'Convert to SRT',
+    inputLabel: 'SBV input',
+    outputLabel: 'SRT output',
+    placeholder: 'Paste your SBV subtitles here',
+    acceptedExtensions: ['.sbv', '.txt'],
+    sampleFileName: 'sample.sbv',
+    useCases: [
+      'Convert YouTube SBV captions to standard SRT.',
+      'Move older .sbv caption exports into editors that expect SubRip files.',
+      'Prepare SBV subtitles for platforms and review tools that only accept SRT.',
+      'Create a clean archive copy with numbered cues and comma-based timestamps.',
+    ],
+    faqs: [
+      {
+        question: 'How do I convert an SBV subtitle file to SRT?',
+        answer:
+          'Open the SBV to SRT converter, paste or upload the .sbv caption file, and export the timing blocks as numbered SRT cues.',
+      },
+      {
+        question: 'What is an SBV subtitle file?',
+        answer:
+          'SBV is a simple caption format used in some YouTube and creator workflows. Each cue uses one line with start and end times separated by a comma, followed by the subtitle text.',
+      },
+      {
+        question: 'Are SBV files uploaded to a server?',
+        answer:
+          'No. The SBV to SRT conversion runs locally in your browser, so the subtitle file stays on your device.',
+      },
+      {
+        question: 'Will SBV timing change during conversion?',
+        answer:
+          'The timing values are preserved, but the output uses standard SRT timestamp formatting and numbered cue blocks.',
+      },
+    ],
+    relatedTools: ['srt-validator', 'smi-to-srt'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-convert-sbv-to-srt/',
+        title: 'How to convert SBV to SRT',
+      },
+      {
+        href: '/guides/how-to-convert-subtitles-for-youtube/',
+        title: 'How to convert subtitles for YouTube',
+      },
+      {
+        href: '/guides/how-to-validate-srt-files/',
+        title: 'How to validate SRT files',
+      },
+    ],
+    sampleInput: sharedSamples.sbv,
   },
   {
     id: 'youtube-subtitle-converter',

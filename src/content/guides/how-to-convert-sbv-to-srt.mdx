@@ -1,0 +1,117 @@
+---
+title: How to convert SBV to SRT
+seoTitle: Convert SBV to SRT - Free YouTube Caption Converter
+seoDescription: Convert SBV subtitles to SRT online for free. Parse YouTube-style SBV timing blocks and create numbered SubRip captions locally.
+description: Convert older YouTube or creator SBV caption files into standard SRT subtitles for upload, editing, and archive workflows.
+pubDate: 2026-06-02
+category: conversion-guides
+tags:
+  - sbv
+  - srt
+  - youtube captions
+  - conversion
+primaryTool: sbv-to-srt
+faqs:
+  - question: How do I convert an SBV subtitle file to SRT?
+    answer: Use the SBV to SRT converter with a .sbv text caption file. It reads each start and end timing line, keeps the subtitle text, and exports numbered SRT cues.
+  - question: What is the difference between SBV and SRT?
+    answer: SBV stores each cue with one comma-separated start and end timing line. SRT uses numbered cue blocks and an arrow between start and end timestamps.
+  - question: Can I convert SBV captions without uploading the file?
+    answer: Yes. The converter runs in your browser, so the SBV subtitle text stays on your device.
+---
+
+SBV subtitle files show up in older YouTube caption workflows, creator archives, and simple caption exports from tools that used YouTube-style timing. The format is readable, but many editors and upload forms now expect SRT instead.
+
+## Quick answer
+
+Use the [SBV to SRT Converter](/tools/sbv-to-srt/) to convert a `.sbv` caption file into standard SubRip subtitles. The tool reads SBV timing lines, keeps the caption text below each timing block, and creates numbered SRT cues locally in your browser.
+
+## When to convert SBV to SRT
+
+Convert SBV to SRT when:
+
+- a caption archive contains `.sbv` files but your editor expects `.srt`
+- a video platform upload form rejects SBV captions
+- a YouTube caption workflow needs a cleaner handoff copy
+- you want numbered cues for review, translation, or validation
+- you need to merge, clean, or shift the captions with SRT-based tools
+
+Keep the original SBV file if it came from a project archive. The SRT copy is usually easier to reuse, but the source file is still useful for audit and recovery.
+
+## What changes during conversion
+
+SBV stores one cue like this:
+
+```text
+0:00:01.000,0:00:03.500
+Welcome back to the edit.
+```
+
+SRT stores the same cue like this:
+
+```text
+1
+00:00:01,000 --> 00:00:03,500
+Welcome back to the edit.
+```
+
+During conversion, the tool:
+
+- reads the comma-separated SBV start and end time
+- converts dot milliseconds to comma-based SRT timestamps
+- keeps multi-line caption text inside each cue
+- adds sequential cue numbers
+- outputs standard SRT blocks separated by blank lines
+
+The converter does not rewrite caption wording or translate the text. Review the result before upload, especially if the SBV file came from auto-generated captions.
+
+## Step-by-step workflow
+
+1. Save a copy of the original `.sbv` file.
+2. Open the [SBV to SRT Converter](/tools/sbv-to-srt/).
+3. Upload or paste the SBV caption content.
+4. Convert the file to SRT.
+5. Review the first, middle, and final cues for timing and text quality.
+6. Run the output through the [SRT Validator](/tools/srt-validator/) before upload.
+
+## Common mistakes
+
+### Using a video URL instead of the caption file
+
+SBV to SRT conversion works on a text subtitle file. It does not download captions from a YouTube URL or extract burned-in video text.
+
+### Expecting conversion to fix caption accuracy
+
+The converter changes the file format, not the spoken words. If the SBV source has mistranscribed text, fix the wording after conversion.
+
+### Ignoring upload requirements after conversion
+
+SRT is widely accepted, but platforms can still reject files with overlapping cues, empty text, or broken encoding. Validate the SRT before replacing the source file.
+
+## Frequently asked questions
+
+### How do I convert an SBV subtitle file to SRT?
+
+Open the [SBV to SRT Converter](/tools/sbv-to-srt/), upload or paste the `.sbv` file, and export the parsed captions as numbered SRT cues.
+
+### What is the difference between SBV and SRT?
+
+SBV uses a comma-separated timing line such as `0:00:01.000,0:00:03.500`. SRT uses numbered cue blocks and an arrow between timestamps.
+
+### Can I convert SBV captions without uploading the file?
+
+Yes. The converter runs locally in your browser, so the subtitle text does not need to be sent to a server.
+
+## Related guides
+
+- [How to convert subtitles for YouTube](/guides/how-to-convert-subtitles-for-youtube/)
+- [Why YouTube subtitle upload failed](/guides/why-youtube-subtitles-upload-failed/)
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+- [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)
+
+## Related tools
+
+- [SBV to SRT Converter](/tools/sbv-to-srt/)
+- [SRT Validator](/tools/srt-validator/)
+- [YouTube Subtitle Converter](/tools/youtube-subtitle-converter/)
+- [Subtitle Cleaner](/tools/subtitle-cleaner/)

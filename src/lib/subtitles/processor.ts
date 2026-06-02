@@ -1,6 +1,6 @@
 import type { SubtitleToolId } from './catalog';
 
-export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'smi' | 'txt' | 'unknown';
+export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'smi' | 'sbv' | 'txt' | 'unknown';
 
 export interface SubtitleCue {
   start: number;
@@ -41,6 +41,10 @@ export function detectSubtitleFormat(input: string): SubtitleFormat {
 
   if (/<SAMI\b/i.test(normalized) || /<SYNC\s+Start\s*=/i.test(normalized)) {
     return 'smi';
+  }
+
+  if (/^(?:\d+:)?\d{1,2}:\d{2}\.\d{3}\s*,\s*(?:\d+:)?\d{1,2}:\d{2}\.\d{3}$/m.test(normalized)) {
+    return 'sbv';
   }
 
   if (/^\d+\s*\n\d{2}:\d{2}:\d{2}[,.]\d{3}\s-->/m.test(normalized)) {
@@ -299,6 +303,49 @@ export function parseSmi(input: string): SubtitleCue[] {
     .filter(Boolean) as SubtitleCue[];
 }
 
+export function parseSbv(input: string): SubtitleCue[] {
+  const normalized = normalizeSubtitleInput(input);
+  if (!normalized) {
+    return [];
+  }
+
+  return normalized
+    .split(/\n\s*\n/)
+    .map((block) => {
+      const lines = block
+        .split('\n')
+        .map((line) => line.trimEnd())
+        .filter(Boolean);
+
+      if (!lines.length) {
+        return null;
+      }
+
+      const timeLineIndex = lines.findIndex((line) =>
+        /^(?:\d+:)?\d{1,2}:\d{2}\.\d{3}\s*,\s*(?:\d+:)?\d{1,2}:\d{2}\.\d{3}$/.test(line.trim())
+      );
+      if (timeLineIndex === -1) {
+        return null;
+      }
+
+      const match = lines[timeLineIndex]
+        .trim()
+        .match(/^((?:\d+:)?\d{1,2}:\d{2}\.\d{3})\s*,\s*((?:\d+:)?\d{1,2}:\d{2}\.\d{3})$/);
+      if (!match) {
+        return null;
+      }
+
+      const [, start, end] = match;
+
+      return {
+        start: timestampInputToMs(start),
+        end: Math.max(timestampInputToMs(start) + 1, timestampInputToMs(end)),
+        text: lines.slice(timeLineIndex + 1),
+      };
+    })
+    .filter(Boolean) as SubtitleCue[];
+}
+
 export function parseSubtitleByFormat(
   input: string,
   format: SubtitleFormat
@@ -312,6 +359,8 @@ export function parseSubtitleByFormat(
       return parseAss(input);
     case 'smi':
       return parseSmi(input);
+    case 'sbv':
+      return parseSbv(input);
     default:
       return [];
   }
@@ -382,6 +431,7 @@ function serializeByFormat(cues: SubtitleCue[], format: SubtitleFormat) {
     case 'ass':
       return serializeAss(cues);
     case 'smi':
+    case 'sbv':
       return serializeSrt(cues);
     case 'txt':
       return serializePlainText(cues);
@@ -589,6 +639,8 @@ export function processSubtitleTool(
       return serializeVtt(parseAss(normalized));
     case 'smi-to-srt':
       return serializeSrt(parseSmi(normalized));
+    case 'sbv-to-srt':
+      return serializeSrt(parseSbv(normalized));
     case 'youtube-subtitle-converter':
     case 'plex-subtitle-converter': {
       const format = detectSubtitleFormat(normalized);
@@ -707,6 +759,7 @@ export function inferOutputFormat(
     case 'vtt-to-srt':
     case 'ass-to-srt':
     case 'smi-to-srt':
+    case 'sbv-to-srt':
     case 'youtube-subtitle-converter':
     case 'plex-subtitle-converter':
       return 'srt';

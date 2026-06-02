@@ -282,6 +282,10 @@ const checks = [
 				match: '/guides/how-to-convert-smi-to-srt/',
 			},
 			{
+				label: 'homepage links to SBV to SRT guide',
+				match: '/guides/how-to-convert-sbv-to-srt/',
+			},
+			{
 				label: 'homepage links to ASS to VTT guide',
 				match: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
 			},
@@ -460,6 +464,27 @@ const checks = [
 			{
 				label: 'FAQ schema for SMI to SRT questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert an SMI subtitle file to SRT\?/
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-sbv-to-srt/',
+		expect: [
+			{
+				label: 'SBV to SRT guide CTR title',
+				match: '<title>Convert SBV to SRT - Free YouTube Caption Converter</title>',
+			},
+			{
+				label: 'SBV to SRT guide no-upload meta description',
+				match: 'Convert SBV subtitles to SRT online for free. Parse YouTube-style SBV timing blocks and create numbered SubRip captions locally.',
+			},
+			{
+				label: 'SBV to SRT guide opens SBV converter tool',
+				match: 'href="/tools/sbv-to-srt/"',
+			},
+			{
+				label: 'FAQ schema for SBV to SRT questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert an SBV subtitle file to SRT\?/
 			},
 		],
 	},
@@ -2846,6 +2871,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/sbv-to-srt/',
+		expect: [
+			{
+				label: 'SBV to SRT tool title',
+				match: '<title>SBV to SRT Converter - Convert YouTube Captions Free</title>',
+			},
+			{
+				label: 'SBV to SRT tool meta description',
+				match: 'Convert SBV subtitles to SRT online for free. Turn YouTube-style SBV timing blocks into numbered SubRip captions locally.',
+			},
+			{
+				label: 'SBV to SRT tool links guide',
+				match: 'href="/guides/how-to-convert-sbv-to-srt/"',
+			},
+			{
+				label: 'SBV to SRT tool FAQ covers SBV files',
+				match: 'What is an SBV subtitle file?',
+			},
+		],
+	},
+	{
 		path: '/tools/ass-to-srt/',
 		expect: [
 			{
@@ -3542,6 +3588,10 @@ const checks = [
 				match: 'https://subtitletoolkit.tools/tools/smi-to-srt/',
 			},
 			{
+				label: 'llms lists SBV to SRT tool',
+				match: 'https://subtitletoolkit.tools/tools/sbv-to-srt/',
+			},
+			{
 				label: 'llms lists invalid WebVTT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/',
 			},
@@ -3840,6 +3890,10 @@ const checks = [
 			{
 				label: 'llms lists SMI to SRT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-smi-to-srt/',
+			},
+			{
+				label: 'llms lists SBV to SRT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-sbv-to-srt/',
 			},
 			{
 				label: 'llms lists ASS to SRT guide',
