@@ -15,6 +15,7 @@ export type SubtitleToolId =
   | 'microdvd-to-srt'
   | 'lrc-to-srt'
   | 'subviewer-to-srt'
+  | 'mpl2-to-srt'
   | 'youtube-subtitle-converter'
   | 'html5-video-subtitle-converter'
   | 'videojs-subtitle-converter'
@@ -180,6 +181,8 @@ Welcome back to the edit
 
 00:00:04.20,00:00:06.00
 Today we are converting SubViewer captions[br]They need SRT output`,
+  mpl2: `[10][35]Welcome back to the edit
+[42][60]Today we are converting MPL2 subtitles|They need SRT output`,
   encodedSrt: `1
 00:00:01,000 --> 00:00:03,500
 Café subtitles should stay readable.
@@ -1139,6 +1142,65 @@ const enTools: SubtitleTool[] = [
       },
     ],
     sampleInput: sharedSamples.subviewer,
+  },
+  {
+    id: 'mpl2-to-srt',
+    title: 'MPL2 to SRT Converter',
+    shortTitle: 'MPL2 to SRT',
+    description:
+      'Convert MPL2 subtitles to SRT online for free, locally in your browser with no upload.',
+    summary:
+      'Use this free MPL2 to SRT converter when an older bracket-timed subtitle file needs standard SubRip timing for editing, upload, review, or archive handoff.',
+    buttonLabel: 'Convert to SRT',
+    inputLabel: 'MPL2 input',
+    outputLabel: 'SRT output',
+    placeholder: 'Paste your MPL2 subtitles here',
+    acceptedExtensions: ['.mpl', '.mpl2', '.txt'],
+    sampleFileName: 'sample.mpl',
+    useCases: [
+      'Convert bracket-timed MPL2 subtitles to standard SRT.',
+      'Move older MPL2 subtitle files into editors that expect SubRip timing.',
+      'Create an upload-ready copy from an MPL2 subtitle file.',
+      'Prepare MPL2 captions for SRT validation, cleanup, or archive workflows.',
+    ],
+    faqs: [
+      {
+        question: 'How do I convert an MPL2 subtitle file to SRT?',
+        answer:
+          'Open the MPL2 to SRT converter, paste or upload the .mpl or .mpl2 file, and export bracket-timed subtitle rows as numbered SRT cues.',
+      },
+      {
+        question: 'What is an MPL2 subtitle file?',
+        answer:
+          'MPL2 is an older subtitle format that stores cue timing in bracket pairs such as [10][35] before each caption line.',
+      },
+      {
+        question: 'How is MPL2 timing converted to SRT?',
+        answer:
+          'MPL2 timing values are tenths of a second, so [10][35] becomes 00:00:01,000 to 00:00:03,500 in SRT.',
+      },
+      {
+        question: 'Are MPL2 files uploaded to a server?',
+        answer:
+          'No. The MPL2 to SRT conversion runs locally in your browser, so the subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['subviewer-to-srt', 'srt-validator'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-convert-mpl2-to-srt/',
+        title: 'How to convert MPL2 to SRT',
+      },
+      {
+        href: '/guides/how-to-convert-subviewer-to-srt/',
+        title: 'How to convert SubViewer to SRT',
+      },
+      {
+        href: '/guides/how-to-validate-srt-files/',
+        title: 'How to validate SRT files',
+      },
+    ],
+    sampleInput: sharedSamples.mpl2,
   },
   {
     id: 'youtube-subtitle-converter',

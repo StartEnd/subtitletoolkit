@@ -10,7 +10,7 @@ Record manual Search Console actions here so the next review is based on evidenc
 
 After the production gate passes, run `pnpm gsc:day0:list` to print the primary sitemap and URL Inspection queue plus a paste-ready submission record row. Use `pnpm gsc:day0:list -- --batch current` only after Google starts showing crawl or impression movement for the primary queue.
 
-Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-02 against the live `d6acd03` deployment (`sitemap-0.xml` lastmod `2026-06-02T04:25:04.000Z`) using the same local verifier commit. The primary queue below has 21 URL Inspection requests; the current queue has 138 URLs. Keep them unchecked until the manual Search Console requests are actually submitted.
+Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-02 against the live `d6acd03` deployment (`sitemap-0.xml` lastmod `2026-06-02T04:25:04.000Z`) using the same local verifier commit. The primary queue below has 21 URL Inspection requests; the current queue has 140 URLs. Keep them unchecked until the manual Search Console requests are actually submitted.
 
 ## Submission Record
 
@@ -141,6 +141,7 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-microdvd-to-srt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-lrc-to-srt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-subviewer-to-srt/`
+- [ ] `https://subtitletoolkit.tools/guides/how-to-convert-mpl2-to-srt/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-convert-subtitles-to-plain-text/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-subtitles/`
 - [ ] `https://subtitletoolkit.tools/guides/how-to-remove-timestamps-from-srt/`
@@ -182,6 +183,7 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/tools/microdvd-to-srt/`
 - [ ] `https://subtitletoolkit.tools/tools/lrc-to-srt/`
 - [ ] `https://subtitletoolkit.tools/tools/subviewer-to-srt/`
+- [ ] `https://subtitletoolkit.tools/tools/mpl2-to-srt/`
 - [ ] `https://subtitletoolkit.tools/tools/html5-video-subtitle-converter/`
 - [ ] `https://subtitletoolkit.tools/tools/videojs-subtitle-converter/`
 - [ ] `https://subtitletoolkit.tools/tools/jw-player-subtitle-converter/`

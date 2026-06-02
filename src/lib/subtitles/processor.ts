@@ -1,6 +1,6 @@
 import type { SubtitleToolId } from './catalog';
 
-export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'smi' | 'sbv' | 'ttml' | 'scc' | 'microdvd' | 'lrc' | 'subviewer' | 'txt' | 'unknown';
+export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'smi' | 'sbv' | 'ttml' | 'scc' | 'microdvd' | 'lrc' | 'subviewer' | 'mpl2' | 'txt' | 'unknown';
 
 export interface SubtitleCue {
   start: number;
@@ -61,6 +61,10 @@ export function detectSubtitleFormat(input: string): SubtitleFormat {
 
   if (/^\d{2}:\d{2}:\d{2}\.\d{2}\s*,\s*\d{2}:\d{2}:\d{2}\.\d{2}$/m.test(normalized)) {
     return 'subviewer';
+  }
+
+  if (/^\[\d+\]\[\d+\].+/m.test(normalized)) {
+    return 'mpl2';
   }
 
   if (/^(?:\d+:)?\d{1,2}:\d{2}\.\d{3}\s*,\s*(?:\d+:)?\d{1,2}:\d{2}\.\d{3}$/m.test(normalized)) {
@@ -641,6 +645,40 @@ export function parseSubViewer(input: string): SubtitleCue[] {
     .filter(Boolean) as SubtitleCue[];
 }
 
+export function parseMpl2(input: string): SubtitleCue[] {
+  const normalized = normalizeSubtitleInput(input);
+  if (!normalized) {
+    return [];
+  }
+
+  return normalized
+    .split('\n')
+    .map((line) => {
+      const match = line.trim().match(/^\[(\d+)\]\[(\d+)\](.*)$/);
+      if (!match) {
+        return null;
+      }
+
+      const start = Number(match[1]) * 100;
+      const end = Number(match[2]) * 100;
+      const text = match[3]
+        .split('|')
+        .map((part) => cleanSubtitleLine(part))
+        .filter(Boolean);
+
+      if (!text.length) {
+        return null;
+      }
+
+      return {
+        start,
+        end: Math.max(start + 1, end),
+        text,
+      };
+    })
+    .filter(Boolean) as SubtitleCue[];
+}
+
 export function parseSubtitleByFormat(
   input: string,
   format: SubtitleFormat
@@ -666,6 +704,8 @@ export function parseSubtitleByFormat(
       return parseLrc(input);
     case 'subviewer':
       return parseSubViewer(input);
+    case 'mpl2':
+      return parseMpl2(input);
     default:
       return [];
   }
@@ -742,6 +782,7 @@ function serializeByFormat(cues: SubtitleCue[], format: SubtitleFormat) {
     case 'microdvd':
     case 'lrc':
     case 'subviewer':
+    case 'mpl2':
       return serializeSrt(cues);
     case 'txt':
       return serializePlainText(cues);
@@ -961,6 +1002,8 @@ export function processSubtitleTool(
       return serializeSrt(parseLrc(normalized));
     case 'subviewer-to-srt':
       return serializeSrt(parseSubViewer(normalized));
+    case 'mpl2-to-srt':
+      return serializeSrt(parseMpl2(normalized));
     case 'youtube-subtitle-converter':
     case 'plex-subtitle-converter': {
       const format = detectSubtitleFormat(normalized);
@@ -1085,6 +1128,7 @@ export function inferOutputFormat(
     case 'microdvd-to-srt':
     case 'lrc-to-srt':
     case 'subviewer-to-srt':
+    case 'mpl2-to-srt':
     case 'youtube-subtitle-converter':
     case 'plex-subtitle-converter':
       return 'srt';

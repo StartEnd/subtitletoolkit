@@ -306,6 +306,10 @@ const checks = [
 				match: '/guides/how-to-convert-subviewer-to-srt/',
 			},
 			{
+				label: 'homepage links to MPL2 to SRT guide',
+				match: '/guides/how-to-convert-mpl2-to-srt/',
+			},
+			{
 				label: 'homepage links to ASS to VTT guide',
 				match: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
 			},
@@ -610,6 +614,27 @@ const checks = [
 			{
 				label: 'FAQ schema for SubViewer to SRT questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert a SubViewer SUB file to SRT\?/
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-mpl2-to-srt/',
+		expect: [
+			{
+				label: 'MPL2 to SRT guide CTR title',
+				match: '<title>Convert MPL2 to SRT - Free Bracket Subtitle Converter</title>',
+			},
+			{
+				label: 'MPL2 to SRT guide no-upload meta description',
+				match: 'Convert MPL2 subtitles to SRT online for free. Turn bracket-timed subtitle rows into numbered SubRip cues locally with no upload.',
+			},
+			{
+				label: 'MPL2 to SRT guide opens MPL2 converter tool',
+				match: 'href="/tools/mpl2-to-srt/"',
+			},
+			{
+				label: 'FAQ schema for MPL2 to SRT questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert an MPL2 subtitle file to SRT\?/
 			},
 		],
 	},
@@ -3122,6 +3147,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/mpl2-to-srt/',
+		expect: [
+			{
+				label: 'MPL2 to SRT tool title',
+				match: '<title>MPL2 to SRT Converter - Convert Bracket Captions Free</title>',
+			},
+			{
+				label: 'MPL2 to SRT tool meta description',
+				match: 'Convert MPL2 subtitles to SRT online for free. Turn bracket-timed rows into numbered SubRip cues locally.',
+			},
+			{
+				label: 'MPL2 to SRT tool links guide',
+				match: 'href="/guides/how-to-convert-mpl2-to-srt/"',
+			},
+			{
+				label: 'MPL2 to SRT tool FAQ covers timing units',
+				match: 'How is MPL2 timing converted to SRT?',
+			},
+		],
+	},
+	{
 		path: '/tools/ass-to-srt/',
 		expect: [
 			{
@@ -3842,6 +3888,10 @@ const checks = [
 				match: 'https://subtitletoolkit.tools/tools/subviewer-to-srt/',
 			},
 			{
+				label: 'llms lists MPL2 to SRT tool',
+				match: 'https://subtitletoolkit.tools/tools/mpl2-to-srt/',
+			},
+			{
 				label: 'llms lists invalid WebVTT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/',
 			},
@@ -4164,6 +4214,10 @@ const checks = [
 			{
 				label: 'llms lists SubViewer to SRT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-subviewer-to-srt/',
+			},
+			{
+				label: 'llms lists MPL2 to SRT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-mpl2-to-srt/',
 			},
 			{
 				label: 'llms lists ASS to SRT guide',

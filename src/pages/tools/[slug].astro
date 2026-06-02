@@ -59,6 +59,8 @@ const toolMetaDescriptions: Record<string, string> = {
 		'Convert LRC lyrics to SRT subtitles online for free. Turn timestamped lyric lines into numbered SubRip cues locally.',
 	'subviewer-to-srt':
 		'Convert SubViewer SUB subtitles to SRT online for free. Turn time-based .sub blocks into numbered SubRip cues locally.',
+	'mpl2-to-srt':
+		'Convert MPL2 subtitles to SRT online for free. Turn bracket-timed rows into numbered SubRip cues locally.',
 	'youtube-subtitle-converter':
 		'Convert subtitles to YouTube-ready SRT online for free. Turn VTT, ASS, or SSA captions into upload-safe SRT locally with no signup or upload.',
 	'html5-video-subtitle-converter':
@@ -118,6 +120,7 @@ const toolPageTitles: Record<string, string> = {
 	'microdvd-to-srt': 'MicroDVD to SRT Converter - Convert SUB Captions Free',
 	'lrc-to-srt': 'LRC to SRT Converter - Convert Lyrics to Captions Free',
 	'subviewer-to-srt': 'SubViewer to SRT Converter - Convert SUB Captions Free',
+	'mpl2-to-srt': 'MPL2 to SRT Converter - Convert Bracket Captions Free',
 	'youtube-subtitle-converter': 'YouTube Subtitle Converter Online - Free No Upload',
 	'html5-video-subtitle-converter': 'HTML5 Video Subtitle Converter - Convert Captions to VTT',
 	'videojs-subtitle-converter': 'Video.js Subtitle Converter - Convert Captions to VTT',
@@ -173,6 +176,8 @@ const workflowNotes: Record<string, string> = {
 		'LRC files are timestamped lyrics rather than full subtitle cue blocks. This converter reads LRC time tags, turns each lyric line into an SRT cue, uses the next lyric timestamp as the cue end, and creates a simple numbered SRT copy for lyric videos, review, and editing.',
 	'subviewer-to-srt':
 		'SubViewer .sub files often come from older subtitle archives and desktop tools. This converter reads start and end timestamp rows, turns [br] markers into SRT line breaks, and exports numbered SubRip cues for editing, upload, and review workflows.',
+	'mpl2-to-srt':
+		'MPL2 files use bracket timing values measured in tenths of a second. This converter reads rows like [10][35]Caption text, turns pipe separators into SRT line breaks, and exports numbered SubRip cues for editing, upload, and archive workflows.',
 	'youtube-subtitle-converter':
 		'Use this when YouTube needs a clean SRT upload but your source captions are VTT, ASS, SSA, or uncertain. The tool keeps timing and readable text, removes unsupported styling, and exports a simple SRT copy locally with no upload.',
 	'html5-video-subtitle-converter':
@@ -294,6 +299,11 @@ const mistakeNotes: Record<string, string[]> = {
 	'subviewer-to-srt': [
 		'Using the converter on a MicroDVD frame-based .sub file instead of a time-based SubViewer file.',
 		'Expecting SRT output to preserve any legacy styling beyond readable line breaks.',
+		'Uploading the SRT output before validating cue timing and text cleanup.',
+	],
+	'mpl2-to-srt': [
+		'Editing MPL2 bracket values as if they were seconds instead of tenths of a second.',
+		'Expecting SRT output to preserve legacy player styling beyond readable line breaks.',
 		'Uploading the SRT output before validating cue timing and text cleanup.',
 	],
 	'youtube-subtitle-converter': [
