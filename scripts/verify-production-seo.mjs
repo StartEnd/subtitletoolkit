@@ -86,152 +86,41 @@ const checks = [
 				match: 'SRT file will not upload',
 			},
 			{
-				label: 'homepage links to Video.js caption failure guide',
-				match: '/guides/why-videojs-captions-are-not-showing/',
+				label: 'homepage popular searches moved below core tools',
+				after: ['Core tools', 'Popular searches'],
 			},
 			{
-				label: 'homepage links to Plyr caption failure guide',
-				match: '/guides/why-plyr-captions-are-not-showing/',
+				label: 'homepage popular searches stays focused',
+				count: /class="search-chip"/g,
+				expectedCount: 16,
 			},
 			{
-				label: 'homepage links to iPhone subtitle failure guide',
-				match: '/guides/why-iphone-subtitles-are-not-showing/',
+				label: 'homepage links to SRT to VTT tool',
+				match: '/tools/srt-to-vtt/',
 			},
 			{
-				label: 'homepage links to Android caption failure guide',
-				match: '/guides/why-android-captions-are-not-showing/',
+				label: 'homepage links to VTT to SRT tool',
+				match: '/tools/vtt-to-srt/',
 			},
 			{
-				label: 'homepage links to Chrome caption failure guide',
-				match: '/guides/why-chrome-captions-are-not-showing/',
+				label: 'homepage links to ASS to SRT tool',
+				match: '/tools/ass-to-srt/',
 			},
 			{
-				label: 'homepage links to Edge caption failure guide',
-				match: '/guides/why-edge-captions-are-not-showing/',
+				label: 'homepage links to clean SRT tool',
+				match: '/tools/clean-srt-file/',
 			},
 			{
-				label: 'homepage links to Firefox caption failure guide',
-				match: '/guides/why-firefox-captions-are-not-showing/',
+				label: 'homepage links to SRT validator tool',
+				match: '/tools/srt-validator/',
 			},
 			{
-				label: 'homepage links to Safari caption failure guide',
-				match: '/guides/why-safari-captions-are-not-showing/',
+				label: 'homepage links to WebVTT validator tool',
+				match: '/tools/webvtt-validator/',
 			},
 			{
-				label: 'homepage links to JW Player caption failure guide',
-				match: '/guides/why-jw-player-captions-are-not-showing/',
-			},
-			{
-				label: 'homepage links to VLC subtitle failure guide',
-				match: '/guides/why-vlc-subtitles-are-not-showing/',
-			},
-			{
-				label: 'homepage links to TV subtitle failure guide',
-				match: '/guides/why-tv-subtitles-are-not-showing/',
-			},
-			{
-				label: 'homepage links to VLC subtitle delay guide',
-				match: '/guides/how-to-fix-vlc-subtitle-delay/',
-			},
-			{
-				label: 'homepage links to SRT not working guide',
-				match: '/guides/why-srt-file-is-not-working/',
-			},
-			{
-				label: 'homepage links to missing subtitles after conversion guide',
-				match: '/guides/why-subtitles-are-missing-after-conversion/',
-			},
-			{
-				label: 'homepage links to empty converted subtitle guide',
-				match: '/guides/why-converted-subtitle-file-is-empty/',
-			},
-			{
-				label: 'homepage links to subtitle drift guide',
-				match: '/guides/why-subtitles-drift-out-of-sync/',
-			},
-			{
-				label: 'homepage links to long subtitles guide',
-				match: '/guides/how-to-fix-subtitles-that-are-too-long/',
-			},
-			{
-				label: 'homepage links to Plex subtitle failure guide',
-				match: '/guides/why-plex-subtitles-are-not-showing/',
-			},
-			{
-				label: 'homepage links to Vimeo caption failure guide',
-				match: '/guides/why-vimeo-captions-are-not-showing/',
-			},
-			{
-				label: 'homepage links to garbled subtitles guide',
-				match: '/guides/how-to-fix-garbled-subtitles/',
-			},
-			{
-				label: 'homepage links to UTF-8 conversion guide',
-				match: '/guides/how-to-convert-subtitles-to-utf-8/',
-			},
-			{
-				label: 'homepage links to video subtitle extraction guide',
-				match: '/guides/how-to-extract-subtitles-from-video/',
-			},
-			{
-				label: 'homepage links to downloaded video missing subtitles guide',
-				match: '/guides/why-downloaded-video-has-no-subtitles/',
-			},
-			{
-				label: 'homepage links to MP4 subtitle extraction guide',
-				match: '/guides/how-to-extract-subtitles-from-mp4/',
-			},
-			{
-				label: 'homepage links to MP4 subtitle failure guide',
-				match: '/guides/why-mp4-subtitles-are-not-showing/',
-			},
-			{
-				label: 'homepage links to MKV subtitle failure guide',
-				match: '/guides/why-mkv-subtitles-are-not-showing/',
-			},
-			{
-				label: 'homepage links to MOV subtitle failure guide',
-				match: '/guides/why-mov-subtitles-are-not-showing/',
-			},
-			{
-				label: 'homepage links to WebM subtitle failure guide',
-				match: '/guides/why-webm-subtitles-are-not-showing/',
-			},
-			{
-				label: 'homepage links to M4V subtitle extraction guide',
-				match: '/guides/how-to-extract-subtitles-from-m4v/',
-			},
-			{
-				label: 'homepage links to MKV subtitle extraction guide',
-				match: '/guides/how-to-extract-subtitles-from-mkv/',
-			},
-			{
-				label: 'homepage links to MKV to SRT guide',
-				match: '/guides/how-to-extract-srt-from-mkv/',
-			},
-			{
-				label: 'homepage links to AVI subtitle extraction guide',
-				match: '/guides/how-to-extract-subtitles-from-avi/',
-			},
-			{
-				label: 'homepage links to VOB subtitle extraction guide',
-				match: '/guides/how-to-extract-subtitles-from-vob/',
-			},
-			{
-				label: 'homepage links to WMV subtitle extraction guide',
-				match: '/guides/how-to-extract-subtitles-from-wmv/',
-			},
-			{
-				label: 'homepage links to HTML5 conversion guide',
-				match: '/guides/how-to-convert-subtitles-for-html5-video/',
-			},
-			{
-				label: 'homepage links to Video.js conversion guide',
-				match: '/guides/how-to-convert-subtitles-for-videojs/',
-			},
-			{
-				label: 'homepage links to Video.js format guide',
-				match: '/guides/best-subtitle-format-for-videojs/',
+				label: 'homepage links to YouTube subtitle converter tool',
+				match: '/tools/youtube-subtitle-converter/',
 			},
 			{
 				label: 'homepage links to SRT vs VTT guide',
@@ -246,152 +135,16 @@ const checks = [
 				match: '/guides/how-to-remove-timestamps-from-subtitles/',
 			},
 			{
-				label: 'homepage links to remove SRT timestamps guide',
-				match: '/guides/how-to-remove-timestamps-from-srt/',
+				label: 'homepage links to garbled subtitles guide',
+				match: '/guides/how-to-fix-garbled-subtitles/',
 			},
 			{
-				label: 'homepage links to remove VTT timestamps guide',
-				match: '/guides/how-to-remove-timestamps-from-vtt/',
+				label: 'homepage links to MP4 subtitle extraction guide',
+				match: '/guides/how-to-extract-subtitles-from-mp4/',
 			},
 			{
-				label: 'homepage links to remove ASS timestamps guide',
-				match: '/guides/how-to-remove-timestamps-from-ass/',
-			},
-			{
-				label: 'homepage links to remove SSA timestamps guide',
-				match: '/guides/how-to-remove-timestamps-from-ssa/',
-			},
-			{
-				label: 'homepage links to merge subtitle files guide',
-				match: '/guides/how-to-merge-subtitle-files/',
-			},
-			{
-				label: 'homepage links to SRT to TXT guide',
-				match: '/guides/how-to-convert-srt-to-txt/',
-			},
-			{
-				label: 'homepage links to SRT to ASS guide',
-				match: '/guides/how-to-convert-srt-to-ass/',
-			},
-			{
-				label: 'homepage links to SRT to SSA guide',
-				match: '/guides/how-to-convert-srt-to-ssa/',
-			},
-			{
-				label: 'homepage links to SRT to SSA tool',
-				match: '/tools/srt-to-ssa/',
-			},
-			{
-				label: 'homepage links to VTT to ASS guide',
-				match: '/guides/how-to-convert-vtt-to-ass/',
-			},
-			{
-				label: 'homepage links to VTT to SSA guide',
-				match: '/guides/how-to-convert-vtt-to-ssa/',
-			},
-			{
-				label: 'homepage links to VTT to SSA tool',
-				match: '/tools/vtt-to-ssa/',
-			},
-			{
-				label: 'homepage links to ASS to SRT guide',
-				match: '/guides/how-to-convert-ass-to-srt/',
-			},
-			{
-				label: 'homepage links to Aegisub SRT export guide',
-				match: '/guides/how-to-export-srt-from-aegisub/',
-			},
-			{
-				label: 'homepage links to SSA to SRT guide',
-				match: '/guides/how-to-convert-ssa-to-srt/',
-			},
-			{
-				label: 'homepage links to SSA to SRT tool',
-				match: '/tools/ssa-to-srt/',
-			},
-			{
-				label: 'homepage links to SSA to VTT guide',
-				match: '/guides/how-to-convert-ssa-to-vtt/',
-			},
-			{
-				label: 'homepage links to SSA to VTT tool',
-				match: '/tools/ssa-to-vtt/',
-			},
-			{
-				label: 'homepage links to SSA to TXT guide',
-				match: '/guides/how-to-convert-ssa-to-txt/',
-			},
-			{
-				label: 'homepage links to SSA to TXT tool',
-				match: '/tools/ssa-to-txt/',
-			},
-			{
-				label: 'homepage links to SMI to SRT guide',
-				match: '/guides/how-to-convert-smi-to-srt/',
-			},
-			{
-				label: 'homepage links to SBV to SRT guide',
-				match: '/guides/how-to-convert-sbv-to-srt/',
-			},
-			{
-				label: 'homepage links to TTML to SRT guide',
-				match: '/guides/how-to-convert-ttml-to-srt/',
-			},
-			{
-				label: 'homepage links to DFXP to SRT guide',
-				match: '/guides/how-to-convert-dfxp-to-srt/',
-			},
-			{
-				label: 'homepage links to XML subtitles to SRT guide',
-				match: '/guides/how-to-convert-xml-subtitles-to-srt/',
-			},
-			{
-				label: 'homepage links to SCC to SRT guide',
-				match: '/guides/how-to-convert-scc-to-srt/',
-			},
-			{
-				label: 'homepage links to MicroDVD to SRT guide',
-				match: '/guides/how-to-convert-microdvd-to-srt/',
-			},
-			{
-				label: 'homepage links to LRC to SRT guide',
-				match: '/guides/how-to-convert-lrc-to-srt/',
-			},
-			{
-				label: 'homepage links to SubViewer to SRT guide',
-				match: '/guides/how-to-convert-subviewer-to-srt/',
-			},
-			{
-				label: 'homepage links to MPL2 to SRT guide',
-				match: '/guides/how-to-convert-mpl2-to-srt/',
-			},
-			{
-				label: 'homepage links to CSV to SRT guide',
-				match: '/guides/how-to-convert-csv-to-srt/',
-			},
-			{
-				label: 'homepage links to JSON to SRT guide',
-				match: '/guides/how-to-convert-json-to-srt/',
-			},
-			{
-				label: 'homepage links to ASS to VTT guide',
-				match: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
-			},
-			{
-				label: 'homepage links to ASS to SRT YouTube upload guide',
-				match: '/guides/how-to-convert-ass-to-srt-for-youtube-uploads/',
-			},
-			{
-				label: 'homepage links to subtitle cleanup before upload guide',
-				match: '/guides/how-to-clean-subtitle-formatting-before-upload/',
-			},
-			{
-				label: 'homepage links to SRT validation guide',
-				match: '/guides/how-to-validate-srt-files/',
-			},
-			{
-				label: 'homepage links to WebVTT validation guide',
-				match: '/guides/how-to-validate-webvtt-files/',
+				label: 'homepage does not restore low-priority search wall',
+				absent: '/guides/how-to-convert-smi-to-srt/',
 			},
 		],
 	},

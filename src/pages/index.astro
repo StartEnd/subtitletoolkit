@@ -45,89 +45,22 @@ const guideClusters = guideCategoryOrder
 	}))
 	.filter((cluster) => cluster.count > 0);
 const popularSearches = [
+	{ href: '/tools/srt-to-vtt/', label: 'SRT to VTT converter' },
+	{ href: '/tools/vtt-to-srt/', label: 'VTT to SRT converter' },
+	{ href: '/tools/ass-to-srt/', label: 'ASS to SRT converter' },
+	{ href: '/tools/subtitle-delay-fixer/', label: 'Fix subtitle delay' },
+	{ href: '/tools/clean-srt-file/', label: 'Clean SRT file' },
+	{ href: '/tools/srt-validator/', label: 'SRT validator' },
+	{ href: '/tools/webvtt-validator/', label: 'WebVTT validator' },
+	{ href: '/tools/extract-subtitles-from-video/', label: 'Extract subtitles from video' },
+	{ href: '/tools/youtube-subtitle-converter/', label: 'YouTube subtitle converter' },
 	{ href: '/guides/srt-vs-vtt/', label: 'SRT vs VTT' },
 	{ href: '/guides/how-to-convert-subtitles-to-plain-text/', label: 'How to convert subtitles to plain text' },
 	{ href: '/guides/how-to-remove-timestamps-from-subtitles/', label: 'How to remove timestamps from subtitles' },
-	{ href: '/guides/how-to-remove-timestamps-from-srt/', label: 'How to remove timestamps from SRT' },
-	{ href: '/guides/how-to-remove-timestamps-from-vtt/', label: 'How to remove timestamps from VTT' },
-	{ href: '/guides/how-to-remove-timestamps-from-ass/', label: 'How to remove timestamps from ASS subtitles' },
-	{ href: '/guides/how-to-remove-timestamps-from-ssa/', label: 'How to remove timestamps from SSA subtitles' },
-	{ href: '/guides/how-to-convert-srt-to-txt/', label: 'How to convert SRT to TXT' },
-	{ href: '/guides/how-to-convert-srt-to-ass/', label: 'How to convert SRT to ASS' },
-	{ href: '/guides/how-to-convert-srt-to-ssa/', label: 'How to convert SRT to SSA' },
-	{ href: '/tools/srt-to-ssa/', label: 'SRT to SSA converter' },
-	{ href: '/guides/how-to-convert-vtt-to-ass/', label: 'How to convert VTT to ASS' },
-	{ href: '/guides/how-to-convert-vtt-to-ssa/', label: 'How to convert VTT to SSA' },
-	{ href: '/tools/vtt-to-ssa/', label: 'VTT to SSA converter' },
-	{ href: '/guides/how-to-convert-ass-to-srt/', label: 'How to convert ASS to SRT' },
-	{ href: '/guides/how-to-export-srt-from-aegisub/', label: 'How to export SRT from Aegisub' },
-	{ href: '/guides/how-to-convert-ssa-to-srt/', label: 'How to convert SSA to SRT' },
-	{ href: '/tools/ssa-to-srt/', label: 'SSA to SRT converter' },
-	{ href: '/guides/how-to-convert-ssa-to-vtt/', label: 'How to convert SSA to VTT' },
-	{ href: '/tools/ssa-to-vtt/', label: 'SSA to VTT converter' },
-	{ href: '/guides/how-to-convert-ssa-to-txt/', label: 'How to convert SSA to TXT' },
-	{ href: '/tools/ssa-to-txt/', label: 'SSA to TXT converter' },
-	{ href: '/guides/how-to-merge-subtitle-files/', label: 'How to merge subtitle files' },
-	{ href: '/guides/how-to-convert-smi-to-srt/', label: 'How to convert SMI to SRT' },
-	{ href: '/guides/how-to-convert-sbv-to-srt/', label: 'How to convert SBV to SRT' },
-	{ href: '/guides/how-to-convert-ttml-to-srt/', label: 'How to convert TTML to SRT' },
-	{ href: '/guides/how-to-convert-dfxp-to-srt/', label: 'How to convert DFXP to SRT' },
-	{ href: '/guides/how-to-convert-xml-subtitles-to-srt/', label: 'How to convert XML subtitles to SRT' },
-	{ href: '/guides/how-to-convert-scc-to-srt/', label: 'How to convert SCC to SRT' },
-	{ href: '/guides/how-to-convert-microdvd-to-srt/', label: 'How to convert MicroDVD to SRT' },
-	{ href: '/guides/how-to-convert-lrc-to-srt/', label: 'How to convert LRC to SRT' },
-	{ href: '/guides/how-to-convert-subviewer-to-srt/', label: 'How to convert SubViewer to SRT' },
-	{ href: '/guides/how-to-convert-mpl2-to-srt/', label: 'How to convert MPL2 to SRT' },
-	{ href: '/guides/how-to-convert-csv-to-srt/', label: 'How to convert CSV to SRT' },
-	{ href: '/guides/how-to-convert-json-to-srt/', label: 'How to convert JSON to SRT' },
-	{ href: '/guides/how-to-convert-ass-to-vtt-for-web-players/', label: 'How to convert ASS to VTT for web players' },
-	{ href: '/guides/how-to-convert-srt-to-vtt-for-html5-video/', label: 'How to convert SRT to VTT for HTML5 video' },
-	{ href: '/guides/how-to-convert-ass-to-srt-for-youtube-uploads/', label: 'How to convert ASS to SRT for YouTube' },
-	{ href: '/guides/how-to-clean-subtitle-formatting-before-upload/', label: 'How to clean subtitle formatting before upload' },
-	{ href: '/guides/how-to-validate-srt-files/', label: 'How to validate SRT files' },
-	{ href: '/guides/how-to-validate-webvtt-files/', label: 'How to validate WebVTT files' },
 	{ href: '/guides/why-youtube-subtitles-upload-failed/', label: 'Why YouTube subtitles upload failed' },
-	{ href: '/guides/how-to-convert-subtitles-for-youtube/', label: 'How to convert subtitles for YouTube' },
-	{ href: '/guides/why-videojs-captions-are-not-showing/', label: 'Why Video.js captions are not showing' },
-	{ href: '/guides/why-plyr-captions-are-not-showing/', label: 'Why Plyr captions are not showing' },
-	{ href: '/guides/why-iphone-subtitles-are-not-showing/', label: 'Why iPhone subtitles are not showing' },
-	{ href: '/guides/why-android-captions-are-not-showing/', label: 'Why Android captions are not showing' },
-	{ href: '/guides/why-chrome-captions-are-not-showing/', label: 'Why Chrome captions are not showing' },
-	{ href: '/guides/why-edge-captions-are-not-showing/', label: 'Why Edge captions are not showing' },
-	{ href: '/guides/why-firefox-captions-are-not-showing/', label: 'Why Firefox captions are not showing' },
-	{ href: '/guides/why-safari-captions-are-not-showing/', label: 'Why Safari captions are not showing' },
-	{ href: '/guides/best-subtitle-format-for-videojs/', label: 'Best subtitle format for Video.js' },
-	{ href: '/guides/why-jw-player-captions-are-not-showing/', label: 'Why JW Player captions are not showing' },
-	{ href: '/guides/why-vlc-subtitles-are-not-showing/', label: 'Why VLC subtitles are not showing' },
-	{ href: '/guides/why-tv-subtitles-are-not-showing/', label: 'Why TV subtitles are not showing' },
-	{ href: '/guides/how-to-fix-vlc-subtitle-delay/', label: 'How to fix VLC subtitle delay' },
-	{ href: '/guides/why-srt-file-is-not-working/', label: 'Why your SRT file is not working' },
-	{ href: '/guides/why-subtitles-are-missing-after-conversion/', label: 'Why subtitles are missing after conversion' },
-	{ href: '/guides/why-converted-subtitle-file-is-empty/', label: 'Why converted subtitle file is empty' },
-	{ href: '/guides/why-subtitles-drift-out-of-sync/', label: 'Why subtitles drift out of sync' },
-	{ href: '/guides/how-to-fix-subtitles-that-are-too-long/', label: 'How to fix subtitles that are too long' },
-	{ href: '/guides/how-to-convert-subtitles-for-videojs/', label: 'How to convert subtitles for Video.js' },
-	{ href: '/guides/why-plex-subtitles-are-not-showing/', label: 'Why Plex subtitles are not showing' },
-	{ href: '/guides/why-vimeo-captions-are-not-showing/', label: 'Why Vimeo captions are not showing' },
-	{ href: '/guides/how-to-convert-subtitles-for-html5-video/', label: 'How to convert subtitles for HTML5 video' },
 	{ href: '/guides/how-to-fix-garbled-subtitles/', label: 'How to fix garbled subtitles' },
-	{ href: '/guides/how-to-convert-subtitles-to-utf-8/', label: 'How to convert subtitles to UTF-8' },
-	{ href: '/guides/how-to-extract-subtitles-from-video/', label: 'How to extract subtitles from video' },
-	{ href: '/guides/why-downloaded-video-has-no-subtitles/', label: 'Why downloaded video has no subtitles' },
 	{ href: '/guides/how-to-extract-subtitles-from-mp4/', label: 'How to extract subtitles from MP4' },
-	{ href: '/guides/why-mp4-subtitles-are-not-showing/', label: 'Why MP4 subtitles are not showing' },
-	{ href: '/guides/how-to-extract-subtitles-from-m4v/', label: 'How to extract subtitles from M4V' },
-	{ href: '/guides/how-to-extract-subtitles-from-mkv/', label: 'How to extract subtitles from MKV' },
-	{ href: '/guides/how-to-extract-srt-from-mkv/', label: 'How to extract SRT from MKV' },
-	{ href: '/guides/why-mkv-subtitles-are-not-showing/', label: 'Why MKV subtitles are not showing' },
-	{ href: '/guides/why-mov-subtitles-are-not-showing/', label: 'Why MOV subtitles are not showing' },
-	{ href: '/guides/why-webm-subtitles-are-not-showing/', label: 'Why WebM subtitles are not showing' },
-	{ href: '/guides/how-to-extract-subtitles-from-avi/', label: 'How to extract subtitles from AVI' },
-	{ href: '/guides/how-to-extract-subtitles-from-vob/', label: 'How to extract subtitles from VOB' },
-	{ href: '/guides/how-to-extract-subtitles-from-wmv/', label: 'How to extract subtitles from WMV' },
-	{ href: '/guides/how-to-fix-subtitle-delay/', label: 'How to fix subtitle delay' },
 	{ href: '/guides/why-srt-file-wont-upload/', label: "Why SRT file won't upload" },
-	{ href: '/guides/best-subtitle-format-for-youtube/', label: 'Best subtitle format for YouTube' },
 ];
 
 const faqs = [
@@ -186,19 +119,6 @@ const faqSchema = {
 	</section>
 	</div>
 
-	<!-- Popular Searches -->
-	<section class="section">
-		<span class="eyebrow">Popular searches</span>
-		<h2>Jump into the subtitle jobs people search for most.</h2>
-		<div class="popular-searches">
-			{
-				popularSearches.map((item) => (
-					<a class="search-chip" href={item.href}>{item.label}</a>
-				))
-			}
-		</div>
-	</section>
-
 	<!-- Core Tools -->
 	<section class="section-muted">
 		<div class="section-inner">
@@ -219,6 +139,19 @@ const faqSchema = {
 					))
 				}
 			</div>
+		</div>
+	</section>
+
+	<!-- Popular Searches -->
+	<section class="section">
+		<span class="eyebrow">Popular searches</span>
+		<h2>Jump into common subtitle jobs.</h2>
+		<div class="popular-searches">
+			{
+				popularSearches.map((item) => (
+					<a class="search-chip" href={item.href}>{item.label}</a>
+				))
+			}
 		</div>
 	</section>
 
