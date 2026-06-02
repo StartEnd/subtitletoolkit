@@ -1,17 +1,27 @@
 ---
 title: Embedded vs burned-in subtitles
-seoTitle: Embedded vs Burned-In Subtitles - What You Can Extract
-seoDescription: Compare embedded and burned-in subtitles before extraction. Learn when a video has real text tracks, when OCR is required, and what can be saved.
-description: Learn the difference between embedded subtitle tracks and burned-in subtitles before trying to extract captions from a video.
+seoTitle: Embedded vs Burned-In Subtitles - Extract or OCR?
+seoDescription: Check whether subtitles are embedded or burned in before extraction. Learn what can be saved as text, when OCR is required, and what to try next.
+description: Learn whether embedded subtitle tracks can be extracted from a video, when burned-in subtitles need OCR, and what to try before uploading files elsewhere.
 pubDate: 2026-05-10
-updatedDate: 2026-05-25
+updatedDate: 2026-06-02
 category: format-comparisons
 tags:
   - embedded subtitles
   - burned in subtitles
   - extract subtitles
+  - extract embedded subtitles
   - subtitle tracks
 primaryTool: extract-subtitles-from-video
+faqs:
+  - question: Can embedded subtitles be extracted from a video?
+    answer: Yes, if the embedded subtitle stream is text-based, such as SRT, ASS, SSA, or WebVTT. Image-based streams such as PGS or VobSub usually need OCR before they become editable text.
+  - question: Can burned-in subtitles be extracted as SRT?
+    answer: Not directly. Burned-in subtitles are part of the video image, so a subtitle extractor cannot save them as SRT text. You need OCR and manual cleanup.
+  - question: How do I know if subtitles are embedded or burned in?
+    answer: Try turning captions off in a player, check for subtitle tracks, or use a local extractor. If captions cannot be disabled and no subtitle stream is found, they are probably burned in.
+  - question: Should I use a subtitle extractor or OCR first?
+    answer: Use a subtitle extractor first when the video may contain a text track. Use OCR only when the words are permanently visible in the video picture or the extracted stream is image-based.
 ---
 
 Subtitle extraction depends on whether the captions are a real text track or part of the video image. Understanding this difference is crucial before attempting to extract subtitles from a video file.
@@ -23,6 +33,20 @@ Subtitle extraction depends on whether the captions are a real text track or par
 **Burned-in subtitles** are pixels permanently rendered into the video frames. They cannot be extracted as text without OCR (Optical Character Recognition).
 
 Use [Extract Subtitles from Video](/tools/extract-subtitles-from-video/) when the video file contains an embedded text subtitle stream.
+
+## Should you extract or use OCR?
+
+Use this quick check before uploading a private video to another service:
+
+| What you see | Likely subtitle type | Best next step |
+| --- | --- | --- |
+| Captions can be turned on and off in the player | Embedded or external subtitle track | Try [Extract Subtitles from Video](/tools/extract-subtitles-from-video/) and save the text track locally. |
+| FFmpeg or the extractor lists SRT, ASS, SSA, or WebVTT | Embedded text subtitles | Extract the track, then validate or convert it if needed. |
+| FFmpeg lists PGS, VobSub, DVD subtitle, or another image stream | Embedded image subtitles | Extracting may find a stream, but OCR is needed for editable SRT text. |
+| Captions are always visible and cannot be disabled | Burned-in subtitles | Use OCR; a normal extractor cannot read video pixels as subtitle text. |
+| A website shows captions but the downloaded video has no track | Separate streaming captions | Look for the original VTT, SRT, or platform caption download instead of extracting from the video. |
+
+If you get an extractable text file, follow up with [SRT Validator](/tools/srt-validator/) or [Subtitle Cleaner](/tools/subtitle-cleaner/) before uploading it to YouTube, Plex, or a web player.
 
 ## Key differences at a glance
 

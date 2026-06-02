@@ -2984,18 +2984,30 @@ const checks = [
 	},
 	{
 		path: '/guides/embedded-vs-burned-in-subtitles/',
-			expect: [
+		expect: [
 			{
 				label: 'embedded vs burned-in guide title',
-				match: '<title>Embedded vs Burned-In Subtitles - What You Can Extract</title>',
+				match: '<title>Embedded vs Burned-In Subtitles - Extract or OCR?</title>',
 			},
 			{
 				label: 'embedded vs burned-in guide extraction meta description',
-				match: 'Compare embedded and burned-in subtitles before extraction. Learn when a video has real text tracks, when OCR is required, and what can be saved.',
+				match: 'Check whether subtitles are embedded or burned in before extraction. Learn what can be saved as text, when OCR is required, and what to try next.',
 			},
 			{
 				label: 'embedded vs burned-in guide opens extractor tool',
 				match: 'href="/tools/extract-subtitles-from-video/"',
+			},
+			{
+				label: 'embedded vs burned-in guide links SRT validator follow-up',
+				match: 'href="/tools/srt-validator/"',
+			},
+			{
+				label: 'embedded vs burned-in guide links subtitle cleaner follow-up',
+				match: 'href="/tools/subtitle-cleaner/"',
+			},
+			{
+				label: 'FAQ schema for embedded extraction questions',
+				match: 'Can embedded subtitles be extracted from a video?',
 			},
 		],
 	},
