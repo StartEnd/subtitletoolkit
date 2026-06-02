@@ -2737,19 +2737,43 @@ const checks = [
 		expect: [
 			{
 				label: 'empty converted subtitle guide CTR title',
-				match: '<title>Converted Subtitle File Empty - Fix No Text</title>',
+				match: '<title>Converted Subtitle File Empty - Recover Text</title>',
 			},
 			{
 				label: 'empty converted subtitle guide meta description',
-				match: 'Fix an empty subtitle file after conversion by checking wrong file format, empty dialogue rows, unsupported styling, timestamps, and parser errors.',
+				match: 'Fix an empty subtitle file after conversion. Check wrong source format, missing dialogue rows, blank cues, timestamp errors, and recover caption text locally.',
 			},
 			{
 				label: 'empty converted subtitle guide opens validator tool',
 				match: 'href="/tools/srt-validator/"',
 			},
 			{
+				label: 'empty converted guide opens WebVTT validator tool',
+				match: 'href="/tools/webvtt-validator/"',
+			},
+			{
+				label: 'empty converted guide opens SRT to VTT tool',
+				match: 'href="/tools/srt-to-vtt/"',
+			},
+			{
+				label: 'empty converted guide opens VTT to SRT tool',
+				match: 'href="/tools/vtt-to-srt/"',
+			},
+			{
+				label: 'empty converted guide opens SSA to SRT tool',
+				match: 'href="/tools/ssa-to-srt/"',
+			},
+			{
+				label: 'empty converted guide links missing-cues guide',
+				match: 'href="/guides/why-subtitles-are-missing-after-conversion/"',
+			},
+			{
 				label: 'FAQ schema for empty converted subtitle questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why is my converted subtitle file empty\?/
+			},
+			{
+				label: 'empty converted Article schema includes query tags',
+				match: /"keywords"\s*:\s*"empty subtitle file, subtitle conversion, no text, parser errors, srt, blank subtitles, ass conversion"/
 			},
 		],
 	},
