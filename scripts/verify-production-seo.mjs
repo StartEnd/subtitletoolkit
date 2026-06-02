@@ -262,6 +262,10 @@ const checks = [
 				match: '/guides/how-to-convert-ssa-to-srt/',
 			},
 			{
+				label: 'homepage links to SSA to VTT guide',
+				match: '/guides/how-to-convert-ssa-to-vtt/',
+			},
+			{
 				label: 'homepage links to ASS to VTT guide',
 				match: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
 			},
@@ -377,6 +381,27 @@ const checks = [
 			{
 				label: 'FAQ schema for SSA to SRT questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert an SSA subtitle file to SRT\?/
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-ssa-to-vtt/',
+		expect: [
+			{
+				label: 'SSA to VTT guide CTR title',
+				match: '<title>Convert SSA to VTT - Free WebVTT Converter</title>',
+			},
+			{
+				label: 'SSA to VTT guide no-upload meta description',
+				match: 'Convert SSA subtitles to VTT for HTML5 video and web players. Flatten styling, keep timing and text, and process locally with no upload.',
+			},
+			{
+				label: 'SSA to VTT guide opens ASS to VTT converter tool',
+				match: 'href="/tools/ass-to-vtt/"',
+			},
+			{
+				label: 'FAQ schema for SSA to VTT questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert SSA to VTT\?/
 			},
 		],
 	},
@@ -3062,6 +3087,10 @@ const checks = [
 				match: '/guides/how-to-convert-ssa-to-srt/',
 			},
 			{
+				label: 'guides index links to SSA to VTT guide',
+				match: '/guides/how-to-convert-ssa-to-vtt/',
+			},
+			{
 				label: 'guides index links to subtitle cleanup before upload guide',
 				match: '/guides/how-to-clean-subtitle-formatting-before-upload/',
 			},
@@ -3708,6 +3737,10 @@ const checks = [
 			{
 				label: 'llms lists SSA to SRT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-ssa-to-srt/',
+			},
+			{
+				label: 'llms lists SSA to VTT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-ssa-to-vtt/',
 			},
 			{
 				label: 'llms lists merge SRT guide',

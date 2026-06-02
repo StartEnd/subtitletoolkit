@@ -57,6 +57,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [How to convert ASS to SRT](https://subtitletoolkit.tools/guides/how-to-convert-ass-to-srt/)
 - [How to export SRT from Aegisub](https://subtitletoolkit.tools/guides/how-to-export-srt-from-aegisub/)
 - [How to convert SSA to SRT](https://subtitletoolkit.tools/guides/how-to-convert-ssa-to-srt/)
+- [How to convert SSA to VTT](https://subtitletoolkit.tools/guides/how-to-convert-ssa-to-vtt/)
 - [How to merge two SRT files](https://subtitletoolkit.tools/guides/how-to-merge-two-srt-files/)
 - [How to convert ASS to VTT for web players](https://subtitletoolkit.tools/guides/how-to-convert-ass-to-vtt-for-web-players/)
 - [Fix subtitles that are too fast or slow](https://subtitletoolkit.tools/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/)
