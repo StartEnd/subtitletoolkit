@@ -1,0 +1,145 @@
+---
+title: Why MOV subtitles are not showing
+seoTitle: MOV Subtitles Not Showing - Fix QuickTime and SRT Captions
+seoDescription: Fix MOV subtitles not showing by checking embedded text tracks, external SRT filenames, QuickTime support, subtitle menus, encoding, and timing.
+description: Fix subtitles that do not show with a MOV file by checking embedded tracks, external SRT naming, QuickTime support, encoding, and timing.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - mov subtitles
+  - subtitles not showing
+  - quicktime
+  - embedded subtitles
+  - srt
+primaryTool: extract-subtitles-from-video
+faqs:
+  - question: Why are subtitles not showing in my MOV file?
+    answer: The MOV may not contain an embedded subtitle track, the player may not support the caption format, or an external SRT file may not match the video filename.
+  - question: Can QuickTime show subtitles in MOV files?
+    answer: QuickTime can show some embedded MOV text tracks, but support depends on how the file was exported. A separate UTF-8 SRT file is often safer for broad playback.
+  - question: Why do MOV subtitles show in one player but not another?
+    answer: Different players support different embedded caption formats. Test with a simple SRT fallback when MOV captions fail in QuickTime, a TV, or a mobile player.
+---
+
+When subtitles do not show with a MOV file, the first question is whether the captions are embedded in the MOV, loaded from a separate subtitle file, or burned into the video image.
+
+## Quick answer
+
+Open the MOV in the destination player, check the subtitle menu, and confirm whether captions are embedded or external. If you have a separate subtitle file, use a UTF-8 SRT file with the same base filename as the MOV.
+
+If you are not sure whether the MOV contains a real caption track, use [Extract Subtitles from Video](/tools/extract-subtitles-from-video/) to inspect the file locally in your browser.
+
+## What to check first
+
+Check these before exporting the video again:
+
+- the MOV contains an embedded text subtitle track
+- the player subtitle or captions menu has the correct track selected
+- an external SRT file sits next to the MOV when you expect sidecar subtitles
+- the SRT filename matches the MOV filename
+- the subtitle text is encoded as UTF-8
+- QuickTime, iPhone, Apple TV, or the target player supports the embedded caption format
+- the subtitle timing overlaps the part of the MOV you are playing
+
+## Step-by-step workflow
+
+### 1. Check whether the MOV has embedded captions
+
+MOV files can contain text tracks such as `mov_text` or WebVTT, but many exports contain only audio and video.
+
+Use the extractor when you need to inspect the file:
+
+1. Open [Extract Subtitles from Video](/tools/extract-subtitles-from-video/).
+2. Choose the `.mov` file.
+3. Check whether a text subtitle stream is found.
+4. If a stream exists, export it and test the subtitle file separately.
+
+If no subtitle stream is found, the captions may have been burned into the video or omitted during export.
+
+### 2. Check for an external subtitle file
+
+Some players load subtitles from a sidecar file next to the MOV.
+
+```text
+client-review.mov
+client-review.srt
+client-review.en.srt
+```
+
+Avoid mismatched names while debugging:
+
+```text
+client-review.mov
+captions_export_final.srt
+```
+
+If the subtitle file has a different base name, QuickTime alternatives, TVs, and media-library apps may ignore it.
+
+### 3. Use SRT when QuickTime or a device ignores embedded captions
+
+Embedded MOV captions can work in one Apple workflow and fail in another player. For the safest test, create a separate SRT file.
+
+Use SRT when:
+
+- QuickTime does not show the embedded caption track
+- the MOV is played on a TV, Apple TV, or mobile device
+- the file is handed to a client for review
+- you need a simple subtitle file that can be validated and repaired
+
+If the source is VTT or ASS, convert it to SRT before testing the MOV again.
+
+### 4. Open the subtitle menu manually
+
+Do not assume subtitles are enabled automatically.
+
+Look for menu labels such as:
+
+- Subtitles
+- Captions
+- CC
+- Audio and subtitles
+- Text tracks
+
+If the track appears in the menu but no text shows, the problem is usually timing, encoding, or unsupported formatting.
+
+### 5. Fix encoding and broken characters
+
+If subtitles show boxes, question marks, or broken accents, convert the subtitle file to UTF-8.
+
+Use the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) to create a clean UTF-8 copy, then reload that copy next to the MOV.
+
+### 6. Check burned-in captions and timing
+
+If the words are part of the picture, they are burned in. They cannot be selected, turned off, or extracted as text without OCR.
+
+If a real subtitle file is loaded but the text never appears near the current playback time, the timing may match a different export or edit. Use the [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/) when every caption is early or late by the same amount.
+
+## Common mistakes
+
+### Assuming Final Cut or Premiere captions survived export
+
+An editing timeline can contain captions, but the exported MOV may flatten them into the image or omit the text track. Check the exported file itself.
+
+### Trusting one Apple player as proof of compatibility
+
+QuickTime, iPhone, Safari, and Apple TV do not always behave the same way. Test the MOV and the SRT fallback in the actual destination.
+
+### Trying to extract burned-in MOV captions as text
+
+Burned-in captions are pixels. A subtitle extractor can only save real text tracks, not text drawn into the video frames.
+
+## Related guides
+
+- [How to extract subtitles from MOV](/guides/how-to-extract-subtitles-from-mov/)
+- [Why MP4 subtitles are not showing](/guides/why-mp4-subtitles-are-not-showing/)
+- [Embedded vs burned-in subtitles](/guides/embedded-vs-burned-in-subtitles/)
+- [Why iPhone subtitles are not showing](/guides/why-iphone-subtitles-are-not-showing/)
+- [Why Safari captions are not showing](/guides/why-safari-captions-are-not-showing/)
+
+## Related tools
+
+- [Extract Subtitles from Video](/tools/extract-subtitles-from-video/)
+- [VTT to SRT Converter](/tools/vtt-to-srt/)
+- [ASS to SRT Converter](/tools/ass-to-srt/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
+- [Subtitle Delay Fixer](/tools/subtitle-delay-fixer/)

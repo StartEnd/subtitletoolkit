@@ -170,6 +170,10 @@ const checks = [
 				match: '/guides/why-mp4-subtitles-are-not-showing/',
 			},
 			{
+				label: 'homepage links to MOV subtitle failure guide',
+				match: '/guides/why-mov-subtitles-are-not-showing/',
+			},
+			{
 				label: 'homepage links to M4V subtitle extraction guide',
 				match: '/guides/how-to-extract-subtitles-from-m4v/',
 			},
@@ -1911,6 +1915,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/why-mov-subtitles-are-not-showing/',
+		expect: [
+			{
+				label: 'MOV subtitles failure guide CTR title',
+				match: '<title>MOV Subtitles Not Showing - Fix QuickTime and SRT Captions</title>',
+			},
+			{
+				label: 'MOV subtitles failure guide meta description',
+				match: 'Fix MOV subtitles not showing by checking embedded text tracks, external SRT filenames, QuickTime support, subtitle menus, encoding, and timing.',
+			},
+			{
+				label: 'MOV subtitles failure guide opens extractor tool',
+				match: 'href="/tools/extract-subtitles-from-video/"',
+			},
+			{
+				label: 'FAQ schema for MOV subtitle questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why are subtitles not showing in my MOV file\?/,
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-extract-subtitles-from-m4v/',
 		expect: [
 			{
@@ -2965,6 +2990,10 @@ const checks = [
 				match: '/guides/how-to-extract-subtitles-from-mov/',
 			},
 			{
+				label: 'guides index links to MOV subtitle failure guide',
+				match: '/guides/why-mov-subtitles-are-not-showing/',
+			},
+			{
 				label: 'guides index links to WebM extraction guide',
 				match: '/guides/how-to-extract-subtitles-from-webm/',
 			},
@@ -3223,6 +3252,10 @@ const checks = [
 			{
 				label: 'llms lists MOV extraction guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-extract-subtitles-from-mov/',
+			},
+			{
+				label: 'llms lists MOV subtitle failure guide',
+				match: 'https://subtitletoolkit.tools/guides/why-mov-subtitles-are-not-showing/',
 			},
 			{
 				label: 'llms lists M4V extraction guide',
