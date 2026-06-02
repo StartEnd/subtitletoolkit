@@ -1,8 +1,8 @@
 ---
 title: How to fix out-of-order subtitle cues
-seoTitle: Fix Out-of-Order Subtitle Cues - Sort Timing Blocks
-seoDescription: Fix out-of-order subtitle cues by sorting timing blocks, checking overlaps, and cleaning SRT, VTT, or ASS files before playback.
-description: Repair out-of-order subtitle cues by sorting timestamps, checking overlaps, and cleaning SRT, VTT, or ASS files before playback.
+seoTitle: Fix Out-of-Order Subtitle Cues - Sort SRT, VTT, ASS
+seoDescription: Fix out-of-order subtitle cues online. Sort SRT, VTT, or ASS timing blocks, check overlaps, and clean cue order locally before playback or upload.
+description: Repair out-of-order subtitle cues by sorting timestamps, checking overlaps, validating timing, and cleaning SRT, VTT, or ASS files before playback.
 pubDate: 2026-05-07
 updatedDate: 2026-05-25
 category: sync-fixes
@@ -12,14 +12,27 @@ tags:
   - sync
   - troubleshooting
   - repair
+  - sort subtitle cues
+  - out-of-order SRT
 primaryTool: subtitle-cleaner
+faqs:
+  - question: How do I fix out-of-order SRT cues?
+    answer: Sort the cue blocks by start time, rebuild cue numbers if needed, then validate the file for overlaps, malformed timestamps, and missing blank lines before upload.
+  - question: Can a subtitle validator find out-of-order cues?
+    answer: Yes. A validator can flag cues whose timestamps move backward, overlap unexpectedly, or break the expected SRT or VTT structure.
+  - question: Should I shift timing or sort cues first?
+    answer: Sort cues first. A time shifter only moves timestamps; it cannot repair cue blocks that are in the wrong order.
+  - question: What should I check after sorting subtitle cues?
+    answer: Check for overlapping cues, duplicated cue numbers, missing text, broken blank lines, and whether the repaired file still loads in the target player.
 ---
 
 Out-of-order subtitle cues happen when blocks in the file are not arranged in increasing time order. The result is captions appearing at the wrong moment, jumping around, or overlapping awkwardly during playback.
 
 ## Quick answer
 
-Subtitle players assume cues are sorted by start time. If that ordering is broken, the captions will misbehave even when individual timestamps are correct. Fixing the file means re-sorting cues and verifying that no two cues overlap unintentionally.
+Subtitle players assume cues are sorted by start time. If that ordering is broken, the captions will misbehave even when individual timestamps are correct. Fixing the file means re-sorting cues, rebuilding numbering when needed, and verifying that no two cues overlap unintentionally.
+
+For SRT files, start with [SRT Validator](/tools/srt-validator/) or [Clean SRT File Online](/tools/clean-srt-file/) so timestamp order, cue numbers, and blank-line structure are easier to inspect. For mixed SRT, VTT, or ASS cleanup, use [Subtitle Cleaner](/tools/subtitle-cleaner/) after the timing order is clear.
 
 ## What "out-of-order" actually means
 
@@ -47,11 +60,14 @@ When the cue blocks themselves are reordered (often after manual editing or a ba
 
 ## Step-by-step workflow
 
-1. Open the subtitle file in a text editor and skim the timestamps top-to-bottom.
-2. Confirm that each cue's start time is greater than or equal to the previous cue's start time.
-3. If cues are out of order, sort them by start time. Any subtitle editor with a "sort by time" option does this in one step.
-4. Save the result and reopen it in your video player to verify timing matches the spoken track.
-5. Run the file through the [Subtitle Cleaner](/tools/subtitle-cleaner/) afterward to normalize spacing and strip any leftover formatting introduced during the manual edit.
+1. Save a copy of the subtitle file before changing anything.
+2. Validate the file with [SRT Validator](/tools/srt-validator/) if it is SRT, or inspect the timing blocks manually for VTT or ASS.
+3. Confirm that each cue's start time is greater than or equal to the previous cue's start time.
+4. If cues are out of order, sort them by start time. Any subtitle editor with a "sort by time" option can do this in one step.
+5. Rebuild cue numbers if the file is SRT. [Clean SRT File Online](/tools/clean-srt-file/) can rebuild numbering and spacing after the cue order is fixed.
+6. Check for overlaps at the points where cues moved. If they overlap, use [How to fix overlapping subtitles](/guides/how-to-fix-overlapping-subtitles/) before uploading.
+7. Run the file through the [Subtitle Cleaner](/tools/subtitle-cleaner/) afterward to normalize spacing and strip any leftover formatting introduced during the manual edit.
+8. Reopen the result in your video player to verify timing matches the spoken track.
 
 ## Common mistakes
 
@@ -63,6 +79,12 @@ If captions appear at the wrong moments, the first instinct is often to shift th
 
 After reordering, two cues may now have overlapping time ranges. Some players handle this gracefully, others render captions on top of each other. Look for these overlaps and trim them manually.
 
+Use [How to fix overlapping subtitles](/guides/how-to-fix-overlapping-subtitles/) when the cue order is correct but the end time of one cue runs into the next cue's start time.
+
+### Leaving old SRT cue numbers in place
+
+After sorting SRT blocks, cue numbers can become duplicated or no longer match the visible order. Rebuild numbering before upload so editors and validators do not report a separate structure problem.
+
 ### Editing a VTT file without preserving the header
 
 If the file is VTT and you accidentally remove the `WEBVTT` header during cleanup, browser playback will silently fail. See [How to fix invalid WebVTT timestamps](/guides/how-to-fix-invalid-webvtt-timestamps/) for related issues.
@@ -71,6 +93,26 @@ If the file is VTT and you accidentally remove the `WEBVTT` header during cleanu
 
 If the cues are sorted correctly but timing still feels wrong, the issue is probably timing drift, not ordering. Read [How to fix out-of-sync subtitles](/guides/fix-out-of-sync-subtitles/) and [How to fix subtitles that are too fast or too slow](/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/) for those cases.
 
+If only one section went wrong after a cut or merge point, use [How to shift only part of a subtitle file](/guides/how-to-shift-only-part-of-a-subtitle-file/) instead of sorting the whole file again.
+
+## Frequently asked questions
+
+### How do I fix out-of-order SRT cues?
+
+Sort the cue blocks by start time, rebuild cue numbers, then validate the file for overlaps, malformed timestamps, and missing blank lines before upload.
+
+### Can a subtitle validator find out-of-order cues?
+
+Yes. A validator can flag cues whose timestamps move backward, overlap unexpectedly, or break the expected SRT or VTT structure.
+
+### Should I shift timing or sort cues first?
+
+Sort cues first. A time shifter only moves timestamps; it cannot repair cue blocks that are in the wrong order.
+
+### What should I check after sorting subtitle cues?
+
+Check for overlapping cues, duplicated cue numbers, missing text, broken blank lines, and whether the repaired file still loads in the target player.
+
 ## Browse the cluster
 
 See all [sync and fix guides](/guides/sync-fixes/) for more subtitle repair workflows.
@@ -78,5 +120,12 @@ See all [sync and fix guides](/guides/sync-fixes/) for more subtitle repair work
 ## Related guides
 
 - [Common subtitle format errors and fixes](/guides/common-subtitle-format-errors-and-fixes/)
+- [How to fix overlapping subtitles](/guides/how-to-fix-overlapping-subtitles/)
 - [How to fix subtitle delay](/guides/how-to-fix-subtitle-delay/)
 - [How to clean subtitle formatting before upload](/guides/how-to-clean-subtitle-formatting-before-upload/)
+
+## Related tools
+
+- [SRT Validator](/tools/srt-validator/)
+- [Clean SRT File Online](/tools/clean-srt-file/)
+- [Subtitle Cleaner](/tools/subtitle-cleaner/)

@@ -2755,15 +2755,35 @@ const checks = [
 		expect: [
 			{
 				label: 'out-of-order guide CTR title',
-				match: '<title>Fix Out-of-Order Subtitle Cues - Sort Timing Blocks</title>',
+				match: '<title>Fix Out-of-Order Subtitle Cues - Sort SRT, VTT, ASS</title>',
 			},
 			{
 				label: 'out-of-order guide meta description',
-				match: 'Fix out-of-order subtitle cues by sorting timing blocks, checking overlaps, and cleaning SRT, VTT, or ASS files before playback.',
+				match: 'Fix out-of-order subtitle cues online. Sort SRT, VTT, or ASS timing blocks, check overlaps, and clean cue order locally before playback or upload.',
+			},
+			{
+				label: 'out-of-order guide links SRT validator',
+				match: 'href="/tools/srt-validator/"',
+			},
+			{
+				label: 'out-of-order guide links clean SRT tool',
+				match: 'href="/tools/clean-srt-file/"',
 			},
 			{
 				label: 'out-of-order guide opens subtitle cleaner tool',
 				match: 'href="/tools/subtitle-cleaner/"',
+			},
+			{
+				label: 'out-of-order guide links overlap follow-up',
+				match: 'href="/guides/how-to-fix-overlapping-subtitles/"',
+			},
+			{
+				label: 'FAQ schema for out-of-order cue questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I fix out-of-order SRT cues\?/
+			},
+			{
+				label: 'out-of-order Article schema includes query tags',
+				match: /"keywords"\s*:\s*"subtitle order, cue order, sync, troubleshooting, repair, sort subtitle cues, out-of-order SRT"/
 			},
 		],
 	},
