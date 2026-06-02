@@ -2780,15 +2780,39 @@ const checks = [
 		expect: [
 			{
 				label: 'fast or slow guide CTR title',
-				match: '<title>Fix Subtitles Too Fast or Slow - Timing Shift Guide</title>',
+				match: '<title>Fix Subtitles Too Fast or Slow - Sync Timing</title>',
 			},
 			{
 				label: 'fast or slow guide meta description',
-				match: 'Fix subtitles that appear too fast or too slow by measuring the offset, shifting SRT, VTT, or ASS timing, and checking drift before export.',
+				match: 'Fix subtitles too fast or too slow. Measure early or late offsets, distinguish delay from drift, and shift SRT, VTT, or ASS timing locally.',
 			},
 			{
 				label: 'fast or slow guide opens time shifter tool',
 				match: 'href="/tools/subtitle-time-shifter/"',
+			},
+			{
+				label: 'fast or slow guide opens delay fixer tool',
+				match: 'href="/tools/subtitle-delay-fixer/"',
+			},
+			{
+				label: 'fast or slow guide opens partial shifter tool',
+				match: 'href="/tools/partial-subtitle-shifter/"',
+			},
+			{
+				label: 'fast or slow guide links fix sync guide',
+				match: 'href="/guides/fix-out-of-sync-subtitles/"',
+			},
+			{
+				label: 'fast or slow guide links drift guide',
+				match: 'href="/guides/why-subtitles-drift-out-of-sync/"',
+			},
+			{
+				label: 'FAQ schema for fast or slow questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I fix subtitles that are too fast\?/
+			},
+			{
+				label: 'fast or slow Article schema includes query tags',
+				match: /"keywords"\s*:\s*"subtitle sync, timing, too fast, too slow, repair, subtitles ahead of audio, subtitles behind audio, drift"/
 			},
 		],
 	},
