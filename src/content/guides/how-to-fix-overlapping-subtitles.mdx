@@ -1,9 +1,10 @@
 ---
 title: How to fix overlapping subtitles
-seoTitle: Fix Overlapping Subtitles - Repair Cue Timing
-seoDescription: Fix overlapping subtitles by finding cue timing conflicts, sorting caption blocks, and repairing SRT, VTT, or ASS files before playback.
-description: Fix overlapping subtitle cues by finding timing conflicts, checking cue order, and cleaning or retiming the subtitle file before delivery.
+seoTitle: Fix Overlapping Subtitles - Repair SRT/VTT Cues
+seoDescription: Fix overlapping subtitles online. Find SRT, VTT, or ASS cue timing conflicts, trim overlaps, and clean caption timing locally before upload.
+description: Fix overlapping subtitle cues by finding timing conflicts, checking cue order, trimming or shifting captions, and validating the file before delivery.
 pubDate: 2026-05-26
+updatedDate: 2026-06-02
 category: sync-fixes
 tags:
   - overlapping subtitles
@@ -11,7 +12,17 @@ tags:
   - timing
   - repair
   - srt
+  - vtt
 primaryTool: subtitle-cleaner
+faqs:
+  - question: How do I fix overlapping subtitles?
+    answer: Find cues where the next start time is earlier than the previous end time, then shorten the earlier cue, move the later cue, or shift the affected section before validating the file.
+  - question: Why do subtitles overlap after editing?
+    answer: Overlaps usually come from manual timestamp edits, rounded export times, merged files, scene cuts, or converted subtitle files whose cue order was not checked afterward.
+  - question: Should I shorten cues or shift timing to fix overlaps?
+    answer: Shorten one cue when the overlap is local. Shift a section when every cue after a cut is late or early. Use a global shift only when the whole file has the same offset.
+  - question: Can a validator find overlapping SRT cues?
+    answer: Yes. A validator can flag SRT cues whose time ranges overlap, move backward, or break expected cue structure before upload.
 ---
 
 Overlapping subtitles happen when one cue starts before the previous cue has ended.
@@ -20,7 +31,9 @@ Overlapping subtitles happen when one cue starts before the previous cue has end
 
 First validate or clean the subtitle file so cue order and timestamp formatting are predictable. Then adjust any cue that overlaps the next one.
 
-Use [Subtitle Cleaner](/tools/subtitle-cleaner/) for messy structure and [Subtitle Time Shifter](/tools/subtitle-time-shifter/) when an entire section needs to move earlier or later.
+Use [Subtitle Cleaner](/tools/subtitle-cleaner/) for messy structure, [SRT Validator](/tools/srt-validator/) when an SRT upload fails, and [Subtitle Time Shifter](/tools/subtitle-time-shifter/) when an entire section needs to move earlier or later.
+
+For SRT files with duplicate numbering or messy blank lines, run [Clean SRT File Online](/tools/clean-srt-file/) after the timing conflict is fixed so the delivery copy is easier to upload.
 
 ## Why overlaps happen
 
@@ -34,14 +47,54 @@ Common causes include:
 
 Some players tolerate overlaps. Others flicker, hide one cue, or show confusing stacked captions.
 
+## What an overlap looks like
+
+In this SRT example, cue 2 starts before cue 1 ends:
+
+```text
+1
+00:00:01,000 --> 00:00:04,000
+First caption.
+
+2
+00:00:03,500 --> 00:00:06,000
+Second caption.
+```
+
+The overlap is `500 ms`. A simple repair is to shorten cue 1 or move cue 2 later:
+
+```text
+1
+00:00:01,000 --> 00:00:03,500
+First caption.
+
+2
+00:00:03,500 --> 00:00:06,000
+Second caption.
+```
+
+Preview the result, because technically removing the overlap is not enough if the first caption becomes too short to read.
+
+## Shorten, shift, or sort?
+
+| Pattern | Best first fix |
+| --- | --- |
+| One cue overlaps the next by a few frames | Shorten the earlier cue or move the later cue slightly. |
+| Every cue after a cut overlaps or feels late | Use [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/) on the affected section. |
+| The whole file is ahead or behind audio | Use [Fix Out-of-Sync Subtitles](/tools/fix-out-of-sync-subtitles/) or [Subtitle Time Shifter](/tools/subtitle-time-shifter/). |
+| Cue blocks are not in timestamp order | Sort by start time first, then check overlaps again. |
+| SRT uploads still fail after timing edits | Validate with [SRT Validator](/tools/srt-validator/) and clean numbering or spacing. |
+
 ## Step-by-step workflow
 
 1. Save a copy of the subtitle file.
 2. Clean or validate the file to confirm cues are parseable.
-3. Search for cues where the next start time is earlier than the current end time.
-4. Shorten the earlier cue or move the later cue forward.
-5. If only one section is affected, use a partial timing shift.
-6. Preview the repaired file in the target player.
+3. Sort cue blocks by start time if the file order is suspicious.
+4. Search for cues where the next start time is earlier than the current end time.
+5. Measure the overlap in milliseconds.
+6. Shorten the earlier cue or move the later cue forward when the problem is local.
+7. If only one section is affected after a cut, use a partial timing shift.
+8. Validate the repaired SRT or preview the VTT/ASS output in the target player.
 
 ## How to decide what to change
 
@@ -50,6 +103,8 @@ If two cues overlap by a tiny amount, shortening the first cue is usually enough
 If a whole section overlaps after a cut, shift that section instead of editing every cue manually.
 
 If overlaps appear throughout the file, check whether the file has drift or was exported with the wrong frame rate.
+
+Use [How to fix out-of-order subtitle cues](/guides/how-to-fix-out-of-order-subtitle-cues/) first when cues are not sorted by start time. Sorting can reveal which overlaps are real timing conflicts and which are only bad block order.
 
 ## Common mistakes
 
@@ -65,14 +120,36 @@ Do not shorten cues so much that viewers cannot read them. Fix overlaps while ke
 
 If overlaps appeared after merging, sort by start time and inspect the join point.
 
+## Frequently asked questions
+
+### How do I fix overlapping subtitles?
+
+Find cues where the next start time is earlier than the previous end time, then shorten the earlier cue, move the later cue, or shift the affected section before validating the file.
+
+### Why do subtitles overlap after editing?
+
+Overlaps usually come from manual timestamp edits, rounded export times, merged files, scene cuts, or converted subtitle files whose cue order was not checked afterward.
+
+### Should I shorten cues or shift timing to fix overlaps?
+
+Shorten one cue when the overlap is local. Shift a section when every cue after a cut is late or early. Use a global shift only when the whole file has the same offset.
+
+### Can a validator find overlapping SRT cues?
+
+Yes. [SRT Validator](/tools/srt-validator/) can flag cues whose time ranges overlap, move backward, or break expected SRT structure before upload.
+
 ## Related guides
 
 - [How to fix out-of-order subtitle cues](/guides/how-to-fix-out-of-order-subtitle-cues/)
 - [How to shift only part of a subtitle file](/guides/how-to-shift-only-part-of-a-subtitle-file/)
 - [Fix subtitle sync after a scene cut](/guides/fix-subtitle-sync-after-a-scene-cut/)
+- [How to fix subtitles that are too fast or too slow](/guides/how-to-fix-subtitles-that-are-too-fast-or-too-slow/)
 
 ## Related tools
 
 - [Subtitle Cleaner](/tools/subtitle-cleaner/)
+- [SRT Validator](/tools/srt-validator/)
+- [Clean SRT File Online](/tools/clean-srt-file/)
+- [Fix Out-of-Sync Subtitles](/tools/fix-out-of-sync-subtitles/)
 - [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/)
 - [Subtitle Time Shifter](/tools/subtitle-time-shifter/)

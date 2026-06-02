@@ -2573,11 +2573,39 @@ const checks = [
 		expect: [
 			{
 				label: 'overlapping subtitles guide CTR title',
-				match: '<title>Fix Overlapping Subtitles - Repair Cue Timing</title>',
+				match: '<title>Fix Overlapping Subtitles - Repair SRT/VTT Cues</title>',
 			},
 			{
 				label: 'overlapping subtitles guide meta description',
-				match: 'Fix overlapping subtitles by finding cue timing conflicts, sorting caption blocks, and repairing SRT, VTT, or ASS files before playback.',
+				match: 'Fix overlapping subtitles online. Find SRT, VTT, or ASS cue timing conflicts, trim overlaps, and clean caption timing locally before upload.',
+			},
+			{
+				label: 'overlapping subtitles guide opens subtitle cleaner',
+				match: 'href="/tools/subtitle-cleaner/"',
+			},
+			{
+				label: 'overlapping subtitles guide links SRT validator',
+				match: 'href="/tools/srt-validator/"',
+			},
+			{
+				label: 'overlapping subtitles guide links clean SRT tool',
+				match: 'href="/tools/clean-srt-file/"',
+			},
+			{
+				label: 'overlapping subtitles guide links fix sync tool',
+				match: 'href="/tools/fix-out-of-sync-subtitles/"',
+			},
+			{
+				label: 'overlapping subtitles guide links out-of-order follow-up',
+				match: 'href="/guides/how-to-fix-out-of-order-subtitle-cues/"',
+			},
+			{
+				label: 'FAQ schema for overlapping subtitle questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I fix overlapping subtitles\?/
+			},
+			{
+				label: 'overlapping subtitles Article schema includes query tags',
+				match: /"keywords"\s*:\s*"overlapping subtitles, subtitle sync, timing, repair, srt, vtt"/
 			},
 		],
 	},
