@@ -4,6 +4,7 @@ export type SubtitleToolId =
   | 'srt-to-txt'
   | 'vtt-to-txt'
   | 'ass-to-txt'
+  | 'ssa-to-txt'
   | 'srt-to-ass'
   | 'ass-to-srt'
   | 'ssa-to-srt'
@@ -562,6 +563,65 @@ const enTools: SubtitleTool[] = [
       },
     ],
     sampleInput: sharedSamples.ass,
+  },
+  {
+    id: 'ssa-to-txt',
+    title: 'SSA to TXT Converter',
+    shortTitle: 'SSA to TXT',
+    description:
+      'Convert SSA subtitles to plain text online by removing timing fields, style sections, and metadata.',
+    summary:
+      'Use this free SSA to TXT converter when an older SubStation Alpha file needs a clean transcript copy without timing, styling, or editor metadata.',
+    buttonLabel: 'Convert to TXT',
+    inputLabel: 'SSA input',
+    outputLabel: 'Plain text output',
+    placeholder: 'Paste your SSA subtitles here',
+    acceptedExtensions: ['.ssa', '.ass', '.txt'],
+    sampleFileName: 'sample.ssa',
+    useCases: [
+      'Extract readable dialogue text from older SSA subtitle files.',
+      'Create a transcript draft from a SubStation Alpha subtitle project.',
+      'Remove SSA timing fields, style sections, and override tags.',
+      'Prepare plain text for review, translation, notes, or quoting.',
+    ],
+    faqs: [
+      {
+        question: 'How do I convert SSA subtitles to TXT?',
+        answer:
+          'Open the SSA to TXT converter, paste or upload the .ssa file, and export the dialogue events as plain readable text.',
+      },
+      {
+        question: 'Will TXT keep SSA timing or styling?',
+        answer:
+          'No. TXT output keeps readable dialogue text only and removes SSA timestamps, style definitions, positioning, fonts, colors, and effects.',
+      },
+      {
+        question: 'Can I upload TXT as subtitles?',
+        answer:
+          'No. Plain TXT has no cue timing. Convert SSA to SRT or VTT instead when the output still needs to work as subtitles.',
+      },
+      {
+        question: 'Are SSA files uploaded to a server?',
+        answer:
+          'No. SSA to TXT conversion runs locally in your browser, so the subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['subtitle-transcript-generator', 'ssa-to-srt', 'ssa-to-vtt'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-convert-ssa-to-txt/',
+        title: 'How to convert SSA to TXT',
+      },
+      {
+        href: '/guides/how-to-convert-subtitles-to-plain-text/',
+        title: 'How to convert subtitles to plain text',
+      },
+      {
+        href: '/guides/how-to-fix-garbled-subtitles/',
+        title: 'How to fix garbled subtitles',
+      },
+    ],
+    sampleInput: sharedSamples.ssa,
   },
   {
     id: 'srt-to-ass',

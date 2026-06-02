@@ -1193,6 +1193,7 @@ export function processSubtitleTool(
     case 'vtt-to-txt':
       return serializePlainText(parseVtt(normalized));
     case 'ass-to-txt':
+    case 'ssa-to-txt':
       return serializePlainText(parseAss(normalized));
     case 'srt-to-ass':
       return serializeAss(parseSrt(normalized));
@@ -1363,6 +1364,7 @@ export function inferOutputFormat(
     case 'srt-to-txt':
     case 'vtt-to-txt':
     case 'ass-to-txt':
+    case 'ssa-to-txt':
     case 'subtitle-transcript-generator':
       return 'txt';
     case 'srt-validator':

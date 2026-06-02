@@ -286,6 +286,10 @@ const checks = [
 				match: '/guides/how-to-convert-ssa-to-txt/',
 			},
 			{
+				label: 'homepage links to SSA to TXT tool',
+				match: '/tools/ssa-to-txt/',
+			},
+			{
 				label: 'homepage links to SMI to SRT guide',
 				match: '/guides/how-to-convert-smi-to-srt/',
 			},
@@ -485,8 +489,8 @@ const checks = [
 				match: 'Convert SSA subtitles to TXT by removing timing fields, style sections, and metadata. Extract clean dialogue locally with no upload.',
 			},
 			{
-				label: 'SSA to TXT guide opens ASS to TXT converter tool',
-				match: 'href="/tools/ass-to-txt/"',
+				label: 'SSA to TXT guide opens SSA to TXT converter tool',
+				match: 'href="/tools/ssa-to-txt/"',
 			},
 			{
 				label: 'FAQ schema for SSA to TXT questions',
@@ -2949,6 +2953,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/ssa-to-txt/',
+		expect: [
+			{
+				label: 'SSA to TXT tool title',
+				match: '<title>SSA to TXT Converter - Extract Plain Text Online</title>',
+			},
+			{
+				label: 'SSA to TXT tool meta description',
+				match: 'Convert SSA subtitles to TXT online for free. Remove timing fields, style sections, and metadata from SubStation Alpha files locally.',
+			},
+			{
+				label: 'SSA to TXT tool links guide',
+				match: 'href="/guides/how-to-convert-ssa-to-txt/"',
+			},
+			{
+				label: 'SSA to TXT tool FAQ covers timing and styling',
+				match: 'Will TXT keep SSA timing or styling?',
+			},
+		],
+	},
+	{
 		path: '/tools/srt-validator/',
 		expect: [
 			{
@@ -4100,6 +4125,10 @@ const checks = [
 			{
 				label: 'llms lists SSA to VTT tool',
 				match: 'https://subtitletoolkit.tools/tools/ssa-to-vtt/',
+			},
+			{
+				label: 'llms lists SSA to TXT tool',
+				match: 'https://subtitletoolkit.tools/tools/ssa-to-txt/',
 			},
 			{
 				label: 'llms lists SMI to SRT tool',

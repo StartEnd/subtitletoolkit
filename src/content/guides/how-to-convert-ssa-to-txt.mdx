@@ -11,7 +11,7 @@ tags:
   - transcript
   - plain text
   - conversion
-primaryTool: ass-to-txt
+primaryTool: ssa-to-txt
 faqs:
   - question: How do I convert SSA subtitles to TXT?
     answer: Use an ASS to TXT converter that accepts SSA files. It reads SSA dialogue events, removes timing and style metadata, strips override tags, and exports the readable subtitle text.
@@ -27,7 +27,7 @@ Converting SSA to TXT creates a readable transcript copy for review, translation
 
 ## Quick answer
 
-Use the [ASS to TXT Converter](/tools/ass-to-txt/) to convert SSA subtitles to plain text. The tool accepts `.ssa` files, extracts `Dialogue:` text, removes timing and styling metadata, converts SSA line breaks, and keeps processing local in your browser.
+Use the [SSA to TXT Converter](/tools/ssa-to-txt/) to convert SSA subtitles to plain text. The tool accepts `.ssa` files, extracts `Dialogue:` text, removes timing and styling metadata, converts SSA line breaks, and keeps processing local in your browser.
 
 Keep the original SSA file if you still need timed subtitles. The TXT output is for reading and editing, not playback.
 
@@ -61,7 +61,7 @@ The result is plain text, usually with blank lines between subtitle events.
 ## Step-by-step workflow
 
 1. Save a copy of the original `.ssa` file.
-2. Open the [ASS to TXT Converter](/tools/ass-to-txt/).
+2. Open the [SSA to TXT Converter](/tools/ssa-to-txt/).
 3. Upload or paste the SSA subtitle content.
 4. Convert the file to TXT.
 5. Review the output for missing dialogue, excessive line breaks, and garbled characters.
@@ -118,7 +118,7 @@ Older SSA files may use Shift-JIS, Windows-1252, Big5, GB18030, or another legac
 
 ### How do I convert SSA subtitles to TXT?
 
-Open the [ASS to TXT Converter](/tools/ass-to-txt/) with your `.ssa` file. It extracts readable dialogue text and removes SSA timing, style, and metadata fields.
+Open the [SSA to TXT Converter](/tools/ssa-to-txt/) with your `.ssa` file. It extracts readable dialogue text and removes SSA timing, style, and metadata fields.
 
 ### Will TXT keep SSA timing or styling?
 
@@ -138,6 +138,7 @@ No. TXT has no timing. Use [ASS to SRT Converter](/tools/ass-to-srt/) or [ASS to
 
 ## Related tools
 
+- [SSA to TXT Converter](/tools/ssa-to-txt/)
 - [ASS to TXT Converter](/tools/ass-to-txt/)
 - [Subtitle Transcript Generator](/tools/subtitle-transcript-generator/)
 - [ASS to SRT Converter](/tools/ass-to-srt/)

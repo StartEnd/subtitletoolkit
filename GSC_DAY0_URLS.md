@@ -10,7 +10,7 @@ Record manual Search Console actions here so the next review is based on evidenc
 
 After the production gate passes, run `pnpm gsc:day0:list` to print the primary sitemap and URL Inspection queue plus a paste-ready submission record row. Use `pnpm gsc:day0:list -- --batch current` only after Google starts showing crawl or impression movement for the primary queue.
 
-Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-02 against the live `3e9a58e` deployment (`sitemap-0.xml` lastmod `2026-06-02T05:50:28.000Z`) using the same local verifier commit. The primary queue below has 21 URL Inspection requests; the current queue has 150 URLs. Keep them unchecked until the manual Search Console requests are actually submitted.
+Latest production gate: `pnpm verify:gsc:submit-ready` passed on 2026-06-02 against the live `3e9a58e` deployment (`sitemap-0.xml` lastmod `2026-06-02T05:50:28.000Z`) using the same local verifier commit. The primary queue below has 21 URL Inspection requests; the current queue has 151 URLs. Keep them unchecked until the manual Search Console requests are actually submitted.
 
 ## Submission Record
 
@@ -182,6 +182,7 @@ Submit these URLs after Google starts showing crawl or impression movement for t
 - [ ] `https://subtitletoolkit.tools/tools/ass-to-vtt/`
 - [ ] `https://subtitletoolkit.tools/tools/ssa-to-srt/`
 - [ ] `https://subtitletoolkit.tools/tools/ssa-to-vtt/`
+- [ ] `https://subtitletoolkit.tools/tools/ssa-to-txt/`
 - [ ] `https://subtitletoolkit.tools/tools/smi-to-srt/`
 - [ ] `https://subtitletoolkit.tools/tools/sbv-to-srt/`
 - [ ] `https://subtitletoolkit.tools/tools/ttml-to-srt/`
