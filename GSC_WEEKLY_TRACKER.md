@@ -2,6 +2,31 @@
 
 Use this file once per week after the SEO deployment is live. Keep entries short and evidence-based.
 
+## Current Handoff
+
+This search-growth cycle is closed as of 2026-06-02. Do not keep adding homepage links or submitting more GSC URLs until the next review window.
+
+Completed evidence:
+
+- Production SEO and GSC readiness passed before manual submission.
+- Homepage `Popular searches` was reduced from a long keyword wall to 16 high-intent entries and moved below `Core tools`; commit `81f110c`.
+- GSC Day 0 sitemap was submitted in Search Console.
+- The 21 primary URL Inspection requests in `GSC_DAY0_URLS.md` were submitted and recorded; commit `929a523`.
+- `PROMOTION_LOG.md` has local GSC and IndexNow evidence, but it is intentionally ignored by git.
+
+Current state:
+
+- `GSC_DAY0_URLS.md`: sitemap `1/1`, primary URL Inspection queue `21/21`, current queue `0/158`.
+- `pnpm growth:status`: next review date is `2026-06-09`.
+- External directory and awesome-list submissions are still missing: AlternativeTo, tinytools.directory, SaaSHub, GitHub awesome subtitle list.
+- Ad readiness is not met. Do not enable ads until GSC/Plausible evidence supports it and the gate in `SEARCH_GROWTH_PLAYBOOK.md` passes.
+
+Resume here next time:
+
+1. If continuing before 2026-06-09, run `pnpm promotion:kit -- --section directory --check-assets` and submit the priority external targets. Record only real submissions.
+2. If continuing on or after 2026-06-09, export GSC Queries and Pages, collect same-window Plausible numbers, then run `pnpm gsc:review:ready` and `pnpm gsc:analyze`.
+3. Do not submit the 158 current queue URLs until Google shows crawl, impression, or indexing movement for the primary queue.
+
 ## How To Export
 
 1. Open Google Search Console -> Performance -> Search results.

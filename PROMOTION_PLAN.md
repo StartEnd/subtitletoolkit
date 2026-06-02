@@ -37,7 +37,7 @@
 
 **成功标准（提交后 7 天）：**
 
-- [ ] GSC Day 0 sitemap + `GSC_DAY0_URLS.md` 当前清单中的 URL inspection 请求已按优先级完成，并记录实际请求数量
+- [x] GSC Day 0 sitemap + `GSC_DAY0_URLS.md` primary 清单中的 21 个 URL inspection 请求已按优先级完成，并记录实际请求数量
 - [ ] 至少 4 个 tool 聚合站完成提交（收录可滞后）
 - [ ] 至少 2 个提交源开始审核或已收录
 - [ ] 至少 5 条 Reddit/HN/社区真实回复或评论，链接比例 < 10%
@@ -47,9 +47,9 @@
 
 ## 本周执行表
 
-先完成 GSC Day 0 提交，再做外部推广。这样后续的曝光、点击和 referral 变化能对上时间线。
+GSC Day 0 已在 2026-06-02 完成并记录。下一步是外部推广，这样后续的曝光、点击和 referral 变化能对上时间线。
 
-今天只做三件事：
+Day 0 已完成：
 
 1. 在 GSC 提交 sitemap：`https://subtitletoolkit.tools/sitemap-index.xml`
 2. 按 `pnpm gsc:day0:list` 输出的 21 个 primary URL 做 URL Inspection
@@ -57,20 +57,22 @@
 
 | 相对日期 | 任务 | 时长 | 优先级 | 验收 |
 |------|------|------|--------|------|
-| Day 0 | 跑 `pnpm verify:gsc:submit-ready`，提交 GSC sitemap，并按 `GSC_DAY0_URLS.md` 优先级做 URL Inspection | 45 分 | 🔥 | `GSC_DAY0_URLS.md` 填好 Submission Record，包含实际请求数量 |
+| Day 0 | 跑 `pnpm verify:gsc:submit-ready`，提交 GSC sitemap，并按 `GSC_DAY0_URLS.md` 优先级做 URL Inspection | 45 分 | 🔥 | Done on 2026-06-02: `GSC_DAY0_URLS.md` 记录 21 个 URL Inspection 请求，复查日 2026-06-09 |
 | Day 0-1 | AlternativeTo + tinytools.directory | 30 分 | 🔥 | 追踪表记录提交日期 |
 | Day 1-2 | SaaSHub + 1 个合适 awesome list PR | 45 分 | 🔥 | 追踪表记录审核/PR URL |
 | Day 2-4 | Reddit 搜索并回复 2-3 条真实问题 | 每次 15-20 分 | 🟡 | 每条都记录帖子 URL、评论 URL、状态 |
 | Day 4-6 | 准备并择时发布 Show HN，或先只做第一轮社区回复 | 60 分 | 🟡 | HN URL 或延后原因记录 |
 | Day 7 | 导出 GSC Queries/Pages + Plausible same-window pageviews/tool starts/tool outputs，跑 `pnpm gsc:analyze` | 30 分 | 🔥 | `GSC_WEEKLY_TRACKER.md` 填 Weekly Summary + Traffic Quality |
 
-### 提交前检查
+### GSC 提交记录
 
-- [ ] `pnpm verify:gsc:submit-ready` 通过
-- [ ] `GSC_DAY0_URLS.md` 准备记录提交日期和下次复查日期
-- [ ] `pnpm gsc:day0:list` 输出的 primary queue 是 21 个 URL；提交完成后再勾选和粘贴记录行
+- [x] `pnpm verify:gsc:submit-ready` 通过
+- [x] `GSC_DAY0_URLS.md` 已记录提交日期和下次复查日期
+- [x] `pnpm gsc:day0:list` 输出的 primary queue 是 21 个 URL；提交完成后已勾选和粘贴记录行
+
+### 下一步检查
+
 - [ ] `pnpm promotion:kit -- --section directory --submitted-on 2026-06-02 --check-assets` 可打印目录站提交素材并确认图片资源
-- [ ] `pnpm promotion:record -- --dry-run --date 2026-06-02 --channel gsc --source "Search Console" --status submitted --notes "Sitemap plus 21 primary URL Inspection requests"` 可打印待记录行
 - [ ] Plausible 可以看到当前 traffic sources，便于提交后对比 referral/direct 变化
 - [ ] Plausible 可以看到工具事件，至少包括 `subtitle_tool_edit_input`、`subtitle_tool_adjust_setting`、`subtitle_tool_copy_output`、`subtitle_tool_download_output`
 
