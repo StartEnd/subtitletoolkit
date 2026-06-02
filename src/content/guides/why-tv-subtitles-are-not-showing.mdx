@@ -1,0 +1,145 @@
+---
+title: Why TV subtitles are not showing
+seoTitle: TV Subtitles Not Showing - Fix SRT on Smart TVs
+seoDescription: Fix TV subtitles not showing by checking SRT format, matching filenames, USB folder placement, encoding, embedded tracks, and Smart TV support.
+description: Fix subtitles that show on a computer but not on a TV by checking SRT format, file naming, USB folder placement, encoding, and device support.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - tv subtitles
+  - smart tv
+  - srt
+  - subtitles not showing
+  - encoding
+primaryTool: plex-subtitle-converter
+faqs:
+  - question: Why do subtitles show on my computer but not on my TV?
+    answer: Desktop players like VLC support more subtitle formats than many TVs. Smart TVs usually work best with a simple UTF-8 SRT file that matches the video filename and sits in the same folder.
+  - question: What subtitle format should I use for a Smart TV?
+    answer: Use SRT first. It is the safest external subtitle format for USB playback, media servers, and most TV media players.
+  - question: Can a TV play ASS or VTT subtitles?
+    answer: Some TVs and apps can, but support is inconsistent. Convert ASS or VTT to SRT when you need the highest chance of subtitles appearing on a TV.
+---
+
+When subtitles work on a computer but not on a TV, the file is often readable but not compatible with the TV's media player.
+
+## Quick answer
+
+Use a plain SRT file, name it to match the video, keep it in the same folder, and make sure the subtitle file is UTF-8 encoded. Then open the subtitle or captions menu on the TV and select the external track.
+
+If your source subtitle is ASS or VTT, create an SRT copy with the [Plex Subtitle Converter](/tools/plex-subtitle-converter/) before testing again.
+
+## What to check first
+
+Check these before changing the video file:
+
+- the subtitle file is SRT, not ASS, SSA, or a styled format
+- the subtitle filename matches the video filename
+- the subtitle file sits next to the video on the USB drive or media folder
+- the text is encoded as UTF-8
+- the TV subtitle menu has the external track selected
+- the video file actually contains an embedded subtitle track if you expect internal subtitles
+- the subtitle timing overlaps the part of the video you are playing
+
+## Step-by-step workflow
+
+### 1. Convert the subtitle to a simple SRT file
+
+Smart TVs are less forgiving than desktop players. VLC may display ASS, SSA, or VTT files that a TV ignores.
+
+Use SRT as the test format:
+
+- convert ASS to SRT when the file has styling or karaoke effects
+- convert VTT to SRT when the file came from a web player
+- keep only timing and readable text for the TV test copy
+
+If the clean SRT works, the original subtitle format was the problem.
+
+### 2. Match the video and subtitle filenames
+
+Many TVs only auto-detect external subtitles when the base filename matches the video.
+
+```text
+Movie.Name.2026.mkv
+Movie.Name.2026.srt
+Movie.Name.2026.en.srt
+```
+
+Avoid names like this while debugging:
+
+```text
+Movie.Name.2026.mkv
+captions_fixed_final.srt
+```
+
+If the TV supports language codes, keep the code after the matching base name, such as `.en.srt` or `.es.srt`.
+
+### 3. Put the SRT file next to the video
+
+For USB playback, keep the video and subtitle file in the same folder. Do not leave subtitles in a separate `Subs` or `Captions` folder until you know the TV supports that layout.
+
+For media-server playback, refresh or rescan the library after adding the SRT file. Some apps cache the old file list and will not show a new subtitle immediately.
+
+### 4. Select the subtitle track on the TV
+
+Do not assume the TV will enable subtitles automatically.
+
+Look for menu labels such as:
+
+- Subtitles
+- Captions
+- CC
+- Audio and subtitles
+- Subtitle language
+
+If the SRT appears in the menu but does not display, the file may have broken timing, encoding, or unsupported characters.
+
+### 5. Fix garbled characters or missing text
+
+If accented letters, CJK text, or punctuation appear as boxes or question marks, convert the subtitle file to UTF-8.
+
+Use the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) to create a UTF-8 copy, then test that copy on the TV.
+
+### 6. Check embedded vs external subtitles
+
+Some videos contain embedded subtitle tracks inside MKV, MP4, or M4V files. Others rely on a separate `.srt` file.
+
+If the TV shows no subtitle options at all, test both cases:
+
+- use an external SRT file next to the video
+- check whether the video contains an embedded text subtitle track
+- avoid assuming burned-in subtitles can be turned on or off
+
+Burned-in subtitles are part of the image. If they are not visible, they were not included in the video picture.
+
+## Common mistakes
+
+### Assuming VLC compatibility means TV compatibility
+
+VLC supports many subtitle formats and styling features. A TV may support only simple SRT files for external subtitles.
+
+### Keeping the subtitle in a separate folder
+
+Some TVs do not search nested folders for subtitles. Put the SRT next to the video for the first test.
+
+### Using a filename that almost matches
+
+Small filename differences can stop auto-detection. Copy the video filename first, then change only the extension or add a language code.
+
+### Forgetting the TV subtitle menu
+
+The file can be valid and still hidden until you select the external subtitle track in the TV player.
+
+## Related guides
+
+- [Why VLC subtitles are not showing](/guides/why-vlc-subtitles-are-not-showing/)
+- [Why Plex subtitles are not showing](/guides/why-plex-subtitles-are-not-showing/)
+- [Best subtitle format for Plex](/guides/best-subtitle-format-for-plex/)
+- [How to convert subtitles to UTF-8](/guides/how-to-convert-subtitles-to-utf-8/)
+
+## Related tools
+
+- [Plex Subtitle Converter](/tools/plex-subtitle-converter/)
+- [ASS to SRT Converter](/tools/ass-to-srt/)
+- [VTT to SRT Converter](/tools/vtt-to-srt/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)

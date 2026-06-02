@@ -114,6 +114,10 @@ const checks = [
 				match: '/guides/why-vlc-subtitles-are-not-showing/',
 			},
 			{
+				label: 'homepage links to TV subtitle failure guide',
+				match: '/guides/why-tv-subtitles-are-not-showing/',
+			},
+			{
 				label: 'homepage links to VLC subtitle delay guide',
 				match: '/guides/how-to-fix-vlc-subtitle-delay/',
 			},
@@ -947,6 +951,27 @@ const checks = [
 			{
 				label: 'FAQ schema for VLC subtitle questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Can VLC play SRT subtitles\?/
+			},
+		],
+	},
+	{
+		path: '/guides/why-tv-subtitles-are-not-showing/',
+		expect: [
+			{
+				label: 'TV subtitles failure guide CTR title',
+				match: '<title>TV Subtitles Not Showing - Fix SRT on Smart TVs</title>',
+			},
+			{
+				label: 'TV subtitles failure guide meta description',
+				match: 'Fix TV subtitles not showing by checking SRT format, matching filenames, USB folder placement, encoding, embedded tracks, and Smart TV support.',
+			},
+			{
+				label: 'TV subtitles failure guide opens converter tool',
+				match: 'href="/tools/plex-subtitle-converter/"',
+			},
+			{
+				label: 'FAQ schema for TV subtitle questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why do subtitles show on my computer but not on my TV\?/,
 			},
 		],
 	},
@@ -2695,6 +2720,10 @@ const checks = [
 				match: '/guides/why-vlc-subtitles-are-not-showing/',
 			},
 			{
+				label: 'guides index links to TV subtitle failure guide',
+				match: '/guides/why-tv-subtitles-are-not-showing/',
+			},
+			{
 				label: 'guides index links to Plex subtitle failure guide',
 				match: '/guides/why-plex-subtitles-are-not-showing/',
 			},
@@ -3037,6 +3066,10 @@ const checks = [
 			{
 				label: 'llms lists VLC subtitle failure guide',
 				match: 'https://subtitletoolkit.tools/guides/why-vlc-subtitles-are-not-showing/',
+			},
+			{
+				label: 'llms lists TV subtitle failure guide',
+				match: 'https://subtitletoolkit.tools/guides/why-tv-subtitles-are-not-showing/',
 			},
 			{
 				label: 'llms lists Plex subtitle failure guide',
