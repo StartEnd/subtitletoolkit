@@ -2586,11 +2586,35 @@ const checks = [
 		expect: [
 			{
 				label: 'line breaks guide CTR title',
-				match: '<title>Fix Subtitle Line Breaks - Clean Caption Text</title>',
+				match: '<title>Fix Subtitle Line Breaks - Clean SRT/VTT Text</title>',
 			},
 			{
 				label: 'line breaks guide meta description',
-				match: 'Fix messy subtitle line breaks by cleaning SRT or VTT spacing, preserving readable caption text, and checking output before upload.',
+				match: 'Fix subtitle line breaks online. Clean SRT or VTT spacing, repair awkward caption wraps, and keep readable subtitle text locally before upload.',
+			},
+			{
+				label: 'line breaks guide opens subtitle cleaner',
+				match: 'href="/tools/subtitle-cleaner/"',
+			},
+			{
+				label: 'line breaks guide links clean SRT tool',
+				match: 'href="/tools/clean-srt-file/"',
+			},
+			{
+				label: 'line breaks guide links SRT validator',
+				match: 'href="/tools/srt-validator/"',
+			},
+			{
+				label: 'line breaks guide links long subtitles follow-up',
+				match: 'href="/guides/how-to-fix-subtitles-that-are-too-long/"',
+			},
+			{
+				label: 'FAQ schema for line break questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I fix subtitle line breaks\?/
+			},
+			{
+				label: 'line breaks Article schema includes query tags',
+				match: /"keywords"\s*:\s*"line breaks, subtitle readability, clean subtitles, srt, vtt, formatting"/
 			},
 		],
 	},
