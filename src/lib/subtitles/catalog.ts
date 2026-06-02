@@ -17,6 +17,7 @@ export type SubtitleToolId =
   | 'subviewer-to-srt'
   | 'mpl2-to-srt'
   | 'csv-to-srt'
+  | 'json-to-srt'
   | 'youtube-subtitle-converter'
   | 'html5-video-subtitle-converter'
   | 'videojs-subtitle-converter'
@@ -187,6 +188,20 @@ Today we are converting SubViewer captions[br]They need SRT output`,
   csv: `start,end,text
 00:00:01.000,00:00:03.500,Welcome back to the edit
 00:00:04.200,00:00:06.000,"Today we are converting CSV captions\nThey need SRT output"`,
+  json: `{
+  "segments": [
+    {
+      "start": 1.0,
+      "end": 3.5,
+      "text": "Welcome back to the edit"
+    },
+    {
+      "start": 4.2,
+      "end": 6.0,
+      "text": "Today we are converting JSON captions\\nThey need SRT output"
+    }
+  ]
+}`,
   encodedSrt: `1
 00:00:01,000 --> 00:00:03,500
 Café subtitles should stay readable.
@@ -1264,6 +1279,65 @@ const enTools: SubtitleTool[] = [
       },
     ],
     sampleInput: sharedSamples.csv,
+  },
+  {
+    id: 'json-to-srt',
+    title: 'JSON to SRT Converter',
+    shortTitle: 'JSON to SRT',
+    description:
+      'Convert JSON subtitle segments to SRT online for free, locally in your browser with no upload.',
+    summary:
+      'Use this free JSON to SRT converter when transcription API output, caption exports, or timed segment arrays need standard numbered SubRip subtitles.',
+    buttonLabel: 'Convert to SRT',
+    inputLabel: 'JSON input',
+    outputLabel: 'SRT output',
+    placeholder: 'Paste JSON segments with start, end, and text fields here',
+    acceptedExtensions: ['.json', '.txt'],
+    sampleFileName: 'captions.json',
+    useCases: [
+      'Convert transcription API segments into SRT subtitles.',
+      'Turn JSON caption exports with start, end, and text fields into SubRip cues.',
+      'Create upload-ready SRT from app or internal caption data.',
+      'Prepare JSON subtitle segments for SRT validation, cleanup, or review workflows.',
+    ],
+    faqs: [
+      {
+        question: 'How do I convert JSON subtitle segments to SRT?',
+        answer:
+          'Open the JSON to SRT converter, paste or upload JSON with start, end, and text fields, and export the parsed segments as numbered SRT cues.',
+      },
+      {
+        question: 'What JSON shape is supported?',
+        answer:
+          'The converter supports an array of cue objects or an object with segments, captions, cues, or items. Each cue should include start time, end time, and text or caption content.',
+      },
+      {
+        question: 'Are JSON timing numbers seconds or milliseconds?',
+        answer:
+          'Numeric start and end fields are treated as seconds. Fields named startMs, endMs, or durationMs are treated as milliseconds.',
+      },
+      {
+        question: 'Are JSON subtitle files uploaded to a server?',
+        answer:
+          'No. The JSON to SRT conversion runs locally in your browser, so the subtitle data stays on your device.',
+      },
+    ],
+    relatedTools: ['csv-to-srt', 'srt-validator'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-convert-json-to-srt/',
+        title: 'How to convert JSON to SRT',
+      },
+      {
+        href: '/guides/how-to-convert-csv-to-srt/',
+        title: 'How to convert CSV to SRT',
+      },
+      {
+        href: '/guides/how-to-validate-srt-files/',
+        title: 'How to validate SRT files',
+      },
+    ],
+    sampleInput: sharedSamples.json,
   },
   {
     id: 'youtube-subtitle-converter',

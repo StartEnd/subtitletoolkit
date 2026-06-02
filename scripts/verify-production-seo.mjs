@@ -314,6 +314,10 @@ const checks = [
 				match: '/guides/how-to-convert-csv-to-srt/',
 			},
 			{
+				label: 'homepage links to JSON to SRT guide',
+				match: '/guides/how-to-convert-json-to-srt/',
+			},
+			{
 				label: 'homepage links to ASS to VTT guide',
 				match: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
 			},
@@ -660,6 +664,27 @@ const checks = [
 			{
 				label: 'FAQ schema for CSV to SRT questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert a CSV subtitle file to SRT\?/
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-json-to-srt/',
+		expect: [
+			{
+				label: 'JSON to SRT guide CTR title',
+				match: '<title>Convert JSON to SRT - Free Subtitle Segment Converter</title>',
+			},
+			{
+				label: 'JSON to SRT guide no-upload meta description',
+				match: 'Convert JSON subtitle segments to SRT online for free. Turn timed segment arrays into numbered SubRip cues locally with no upload.',
+			},
+			{
+				label: 'JSON to SRT guide opens JSON converter tool',
+				match: 'href="/tools/json-to-srt/"',
+			},
+			{
+				label: 'FAQ schema for JSON to SRT questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert JSON subtitle segments to SRT\?/
 			},
 		],
 	},
@@ -3214,6 +3239,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/json-to-srt/',
+		expect: [
+			{
+				label: 'JSON to SRT tool title',
+				match: '<title>JSON to SRT Converter - Convert Segments Free</title>',
+			},
+			{
+				label: 'JSON to SRT tool meta description',
+				match: 'Convert JSON subtitle segments to SRT online for free. Turn timed segment arrays into numbered SubRip cues locally.',
+			},
+			{
+				label: 'JSON to SRT tool links guide',
+				match: 'href="/guides/how-to-convert-json-to-srt/"',
+			},
+			{
+				label: 'JSON to SRT tool FAQ covers timing units',
+				match: 'Are JSON timing numbers seconds or milliseconds?',
+			},
+		],
+	},
+	{
 		path: '/tools/ass-to-srt/',
 		expect: [
 			{
@@ -3942,6 +3988,10 @@ const checks = [
 				match: 'https://subtitletoolkit.tools/tools/csv-to-srt/',
 			},
 			{
+				label: 'llms lists JSON to SRT tool',
+				match: 'https://subtitletoolkit.tools/tools/json-to-srt/',
+			},
+			{
 				label: 'llms lists invalid WebVTT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-fix-invalid-webvtt-timestamps/',
 			},
@@ -4272,6 +4322,10 @@ const checks = [
 			{
 				label: 'llms lists CSV to SRT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-csv-to-srt/',
+			},
+			{
+				label: 'llms lists JSON to SRT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-json-to-srt/',
 			},
 			{
 				label: 'llms lists ASS to SRT guide',

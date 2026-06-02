@@ -63,6 +63,8 @@ const toolMetaDescriptions: Record<string, string> = {
 		'Convert MPL2 subtitles to SRT online for free. Turn bracket-timed rows into numbered SubRip cues locally.',
 	'csv-to-srt':
 		'Convert CSV subtitle rows to SRT online for free. Turn start, end, and text columns into numbered SubRip cues locally.',
+	'json-to-srt':
+		'Convert JSON subtitle segments to SRT online for free. Turn timed segment arrays into numbered SubRip cues locally.',
 	'youtube-subtitle-converter':
 		'Convert subtitles to YouTube-ready SRT online for free. Turn VTT, ASS, or SSA captions into upload-safe SRT locally with no signup or upload.',
 	'html5-video-subtitle-converter':
@@ -124,6 +126,7 @@ const toolPageTitles: Record<string, string> = {
 	'subviewer-to-srt': 'SubViewer to SRT Converter - Convert SUB Captions Free',
 	'mpl2-to-srt': 'MPL2 to SRT Converter - Convert Bracket Captions Free',
 	'csv-to-srt': 'CSV to SRT Converter - Convert Caption Rows Free',
+	'json-to-srt': 'JSON to SRT Converter - Convert Segments Free',
 	'youtube-subtitle-converter': 'YouTube Subtitle Converter Online - Free No Upload',
 	'html5-video-subtitle-converter': 'HTML5 Video Subtitle Converter - Convert Captions to VTT',
 	'videojs-subtitle-converter': 'Video.js Subtitle Converter - Convert Captions to VTT',
@@ -183,6 +186,8 @@ const workflowNotes: Record<string, string> = {
 		'MPL2 files use bracket timing values measured in tenths of a second. This converter reads rows like [10][35]Caption text, turns pipe separators into SRT line breaks, and exports numbered SubRip cues for editing, upload, and archive workflows.',
 	'csv-to-srt':
 		'CSV caption files often come from transcript exports, spreadsheets, and review systems. This converter reads start, end, and text columns, preserves quoted caption text, turns escaped line breaks into SRT lines, and exports numbered SubRip cues locally with no upload.',
+	'json-to-srt':
+		'JSON caption data often comes from transcription APIs, internal tools, and timed segment exports. This converter reads arrays or segment containers with start, end, and text fields, then exports numbered SubRip cues locally with no upload.',
 	'youtube-subtitle-converter':
 		'Use this when YouTube needs a clean SRT upload but your source captions are VTT, ASS, SSA, or uncertain. The tool keeps timing and readable text, removes unsupported styling, and exports a simple SRT copy locally with no upload.',
 	'html5-video-subtitle-converter':
@@ -315,6 +320,11 @@ const mistakeNotes: Record<string, string[]> = {
 		'Leaving commas unquoted inside caption text cells.',
 		'Exporting transcript text without start and end timing columns.',
 		'Uploading the SRT output before validating timing and line breaks.',
+	],
+	'json-to-srt': [
+		'Using JSON that has text but no start or end timing fields.',
+		'Mixing seconds and milliseconds without using startMs or endMs field names.',
+		'Uploading the SRT output before validating cue order and line breaks.',
 	],
 	'youtube-subtitle-converter': [
 		'Expecting ASS styling or positioning to survive in YouTube captions.',

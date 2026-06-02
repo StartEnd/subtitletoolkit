@@ -1,6 +1,6 @@
 import type { SubtitleToolId } from './catalog';
 
-export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'smi' | 'sbv' | 'ttml' | 'scc' | 'microdvd' | 'lrc' | 'subviewer' | 'mpl2' | 'csv' | 'txt' | 'unknown';
+export type SubtitleFormat = 'srt' | 'vtt' | 'ass' | 'smi' | 'sbv' | 'ttml' | 'scc' | 'microdvd' | 'lrc' | 'subviewer' | 'mpl2' | 'csv' | 'json' | 'txt' | 'unknown';
 
 export interface SubtitleCue {
   start: number;
@@ -69,6 +69,10 @@ export function detectSubtitleFormat(input: string): SubtitleFormat {
 
   if (/^(?:start|begin|in)\s*,\s*(?:end|out)\s*,\s*(?:text|caption|subtitle)/im.test(normalized)) {
     return 'csv';
+  }
+
+  if (/^[\[{]/.test(normalized) && /"(?:segments|captions|cues|items|start|startTime|startMs)"\s*:/i.test(normalized)) {
+    return 'json';
   }
 
   if (/^(?:\d+:)?\d{1,2}:\d{2}\.\d{3}\s*,\s*(?:\d+:)?\d{1,2}:\d{2}\.\d{3}$/m.test(normalized)) {
@@ -785,6 +789,106 @@ export function parseCsv(input: string): SubtitleCue[] {
     .filter(Boolean) as SubtitleCue[];
 }
 
+function jsonTimeToMs(value: unknown, fieldName = '') {
+  if (typeof value === 'number') {
+    return /ms$/i.test(fieldName) ? Math.round(value) : Math.round(value * 1000);
+  }
+
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+    if (!trimmed) {
+      return 0;
+    }
+    if (/^-?\d+(?:\.\d+)?$/.test(trimmed)) {
+      return /ms$/i.test(fieldName) ? Math.round(Number(trimmed)) : Math.round(Number(trimmed) * 1000);
+    }
+    return timestampInputToMs(trimmed);
+  }
+
+  return 0;
+}
+
+function getJsonCueText(cue: Record<string, unknown>) {
+  const value = cue.text ?? cue.caption ?? cue.subtitle ?? cue.content ?? cue.line;
+
+  if (Array.isArray(value)) {
+    return value
+      .map((line) => cleanSubtitleLine(String(line)))
+      .filter(Boolean);
+  }
+
+  if (typeof value === 'string' || typeof value === 'number') {
+    return String(value)
+      .replace(/\\n/g, '\n')
+      .split('\n')
+      .map((line) => cleanSubtitleLine(line))
+      .filter(Boolean);
+  }
+
+  return [];
+}
+
+function getJsonCueArray(value: unknown): unknown[] {
+  if (Array.isArray(value)) {
+    return value;
+  }
+
+  if (value && typeof value === 'object') {
+    const record = value as Record<string, unknown>;
+    const nested = record.segments ?? record.captions ?? record.cues ?? record.items ?? record.results;
+    if (Array.isArray(nested)) {
+      return nested;
+    }
+  }
+
+  return [];
+}
+
+export function parseJson(input: string): SubtitleCue[] {
+  const normalized = normalizeSubtitleInput(input);
+  if (!normalized) {
+    return [];
+  }
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(normalized);
+  } catch {
+    return [];
+  }
+
+  return getJsonCueArray(parsed)
+    .map((item) => {
+      if (!item || typeof item !== 'object') {
+        return null;
+      }
+
+      const cue = item as Record<string, unknown>;
+      const startField = cue.startMs !== undefined ? 'startMs' : cue.startTime !== undefined ? 'startTime' : 'start';
+      const endField = cue.endMs !== undefined ? 'endMs' : cue.endTime !== undefined ? 'endTime' : 'end';
+      const durationField = cue.durationMs !== undefined ? 'durationMs' : 'duration';
+      const startValue = cue[startField] ?? cue.begin ?? cue.in;
+      const endValue = cue[endField] ?? cue.out;
+      const durationValue = cue[durationField];
+      const start = jsonTimeToMs(startValue, startField);
+      const end = endValue !== undefined
+        ? jsonTimeToMs(endValue, endField)
+        : start + jsonTimeToMs(durationValue, durationField);
+      const text = getJsonCueText(cue);
+
+      if (!text.length || end <= start) {
+        return null;
+      }
+
+      return {
+        start,
+        end: Math.max(start + 1, end),
+        text,
+      };
+    })
+    .filter(Boolean) as SubtitleCue[];
+}
+
 export function parseSubtitleByFormat(
   input: string,
   format: SubtitleFormat
@@ -814,6 +918,8 @@ export function parseSubtitleByFormat(
       return parseMpl2(input);
     case 'csv':
       return parseCsv(input);
+    case 'json':
+      return parseJson(input);
     default:
       return [];
   }
@@ -1114,6 +1220,8 @@ export function processSubtitleTool(
       return serializeSrt(parseMpl2(normalized));
     case 'csv-to-srt':
       return serializeSrt(parseCsv(normalized));
+    case 'json-to-srt':
+      return serializeSrt(parseJson(normalized));
     case 'youtube-subtitle-converter':
     case 'plex-subtitle-converter': {
       const format = detectSubtitleFormat(normalized);
@@ -1240,6 +1348,7 @@ export function inferOutputFormat(
     case 'subviewer-to-srt':
     case 'mpl2-to-srt':
     case 'csv-to-srt':
+    case 'json-to-srt':
     case 'youtube-subtitle-converter':
     case 'plex-subtitle-converter':
       return 'srt';

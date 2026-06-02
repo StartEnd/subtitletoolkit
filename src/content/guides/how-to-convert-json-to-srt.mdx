@@ -1,0 +1,144 @@
+---
+title: How to convert JSON to SRT
+seoTitle: Convert JSON to SRT - Free Subtitle Segment Converter
+seoDescription: Convert JSON subtitle segments to SRT online for free. Turn timed segment arrays into numbered SubRip cues locally with no upload.
+description: Convert transcription API JSON, caption segment arrays, and timed subtitle exports into standard SRT files for upload and review.
+pubDate: 2026-06-02
+category: conversion-guides
+tags:
+  - json
+  - srt
+  - conversion
+  - transcription api
+primaryTool: json-to-srt
+faqs:
+  - question: How do I convert JSON subtitle segments to SRT?
+    answer: Use the JSON to SRT converter with an array of cue objects or a segments, captions, cues, or items array. Each cue needs start time, end time, and text.
+  - question: What JSON fields does JSON to SRT support?
+    answer: Use fields such as start, end, and text, or startTime, endTime, and caption. Numeric start and end values are treated as seconds unless the field name ends in Ms.
+  - question: Can I convert JSON captions without uploading the file?
+    answer: Yes. The converter runs in your browser, so the JSON subtitle data stays on your device.
+---
+
+JSON subtitle data often comes from transcription APIs, internal caption tools, video platforms, or automated speech-to-text workflows. The timing is usually stored as objects with start time, end time, and text fields.
+
+SRT is easier to upload, validate, preview, and send to editors because it uses numbered cues and standard timestamp lines.
+
+## Quick answer
+
+Use the [JSON to SRT Converter](/tools/json-to-srt/) to convert timed JSON caption segments into standard SubRip subtitles. The tool supports arrays of cue objects and common containers such as `segments`, `captions`, `cues`, or `items`, then exports numbered SRT locally in your browser with no upload.
+
+## When to convert JSON to SRT
+
+Convert JSON to SRT when:
+
+- a transcription API returns timed segments instead of an SRT file
+- an internal tool stores captions as JSON objects
+- a review export has `start`, `end`, and `text` fields
+- you need to upload captions to a platform that expects SRT
+- you want to validate timing before sending subtitle files to a client
+
+Keep the original JSON until the converted SRT has been checked against the video.
+
+## Supported JSON layout
+
+The safest layout is an object with a `segments` array:
+
+```json
+{
+  "segments": [
+    {
+      "start": 1.0,
+      "end": 3.5,
+      "text": "Welcome back to the edit"
+    },
+    {
+      "start": 4.2,
+      "end": 6.0,
+      "text": "Today we are converting JSON captions\\nThey need SRT output"
+    }
+  ]
+}
+```
+
+An array of cue objects also works:
+
+```json
+[
+  { "startTime": "00:00:01.000", "endTime": "00:00:03.500", "caption": "Welcome back" },
+  { "startMs": 4200, "endMs": 6000, "text": "Second caption" }
+]
+```
+
+## What changes during conversion
+
+The JSON segments above become SRT cues like this:
+
+```text
+1
+00:00:01,000 --> 00:00:03,500
+Welcome back to the edit
+
+2
+00:00:04,200 --> 00:00:06,000
+Today we are converting JSON captions
+They need SRT output
+```
+
+During conversion, the tool:
+
+- reads arrays or common containers such as `segments`, `captions`, `cues`, or `items`
+- supports `start`, `end`, `startTime`, `endTime`, `startMs`, and `endMs`
+- treats numeric `start` and `end` values as seconds
+- treats `startMs`, `endMs`, and `durationMs` values as milliseconds
+- supports text fields such as `text`, `caption`, `subtitle`, `content`, or `line`
+- turns escaped `\n` markers into normal SRT line breaks
+
+## Step-by-step workflow
+
+1. Save a copy of the original JSON export.
+2. Confirm each cue has start time, end time, and text.
+3. Open the [JSON to SRT Converter](/tools/json-to-srt/).
+4. Upload or paste the JSON subtitle data.
+5. Convert the file to SRT.
+6. Run the output through the [SRT Validator](/tools/srt-validator/) before upload.
+
+## Common mistakes
+
+### Using transcript-only JSON
+
+SRT needs timing. JSON with text paragraphs but no start or end fields cannot become timed subtitles until timing is added.
+
+### Mixing seconds and milliseconds
+
+Numeric `start` and `end` values are treated as seconds. Use `startMs` and `endMs` when the export stores milliseconds.
+
+### Forgetting to validate after conversion
+
+Automated transcription output can contain empty segments, overlapping timing, or very long lines. Validate and review the SRT before publishing.
+
+## Frequently asked questions
+
+### How do I convert JSON subtitle segments to SRT?
+
+Open the [JSON to SRT Converter](/tools/json-to-srt/), upload or paste JSON with start, end, and text fields, and export the parsed segments as numbered SRT cues.
+
+### What JSON fields does JSON to SRT support?
+
+Use fields such as `start`, `end`, and `text`, or `startTime`, `endTime`, and `caption`. Numeric start and end values are treated as seconds unless the field name ends in `Ms`.
+
+### Can I convert JSON captions without uploading the file?
+
+Yes. The converter runs locally in your browser, so the JSON subtitle data does not need to be sent to a server.
+
+## Related guides
+
+- [How to convert CSV to SRT](/guides/how-to-convert-csv-to-srt/)
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+- [How to create a transcript from subtitles](/guides/how-to-create-a-transcript-from-subtitles/)
+
+## Related tools
+
+- [JSON to SRT Converter](/tools/json-to-srt/)
+- [CSV to SRT Converter](/tools/csv-to-srt/)
+- [SRT Validator](/tools/srt-validator/)
