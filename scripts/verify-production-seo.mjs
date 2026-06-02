@@ -270,6 +270,10 @@ const checks = [
 				match: '/guides/how-to-convert-ssa-to-srt/',
 			},
 			{
+				label: 'homepage links to SSA to SRT tool',
+				match: '/tools/ssa-to-srt/',
+			},
+			{
 				label: 'homepage links to SSA to VTT guide',
 				match: '/guides/how-to-convert-ssa-to-vtt/',
 			},
@@ -435,8 +439,8 @@ const checks = [
 				match: 'Convert SSA subtitles to SRT online for free. Flatten styling, keep dialogue timing, and create a simple SubRip file locally with no upload.',
 			},
 			{
-				label: 'SSA to SRT guide opens ASS converter tool',
-				match: 'href="/tools/ass-to-srt/"',
+				label: 'SSA to SRT guide opens SSA converter tool',
+				match: 'href="/tools/ssa-to-srt/"',
 			},
 			{
 				label: 'FAQ schema for SSA to SRT questions',
@@ -3385,6 +3389,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/tools/ssa-to-srt/',
+		expect: [
+			{
+				label: 'SSA to SRT tool title',
+				match: '<title>SSA to SRT Converter - Convert SubStation Alpha Free</title>',
+			},
+			{
+				label: 'SSA to SRT tool meta description',
+				match: 'Convert SSA subtitles to SRT online for free. Flatten SubStation Alpha styling, keep dialogue timing, and create SubRip captions locally.',
+			},
+			{
+				label: 'SSA to SRT tool links guide',
+				match: 'href="/guides/how-to-convert-ssa-to-srt/"',
+			},
+			{
+				label: 'SSA to SRT tool FAQ covers ASS difference',
+				match: 'Is SSA different from ASS?',
+			},
+		],
+	},
+	{
 		path: '/tools/html5-video-subtitle-converter/',
 		expect: [
 			{
@@ -4042,6 +4067,10 @@ const checks = [
 			{
 				label: 'llms lists SRT timestamp fixer tool',
 				match: 'https://subtitletoolkit.tools/tools/fix-srt-timestamps/',
+			},
+			{
+				label: 'llms lists SSA to SRT tool',
+				match: 'https://subtitletoolkit.tools/tools/ssa-to-srt/',
 			},
 			{
 				label: 'llms lists SMI to SRT tool',

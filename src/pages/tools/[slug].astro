@@ -41,6 +41,8 @@ const toolMetaDescriptions: Record<string, string> = {
 		'Convert SRT to ASS online for free. Create a style-ready ASS file for Aegisub, karaoke timing, and subtitle editors locally with no upload.',
 	'ass-to-srt':
 		'Convert ASS or SSA to SRT online for free. Remove unsupported styling, keep timing, and create YouTube-ready SubRip captions locally.',
+	'ssa-to-srt':
+		'Convert SSA subtitles to SRT online for free. Flatten SubStation Alpha styling, keep dialogue timing, and create SubRip captions locally.',
 	'vtt-to-ass':
 		'Convert WebVTT captions to ASS format for subtitle editing and style-ready workflows, locally in your browser with no upload.',
 	'ass-to-vtt':
@@ -119,6 +121,7 @@ const toolPageTitles: Record<string, string> = {
 	'ass-to-txt': 'ASS to TXT Converter - Extract Subtitle Text Online',
 	'srt-to-ass': 'SRT to ASS Converter for Aegisub Styling - Free',
 	'ass-to-srt': 'ASS to SRT Converter for YouTube Uploads - Free',
+	'ssa-to-srt': 'SSA to SRT Converter - Convert SubStation Alpha Free',
 	'vtt-to-ass': 'VTT to ASS Converter - Convert Captions Online Free',
 	'ass-to-vtt': 'ASS to VTT Converter - Convert Subtitles Online Free',
 	'smi-to-srt': 'SMI to SRT Converter - Convert SAMI Captions Free',
@@ -170,6 +173,8 @@ const workflowNotes: Record<string, string> = {
 		'SRT is plain and portable, but Aegisub and other subtitle styling workflows often need ASS. This converter keeps SRT timing and readable text, turns multi-line cues into ASS line breaks, adds a clean default style, and creates a style-ready ASS file locally with no upload.',
 	'ass-to-srt':
 		'ASS and SSA files can carry styling, positioning, karaoke effects, and dialogue metadata that YouTube and many upload workflows do not accept. This converter keeps timing and readable dialogue, turns ASS line breaks into SRT text, removes unsupported styling, and creates a simple SubRip upload copy locally.',
+	'ssa-to-srt':
+		'SSA files are older SubStation Alpha subtitle files with dialogue timing, style sections, and editor metadata. This converter keeps timing and readable dialogue, turns SSA line breaks into SRT text, removes unsupported styling, and creates a simple SubRip copy locally with no upload.',
 	'vtt-to-ass':
 		'Use this when captions begin in a web player workflow but need to move into an editor that works better with ASS. The output gives you a basic ASS structure that can be styled afterward.',
 	'ass-to-vtt':
@@ -275,6 +280,11 @@ const mistakeNotes: Record<string, string[]> = {
 		'Expecting ASS positioning, colors, or effects to survive in SRT.',
 		'Not reviewing dialogue lines that used complex override tags.',
 		'Using SRT when the destination still requires styled subtitles.',
+	],
+	'ssa-to-srt': [
+		'Expecting SSA fonts, colors, or screen positions to survive in SRT.',
+		'Not reviewing older SSA files for encoding problems before delivery.',
+		'Deleting the original SSA file when the styled source is still needed for editing.',
 	],
 	'vtt-to-ass': [
 		'Expecting VTT cue settings to become styled ASS rules automatically.',

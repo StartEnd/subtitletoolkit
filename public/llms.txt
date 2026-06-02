@@ -16,6 +16,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [VTT to SRT Converter](https://subtitletoolkit.tools/tools/vtt-to-srt/): Convert WebVTT captions to numbered SRT blocks.
 - [SRT to ASS Converter](https://subtitletoolkit.tools/tools/srt-to-ass/): Convert plain SRT subtitles to a basic ASS structure.
 - [ASS to SRT Converter](https://subtitletoolkit.tools/tools/ass-to-srt/): Flatten ASS dialogue into simple SRT subtitles.
+- [SSA to SRT Converter](https://subtitletoolkit.tools/tools/ssa-to-srt/): Convert older SubStation Alpha subtitles to standard SRT cues.
 - [VTT to ASS Converter](https://subtitletoolkit.tools/tools/vtt-to-ass/): Convert browser captions to ASS for editing workflows.
 - [ASS to VTT Converter](https://subtitletoolkit.tools/tools/ass-to-vtt/): Convert ASS subtitles to WebVTT for browser playback.
 - [SMI to SRT Converter](https://subtitletoolkit.tools/tools/smi-to-srt/): Convert SAMI or SMI captions to standard SRT cues.

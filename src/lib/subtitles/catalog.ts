@@ -6,6 +6,7 @@ export type SubtitleToolId =
   | 'ass-to-txt'
   | 'srt-to-ass'
   | 'ass-to-srt'
+  | 'ssa-to-srt'
   | 'vtt-to-ass'
   | 'ass-to-vtt'
   | 'smi-to-srt'
@@ -149,6 +150,18 @@ Style: Default,Arial,36,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,0,0,0,0,100,
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 0,0:00:01.00,0:00:03.50,Default,,0,0,0,,Welcome back to the edit.
 Dialogue: 0,0:00:04.20,0:00:06.00,Default,,0,0,0,,Today we are fixing captions locally.`,
+  ssa: `[Script Info]
+Title: Sample SSA file
+ScriptType: v4.00
+
+[V4 Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, TertiaryColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, AlphaLevel, Encoding
+Style: Default,Arial,20,16777215,65535,65535,0,0,0,1,2,2,2,10,10,10,0,1
+
+[Events]
+Format: Marked, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: Marked=0,0:00:01.00,0:00:03.50,Default,,0,0,0,,Welcome back to the edit.
+Dialogue: Marked=0,0:00:04.20,0:00:06.00,Default,,0,0,0,,This SSA file needs SRT output.`,
   smi: `<SAMI>
 <BODY>
 <SYNC Start=1000><P Class=ENCC>Welcome back to the edit.
@@ -662,7 +675,7 @@ const enTools: SubtitleTool[] = [
           'No. ASS to SRT conversion happens locally in your browser, so the subtitle file stays on your device.',
       },
     ],
-    relatedTools: ['srt-to-ass', 'ass-to-vtt'],
+    relatedTools: ['ssa-to-srt', 'srt-to-ass', 'ass-to-vtt'],
     relatedGuides: [
       {
         href: '/guides/how-to-convert-ass-to-srt-for-youtube-uploads/',
@@ -679,6 +692,62 @@ const enTools: SubtitleTool[] = [
       },
     ],
     sampleInput: sharedSamples.ass,
+  },
+  {
+    id: 'ssa-to-srt',
+    title: 'SSA to SRT Converter',
+    shortTitle: 'SSA to SRT',
+    description:
+      'Convert SSA subtitles to SRT online for free, locally in your browser with no upload.',
+    summary:
+      'Use this free SSA to SRT converter when an older SubStation Alpha subtitle file needs a simple SubRip copy for upload, editing, review, or archive workflows.',
+    buttonLabel: 'Convert to SRT',
+    inputLabel: 'SSA input',
+    outputLabel: 'SRT output',
+    placeholder: 'Paste your SSA subtitles here',
+    acceptedExtensions: ['.ssa', '.ass', '.txt'],
+    sampleFileName: 'sample.ssa',
+    useCases: [
+      'Convert older SSA subtitles to standard SRT.',
+      'Flatten SSA styling, positioning, and metadata into readable SubRip cues.',
+      'Prepare SSA captions for upload forms, players, and editors that only accept SRT.',
+      'Create a clean review copy while keeping the original SSA file for styled editing.',
+    ],
+    faqs: [
+      {
+        question: 'How do I convert an SSA subtitle file to SRT?',
+        answer:
+          'Open the SSA to SRT converter, paste or upload the .ssa file, and export the dialogue events as numbered SRT cues.',
+      },
+      {
+        question: 'Is SSA different from ASS?',
+        answer:
+          'SSA is the older SubStation Alpha format. ASS is the newer Advanced SubStation Alpha format, and both use similar dialogue event timing that can be flattened into SRT.',
+      },
+      {
+        question: 'Will SSA styling survive in SRT?',
+        answer:
+          'No. SRT keeps timing and readable dialogue text, but it cannot preserve SSA fonts, colors, positioning, effects, or style definitions.',
+      },
+      {
+        question: 'Are SSA files uploaded to a server?',
+        answer:
+          'No. The SSA to SRT conversion runs locally in your browser, so the subtitle file stays on your device.',
+      },
+    ],
+    relatedTools: ['ass-to-srt', 'srt-validator', 'subtitle-encoding-fixer'],
+    relatedGuides: [
+      {
+        href: '/guides/how-to-convert-ssa-to-srt/',
+        title: 'How to convert SSA to SRT',
+      },
+      { href: '/guides/ass-vs-srt/', title: 'ASS vs SRT' },
+      {
+        href: '/guides/how-to-validate-srt-files/',
+        title: 'How to validate SRT files',
+      },
+    ],
+    sampleInput: sharedSamples.ssa,
   },
   {
     id: 'vtt-to-ass',

@@ -1197,6 +1197,7 @@ export function processSubtitleTool(
     case 'srt-to-ass':
       return serializeAss(parseSrt(normalized));
     case 'ass-to-srt':
+    case 'ssa-to-srt':
       return serializeSrt(parseAss(normalized));
     case 'vtt-to-ass':
       return serializeAss(parseVtt(normalized));
@@ -1341,6 +1342,7 @@ export function inferOutputFormat(
       return 'vtt';
     case 'vtt-to-srt':
     case 'ass-to-srt':
+    case 'ssa-to-srt':
     case 'smi-to-srt':
     case 'sbv-to-srt':
     case 'ttml-to-srt':
