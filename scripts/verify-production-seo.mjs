@@ -258,6 +258,10 @@ const checks = [
 				match: '/guides/how-to-remove-timestamps-from-ssa/',
 			},
 			{
+				label: 'homepage links to merge subtitle files guide',
+				match: '/guides/how-to-merge-subtitle-files/',
+			},
+			{
 				label: 'homepage links to SRT to TXT guide',
 				match: '/guides/how-to-convert-srt-to-txt/',
 			},
@@ -2031,6 +2035,27 @@ const checks = [
 		],
 	},
 	{
+		path: '/guides/how-to-merge-subtitle-files/',
+		expect: [
+			{
+				label: 'merge subtitle files guide CTR title',
+				match: '<title>Merge Subtitle Files - Combine SRT, VTT, or ASS</title>',
+			},
+			{
+				label: 'merge subtitle files guide meta description',
+				match: 'Merge subtitle files into one sorted output, keep cue timing in order, and download the combined file locally with no upload.',
+			},
+			{
+				label: 'merge subtitle files guide opens merger tool',
+				match: 'href="/tools/subtitle-merger/"',
+			},
+			{
+				label: 'FAQ schema for merge subtitle files questions',
+				match: new RegExp('"@type"\\s*:\\s*"FAQPage"[\\s\\S]*How do I merge subtitle files into one file\\?'),
+			},
+		],
+	},
+	{
 		path: '/guides/how-to-merge-two-srt-files/',
 		expect: [
 			{
@@ -3750,6 +3775,10 @@ const checks = [
 				label: 'subtitle merger tool links guide',
 				match: 'href="/guides/how-to-merge-two-srt-files/"',
 			},
+			{
+				label: 'subtitle merger tool links merge subtitle files guide',
+				match: 'href="/guides/how-to-merge-subtitle-files/"',
+			},
 		],
 	},
 	{
@@ -4069,6 +4098,10 @@ const checks = [
 			{
 				label: 'guides index links to dual-language subtitle guide',
 				match: '/guides/how-to-create-dual-language-subtitles/',
+			},
+			{
+				label: 'guides index links to merge subtitle files guide',
+				match: '/guides/how-to-merge-subtitle-files/',
 			},
 			{
 				label: 'guides index links to merge SRT guide',
@@ -4685,6 +4718,10 @@ const checks = [
 			{
 				label: 'llms lists SSA to VTT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-ssa-to-vtt/',
+			},
+			{
+				label: 'llms lists merge subtitle files guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-merge-subtitle-files/',
 			},
 			{
 				label: 'llms lists merge SRT guide',

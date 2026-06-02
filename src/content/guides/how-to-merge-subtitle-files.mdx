@@ -1,0 +1,148 @@
+---
+title: How to merge subtitle files
+seoTitle: Merge Subtitle Files - Combine SRT, VTT, or ASS
+seoDescription: Merge subtitle files into one sorted output, keep cue timing in order, and download the combined file locally with no upload.
+description: Combine two subtitle files into one merged output, then review cue order, overlaps, and final timing before delivery.
+pubDate: 2026-06-02
+category: workflow-guides
+tags:
+  - merge subtitle files
+  - merge subtitles
+  - combine subtitle files
+  - subtitle merger
+  - subtitle workflow
+primaryTool: subtitle-merger
+faqs:
+  - question: How do I merge subtitle files into one file?
+    answer: Open the Subtitle Merger, add the first subtitle file, add the second file, then review the merged preview. The tool sorts cues by start time and exports one combined file locally in your browser.
+  - question: Can I merge subtitle files in different formats?
+    answer: The safest workflow is to merge files in the same format. If you have mixed formats like VTT and SRT, convert them first so cue timing and output structure stay predictable.
+  - question: Does merging subtitle files fix timing problems?
+    answer: No. Merging combines and sorts cues, but it does not repair sync drift or offset issues. Fix timing before or after merging if the subtitle files are already out of sync.
+---
+
+Use this workflow when the job is bigger than one exact `.srt` merge. Maybe one file came from a translator, one file came from a second editor, or one subtitle track was exported in separate parts. The goal is still the same: produce one clean subtitle file with cues in the right order.
+
+## Quick answer
+
+Open the [Subtitle Merger](/tools/subtitle-merger/), add the first subtitle file, add the second subtitle file, then review the merged output before downloading it. The tool sorts cues by start time, keeps readable text, and renumbers SRT output locally in your browser.
+
+If the two files use different formats, convert them first so the merged result is easier to validate and deliver.
+
+## When to merge subtitle files
+
+This is a common workflow when:
+
+- one video was captioned in two separate parts
+- a translator sends a second subtitle file based on the same timing
+- one editor handled the intro and another handled the rest
+- you need one final delivery file for a player, archive, or client handoff
+- you want to compare two timed subtitle sources before combining or editing them
+
+Merge first when the timing is already mostly correct and the main job is combining files, not repairing sync.
+
+## What the merger does
+
+The subtitle merger workflow usually:
+
+- combines cues from both files into one output
+- sorts cues by start time
+- keeps subtitle text and basic timing
+- renumbers SRT cues from `1` onward
+- gives you one file to validate, test, and deliver
+
+It does not automatically:
+
+- fix drift or constant delay
+- remove all overlaps
+- translate text
+- decide which duplicate cue is the one you want to keep
+
+## Formats you can merge
+
+The [Subtitle Merger](/tools/subtitle-merger/) supports SRT, VTT, ASS, and SSA-style text input, but the safest workflow is still to normalize mixed files first.
+
+Typical prep paths:
+
+- convert VTT to SRT with [VTT to SRT](/tools/vtt-to-srt/)
+- convert ASS to SRT with [ASS to SRT](/tools/ass-to-srt/)
+- convert SSA to SRT with [SSA to SRT](/tools/ssa-to-srt/)
+
+Using the same format on both sides makes validation and manual review much easier afterward.
+
+## Step-by-step workflow
+
+1. Keep copies of the two original subtitle files.
+2. Convert them into the same format if needed.
+3. Open the [Subtitle Merger](/tools/subtitle-merger/).
+4. Add the first subtitle file.
+5. Add the second subtitle file.
+6. Review the merged preview for cue order, repeated lines, and overlapping timings.
+7. Download the merged result.
+8. Validate the output before using it in a player, upload form, or delivery package.
+
+If the final file is for SRT delivery, run it through [SRT Validator](/tools/srt-validator/) after merging.
+
+## What to review after merging
+
+### Cue order
+
+Make sure captions appear in chronological order from the first cue to the last cue.
+
+### Overlaps
+
+Two files can contain cues at the same time. The merger keeps both cues, so review how your target player handles overlapping text.
+
+### Duplicate captions
+
+If both inputs contain the same line, the merged output can include duplicates. Check the preview before downloading.
+
+### Transition points
+
+If the files represent different sections of one video, pay special attention to the boundary between part one and part two.
+
+## Common mistakes
+
+### Merging files from different video cuts
+
+If one subtitle file came from a different edit, merge alone will not fix it. You may see gaps, doubled cues, or growing sync drift.
+
+### Mixing formats without normalizing first
+
+Merging SRT and VTT directly can leave you with a result that is harder to verify. Convert mixed inputs first when the output matters.
+
+### Assuming merge also repairs timing
+
+If every cue is early or late, use [Subtitle Time Shifter](/tools/subtitle-time-shifter/). If only one section is broken, use [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/).
+
+### Skipping final validation
+
+One bad cue structure in either source can survive into the merged output. Validate before delivery instead of trusting the merge blindly.
+
+## Frequently asked questions
+
+### How do I merge subtitle files into one file?
+
+Open the [Subtitle Merger](/tools/subtitle-merger/), add both subtitle files, review the merged preview, then download the combined result.
+
+### Can I merge subtitle files in different formats?
+
+Yes, but the safest workflow is to convert them into the same format first so timing structure, numbering, and validation are easier to manage.
+
+### Does merging subtitle files fix timing problems?
+
+No. Merging combines cues, but it does not repair drift, scene-cut desync, or a full-file offset.
+
+## Related guides
+
+- [How to merge two SRT files](/guides/how-to-merge-two-srt-files/)
+- [How to create dual-language subtitles](/guides/how-to-create-dual-language-subtitles/)
+- [How to clean subtitle formatting before upload](/guides/how-to-clean-subtitle-formatting-before-upload/)
+- [How to fix subtitle delay](/guides/how-to-fix-subtitle-delay/)
+
+## Related tools
+
+- [Subtitle Merger](/tools/subtitle-merger/)
+- [SRT Validator](/tools/srt-validator/)
+- [Subtitle Time Shifter](/tools/subtitle-time-shifter/)
+- [Partial Subtitle Shifter](/tools/partial-subtitle-shifter/)

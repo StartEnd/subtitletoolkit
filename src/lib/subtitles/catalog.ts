@@ -2928,6 +2928,10 @@ const enTools: SubtitleTool[] = [
     relatedTools: ['subtitle-time-shifter', 'subtitle-cleaner'],
     relatedGuides: [
       {
+        href: '/guides/how-to-merge-subtitle-files/',
+        title: 'How to merge subtitle files',
+      },
+      {
         href: '/guides/how-to-merge-two-srt-files/',
         title: 'How to merge two SRT files',
       },

@@ -74,6 +74,7 @@ Subtitle Toolkit helps users convert, fix, and clean subtitle files locally in t
 - [How to convert VTT to TXT](https://subtitletoolkit.tools/guides/how-to-convert-vtt-to-txt/)
 - [How to convert ASS to TXT](https://subtitletoolkit.tools/guides/how-to-convert-ass-to-txt/)
 - [How to convert SSA to TXT](https://subtitletoolkit.tools/guides/how-to-convert-ssa-to-txt/)
+- [How to merge subtitle files](https://subtitletoolkit.tools/guides/how-to-merge-subtitle-files/)
 - [How to convert SMI to SRT](https://subtitletoolkit.tools/guides/how-to-convert-smi-to-srt/)
 - [How to convert SBV to SRT](https://subtitletoolkit.tools/guides/how-to-convert-sbv-to-srt/)
 - [How to convert TTML to SRT](https://subtitletoolkit.tools/guides/how-to-convert-ttml-to-srt/)
