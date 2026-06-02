@@ -9,6 +9,7 @@ category: sync-fixes
 tags:
   - srt
   - validator
+  - srt validator online
   - repair
   - timestamps
   - upload
@@ -31,6 +32,19 @@ Validating an SRT file is a fast way to find obvious format problems before a pl
 Open the [SRT Validator](/tools/srt-validator/), paste or upload the subtitle file, and read the validation report. The validator checks cue structure, timestamp format, cue order, and common syntax errors.
 
 The report helps confirm whether the file has parseable cues, standard SRT timestamps, and basic cue structure before you upload to YouTube, Vimeo, or other platforms.
+
+## Read the validation report before choosing a fix
+
+Do not start by changing everything in the file. First look at the error category in the report, then use the narrowest repair path.
+
+| Validation result | What it usually means | Best next step |
+| --- | --- | --- |
+| Dot timestamps such as `00:00:01.000` | The file still has WebVTT-style timing | Use [Fix SRT Timestamps](/tools/fix-srt-timestamps/) or follow [how to fix malformed SRT timestamps](/guides/how-to-fix-malformed-srt-timestamps/) |
+| Missing blank lines or duplicated cue numbers | The SRT structure is messy but the cues are still readable | Use [Clean SRT File](/tools/clean-srt-file/) or follow [how to clean subtitle formatting before upload](/guides/how-to-clean-subtitle-formatting-before-upload/) |
+| Parse failure near the middle of the file | One broken cue may be stopping the rest of the file from loading | Fix the first reported cue, validate again, then repair the next error |
+| Validation passes but upload still fails | The platform may be applying stricter upload rules | Check [SRT file will not upload](/guides/why-srt-file-wont-upload/) or [best SRT settings for YouTube upload](/guides/best-srt-settings-for-youtube-upload/) |
+
+This keeps the workflow simple: validate once, repair the specific problem, then validate again before re-uploading.
 
 ## Why SRT validation matters
 
@@ -437,6 +451,9 @@ No, this validator is specifically for SRT format. For WebVTT files, use the [We
 
 - [How to fix malformed SRT timestamps](/guides/how-to-fix-malformed-srt-timestamps/)
 - [How to clean an SRT file](/guides/how-to-clean-an-srt-file/)
+- [How to clean subtitle formatting before upload](/guides/how-to-clean-subtitle-formatting-before-upload/)
+- [SRT file will not upload](/guides/why-srt-file-wont-upload/)
+- [Best SRT settings for YouTube upload](/guides/best-srt-settings-for-youtube-upload/)
 
 ## Related tools
 

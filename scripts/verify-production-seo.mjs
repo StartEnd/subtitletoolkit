@@ -961,6 +961,14 @@ const checks = [
 				match: 'href="/tools/srt-validator/"',
 			},
 			{
+				label: 'SRT validation guide links upload failure follow-up',
+				match: 'href="/guides/why-srt-file-wont-upload/"',
+			},
+			{
+				label: 'SRT validation guide links YouTube SRT settings follow-up',
+				match: 'href="/guides/best-srt-settings-for-youtube-upload/"',
+			},
+			{
 				label: 'FAQ schema for SRT validation questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*What if validation passes but YouTube rejects my file\?/
 			},
