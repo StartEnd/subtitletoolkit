@@ -1215,7 +1215,7 @@ const checks = [
 		expect: [
 			{
 				label: 'line number guide CTR title',
-				match: '<title>Remove SRT Line Numbers - Rebuild Cue Numbers Free</title>',
+				match: '<title>Remove SRT Line Numbers or Rebuild Cue Numbers</title>',
 			},
 			{
 				label: 'line number guide meta description',
@@ -1299,6 +1299,35 @@ const checks = [
 			{
 				label: 'subtitle boxes guide opens encoding fixer tool',
 				match: 'href="/tools/subtitle-encoding-fixer/"',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-subtitles-to-utf-8/',
+		expect: [
+			{
+				label: 'UTF-8 conversion guide CTR title',
+				match: '<title>Convert Subtitles to UTF-8 - Fix Encoding Online</title>',
+			},
+			{
+				label: 'UTF-8 conversion guide meta description',
+				match: 'Convert SRT, VTT, ASS, SSA, or SMI subtitles to UTF-8 online. Fix broken accents, boxes, and garbled text locally with no upload.',
+			},
+			{
+				label: 'UTF-8 conversion guide opens encoding fixer tool',
+				match: 'href="/tools/subtitle-encoding-fixer/"',
+			},
+			{
+				label: 'UTF-8 conversion guide links validation follow-up',
+				match: 'href="/tools/srt-validator/"',
+			},
+			{
+				label: 'UTF-8 conversion guide links boxes follow-up',
+				match: 'href="/guides/how-to-fix-subtitles-showing-boxes/"',
+			},
+			{
+				label: 'FAQ schema for UTF-8 conversion questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert subtitles to UTF-8\?/
 			},
 		],
 	},

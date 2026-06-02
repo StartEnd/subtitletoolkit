@@ -1,8 +1,10 @@
 ---
 title: How to convert subtitles to UTF-8
+seoTitle: Convert Subtitles to UTF-8 - Fix Encoding Online
 description: Convert subtitle files to UTF-8 so accents, non-English characters, and captions open correctly in editors and video platforms.
+seoDescription: Convert SRT, VTT, ASS, SSA, or SMI subtitles to UTF-8 online. Fix broken accents, boxes, and garbled text locally with no upload.
 pubDate: 2026-05-10
-updatedDate: 2026-05-25
+updatedDate: 2026-06-02
 category: conversion-guides
 tags:
   - utf-8
@@ -10,7 +12,15 @@ tags:
   - subtitle conversion
   - srt
   - vtt
+  - convert subtitles to utf-8
 primaryTool: subtitle-encoding-fixer
+faqs:
+  - question: How do I convert subtitles to UTF-8?
+    answer: Open the original subtitle file with the correct source encoding, preview the readable text, then export a clean UTF-8 copy. Do this before upload or conversion if names, accents, or non-English lines look broken.
+  - question: Does converting subtitles to UTF-8 change timing?
+    answer: No. Encoding conversion changes how subtitle text is decoded and saved. Cue numbers, timestamps, and subtitle order should stay the same.
+  - question: Which source encoding should I try first?
+    answer: Try Windows-1252 or ISO-8859-1 for Western European text, GB18030 for Simplified Chinese, Big5 for Traditional Chinese, Shift JIS for Japanese, and EUC-KR for Korean subtitles.
 ---
 
 UTF-8 is the safest default encoding for modern subtitle workflows.
@@ -20,6 +30,17 @@ UTF-8 is the safest default encoding for modern subtitle workflows.
 If a subtitle file came from an old editor, archive, DVD workflow, or regional subtitle site, convert it to UTF-8 before upload or delivery.
 
 Use the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) to decode the original file and download a UTF-8 copy.
+
+## Convert, repair, or validate first?
+
+Start with the visible symptom. UTF-8 conversion helps when the text is unreadable, not when the timing structure is broken.
+
+| What you see | Best first step | Why |
+| --- | --- | --- |
+| Broken accents, boxes, or `�` characters | Use [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) | The file was probably decoded with the wrong source encoding |
+| Text is readable but upload fails | Use [SRT Validator](/tools/srt-validator/) or [WebVTT Validator](/tools/webvtt-validator/) | The problem is likely timestamps, cue order, blank lines, or headers |
+| SRT uses dots instead of comma timestamps | Use [Fix SRT Timestamps](/tools/fix-srt-timestamps/) | Timestamp syntax is a format problem, not an encoding problem |
+| Text has tags or messy spacing after encoding repair | Use [Subtitle Cleaner](/tools/subtitle-cleaner/) | Clean markup only after characters are readable |
 
 ## Why UTF-8 is usually the right target
 
@@ -42,6 +63,20 @@ That makes it safer for:
 5. Try another source encoding if the preview still looks garbled.
 6. Download the UTF-8 output.
 7. Test the output in the target player or editor.
+
+## Pick the likely source encoding
+
+If you do not know the source encoding, use language and file origin as clues.
+
+| File origin or language | Try first | Try next |
+| --- | --- | --- |
+| Western European subtitles | `Windows-1252` | `ISO-8859-1` |
+| Simplified Chinese subtitles | `GB18030` | `UTF-8` if the file came from a modern editor |
+| Traditional Chinese subtitles | `Big5` | `GB18030` |
+| Japanese subtitles | `Shift JIS` | `UTF-8` |
+| Korean subtitles | `EUC-KR` | `UTF-8` |
+
+Always compare the preview against real names and non-English lines before downloading the final UTF-8 copy.
 
 ## Example
 
@@ -85,5 +120,12 @@ Always keep the original until the converted copy has been checked.
 ## Related guides
 
 - [How to fix garbled subtitles](/guides/how-to-fix-garbled-subtitles/)
+- [How to fix subtitles showing boxes](/guides/how-to-fix-subtitles-showing-boxes/)
 - [Subtitle encoding: Windows-1252 vs UTF-8](/guides/subtitle-encoding-windows-1252-vs-utf-8/)
 - [How to clean subtitle formatting before upload](/guides/how-to-clean-subtitle-formatting-before-upload/)
+
+## Related tools
+
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
+- [SRT Validator](/tools/srt-validator/)
+- [Subtitle Cleaner](/tools/subtitle-cleaner/)
