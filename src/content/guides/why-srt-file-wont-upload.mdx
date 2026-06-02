@@ -4,10 +4,11 @@ seoTitle: SRT File Won't Upload - Fix Subtitle Format Errors
 description: Diagnose why an SRT subtitle file fails to upload by checking timestamp format, cue numbering, blank lines, encoding, and file structure.
 seoDescription: Fix an SRT file that will not upload by checking timestamp commas, cue numbers, blank lines, encoding, file structure, and unsupported markup.
 pubDate: 2026-05-26
-updatedDate: 2026-06-01
+updatedDate: 2026-06-02
 category: sync-fixes
 tags:
   - srt
+  - srt file won't upload
   - upload error
   - validator
   - timestamps
@@ -32,6 +33,17 @@ Run the file through the [SRT Validator](/tools/srt-validator/) first. Most SRT 
 
 If the issue is mechanical, you usually do not need to rewrite the captions. Validate the file, repair the structure, then upload the cleaned SRT again.
 
+## Decision rule before you start editing
+
+Use this order:
+
+- if the file starts with `WEBVTT`, stop calling it SRT and convert it first
+- if the file contains ASS or SSA sections, export a plain SRT delivery copy instead of cleaning the wrong format
+- if the file is already SRT, validate structure before rewriting caption text
+- if the file uploads but playback is early, late, or drifting, stop treating it as an upload-format failure and fix timing instead
+
+That order prevents the most common waste: manually editing a file that is either the wrong subtitle format or already uploadable but synced badly.
+
 ## Common reasons SRT uploads fail
 
 Check these first:
@@ -46,6 +58,19 @@ Check these first:
 - the file extension is `.srt`, but the content is actually VTT or another format
 
 These problems are easy to miss because the file can still look normal when opened as plain text.
+
+## What an upload failure usually means
+
+An SRT upload failure usually means the receiving platform could not parse the file as valid subtitle structure.
+
+It does **not** automatically mean:
+
+- the subtitle wording is bad
+- every cue is too long
+- the translation is wrong
+- the file is synced to the wrong cut of the video
+
+Those can still matter later, but first get the file accepted as valid SRT.
 
 ## What a valid SRT block looks like
 
@@ -82,6 +107,8 @@ Common invalid variants include:
 
 **Fix**: use [Fix SRT Timestamps](/tools/fix-srt-timestamps/) for timestamp formatting problems. If the file came from WebVTT, convert it with the [VTT to SRT Converter](/tools/vtt-to-srt/) instead of editing timestamps by hand.
 
+If the target platform is YouTube, compare the output to [best SRT settings for YouTube upload](/guides/best-srt-settings-for-youtube-upload/).
+
 ## Check blank lines and cue numbering
 
 Missing blank lines make cue blocks run together:
@@ -108,6 +135,8 @@ Duplicate number
 ```
 
 **Fix**: use [Clean SRT File Online](/tools/clean-srt-file/) to rebuild spacing and renumber cue blocks.
+
+If cue numbers keep drifting after cleanup, validate again before trying another upload.
 
 ## Check cue order and overlaps
 
@@ -167,6 +196,19 @@ Problem examples:
 
 **Fix**: use [Clean SRT File Online](/tools/clean-srt-file/) to strip unsafe formatting and keep readable subtitle text.
 
+## Re-upload checklist
+
+Before trying the file again, confirm:
+
+1. The file is actually SRT and not renamed VTT, ASS, or SSA.
+2. Every cue uses comma timestamps and a valid `start --> end` range.
+3. Cue numbers are sequential and cue blocks are separated by blank lines.
+4. Unsafe tags or ASS override syntax are gone from the delivery file.
+5. The file opens as readable UTF-8 text.
+6. If timing was edited, one early cue, one middle cue, and one late cue still match the real media.
+
+For upload-specific hygiene beyond raw structure, use [how to clean subtitle formatting before upload](/guides/how-to-clean-subtitle-formatting-before-upload/).
+
 ## Step-by-step repair workflow
 
 ### 1. Validate the rejected file
@@ -199,6 +241,8 @@ Upload the cleaned file to the target platform. Preview the first cue, a middle 
 
 YouTube usually works best with clean SRT. If your upload fails there, use [Why YouTube subtitle upload failed](/guides/why-youtube-subtitles-upload-failed/) for YouTube-specific checks.
 
+If the file validates but YouTube still refuses it, compare it against [best SRT settings for YouTube upload](/guides/best-srt-settings-for-youtube-upload/).
+
 ### Vimeo
 
 Vimeo accepts SRT uploads, but VTT is often better for external web playback. If you are hosting captions outside Vimeo, use VTT.
@@ -225,6 +269,10 @@ If accents, names, or non-English text looks broken, fix encoding before validat
 
 Word processors can introduce smart quotes, non-breaking spaces, and hidden formatting. Use a plain text editor for subtitle files.
 
+### Repeatedly fixing sync when the file has not uploaded yet
+
+If the platform still rejects the file itself, timing edits are not the first problem. Get the structure accepted first, then do sync repair only after the upload succeeds.
+
 ## Frequently asked questions
 
 ### Why will my SRT file not upload?
@@ -248,6 +296,8 @@ Yes, if the file starts with `WEBVTT` or uses dot-based timestamps. Renaming a V
 - [How to validate SRT files](/guides/how-to-validate-srt-files/)
 - [How to fix malformed SRT timestamps](/guides/how-to-fix-malformed-srt-timestamps/)
 - [How to clean an SRT file](/guides/how-to-clean-an-srt-file/)
+- [How to clean subtitle formatting before upload](/guides/how-to-clean-subtitle-formatting-before-upload/)
+- [Best SRT settings for YouTube upload](/guides/best-srt-settings-for-youtube-upload/)
 - [Why YouTube subtitle upload failed](/guides/why-youtube-subtitles-upload-failed/)
 
 ## Related tools

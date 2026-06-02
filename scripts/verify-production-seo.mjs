@@ -1185,6 +1185,18 @@ const checks = [
 				match: 'href="/tools/fix-srt-timestamps/"',
 			},
 			{
+				label: 'SRT upload failure guide links to upload cleanup follow-up',
+				match: 'href="/guides/how-to-clean-subtitle-formatting-before-upload/"',
+			},
+			{
+				label: 'SRT upload failure guide links to YouTube SRT settings follow-up',
+				match: 'href="/guides/best-srt-settings-for-youtube-upload/"',
+			},
+			{
+				label: 'SRT upload failure guide links to YouTube upload failure follow-up',
+				match: 'href="/guides/why-youtube-subtitles-upload-failed/"',
+			},
+			{
 				label: 'FAQ schema for SRT upload failure questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Why will my SRT file not upload\?/
 			},
