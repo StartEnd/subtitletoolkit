@@ -242,6 +242,10 @@ const checks = [
 				match: '/guides/how-to-convert-srt-to-txt/',
 			},
 			{
+				label: 'homepage links to SSA to SRT guide',
+				match: '/guides/how-to-convert-ssa-to-srt/',
+			},
+			{
 				label: 'homepage links to ASS to VTT guide',
 				match: '/guides/how-to-convert-ass-to-vtt-for-web-players/',
 			},
@@ -273,6 +277,27 @@ const checks = [
 			{
 				label: 'ASS to SRT YouTube guide upload meta description',
 				match: 'Convert ASS to SRT for YouTube upload. Remove unsupported styling, keep subtitle timing, and prepare clean SRT captions locally with no upload.',
+			},
+		],
+	},
+	{
+		path: '/guides/how-to-convert-ssa-to-srt/',
+		expect: [
+			{
+				label: 'SSA to SRT guide CTR title',
+				match: '<title>Convert SSA to SRT - Free Subtitle Converter</title>',
+			},
+			{
+				label: 'SSA to SRT guide no-upload meta description',
+				match: 'Convert SSA subtitles to SRT online for free. Flatten styling, keep dialogue timing, and create a simple SubRip file locally with no upload.',
+			},
+			{
+				label: 'SSA to SRT guide opens ASS converter tool',
+				match: 'href="/tools/ass-to-srt/"',
+			},
+			{
+				label: 'FAQ schema for SSA to SRT questions',
+				match: /"@type"\s*:\s*"FAQPage"[\s\S]*How do I convert an SSA subtitle file to SRT\?/
 			},
 		],
 	},
@@ -2917,6 +2942,10 @@ const checks = [
 				match: '/guides/how-to-convert-ass-to-srt-for-youtube-uploads/',
 			},
 			{
+				label: 'guides index links to SSA to SRT guide',
+				match: '/guides/how-to-convert-ssa-to-srt/',
+			},
+			{
 				label: 'guides index links to subtitle cleanup before upload guide',
 				match: '/guides/how-to-clean-subtitle-formatting-before-upload/',
 			},
@@ -3543,6 +3572,10 @@ const checks = [
 			{
 				label: 'llms lists ASS to TXT guide',
 				match: 'https://subtitletoolkit.tools/guides/how-to-convert-ass-to-txt/',
+			},
+			{
+				label: 'llms lists SSA to SRT guide',
+				match: 'https://subtitletoolkit.tools/guides/how-to-convert-ssa-to-srt/',
 			},
 			{
 				label: 'llms lists merge SRT guide',

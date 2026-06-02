@@ -1,0 +1,141 @@
+---
+title: How to convert SSA to SRT
+seoTitle: Convert SSA to SRT - Free Subtitle Converter
+seoDescription: Convert SSA subtitles to SRT online for free. Flatten styling, keep dialogue timing, and create a simple SubRip file locally with no upload.
+description: Convert old SubStation Alpha SSA subtitle files into simple SRT captions by preserving dialogue timing and removing unsupported styling.
+pubDate: 2026-06-02
+category: conversion-guides
+tags:
+  - ssa
+  - srt
+  - ass
+  - conversion
+  - subtitle editing
+primaryTool: ass-to-srt
+faqs:
+  - question: How do I convert an SSA subtitle file to SRT?
+    answer: Use an ASS to SRT converter that also accepts SSA files. It reads the dialogue events, converts SSA timing to SubRip timestamps, removes styling fields, and outputs a numbered SRT file.
+  - question: Is SSA the same as ASS?
+    answer: SSA is the older SubStation Alpha subtitle format. ASS is the newer Advanced SubStation Alpha format, but many conversion workflows handle both because their dialogue event structure is closely related.
+  - question: Will SSA styling survive in SRT?
+    answer: No. SRT is a simpler delivery format, so colors, positions, fonts, karaoke effects, and most override tags are flattened or removed. Timing and readable dialogue text are the parts to preserve.
+---
+
+SSA subtitle files are older styled subtitle files. They are useful in editing workflows, but many upload forms, players, and review handoffs expect a simpler SRT file.
+
+## Quick answer
+
+Use the [ASS to SRT Converter](/tools/ass-to-srt/) to convert SSA subtitles to SRT. The tool accepts `.ssa` input, keeps dialogue timing, removes styling metadata, and creates a simple SubRip file locally in your browser.
+
+Keep the original SSA file if you still need styles, positions, or editor-specific formatting.
+
+## When to convert SSA to SRT
+
+Convert SSA to SRT when:
+
+- a platform does not accept `.ssa` files
+- a video player expects simple SubRip captions
+- you need a clean delivery copy for review or upload
+- styling is less important than compatibility
+- you want to validate or edit the file as standard SRT
+
+If the styled layout is part of the video experience, keep SSA or ASS as the editing source and export SRT only as the delivery copy.
+
+## What changes during conversion
+
+SSA and ASS can store style definitions, layers, names, margins, effects, and dialogue text in event rows. SRT only stores cue number, start time, end time, and caption text.
+
+During SSA to SRT conversion:
+
+- dialogue timing is converted to SRT timestamp format
+- visible subtitle text is preserved
+- `\N` hard line breaks become normal line breaks
+- style sections and script metadata are removed
+- positioning, colors, fonts, and effects are flattened
+- cue numbers are generated sequentially
+
+## Before and after
+
+### SSA before
+
+```text
+[Script Info]
+Title: Sample SSA file
+ScriptType: v4.00
+
+[V4 Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, TertiaryColour, BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, AlphaLevel, Encoding
+Style: Default,Arial,20,16777215,65535,65535,0,0,0,1,2,2,2,10,10,10,0,1
+
+[Events]
+Format: Marked, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: Marked=0,0:00:01.00,0:00:03.50,Default,,0,0,0,,Welcome to the lesson.
+Dialogue: Marked=0,0:00:04.00,0:00:06.00,Default,,0,0,0,,This SSA file needs SRT output.
+```
+
+### SRT after
+
+```text
+1
+00:00:01,000 --> 00:00:03,500
+Welcome to the lesson.
+
+2
+00:00:04,000 --> 00:00:06,000
+This SSA file needs SRT output.
+```
+
+## Step-by-step workflow
+
+1. Save a copy of the original `.ssa` file.
+2. Open the [ASS to SRT Converter](/tools/ass-to-srt/).
+3. Upload or paste the SSA subtitle content.
+4. Convert the file to SRT.
+5. Review the output for missing dialogue, line breaks, and character encoding.
+6. Download the `.srt` file and test it in the destination player or upload form.
+
+## Common mistakes
+
+### Expecting SSA styles to remain
+
+SRT cannot preserve full SSA styling. If fonts, colors, or screen positions matter, keep the SSA source and use the SRT file only for compatibility.
+
+### Converting comment lines as dialogue
+
+Some SSA files contain `Comment:` rows. These are usually not meant for delivery. Check the source file if important lines are missing after conversion.
+
+### Ignoring encoding problems
+
+Older SSA files may use non-UTF-8 encodings. If names, accents, or CJK text look broken after conversion, use the [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/) before delivering the SRT.
+
+### Uploading without validation
+
+After conversion, run the output through the [SRT Validator](/tools/srt-validator/) if a platform rejects it or if timestamps look unusual.
+
+## Frequently asked questions
+
+### How do I convert an SSA subtitle file to SRT?
+
+Use the [ASS to SRT Converter](/tools/ass-to-srt/) with the `.ssa` file. It reads SSA dialogue events and creates numbered SRT cues with SubRip timestamps.
+
+### Is SSA the same as ASS?
+
+SSA is the older SubStation Alpha format. ASS is the newer Advanced SubStation Alpha format. Their event structures are close enough that many ASS conversion tools also handle SSA subtitle files.
+
+### Will SSA styling survive in SRT?
+
+No. SRT is a plain delivery format. Conversion keeps timing and readable dialogue text, but advanced styles, positions, and effects are removed.
+
+## Related guides
+
+- [ASS to SRT for YouTube uploads](/guides/how-to-convert-ass-to-srt-for-youtube-uploads/)
+- [ASS vs SRT](/guides/ass-vs-srt/)
+- [When to use ASS instead of SRT](/guides/when-to-use-ass-instead-of-srt/)
+- [How to validate SRT files](/guides/how-to-validate-srt-files/)
+
+## Related tools
+
+- [ASS to SRT Converter](/tools/ass-to-srt/)
+- [SRT Validator](/tools/srt-validator/)
+- [Subtitle Encoding Fixer](/tools/subtitle-encoding-fixer/)
+
