@@ -1066,6 +1066,22 @@ const checks = [
 				match: 'href="/tools/srt-validator/"',
 			},
 			{
+				label: 'YouTube subtitle conversion guide links upload settings follow-up',
+				match: 'href="/guides/best-srt-settings-for-youtube-upload/"',
+			},
+			{
+				label: 'YouTube subtitle conversion guide links upload preparation follow-up',
+				match: 'href="/guides/how-to-prepare-subtitles-for-youtube-upload/"',
+			},
+			{
+				label: 'YouTube subtitle conversion guide links upload failure follow-up',
+				match: 'href="/guides/why-youtube-subtitles-upload-failed/"',
+			},
+			{
+				label: 'YouTube subtitle conversion guide links encoding fixer',
+				match: 'href="/tools/subtitle-encoding-fixer/"',
+			},
+			{
 				label: 'FAQ schema for YouTube subtitle conversion questions',
 				match: /"@type"\s*:\s*"FAQPage"[\s\S]*Can I convert VTT subtitles to SRT for YouTube\?/
 			},
