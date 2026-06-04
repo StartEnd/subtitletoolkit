@@ -1,6 +1,6 @@
 # Subtitle Toolkit Search Growth Playbook
 
-Last updated: 2026-06-01
+Last updated: 2026-06-04
 Goal: turn low daily impressions into clicks, higher long-tail rankings, and later ad-ready traffic.
 
 ## Current Stage

@@ -1,5 +1,7 @@
 # Subtitle Toolkit Migration Plan
 
+> **Archived.** Migration from the Next.js prototype completed in April 2026. Current architecture is documented in `PROJECT_BASELINE.md`.
+
 ## Goal
 
 Move only the useful product pieces from the older Next.js prototype into this Astro codebase.

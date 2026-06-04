@@ -1,5 +1,7 @@
 # Launch Checklist
 
+> **Archived.** Written for the 2026-04-23 v1 launch (8 tools, 8 guides). Current scale and checks are in `PROJECT_BASELINE.md` and `pnpm verify:seo:ready`.
+
 ## Product
 
 - Confirm the homepage headline and tool descriptions read naturally to overseas users

@@ -1,8 +1,8 @@
 # Subtitle Toolkit Long-Tail SEO Plan
 
-Last updated: 2026-05-06
+Last updated: 2026-06-04
 Owner: Song
-Status: Execution plan
+Status: Execution plan (scale updated; strategy unchanged)
 
 ## 1. Goal
 
@@ -21,12 +21,14 @@ This plan does not depend on payments, accounts, or SaaS features.
 
 The current site already has:
 
-- 8 tool pages
-- 8 guide pages
+- 46 tool pages
+- 126 guide pages across 4 category hubs
+- 182 static pages in the production build
 - a clean static Astro structure
 - strong trust positioning: free, local, no upload
+- GSC Day 0 primary queue submitted (2026-06-02)
 
-The current gap is not product quality. The gap is search surface area.
+V1 launched with 8 tools and 8 guides on 2026-04-23. The long-tail expansion phase is largely complete; the current gap is CTR, indexing depth, and traffic quality — not missing product surface.
 
 Right now the site mainly covers:
 

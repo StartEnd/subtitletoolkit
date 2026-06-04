@@ -16,7 +16,7 @@ Why this fits the current product:
 This repo is already configured for:
 
 - `pnpm`
-- Node `22.12.0` via [`.node-version`](/Users/song/Project/subtitletoolkit/.node-version)
+- Node `22.12.0` via [`.node-version`](.node-version)
 - static Astro build output in `dist`
 
 Local sanity check before pushing:
@@ -61,7 +61,7 @@ Recommended build env:
 Notes:
 
 - This release is static-first, so no Astro adapter is required
-- `packageManager` is pinned in [package.json](/Users/song/Project/subtitletoolkit/package.json), so Pages should use `pnpm`
+- `packageManager` is pinned in [package.json](package.json), so Pages should use `pnpm`
 
 ## Custom Domain
 

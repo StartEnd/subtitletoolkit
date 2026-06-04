@@ -24,11 +24,34 @@ The goal here is a cleaner foundation for:
 ## Current Routes
 
 - `/`
-- `/tools`
-- `/tools/[slug]`
-- `/guides`
-- `/guides/[slug]`
-- `/rss.xml`
+- `/tools` and `/tools/[slug]` (46 tools)
+- `/guides` and `/guides/[slug]` (126 guides)
+- `/guides/conversion-guides/`, `/guides/sync-fixes/`, `/guides/format-comparisons/`, `/guides/workflow-guides/`
+- `/privacy-policy`, `/terms-of-service`
+- `/rss.xml`, `/sitemap-index.xml`, `/robots.txt`
+
+## Architecture
+
+Tools and guides are catalog-driven:
+
+- Tool definitions: `src/lib/subtitles/catalog.ts`
+- Processing logic: `src/lib/subtitles/processor.ts`
+- Guide content: `src/content/guides/*.mdx`
+- Guide categories: `src/lib/guides/catalog.ts`
+
+Adding a tool updates the catalog and processor; Astro generates the route automatically.
+
+## Documentation
+
+| File | Purpose |
+| --- | --- |
+| `PROJECT_BASELINE.md` | Product scale, architecture, operating manual |
+| `DEPLOYMENT.md` | Cloudflare Pages deployment |
+| `SEARCH_GROWTH_PLAYBOOK.md` | Weekly GSC optimization loop |
+| `SEO_LONGTAIL_PLAN.md` | Long-tail content strategy |
+| `GSC_DAY0_URLS.md` | URL Inspection queue |
+| `GSC_WEEKLY_TRACKER.md` | Weekly change log |
+| `PROMOTION_PLAN.md` | External promotion copy source |
 
 ## Local Development
 
@@ -153,24 +176,22 @@ cp .env.example .env
 
 ## Current Project Status
 
-Launch-ready as of `2026-04-23`.
+Live and in search-growth phase as of `2026-06-04`.
 
 Confirmed in the current baseline:
 
 - site domain: `https://subtitletoolkit.tools`
-- header / footer branding
-- migrated subtitle processor and tool catalog
-- 8 subtitle tool detail pages
-- 8 validated English guide pages
+- 46 browser-local subtitle tools
+- 126 English SEO guide pages across 4 category hubs
+- 182 static pages in production build
 - Plausible-ready pageview and tool event hooks
 - privacy policy and terms pages
-- deployment and launch docs
-- favicon, OG preview, and robots.txt
-- RSS and sitemap
-- Cloudflare Pages friendly static deployment model
-- browser-local processing with no backend subtitle handling
+- favicon, OG preview, robots.txt, RSS, and sitemap
+- Cloudflare Pages static deployment
+- GSC Day 0 primary queue submitted; next review 2026-06-09
+- SEO verification suite passing locally (`pnpm verify:seo:ready`)
 
-For the full launch baseline and maintenance notes, see `PROJECT_BASELINE.md`.
+For the full baseline, architecture, and operating manual, see `PROJECT_BASELINE.md`.
 
 ## Migration Source
 
